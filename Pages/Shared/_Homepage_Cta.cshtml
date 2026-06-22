@@ -1,0 +1,43 @@
+@* _Homepage_Cta.cshtml — Closing CTA band
+   Dark blue panel with PCB grid texture and two CTA buttons.
+   Spec ref: design_handoff_homepage/README.md §8
+*@
+
+<section class="hana-cta-section"
+         style="background:var(--hana-blue-deep); border-top:1px solid var(--line);
+                position:relative; overflow:hidden; padding:96px 0;">
+
+    @* PCB grid background texture *@
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none;
+                background-image:
+                    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+                background-size:48px 48px;"></div>
+
+    <div class="hana-wrap" style="position:relative; z-index:1;">
+        <div style="display:grid;
+                    grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
+                    gap:48px; align-items:center;">
+
+            <h2 style="font-family:var(--font-display); font-size:30px; font-weight:600;
+                        letter-spacing:-0.02em; line-height:1.2; color:#ffffff;
+                        max-width:640px; margin:0; text-wrap:pretty;">
+                Tell us about your program. We'll route it to the right facility.
+            </h2>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="/contact" class="hana-btn hana-btn-primary">
+                    Talk to engineering
+                    <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+                </a>
+                <a href="/contact/rfq"
+                   class="hana-btn hana-btn-ghost-dark">
+                    Request a quote
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,186 @@
+@page "/about/leadership"
+@{
+    ViewData["Title"] = "Leadership — Hana Microelectronics";
+    ViewData["Description"] = "The Board of Directors and Executive Team of Hana Microelectronics Public Company Limited.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/about-leadership.css" />
+}
+
+@* Leadership. Static content; page CSS in ~/css/about-leadership.css;
+   backgrounds via ~/js/hana-backgrounds.js (declarative [data-hana-bg]). *@
+
+<!-- ── Hero band: breadcrumb + hero over flow background ── -->
+<div class="hero-band hero-band--flow" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="none">
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <span class="nolink">About</span><span class="sep">/</span>
+        <span>Leadership</span>
+      </nav>
+      <div class="meta">SET-LISTED · 1993</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Hana leadership</h1>
+      <p class="lede">
+        Hana Microelectronics is a public company listed on the Stock Exchange of
+        Thailand. Its Board of Directors sets governance and strategy; its Executive
+        Team runs manufacturing across Thailand, China, and Cambodia.
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ── Anchor subnav ── -->
+<nav class="anchor-nav">
+  <div class="anchor-nav-inner">
+    <a class="anchor-chip" href="#board-of-directors">Board of Directors</a>
+    <a class="anchor-chip" href="#executive-team">Executive Team</a>
+  </div>
+</nav>
+
+<!-- ── Board of Directors ── -->
+<section class="section" id="board-of-directors">
+  <div class="section-head">
+    <div class="section-label">Governance</div>
+    <h2>Board of Directors</h2>
+    <p>The Board sets governance, oversight, and strategic direction for Hana
+      Microelectronics Public Company Limited.</p>
+  </div>
+
+  <div class="people-grid">
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Board_1.%20John.png" alt="Mr. John Thompson" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Chairman</span>
+      <h3 class="p-name">Mr. John Thompson</h3>
+      <p class="p-role">Chairman of the Board &amp; Independent Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Executives_2.%20Richard.png" alt="Mr. Richard David Han" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Executive Director</span>
+      <h3 class="p-name">Mr. Richard David Han</h3>
+      <p class="p-role">Executive Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Executives_3.%20Terrence.png" alt="Mr. Terrence Philip Weir" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Executive Director</span>
+      <h3 class="p-name">Mr. Terrence Philip Weir</h3>
+      <p class="p-role">Executive Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Executives_4.%20Sanjay.png" alt="Mr. Sanjay Nirendra Mitra" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Executive Director</span>
+      <h3 class="p-name">Mr. Sanjay Nirendra Mitra</h3>
+      <p class="p-role">Executive Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Executives_5.%20%E0%B8%84%E0%B8%B8%E0%B8%93%20Insuk%20Kim.png" alt="Mr. Insuk Kim" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Executive Director</span>
+      <h3 class="p-name">Mr. Insuk Kim</h3>
+      <p class="p-role">Executive Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Board_6.%20%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%9E%E0%B8%A3%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C_.png" alt="Ms. Pornphan Abhamongkol" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Independent</span>
+      <h3 class="p-name">Ms. Pornphan Abhamongkol</h3>
+      <p class="p-role">Independent Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Board_7.%20%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%AA%E0%B8%B8%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B9%8C.png" alt="Mrs. Sunun Thongbai" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Independent</span>
+      <h3 class="p-name">Mrs. Sunun Thongbai</h3>
+      <p class="p-role">Independent Director</p>
+    </article>
+    <article class="person">
+      <div class="photo"><img src="https://www.hanagroup.com/images/Board_8.%20Stephanus.png" alt="Mr. Stephanus Josephus Hendrikus Brader" loading="lazy" onerror="this.style.display='none'"></div>
+      <span class="p-tag">Independent</span>
+      <h3 class="p-name">Mr. Stephanus Josephus Hendrikus Brader</h3>
+      <p class="p-role">Independent Director</p>
+    </article>
+  </div>
+</section>
+
+<!-- ── Divider: Board → Executive Team ── -->
+<div class="section-divider" role="separator" aria-hidden="true">
+  <div class="rule">
+    <span class="node">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path>
+      </svg>
+    </span>
+  </div>
+</div>
+
+<!-- ── Executive Team ── -->
+<section class="gov-note" style="background:var(--bg);border:none;">
+  <div class="section" id="executive-team" style="border:none;">
+    <div class="section-head">
+      <div class="section-label">Management</div>
+      <h2>Executive Team</h2>
+      <p>The leaders running operations, finance, technology, and manufacturing
+        across the group day to day.</p>
+    </div>
+
+    <div class="people-grid">
+      <article class="person">
+        <div class="photo"><img src="https://www.hanagroup.com/images/Executives_2.%20Richard.png" alt="Mr. Richard David Han" loading="lazy" onerror="this.style.display='none'"></div>
+        <h3 class="p-name">Mr. Richard David Han</h3>
+        <p class="p-role">President &amp; Chief Executive Officer</p>
+      </article>
+      <article class="person">
+        <div class="photo"><img src="https://www.hanagroup.com/images/Executives_3.%20Terrence.png" alt="Mr. Terrence Philip Weir" loading="lazy" onerror="this.style.display='none'"></div>
+        <h3 class="p-name">Mr. Terrence Philip Weir</h3>
+        <p class="p-role">Executive Vice President &amp; Chief Financial Officer</p>
+      </article>
+      <article class="person">
+        <div class="photo"><img src="https://www.hanagroup.com/images/Executives_4.%20Sanjay.png" alt="Mr. Sanjay Nirendra Mitra" loading="lazy" onerror="this.style.display='none'"></div>
+        <h3 class="p-name">Mr. Sanjay Nirendra Mitra</h3>
+        <p class="p-role">Executive Vice President · Chief Operating Officer, Semiconductors &amp; Chief Marketing Officer</p>
+      </article>
+      <article class="person">
+        <div class="photo"><img src="https://www.hanagroup.com/images/Executives_5.%20%E0%B8%84%E0%B8%B8%E0%B8%93%20Insuk%20Kim.png" alt="Mr. Insuk Kim" loading="lazy" onerror="this.style.display='none'"></div>
+        <h3 class="p-name">Mr. Insuk Kim</h3>
+        <p class="p-role">Executive Vice President · Chief Operating Officer, Microelectronics &amp; Chief Technical Officer</p>
+      </article>
+      <article class="person">
+        <div class="photo"><img src="https://www.hanagroup.com/images/Executives_9.%20%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B1%E0%B8%A2.png" alt="Mr. Wichai Sukprasertkul" loading="lazy" onerror="this.style.display='none'"></div>
+        <h3 class="p-name">Mr. Wichai Sukprasertkul</h3>
+        <p class="p-role">Vice President &amp; General Manager, Hana-Lamphun &amp; Hana-Cambodia</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── Governance note ── -->
+<section class="gov-note gov-dark" data-hana-bg="flow" data-variant="dark" data-accent="cyan">
+  <div class="section">
+    <div class="inner">
+      <h3>Governance documents</h3>
+      <p>Board charters, committee structures, the articles of association, and
+        corporate-governance policies are published in the Investor Relations
+        section.</p>
+      <p><a href="/investor-relations/governance">View governance documents in Investor Relations →</a></p>
+    </div>
+  </div>
+</section>
+
+@section Scripts {
+    <script>
+        // graceful headshot fallback → avatar glyph
+        document.querySelectorAll('.person .photo img').forEach(function (img) {
+            img.addEventListener('error', function () {
+                var p = img.closest('.photo');
+                img.style.display = 'none';
+                if (p && !p.querySelector('svg')) {
+                    p.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6.5 8-6.5s8 2.5 8 6.5"></path></svg>');
+                }
+            });
+        });
+    </script>
+}

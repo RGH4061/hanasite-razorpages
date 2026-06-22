@@ -1,0 +1,67 @@
+/* ============================================================
+   _tokens.css — Hana Design System · Design Tokens
+   Drop into wwwroot/css/_tokens.css unchanged.
+   Source: hana-design-system.md §1 + §2
+   DO NOT add component rules here. Tokens only.
+   ============================================================ */
+
+:root {
+  /* ── Brand — Blue ─────────────────────────────────────── */
+  --hana-blue:      #1283DD; /* Primary. Matched to logo SVG. */
+  --hana-blue-deep: #0E4A7C; /* Hover, dark panels, sub-footer */
+  --hana-blue-soft: #4E9BDA; /* Pulse/trail, secondary accents */
+  --hana-blue-tint: #E5EEF5; /* Icon tinted backgrounds */
+
+  /* ── Neutrals — Surface ───────────────────────────────── */
+  --bg:      #F7F8FA; /* Page background, markets/capabilities section */
+  --surface: #EBEEF2; /* "What sets us apart" bg, spec blocks */
+  --line:    #D2D7DE; /* All 1px borders and dividers */
+  --white:   #FFFFFF;
+
+  /* ── Neutrals — Text ──────────────────────────────────── */
+  --ink:   #0E1116; /* Primary headings and body text */
+  --ink-2: #444B54; /* Body, secondary text */
+  --ink-3: #6B7280; /* Captions, labels, meta */
+
+  /* ── Accents ──────────────────────────────────────────── */
+  --warm-accent: #FF883E; /* People-led sections only. Last resort. */
+
+  /* ── Functional (UI only — never brand) ──────────────── */
+  --error:   #B42318;
+  --success: #0A7C3F;
+
+  /* ── Typography ───────────────────────────────────────── */
+  --font-display: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+  --font-text:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  /* ── Spacing scale (4px base) ─────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Radii ────────────────────────────────────────────── */
+  --radius-button: 4px;
+  --radius-card:   8px;
+  --radius-spec:   10px;
+  --radius-panel:  14px;
+
+  /* ── Layout widths ────────────────────────────────────── */
+  --page-max:     1080px;
+  --prose-max:     680px;
+  --headline-max:  820px;
+
+  /* ── Motion (minimal — color only) ────────────────────── */
+  --ease:     cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+}

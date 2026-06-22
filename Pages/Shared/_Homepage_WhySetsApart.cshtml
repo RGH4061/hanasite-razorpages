@@ -1,0 +1,111 @@
+@* _Homepage_WhySetsApart.cshtml — "From wafer to finished product" section
+   Uses: --surface background, engineering-drawing decorative layer,
+         photo column (4:5 portrait), body copy + CTA.
+
+   Photo required: wwwroot/images/photos/homepage-what-sets-apart.jpg
+   Spec ref: design_handoff_homepage/README.md §3
+*@
+
+<section class="hana-why-section"
+         style="background:var(--surface); color:var(--ink);
+                position:relative; overflow:hidden;
+                border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+                min-height:750px;">
+
+    @* ── Decorative engineering-drawing layer ──────────────── *@
+    @* Fine silkscreen dot grid *@
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none; z-index:0;
+                background-image:radial-gradient(rgba(18,131,221,0.16) 1px, transparent 1.4px);
+                background-size:22px 22px;
+                -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+                mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);"></div>
+
+    @* Coarser register marks *@
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none; z-index:0;
+                background-image:radial-gradient(rgba(18,131,221,0.22) 1.4px, transparent 2px);
+                background-size:132px 132px; background-position:11px 11px;
+                -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+                mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);"></div>
+
+    @* Left hairline rule *@
+    <div aria-hidden="true"
+         style="position:absolute; top:0; bottom:0; left:32px; width:1px; z-index:0; pointer-events:none;
+                background:linear-gradient(to bottom, transparent 0, rgba(18,131,221,0.28) 14%, rgba(18,131,221,0.28) 86%, transparent 100%);"></div>
+
+    @* Top-right register mark + coordinate readout *@
+    <div aria-hidden="true"
+         style="position:absolute; top:28px; right:28px; z-index:0;
+                display:flex; align-items:center; gap:12px; color:var(--hana-blue);">
+        <span style="font-family:var(--font-mono); font-size:11px;
+                     color:rgba(15,32,52,0.55); letter-spacing:0.04em;">
+            X 1024.000 &nbsp;&middot;&nbsp; Y 0768.000 &nbsp;&middot;&nbsp; &Delta; 0.05mm
+        </span>
+        <svg width="40" height="40" viewBox="0 0 40 40"
+             fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <circle cx="20" cy="20" r="13" opacity="0.55" />
+            <circle cx="20" cy="20" r="6"  opacity="0.85" />
+            <line x1="20" y1="0"  x2="20" y2="10" opacity="0.85" />
+            <line x1="20" y1="30" x2="20" y2="40" opacity="0.85" />
+            <line x1="0"  y1="20" x2="10" y2="20" opacity="0.85" />
+            <line x1="30" y1="20" x2="40" y2="20" opacity="0.85" />
+            <circle cx="20" cy="20" r="1.5" fill="currentColor" stroke="none" />
+        </svg>
+    </div>
+
+    @* ── Content grid ──────────────────────────────────────── *@
+    <div class="hana-wrap"
+         style="padding-top:104px; padding-bottom:104px;
+                position:relative; z-index:1;
+                display:grid;
+                grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
+                gap:72px; align-items:start;">
+
+        @* Left column — copy *@
+        <div>
+            <div class="hana-spec-label"
+                 style="color:var(--hana-blue); margin-bottom:20px;">What sets us apart</div>
+
+            <h2 style="font-family:var(--font-display); font-weight:700; font-size:50px;
+                        line-height:1.1; letter-spacing:-0.022em; color:var(--ink);
+                        max-width:600px; margin:0 0 24px; text-wrap:balance;">
+                From wafer to finished product. EMS &amp; OSAT under one group. One Partner.
+            </h2>
+
+            <p style="font-family:var(--font-text); font-size:17px; font-weight:400;
+                       line-height:1.65; color:var(--ink-2);
+                       max-width:460px; margin:0 0 36px; text-wrap:pretty;">
+                Programs that span PCB assembly and semiconductor packaging within one group —
+                single-source accountability, from die to box build. We hold that work to the
+                most stringent quality standards — ISO&nbsp;9001, IATF&nbsp;16949,
+                ISO&nbsp;13485, ISO&nbsp;14001, ISO&nbsp;45001, and ISO&nbsp;27001 — earning
+                recognition from some of the world's most demanding customers.
+            </p>
+
+            <a href="/about/why-hana" class="hana-btn hana-btn-primary">
+                Why Hana
+                <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+            </a>
+        </div>
+
+        @* Right column — photo *@
+        <div style="position:relative; aspect-ratio:4/5; overflow:hidden;
+                    border-radius:8px; border:1px solid var(--line);">
+            <img src="~/images/photos/homepage-what-sets-apart.png"
+                 alt="SMT inspection console on the Hana production floor"
+                 style="position:absolute; inset:0; width:100%; height:100%;
+                        object-fit:cover; object-position:center; display:block;" />
+            @* Caption overlay *@
+            <div style="position:absolute; left:12px; bottom:10px; z-index:1;">
+                <span style="font-family:var(--font-mono); font-size:10px;
+                              color:rgba(255,255,255,0.85); letter-spacing:0.04em;
+                              text-shadow:0 1px 4px rgba(0,0,0,0.55);">
+                    SMT LINE &middot; INSPECTION CONSOLE
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</section>

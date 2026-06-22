@@ -1,0 +1,199 @@
+@page "/about/quality"
+@{
+    ViewData["Title"] = "Quality, awards & recognition — Hana Microelectronics";
+    ViewData["Description"] = "Hana upholds the highest international manufacturing standards, with certifications across medical and automotive markets.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/about-quality.css" />
+}
+
+@* Awards, recognition & certifications. Static content; page CSS in
+   ~/css/about-quality.css; backgrounds via ~/js/hana-backgrounds.js. *@
+
+<!-- ── Hero band: breadcrumb + hero over flow background ── -->
+<div class="hero-band hero-band--flow" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="none">
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <span class="nolink">About</span><span class="sep">/</span>
+        <span>Awards &amp; Recognition</span>
+      </nav>
+      <div class="meta">QUALITY · CERTIFIED</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Awards &amp; Certifications</h1>
+      <p class="lede">
+        Holding our manufacturing to the highest international standards, across every site.
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ── Anchor subnav ── -->
+<nav class="anchor-nav">
+  <div class="anchor-nav-inner">
+    <a class="anchor-chip" href="#certifications">Certifications</a>
+    <a class="anchor-chip" href="#recognition">Awards</a>
+  </div>
+</nav>
+
+<!-- ── Certifications ── -->
+<section class="section" id="certifications">
+  <div class="section-head">
+    <div class="section-label">Certifications</div>
+    <h2>Our Certifications</h2>
+    <p>Hana upholds the highest in international manufacturing standards with special certification attention across medical and automotive markets. Certificates vary between Hana locations. Visit our locations hub to see certificates held at each plant. Original certificate copies can be requested via our contact form.</p>
+    <a class="cert-cta" href="/locations">
+      Explore locations hub
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+
+  <!-- Certifications compiled from the per-plant certification registers in
+       Page Specs & Templates/Locations/ (Ayutthaya, Lamphun, Jiaxing, Koh Kong, Solon).
+       Scope/validity varies by site — certificate numbers and dates are in the plant files. -->
+  <div class="cert-grid">
+    <div class="cert-card">
+      <span class="cert-code">ISO 9001:2015</span>
+      <h3 class="cert-name">Quality Management</h3>
+      <p class="cert-scope">The baseline quality management system, held across all Hana manufacturing sites.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">IATF 16949:2016</span>
+      <h3 class="cert-name">Automotive Quality</h3>
+      <p class="cert-scope">Automotive-sector quality management for electronics supplied into vehicle programmes.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 13485:2016</span>
+      <h3 class="cert-name">Medical Devices</h3>
+      <p class="cert-scope">Quality management for the manufacture of medical-device electronics.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 14001:2015</span>
+      <h3 class="cert-name">Environmental</h3>
+      <p class="cert-scope">Environmental management system governing the operations&rsquo; environmental impact.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 45001:2018</span>
+      <h3 class="cert-name">Health &amp; Safety</h3>
+      <p class="cert-scope">Occupational health and safety management for the manufacturing workforce.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO/IEC 27001:2022</span>
+      <h3 class="cert-name">Information Security</h3>
+      <p class="cert-scope">Information-security management protecting customer designs, data, and IP.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">IECQ QC 080000:2017</span>
+      <h3 class="cert-name">Hazardous Substance Process</h3>
+      <p class="cert-scope">Hazardous-substance process management supporting RoHS / REACH compliance.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ANSI/ESD S20.20:2021</span>
+      <h3 class="cert-name">ESD Control</h3>
+      <p class="cert-scope">Formal electrostatic-discharge control program protecting sensitive components in assembly.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">TL9000</span>
+      <h3 class="cert-name">Telecom Quality</h3>
+      <p class="cert-scope">Telecommunications-sector quality management system for telecom product assembly.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 14064-1</span>
+      <h3 class="cert-name">Greenhouse Gas</h3>
+      <p class="cert-scope">Verified greenhouse-gas (GHG) emissions statement supporting carbon reporting.</p>
+    </div>
+  </div>
+
+  <p class="cert-note">
+    Certifications and their scope vary by site and capability. Request the full
+    per-site certification matrix — with certificate numbers and validity dates —
+    for the sites relevant to your programme.
+  </p>
+</section>
+
+<!-- ── Recognition ── -->
+<section class="reco-section reco-dark" data-hana-bg="flow" data-variant="dark" data-accent="cyan">
+  <div class="section" id="recognition">
+    <div class="section-head">
+      <div class="section-label">AWARDS</div>
+      <h2>Recognition &amp; Ratings</h2>
+      <p>Independent recognition for corporate governance, ESG performance, and
+        disclosure &mdash; from the Stock Exchange of Thailand, the Thai Institute of
+        Directors, the Thaipat Institute, and ASEAN governance bodies.</p>
+    </div>
+
+    <!-- Content + images scraped from hanagroup.com/AboutUs/Awards — see awards-source-content.md.
+         Images hot-linked from the live site for preview; dev to re-host under wwwroot/images/. -->
+    <div class="award-grid">
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards1.jpg" alt="Corporate Governance Excellence" loading="lazy"></div>
+        <div class="award-body">
+          <h3>Corporate Governance Excellence</h3>
+          <p>Hana has consistently received a 5-star &ldquo;Excellent&rdquo; rating in the Corporate Governance Report (CGR) from the Thai Institute of Directors Association (IOD) from 2013 to the present &mdash; reflecting a continuous commitment to good governance, sustainable growth, and investor confidence.</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards2.jpg" alt="ASEAN Corporate Governance Excellence" loading="lazy"></div>
+        <div class="award-body">
+          <h3>ASEAN Corporate Governance Excellence</h3>
+          <p>Recognized with the ASEAN Corporate Governance Scorecard (ACGS) Award in the ASEAN Asset Class in 2019, 2021, and 2024, achieving a score of 97.5 or higher &mdash; supported by the ASEAN Capital Markets Forum (ACMF).</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards3.jpg" alt="SET ESG Ratings — Strong Performance" loading="lazy"></div>
+        <div class="award-body">
+          <h3>SET ESG Ratings &ndash; Strong Performance</h3>
+          <p>Achieved &ldquo;AAA,&rdquo; the top ranking, in the 2025 SET ESG Ratings &mdash; following &ldquo;AA&rdquo; ratings in 2023 and 2024 and inclusion in the THSI Sustainable Stocks list from 2020 to 2022.</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards4.jpg" alt="AGM Checklist Excellence" loading="lazy"></div>
+        <div class="award-body">
+          <h3>AGM Checklist Excellence</h3>
+          <p>A perfect score of 100 for five consecutive years in the AGM Assessment, reflecting a commitment to transparent and well-governed shareholder meetings.</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards5.jpg" alt="ESG100 Recognition" loading="lazy"></div>
+        <div class="award-body">
+          <h3>ESG100 Recognition</h3>
+          <p>Recognized by the Thaipat Institute as one of the Top 100 listed companies for ESG excellence since 2015 (except 2019 and 2025), reflecting the integration of ESG principles across the business.</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards6.jpg" alt="Sustainability Disclosure Acknowledgement" loading="lazy"></div>
+        <div class="award-body">
+          <h3>Sustainability Disclosure Acknowledgement</h3>
+          <p>Received the Sustainability Disclosure Acknowledgement from the Thaipat Institute for five consecutive years, reflecting transparent ESG reporting and advancing UN SDG 12.6.</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards7.jpg" alt="Thailand's Top Corporate Brands Values" loading="lazy"></div>
+        <div class="award-body">
+          <h3>Thailand&rsquo;s Top Corporate Brands Values</h3>
+          <p>Recognized as the leading company in Thailand&rsquo;s electronic component sector for 2023 and 2024, highlighting market position, governance, and sustainable growth.</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards8.jpg" alt="SET Awards" loading="lazy"></div>
+        <div class="award-body">
+          <h3>SET Awards</h3>
+          <p>Honored with the Top Corporate Governance Report Award (2014) and the Best Company Performance &amp; Outstanding CEO Awards (2015), reflecting strong governance, performance, and leadership.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

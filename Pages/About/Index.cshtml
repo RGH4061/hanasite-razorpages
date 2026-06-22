@@ -1,0 +1,274 @@
+@page "/about"
+@{
+    ViewData["Title"] = "Why Hana — EMS + OSAT microelectronics manufacturing";
+    ViewData["Description"] = "Hana brings semiconductor assembly and test (OSAT) together with electronics manufacturing (EMS) in one independent company — vertically integrated, across five countries, since 1978.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/about.css" />
+}
+
+@* Why Hana (About overview). Static content; page CSS in ~/css/about.css;
+   section backgrounds via ~/js/hana-backgrounds.js. *@
+
+<div data-density="compact">
+<!-- ── Breadcrumb ── -->
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <span>Why Hana</span>
+      </nav>
+      <div class="meta">EMS · OSAT · Est. 1978</div>
+    </div>
+  </div>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="wh-hero" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="left">
+    <div class="hero-inner">
+      <div class="eyebrow">ABOUT</div>
+      <h1>Why Hana Group</h1>
+      <p class="hero-summary">
+        Hana brings semiconductor assembly and test together with full electronics
+        manufacturing — OSAT and EMS in one independent, publicly listed company,
+        across five countries. Specialized in microelectronics since 1978.
+      </p>
+      <div class="btn-row">
+        <a href="/contact" class="hana-btn hana-btn-primary">Contact us</a>
+        <a href="/capabilities" class="hana-btn hana-btn-secondary">Explore capabilities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Vision & Mission (dark) ── -->
+  <section class="band vm-band" id="wh-vm" data-hana-bg="hex" data-variant="dark" data-accent="cyan" data-fade="none">
+    <div class="band-inner">
+      <div class="vm-grid">
+        <div>
+          <div class="pillar-label">Vision</div>
+          <p class="vm-text">To be the electronics manufacturing services partner of
+            choice — delivering high-quality microelectronics manufacturing across a
+            broad field of related disciplines.</p>
+        </div>
+        <div>
+          <div class="pillar-label">Mission</div>
+          <p class="vm-text">To build long-term value for shareholders, customers, and
+            employees — through strong customer satisfaction, the wellbeing of our
+            people, responsible environmental and social practices, and a culture of
+            innovation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pillar 1 — Vertical integration ── -->
+  <section class="band band--white">
+    <div class="band-inner">
+      <div class="vi-head">
+        <div class="pillar-label">THE HANA ADVANTAGE</div>
+        <h2>Vertically Integrated Operations</h2>
+        <p>Many manufacturers can do one or the other but Hana does both. OSAT — outsourced semiconductor assembly and test — packages and tests the chips. EMS — electronics manufacturing services — builds the circuit boards and finished products around them. With both inside one company, a product that needs chip-level packaging and board-level assembly can move through both without leaving Hana.</p>
+        <p>For a buyer, that means fewer suppliers to qualify and manage, design and
+          intellectual property kept within a single organization, and closer control
+          over quality, cost, and schedule.</p>
+      </div>
+
+      <div class="vi-flow-wrap" role="img" aria-label="Vertical integration flow: IC packaging and test (OSAT) through board assembly (EMS) to box build and fulfillment — seven stages on one site.">
+        <div class="vi-flow">
+
+          <div class="vi-phase">
+            <div class="vi-rail">
+              <div class="vi-rail-label"><span class="vi-rail-tag">OSAT</span><span class="vi-rail-name">IC packaging &amp; test</span></div>
+              <div class="vi-rail-line"></div>
+            </div>
+            <div class="vi-steps">
+              <div class="vi-card">
+                <div class="vi-step">Step 01</div>
+                <div class="vi-name">Wafer BG &amp; Saw</div>
+                <ul class="vi-ops"><li>BG</li><li>Saw</li></ul>
+              </div>
+              <div class="vi-arrow" aria-hidden="true"><svg width="22" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9 H18"/><path d="M12 3 L19 9 L12 15"/></svg></div>
+              <div class="vi-card">
+                <div class="vi-step">Step 02</div>
+                <div class="vi-name">IC Assembly</div>
+                <ul class="vi-ops"><li>DA</li><li>WB</li><li>Molding</li></ul>
+              </div>
+              <div class="vi-arrow" aria-hidden="true"><svg width="22" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9 H18"/><path d="M12 3 L19 9 L12 15"/></svg></div>
+              <div class="vi-card">
+                <div class="vi-step">Step 03</div>
+                <div class="vi-name">Test</div>
+                <ul class="vi-ops"><li>O/S test</li><li>Tape &amp; reel</li></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="vi-arrow vi-arrow--phase" aria-hidden="true"><svg width="34" height="22" viewBox="0 0 38 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11 H33"/><path d="M25 4 L34 11 L25 18"/></svg></div>
+
+          <div class="vi-phase">
+            <div class="vi-rail">
+              <div class="vi-rail-label"><span class="vi-rail-tag">EMS</span><span class="vi-rail-name">Board assembly</span></div>
+              <div class="vi-rail-line"></div>
+            </div>
+            <div class="vi-steps">
+              <div class="vi-card">
+                <div class="vi-step">Step 04</div>
+                <div class="vi-name">SMT</div>
+                <ul class="vi-ops"><li>Screen print</li><li>P&amp;P</li><li>Reflow</li></ul>
+              </div>
+              <div class="vi-arrow" aria-hidden="true"><svg width="22" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9 H18"/><path d="M12 3 L19 9 L12 15"/></svg></div>
+              <div class="vi-card">
+                <div class="vi-step">Step 05</div>
+                <div class="vi-name">PCBA</div>
+                <ul class="vi-ops"><li>Placement</li><li>Soldering</li><li>ICT &amp; FCT</li></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="vi-arrow vi-arrow--phase" aria-hidden="true"><svg width="34" height="22" viewBox="0 0 38 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11 H33"/><path d="M25 4 L34 11 L25 18"/></svg></div>
+
+          <div class="vi-phase">
+            <div class="vi-rail">
+              <div class="vi-rail-label"><span class="vi-rail-tag">FULFILL</span><span class="vi-rail-name">Box build &amp; fulfillment</span></div>
+              <div class="vi-rail-line"></div>
+            </div>
+            <div class="vi-steps">
+              <div class="vi-card">
+                <div class="vi-step">Step 06</div>
+                <div class="vi-name">Box Build</div>
+                <ul class="vi-ops"><li>Cover assembly</li><li>Housing assembly</li></ul>
+              </div>
+              <div class="vi-arrow" aria-hidden="true"><svg width="22" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9 H18"/><path d="M12 3 L19 9 L12 15"/></svg></div>
+              <div class="vi-card">
+                <div class="vi-step">Step 07</div>
+                <div class="vi-name">Drop Ship</div>
+                <ul class="vi-ops"><li>EXW</li><li>DDU</li><li>FOB</li></ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <ul class="vi-points">
+        <li>
+          <span class="vi-point-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div>
+            <strong>Continual technology investment</strong>
+            <p>Ongoing investment in manufacturing machinery, including patented Hana manufacturing systems keep Hana at the forefront of electronics manufacturing methods.</p>
+          </div>
+        </li>
+        <li>
+          <span class="vi-point-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div>
+            <strong>Diverse Capability Skillsets</strong>
+            <p>Our range of skills gives us a wider view on how to approach manufacturing and what pathways to take to achieve the best and most efficient results.</p>
+          </div>
+        </li>
+        <li>
+          <span class="vi-point-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div>
+            <strong>Manufacturing Flexibility</strong>
+            <p>From high-volume, low-mix lines to low-volume, high-mix programs — matched to what you build.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Pillar 2 — Geographic resilience ── -->
+  <section class="band">
+    <div class="band-inner">
+      <div class="pillar">
+        <div>
+          <div class="pillar-label">Geographic resilience</div>
+          <h2>Manufacturing across five countries</h2>
+          <p>Our global manufacturing footprint within Hana gives customers opportunities for program to be dual-sourced across borders without changing suppliers, closer to final markets and adaptable to different wage and technological requirements between countries.</p>
+          <p>Hana gives customers room to manage regional risk — tariffs, demand swings, and supply disruption — including a domestic option in the United States and TAA compliant manufacturing in Cambodia.</p>
+          <div class="pillar-cta"><a href="/locations" class="hana-btn hana-btn-secondary">Explore locations</a></div>
+        </div>
+        <div class="aside">
+          <div class="rows">
+            <div class="row"><span class="k">China</span><span class="v">Jiaxing</span></div>
+            <div class="row"><span class="k">Thailand</span><span class="v">Ayutthaya  /  Lamphun</span></div>
+            <div class="row"><span class="k">Cambodia</span><span class="v">Koh Kong</span></div>
+            <div class="row"><span class="k">United States</span><span class="v">Ohio </span></div>
+            <div class="row"><span class="k">Korea</span><span class="v">Cheongju</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pillar 3 — Track record ── -->
+  <section class="band band--white">
+    <div class="band-inner">
+      <div class="pillar">
+        <div>
+          <div class="pillar-label">Track record</div>
+          <h2>Building microelectronics since 1978</h2>
+          <p>Hana started in Bangkok in 1978 and has been listed on the Stock Exchange
+            of Thailand since 1993. It is independent — not a captive plant owned by a
+            single OEM — which means stability, transparency, and decisions made for the
+            long term.</p>
+          <p>Many customer relationships run more than twenty years. In contract
+            manufacturing, that continuity is the clearest signal that the work holds
+            up.</p>
+          <div class="pillar-cta"><a href="/investor-relations" class="hana-btn hana-btn-secondary">Explore investor relations</a></div>
+        </div>
+        <div class="aside">
+          <figure class="tr-shot">
+            <img src="/images/jiaxing-facility.png" alt="Inside a Hana facility" style="width:100%;height:210px;object-fit:cover;border:1px solid var(--line);border-radius:var(--radius-card);display:block;">
+            <figcaption>Inside a Hana facility</figcaption>
+          </figure>
+          <div class="rows">
+            <div class="row"><span class="k">Revenues</span><span class="v">+$700M USD</span></div>
+            <div class="row"><span class="k">Listed</span><span class="v">SET, since 1993</span></div>
+            <div class="row"><span class="k">Independence</span><span class="v">Publicly listed</span></div>
+            <div class="row"><span class="k">Footprint</span><span class="v">Five countries</span></div>
+            <div class="row"><span class="k">Relationships</span><span class="v">Many 20+ years</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pillar 4 — Markets served ── -->
+  <section class="band">
+    <div class="band-inner">
+      <div class="pillar">
+        <div>
+          <div class="pillar-label">Markets served</div>
+          <h2>Proven and diversified across demanding industries</h2>
+          <p>Hana isn't tied to one market sector, but builds for the world electronics market including some of the most stringent in terms of quality and performance such as automotive and medical. We are diversified across 10 major global markets to ensure we remain resilient to economic and technological changes going on in each market segment.</p>
+          <p>Work across regulated, high-reliability industries keeps the quality systems and processes exercised against real requirements —</p>
+        </div>
+        <div class="aside">
+          <div class="rows rows--markets">
+            <a class="m-row" href="#">Automotive <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Industrial &amp; IoT <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Telecommunications <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">RFID <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Optical &amp; Sensors <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Consumer Electronics <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Medical <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Access Control <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Power Management <span class="m-arrow">&rarr;</span></a>
+            <a class="m-row" href="#">Data Centers <span class="m-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Closing (dark) ── -->
+  <section class="closing" id="wh-closing" data-hana-bg="hex" data-variant="dark" data-accent="cyan" data-fade="none">
+    <div class="closing-inner">
+      <div class="eyebrow"><span class="dot"></span>Talk to Hana</div>
+      <h2>See where Hana fits your needs.</h2>
+      <p>Tell us what you're building and requirements and we'll present a range of options to connect you with the best Hana team for the job</p>
+      <div class="btn-row">
+        <a href="/contact" class="hana-btn hana-btn-on-dark">Contact us</a>
+        <a href="/capabilities" class="hana-btn hana-btn-ghost-on-dark">Explore capabilities</a>
+      </div>
+    </div>
+  </section>
+</div>

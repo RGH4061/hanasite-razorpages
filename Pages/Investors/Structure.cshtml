@@ -1,0 +1,175 @@
+@page "/investor-relations/structure"
+@{
+    ViewData["Title"] = "Group Structure & Shareholders — Hana";
+    ViewData["Description"] = "Hana group structure and major shareholders.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/investors-structure-shareholders.css" />
+}
+
+@* Group Structure & Shareholders — Hana. Static content. *@
+
+<!-- Hero band: breadcrumb + hero over topo canvas -->
+  <div class="hero-band">
+    <canvas id="hero-topo"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="subbar">
+      <div class="subbar-inner">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="sep">/</span>
+          <a href="/investor-relations">Investor Relations</a>
+          <span class="sep">/</span>
+          <span>Group Structure &amp; Shareholders</span>
+        </nav>
+        <div class="meta">
+          Page updated <strong>12 Mar 2026</strong>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Group Structure &amp; Major Shareholders</h1>
+        <p class="lede">
+          How the Hana Microelectronics group is organised, and the company's
+          major shareholders — for investors and analysts assessing the group as a
+          company listed on the Stock Exchange of Thailand.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- On-this-page — horizontal bar below the hero (full-width content beneath) -->
+  <div class="onpage-bg">
+    <nav class="sectionnav" aria-label="On this page">
+      <div class="label">On this page</div>
+      <ol>
+        <li>
+          <a href="#group-structure">
+            <span class="num">1</span>
+            <span>Group Structure</span>
+          </a>
+        </li>
+        <li>
+          <a href="#major-shareholders">
+            <span class="num">2</span>
+            <span>Major Shareholders</span>
+          </a>
+        </li>
+      </ol>
+      <div class="footer-link">
+        See also: <a href="/investor-relations/annual">Annual Report</a>, <a href="/investor-relations/news">Investor News</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- MAIN — full-width content -->
+  <div class="layout-bg">
+  <div class="layout">
+
+    <main class="content">
+
+      <!-- ─── 1. Group Structure ─── -->
+      <section class="doc" id="group-structure">
+        <header class="section-head">
+          <div class="section-label">
+            <span>Section 1</span>
+            <span class="pip">·</span>
+            <span>Group diagram</span>
+          </div>
+          <h2>Group Structure</h2>
+          <p class="intro" style="width: 593px">The Hana Microelectronics group parent company and its principal subsidiaries, associates and global manufacturing operations.</p>
+        </header>
+
+        <!-- Designed block — compact group-structure org chart, scaled to fit the column -->
+        <figure class="gs" role="group" aria-label="Hana Microelectronics group structure diagram" data-hana-bg="globe" data-variant="dark" data-accent="" data-fade="none" style="width: 1100px">
+          <div class="gs-head">
+            <div class="gs-key">
+              <span class="gs-key-item"><span class="gs-sw sub"></span>Subsidiary</span>
+              <span class="gs-key-item"><span class="gs-sw assoc"></span>Associate</span>
+            </div>
+            <div class="gs-legend-note">Ownership&nbsp;%&nbsp;·&nbsp;currency&nbsp;·&nbsp;function&nbsp;·&nbsp;country</div>
+          </div>
+          <div class="gs-fit">
+            <div class="gs-scale" id="gsScale">
+              <div class="gs-canvas" id="gsCanvas">
+                <svg class="gs-conn" id="gsConn" viewBox="0 0 1020 556" aria-hidden="true"></svg>
+                <div id="gsTree"></div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="gs-foot">
+            Hana Microelectronics Public Co., Ltd. and its principal subsidiaries and associate, as at 12 Mar 2026.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ─── 2. Major Shareholders ─── -->
+      <section class="doc" id="major-shareholders">
+        <header class="section-head">
+          <div class="section-label">
+            <span>Section 2</span>
+            <span class="pip">·</span>
+            <span>Downloadable</span>
+          </div>
+          <h2>Major Shareholders</h2>
+          <p class="intro">
+            The company's major shareholders as disclosed to the Stock Exchange
+            of Thailand, available to download.
+          </p>
+        </header>
+
+        <table class="doctable">
+          <colgroup>
+            <col class="c-doc"><col class="c-date"><col class="c-act">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="c-doc">Document</th>
+              <th class="c-date">As at</th>
+              <th class="c-act r">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="c-doc"><span class="filetype">PDF</span><a href="#">Major Shareholders</a></td>
+              <td class="c-date">12 Mar 2026</td>
+              <td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="related">
+          <span class="lbl">See also</span>
+          <a href="/investor-relations/annual">Annual Report</a>
+          <span class="sep">·</span>
+          <a href="/investor-relations/news">Investor News</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  </div>
+
+  <!-- PAGE END -->
+  <section class="page-end" aria-label="Investor relations contact">
+    <canvas id="enquiries-topo"></canvas>
+    <div class="enquiries-topo-overlay"></div>
+    <div class="page-end-inner">
+      <div>
+        <p class="ttl">Investor enquiries</p>
+        <p class="desc">
+          For questions on the group structure or shareholding, please contact
+          the Investor Relations team.
+        </p>
+      </div>
+      <div class="actions">
+        <a href="/investor-relations/contact" class="btn">Investor Events</a>
+        <a href="investors-events-contact.html#ir-contact" class="btn primary">Contact IR &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  

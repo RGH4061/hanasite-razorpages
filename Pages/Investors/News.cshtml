@@ -1,0 +1,314 @@
+@page "/investor-relations/news"
+@{
+    ViewData["Title"] = "Investor News — Hana Microelectronics";
+    ViewData["Description"] = "The latest investor news and financial announcements from Hana.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/investors-news.css" />
+}
+
+@* Investor News — Hana Microelectronics. Static content. *@
+
+<!-- Sub-bar: breadcrumb + page meta -->
+  <div class="hero-band">
+  <canvas id="hero-topo"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <a href="/investor-relations">Investor Relations</a>
+        <span class="sep">/</span>
+        <span>Investor News</span>
+      </nav>
+      <div class="meta">
+        Page updated <strong>5 Jun 2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Investor news</h1>
+      <p class="lede">
+        Official announcements to the Stock Exchange of Thailand, company press
+        releases, and quarterly financial information for Hana Microelectronics
+        Public Company Limited — SET: HANA. Select a year to view its documents.
+      </p>
+    </div>
+  </section>
+</div>
+
+  <!-- MAIN — year selector (sidebar) + selected-year documents -->
+  <div class="layout-bg">
+  <div class="layout">
+    <aside class="sidenav" aria-label="Investor news navigation">
+      <div class="label">Sections</div>
+      <ol class="sectionnav" aria-label="Document sections">
+        <li><a href="#set-news"><span class="num">1</span><span>SET Announcements</span><span class="count" data-sec-count="set-news">5</span></a></li>
+        <li><a href="#press-releases"><span class="num">2</span><span>Press Releases &amp; Financial News</span><span class="count" data-sec-count="press-releases">4</span></a></li>
+        <li><a href="#financial-data"><span class="num">3</span><span>Financial Information</span><span class="count" data-sec-count="financial-data">3</span></a></li>
+      </ol>
+
+      <div class="label seclabel">Select year</div>
+      <ul class="yearnav" role="tablist">
+        <li><button type="button" class="yr-btn active" data-year="2026">2026 <span class="count">12</span></button></li>
+        <li><button type="button" class="yr-btn" data-year="2025">2025 <span class="count">11</span></button></li>
+        <li><button type="button" class="yr-btn" data-year="2024">2024 <span class="count">5</span></button></li>
+        <li><button type="button" class="yr-btn" data-year="2023">2023 <span class="count">4</span></button></li>
+        <li><button type="button" class="yr-btn" data-year="2022">2022 <span class="count">3</span></button></li>
+        <li><button type="button" class="yr-btn" data-year="2021">2021 <span class="count">3</span></button></li>
+        <li><button type="button" class="yr-btn" data-year="2020">2020 <span class="count">3</span></button></li>
+      </ul>
+
+      <div class="footer-link">
+        See also: <a href="/investor-relations/annual">Annual Report</a>, <a href="/investor-relations/contact">Investor Events</a>
+      </div>
+    </aside>
+
+    <main class="content">
+
+      <div class="year-indicator">
+        <span class="yi-label">Showing</span>
+        <span class="yi-year" id="yiYear">2026</span>
+        <span class="yi-sep">·</span>
+        <span class="yi-count" id="yiCount">12 documents</span>
+      </div>
+
+      <!-- ─── 1. SET Announcements ─── -->
+      <section class="doc" id="set-news">
+        <header class="section-head">
+          <h2>SET Announcements</h2>
+          <p class="intro">
+            Regulatory notifications filed with the Stock Exchange of Thailand —
+            board resolutions, dividend and AGM notices, and financial-statement
+            submissions.
+          </p>
+        </header>
+
+        <table class="doctable yr-table active" data-year="2026">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Submission of Reviewed Financial Statements for Q1/2026</a></td><td class="c-date">12 May 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Resolutions of the Board of Directors Meeting No. 3/2026</a></td><td class="c-date">12 May 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Notification of Record Date for the Right to Receive Dividend</a></td><td class="c-date">26 Feb 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Dividend Payment and Schedule of the 2026 Annual General Meeting</a></td><td class="c-date">24 Feb 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Submission of Audited Financial Statements for FY 2025</a></td><td class="c-date">24 Feb 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2025">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Resolutions of the Board of Directors Meeting No. 5/2025</a></td><td class="c-date">6 Nov 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Submission of Reviewed Financial Statements for Q3/2025</a></td><td class="c-date">6 Nov 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Interim Dividend Payment Notification</a></td><td class="c-date">14 Aug 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Submission of Reviewed Financial Statements for Q2/2025</a></td><td class="c-date">14 Aug 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2024">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Dividend Payment and Schedule of the 2024 Annual General Meeting</a></td><td class="c-date">23 Feb 2024</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Submission of Audited Financial Statements for FY 2023</a></td><td class="c-date">23 Feb 2024</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2023">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Dividend Payment and Schedule of the 2023 Annual General Meeting</a></td><td class="c-date">24 Feb 2023</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Submission of Audited Financial Statements for FY 2022</a></td><td class="c-date">24 Feb 2023</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2022">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Dividend Payment and Schedule of the 2022 Annual General Meeting</a></td><td class="c-date">25 Feb 2022</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2021">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Dividend Payment and Schedule of the 2021 Annual General Meeting</a></td><td class="c-date">26 Feb 2021</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2020">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Announcement</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Dividend Payment and Schedule of the 2020 Annual General Meeting</a></td><td class="c-date">28 Feb 2020</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ─── 2. Press Releases & Financial News ─── -->
+      <section class="doc" id="press-releases">
+        <header class="section-head">
+          <h2>Press Releases &amp; Financial News</h2>
+          <p class="intro">
+            Company-issued releases on results, operations, and recognition. The
+            regulatory record sits under SET Announcements above.
+          </p>
+        </header>
+
+        <table class="doctable yr-table active" data-year="2026">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports first-quarter 2026 results</a></td><td class="c-date">13 May 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Lamphun facility floor expansion to support advanced thermal programmes</a></td><td class="c-date">28 Apr 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana recognised with the Prime Minister's Industry Award</a></td><td class="c-date">17 Mar 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports full-year 2025 results</a></td><td class="c-date">26 Feb 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2025">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports third-quarter 2025 results</a></td><td class="c-date">6 Nov 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana renews membership of Thailand's Collective Action Against Corruption</a></td><td class="c-date">31 Mar 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports full-year 2024 results</a></td><td class="c-date">24 Feb 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2024">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports full-year 2023 results</a></td><td class="c-date">23 Feb 2024</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2023">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana announces expanded back-end assembly operations</a></td><td class="c-date">10 Jul 2023</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2022">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports full-year 2021 results</a></td><td class="c-date">25 Feb 2022</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2021">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana Microelectronics reports full-year 2020 results</a></td><td class="c-date">26 Feb 2021</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2020">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Title</th><th class="c-date">Date</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Hana publishes 2020 sustainability progress update</a></td><td class="c-date">12 Aug 2020</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ─── 3. Financial Information ─── -->
+      <section class="doc" id="financial-data">
+        <header class="section-head">
+          <h2>Financial Information</h2>
+          <p class="intro">
+            Financial statements, management discussion &amp; analysis, financial
+            highlights, and investor presentations. The full Annual Report and
+            56-1 One Report are on the Annual Report page.
+          </p>
+        </header>
+
+        <table class="doctable yr-table active" data-year="2026">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">Q1 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Management Discussion &amp; Analysis (MD&amp;A)</a></td><td class="c-date">Q1 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PPT</span><a href="#">Investor Presentation</a></td><td class="c-date">Q1 2026</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2025">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">Q3 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Management Discussion &amp; Analysis (MD&amp;A)</a></td><td class="c-date">Q3 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PPT</span><a href="#">Investor Presentation</a></td><td class="c-date">Q3 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Highlights</a></td><td class="c-date">FY 2025</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2024">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">FY 2024</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+            <tr><td class="c-doc"><span class="filetype">PPT</span><a href="#">Investor Presentation</a></td><td class="c-date">FY 2024</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2023">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">FY 2023</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2022">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">FY 2022</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2021">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">FY 2021</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+        <table class="doctable yr-table" data-year="2020">
+          <colgroup><col class="c-doc"><col class="c-date"><col class="c-act"></colgroup>
+          <thead><tr><th class="c-doc">Document</th><th class="c-date">Period</th><th class="c-act r">Action</th></tr></thead>
+          <tbody>
+            <tr><td class="c-doc"><span class="filetype">PDF</span><a href="#">Financial Statements</a></td><td class="c-date">FY 2020</td><td class="c-act"><a href="#">Download <span class="arrow">↓</span></a></td></tr>
+          </tbody>
+        </table>
+
+        <div class="related">
+          <span class="lbl">See also</span>
+          <a href="/investor-relations/annual">Annual Report &amp; 56-1 One Report</a>
+          <span class="sep">·</span>
+          <a href="/investor-relations/structure">Group Structure &amp; Shareholders</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  </div>
+
+  <!-- PAGE END -->
+  <section class="page-end" aria-label="Investor relations contact">
+    <canvas id="enquiries-topo"></canvas>
+    <div class="page-end-inner">
+      <div>
+        <p class="ttl">Investor enquiries</p>
+        <p class="desc">
+          To be added to the investor mailing list or to reach the Investor
+          Relations team, please get in touch.
+        </p>
+      </div>
+      <div class="actions">
+        <a href="/investor-relations/contact" class="btn">Investor Events</a>
+        <a href="/investor-relations/contact" class="btn primary">Contact IR &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  

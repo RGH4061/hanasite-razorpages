@@ -1,0 +1,102 @@
+@* Index.cshtml — Homepage
+   Composes all homepage partial views.
+   Code-behind: Index.cshtml.cs
+
+   Partial views used:
+     _Header.cshtml
+     _Homepage_Hero.cshtml
+     _Homepage_WhySetsApart.cshtml
+     _Homepage_Markets.cshtml
+     _Homepage_Capabilities.cshtml
+     _Homepage_Locations.cshtml
+     _Homepage_Cta.cshtml
+     _Footer.cshtml
+
+   JS loaded at bottom:
+     /js/circuit-hero.js         — canvas animation (auto-inits via [data-circuit-hero])
+     /js/mega-menu.js            — header mega-menu (auto-inits on DOMContentLoaded)
+     /js/capability-carousel.js  — capability card carousel (auto-inits on DOMContentLoaded)
+
+   External:
+     Lucide UMD — loaded in _Layout.cshtml, called via lucide.createIcons() below
+*@
+
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Electronics Manufacturing Services (EMS) & OSAT — Hana Microelectronics";
+}
+
+@* ── Organization JSON-LD (§7.3 schema rules) ─────────────── *@
+@section Head {
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "Organization",
+  "name": "Hana Microelectronics Public Company Limited",
+  "url": "https://www.hanagroup.com",
+  "logo": "https://www.hanagroup.com/images/hana-logo-full.svg",
+  "description": "The leading independent EMS and OSAT company in Southeast Asia, specializing in microelectronics.",
+  "foundingDate": "1978",
+  "contactPoint": {
+    "@@type": "ContactPoint",
+    "contactType": "sales",
+    "url": "https://www.hanagroup.com/contact"
+  },
+  "location": [
+    { "@@type": "Place", "name": "Bangkok, Thailand (HQ)" },
+    { "@@type": "Place", "name": "Lamphun, Thailand" },
+    { "@@type": "Place", "name": "Ayutthaya, Thailand" },
+    { "@@type": "Place", "name": "Koh Kong, Cambodia" },
+    { "@@type": "Place", "name": "Jiaxing, China" },
+    { "@@type": "Place", "name": "Ohio, USA" },
+    { "@@type": "Place", "name": "Cheongju, Korea" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/hana-microelectronics/"
+  ]
+}
+</script>
+}
+
+@* ── Circuit hero ───────────────────────────────────────── *@
+<partial name="_Homepage_Hero" />
+
+    @* ── What sets us apart ─────────────────────────────────── *@
+    <partial name="_Homepage_WhySetsApart" />
+
+    @* ── Markets + Capabilities — shared PCB-texture wrapper ── *@
+    <div style="position:relative; overflow:hidden; background:var(--bg);">
+
+        @* Shared decorative PCB drill-grid *@
+        <div aria-hidden="true"
+             style="position:absolute; inset:0; pointer-events:none; z-index:0;
+                    background-image:
+                      radial-gradient(rgba(18,131,221,0.10) 1px, transparent 1.4px),
+                      radial-gradient(rgba(18,131,221,0.18) 1.4px, transparent 2px);
+                    background-size:22px 22px, 132px 132px;
+                    background-position:0 0, 11px 11px;
+                    -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
+                    mask-image:linear-gradient(to bottom, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);"></div>
+
+        @* Left silkscreen trace *@
+        <div aria-hidden="true"
+             style="position:absolute; top:0; bottom:0; left:32px; width:1px; z-index:0; pointer-events:none;
+                    background:linear-gradient(to bottom, transparent 0, rgba(18,131,221,0.28) 14%, rgba(18,131,221,0.28) 86%, transparent 100%);"></div>
+
+        <partial name="_Homepage_Markets" />
+        <partial name="_Homepage_Capabilities" />
+
+    </div>
+
+    @* ── Locations ──────────────────────────────────────────── *@
+    <partial name="_Homepage_Locations" />
+
+    @* ── Closing CTA ────────────────────────────────────────── *@
+<partial name="_Homepage_Cta" />
+
+@* ── Scripts (header mega-menu + lucide load globally in _Layout) ── *@
+@section Scripts {
+    <script src="~/js/circuit-hero.js"></script>
+    <script src="~/js/capability-carousel.js"></script>
+}

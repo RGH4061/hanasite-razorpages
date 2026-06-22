@@ -1,0 +1,89 @@
+@page "/careers/consent"
+@{
+    ViewData["Title"] = "Data consent — Careers";
+    ViewData["Description"] = "How Hana handles applicant data and consent.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/careers-consent.css" />
+}
+
+@* Data consent — Careers. Static content + vanilla interactions in ~/js/careers-consent.js. *@
+
+<!-- ── Subbar ── -->
+<div class="subbar">
+  <div class="subbar-inner">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="#">Home</a><span class="sep">/</span>
+      <a href="/careers">Careers</a><span class="sep">/</span>
+      <a href="/careers/job-post">Pre-Assembly Engineer</a><span class="sep">/</span>
+      <span>Data Consent</span>
+    </nav>
+    <div class="meta">Step 1 of 2 &nbsp;·&nbsp; <strong>Data Consent</strong></div>
+  </div>
+</div>
+
+<!-- ── Stepper ── -->
+<div class="stepper">
+  <div class="stepper-inner">
+    <div class="step active"><span class="num">1</span> Data consent</div>
+    <div class="step-line"></div>
+    <div class="step"><span class="num">2</span> Application form</div>
+  </div>
+</div>
+
+<!-- ── Content ── -->
+<div class="page-wrap">
+
+  <div class="consent-header">
+    <div class="eyebrow">Application — Data Consent</div>
+    <h1>Personal Data Consent Form</h1>
+    <p class="applying-for">Applying for: <strong>Pre-Assembly Engineer</strong> &nbsp;·&nbsp; Ayutthaya, Thailand</p>
+  </div>
+
+  <div class="notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div><strong>Important:</strong> Please read the following carefully and confirm your consent before your application can be processed.</div>
+  </div>
+
+  <!-- English -->
+  <div class="lang-section">
+    <div class="lang-label">English</div>
+    <div class="consent-body">
+      <p>I have read and understood the Company's Privacy Notice and hereby consent to providing my personal data to the Company. I agree that the Company may share this data with relevant members of staff and any authorised third parties involved in assessing my application and supporting the recruitment process.</p>
+      <p>I confirm that all personal data submitted in this application is true and accurate, including my personal information, employment history, experience, and any copies of documents provided. If any information is found to be false or misleading — whether discovered before or after employment commences — the Company reserves the right to withdraw or terminate my employment.</p>
+      <p>Where I have provided the personal data of a third party, such as a reference, I confirm that the individual concerned has given their consent to such disclosure and has been informed of the Company's personal data protection policy.</p>
+      <p>I consent to the Company collecting, using, and disclosing my personal data for the purposes of this application and any future recruitment consideration for a period of one year.</p>
+    </div>
+  </div>
+
+  <hr class="lang-divider">
+
+  <!-- Thai -->
+  <div class="lang-section">
+    <div class="lang-label">ภาษาไทย</div>
+    <div class="consent-body thai">
+      <p>ข้าพเจ้าได้อ่านและทำความเข้าใจประกาศคุ้มครองข้อมูลส่วนบุคคลของบริษัทฯ เป็นที่เรียบร้อย และตกลงยินยอมสมัครใจเปิดเผยข้อมูล และให้บริษัทสามารถนำข้อมูลส่วนบุคคลของข้าพเจ้าไปเปิดเผยเพื่อใช้ในกระบวนการสมัครเข้าฝึกงาน/สมัครงาน สัมภาษณ์ และพิจารณาคัดเลือก ให้กับบุคลลที่เกี่ยวข้องภายในบริษัท และบริษัทในเครือ</p>
+      <p>โดยข้อมูลส่วนบุคคลที่ข้าพเจ้าให้ไว้ในการสมัครเข้าฝึกงาน/สมัครงานนี้เป็นไปตามจริง และถูกต้อง เช่น ประวัติส่วนตัว ประวัติการทำงานและประสบการณ์ต่างๆ รวมถึงสำเนาเอกสารส่วนบุคคล สำเนาใบประกาศนียบัตรต่างๆ หนังสือรับรองการผ่านงาน เพื่อให้เป็นไปตามคุณสมบัติตามตำแหน่งงานที่บริษัทกำหนด หากข้อมูลที่แจ้งไม่ตรงกับความเป็นจริง และหากพิสูจน์ทราบในภายหลัง บริษัทมีสิทธิที่จะยกเลิกการรับสมัครงาน หรือ การจ้างงาน/ฝึกงาน ของข้าพเจ้า</p>
+      <p>ในกรณีที่ข้าพเจ้าได้ระบุถึงข้อมูลส่วนบุคคลของบุคคลภายนอก เช่น บุคคลอ้างอิง ข้าพเจ้ารับรองและรับประกันว่าบุคคลภายนอกดังกล่าวได้ให้ความยินยอมในการให้ข้อมูลส่วนบุคคล</p>
+      <p>ข้าพเจ้าตกลงยินยอมให้บริษัทเก็บรวบรวมใช้ และเปิดเผยข้อมูลส่วนบุคคลของข้าพเจ้า เพื่อวัตถุประสงค์ของการสมัครงาน/ฝึกงาน และการสรรหาคัดเลือกในอนาคต เป็นระยะเวลา 1 ปี</p>
+    </div>
+  </div>
+
+  <!-- Confirmation -->
+  <div class="confirm-block" id="confirm-block">
+    <label class="confirm-check">
+      <input type="checkbox" id="consent-check">
+      <span>I have read and understood the Personal Data Consent Form and <strong>agree to its terms</strong>. My acceptance is confirmed by pressing the 'Accept' button below.</span>
+    </label>
+  </div>
+
+  <div class="action-row">
+    <a class="btn-accept" id="accept-btn" href="/careers/apply" aria-disabled="true">Accept →</a>
+    <a href="/careers/job-post" class="btn-back">← Back to role</a>
+  </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/careers-consent.js"></script>
+}

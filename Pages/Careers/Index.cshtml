@@ -1,0 +1,568 @@
+@page "/careers"
+@{
+    ViewData["Title"] = "Careers — Hana Microelectronics";
+    ViewData["Description"] = "Build microelectronics with Hana — open roles, life at our sites, and how to apply across Thailand, Cambodia and beyond.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/careers.css" />
+}
+
+@* Careers landing. Static content + vanilla interactions (tabs, job
+   filters, image carousels, topo canvas) in ~/js/careers.js. *@
+
+<!-- ── Hero band: subbar + hero with PCB background + photos ── -->
+<div class="hero-band">
+  <svg class="hero-pcb-bg" width="100%" height="100%" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="pcb-glow" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#0E4A7C" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#030a17" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="420" fill="url(#pcb-glow)" />
+    <!-- Grid lines -->
+    <g stroke="#1283DD" stroke-width="0.4" stroke-opacity="0.06">
+      <line x1="0" y1="0" x2="0" y2="420"/><line x1="75" y1="0" x2="75" y2="420"/><line x1="150" y1="0" x2="150" y2="420"/><line x1="225" y1="0" x2="225" y2="420"/><line x1="300" y1="0" x2="300" y2="420"/><line x1="375" y1="0" x2="375" y2="420"/><line x1="450" y1="0" x2="450" y2="420"/><line x1="525" y1="0" x2="525" y2="420"/><line x1="600" y1="0" x2="600" y2="420"/><line x1="675" y1="0" x2="675" y2="420"/><line x1="750" y1="0" x2="750" y2="420"/><line x1="825" y1="0" x2="825" y2="420"/><line x1="900" y1="0" x2="900" y2="420"/><line x1="975" y1="0" x2="975" y2="420"/><line x1="1050" y1="0" x2="1050" y2="420"/><line x1="1125" y1="0" x2="1125" y2="420"/><line x1="1200" y1="0" x2="1200" y2="420"/>
+      <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    </g>
+    <!-- Traces -->
+    <g stroke="#1283DD" stroke-width="1.4" stroke-opacity="0.28">
+      <line x1="75" y1="60" x2="150" y2="60"/><line x1="225" y1="60" x2="300" y2="60"/><line x1="375" y1="60" x2="450" y2="60"/><line x1="525" y1="60" x2="600" y2="60"/><line x1="675" y1="60" x2="750" y2="60"/><line x1="825" y1="60" x2="900" y2="60"/><line x1="975" y1="60" x2="1050" y2="60"/>
+      <line x1="150" y1="120" x2="225" y2="120"/><line x1="300" y1="120" x2="375" y2="120"/><line x1="450" y1="120" x2="525" y2="120"/><line x1="600" y1="120" x2="675" y2="120"/><line x1="750" y1="120" x2="825" y2="120"/><line x1="900" y1="120" x2="975" y2="120"/><line x1="1050" y1="120" x2="1125" y2="120"/>
+      <line x1="75" y1="180" x2="150" y2="180"/><line x1="225" y1="180" x2="300" y2="180"/><line x1="450" y1="180" x2="525" y2="180"/><line x1="675" y1="180" x2="750" y2="180"/><line x1="825" y1="180" x2="900" y2="180"/><line x1="1050" y1="180" x2="1125" y2="180"/>
+      <line x1="150" y1="240" x2="225" y2="240"/><line x1="375" y1="240" x2="450" y2="240"/><line x1="525" y1="240" x2="600" y2="240"/><line x1="750" y1="240" x2="825" y2="240"/><line x1="900" y1="240" x2="975" y2="240"/><line x1="1125" y1="240" x2="1200" y2="240"/>
+      <line x1="75" y1="300" x2="150" y2="300"/><line x1="300" y1="300" x2="375" y2="300"/><line x1="450" y1="300" x2="525" y2="300"/><line x1="675" y1="300" x2="750" y2="300"/><line x1="825" y1="300" x2="900" y2="300"/><line x1="1050" y1="300" x2="1125" y2="300"/>
+      <line x1="150" y1="360" x2="225" y2="360"/><line x1="375" y1="360" x2="450" y2="360"/><line x1="600" y1="360" x2="675" y2="360"/><line x1="750" y1="360" x2="825" y2="360"/><line x1="975" y1="360" x2="1050" y2="360"/>
+      <!-- Vertical traces -->
+      <line x1="150" y1="60" x2="150" y2="120"/><line x1="300" y1="60" x2="300" y2="120"/><line x1="450" y1="120" x2="450" y2="180"/><line x1="675" y1="60" x2="675" y2="120"/><line x1="825" y1="120" x2="825" y2="180"/><line x1="975" y1="60" x2="975" y2="120"/><line x1="1050" y1="120" x2="1050" y2="180"/>
+      <line x1="225" y1="180" x2="225" y2="240"/><line x1="525" y1="180" x2="525" y2="240"/><line x1="750" y1="180" x2="750" y2="240"/><line x1="900" y1="240" x2="900" y2="300"/><line x1="1125" y1="180" x2="1125" y2="240"/>
+      <line x1="150" y1="240" x2="150" y2="300"/><line x1="375" y1="240" x2="375" y2="300"/><line x1="675" y1="300" x2="675" y2="360"/><line x1="825" y1="300" x2="825" y2="360"/><line x1="1050" y1="300" x2="1050" y2="360"/>
+    </g>
+    <!-- Pads (squares) -->
+    <g fill="#1283DD" fill-opacity="0.85">
+      <rect x="72" y="57" width="6" height="6"/><rect x="222" y="57" width="6" height="6"/><rect x="447" y="117" width="6" height="6"/><rect x="597" y="117" width="6" height="6"/><rect x="822" y="177" width="6" height="6"/><rect x="1047" y="177" width="6" height="6"/>
+      <rect x="147" y="237" width="6" height="6"/><rect x="372" y="237" width="6" height="6"/><rect x="522" y="237" width="6" height="6"/><rect x="747" y="297" width="6" height="6"/><rect x="972" y="57" width="6" height="6"/>
+      <rect x="297" y="297" width="6" height="6"/><rect x="447" y="297" width="6" height="6"/><rect x="672" y="357" width="6" height="6"/><rect x="897" y="237" width="6" height="6"/><rect x="1122" y="237" width="6" height="6"/>
+    </g>
+    <!-- Vias (circles) -->
+    <g fill="none" stroke="#4E9BDA" stroke-width="1.4" stroke-opacity="0.7">
+      <circle cx="375" cy="60" r="2.6"/><circle cx="525" cy="60" r="2.6"/><circle cx="750" cy="120" r="2.6"/><circle cx="900" cy="60" r="2.6"/><circle cx="1125" cy="120" r="2.6"/>
+      <circle cx="225" cy="180" r="2.6"/><circle cx="675" cy="180" r="2.6"/><circle cx="975" cy="120" r="2.6"/><circle cx="150" cy="300" r="2.6"/><circle cx="525" cy="300" r="2.6"/>
+      <circle cx="825" cy="300" r="2.6"/><circle cx="1050" cy="300" r="2.6"/><circle cx="375" cy="360" r="2.6"/><circle cx="750" cy="360" r="2.6"/><circle cx="1050" cy="360" r="2.6"/>
+    </g>
+  </svg>
+  <div class="hero-overlay"></div>
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="#">Home</a><span class="sep">/</span>
+        <span>Careers</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Career opportunities at Hana</h1>
+        <p class="lede">Hana Microelectronics is one of Southeast Asia's leading electronics manufacturers — over 7,500+ people across six facilities, working on some of the most demanding production challenges in automotive, medical, and consumer electronics.</p>
+        <div class="hero-actions">
+          <a href="#open-roles" class="primary">View open roles →</a>
+          <a href="#stories" class="ghost">Hana Stories</a>
+        </div>
+      </div>
+
+      <div class="photo-stack">
+        <div class="photo-primary">
+          <img src="/images/photo-cleanroom.png" alt="Engineer inspecting component in cleanroom">
+        </div>
+        <div class="photo-secondary">
+          <img src="/images/photo-team.jpg" alt="Team building — rafting activity">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Stats band ── -->
+<div class="stats-band">
+  <svg class="stats-band-pcb" viewBox="0 0 1200 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <!-- Grid lines -->
+    <g stroke="#1283DD" stroke-width="0.5" stroke-opacity="0.12">
+      <line x1="0" y1="0" x2="0" y2="120"/><line x1="75" y1="0" x2="75" y2="120"/><line x1="150" y1="0" x2="150" y2="120"/><line x1="225" y1="0" x2="225" y2="120"/><line x1="300" y1="0" x2="300" y2="120"/><line x1="375" y1="0" x2="375" y2="120"/><line x1="450" y1="0" x2="450" y2="120"/><line x1="525" y1="0" x2="525" y2="120"/><line x1="600" y1="0" x2="600" y2="120"/><line x1="675" y1="0" x2="675" y2="120"/><line x1="750" y1="0" x2="750" y2="120"/><line x1="825" y1="0" x2="825" y2="120"/><line x1="900" y1="0" x2="900" y2="120"/><line x1="975" y1="0" x2="975" y2="120"/><line x1="1050" y1="0" x2="1050" y2="120"/><line x1="1125" y1="0" x2="1125" y2="120"/><line x1="1200" y1="0" x2="1200" y2="120"/>
+      <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="30" x2="1200" y2="30"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="90" x2="1200" y2="90"/><line x1="0" y1="120" x2="1200" y2="120"/>
+    </g>
+    <!-- Traces -->
+    <g stroke="#1283DD" stroke-width="1.4" stroke-opacity="0.30">
+      <line x1="75" y1="30" x2="150" y2="30"/><line x1="225" y1="30" x2="300" y2="30"/><line x1="375" y1="30" x2="450" y2="30"/><line x1="525" y1="30" x2="600" y2="30"/><line x1="675" y1="30" x2="750" y2="30"/><line x1="825" y1="30" x2="900" y2="30"/><line x1="975" y1="30" x2="1050" y2="30"/>
+      <line x1="150" y1="60" x2="225" y2="60"/><line x1="300" y1="60" x2="375" y2="60"/><line x1="450" y1="60" x2="525" y2="60"/><line x1="600" y1="60" x2="675" y2="60"/><line x1="750" y1="60" x2="825" y2="60"/><line x1="900" y1="60" x2="975" y2="60"/><line x1="1050" y1="60" x2="1125" y2="60"/>
+      <line x1="75" y1="90" x2="150" y2="90"/><line x1="300" y1="90" x2="375" y2="90"/><line x1="525" y1="90" x2="600" y2="90"/><line x1="750" y1="90" x2="825" y2="90"/><line x1="975" y1="90" x2="1050" y2="90"/>
+      <!-- Vertical connectors -->
+      <line x1="150" y1="30" x2="150" y2="60"/><line x1="300" y1="30" x2="300" y2="60"/><line x1="525" y1="30" x2="525" y2="60"/><line x1="675" y1="30" x2="675" y2="60"/><line x1="900" y1="30" x2="900" y2="60"/><line x1="1050" y1="30" x2="1050" y2="60"/>
+      <line x1="225" y1="60" x2="225" y2="90"/><line x1="450" y1="60" x2="450" y2="90"/><line x1="750" y1="60" x2="750" y2="90"/><line x1="975" y1="60" x2="975" y2="90"/>
+    </g>
+    <!-- Pads -->
+    <g fill="#1283DD" fill-opacity="0.90">
+      <rect x="72" y="27" width="6" height="6"/><rect x="222" y="27" width="6" height="6"/><rect x="447" y="57" width="6" height="6"/><rect x="672" y="57" width="6" height="6"/><rect x="897" y="27" width="6" height="6"/><rect x="1047" y="57" width="6" height="6"/>
+      <rect x="147" y="87" width="6" height="6"/><rect x="372" y="87" width="6" height="6"/><rect x="747" y="87" width="6" height="6"/><rect x="972" y="87" width="6" height="6"/>
+    </g>
+    <!-- Vias -->
+    <g fill="none" stroke="#4E9BDA" stroke-width="1.4" stroke-opacity="0.80">
+      <circle cx="375" cy="30" r="2.6"/><circle cx="750" cy="30" r="2.6"/><circle cx="1125" cy="60" r="2.6"/>
+      <circle cx="225" cy="90" r="2.6"/><circle cx="600" cy="90" r="2.6"/><circle cx="825" cy="60" r="2.6"/>
+    </g>
+  </svg>
+  <div class="stats-inner" style="background-color: rgb(0, 0, 1)">
+    <div class="stat"><div class="stat-num">7,500+</div><div class="stat-lbl">Employees worldwide</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">Production facilities</div></div>
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-lbl">Years manufacturing</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Countries of operation</div></div>
+  </div>
+</div>
+
+<!-- ── CEO statement ── -->
+<div class="ceo-band">
+  <div class="ceo-inner">
+    <div class="ceo-photo">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>Photo — Richard Han, CEO</span>
+    </div>
+    <div class="ceo-text">
+      <div class="ceo-from">A message from our CEO</div>
+      <p class="ceo-para">
+        Hana serves a global market covering a diverse range of industries.
+        Our leading edge capabilities play an important role for the
+        automotive, mobile communications, IoT, medical, computing,
+        industrial &amp; consumer markets. Whilst we continually invest in
+        leading edge technologies — the real key to our success are our team
+        of highly skilled professionals in many disciplines that support our
+        growth. We have over 10,000 staff but we pride ourselves in
+        maintaining a family management style with a strong focus on the
+        wellbeing of our employees and developing them to their full potential.
+      </p>
+      <p class="ceo-italic">If you think you can contribute and have the ability — why not consider joining the 'Hana Family' to see how far you can go in playing your part in the fast growing world of microelectronics?</p>
+      <div class="ceo-attrib">
+        <strong>Richard Han</strong>
+        <span>CEO of Hana Group</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="life-double-band">
+<canvas id="life-topo"></canvas>
+<div class="life-topo-overlay"></div>
+
+<!-- ── Life at Hana ── -->
+<section class="life-section">
+  <svg class="life-topo-bg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="life-topo-fade" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#f0f4f8" stop-opacity="0.6" />
+        <stop offset="40%" stop-color="#f0f4f8" stop-opacity="0.0" />
+        <stop offset="100%" stop-color="#f0f4f8" stop-opacity="0.5" />
+      </linearGradient>
+      <linearGradient id="life-topo-vfade" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#e8edf3" stop-opacity="0.5" />
+        <stop offset="30%" stop-color="#e8edf3" stop-opacity="0.0" />
+        <stop offset="70%" stop-color="#e8edf3" stop-opacity="0.0" />
+        <stop offset="100%" stop-color="#e8edf3" stop-opacity="0.6" />
+      </linearGradient>
+    </defs>
+    <path d="M -50 80 L 0 80.00 L 25 90.86 L 50 100.31 L 75 107.21 L 100 110.85 L 125 111.09 L 150 108.35 L 175 103.53 L 200 97.79 L 225 92.33 L 250 88.14 L 275 85.80 L 300 85.39 L 325 86.50 L 350 88.28 L 375 89.69 L 400 89.71 L 425 87.58 L 450 82.96 L 475 76.06 L 500 67.61 L 525 58.73 L 550 50.76 L 575 44.97 L 600 42.36 L 625 43.44 L 650 48.13 L 675 55.79 L 700 65.32 L 725 75.36 L 750 84.55 L 775 91.76 L 800 96.32 L 825 98.07 L 850 97.41 L 875 95.18 L 900 92.43 L 925 90.25 L 950 89.45 L 975 90.48 L 1000 93.23 L 1025 97.13 L 1050 101.22 L 1075 104.34 L 1100 105.43 L 1125 103.69 L 1150 98.81 L 1175 91.03 L 1200 81.15 L 1225 70.38 L 1250 60.12" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <path d="M -50 94 L 0 101.90 L 25 111.88 L 50 119.59 L 75 124.18 L 100 125.35 L 125 123.37 L 150 119.03 L 175 113.42 L 200 107.77 L 225 103.14 L 250 100.25 L 275 99.33 L 300 100.08 L 325 101.77 L 350 103.39 L 375 103.90 L 400 102.42 L 425 98.50 L 450 92.19 L 475 84.07 L 500 75.18 L 525 66.82 L 550 60.30 L 575 56.73 L 600 56.76 L 625 60.48 L 650 67.40 L 675 76.54 L 700 86.58 L 725 96.13 L 750 103.99 L 775 109.33 L 800 111.85 L 825 111.80 L 850 109.90 L 875 107.19 L 900 104.75 L 925 103.50 L 950 104.00 L 975 106.31 L 1000 109.97 L 1025 114.12 L 1050 117.63 L 1075 119.38 L 1100 118.49 L 1125 114.49 L 1150 107.46 L 1175 98.07 L 1200 87.41 L 1225 76.86 L 1250 67.83" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.14" />
+    <path d="M -50 108 L 0 123.27 L 25 131.72 L 50 137.24 L 75 139.36 L 100 138.21 L 125 134.42 L 150 129.05 L 175 123.29 L 200 118.29 L 225 114.86 L 250 113.39 L 275 113.73 L 300 115.25 L 325 117.01 L 350 117.92 L 375 117.07 L 400 113.85 L 425 108.17 L 450 100.47 L 475 91.68 L 500 83.03 L 525 75.87 L 550 71.39 L 575 70.37 L 600 73.08 L 625 79.19 L 650 87.83 L 675 97.76 L 700 107.58 L 725 116.02 L 750 122.11 L 775 125.42 L 800 126.04 L 825 124.56 L 850 121.97 L 875 119.35 L 900 117.69 L 925 117.67 L 950 119.50 L 975 122.86 L 1000 126.97 L 1025 130.78 L 1050 133.13 L 1075 133.04 L 1100 129.93 L 1125 123.71 L 1150 114.88 L 1175 104.44 L 1200 93.72 L 1225 84.13 L 1250 76.94" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.20" />
+    <path d="M -50 122 L 0 143.61 L 25 150.02 L 50 153.11 L 75 152.83 L 100 149.69 L 125 144.64 L 150 138.87 L 175 133.56 L 200 129.63 L 225 127.61 L 250 127.49 L 275 128.76 L 300 130.55 L 325 131.81 L 350 131.53 L 375 129.01 L 400 123.99 L 425 116.79 L 450 108.18 L 475 99.36 L 500 91.65 L 525 86.32 L 550 84.28 L 575 85.95 L 600 91.18 L 625 99.22 L 650 108.93 L 675 118.92 L 700 127.86 L 725 134.68 L 750 138.78 L 775 140.11 L 800 139.14 L 825 136.75 L 850 134.02 L 875 132.01 L 900 131.49 L 925 132.81 L 950 135.80 L 975 139.80 L 1000 143.81 L 1025 146.68 L 1050 147.36 L 1075 145.12 L 1100 139.74 L 1125 131.56 L 1150 121.45 L 1175 110.67 L 1200 100.62 L 1225 92.65 L 1250 87.77" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.26" />
+    <path d="M -50 136 L 0 162.55 L 25 166.60 L 50 167.23 L 75 164.81 L 100 160.18 L 125 154.49 L 150 148.94 L 175 144.55 L 200 141.97 L 225 141.35 L 250 142.31 L 275 144.06 L 300 145.57 L 325 145.81 L 350 143.96 L 375 139.64 L 400 132.99 L 425 124.67 L 450 115.77 L 475 107.62 L 500 101.51 L 525 98.48 L 550 99.11 L 575 103.39 L 600 110.75 L 625 120.12 L 650 130.17 L 675 139.53 L 700 147.03 L 725 151.92 L 750 154.00 L 775 153.59 L 800 151.50 L 825 148.75 L 850 146.45 L 875 145.46 L 900 146.26 L 925 148.82 L 950 152.63 L 975 156.75 L 1000 160.06 L 1025 161.44 L 1050 160.06 L 1075 155.55 L 1100 148.09 L 1125 138.41 L 1150 127.67 L 1175 117.28 L 1200 108.61 L 1225 102.79 L 1250 100.46" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <path d="M -50 150 L 0 179.81 L 25 181.39 L 50 179.76 L 75 175.64 L 100 170.12 L 125 164.41 L 150 159.62 L 175 156.49 L 200 155.34 L 225 155.92 L 250 157.55 L 275 159.24 L 300 159.93 L 325 158.72 L 350 155.10 L 375 149.06 L 400 141.11 L 425 132.25 L 450 123.75 L 475 116.95 L 500 112.98 L 525 112.55 L 550 115.85 L 575 122.43 L 600 131.37 L 625 141.37 L 650 151.05 L 675 159.17 L 700 164.84 L 725 167.69 L 750 167.92 L 775 166.20 L 800 163.52 L 825 160.99 L 850 159.57 L 875 159.84 L 900 161.95 L 925 165.49 L 950 169.63 L 975 173.28 L 1000 175.30 L 1025 174.76 L 1050 171.13 L 1075 164.45 L 1100 155.29 L 1125 144.71 L 1150 134.07 L 1175 124.79 L 1200 118.08 L 1225 114.74 L 1250 115.03" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.14" />
+    <path d="M -50 164 L 0 195.29 L 25 194.50 L 50 190.98 L 75 185.74 L 100 179.96 L 125 174.82 L 150 171.17 L 175 169.47 L 200 169.61 L 225 171.04 L 250 172.82 L 275 173.89 L 300 173.29 L 325 170.37 L 350 164.97 L 375 157.48 L 400 148.75 L 425 140.01 L 450 132.61 L 475 127.75 L 500 126.29 L 525 128.56 L 550 134.30 L 575 142.70 L 600 152.54 L 625 162.45 L 650 171.11 L 675 177.53 L 700 181.17 L 725 182.09 L 750 180.82 L 775 178.30 L 800 175.63 L 825 173.81 L 850 173.58 L 875 175.19 L 900 178.39 L 925 182.47 L 950 186.38 L 975 188.96 L 1000 189.21 L 1025 186.47 L 1050 180.60 L 1075 172.05 L 1100 161.74 L 1125 150.97 L 1150 141.18 L 1175 133.65 L 1200 129.31 L 1225 128.59 L 1250 131.31" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.20" />
+    <path d="M -50 178 L 0 209.03 L 25 206.19 L 50 201.31 L 75 195.56 L 100 190.14 L 125 186.01 L 150 183.75 L 175 183.41 L 200 184.56 L 225 186.35 L 250 187.72 L 275 187.67 L 300 185.44 L 325 180.72 L 350 173.74 L 375 165.25 L 400 156.38 L 425 148.47 L 450 142.80 L 475 140.33 L 500 141.56 L 525 146.38 L 550 154.15 L 575 163.72 L 600 173.75 L 625 182.88 L 650 190.00 L 675 194.44 L 700 196.08 L 725 195.35 L 750 193.07 L 775 190.33 L 800 188.18 L 825 187.46 L 850 188.56 L 875 191.37 L 900 195.30 L 925 199.37 L 950 202.43 L 975 203.42 L 1000 201.55 L 1025 196.55 L 1050 188.67 L 1075 178.73 L 1100 167.95 L 1125 157.74 L 1150 149.46 L 1175 144.17 L 1200 142.43 L 1225 144.24 L 1250 149.01" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.26" />
+    <path d="M -50 192 L 0 221.24 L 25 216.82 L 50 211.19 L 75 205.56 L 100 200.99 L 125 198.18 L 150 197.33 L 175 198.13 L 200 199.84 L 225 201.44 L 250 201.88 L 275 200.31 L 300 196.29 L 325 189.89 L 350 181.72 L 375 172.83 L 400 164.52 L 425 158.10 L 450 154.66 L 475 154.84 L 500 158.70 L 525 165.73 L 550 174.93 L 575 184.98 L 600 194.49 L 625 202.26 L 650 207.48 L 675 209.89 L 700 209.75 L 725 207.80 L 750 205.08 L 775 202.67 L 800 201.49 L 825 202.06 L 850 204.44 L 875 208.14 L 900 212.28 L 925 215.74 L 950 217.40 L 975 216.39 L 1000 212.26 L 1025 205.13 L 1050 195.66 L 1075 184.97 L 1100 174.46 L 1125 165.52 L 1150 159.31 L 1175 156.55 L 1200 157.40 L 1225 161.42 L 1250 167.72" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <path d="M -50 206 L 0 232.23 L 25 226.82 L 50 221.07 L 75 216.11 L 100 212.77 L 125 211.38 L 150 211.78 L 175 213.33 L 200 215.07 L 225 215.93 L 250 214.99 L 275 211.67 L 300 205.90 L 325 198.13 L 350 189.32 L 375 180.71 L 400 173.63 L 425 169.28 L 450 168.41 L 475 171.27 L 500 177.50 L 525 186.21 L 550 196.16 L 575 205.95 L 600 214.31 L 625 220.30 L 650 223.49 L 675 224.01 L 700 222.48 L 725 219.86 L 750 217.26 L 775 215.65 L 800 215.71 L 825 217.61 L 850 221.01 L 875 225.14 L 900 228.91 L 925 231.18 L 950 230.98 L 975 227.73 L 1000 221.40 L 1025 212.49 L 1050 202.01 L 1075 191.30 L 1100 181.79 L 1125 174.72 L 1150 170.95 L 1175 170.81 L 1200 174.02 L 1225 179.80 L 1250 186.99" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.14" />
+    <path d="M -50 220 L 0 242.42 L 25 236.64 L 50 231.37 L 75 227.51 L 100 225.57 L 125 225.51 L 150 226.83 L 175 228.62 L 200 229.83 L 225 229.47 L 250 226.85 L 275 221.74 L 300 214.46 L 325 205.82 L 350 197.02 L 375 189.39 L 400 184.17 L 425 182.27 L 450 184.10 L 475 189.45 L 500 197.59 L 525 207.33 L 550 217.31 L 575 226.18 L 600 232.90 L 625 236.89 L 650 238.11 L 675 237.06 L 700 234.64 L 725 231.92 L 750 229.96 L 775 229.51 L 800 230.90 L 825 233.95 L 850 237.97 L 875 241.96 L 900 244.75 L 925 245.33 L 950 242.96 L 975 237.46 L 1000 229.19 L 1025 219.03 L 1050 208.24 L 1075 198.26 L 1100 190.40 L 1125 185.65 L 1150 184.49 L 1175 186.82 L 1200 191.98 L 1225 198.91 L 1250 206.32" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.20" />
+    <path d="M -50 234 L 0 252.26 L 25 246.73 L 50 242.41 L 75 239.91 L 100 239.36 L 125 240.37 L 150 242.13 L 175 243.61 L 200 243.78 L 225 241.84 L 250 237.42 L 275 230.68 L 300 222.32 L 325 213.42 L 350 205.33 L 375 199.33 L 400 196.44 L 425 197.21 L 450 201.63 L 475 209.09 L 500 218.52 L 525 228.57 L 550 237.87 L 575 245.28 L 600 250.06 L 625 252.03 L 650 251.54 L 675 249.39 L 700 246.65 L 725 244.38 L 750 243.45 L 775 244.33 L 800 246.96 L 825 250.80 L 850 254.91 L 875 258.15 L 900 259.44 L 925 257.94 L 950 253.31 L 975 245.74 L 1000 235.99 L 1025 225.24 L 1050 214.89 L 1075 206.32 L 1100 200.62 L 1125 198.45 L 1150 199.85 L 1175 204.31 L 1200 210.86 L 1225 218.27 L 1250 225.27" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.26" />
+    <path d="M -50 248 L 0 262.20 L 25 257.45 L 50 254.41 L 75 253.33 L 100 253.97 L 125 255.62 L 150 257.29 L 175 257.92 L 200 256.62 L 225 252.91 L 250 246.77 L 275 238.76 L 300 229.89 L 325 221.44 L 350 214.73 L 375 210.89 L 400 210.62 L 425 214.05 L 450 220.75 L 475 229.76 L 500 239.78 L 525 249.42 L 550 257.45 L 575 263.00 L 600 265.75 L 625 265.88 L 650 264.10 L 675 261.41 L 700 258.91 L 725 257.54 L 750 257.89 L 775 260.07 L 800 263.65 L 825 267.80 L 850 271.40 L 875 273.33 L 900 272.67 L 925 268.92 L 950 262.12 L 975 252.88 L 1000 242.28 L 1025 231.67 L 1050 222.47 L 1075 215.88 L 1100 212.69 L 1125 213.11 L 1150 216.80 L 1175 222.89 L 1200 230.18 L 1225 237.42 L 1250 243.46" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <path d="M -50 262 L 0 272.64 L 25 269.07 L 50 267.44 L 75 267.65 L 100 269.11 L 125 270.88 L 150 271.90 L 175 271.22 L 200 268.20 L 225 262.71 L 250 255.14 L 275 246.39 L 300 237.68 L 325 230.36 L 350 225.62 L 375 224.31 L 400 226.73 L 425 232.60 L 450 241.07 L 475 250.95 L 500 260.83 L 525 269.42 L 550 275.73 L 575 279.26 L 600 280.07 L 625 278.74 L 650 276.19 L 675 273.53 L 700 271.77 L 725 271.61 L 750 273.29 L 775 276.55 L 800 280.64 L 825 284.51 L 850 287.02 L 875 287.16 L 900 284.29 L 925 278.31 L 950 269.66 L 975 259.31 L 1000 248.55 L 1025 238.83 L 1050 231.41 L 1075 227.22 L 1100 226.64 L 1125 229.48 L 1150 235.00 L 1175 242.09 L 1200 249.47 L 1225 255.94 L 1250 260.64" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.14" />
+    <path d="M -50 276 L 0 283.88 L 25 281.70 L 50 281.43 L 75 282.63 L 100 284.42 L 125 285.75 L 150 285.63 L 175 283.30 L 200 278.48 L 225 271.43 L 250 262.89 L 275 254.04 L 300 246.20 L 325 240.63 L 350 238.31 L 375 239.68 L 400 244.65 L 425 252.50 L 450 262.12 L 475 272.14 L 500 281.21 L 525 288.23 L 550 292.56 L 575 294.10 L 600 293.28 L 625 290.96 L 650 288.23 L 675 286.12 L 700 285.47 L 725 286.64 L 750 289.51 L 775 293.47 L 800 297.52 L 825 300.52 L 850 301.40 L 875 299.41 L 900 294.28 L 925 286.30 L 950 276.31 L 975 265.52 L 1000 255.37 L 1025 247.19 L 1050 242.03 L 1075 240.44 L 1100 242.37 L 1125 247.25 L 1150 254.02 L 1175 261.45 L 1200 268.28 L 1225 273.54 L 1250 276.68" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.20" />
+    <path d="M -50 290 L 0 296.11 L 25 295.33 L 50 296.19 L 75 297.91 L 100 299.49 L 125 299.86 L 150 298.20 L 175 294.08 L 200 287.59 L 225 279.37 L 250 270.48 L 275 262.21 L 300 255.90 L 325 252.59 L 350 252.92 L 375 256.92 L 400 264.07 L 425 273.33 L 450 283.38 L 475 292.84 L 500 300.52 L 525 305.63 L 550 307.93 L 575 307.70 L 600 305.70 L 625 302.97 L 650 300.59 L 675 299.47 L 700 300.12 L 725 302.56 L 750 306.30 L 775 310.44 L 800 313.85 L 825 315.42 L 850 314.29 L 875 310.03 L 900 302.79 L 925 293.24 L 950 282.54 L 975 272.07 L 1000 263.21 L 1025 257.13 L 1050 254.51 L 1075 255.50 L 1100 259.64 L 1125 266.01 L 1150 273.38 L 1175 280.49 L 1200 286.26 L 1225 290.03 L 1250 291.60" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.26" />
+    <path d="M -50 304 L 0 309.36 L 25 309.82 L 50 311.40 L 75 313.12 L 100 313.93 L 125 312.90 L 150 309.49 L 175 303.62 L 200 295.79 L 225 286.96 L 250 278.39 L 275 271.40 L 300 267.17 L 325 266.45 L 350 269.45 L 375 275.80 L 400 284.60 L 425 294.57 L 450 304.32 L 475 312.60 L 500 318.48 L 525 321.56 L 550 321.98 L 575 320.38 L 600 317.75 L 625 315.17 L 650 313.62 L 675 313.75 L 700 315.72 L 725 319.17 L 750 323.30 L 775 327.03 L 800 329.22 L 825 328.91 L 850 325.54 L 875 319.09 L 900 310.09 L 925 299.58 L 950 288.89 L 975 279.45 L 1000 272.50 L 1025 268.88 L 1050 268.88 L 1075 272.21 L 1100 278.07 L 1125 285.29 L 1150 292.59 L 1175 298.83 L 1200 303.19 L 1225 305.37 L 1250 305.57" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <path d="M -50 318 L 0 323.55 L 25 324.90 L 50 326.69 L 75 327.85 L 100 327.42 L 125 324.70 L 150 319.49 L 175 312.13 L 200 303.47 L 225 294.68 L 250 287.12 L 275 282.02 L 300 280.27 L 325 282.25 L 350 287.73 L 375 295.96 L 400 305.74 L 425 315.69 L 450 324.49 L 475 331.11 L 500 334.99 L 525 336.11 L 550 334.98 L 575 332.53 L 600 329.82 L 625 327.90 L 650 327.53 L 675 328.99 L 700 332.09 L 725 336.14 L 750 340.10 L 775 342.83 L 800 343.29 L 825 340.80 L 850 335.18 L 875 326.81 L 900 316.60 L 925 305.82 L 950 295.89 L 975 288.14 L 1000 283.53 L 1025 282.52 L 1050 284.98 L 1075 290.23 L 1100 297.20 L 1125 304.61 L 1150 311.25 L 1175 316.19 L 1200 318.98 L 1225 319.68 L 1250 318.85" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.14" />
+    <path d="M -50 332 L 0 338.43 L 25 340.20 L 50 341.65 L 75 341.75 L 100 339.71 L 125 335.19 L 150 328.37 L 175 319.96 L 200 311.08 L 225 303.04 L 250 297.14 L 275 294.39 L 300 295.32 L 325 299.88 L 350 307.44 L 375 316.92 L 400 326.97 L 425 336.21 L 450 343.52 L 475 348.19 L 500 350.05 L 525 349.48 L 550 347.29 L 575 344.54 L 600 342.31 L 625 341.45 L 650 342.40 L 675 345.09 L 700 348.96 L 725 353.06 L 750 356.25 L 775 357.44 L 800 355.82 L 825 351.06 L 850 343.39 L 875 333.57 L 900 322.81 L 925 312.51 L 950 304.03 L 975 298.47 L 1000 296.44 L 1025 297.97 L 1050 302.54 L 1075 309.15 L 1100 316.56 L 1125 323.53 L 1150 329.01 L 1175 332.42 L 1200 333.67 L 1225 333.19 L 1250 331.81" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.20" />
+    <path d="M -50 346 L 0 353.69 L 25 355.34 L 50 355.91 L 75 354.52 L 100 350.70 L 125 344.48 L 150 336.42 L 175 327.54 L 200 319.13 L 225 312.51 L 250 308.81 L 275 308.68 L 300 312.26 L 325 319.08 L 350 328.15 L 375 338.18 L 400 347.78 L 425 355.72 L 450 361.17 L 475 363.80 L 500 363.84 L 525 362.00 L 550 359.30 L 575 356.83 L 600 355.52 L 625 355.95 L 650 358.19 L 675 361.81 L 700 365.96 L 725 369.52 L 750 371.36 L 775 370.58 L 800 366.71 L 825 359.79 L 850 350.48 L 875 339.84 L 900 329.26 L 925 320.15 L 950 313.68 L 975 310.64 L 1000 311.20 L 1025 315.00 L 1050 321.16 L 1075 328.48 L 1100 335.69 L 1125 341.67 L 1150 345.69 L 1175 347.52 L 1200 347.46 L 1225 346.23 L 1250 344.84" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.26" />
+    <path d="M -50 360 L 0 368.94 L 25 369.91 L 50 369.15 L 75 366.03 L 100 360.44 L 125 352.81 L 150 344.03 L 175 335.36 L 200 328.11 L 225 323.50 L 250 322.34 L 275 324.90 L 300 330.89 L 325 339.45 L 350 349.35 L 375 359.21 L 400 367.72 L 425 373.92 L 450 377.34 L 475 378.06 L 500 376.65 L 525 374.08 L 550 371.44 L 575 369.73 L 600 369.64 L 625 371.39 L 650 374.70 L 675 378.81 L 700 382.65 L 725 385.08 L 750 385.10 L 775 382.11 L 800 376.01 L 825 367.27 L 850 356.88 L 875 346.14 L 900 336.48 L 925 329.17 L 950 325.12 L 975 324.69 L 1000 327.66 L 1025 333.27 L 1050 340.39 L 1075 347.75 L 1100 354.17 L 1125 358.79 L 1150 361.22 L 1175 361.63 L 1200 360.63 L 1225 359.18 L 1250 358.32" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <path d="M -50 374 L 0 383.78 L 25 383.58 L 50 381.15 L 75 376.24 L 100 369.11 L 125 360.54 L 150 351.70 L 175 343.92 L 200 338.47 L 225 336.29 L 250 337.82 L 275 342.91 L 300 350.86 L 325 360.53 L 350 370.53 L 375 379.54 L 400 386.46 L 425 390.67 L 450 392.10 L 475 391.21 L 500 388.85 L 525 386.12 L 550 384.06 L 575 383.48 L 600 384.72 L 625 387.65 L 650 391.63 L 675 395.66 L 700 398.60 L 725 399.38 L 750 397.27 L 775 392.01 L 800 383.94 L 825 373.88 L 850 363.09 L 875 352.99 L 900 344.92 L 925 339.90 L 950 338.45 L 975 340.52 L 1000 345.49 L 1025 352.32 L 1050 359.74 L 1075 366.52 L 1100 371.71 L 1125 374.76 L 1150 375.69 L 1175 375.00 L 1200 373.57 L 1225 372.45 L 1250 372.60" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.14" />
+    <path d="M -50 388 L 0 397.84 L 25 396.08 L 50 391.86 L 75 385.29 L 100 377.02 L 125 368.12 L 150 359.92 L 175 353.70 L 200 350.54 L 225 351.01 L 250 355.16 L 275 362.41 L 300 371.72 L 325 381.78 L 350 391.18 L 375 398.77 L 400 403.78 L 425 405.97 L 450 405.65 L 475 403.60 L 500 400.86 L 525 398.52 L 550 397.46 L 575 398.19 L 600 400.69 L 625 404.47 L 650 408.60 L 675 411.95 L 700 413.43 L 725 412.18 L 750 407.79 L 775 400.44 L 800 390.83 L 825 380.11 L 850 369.67 L 875 360.91 L 900 354.95 L 925 352.49 L 950 353.61 L 975 357.86 L 1000 364.29 L 1025 371.67 L 1050 378.75 L 1075 384.46 L 1100 388.13 L 1125 389.62 L 1150 389.31 L 1175 387.99 L 1200 386.67 L 1225 386.38 L 1250 387.91" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.20" />
+    <path d="M -50 402 L 0 410.81 L 25 407.30 L 50 401.34 L 75 393.45 L 100 384.60 L 125 376.07 L 150 369.17 L 175 365.07 L 200 364.50 L 225 367.65 L 250 374.12 L 275 382.98 L 300 392.97 L 325 402.69 L 350 410.89 L 375 416.66 L 400 419.63 L 425 419.95 L 450 418.29 L 475 415.63 L 500 413.08 L 525 411.59 L 550 411.80 L 575 413.83 L 600 417.33 L 625 421.47 L 650 425.16 L 675 427.26 L 700 426.84 L 725 423.34 L 750 416.77 L 775 407.69 L 800 397.14 L 825 386.48 L 850 377.12 L 875 370.29 L 900 366.81 L 925 366.95 L 950 370.40 L 975 376.34 L 1000 383.59 L 1025 390.87 L 1050 397.04 L 1075 401.32 L 1100 403.41 L 1125 403.54 L 1150 402.40 L 1175 400.98 L 1200 400.31 L 1225 401.27 L 1250 404.36" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.26" />
+    <path d="M -50 416 L 0 422.54 L 25 417.23 L 50 409.81 L 75 401.11 L 100 392.35 L 125 384.87 L 150 379.89 L 175 378.28 L 200 380.40 L 225 386.02 L 250 394.33 L 275 404.14 L 300 414.07 L 325 422.80 L 350 429.32 L 375 433.08 L 400 434.10 L 425 432.90 L 450 430.41 L 475 427.72 L 500 425.86 L 525 425.55 L 550 427.09 L 575 430.24 L 600 434.30 L 625 438.24 L 650 440.89 L 675 441.25 L 700 438.64 L 725 432.90 L 750 424.43 L 775 414.17 L 800 403.40 L 825 393.53 L 850 385.89 L 875 381.42 L 900 380.55 L 925 383.14 L 950 388.49 L 975 395.50 L 1000 402.90 L 1025 409.48 L 1050 414.34 L 1075 417.05 L 1100 417.67 L 1125 416.80 L 1150 415.34 L 1175 414.36 L 1200 414.80 L 1225 417.27 L 1250 421.92" fill="none" stroke="#0E4A7C" stroke-width="0.9" stroke-opacity="0.08" />
+    <rect width="1200" height="420" fill="url(#life-topo-fade)" />
+    <rect width="1200" height="420" fill="url(#life-topo-vfade)" />
+  </svg>
+  <div style="display:none" aria-hidden="true"></div>
+  <div class="life-inner">
+    <div class="life-header">
+      <div class="life-header-text">
+        <div class="section-label-mono">Culture &amp; Development</div>
+        <h2>Life at Hana</h2>
+        <p>Life at Hana looks a little different at every site. Choose a location to see what it's like to work, grow, and belong there.</p>
+      </div>
+    </div>
+
+    <div class="life-tabs" role="tablist" aria-label="Life at Hana by location">
+      <button class="life-tab active" role="tab" aria-selected="true"  data-loc="ayutthaya">Life at Ayutthaya</button>
+      <button class="life-tab"        role="tab" aria-selected="false" data-loc="bangkok">Life at Bangkok (HQ)</button>
+      <button class="life-tab"        role="tab" aria-selected="false" data-loc="lamphun">Life at Lamphun</button>
+      <button class="life-tab"        role="tab" aria-selected="false" data-loc="kohkong">Life at Koh Kong</button>
+    </div>
+
+    <div class="life-grid" id="life-grid" role="tabpanel">
+
+      <div class="life-img">
+        <div class="life-img-scroll">
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 1</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 2</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 3</span></div>
+        </div>
+        <div class="life-img-cap">
+          <div class="cap-title">Annual company days</div>
+          <p class="cap-desc">Bringing the whole Hana family together to celebrate the year's achievements.</p>
+        </div>
+      </div>
+
+      <div class="life-img">
+        <div class="life-img-scroll">
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 1</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 2</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 3</span></div>
+        </div>
+        <div class="life-img-cap">
+          <div class="cap-title">Celebrations</div>
+          <p class="cap-desc">Marking milestones, festivals, and team achievements throughout the year.</p>
+        </div>
+      </div>
+
+      <div class="life-img">
+        <div class="life-img-scroll">
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 1</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 2</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 3</span></div>
+        </div>
+        <div class="life-img-cap">
+          <div class="cap-title">Community outreach</div>
+          <p class="cap-desc">Giving back to the local communities where our people live and work.</p>
+        </div>
+      </div>
+
+      <div class="life-img">
+        <div class="life-img-scroll">
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 1</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 2</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 3</span></div>
+        </div>
+        <div class="life-img-cap">
+          <div class="cap-title">Technical training programme</div>
+          <p class="cap-desc">Building skills and advancing careers at every level of the organisation.</p>
+        </div>
+      </div>
+
+      <div class="life-img">
+        <div class="life-img-scroll">
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 1</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 2</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 3</span></div>
+        </div>
+        <div class="life-img-cap">
+          <div class="cap-title">Health and wellbeing</div>
+          <p class="cap-desc">Supporting a healthy, active lifestyle for every member of the Hana team.</p>
+        </div>
+      </div>
+
+      <div class="life-img">
+        <div class="life-img-scroll">
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 1</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 2</span></div>
+          <div class="life-img-slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg><span>Image 3</span></div>
+        </div>
+        <div class="life-img-cap">
+          <div class="cap-title">Student scholarship</div>
+          <p class="cap-desc">Investing in the next generation of engineering and manufacturing talent.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Hana Stories preview band ── -->
+<section class="stories-section" id="stories">
+  <div class="stories-inner">
+    <div class="stories-header">
+      <div class="stories-header-text">
+        <div class="section-label-mono">Hana Stories</div>
+        <h2>Hear from our team</h2>
+        <p>Engineers, technicians, and operators across our Thailand and Cambodia sites — in their own words.</p>
+      </div>
+      <a href="/careers/stories" class="stories-header-link">All stories →</a>
+    </div>
+
+    <div class="stories-grid">
+
+      <article class="story-card">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 1</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">I started on the line and now I'm leading process improvements across three SMT cells. Hana gave me the training and the space to grow.</p>
+          <div class="story-meta">
+            <div class="story-person">
+              <div class="name">Pim Suwannakij</div>
+              <div class="role">Process Engineer</div>
+            </div>
+            <div class="story-place">
+              <span class="story-chip">Ayutthaya</span>
+              <span class="story-year">Joined 2017</span>
+            </div>
+          </div>
+        </div>
+        <a href="/careers/stories" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 2</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">What I love about Lamphun is how supportive the team is. Everyone shares what they know — there's no gatekeeping. That's how you learn fast.</p>
+          <div class="story-meta">
+            <div class="story-person">
+              <div class="name">Nattaporn Saetang</div>
+              <div class="role">SMT Operator</div>
+            </div>
+            <div class="story-place">
+              <span class="story-chip">Lamphun</span>
+              <span class="story-year">Joined 2020</span>
+            </div>
+          </div>
+        </div>
+        <a href="/careers/stories" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 3</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">Every NPI project is different. One week it's a wireless charging module, next week it's an automotive sensor. You're always learning.</p>
+          <div class="story-meta">
+            <div class="story-person">
+              <div class="name">Somchai Ratchada</div>
+              <div class="role">NPI Engineer</div>
+            </div>
+            <div class="story-place">
+              <span class="story-chip">Ayutthaya</span>
+              <span class="story-year">Joined 2019</span>
+            </div>
+          </div>
+        </div>
+        <a href="/careers/stories" class="read-more">Read full story →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- /.life-double-band -->
+
+<!-- ── Job listings ── -->
+<div class="layout-bg" id="open-roles">
+  <div class="layout">
+
+    <aside class="filter-sidebar" aria-label="Filter jobs">
+      <div class="label">Filter roles</div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Location</div>
+
+        <div class="filter-country">Thailand</div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-bkk" checked>
+          <label for="f-bkk">Bangkok HQ</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-ayt" checked>
+          <label for="f-ayt">Ayutthaya</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-lpn" checked>
+          <label for="f-lpn">Lamphun</label>
+        </div>
+
+        <div class="filter-country">Cambodia</div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-kk" checked>
+          <label for="f-kk">Koh Kong</label>
+        </div>
+      </div>
+
+      <hr class="filter-divider">
+
+      <div class="filter-group">
+        <div class="filter-group-label">Position type</div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-ft" checked>
+          <label for="f-ft">Full time</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-pt" checked>
+          <label for="f-pt">Part time</label>
+        </div>
+        <div class="filter-option">
+          <input type="checkbox" id="f-int" checked>
+          <label for="f-int">Internship</label>
+        </div>
+      </div>
+
+      <div class="footer-link">
+        <a href="#" onclick="clearFilters(); return false;">Clear all filters</a>
+      </div>
+    </aside>
+
+    <main class="jobs-content">
+      <header class="jobs-head">
+        <div class="section-label">
+          <span>Open Positions</span>
+          <span class="pip">·</span>
+          <span id="job-count">7 roles</span>
+          <span class="pip">·</span>
+          <span>Updated daily via ATS</span>
+        </div>
+        <h2>Current vacancies</h2>
+        <p class="intro">Roles are based at our Thailand and Cambodia facilities. Use the filters at left to narrow by location or position type.</p>
+      </header>
+
+      <div class="jobs-list" id="jobs-list">
+
+        <div class="job-card" data-location="ayutthaya" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">SMT Process Engineer</div>
+            <div class="job-meta">
+              <span class="loc-tag">Ayutthaya</span>
+              Full Time
+              <span class="sep">|</span>
+              Posted 27 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+        <div class="job-card" data-location="ayutthaya" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">IC Assembly Technician</div>
+            <div class="job-meta">
+              <span class="loc-tag">Ayutthaya</span>
+              Full Time
+              <span class="sep">|</span>
+              Posted 24 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+        <div class="job-card" data-location="lamphun" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">Quality Assurance Engineer</div>
+            <div class="job-meta">
+              <span class="loc-tag">Lamphun</span>
+              Full Time
+              <span class="sep">|</span>
+              Posted 22 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+        <div class="job-card" data-location="bangkok" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">HR Business Partner</div>
+            <div class="job-meta">
+              <span class="loc-tag">Bangkok HQ</span>
+              Full Time
+              <span class="sep">|</span>
+              Posted 20 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+        <div class="job-card" data-location="bangkok" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">Supply Chain Coordinator</div>
+            <div class="job-meta">
+              <span class="loc-tag">Bangkok HQ</span>
+              Full Time
+              <span class="sep">|</span>
+              Posted 15 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+        <div class="job-card" data-location="lamphun" data-type="internship">
+          <div class="job-info">
+            <div class="job-title">Manufacturing Intern — PCBA Line</div>
+            <div class="job-meta">
+              <span class="loc-tag">Lamphun</span>
+              Internship
+              <span class="sep">|</span>
+              Posted 10 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+        <div class="job-card" data-location="kohkong" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">Assembly Line Operator</div>
+            <div class="job-meta">
+              <span class="loc-tag">Koh Kong</span>
+              Full Time
+              <span class="sep">|</span>
+              Posted 5 Jan 2026
+            </div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- spacing before footer -->
+<div style="height: var(--s-8); background: var(--hana-band); border-top: 1px solid var(--hana-band-line); background-color: rgb(253, 253, 253)"></div>
+
+<!-- ── Page end (removed) ── -->
+<section class="page-end" aria-label="Recruiting contact" style="display:none">
+  <div class="page-end-inner">
+    <div>
+      <div class="pe-label">Can't find your role?</div>
+      <p class="pe-title">Send us your CV</p>
+      <p class="pe-desc">We're always interested in hearing from skilled engineers, technicians, and operators. Send a speculative application and our recruiting team will be in touch when a fit opens up.</p>
+    </div>
+    <div class="pe-actions">
+      <a href="#" class="btn">Recruiting FAQ</a>
+      <a href="/careers/consent" class="btn primary">Submit CV &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+<div class="urlhint">
+  /careers · anchors: #open-roles · #stories
+</div>
+
+@section Scripts {
+    <script src="~/js/careers.js"></script>
+}

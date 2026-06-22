@@ -1,0 +1,424 @@
+@page "/careers/apply"
+@{
+    ViewData["Title"] = "Apply — Careers";
+    ViewData["Description"] = "Apply for a role at Hana Microelectronics.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/careers-apply.css" />
+}
+
+@* Apply — Careers. Static content + vanilla interactions in ~/js/careers-apply.js. *@
+
+<!-- ── Subbar ── -->
+<div class="subbar">
+  <div class="subbar-inner">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="#">Home</a><span class="sep">/</span>
+      <a href="/careers">Careers</a><span class="sep">/</span>
+      <a href="/careers/job-post">Pre-Assembly Engineer</a><span class="sep">/</span>
+      <span>Application Form</span>
+    </nav>
+    <div class="meta">Step 2 of 2 &nbsp;·&nbsp; <strong>Application Form</strong></div>
+  </div>
+</div>
+
+<!-- ── Stepper ── -->
+<div class="stepper">
+  <div class="stepper-inner">
+    <div class="step done"><span class="num">✓</span> Data consent</div>
+    <div class="step-line"></div>
+    <div class="step active"><span class="num">2</span> Application form</div>
+  </div>
+</div>
+
+<!-- ── Content ── -->
+<div class="page-wrap">
+
+  <div class="form-header" id="form-header">
+    <div class="eyebrow">Application — Step 2 of 2</div>
+    <h1>Your application</h1>
+    <p class="role-line">Applying for: <strong>Pre-Assembly Engineer</strong> &nbsp;·&nbsp; Ayutthaya, Thailand</p>
+  </div>
+
+  <form id="application-form" novalidate>
+
+    <!-- ══ PERSONAL INFORMATION ══ -->
+    <div class="form-section">
+      <div class="section-label">Personal Information <span class="thai-sub" style="text-transform:none;letter-spacing:0;">/ ข้อมูลส่วนตัว</span></div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="first-name">First Name <span class="req">required</span></label>
+          <input type="text" id="first-name" name="first_name" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="last-name">Last Name <span class="req">required</span></label>
+          <input type="text" id="last-name" name="last_name" autocomplete="family-name" required>
+        </div>
+      </div>
+
+      <div class="thai-block">
+        <div class="thai-block-label">For Thai applicants / สำหรับผู้สมัครชาวไทย</div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="first-name-th">ชื่อจริง</label>
+            <input type="text" id="first-name-th" name="first_name_th">
+          </div>
+          <div class="field">
+            <label class="field-label" for="last-name-th">นามสกุล</label>
+            <input type="text" id="last-name-th" name="last_name_th">
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="dob">Date of Birth <span class="thai-sub">/ วันเกิด</span> <span class="req">required</span></label>
+          <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="hometown">Hometown <span class="thai-sub">/ ภูมิลำเนา</span> <span class="field-note">(Thai applicants)</span></label>
+          <input type="text" id="hometown" name="hometown">
+        </div>
+      </div>
+
+      <div class="field-row single">
+        <div class="field">
+          <label class="field-label" for="address">Present Address <span class="thai-sub">/ ที่อยู่ปัจจุบัน</span> <span class="req">required</span></label>
+          <textarea id="address" name="address" rows="2" required></textarea>
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-bottom:0;">
+        <div class="field">
+          <label class="field-label" for="email">Email <span class="thai-sub">/ อีเมลล์</span> <span class="req">required</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="phone">Mobile Phone <span class="thai-sub">/ โทรศัพท์มือถือ</span> <span class="req">required</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+66 8x xxx xxxx" autocomplete="tel">
+        </div>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <!-- ══ EDUCATION ══ -->
+    <div class="form-section">
+      <div class="section-label">Education &amp; Other Information <span class="thai-sub" style="text-transform:none;letter-spacing:0;">/ การศึกษาและข้อมูลอื่นๆ</span></div>
+
+      <p style="font-size:13px;color:var(--ink-3);margin:0 0 var(--s-4);">List your highest qualification first. Add a record for each qualification you have completed — for example a Master's, the Bachelor's before it, or a vocational / diploma foundation.</p>
+
+      <div id="edu-blocks">
+
+        <div class="emp-block edu-block">
+          <div class="emp-block-head">Education 1 — Highest / ระดับสูงสุด</div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">Level of Education <span class="thai-sub">/ ระดับการศึกษา</span> <span class="req">required</span></label>
+              <select name="education_level[]" required>
+                <option value="">Select…</option>
+                <option>High School / มัธยมศึกษา</option>
+                <option>Vocational Certificate / ประกาศนียบัตรวิชาชีพ</option>
+                <option>Diploma / อนุปริญญา</option>
+                <option>Bachelor's Degree / ปริญญาตรี</option>
+                <option>Master's Degree / ปริญญาโท</option>
+                <option>Doctorate / ปริญญาเอก</option>
+                <option>Other / อื่นๆ</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Name of Institute <span class="thai-sub">/ สถาบันการศึกษา</span> <span class="req">required</span></label>
+              <input type="text" name="education_institute[]" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">Degree or Certificate <span class="thai-sub">/ วุฒิการศึกษา</span></label>
+              <input type="text" name="education_degree[]">
+            </div>
+            <div class="field">
+              <label class="field-label">Field of Study <span class="thai-sub">/ สาขาวิชา</span></label>
+              <input type="text" name="education_field[]">
+            </div>
+          </div>
+          <div class="field-row" style="margin-bottom:0;">
+            <div class="field">
+              <label class="field-label">Year of Graduation <span class="thai-sub">/ ปีที่จบการศึกษา</span></label>
+              <input type="text" name="education_year[]" placeholder="e.g. 2022">
+            </div>
+            <div class="field">
+              <label class="field-label">GPA <span class="thai-sub">/ เกรดเฉลี่ย</span></label>
+              <input type="text" name="education_gpa[]" placeholder="e.g. 3.25">
+            </div>
+          </div>
+        </div>
+
+        <div class="emp-block edu-block">
+          <div class="emp-block-head">Education 2 — Previous / ก่อนหน้า</div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">Level of Education <span class="thai-sub">/ ระดับการศึกษา</span></label>
+              <select name="education_level[]">
+                <option value="">Select…</option>
+                <option>High School / มัธยมศึกษา</option>
+                <option>Vocational Certificate / ประกาศนียบัตรวิชาชีพ</option>
+                <option>Diploma / อนุปริญญา</option>
+                <option>Bachelor's Degree / ปริญญาตรี</option>
+                <option>Master's Degree / ปริญญาโท</option>
+                <option>Doctorate / ปริญญาเอก</option>
+                <option>Other / อื่นๆ</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Name of Institute <span class="thai-sub">/ สถาบันการศึกษา</span></label>
+              <input type="text" name="education_institute[]">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">Degree or Certificate <span class="thai-sub">/ วุฒิการศึกษา</span></label>
+              <input type="text" name="education_degree[]">
+            </div>
+            <div class="field">
+              <label class="field-label">Field of Study <span class="thai-sub">/ สาขาวิชา</span></label>
+              <input type="text" name="education_field[]">
+            </div>
+          </div>
+          <div class="field-row" style="margin-bottom:0;">
+            <div class="field">
+              <label class="field-label">Year of Graduation <span class="thai-sub">/ ปีที่จบการศึกษา</span></label>
+              <input type="text" name="education_year[]" placeholder="e.g. 2019">
+            </div>
+            <div class="field">
+              <label class="field-label">GPA <span class="thai-sub">/ เกรดเฉลี่ย</span></label>
+              <input type="text" name="education_gpa[]" placeholder="e.g. 3.40">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button type="button" class="btn-add" id="add-edu" style="margin-bottom:var(--s-5);">+ Add another qualification</button>
+
+      <div class="field-row single">
+        <div class="field">
+          <label class="field-label" for="additional-edu">Additional Education and Other Skills <span class="thai-sub">/ การศึกษาเพิ่มเติม และทักษะอื่นๆ</span> <span class="optional">optional</span></label>
+          <textarea id="additional-edu" name="additional_edu"></textarea>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:var(--s-5);">
+        <label class="field-label">Computer Skills <span class="thai-sub">/ ความชำนาญด้านคอมพิวเตอร์</span></label>
+        <div class="checkbox-row">
+          <label class="checkbox-item"><input type="checkbox" name="computer_skills" value="word"> Microsoft Word</label>
+          <label class="checkbox-item"><input type="checkbox" name="computer_skills" value="excel"> Microsoft Excel</label>
+          <label class="checkbox-item"><input type="checkbox" name="computer_skills" value="ppt"> Microsoft PowerPoint</label>
+        </div>
+        <div style="margin-top:var(--s-3);">
+          <label class="field-label" for="computer-other" style="font-weight:400;color:var(--ink-2);margin-bottom:var(--s-2);">Other <span class="thai-sub">/ อื่นๆ (ระบุ)</span></label>
+          <input type="text" id="computer-other" name="computer_other" placeholder="e.g. AutoCAD, SAP">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" style="margin-bottom:var(--s-2);">Language Ability <span class="thai-sub">/ ความสามารถทางภาษา</span></label>
+        <p style="font-size:13px;color:var(--ink-3);margin:0 0 var(--s-3);">Add each language you can communicate in, and rate your ability for each skill.</p>
+
+        <div class="lang-table-wrap">
+          <table class="lang-table">
+            <thead>
+              <tr>
+                <th>Language / ภาษา</th>
+                <th>Speaking / การพูด</th>
+                <th>Reading / การอ่าน</th>
+                <th>Writing / การเขียน</th>
+                <th>Listening / การฟัง</th>
+                <th class="lang-remove-col"></th>
+              </tr>
+            </thead>
+            <tbody id="lang-body">
+              <tr>
+                <td><input type="text" name="language_name[]" placeholder="e.g. Thai"></td>
+                <td><select name="language_speaking[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td><select name="language_reading[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td><select name="language_writing[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td><select name="language_listening[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td class="lang-remove-cell"></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="language_name[]" placeholder="e.g. English"></td>
+                <td><select name="language_speaking[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td><select name="language_reading[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td><select name="language_writing[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td><select name="language_listening[]"><option value="">—</option><option>Excellent / ดีมาก</option><option>Good / ดี</option><option>Fair / ปานกลาง</option><option>Slight / เล็กน้อย</option></select></td>
+                <td class="lang-remove-cell"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button type="button" class="btn-add" id="add-lang">+ Add another language</button>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <!-- ══ EMPLOYMENT RECORD ══ -->
+    <div class="form-section">
+      <div class="section-label">Employment Record or Internship <span class="thai-sub" style="text-transform:none;letter-spacing:0;">/ ประวัติการทำงาน หรือการฝึกงาน</span></div>
+      <p style="font-size:13px;color:var(--ink-3);margin:0 0 var(--s-4);">Most recent first. Leave blank if not applicable.</p>
+
+      <div class="emp-block">
+        <div class="emp-block-head">Entry 1 — Most recent / ล่าสุด</div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="emp1-company">Company <span class="thai-sub">/ ชื่อสถานที่ทำงาน</span></label>
+            <input type="text" id="emp1-company" name="emp1_company">
+          </div>
+          <div class="field">
+            <label class="field-label" for="emp1-type">Type of Business <span class="thai-sub">/ ประเภทธุรกิจ</span></label>
+            <input type="text" id="emp1-type" name="emp1_type">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="emp1-from">Starting Date <span class="thai-sub">/ วันที่เริ่มงาน</span></label>
+            <input type="text" id="emp1-from" name="emp1_from" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="field">
+            <label class="field-label" for="emp1-to">To <span class="thai-sub">/ ถึง</span></label>
+            <div class="date-present">
+              <input type="text" id="emp1-to" name="emp1_to" placeholder="dd/mm/yyyy">
+              <label class="present-check"><input type="checkbox" name="emp1_present" id="emp1-present"> Present</label>
+            </div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="emp1-start-pos">Starting Position <span class="thai-sub">/ ตำแหน่งที่เริ่ม</span></label>
+            <input type="text" id="emp1-start-pos" name="emp1_start_pos">
+          </div>
+          <div class="field">
+            <label class="field-label" for="emp1-last-pos">Last Position <span class="thai-sub">/ ตำแหน่งสุดท้าย</span></label>
+            <input type="text" id="emp1-last-pos" name="emp1_last_pos">
+          </div>
+        </div>
+        <div class="field-row single" style="margin-bottom:0;">
+          <div class="field">
+            <label class="field-label" for="emp1-duties">Responsibilities and Duties <span class="thai-sub">/ หน้าที่ความรับผิดชอบ</span></label>
+            <textarea id="emp1-duties" name="emp1_duties"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="emp-block" style="margin-bottom:0;">
+        <div class="emp-block-head">Entry 2 — Previous / ก่อนหน้า</div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="emp2-company">Company <span class="thai-sub">/ ชื่อสถานที่ทำงาน</span></label>
+            <input type="text" id="emp2-company" name="emp2_company">
+          </div>
+          <div class="field">
+            <label class="field-label" for="emp2-type">Type of Business <span class="thai-sub">/ ประเภทธุรกิจ</span></label>
+            <input type="text" id="emp2-type" name="emp2_type">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="emp2-from">Starting Date <span class="thai-sub">/ วันที่เริ่มงาน</span></label>
+            <input type="text" id="emp2-from" name="emp2_from" placeholder="dd/mm/yyyy">
+          </div>
+          <div class="field">
+            <label class="field-label" for="emp2-to">To <span class="thai-sub">/ ถึง</span></label>
+            <input type="text" id="emp2-to" name="emp2_to" placeholder="dd/mm/yyyy">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="emp2-start-pos">Starting Position <span class="thai-sub">/ ตำแหน่งที่เริ่ม</span></label>
+            <input type="text" id="emp2-start-pos" name="emp2_start_pos">
+          </div>
+          <div class="field">
+            <label class="field-label" for="emp2-last-pos">Last Position <span class="thai-sub">/ ตำแหน่งสุดท้าย</span></label>
+            <input type="text" id="emp2-last-pos" name="emp2_last_pos">
+          </div>
+        </div>
+        <div class="field-row single" style="margin-bottom:0;">
+          <div class="field">
+            <label class="field-label" for="emp2-duties">Responsibilities and Duties <span class="thai-sub">/ หน้าที่ความรับผิดชอบ</span></label>
+            <textarea id="emp2-duties" name="emp2_duties"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <!-- ══ DOCUMENTS & APPLICATION DETAILS ══ -->
+    <div class="form-section">
+      <div class="section-label">Documents &amp; Application Details</div>
+
+      <div class="field-row single">
+        <div class="field">
+          <label class="field-label">Upload Resume with Profile Picture <span class="thai-sub">/ แนบเอกสารสมัครงานที่มีรูปภาพ</span> <span class="req">required</span></label>
+          <div class="upload-area" id="cv-area">
+            <input type="file" name="cv" accept=".pdf" required>
+            <div class="upload-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="upload-text">
+              <strong>Upload your CV / resume</strong>
+              <span>PDF only &nbsp;·&nbsp; Max 5 MB &nbsp;·&nbsp; Include a profile photo</span>
+            </div>
+            <span class="upload-cta">Browse →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-bottom:0;">
+        <div class="field">
+          <label class="field-label" for="salary">Expected Salary <span class="thai-sub">/ เงินเดือนที่คาดหวัง</span></label>
+          <input type="text" id="salary" name="salary" placeholder="e.g. XX,000 THB">
+        </div>
+        <div class="field">
+          <label class="field-label" for="location">Employment Location <span class="thai-sub">/ สถานที่ต้องการสมัคร</span> <span class="req">required</span></label>
+          <select id="location" name="location" required>
+            <option value="">Select location…</option>
+            <option>Bangkok HQ</option>
+            <option>Ayutthaya</option>
+            <option>Lamphun</option>
+            <option>Koh Kong, Cambodia</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <div>
+      <div class="submit-note">
+        By submitting this form you confirm that all information provided is true and accurate. Your application will be reviewed by our HR team in Bangkok. <strong>We aim to respond to all applications within 10 working days.</strong>
+      </div>
+      <div class="action-row">
+        <button type="submit" class="btn-submit">Submit application →</button>
+        <a href="/careers/consent" class="btn-back">← Back</a>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- ── Success state ── -->
+  <div class="form-success" id="form-success">
+    <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h2>Application received</h2>
+    <p>Thank you for applying to Hana. Our HR team in Bangkok will review your application and respond within 10 working days.</p>
+    <div class="ref">Reference: <strong>HNA-AYT-ENG-042</strong></div>
+    <div class="action-row" style="justify-content:center;">
+      <a href="careers.html#open-roles" class="btn-submit" style="text-decoration:none;">View more roles →</a>
+    </div>
+  </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/careers-apply.js"></script>
+}

@@ -1,0 +1,60 @@
+@*
+    Pages/Shared/_Layout.cshtml — host layout for the whole site.
+    Renders the shared header + footer around every page's content.
+
+    Per-page overrides via ViewData:
+      ViewData["Title"]        page <title> (required-ish)
+      ViewData["Description"]  meta description
+      ViewData["Canonical"]    canonical URL
+
+    Optional Razor sections a page may define:
+      @@section Head    { ... }   extra <head> markup (JSON-LD, OG tags)
+      @@section Scripts { ... }   page-specific JS, loaded after global JS
+
+    Global assets:
+      ~/css/site.css              tokens → base → layout → components
+      Lucide UMD                  line-icon set (data-lucide attributes)
+      ~/js/hana-backgrounds.js    auto-renders [data-hana-bg] section art
+      ~/js/mega-menu.js           header hover mega-menus
+*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] — Hana Microelectronics</title>
+
+    <meta name="description" content="@(ViewData["Description"] ?? "Hana is the leading independent EMS and OSAT company in Southeast Asia, specializing in microelectronics.")" />
+    @if (ViewData["Canonical"] != null)
+    {
+        <link rel="canonical" href="@ViewData["Canonical"]" />
+    }
+
+    <link rel="icon" type="image/svg+xml" href="~/images/hana-mark.svg" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    @* Lucide line-icon set (matches brand iconography spec). *@
+    <script src="https://unpkg.com/lucide@@latest/dist/umd/lucide.min.js"></script>
+
+    @await RenderSectionAsync("Head", required: false)
+</head>
+<body style="margin:0; background:#fff; font-family:var(--font-text); -webkit-font-smoothing:antialiased;">
+
+    <partial name="_Header" />
+
+    <main id="main-content">
+        @RenderBody()
+    </main>
+
+    <partial name="_Footer" />
+
+    @* ── Global scripts ─────────────────────────────────────── *@
+    <script src="~/js/hana-backgrounds.js"></script>
+    <script src="~/js/mega-menu.js"></script>
+    <script>
+        if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

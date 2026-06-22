@@ -1,0 +1,273 @@
+@page "/careers/stories"
+@{
+    ViewData["Title"] = "Stories — Careers at Hana";
+    ViewData["Description"] = "Stories from the people who build microelectronics at Hana.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/careers-stories.css" />
+}
+
+@* Stories — Careers at Hana. Static content + vanilla interactions in ~/js/careers-stories.js. *@
+
+<!-- ── Hero band: subbar + hero over dark PCB grid ── -->
+<div class="hero-band">
+  <svg class="hero-pcb-bg" width="100%" height="100%" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="pcb-glow" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#0E4A7C" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#030a17" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="420" fill="url(#pcb-glow)" />
+    <g stroke="#1283DD" stroke-width="0.4" stroke-opacity="0.06">
+      <line x1="0" y1="0" x2="0" y2="420"/><line x1="75" y1="0" x2="75" y2="420"/><line x1="150" y1="0" x2="150" y2="420"/><line x1="225" y1="0" x2="225" y2="420"/><line x1="300" y1="0" x2="300" y2="420"/><line x1="375" y1="0" x2="375" y2="420"/><line x1="450" y1="0" x2="450" y2="420"/><line x1="525" y1="0" x2="525" y2="420"/><line x1="600" y1="0" x2="600" y2="420"/><line x1="675" y1="0" x2="675" y2="420"/><line x1="750" y1="0" x2="750" y2="420"/><line x1="825" y1="0" x2="825" y2="420"/><line x1="900" y1="0" x2="900" y2="420"/><line x1="975" y1="0" x2="975" y2="420"/><line x1="1050" y1="0" x2="1050" y2="420"/><line x1="1125" y1="0" x2="1125" y2="420"/><line x1="1200" y1="0" x2="1200" y2="420"/>
+      <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    </g>
+    <g stroke="#1283DD" stroke-width="1.4" stroke-opacity="0.28">
+      <line x1="75" y1="60" x2="150" y2="60"/><line x1="225" y1="60" x2="300" y2="60"/><line x1="375" y1="60" x2="450" y2="60"/><line x1="525" y1="60" x2="600" y2="60"/><line x1="675" y1="60" x2="750" y2="60"/><line x1="825" y1="60" x2="900" y2="60"/><line x1="975" y1="60" x2="1050" y2="60"/>
+      <line x1="150" y1="120" x2="225" y2="120"/><line x1="300" y1="120" x2="375" y2="120"/><line x1="450" y1="120" x2="525" y2="120"/><line x1="600" y1="120" x2="675" y2="120"/><line x1="750" y1="120" x2="825" y2="120"/><line x1="900" y1="120" x2="975" y2="120"/><line x1="1050" y1="120" x2="1125" y2="120"/>
+      <line x1="75" y1="180" x2="150" y2="180"/><line x1="225" y1="180" x2="300" y2="180"/><line x1="450" y1="180" x2="525" y2="180"/><line x1="675" y1="180" x2="750" y2="180"/><line x1="825" y1="180" x2="900" y2="180"/><line x1="1050" y1="180" x2="1125" y2="180"/>
+      <line x1="150" y1="240" x2="225" y2="240"/><line x1="375" y1="240" x2="450" y2="240"/><line x1="525" y1="240" x2="600" y2="240"/><line x1="750" y1="240" x2="825" y2="240"/><line x1="900" y1="240" x2="975" y2="240"/><line x1="1125" y1="240" x2="1200" y2="240"/>
+      <line x1="75" y1="300" x2="150" y2="300"/><line x1="300" y1="300" x2="375" y2="300"/><line x1="450" y1="300" x2="525" y2="300"/><line x1="675" y1="300" x2="750" y2="300"/><line x1="825" y1="300" x2="900" y2="300"/><line x1="1050" y1="300" x2="1125" y2="300"/>
+      <line x1="150" y1="360" x2="225" y2="360"/><line x1="375" y1="360" x2="450" y2="360"/><line x1="600" y1="360" x2="675" y2="360"/><line x1="750" y1="360" x2="825" y2="360"/><line x1="975" y1="360" x2="1050" y2="360"/>
+      <line x1="150" y1="60" x2="150" y2="120"/><line x1="300" y1="60" x2="300" y2="120"/><line x1="450" y1="120" x2="450" y2="180"/><line x1="675" y1="60" x2="675" y2="120"/><line x1="825" y1="120" x2="825" y2="180"/><line x1="975" y1="60" x2="975" y2="120"/><line x1="1050" y1="120" x2="1050" y2="180"/>
+      <line x1="225" y1="180" x2="225" y2="240"/><line x1="525" y1="180" x2="525" y2="240"/><line x1="750" y1="180" x2="750" y2="240"/><line x1="900" y1="240" x2="900" y2="300"/><line x1="1125" y1="180" x2="1125" y2="240"/>
+      <line x1="150" y1="240" x2="150" y2="300"/><line x1="375" y1="240" x2="375" y2="300"/><line x1="675" y1="300" x2="675" y2="360"/><line x1="825" y1="300" x2="825" y2="360"/><line x1="1050" y1="300" x2="1050" y2="360"/>
+    </g>
+    <g fill="#1283DD" fill-opacity="0.85">
+      <rect x="72" y="57" width="6" height="6"/><rect x="222" y="57" width="6" height="6"/><rect x="447" y="117" width="6" height="6"/><rect x="597" y="117" width="6" height="6"/><rect x="822" y="177" width="6" height="6"/><rect x="1047" y="177" width="6" height="6"/>
+      <rect x="147" y="237" width="6" height="6"/><rect x="372" y="237" width="6" height="6"/><rect x="522" y="237" width="6" height="6"/><rect x="747" y="297" width="6" height="6"/><rect x="972" y="57" width="6" height="6"/>
+      <rect x="297" y="297" width="6" height="6"/><rect x="447" y="297" width="6" height="6"/><rect x="672" y="357" width="6" height="6"/><rect x="897" y="237" width="6" height="6"/><rect x="1122" y="237" width="6" height="6"/>
+    </g>
+    <g fill="none" stroke="#4E9BDA" stroke-width="1.4" stroke-opacity="0.7">
+      <circle cx="375" cy="60" r="2.6"/><circle cx="525" cy="60" r="2.6"/><circle cx="750" cy="120" r="2.6"/><circle cx="900" cy="60" r="2.6"/><circle cx="1125" cy="120" r="2.6"/>
+      <circle cx="225" cy="180" r="2.6"/><circle cx="675" cy="180" r="2.6"/><circle cx="975" cy="120" r="2.6"/><circle cx="150" cy="300" r="2.6"/><circle cx="525" cy="300" r="2.6"/>
+      <circle cx="825" cy="300" r="2.6"/><circle cx="1050" cy="300" r="2.6"/><circle cx="375" cy="360" r="2.6"/><circle cx="750" cy="360" r="2.6"/><circle cx="1050" cy="360" r="2.6"/>
+    </g>
+  </svg>
+  <div class="hero-overlay"></div>
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="#">Home</a><span class="sep">/</span>
+        <a href="/careers">Careers</a><span class="sep">/</span>
+        <span>Hana Stories</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">HEAR IT FROM US</div>
+        <h1>Hana Stories</h1>
+        <p class="lead">Hear from engineers, technicians, and operators across all our sites. In their own words — their professional and personal experiences of life at Hana.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Filter row ── -->
+<div class="filter-row">
+  <div class="filter-row-inner">
+    <span class="label">Filter</span>
+    <button class="filter-btn active" data-loc="all">All locations</button>
+    <button class="filter-btn" data-loc="ayutthaya">Ayutthaya</button>
+    <button class="filter-btn" data-loc="lamphun">Lamphun</button>
+    <button class="filter-btn" data-loc="bangkok">Bangkok HQ</button>
+    <button class="filter-btn" data-loc="kohkong">Koh Kong</button>
+    <button class="filter-btn" data-loc="jiaxing">Jiaxing</button>
+    <button class="filter-btn" data-loc="ohio">Ohio</button>
+  </div>
+</div>
+
+<!-- ── Stories grid ── -->
+<div class="stories-bg">
+  <div class="stories-wrap">
+    <div class="stories-grid" id="stories-grid">
+
+      <article class="story-card" data-loc="ayutthaya">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 1</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">I started on the line and now I'm leading process improvements across three SMT cells. Hana gave me the training and the space to grow.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Pim Suwannakij</div><div class="role">Process Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2017</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="lamphun">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 2</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">What I love about Lamphun is how supportive the team is. Everyone shares what they know — there's no gatekeeping. That's how you learn fast.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Nattaporn Saetang</div><div class="role">SMT Operator</div></div>
+            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2020</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="ayutthaya">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 3</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">Every NPI project is different. One week it's a wireless charging module, next week it's an automotive sensor. You're always learning.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Somchai Ratchada</div><div class="role">NPI Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2019</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="bangkok">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 4</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">The variety of customers we support from Bangkok keeps the work fresh. One day you're talking automotive, the next it's medical devices.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Apinya Boonmee</div><div class="role">Customer Account Manager</div></div>
+            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2015</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="kohkong">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 5</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">When the Koh Kong site opened, I was one of the first hires. Watching it grow from an empty hall to a full assembly facility has been incredible.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Sokha Phon</div><div class="role">Production Supervisor</div></div>
+            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2014</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="ayutthaya">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 6</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">I joined Hana straight out of university through the scholarship programme. Six years later, I'm running my own OSAT line.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Thanawat Phromchai</div><div class="role">OSAT Line Lead</div></div>
+            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2019</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="lamphun">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 7</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">The Lamphun site feels like home. Many of us come from the local community — when we say we're growing together, we mean it.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Wirat Khampan</div><div class="role">Quality Technician</div></div>
+            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2012</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="bangkok">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 8</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">Working in HR at Hana, I see every part of the business. From recruiting fresh graduates to running our scholarship programme, it's all connected.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Kanyarat Chaiyaphum</div><div class="role">HR Business Partner</div></div>
+            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2018</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="ayutthaya">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 9</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">I came in as a junior test engineer. Now I lead the test department at Ayutthaya. The path was clear, and the support was real.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Patcharin Sukhum</div><div class="role">Test Engineering Manager</div></div>
+            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2011</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="jiaxing">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 10</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">Jiaxing is where Hana's group standards meet the speed of the China market. You learn to move quickly without cutting corners on quality.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Liu Wei</div><div class="role">RFID Process Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2016</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+      <article class="story-card" data-loc="ohio">
+        <div class="story-photo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+          <span class="photo-label">Photo 11</span>
+        </div>
+        <div class="story-body">
+          <p class="story-quote">The Ohio site is small but specialised. We design and build the RFID tire tags running on highways across North America. That's something to be proud of.</p>
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Mike Reynolds</div><div class="role">RFID Engineering Lead</div></div>
+            <div class="story-place"><span class="story-chip">Ohio</span><span class="story-year">Joined 2010</span></div>
+          </div>
+        </div>
+        <a href="#" class="read-more">Read full story →</a>
+      </article>
+
+    </div>
+    <div class="stories-empty" id="stories-empty">No stories from this location yet — check back soon.</div>
+  </div>
+</div>
+
+<!-- ── CTA band ── -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <div>
+      <h3>Ready to start your own story?</h3>
+      <p>Browse open roles across our Thailand and Cambodia sites.</p>
+    </div>
+    <a href="careers.html#open-roles" class="btn">View open roles →</a>
+  </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/careers-stories.js"></script>
+}

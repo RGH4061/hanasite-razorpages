@@ -1,0 +1,150 @@
+@* _Homepage_Locations.cshtml — Global footprint grid
+   Photo required: wwwroot/images/photos/homepage-hq-building.jpg (16:9)
+   Spec ref: design_handoff_homepage/README.md §7
+*@
+
+<section class="hana-locations-section"
+         style="background:#ffffff; padding:96px 0;">
+    <div class="hana-wrap"
+         style="display:grid;
+                grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);
+                gap:64px; align-items:flex-start;">
+
+        @* ── Left column ─────────────────────────────────── *@
+        <div>
+            @* HQ building photo *@
+            <div style="border-radius:8px; overflow:hidden; aspect-ratio:16/9; margin-bottom:32px;">
+                <img src="~/images/photos/homepage-hq-building.jpg"
+                     alt="Hana Microelectronics headquarters, Bangkok"
+                     style="width:100%; height:100%; object-fit:cover; display:block;" />
+            </div>
+
+            <div class="hana-spec-label" style="margin-bottom:12px;">Locations</div>
+
+            <h2 class="hana-h2" style="margin-bottom:16px;">
+                A global footprint. One operating standard.
+            </h2>
+
+            <p class="hana-body" style="color:var(--ink-2); margin-bottom:24px;">
+                Manufacturing across Thailand, Cambodia, China, and the USA gives your supply
+                chain real geographic resilience &mdash; not as a marketing line, as a
+                continuity plan.
+            </p>
+
+            <a href="/locations" class="hana-link"
+               style="font-size:12px; font-weight:600;
+                      text-transform:uppercase; letter-spacing:0.1em;">
+                View all locations
+                <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+            </a>
+        </div>
+
+        @* ── Right column — location cards ────────────────── *@
+        <div class="hana-loc-grid">
+
+            @* Bangkok HQ — spans full width *@
+            <div class="hana-loc-card hana-loc-card--hq">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Thailand</span>
+                    <span class="hana-loc-card__hq-badge">HQ</span>
+                </div>
+                <p class="hana-loc-card__city">Bangkok</p>
+                <p class="hana-loc-card__role">Headquarters</p>
+            </div>
+
+            @* Lamphun *@
+            <a href="/locations/lamphun" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Thailand</span>
+                </div>
+                <p class="hana-loc-card__city">Lamphun</p>
+                <p class="hana-loc-card__role">PCBA &middot; EMS</p>
+                <a href="/locations/lamphun" class="hana-loc-card__cta" tabindex="-1" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </a>
+            </a>
+
+            @* Ayutthaya *@
+            <a href="/locations/ayutthaya" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Thailand</span>
+                </div>
+                <p class="hana-loc-card__city">Ayutthaya</p>
+                <p class="hana-loc-card__role">OSAT &middot; PCBA</p>
+                <a href="/locations/ayutthaya" class="hana-loc-card__cta" tabindex="-1" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </a>
+            </a>
+
+            @* Koh Kong *@
+            <a href="/locations/koh-kong" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Cambodia</span>
+                </div>
+                <p class="hana-loc-card__city">Koh Kong</p>
+                <p class="hana-loc-card__role">PCBA &middot; Box Build &middot; EMS</p>
+                <a href="/locations/koh-kong" class="hana-loc-card__cta" tabindex="-1" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </a>
+            </a>
+
+            @* Jiaxing *@
+            <a href="/locations/jiaxing" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">China</span>
+                </div>
+                <p class="hana-loc-card__city">Jiaxing</p>
+                <p class="hana-loc-card__role">EMS &middot; OSAT &middot; RFID</p>
+                <a href="/locations/jiaxing" class="hana-loc-card__cta" tabindex="-1" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </a>
+            </a>
+
+            @* Ohio *@
+            <a href="/locations/ohio" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">USA</span>
+                </div>
+                <p class="hana-loc-card__city">Ohio</p>
+                <p class="hana-loc-card__role">RFID &amp; Optical</p>
+                <a href="/locations/ohio" class="hana-loc-card__cta" tabindex="-1" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </a>
+            </a>
+
+            @* Cheongju *@
+            <a href="/locations/cheongju" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Korea</span>
+                </div>
+                <p class="hana-loc-card__city">Cheongju</p>
+                <p class="hana-loc-card__role">SiC module</p>
+                <a href="/locations/cheongju" class="hana-loc-card__cta" tabindex="-1" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </a>
+            </a>
+
+        </div>@* /loc-grid *@
+
+    </div>
+</section>

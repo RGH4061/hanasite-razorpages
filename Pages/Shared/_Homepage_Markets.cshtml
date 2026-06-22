@@ -1,0 +1,218 @@
+@* _Homepage_Markets.cshtml — Bento mosaic markets grid
+   Sits inside the shared bg wrapper in Index.cshtml.
+   Requires: _components.css (hana-market-tile, chamfer clip-paths)
+
+   Photo assets needed (wwwroot/images/photos/):
+     homepage-markets-automotive.jpg
+     homepage-markets-industrial.jpg
+     homepage-markets-telecom.jpg
+     homepage-markets-rfid.jpg
+     homepage-markets-medical.jpg
+
+   Spec ref: design_handoff_homepage/README.md §5
+*@
+
+<section class="hana-markets-section"
+         style="position:relative; z-index:1; padding:64px 0 48px;">
+    <div class="hana-wrap">
+
+        @* ── Section header ──────────────────────────────── *@
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; gap:32px;">
+            <div>
+                <div class="hana-spec-label" style="margin-bottom:14px;">Markets we serve</div>
+                <h2 style="font-family:var(--font-display); font-size:36px; font-weight:700;
+                            letter-spacing:-0.025em; line-height:1.1; color:var(--ink); margin:0;">
+                    Markets we serve. Driven by decades of experience.
+                </h2>
+            </div>
+            <a href="/markets" class="hana-link" style="font-size:13px; font-weight:600;
+                                                         letter-spacing:0.06em; white-space:nowrap;">
+                All markets
+                <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
+            </a>
+        </div>
+
+        @* ── Bento grid ───────────────────────────────────── *@
+        @*
+            Grid areas:
+              hero hero ind  tel  rfid
+              hero hero ind  opt  cons
+              med  acc  pwr  data data
+        *@
+        <div style="display:grid;
+                    grid-template-columns:repeat(5, 1fr);
+                    grid-template-rows:repeat(3, 200px);
+                    grid-template-areas:
+                      'hero hero ind  tel  rfid'
+                      'hero hero ind  opt  cons'
+                      'med  acc  pwr  data data';
+                    gap:10px;">
+
+            @* Automotive — 2×2 hero, chamfer br *@
+            <a href="/markets/automotive"
+               class="hana-market-tile"
+               data-chamfer="br"
+               style="grid-area:hero;"
+               aria-label="Automotive">
+                <img src="~/images/photos/homepage-markets-automotive.jpg"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text hana-tile-text--hero">
+                    <p class="hana-tile-name hana-tile-name--hero">Automotive</p>
+                    <p class="hana-tile-body hana-tile-body--hero">Power modules, ADAS, sensors, EV charging, LED lighting.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:16px; height:16px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Industrial &amp; IoT — 1×2 tall, chamfer tr *@
+            <a href="/markets/industrial-iot"
+               class="hana-market-tile"
+               data-chamfer="tr"
+               style="grid-area:ind;"
+               aria-label="Industrial and IoT">
+                <img src="~/images/photos/homepage-markets-industrial.png"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Industrial &amp; IoT</p>
+                    <p class="hana-tile-body">Sensors, controllers, meters.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Telecommunications *@
+            <a href="/markets/telecom"
+               class="hana-market-tile"
+               style="grid-area:tel;"
+               aria-label="Telecommunications">
+                <img src="~/images/photos/homepage-markets-telecom.jpg"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Telecommunications</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* RFID — chamfer tr *@
+            <a href="/markets/rfid"
+               class="hana-market-tile"
+               data-chamfer="tr"
+               style="grid-area:rfid;"
+               aria-label="RFID">
+                <img src="~/images/photos/homepage-markets-rfid.jpg"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">RFID</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Optical &amp; sensors *@
+            <a href="/markets/optical-sensors"
+               class="hana-market-tile"
+               style="grid-area:opt;"
+               aria-label="Optical and sensors">
+                <div class="hana-tile-no-photo"></div>
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Optical &amp; sensors</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Consumer electronics — chamfer tr *@
+            <a href="/markets/consumer"
+               class="hana-market-tile"
+               data-chamfer="tr"
+               style="grid-area:cons;"
+               aria-label="Consumer electronics">
+                <div class="hana-tile-no-photo"></div>
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Consumer electronics</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Medical — chamfer bl *@
+            <a href="/markets/medical"
+               class="hana-market-tile"
+               data-chamfer="bl"
+               style="grid-area:med;"
+               aria-label="Medical">
+                <img src="~/images/photos/homepage-markets-medical.jpg"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Medical</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Access control *@
+            <a href="/markets/access-control"
+               class="hana-market-tile"
+               style="grid-area:acc;"
+               aria-label="Access control">
+                <div class="hana-tile-no-photo"></div>
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Access control</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Power management *@
+            <a href="/markets/power-management"
+               class="hana-market-tile"
+               style="grid-area:pwr;"
+               aria-label="Power management">
+                <div class="hana-tile-no-photo"></div>
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Power management</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            @* Data Centers — 2×1 wide, chamfer br *@
+            <a href="/markets/data-centers"
+               class="hana-market-tile"
+               data-chamfer="br"
+               style="grid-area:data;"
+               aria-label="Data Centers">
+                <div class="hana-tile-no-photo"></div>
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text hana-tile-text--hero">
+                    <p class="hana-tile-name hana-tile-name--hero">Data Centers</p>
+                    <p class="hana-tile-body hana-tile-body--hero">AI data centre cooling infrastructure.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:16px; height:16px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+        </div>@* /bento grid *@
+
+    </div>
+</section>

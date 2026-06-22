@@ -1,0 +1,159 @@
+@page "/investor-relations"
+@{
+    ViewData["Title"] = "Investor Relations — Hana Microelectronics";
+    ViewData["Description"] = "SET-listed (HANA): financial reporting, governance, and shareholder information.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/investors.css" />
+}
+
+@* Investor Relations — Hana Microelectronics. Static content. *@
+
+<div class="hero-band">
+  <canvas id="hero-topo"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span>
+        <span>Investor Relations</span>
+      </nav>
+      <div class="meta">Updated <strong>14 May 2026</strong></div>
+    </div>
+  </div>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Investor Relations Hub</h1>
+      <p class="lede">Financial information, governance, and corporate disclosure for Hana Microelectronics — listed on the Stock Exchange of Thailand under SET: HANA.</p>
+    </div>
+  </section>
+</div>
+
+<div class="layout-bg">
+<div class="layout">
+
+  <!-- Feature banner: Investor News + Stock panel -->
+  <div class="feature-banner">
+    <a class="feature-body" href="/investor-relations/news">
+      <div class="fb-label">Featured section</div>
+      <h2 class="fb-title">Investor news</h2>
+      <p class="fb-desc">SET announcements, quarterly financial statements, AGM notices, board resolutions, and dividend disclosures — organised by year.</p>
+      <div class="fb-meta">
+        <div class="m">
+          <div class="m-val">14 May 2026</div>
+          <div class="m-lbl">Latest filing</div>
+        </div>
+        <div class="m">
+          <div class="m-val">Q1 2026</div>
+          <div class="m-lbl">Latest result</div>
+        </div>
+      </div>
+      <span class="fb-cta">View all News &amp; filings  →</span>
+    </a>
+
+    <!-- Stock panel -->
+    <div class="stock-panel">
+      <div class="sp-label">HANA &nbsp;·&nbsp; SET price</div>
+      <div>
+        <div class="sp-price-row">
+          <div class="sp-price">39.20</div>
+          <div class="sp-change">↑ +83.2%</div>
+        </div>
+        <div class="sp-period" style="margin-top:6px">YTD Jan – Jun 2026</div>
+      </div>
+      <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
+      <div class="sp-footer">
+        <div>
+          <div class="sf-val">21.40</div>
+          <div class="sf-lbl">YTD low</div>
+        </div>
+        <div>
+          <div class="sf-val">39.20</div>
+          <div class="sf-lbl">Current</div>
+        </div>
+        <div>
+          <div class="sf-val">Q2 2026</div>
+          <div class="sf-lbl">Next result</div>
+        </div>
+      </div>
+      <a href="https://www.set.or.th/en/market/product/stock/quote/HANA/price.html" target="_blank" rel="noopener noreferrer" class="sp-set-link">View HANA on SET &nbsp;↗</a>
+    </div>
+  </div>
+
+  <!-- Remaining 6 sections — 3-col grid -->
+  <div class="ir-grid">
+
+    <!-- 02 Annual Report — live -->
+    <a class="ir-card" href="/investor-relations/annual">
+      <div class="ic-top"></div>
+      <h3 class="ic-title">Annual Report &amp; 56-1 One Report</h3>
+      <p class="ic-desc">Audited financials and 56-1 One Report submitted to the SET — business overview and sustainability disclosures for each financial year.</p>
+
+      <span class="ic-cta">View section →</span>
+    </a>
+
+    <!-- 03 Governance — live -->
+    <a class="ir-card" href="/investor-relations/governance">
+      <div class="ic-top"></div>
+      <h3 class="ic-title">Governance Documents</h3>
+      <p class="ic-desc">Articles of Association, committee charters, CG policies, anti-corruption commitment, and CAC membership.</p>
+
+      <span class="ic-cta">View section →</span>
+    </a>
+
+    <!-- 04 Group Structure — live -->
+    <a class="ir-card" href="/investor-relations/structure">
+      <div class="ic-top"></div>
+      <h3 class="ic-title">Group Structure &amp; Shareholders</h3>
+      <p class="ic-desc">Principal subsidiaries, associates, and major shareholders as disclosed to the Stock Exchange of Thailand.</p>
+
+      <span class="ic-cta">View section →</span>
+    </a>
+
+    <!-- 05 FAQ — live -->
+    <a class="ir-card" href="/investor-relations/faq">
+      <div class="ic-top"></div>
+      <h3 class="ic-title">FAQ &amp; Presentations</h3>
+      <p class="ic-desc">SET Opportunity Day recordings with summaries and transcripts, and answers to common investor questions on shares, dividends, and reporting.</p>
+
+      <span class="ic-cta">View section →</span>
+    </a>
+
+    <!-- 06 Events & Contact — live -->
+    <a class="ir-card" href="/investor-relations/contact">
+      <div class="ic-top"></div>
+      <h3 class="ic-title">Investor Events &amp; Contact</h3>
+      <p class="ic-desc">Upcoming and past analyst meetings and SET Opportunity Days, and direct contact for the Investor Relations team.</p>
+
+      <span class="ic-cta">View section →</span>
+    </a>
+
+    <!-- 07 Sustainability — live -->
+    <a class="ir-card" href="/investor-relations/esg">
+      <div class="ic-top"></div>
+      <h3 class="ic-title">Sustainability</h3>
+      <p class="ic-desc">Our approach to environmental, social, and governance responsibility — the Board's ESG statement, sustainability policy, and ESG Data Platform disclosures.</p>
+
+      <span class="ic-cta">View section →</span>
+    </a>
+
+  </div>
+
+</div>
+</div>
+
+<section class="page-end" aria-label="Investor relations contact">
+  <canvas id="enquiries-topo"></canvas>
+  <div class="page-end-inner">
+    <div>
+      <p class="ttl">Investor enquiries</p>
+      <p class="desc">For questions on financial results, governance, or to join the investor mailing list, please contact the Investor Relations team.</p>
+    </div>
+    <div class="actions">
+      <a href="/investor-relations/contact" class="btn">Investor Events</a>
+      <a href="investors-events-contact.html#ir-contact" class="btn primary">Contact IR &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+

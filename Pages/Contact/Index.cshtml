@@ -1,0 +1,63 @@
+@page "/contact"
+@{
+    ViewData["Title"] = "Contact — talk to the Hana team";
+    ViewData["Description"] = "A question about our capabilities, a partnership, or a quote — tell us what you need.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/contact-forms.css" />
+}
+
+@* Contact — talk to the Hana team. Static form markup; chip multiselect via <details>+:has,
+   helper JS in ~/js/contact-forms.js (demo submit — wire OnPost for the
+   backend). Hero background via ~/js/hana-backgrounds.js. *@
+
+<div class="cf-page">
+  <section class="cf-hero" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner">
+      <p class="cf-eyebrow" style="color:#7EC8FF;">Get in touch</p>
+      <h1 style="color:#fff;">Talk to the Hana team</h1>
+      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">A question about our capabilities, a partnership, or a quote — tell us what you need and we&rsquo;ll route it to the right people across our organisation.</p>
+    </div>
+  </section>
+  <section class="cf-section">
+    <div class="cf-wrap" style="position:relative;z-index:1;">
+      <div class="cf-grid">
+        <div class="cf-intro">
+          <p class="cf-eyebrow">How can we help?</p>
+          <div class="cf-rfq-cta">
+            <div class="cf-rfq-label">Start a project</div>
+            <h3>Have a product to manufacture?</h3>
+            <p>Send a quote request and we&rsquo;ll route you to our sales and technical teams to start the conversation on your needs.</p>
+            <a href="/contact/rfq" class="cf-rfq-btn">Request a quote</a>
+          </div>
+          <div class="cf-offices-label">Sales offices</div><div class="cf-accordion"><details class="cf-acc-item" open><summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Philippines</div><div class="cf-office-person">Henry Lubrico</div><div class="cf-office-contacts"><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Singapore</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Europe <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">France</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Germany</div><div class="cf-office-person">Frank Böhme — Ingenieur Büro Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+4930756576690">+49 30 75657690</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details></div>
+        </div>
+        <div class="cf-card" id="general-enquiry">
+  <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Enquiry received</h3><p>Thanks — we&rsquo;ve routed your message to the right team and will reply within one business day.</p></div>
+  <div class="cf-required-note">Fields marked <span class="req">*</span> are required.</div>
+  <form class="cf-form" method="post" novalidate>
+    <div class="cf-field" style="margin-bottom:18px;"><label for="ge-reason" style="font-size:13px;font-weight:700;color:var(--ink);">Reason for enquiry and RFQ requests</label>
+      <select id="ge-reason" name="ge-reason"><option value="" disabled selected>Select one</option><option>Sales and customer support</option><option>Request for quote (RFQ)</option><option>Capability / technical question</option><option>Investor relations</option><option>Careers</option><option>Supplier / vendor enquiry</option><option>Other</option></select></div>
+    <div class="cf-divider"></div>
+    <div class="cf-row two"><div class="cf-field"><label for="ge-name"><span class="req">*</span>Name</label><input type="text" id="ge-name" name="ge-name" placeholder="First and last name" required></div><div class="cf-field"><label for="ge-company"><span class="req">*</span>Company</label><input type="text" id="ge-company" name="ge-company" placeholder="Company name" required></div></div>
+    <div class="cf-row two"><div class="cf-field"><label for="ge-email"><span class="req">*</span>Email</label><input type="email" id="ge-email" name="ge-email" placeholder="you@@company.com" required></div><div class="cf-field"><label for="ge-phone">Phone <span class="hint">(optional)</span></label><input type="tel" id="ge-phone" name="ge-phone" placeholder="+44 …"></div></div>
+    <div class="cf-row one"><div class="cf-field"><label for="ge-country"><span class="req">*</span>Country</label><select id="ge-country" name="ge-country"><option value="" disabled selected>Select country</option><option>United Kingdom</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Belgium</option><option>Switzerland</option><option>Austria</option><option>Italy</option><option>Spain</option><option>Portugal</option><option>Poland</option><option>Czech Republic</option><option>Ireland</option><option>United States</option><option>Canada</option><option>Thailand</option><option>China</option><option>Singapore</option><option>Other</option></select></div></div>
+    <div class="cf-divider"></div>
+    <div class="cf-row two" style="margin-bottom:0;"><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="toggle-label">Industry</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+    <div class="cf-chip-panel"><div class="cf-chip-note">Select all that apply</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Automotive">Automotive</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Industrial & IoT">Industrial & IoT</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Telecommunications">Telecommunications</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="RFID">RFID</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Optical & Sensors">Optical & Sensors</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Consumer Electronics">Consumer Electronics</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Medical">Medical</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Access Control">Access Control</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Power Management">Power Management</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Other">Other</label></div></div></details><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="toggle-label">Service</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+    <div class="cf-chip-panel"><div class="cf-chip-note">Select all that apply</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="ge-service" value="PCBA & Box Build">PCBA & Box Build</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="IC Assembly & Test (OSAT)">IC Assembly & Test (OSAT)</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="RFID & Smart Tags">RFID & Smart Tags</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Sensors & Optical">Sensors & Optical</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Power Solutions">Power Solutions</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="DFM / NPI Support">DFM / NPI Support</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Other">Other</label></div></div></details></div>
+    <div class="cf-divider"></div>
+    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field"><label for="ge-message"><span class="req">*</span>Message</label><textarea id="ge-message" name="ge-message" placeholder="Tell us what you&rsquo;re looking for — what you make, where you are in your project, and how we can help." required></textarea></div></div>
+    <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ge"><label for="cf-rc-ge" class="rc-label">I'm not a robot</label>
+    <div class="rc-logo"><span class="rc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue-soft)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Send enquiry</button></div>
+    <div class="cf-privacy">We use your details to respond to your enquiry. Not shared with third parties. Email <a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a> to request deletion.</div>
+  </form>
+</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/contact-forms.js"></script>
+}

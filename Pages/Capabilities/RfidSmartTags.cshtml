@@ -1,0 +1,73 @@
+@page "/capabilities/rfid-smart-tags"
+@{
+    ViewData["Title"] = "RFID and Smart Tags — capabilities";
+    ViewData["Description"] = "High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination, built for environments that destroy ordinary labels.";
+}
+
+@* RFID & Smart Tags — capability hub page. Static content; section
+   backgrounds via ~/js/hana-backgrounds.js. *@
+
+<style>
+  .cap-subsel > .hana-bg-layer { opacity:.6 !important; background:transparent !important; }
+  .hub-card{ transition:border-color 170ms ease, box-shadow 170ms ease, transform 170ms ease; }
+  a.hub-card:hover{ border-color:color-mix(in srgb, var(--hana-blue) 60%, var(--line)) !important; box-shadow:0 8px 22px rgba(18,131,221,.12); transform:translateY(-2px); }
+  a.hub-card:hover .hub-card-go{ gap:10px; }
+</style>
+
+<div style="border-bottom:1px solid var(--line);background:var(--bg);">
+  <div style="max-width:1240px;margin:0 auto;padding:11px 32px;font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;align-items:center;font-family:var(--font-text);">
+    <a href="/capabilities" class="hana-link" style="font-size:12.5px;">Capabilities</a>
+    <span style="color:var(--line);">&rsaquo;</span>
+    <span style="color:var(--ink);font-weight:600;">RFID &amp; Smart Tags</span>
+  </div>
+</div>
+
+<div style="background:#fff;position:relative;z-index:1;">
+  <div style="max-width:1000px;margin:0 auto;padding:56px 48px 36px;">
+    <div style="margin-bottom:8px;">
+      <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Capability</div>
+      <h1 style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin:0 0 18px;max-width:760px;text-wrap:balance;">RFID and smart tags</h1>
+      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination, built for environments that destroy ordinary labels. The capability behind tens of millions of tracked items a year.</p>
+      <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:320px;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ RFID tire tag under assembly ]</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cap-subsel" data-hana-bg="halftone" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);position:relative;overflow:hidden;">
+  <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:48px 48px 56px;">
+    <div style="margin-bottom:26px;">
+      <div style="font-family:var(--font-text);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#7EC8FF;margin-bottom:12px;">Choose a detailed capability</div>
+      <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:#fff;line-height:1.2;letter-spacing:-0.02em;margin:0 0 10px;">Explore RFID &amp; Smart Tags</h2>
+      <p style="font-family:var(--font-text);font-size:15.5px;color:rgba(255,255,255,0.72);line-height:1.6;max-width:660px;margin:0;">Two product families, from embeddable ruggedized tags to high-throughput inlays.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
+        <div class="hub-card" style="border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;cursor:default;"><div style="position:relative;"><div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ RFID tire tags ]</span></div><span style="position:absolute;top:10px;right:10px;font-family:var(--font-text);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:4px;padding:3px 7px;">Page in progress</span></div>
+        <div style="padding:24px;display:flex;flex-direction:column;flex:1;">
+          <div style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:9px;text-wrap:balance;">RFID tire tags</div>
+          <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 18px;">Ruggedized tags engineered to survive cure, flex and road temperature inside a tire for its full service life.</p>
+          <span class="hub-card-go" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--hana-blue);">View capability <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+        </div></div>
+        <div class="hub-card" style="border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;cursor:default;"><div style="position:relative;"><div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ RFID inlays ]</span></div><span style="position:absolute;top:10px;right:10px;font-family:var(--font-text);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:4px;padding:3px 7px;">Page in progress</span></div>
+        <div style="padding:24px;display:flex;flex-direction:column;flex:1;">
+          <div style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:9px;text-wrap:balance;">RFID inlays</div>
+          <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 18px;">High-throughput inlay assembly — chip attach and antenna lamination, reel-to-reel for label and ticket converters.</p>
+          <span class="hub-card-go" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--hana-blue);">View capability <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+        </div></div>
+    </div>
+  </div>
+</div>
+
+<div style="height:64px;background:#fff;"></div>
+
+<section data-hana-bg="halftone" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);color:#fff;position:relative;overflow:hidden;">
+  <div style="max-width:1040px;margin:0 auto;padding:64px 48px;position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:center;">
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;line-height:1.15;letter-spacing:-0.02em;margin:0 0 12px;max-width:560px;text-wrap:balance;">Adapted to you. Contact us to discover Hana&rsquo;s detailed list of capabilities.</h2>
+      <p style="font-family:var(--font-text);font-size:16px;line-height:1.6;color:rgba(255,255,255,0.78);margin:0;max-width:480px;">Start a conversation with our engineering team today.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="/contact/rfq" class="hana-btn hana-btn-on-dark">Request a quote <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+      <a href="/contact" class="hana-btn hana-btn-secondary" style="color:#fff;border-color:rgba(255,255,255,0.4);">Talk to an engineer</a>
+    </div>
+  </div>
+</section>

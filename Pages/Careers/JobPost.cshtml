@@ -1,0 +1,164 @@
+@page "/careers/job-post"
+@{
+    ViewData["Title"] = "Open role — Careers";
+    ViewData["Description"] = "An open role at Hana Microelectronics.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/careers-job-post.css" />
+}
+
+@* Open role — Careers. Static content. *@
+
+<!-- ── Hero band: subbar + hero over dark PCB grid ── -->
+<div class="hero-band">
+  <svg class="hero-pcb-bg" width="100%" height="100%" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="pcb-glow" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#0E4A7C" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#030a17" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="420" fill="url(#pcb-glow)" />
+    <g stroke="#1283DD" stroke-width="0.4" stroke-opacity="0.06">
+      <line x1="0" y1="0" x2="0" y2="420"/><line x1="75" y1="0" x2="75" y2="420"/><line x1="150" y1="0" x2="150" y2="420"/><line x1="225" y1="0" x2="225" y2="420"/><line x1="300" y1="0" x2="300" y2="420"/><line x1="375" y1="0" x2="375" y2="420"/><line x1="450" y1="0" x2="450" y2="420"/><line x1="525" y1="0" x2="525" y2="420"/><line x1="600" y1="0" x2="600" y2="420"/><line x1="675" y1="0" x2="675" y2="420"/><line x1="750" y1="0" x2="750" y2="420"/><line x1="825" y1="0" x2="825" y2="420"/><line x1="900" y1="0" x2="900" y2="420"/><line x1="975" y1="0" x2="975" y2="420"/><line x1="1050" y1="0" x2="1050" y2="420"/><line x1="1125" y1="0" x2="1125" y2="420"/><line x1="1200" y1="0" x2="1200" y2="420"/>
+      <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    </g>
+    <g stroke="#1283DD" stroke-width="1.4" stroke-opacity="0.28">
+      <line x1="75" y1="60" x2="150" y2="60"/><line x1="225" y1="60" x2="300" y2="60"/><line x1="375" y1="60" x2="450" y2="60"/><line x1="525" y1="60" x2="600" y2="60"/><line x1="675" y1="60" x2="750" y2="60"/><line x1="825" y1="60" x2="900" y2="60"/><line x1="975" y1="60" x2="1050" y2="60"/>
+      <line x1="150" y1="120" x2="225" y2="120"/><line x1="300" y1="120" x2="375" y2="120"/><line x1="450" y1="120" x2="525" y2="120"/><line x1="600" y1="120" x2="675" y2="120"/><line x1="750" y1="120" x2="825" y2="120"/><line x1="900" y1="120" x2="975" y2="120"/><line x1="1050" y1="120" x2="1125" y2="120"/>
+      <line x1="75" y1="180" x2="150" y2="180"/><line x1="225" y1="180" x2="300" y2="180"/><line x1="450" y1="180" x2="525" y2="180"/><line x1="675" y1="180" x2="750" y2="180"/><line x1="825" y1="180" x2="900" y2="180"/><line x1="1050" y1="180" x2="1125" y2="180"/>
+      <line x1="150" y1="240" x2="225" y2="240"/><line x1="375" y1="240" x2="450" y2="240"/><line x1="525" y1="240" x2="600" y2="240"/><line x1="750" y1="240" x2="825" y2="240"/><line x1="900" y1="240" x2="975" y2="240"/><line x1="1125" y1="240" x2="1200" y2="240"/>
+      <line x1="75" y1="300" x2="150" y2="300"/><line x1="300" y1="300" x2="375" y2="300"/><line x1="450" y1="300" x2="525" y2="300"/><line x1="675" y1="300" x2="750" y2="300"/><line x1="825" y1="300" x2="900" y2="300"/><line x1="1050" y1="300" x2="1125" y2="300"/>
+      <line x1="150" y1="360" x2="225" y2="360"/><line x1="375" y1="360" x2="450" y2="360"/><line x1="600" y1="360" x2="675" y2="360"/><line x1="750" y1="360" x2="825" y2="360"/><line x1="975" y1="360" x2="1050" y2="360"/>
+      <line x1="150" y1="60" x2="150" y2="120"/><line x1="300" y1="60" x2="300" y2="120"/><line x1="450" y1="120" x2="450" y2="180"/><line x1="675" y1="60" x2="675" y2="120"/><line x1="825" y1="120" x2="825" y2="180"/><line x1="975" y1="60" x2="975" y2="120"/><line x1="1050" y1="120" x2="1050" y2="180"/>
+      <line x1="225" y1="180" x2="225" y2="240"/><line x1="525" y1="180" x2="525" y2="240"/><line x1="750" y1="180" x2="750" y2="240"/><line x1="900" y1="240" x2="900" y2="300"/><line x1="1125" y1="180" x2="1125" y2="240"/>
+      <line x1="150" y1="240" x2="150" y2="300"/><line x1="375" y1="240" x2="375" y2="300"/><line x1="675" y1="300" x2="675" y2="360"/><line x1="825" y1="300" x2="825" y2="360"/><line x1="1050" y1="300" x2="1050" y2="360"/>
+    </g>
+    <g fill="#1283DD" fill-opacity="0.85">
+      <rect x="72" y="57" width="6" height="6"/><rect x="222" y="57" width="6" height="6"/><rect x="447" y="117" width="6" height="6"/><rect x="597" y="117" width="6" height="6"/><rect x="822" y="177" width="6" height="6"/><rect x="1047" y="177" width="6" height="6"/>
+      <rect x="147" y="237" width="6" height="6"/><rect x="372" y="237" width="6" height="6"/><rect x="522" y="237" width="6" height="6"/><rect x="747" y="297" width="6" height="6"/><rect x="972" y="57" width="6" height="6"/>
+      <rect x="297" y="297" width="6" height="6"/><rect x="447" y="297" width="6" height="6"/><rect x="672" y="357" width="6" height="6"/><rect x="897" y="237" width="6" height="6"/><rect x="1122" y="237" width="6" height="6"/>
+    </g>
+    <g fill="none" stroke="#4E9BDA" stroke-width="1.4" stroke-opacity="0.7">
+      <circle cx="375" cy="60" r="2.6"/><circle cx="525" cy="60" r="2.6"/><circle cx="750" cy="120" r="2.6"/><circle cx="900" cy="60" r="2.6"/><circle cx="1125" cy="120" r="2.6"/>
+      <circle cx="225" cy="180" r="2.6"/><circle cx="675" cy="180" r="2.6"/><circle cx="975" cy="120" r="2.6"/><circle cx="150" cy="300" r="2.6"/><circle cx="525" cy="300" r="2.6"/>
+      <circle cx="825" cy="300" r="2.6"/><circle cx="1050" cy="300" r="2.6"/><circle cx="375" cy="360" r="2.6"/><circle cx="750" cy="360" r="2.6"/><circle cx="1050" cy="360" r="2.6"/>
+    </g>
+  </svg>
+  <div class="hero-overlay"></div>
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="#">Home</a><span class="sep">/</span>
+        <a href="/careers">Careers</a><span class="sep">/</span>
+        <span>Pre-Assembly Engineer</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Open role · Engineering</div>
+      <h1>Pre-Assembly Engineer</h1>
+      <div class="hero-chips">
+        <span class="chip loc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ayutthaya, Thailand
+        </span>
+        <span class="chip type">Full Time</span>
+        <span class="chip type">Engineering</span>
+        <span class="chip date">Posted 27 Jan 2026</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Main content ── -->
+<div class="layout-bg">
+  <div class="layout">
+
+    <main class="jd">
+
+      <div class="jd-section">
+        <div class="jd-label"><span>Working at Hana</span></div>
+        <h2>Join a team that builds what the world runs on</h2>
+        <p>At Hana Group, we deliver high-performing manufacturing solutions that solve real challenges for customers across the globe. Behind that mission are the people who drive our processes, develop our strategies, and show up for our customers every day.</p>
+        <p>When you join Hana, you join a genuinely multinational team working alongside leading OEM companies across Asia and beyond. We value what you bring today and invest in where you're headed — your development matters to us, not just the output.</p>
+        <p>Our people are the foundation of everything we achieve. If you share our drive to pursue excellence and take pride in your work, you'll find your place here.</p>
+      </div>
+
+      <div class="jd-section">
+        <div class="jd-label"><span>About the role</span></div>
+        <h2>What you'll be doing</h2>
+        <p>As a Pre-Assembly Engineer at our Ayutthaya facility, you will be responsible for the accuracy and readiness of assembly documentation before production begins. You will work closely with customers, production planning, and the engineering team to ensure a smooth transition from order to production floor.</p>
+      </div>
+
+      <div class="jd-section">
+        <div class="jd-label"><span>Responsibilities</span></div>
+        <h2>Key responsibilities</h2>
+        <ul class="jd-list">
+          <li>Review customer assembly documents and provide guidance on Assembly Instructions, Build Sheets, and Marking Instructions</li>
+          <li>Translate or guide the translation of customer documents into required internal formats</li>
+          <li>Ensure correctness of all information per the PC loading schedule</li>
+        </ul>
+      </div>
+
+      <div class="jd-section">
+        <div class="jd-label"><span>Requirements</span></div>
+        <h2>What we're looking for</h2>
+        <ul class="jd-list">
+          <li>Bachelor's degree in Engineering, Electronics, Electrical, Mechanical, or a related field</li>
+          <li>Newly graduated candidates are welcome; or at least 3 years of work experience in electronics manufacturing</li>
+          <li>Good English communication skills — written and spoken</li>
+          <li>Computer proficiency in AutoCAD and Microsoft Office</li>
+        </ul>
+      </div>
+
+      <div class="jd-section">
+        <div class="jd-label"><span>What we offer</span></div>
+        <h2>Life at Hana</h2>
+        <ul class="jd-list">
+          <li>Competitive salary and annual performance review</li>
+          <li>Health insurance and welfare benefits</li>
+          <li>Annual leave plus Thai public holidays</li>
+          <li>Technical training and career development programmes</li>
+          <li>On-site facilities including canteen and transport support</li>
+          <li>A close-knit team culture with strong focus on employee wellbeing</li>
+        </ul>
+      </div>
+
+    </main>
+
+    <aside class="job-sidebar">
+      <div class="apply-card">
+        <div class="apply-card-head">
+          <div class="role">Pre-Assembly Engineer</div>
+          <div class="loc">Ayutthaya, Thailand</div>
+        </div>
+        <div class="apply-card-body">
+          <a href="/careers/consent" class="apply-btn">Apply for this role →</a>
+          <p class="apply-note">Applications are reviewed by our HR team in Bangkok.<br>For queries: <a href="#">recruit@@hanabk.th.com</a></p>
+        </div>
+      </div>
+
+      <div class="details-card">
+        <div class="details-card-head">Role details</div>
+        <div class="detail-row"><span class="detail-key">Location</span><span class="detail-val">Ayutthaya, Thailand</span></div>
+        <div class="detail-row"><span class="detail-key">Type</span><span class="detail-val">Full Time</span></div>
+        <div class="detail-row"><span class="detail-key">Department</span><span class="detail-val">Engineering</span></div>
+        <div class="detail-row"><span class="detail-key">Posted</span><span class="detail-val mono">27/01/2026 10:52:00</span></div>
+        <div class="detail-row"><span class="detail-key">Reference</span><span class="detail-val mono">HNA-AYT-ENG-042</span></div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ── Page end ── -->
+<div class="page-end">
+  <div class="page-end-inner">
+    <p>Looking for a different role? View all open positions at our Thailand and Cambodia facilities.</p>
+    <a href="careers.html#open-roles" class="btn">← Back to all roles</a>
+  </div>
+</div>

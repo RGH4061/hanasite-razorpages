@@ -1,0 +1,457 @@
+@* _Header.cshtml — Hana global header
+   Renders: utility bar (SET ticker + links + search + language)
+            main nav (logo + 5 items + CTA buttons)
+            mega-menu panels (hover-activated, JS: mega-menu.js)
+
+   Requires:
+     wwwroot/css/_components.css  (hana-nav-link, hana-mega, etc.)
+     wwwroot/js/mega-menu.js      (auto-inits on DOMContentLoaded)
+     ~/images/hana-logo-full.svg  (200×65 rendered size)
+     Lucide UMD icon library (loaded in _Layout.cshtml)
+
+   Spec ref: design_handoff_homepage/README.md §1
+*@
+
+<header class="hana-header" style="background:#fff; font-family:var(--font-text);">
+
+    @* ── Utility bar ───────────────────────────────────────── *@
+    <div class="hana-util-bar"
+         style="background:var(--hana-blue-deep); color:rgba(255,255,255,0.78); font-size:12px;">
+        <div class="hana-wrap"
+             style="height:36px; display:flex; align-items:center; justify-content:space-between; padding-top:0; padding-bottom:0;">
+
+            @* Left — SET stock ticker *@
+            <div style="display:flex; gap:18px; align-items:center; font-family:var(--font-mono); font-size:11px;">
+                <span style="font-family:var(--font-text); font-size:10px; font-weight:600;
+                             text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.55);">SET</span>
+                <span style="color:#fff;">HANA</span>
+                <span>฿24.50</span>
+                <span style="color:#7EC8FF;">+1.24%</span>
+            </div>
+
+            @* Right — links, search, language *@
+            <div style="display:flex; gap:18px; align-items:center;">
+                <a href="/careers" style="color:inherit; text-decoration:none;">Careers</a>
+                <a href="/news"    style="color:inherit; text-decoration:none;">News</a>
+
+                @* Search bar *@
+                <div style="display:flex; align-items:center; gap:8px;
+                            background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+                            border-radius:4px; padding:4px 10px; min-width:220px;">
+                    <i data-lucide="search"
+                       style="width:12px; height:12px; stroke:rgba(255,255,255,0.6); flex-shrink:0;"></i>
+                    <span style="color:rgba(255,255,255,0.55); font-size:12px;">
+                        Search capabilities, markets, news&hellip;
+                    </span>
+                </div>
+
+                @* Language *@
+                <a href="#" style="color:inherit; text-decoration:none;
+                                   display:inline-flex; align-items:center; gap:6px;">
+                    <i data-lucide="globe" style="width:13px; height:13px;"></i>
+                    EN
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @* ── Main nav + mega-menu wrapper ─────────────────────── *@
+    <div id="hana-nav-wrap" style="position:relative;">
+
+        @* Main nav bar *@
+        <div style="border-bottom:1px solid var(--line);">
+            <div class="hana-wrap"
+                 style="padding-top:18px; padding-bottom:18px; display:flex; align-items:center; gap:32px;">
+
+                @* Logo *@
+                <a href="/" aria-label="Hana Microelectronics — home">
+                    <img src="~/images/hana-logo-full.svg" alt="Hana"
+                         width="200" height="65"
+                         style="display:block; object-fit:contain; object-position:left center;" />
+                </a>
+
+                @* Nav links *@
+                <nav aria-label="Primary navigation"
+                     style="display:flex; gap:24px; margin-left:12px;">
+
+                    <a href="/about" data-menu="About"
+                       class="hana-nav-link">
+                        About
+                        <span class="hana-nav-chevron">
+                            <i data-lucide="chevron-down" style="width:13px; height:13px;"></i>
+                        </span>
+                    </a>
+
+                    <a href="/markets" data-menu="Markets"
+                       class="hana-nav-link">
+                        Markets
+                        <span class="hana-nav-chevron">
+                            <i data-lucide="chevron-down" style="width:13px; height:13px;"></i>
+                        </span>
+                    </a>
+
+                    <a href="/capabilities" data-menu="Capabilities"
+                       class="hana-nav-link">
+                        Capabilities
+                        <span class="hana-nav-chevron">
+                            <i data-lucide="chevron-down" style="width:13px; height:13px;"></i>
+                        </span>
+                    </a>
+
+                    <a href="/locations" data-menu="Locations"
+                       class="hana-nav-link">
+                        Locations
+                        <span class="hana-nav-chevron">
+                            <i data-lucide="chevron-down" style="width:13px; height:13px;"></i>
+                        </span>
+                    </a>
+
+                    <a href="/investor-relations" data-menu="Investor Relations"
+                       class="hana-nav-link">
+                        Investor Relations
+                        <span class="hana-nav-chevron">
+                            <i data-lucide="chevron-down" style="width:13px; height:13px;"></i>
+                        </span>
+                    </a>
+
+                </nav>
+
+                @* CTA buttons *@
+                <div style="margin-left:auto; display:flex; gap:8px;">
+                    <a href="/contact" class="hana-btn hana-btn-secondary"
+                       style="padding:10px 16px; font-size:11px;">Contact</a>
+                    <a href="/contact/rfq" class="hana-btn hana-btn-primary"
+                       style="padding:11px 16px; font-size:11px;">Request a quote</a>
+                </div>
+
+            </div>
+        </div>
+
+        @* ── Mega-menu panels ────────────────────────────────── *@
+        @* Each panel is hidden by default; mega-menu.js toggles them *@
+
+        @* About *@
+        <div data-panel="About" class="hana-mega" hidden
+             style="position:absolute; top:100%; left:0; right:0; z-index:60;
+                    background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+                    box-shadow:0 24px 48px rgba(3,10,23,0.12);">
+            <div class="hana-wrap"
+                 style="padding-top:36px; padding-bottom:40px;
+                        display:grid; grid-template-columns:270px 1fr; gap:56px; align-items:start;">
+                @* Lead column *@
+                <div style="border-right:1px solid var(--line); padding-right:40px;">
+                    <div style="font-family:var(--font-display); font-size:21px; font-weight:700;
+                                letter-spacing:-0.02em; margin-bottom:12px;">About Hana</div>
+                    <p style="font-family:var(--font-text); font-size:13px; line-height:1.6;
+                               color:var(--ink-2); margin:0 0 20px; text-wrap:pretty;">
+                        A global electronics manufacturer since 1978 — EMS, OSAT, and microelectronics
+                        under one operating standard.
+                    </p>
+                    <a href="/about" class="hana-link" style="font-size:11px; letter-spacing:0.1em;">
+                        Company overview
+                        <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
+                    </a>
+                </div>
+                @* Content columns *@
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:36px;">
+                    <div>
+                        <div class="hana-spec-label" style="margin-bottom:14px; color:var(--ink);">Company</div>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/about"              class="hana-mega-sub-link">Why Hana</a></li>
+                            <li><a href="/about/leadership"   class="hana-mega-sub-link">Leadership</a></li>
+                            <li><a href="/about/history"      class="hana-mega-sub-link">History</a></li>
+                            <li><a href="/about/quality"      class="hana-mega-sub-link">Quality &amp; certifications</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="hana-spec-label" style="margin-bottom:14px; color:var(--ink);">Responsibility</div>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/sustainability"     class="hana-mega-sub-link">Sustainability</a></li>
+                            <li><a href="/sustainability/esg" class="hana-mega-sub-link">ESG reports</a></li>
+                            <li><a href="/community"          class="hana-mega-sub-link">Community</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="hana-spec-label" style="margin-bottom:14px; color:var(--ink);">Connect</div>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/news"     class="hana-mega-sub-link">News &amp; media</a></li>
+                            <li><a href="/careers"  class="hana-mega-sub-link">Careers</a></li>
+                            <li><a href="/contact"  class="hana-mega-sub-link">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Markets *@
+        <div data-panel="Markets" class="hana-mega" hidden
+             style="position:absolute; top:100%; left:0; right:0; z-index:60;
+                    background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+                    box-shadow:0 24px 48px rgba(3,10,23,0.12);">
+            <div class="hana-wrap"
+                 style="padding-top:36px; padding-bottom:40px;
+                        display:grid; grid-template-columns:270px 1fr; gap:56px; align-items:start;">
+                <div style="border-right:1px solid var(--line); padding-right:40px;">
+                    <div style="font-family:var(--font-display); font-size:21px; font-weight:700;
+                                letter-spacing:-0.02em; margin-bottom:12px;">Markets we serve</div>
+                    <p style="font-family:var(--font-text); font-size:13px; line-height:1.6;
+                               color:var(--ink-2); margin:0 0 20px; text-wrap:pretty;">
+                        From automotive power modules to AI data-center infrastructure —
+                        production tuned to each market's reliability bar.
+                    </p>
+                    <a href="/markets" class="hana-link" style="font-size:11px; letter-spacing:0.1em;">
+                        All markets
+                        <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
+                    </a>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:28px; row-gap:2px;">
+                    <a href="/markets/automotive"        class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Automotive</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Power modules, ADAS, sensors, EV charging.</div></a>
+                    <a href="/markets/industrial-iot"    class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Industrial &amp; IoT</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Environmental sensors, controllers, meters.</div></a>
+                    <a href="/markets/telecom"           class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Telecommunications</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Network infrastructure and gateways.</div></a>
+                    <a href="/markets/rfid"              class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">RFID</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Inlays, tire tags, retail smart labels.</div></a>
+                    <a href="/markets/optical-sensors"   class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Optical &amp; sensors</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Camera modules and image sensors.</div></a>
+                    <a href="/markets/consumer"          class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Consumer electronics</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Smart phone sensors, IoT products.</div></a>
+                    <a href="/markets/medical"           class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Medical</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Hearing aids, patient monitoring.</div></a>
+                    <a href="/markets/access-control"    class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Access control</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Smart cards, readers, security tokens.</div></a>
+                    <a href="/markets/power-management"  class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Power management</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">Power supplies and conversion.</div></a>
+                    <a href="/markets/data-centers"      class="hana-mega-card"><div class="hana-mega-name" style="font-size:13px; font-weight:600; margin-bottom:2px;">Data Centers</div><div style="font-size:12px; color:var(--ink-3); line-height:1.45;">AI data centre cooling infrastructure.</div></a>
+                </div>
+            </div>
+        </div>
+
+        @* Capabilities — full-width, no lead column *@
+        <div data-panel="Capabilities" class="hana-mega" hidden
+             style="position:absolute; top:100%; left:0; right:0; z-index:60;
+                    background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+                    box-shadow:0 24px 48px rgba(3,10,23,0.12);">
+            <div class="hana-wrap" style="padding-top:36px; padding-bottom:40px;">
+                <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:24px;">
+
+                    <div>
+                        <a href="/capabilities/pcba-box-build" class="hana-mega-group-heading">PCBA &amp; Box Build</a>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/capabilities/pcba-box-build/smt-assembly"   class="hana-mega-sub-link">SMT Assembly</a></li>
+                            <li><a href="/capabilities/pcba-box-build/cob-assembly"   class="hana-mega-sub-link">COB Assembly</a></li>
+                            <li><a href="/capabilities/pcba-box-build/box-build"      class="hana-mega-sub-link">Box Build</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <a href="/capabilities/osat" class="hana-mega-group-heading">OSAT</a>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/capabilities/osat/wafer-processing"        class="hana-mega-sub-link">Wafer Processing</a></li>
+                            <li><a href="/capabilities/osat/die-attach-wire-bond"    class="hana-mega-sub-link">Die Attach &amp; Wire Bond</a></li>
+                            <li><a href="/capabilities/osat/flip-chip"               class="hana-mega-sub-link">Flip Chip</a></li>
+                            <li><a href="/capabilities/osat/sip"                     class="hana-mega-sub-link">System in Package (SiP)</a></li>
+                            <li><a href="/capabilities/osat/final-test"              class="hana-mega-sub-link">Wafer Probe &amp; Final Test</a></li>
+                            <li><a href="/capabilities/osat/wlcsp"                   class="hana-mega-sub-link">Wafer Level Packaging</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <a href="/capabilities/microelectronic-assembly" class="hana-mega-group-heading">Microelectronic Assembly</a>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/capabilities/microelectronic-assembly/flip-chip"    class="hana-mega-sub-link">Flip Chip</a></li>
+                            <li><a href="/capabilities/microelectronic-assembly/mems"         class="hana-mega-sub-link">MEMS &amp; Sensor Assembly</a></li>
+                            <li><a href="/capabilities/microelectronic-assembly/interconnect" class="hana-mega-sub-link">Interconnect Solutions</a></li>
+                            <li><a href="/capabilities/microelectronic-assembly/micro"        class="hana-mega-sub-link">Micro-Assembly</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <a href="/capabilities/rfid-smart-tags" class="hana-mega-group-heading">RFID &amp; Smart Tags</a>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/capabilities/rfid-smart-tags/tire-tags" class="hana-mega-sub-link">RFID Tire Tags</a></li>
+                            <li><a href="/capabilities/rfid-smart-tags/inlays"    class="hana-mega-sub-link">RFID Inlays</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <a href="/capabilities/automation" class="hana-mega-group-heading">Automation</a>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/capabilities/automation/aoi-spi"       class="hana-mega-sub-link">In-line AOI &amp; SPI</a></li>
+                            <li><a href="/capabilities/automation/robotic"       class="hana-mega-sub-link">Robotic Handling &amp; Test</a></li>
+                            <li><a href="/capabilities/automation/mes"           class="hana-mega-sub-link">MES-Driven Traceability</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <a href="/capabilities/dfx-jdm" class="hana-mega-group-heading">DFx &amp; JDM Collaboration</a>
+                        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+                            <li><a href="/capabilities/dfx-jdm/dfm"  class="hana-mega-sub-link">Design for Excellence (DFx)</a></li>
+                            <li><a href="/capabilities/dfx-jdm/jdm"  class="hana-mega-sub-link">Joint Development Model</a></li>
+                            <li><a href="/capabilities/dfx-jdm/npi"  class="hana-mega-sub-link">New Product Introduction</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--line);">
+                    <a href="/capabilities" class="hana-link" style="font-size:11px; letter-spacing:0.1em;">
+                        All capabilities
+                        <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @* Locations *@
+        <div data-panel="Locations" class="hana-mega" hidden
+             style="position:absolute; top:100%; left:0; right:0; z-index:60;
+                    background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+                    box-shadow:0 24px 48px rgba(3,10,23,0.12);">
+            <div class="hana-wrap"
+                 style="padding-top:36px; padding-bottom:40px;
+                        display:grid; grid-template-columns:270px 1fr; gap:56px; align-items:start;">
+                <div style="border-right:1px solid var(--line); padding-right:40px;">
+                    <div style="font-family:var(--font-display); font-size:21px; font-weight:700;
+                                letter-spacing:-0.02em; margin-bottom:12px;">Global footprint</div>
+                    <p style="font-family:var(--font-text); font-size:13px; line-height:1.6;
+                               color:var(--ink-2); margin:0 0 20px; text-wrap:pretty;">
+                        Manufacturing across Thailand, Cambodia, China, Korea, and the USA —
+                        geographic resilience built in.
+                    </p>
+                    <a href="/locations" class="hana-link" style="font-size:11px; letter-spacing:0.1em;">
+                        All locations
+                        <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
+                    </a>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; column-gap:40px; row-gap:26px;">
+                    @* Thailand *@
+                    <div>
+                        <div style="font-size:13px; font-weight:700; color:var(--ink);
+                                    padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
+                            Thailand
+                        </div>
+                        <ul style="list-style:none; margin:0; padding:0;">
+                            <li>
+                                <a href="/locations/ayutthaya" class="hana-mega-card"
+                                   style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
+                                    <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
+                                    <span style="display:flex; flex-direction:column; gap:2px;">
+                                        <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Ayutthaya</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">OSAT &middot; PCBA</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/locations/lamphun" class="hana-mega-card"
+                                   style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
+                                    <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
+                                    <span style="display:flex; flex-direction:column; gap:2px;">
+                                        <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Lamphun</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">PCBA &middot; EMS</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @* China + Cambodia *@
+                    <div>
+                        <div style="font-size:13px; font-weight:700; color:var(--ink);
+                                    padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
+                            China
+                        </div>
+                        <ul style="list-style:none; margin:0; padding:0 0 16px;">
+                            <li>
+                                <a href="/locations/jiaxing" class="hana-mega-card"
+                                   style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
+                                    <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
+                                    <span style="display:flex; flex-direction:column; gap:2px;">
+                                        <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Jiaxing</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">EMS &middot; OSAT &middot; RFID</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div style="font-size:13px; font-weight:700; color:var(--ink);
+                                    padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
+                            Cambodia
+                        </div>
+                        <ul style="list-style:none; margin:0; padding:0;">
+                            <li>
+                                <a href="/locations/koh-kong" class="hana-mega-card"
+                                   style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
+                                    <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
+                                    <span style="display:flex; flex-direction:column; gap:2px;">
+                                        <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Koh Kong</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">PCBA &middot; Box Build &middot; EMS</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @* USA + Korea *@
+                    <div>
+                        <div style="font-size:13px; font-weight:700; color:var(--ink);
+                                    padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
+                            USA
+                        </div>
+                        <ul style="list-style:none; margin:0; padding:0 0 16px;">
+                            <li>
+                                <a href="/locations/ohio" class="hana-mega-card"
+                                   style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
+                                    <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
+                                    <span style="display:flex; flex-direction:column; gap:2px;">
+                                        <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Ohio</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">RFID &amp; Optical</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div style="font-size:13px; font-weight:700; color:var(--ink);
+                                    padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
+                            Korea
+                        </div>
+                        <ul style="list-style:none; margin:0; padding:0;">
+                            <li>
+                                <a href="/locations/cheongju" class="hana-mega-card"
+                                   style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
+                                    <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
+                                    <span style="display:flex; flex-direction:column; gap:2px;">
+                                        <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Cheongju</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">SiC module</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Investor Relations *@
+        <div data-panel="Investor Relations" class="hana-mega" hidden
+             style="position:absolute; top:100%; left:0; right:0; z-index:60;
+                    background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+                    box-shadow:0 24px 48px rgba(3,10,23,0.12);">
+            <div class="hana-wrap"
+                 style="padding-top:36px; padding-bottom:40px;
+                        display:grid; grid-template-columns:270px 1fr; gap:56px; align-items:start;">
+                <div style="border-right:1px solid var(--line); padding-right:40px;">
+                    <div style="font-family:var(--font-display); font-size:21px; font-weight:700;
+                                letter-spacing:-0.02em; margin-bottom:12px;">Investor Relations</div>
+                    <p style="font-family:var(--font-text); font-size:13px; line-height:1.6;
+                               color:var(--ink-2); margin:0 0 20px; text-wrap:pretty;">
+                        SET-listed (HANA). Financial reporting, governance, and shareholder
+                        information in one place.
+                    </p>
+                    <a href="/investor-relations" class="hana-link" style="font-size:11px; letter-spacing:0.1em;">
+                        IR overview
+                        <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
+                    </a>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:40px; row-gap:2px;">
+                    <a href="/investor-relations/news"        class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Investor News</span></a>
+                    <a href="/investor-relations/structure"   class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Group Structure &amp; Shareholders</span></a>
+                    <a href="/investor-relations/annual"      class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Annual Report</span></a>
+                    <a href="/investor-relations/esg"         class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Sustainability</span></a>
+                    <a href="/investor-relations/governance"  class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Governance Documents</span></a>
+                    <a href="/investor-relations/contact"     class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Investor Events &amp; Contacts</span></a>
+                    <a href="/investor-relations/faq"         class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">&rsaquo;&ensp;Investor FAQ</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>@* /hana-nav-wrap *@
+
+</header>

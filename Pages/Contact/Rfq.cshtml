@@ -1,0 +1,74 @@
+@page "/contact/rfq"
+@{
+    ViewData["Title"] = "Request a quote — Plant RFQ";
+    ViewData["Description"] = "Send a project request and our engineering team will reply within two business days.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/contact-forms.css" />
+}
+
+@* Request a quote — Plant RFQ. Static form markup; chip multiselect via <details>+:has,
+   helper JS in ~/js/contact-forms.js (demo submit — wire OnPost for the
+   backend). Hero background via ~/js/hana-backgrounds.js. *@
+
+<div class="cf-page" style="--form-col:520px;">
+  <section class="cf-hero" data-hana-bg="wafer" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner">
+      <p class="cf-eyebrow" style="color:#7EC8FF;">Request for quote</p>
+      <h1 style="color:#fff;">Start a project with Hana.</h1>
+      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">Complete the form and our team will review your request and be in touch within two business days. We&rsquo;ll route it to the right facility and team. The more detail you provide, the faster we can give you a useful response.</p>
+      <div class="cf-hero-meta"><span style="color:rgba(255,255,255,0.82);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7EC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Two-business-day review</span><span style="color:rgba(255,255,255,0.82);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7EC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg> Routed to the right plant</span></div>
+    </div>
+  </section>
+  <section class="cf-section">
+    <div class="cf-wrap" style="position:relative;z-index:1;">
+      <div class="cf-grid wide">
+        <div class="cf-intro">
+          <p class="cf-eyebrow">What we&rsquo;ll do with it</p>
+          <h2>Tell us what you&rsquo;re building.</h2>
+          <p class="lead">Your request goes straight to our engineering team. We assess fit, identify the best facility, and reply with next steps — typically within two business days.</p>
+          <div class="cf-callout"><div class="cf-callout-label">Helpful to attach</div><ul><li>Bill of Materials (BOM)</li><li>PCB design files or Gerbers</li><li>Drawings or mechanical specs</li><li>Existing test specifications</li></ul></div>
+          <a href="/contact" class="cf-crosslink"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg> General question? Use the contact form</a>
+        </div>
+        <div class="cf-card" id="plant-rfq">
+  <div class="cf-card-title">Plant RFQ</div>
+  <div class="cf-card-sub">We&rsquo;ll be in touch within two business days.</div>
+  <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>RFQ received</h3><p>Thanks — your request is with our engineering team. We&rsquo;ll route it to the right facility and reply within two business days.</p></div>
+  <div class="cf-required-note">Fields marked <span class="req">*</span> are required.</div>
+  <form class="cf-form" method="post" novalidate>
+    <div class="cf-section-label">Contact details</div>
+    <div class="cf-row two"><div class="cf-field"><label for="rq-name"><span class="req">*</span>Name</label><input type="text" id="rq-name" name="rq-name" placeholder="First and last name" required></div><div class="cf-field"><label for="rq-position"><span class="req">*</span>Position</label><input type="text" id="rq-position" name="rq-position" placeholder="e.g. NPI Manager, Procurement Lead" required></div></div>
+    <div class="cf-row two"><div class="cf-field"><label for="rq-company"><span class="req">*</span>Company</label><input type="text" id="rq-company" name="rq-company" placeholder="Company name" required></div><div class="cf-field"><label for="rq-website"><span class="req">*</span>Company website</label><input type="url" id="rq-website" name="rq-website" placeholder="https://www.example.com" required></div></div>
+    <div class="cf-row two"><div class="cf-field"><label for="rq-email"><span class="req">*</span>Email</label><input type="email" id="rq-email" name="rq-email" placeholder="you@@company.com" required></div><div class="cf-field"><label for="rq-phone"><span class="req">*</span>Phone</label><input type="tel" id="rq-phone" name="rq-phone" placeholder="+44 …" required></div></div>
+    <div class="cf-divider"></div>
+    <div class="cf-section-label">Address</div>
+    <div class="cf-row two"><div class="cf-field"><label for="rq-address">Address <span class="hint">(optional)</span></label><input type="text" id="rq-address" name="rq-address" placeholder="Street address"></div><div class="cf-field"><label for="rq-city">City <span class="hint">(optional)</span></label><input type="text" id="rq-city" name="rq-city" placeholder="City"></div></div>
+    <div class="cf-row three" style="align-items:end;"><div class="cf-field"><label for="rq-state">State / Province <span class="hint">(optional)</span></label><input type="text" id="rq-state" name="rq-state" placeholder="State or province"></div><div class="cf-field"><label for="rq-zip">Zip / Postal <span class="hint">(optional)</span></label><input type="text" id="rq-zip" name="rq-zip" placeholder="Postcode"></div><div class="cf-field"><label for="rq-country"><span class="req">*</span>Country</label><select id="rq-country" name="rq-country"><option value="" disabled selected>Select country</option><option>United Kingdom</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Belgium</option><option>Switzerland</option><option>Austria</option><option>Italy</option><option>Spain</option><option>Portugal</option><option>Poland</option><option>Czech Republic</option><option>Ireland</option><option>United States</option><option>Canada</option><option>Thailand</option><option>China</option><option>Singapore</option><option>Other</option></select></div></div>
+    <div class="cf-divider"></div>
+    <div class="cf-section-label">Industry &amp; Service</div>
+    <div class="cf-row two"><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="req">*</span><span class="toggle-label">Industry</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+    <div class="cf-chip-panel"><div class="cf-chip-note">Select all that apply</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Automotive">Automotive</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Industrial & IoT">Industrial & IoT</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Telecommunications">Telecommunications</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="RFID">RFID</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Optical & Sensors">Optical & Sensors</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Consumer Electronics">Consumer Electronics</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Medical">Medical</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Access Control">Access Control</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Power Management">Power Management</label><label class="cf-chip"><input type="checkbox" name="rq-industry" value="Other">Other</label></div></div></details><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="req">*</span><span class="toggle-label">Service required</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+    <div class="cf-chip-panel"><div class="cf-chip-note">Select all that apply</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="rq-service" value="PCBA & Box Build">PCBA & Box Build</label><label class="cf-chip"><input type="checkbox" name="rq-service" value="IC Assembly & Test (OSAT)">IC Assembly & Test (OSAT)</label><label class="cf-chip"><input type="checkbox" name="rq-service" value="RFID & Smart Tags">RFID & Smart Tags</label><label class="cf-chip"><input type="checkbox" name="rq-service" value="Sensors & Optical">Sensors & Optical</label><label class="cf-chip"><input type="checkbox" name="rq-service" value="Power Solutions">Power Solutions</label><label class="cf-chip"><input type="checkbox" name="rq-service" value="DFM / NPI Support">DFM / NPI Support</label><label class="cf-chip"><input type="checkbox" name="rq-service" value="Other">Other</label></div></div></details></div>
+    <div class="cf-divider"></div>
+    <div class="cf-section-label">Project details</div>
+    <div class="cf-row one"><div class="cf-field"><label for="rq-desc"><span class="req">*</span>Description of the project</label><textarea id="rq-desc" name="rq-desc" placeholder="Describe your project — product type, application, key requirements, timeline, and any specific manufacturing or quality constraints." required></textarea></div></div>
+    <div class="cf-row two"><div class="cf-field"><label for="rq-qty">Quantities to quote <span class="hint">(optional)</span></label><input type="text" id="rq-qty" name="rq-qty" placeholder="Units per year"></div><div class="cf-field"><label for="rq-start">Estimated start date <span class="hint">(optional)</span></label><input type="text" id="rq-start" name="rq-start" placeholder="e.g. Q3 2026"></div></div>
+    <div class="cf-divider"></div>
+    <div class="cf-section-label">Attachments</div>
+    <div class="cf-field" style="margin-bottom:0;"><label>Upload files <span class="hint">(optional)</span></label>
+      <div class="cf-upload"><input type="file" name="rq-files" accept=".pdf,.xlsx,.xls,.zip,.gbr" multiple><span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-8.5 8.5a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9 16.4a1.7 1.7 0 0 1-2.3-2.3l7.8-7.8"></path></svg></span><div class="cf-upload-text"><strong>Click to upload</strong> or drag and drop</div><div class="cf-upload-meta">PDF, Excel, ZIP or Gerber &middot; Max 10 MB</div></div>
+      <div class="cf-filelist"></div>
+    </div>
+    <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-rq"><label for="cf-rc-rq" class="rc-label">I'm not a robot</label>
+    <div class="rc-logo"><span class="rc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue-soft)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Submit RFQ</button></div>
+    <div class="cf-privacy">We use your details to respond to your enquiry. Not shared with third parties. Email <a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a> to request deletion.</div>
+  </form>
+</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/contact-forms.js"></script>
+}
