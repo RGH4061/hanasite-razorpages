@@ -13,7 +13,7 @@
   <div class="head">
     <p class="eyebrow">hanagroup.com</p>
     <h1 class="title">Site map &amp; page index</h1>
-    <p class="lede">Every page in this site, wired together through the shared header, footer, and mega-menu. Click any card to open it. Start from <a href="/" class="hana-link">the homepage</a>.</p>
+    <p class="lede">Every page in this site, wired together through the shared header, footer, and mega-menu. Click any card to open it. Start from <a href="/" style="color:var(--hana-blue); text-decoration:none; border-bottom:1px solid currentColor;">the homepage</a>.</p>
   </div>
 
   <div id="content">
@@ -34,6 +34,12 @@
         <p class="sec-note">Hub → six service lines. Each line links to its sub-capability detail pages.</p>
         <a class="card hub" href="/capabilities"><span class="route">Capabilities · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities</span></a>
         <span class="tree-v"></span><div class="branch"><div class="branch-label">6 pages</div><div class="grid grid-3"><a class="card " href="/capabilities/pcba-box-build"><span class="route">PCBA & Box Build</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/pcba-box-build</span></a><a class="card " href="/capabilities/osat"><span class="route">OSAT</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/osat</span></a><a class="card " href="/capabilities/microelectronic-assembly"><span class="route">Microelectronic Assembly</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/microelectronic-assembly</span></a><a class="card " href="/capabilities/automation"><span class="route">Automation</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/automation</span></a><a class="card " href="/capabilities/dfx-jdm"><span class="route">DFx & JDM</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/dfx-jdm</span></a><a class="card " href="/capabilities/rfid-smart-tags"><span class="route">RFID & Smart Tags</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/rfid-smart-tags</span></a></div></div>
+      </section>
+      <section>
+        <h2 class="sec-title">Markets</h2>
+        <p class="sec-note">Automotive is the first market hub, with the Power Modules sub-market as a worked lite-spoke. Other markets route to the Capabilities hub until their pages ship.</p>
+        <a class="card hub" href="/markets/automotive"><span class="route">Automotive · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive</span></a>
+        <span class="tree-v"></span><div class="branch"><div class="branch-label">1 page</div><div class="grid grid-3"><a class="card " href="/markets/automotive/power-modules"><span class="route">Power Modules</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive/power-modules</span></a></div></div>
       </section>
       <section>
         <h2 class="sec-title">Locations</h2>
@@ -62,6 +68,6 @@
   </div>
 
   <footer>
-    <p>Routes are defined per page via the Razor <span style="font-family:var(--font-mono)">@@page</span> directive. Markets links currently route to the Capabilities hub (no standalone market pages yet). Privacy / Terms / Cookies are placeholders. See <span style="font-family:var(--font-mono)">README.md</span> for how to serve and where routes are defined.</p>
+    <p>Routes are defined per page via the Razor <span style="font-family:var(--font-mono)">@@page</span> directive. The Automotive market hub (<span style="font-family:var(--font-mono)">/markets/automotive</span>) and its Power Modules sub-market are now live; other Markets links still route to the Capabilities hub until those pages ship. Privacy / Terms / Cookies are placeholders. See <span style="font-family:var(--font-mono)">README.md</span> for how to serve and where routes are defined.</p>
   </footer>
 </div>

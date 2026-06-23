@@ -6,13 +6,13 @@
 
 /* ── @font-face ───────────────────────────────────────────── */
 /* Load locally from wwwroot/fonts/ — never use Google Fonts CDN */
-@font-face { font-family: 'Geist';        src: url('/fonts/Geist-SemiBold.ttf')    format('truetype'); font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Geist';        src: url('/fonts/Geist-Bold.ttf')         format('truetype'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'Inter';        src: url('/fonts/Inter-Regular.ttf')      format('truetype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Inter';        src: url('/fonts/Inter-Medium.ttf')       format('truetype'); font-weight: 500; font-display: swap; }
-@font-face { font-family: 'Inter';        src: url('/fonts/Inter-SemiBold.ttf')     format('truetype'); font-weight: 600; font-display: swap; }
-@font-face { font-family: 'Inter';        src: url('/fonts/Inter-ExtraBold.ttf')    format('truetype'); font-weight: 800; font-display: swap; }
-@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Geist';        src: url('../fonts/Geist-SemiBold.ttf')    format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Geist';        src: url('../fonts/Geist-Bold.ttf')         format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Inter-Regular.ttf')      format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Inter-Medium.ttf')       format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Inter-SemiBold.ttf')     format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Inter-ExtraBold.ttf')    format('truetype'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
 
 /* ── Base reset ───────────────────────────────────────────── */
 *,
@@ -455,6 +455,7 @@ body {
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -504,3 +505,54 @@ body {
   transition: color 130ms ease;
 }
 .hana-mega-sub-link:hover { color: var(--hana-blue); }
+
+
+/* ============================================================
+   Responsive chrome — added 2026-06-23
+   The shared header/footer were authored as fixed desktop rows
+   with no breakpoints, so they overflowed the 1080px page cap on
+   laptops and narrow viewports (clipping the right-hand CTA).
+   These rules progressively reclaim width: shrink the search
+   field, tighten gaps, then drop non-essential chrome — keeping
+   primary nav + "Request a quote" usable down to ~720px.
+   (A dedicated phone hamburger menu is a separate enhancement.)
+   Selectors target the header/footer's inline styles via
+   [style*=...] + !important because the markup is inline-styled.
+   ============================================================ */
+
+@media (max-width: 1120px) {
+  /* util-bar search: drop the 220px min width, hide placeholder copy */
+  .hana-header [style*="min-width:220px"] { min-width: 0 !important; }
+  .hana-header [style*="min-width:220px"] > span { display: none !important; }
+}
+
+@media (max-width: 1040px) {
+  /* tighten the three large gaps in the main nav row */
+  .hana-header [style*="gap:32px"] { gap: 22px !important; }
+  .hana-header nav[aria-label="Primary navigation"] { gap: 18px !important; margin-left: 0 !important; }
+  .hana-header .hana-btn { padding-left: 13px !important; padding-right: 13px !important; }
+}
+
+@media (max-width: 980px) {
+  /* Careers / News are reachable from nav + footer; hide the util dupes */
+  .hana-util-bar a[href="/careers"],
+  .hana-util-bar a[href="/news"] { display: none !important; }
+  /* Contact is now the sole CTA — keep it visible at all widths */
+  /* compact the nav so five no-wrap items + CTA fit the row */
+  .hana-header nav[aria-label="Primary navigation"] { gap: 14px !important; }
+  .hana-header .hana-nav-link { letter-spacing: 0.04em !important; }
+  .hana-header .hana-nav-chevron { display: none !important; }
+}
+
+/* ── Footer ── */
+@media (max-width: 900px) {
+  .hana-footer [style*="grid-template-columns:1.4fr"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+@media (max-width: 560px) {
+  .hana-footer [style*="grid-template-columns:1.4fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}

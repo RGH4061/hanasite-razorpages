@@ -1,0 +1,219 @@
+@page "/markets/automotive/power-modules"
+@{
+    ViewData["Title"] = "Automotive Power Module Assembly | Hana";
+    ViewData["Description"] = "Hana assembles IGBT and silicon-carbide power modules for EV traction inverters, chargers and converters — on AEC-Q101-qualified lines across Thailand and China.";
+    ViewData["Canonical"] = "https://www.hanagroup.com/markets/automotive/power-modules";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/automotive.css" />
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "FAQPage",
+      "mainEntity": [
+        { "@@type": "Question", "name": "What power devices can Hana assemble into modules?", "acceptedAnswer": { "@@type": "Answer", "text": "IGBT and silicon-carbide (SiC) die, in single- and multi-die layouts, with solder and silver-sinter die attach and aluminum-wire or copper-clip interconnect." } },
+        { "@@type": "Question", "name": "Why does silver sintering matter for SiC?", "acceptedAnswer": { "@@type": "Answer", "text": "SiC runs hotter and switches faster than silicon. A sintered die-attach joint holds up to higher temperatures and thermal cycling than standard solder, so the module survives the powertrain's duty cycle." } },
+        { "@@type": "Question", "name": "How is the thermal path controlled?", "acceptedAnswer": { "@@type": "Answer", "text": "Through DBC or AMB ceramic substrates, baseplate attach, and void-controlled solder joints verified by X-ray — the heat path from die to coolant is designed and inspected, not assumed." } },
+        { "@@type": "Question", "name": "What reliability testing is available?", "acceptedAnswer": { "@@type": "Answer", "text": "Power cycling, thermal cycling, and AEC-Q101 reliability flows run in-house, with full unit-level traceability on every module." } },
+        { "@@type": "Question", "name": "Can a power-module program transfer between sites?", "acceptedAnswer": { "@@type": "Answer", "text": "Yes — power-module assembly is qualified across multiple plants, so a program can move sites as a documented first-article qualification for capacity or supply resilience." } }
+      ]
+    }
+    </script>
+}
+
+@{
+    var subs = new[] {
+        new { slug = "power-modules",   name = "Power Modules",   icon = "zap",        live = true },
+        new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio",      live = false },
+        new { slug = "led-lighting",    name = "LED Lighting",    icon = "lightbulb",  live = false },
+        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  icon = "circle-dot", live = false },
+        new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu",        live = false }
+    };
+    var heroStats = new[] {
+        new { v = "AEC-Q101", l = "Qualified" },
+        new { v = "IGBT · SiC", l = "Device types" },
+        new { v = "Ag sinter", l = "Die attach" },
+        new { v = "Power cycle", l = "Tested in-house" }
+    };
+    var capSpecs = new[] {
+        new { l = "Die attach", v = "Solder · Ag sinter" },
+        new { l = "Interconnect", v = "Al wire · Cu clip" },
+        new { l = "Substrate", v = "DBC · AMB ceramic" },
+        new { l = "Reliability", v = "AEC-Q101 · power cycle" }
+    };
+    var plants = new[] {
+        new { country = "Thailand", name = "Lamphun",   note = "PCBA · box build · lighting" },
+        new { country = "Thailand", name = "Ayutthaya", note = "Power modules · microelectronics" },
+        new { country = "China",    name = "Jiaxing",   note = "High-volume PCBA · modules" }
+    };
+    var faq = new[] {
+        new { q = "What power devices can Hana assemble into modules?", a = "IGBT and silicon-carbide (SiC) die, in single- and multi-die layouts, with solder and silver-sinter die attach and aluminum-wire or copper-clip interconnect." },
+        new { q = "Why does silver sintering matter for SiC?", a = "SiC runs hotter and switches faster than silicon. A sintered die-attach joint holds up to higher temperatures and thermal cycling than standard solder, so the module survives the powertrain's duty cycle." },
+        new { q = "How is the thermal path controlled?", a = "Through DBC or AMB ceramic substrates, baseplate attach, and void-controlled solder joints verified by X-ray — the heat path from die to coolant is designed and inspected, not assumed." },
+        new { q = "What reliability testing is available?", a = "Power cycling, thermal cycling, and AEC-Q101 reliability flows run in-house, with full unit-level traceability on every module." },
+        new { q = "Can a power-module program transfer between sites?", a = "Yes — power-module assembly is qualified across multiple plants, so a program can move sites as a documented first-article qualification for capacity or supply resilience." }
+    };
+}
+
+<div class="auto-page">
+
+  @* breadcrumb *@
+  <div class="auto-crumb">
+    <div class="inner">
+      <a href="/markets">Markets</a>
+      <span class="sep">›</span>
+      <a href="/markets/automotive">Automotive</a>
+      <span class="sep">›</span>
+      <span class="here">Power Modules</span>
+    </div>
+  </div>
+
+  <div class="auto-spoke-grid">
+
+    @* sidebar *@
+    <aside class="auto-side">
+      <div class="side-head">Automotive sub-markets</div>
+      @foreach (var s in subs)
+      {
+          if (s.live)
+          {
+              <a class="s active" href="/markets/automotive/@s.slug">
+                  <i data-lucide="@s.icon" style="width:15px;height:15px;"></i>
+                  <span>@s.name</span>
+              </a>
+          }
+          else
+          {
+              <span class="s">
+                  <i data-lucide="@s.icon" style="width:15px;height:15px;color:var(--ink-3);"></i>
+                  <span>@s.name</span>
+                  <span class="soon">Soon</span>
+              </span>
+          }
+      }
+      <div class="helper">
+        <div class="h">Not sure which fits?</div>
+        <p>Tell us what the part does in the vehicle and we'll point you to the right line.</p>
+        <a class="cta" href="/contact" style="text-decoration:none;">Talk to engineering <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+      </div>
+    </aside>
+
+    @* main *@
+    <main style="min-width:0; overflow:hidden;">
+
+      @* hero *@
+      <div style="padding:40px 44px 32px; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr); gap:36px; align-items:center;">
+        <div>
+          <div class="auto-eyebrow">Automotive · Sub-market</div>
+          <h1 style="font-family:var(--font-display); font-size:38px; font-weight:700; color:var(--ink); line-height:1.08; letter-spacing:-0.03em; margin:0 0 16px; text-wrap:balance;">Power modules for electrified vehicles</h1>
+          <p style="font-size:16px; color:var(--ink-2); line-height:1.6; margin:0 0 24px; text-wrap:pretty;">Power modules are the assemblies that switch high current in a vehicle's powertrain — inside traction inverters, on-board chargers and DC-DC converters. Hana assembles IGBT and silicon-carbide modules on automotive-qualified lines, built around the thermal path that keeps them reliable.</p>
+        </div>
+        <div style="position:relative; overflow:hidden; border-radius:10px; border:1px solid var(--line); background:var(--surface); height:300px;">
+          <img src="~/images/photos/power-module-ecu.png" alt="Power module — die attach over a DBC substrate" style="width:100%; height:100%; object-fit:cover; display:block;" />
+        </div>
+      </div>
+
+      @* key-spec strip *@
+      <div style="padding:0 44px 8px;">
+        <div class="auto-spec">
+          @foreach (var s in heroStats)
+          {
+              <div class="cell">
+                  <div class="l">@s.l</div>
+                  <div class="v @(s.v.Length > 8 ? "long" : "")">@s.v</div>
+              </div>
+          }
+        </div>
+      </div>
+
+      @* 01 — capability cross-link *@
+      <div style="padding:36px 44px;">
+        <div class="auto-sechead">
+          <h2>The capability behind power modules</h2>
+          <p>The sub-market page frames the application; the capability page carries the process depth. They link to each other — that interlink is what makes the cluster rank.</p>
+        </div>
+        <div class="auto-caplink">
+          <div class="body">
+            <div class="lbl">The capability behind it</div>
+            <h3>Built on Hana's Microelectronic Assembly</h3>
+            <p>Power-module assembly draws on the same die-attach, bonding and encapsulation processes Hana runs for microelectronics and OSAT. The full process detail lives there.</p>
+            <a class="cta" href="/capabilities/microelectronic-assembly" style="text-decoration:none;">See Microelectronic Assembly <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+          </div>
+          <div class="specs">
+            @foreach (var r in capSpecs)
+            {
+                <div class="row"><span class="l">@r.l</span><span class="v">@r.v</span></div>
+            }
+          </div>
+        </div>
+      </div>
+
+      @* 02 — where we build it *@
+      <div style="background:var(--bg); border-top:1px solid var(--line); padding:36px 44px;">
+        <div class="auto-sechead">
+          <h2>Where we build it</h2>
+          <p>Power-module assembly is qualified in Thailand and China, weighted to automotive and high-reliability programs.</p>
+        </div>
+        <div class="auto-plants" style="grid-template-columns:repeat(3, 1fr);">
+          @foreach (var p in plants)
+          {
+              <a class="auto-plantcard" href="/locations" style="text-decoration:none; color:inherit;">
+                  <div>
+                      <span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> @p.country</span>
+                      <div class="nm">@p.name</div>
+                      <div class="note">@p.note</div>
+                  </div>
+                  <span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+              </a>
+          }
+        </div>
+      </div>
+
+      @* FAQ *@
+      <div style="border-top:1px solid var(--line); padding:40px 44px 48px;">
+        <div class="auto-sechead">
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="auto-faq">
+          @for (var i = 0; i < faq.Length; i++)
+          {
+              var f = faq[i];
+              <div class="item @(i == 0 ? "is-open" : "")">
+                  <button type="button" class="q">
+                      <span class="num">@($"0{i + 1}")</span>
+                      <h3 class="qt">@f.q</h3>
+                      <span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                  </button>
+                  <div class="panel"><span></span><p>@f.a</p></div>
+              </div>
+          }
+        </div>
+        <div style="margin-top:18px;">
+          <a href="/markets/automotive" style="display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:600; color:var(--accent); text-decoration:none;">
+            <i data-lucide="arrow-right" style="width:14px;height:14px;"></i> Back to the Automotive market hub
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  @* closing CTA *@
+  <section class="auto-cta" data-hana-bg="flow" data-variant="dark" data-accent="cyan" data-fade="none">
+    <div class="inner">
+      <div>
+        <h2>Have a power-module program in mind?</h2>
+        <p>Send a device spec and target volumes. We'll come back with a DFM read, a thermal-path view, and an indicative plan.</p>
+      </div>
+      <div class="actions">
+        <a href="/contact" class="auto-btn auto-btn--ondark-primary">Start a quote <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
+        <a href="/contact" class="auto-btn auto-btn--ondark-secondary">Talk to an engineer</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/automotive.js"></script>
+}

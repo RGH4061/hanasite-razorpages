@@ -10,6 +10,7 @@ This is the single Razor Pages project the whole marketing site is being exporte
 ## Run it
 
 ```bash
+cd exports/razor-pages
 dotnet run
 ```
 
@@ -38,6 +39,9 @@ exports/razor-pages/
 │   │   ├── KohKong.cshtml          ← /locations/koh-kong
 │   │   ├── Ohio.cshtml             ← /locations/ohio
 │   │   └── Cheongju.cshtml         ← /locations/cheongju
+│   ├── Markets/
+│   │   ├── Automotive.cshtml              ← /markets/automotive
+│   │   └── AutomotivePowerModules.cshtml  ← /markets/automotive/power-modules
 │   └── Shared/
 │       ├── _Layout.cshtml          ← host layout: <head>, header, footer, global JS
 │       ├── _Header.cshtml          ← global header + mega-menus
@@ -87,6 +91,13 @@ The Locations data (specs, certifications, addresses, capability lists) is **har
 ---
 
 ## Status
+
+### Re-export — 23 Jun 2026 (changes since the prior export)
+- **New — Markets / Automotive.** `Pages/Markets/Automotive.cshtml` (`/markets/automotive`, Direction A: editorial cutaway hero + interactive component markers, the automotive advantage grid, sub-market cards, plants band, FAQ, CTA) and `Pages/Markets/AutomotivePowerModules.cshtml` (`/markets/automotive/power-modules` — the worked "lite spoke", with sidebar, capability cross-link, and `FAQPage` JSON-LD). The other four sub-markets are anchors until they have real content. CSS: `wwwroot/css/automotive.css`; interactions: `wwwroot/js/automotive.js`. Header mega-menu + footer Markets → Automotive now resolve. Sitemap gains a Markets section.
+- **Fixed — Locations world map.** `wwwroot/js/locations-map.js` now nests the map image inside the SVG (`viewBox 0 0 1000 310`, `preserveAspectRatio="xMidYMid slice"`, `940/352` wrapper) so the empty bottom band is cropped — matching the prototype.
+- **Fixed — IR hero backgrounds.** The IR pages had the `#hero-topo` / `#enquiries-topo` / `#stock-chart` canvases but no script to paint them. Added `wwwroot/js/investors-bg.js` (three self-guarding routines) and referenced it from all 8 IR pages via `@@section Scripts`.
+- **Header / footer.** Header now carries a single **Contact** CTA (the redundant "Talk to engineering" button removed); footer Investors column gains **FAQ & Knowledge Hub**.
+- *Note:* the Capabilities hub was reviewed and left unchanged — no specific fix was identified for it in this pass.
 
 **Done and verified**
 - Project shell — `_Layout`, `_ViewStart`, `_ViewImports`, `Program.cs`, `HanaSite.csproj`, full `wwwroot` (css/fonts/images/js).

@@ -43,6 +43,27 @@
   }
   ::selection { background: var(--hana-blue-tint); }
 
+  /* ── Hero band + topo canvas (missing from original export) ── */
+  .hero-band {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ebeef2 0%, #dce6f0 65%, #e4ecf6 100%);
+  }
+  #hero-topo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+
   /* ── Top bar ── */
   .topbar {
     position: sticky; top: 0; z-index: 50;
@@ -583,7 +604,7 @@
   /* SET Opportunity Day poster image on all video frames */
   .frame.has-poster {
     background-image:
-      url('images/set-oppday-q1-2026.png'),
+      url('../images/set-oppday-q1-2026.png'),
       radial-gradient(120% 120% at 50% 40%, #16324A 0%, #0B2236 70%, #08192A 100%);
     background-size: cover, cover;
     background-position: center center, center center;

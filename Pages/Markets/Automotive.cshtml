@@ -1,0 +1,281 @@
+@page "/markets/automotive"
+@{
+    ViewData["Title"] = "Automotive Electronics Manufacturing — Hana Microelectronics";
+    ViewData["Description"] = "From ADAS sensors to EV power modules, Hana builds automotive electronics to IATF 16949 across four countries — EMS and OSAT under one group.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/automotive.css" />
+}
+
+@{
+    // n is the marker number = position in the combined points list (components first, then sensors)
+    var cut = new[] {
+        new { comp = true,  tag = "Power Modules",   name = "Power Modules",               x = 32.0,  y = 57.0, color = "#1283DD", desc = "Die attach, sintering and clip/wire bonding for IGBT and SiC power modules — built for the current and heat of electrified powertrains." },
+        new { comp = true,  tag = "Automotive PCBA", name = "Automotive PCBA",              x = 62.0,  y = 55.0, color = "#0E9E8A", desc = "Fine-pitch SMT board assembly with inspection and traceability on every board, on IATF 16949 lines." },
+        new { comp = true,  tag = "LED Lighting",    name = "LED front lights",             x = 11.5,  y = 57.0, color = "#C97010", desc = "LED module and driver assembly for headlamps and signaling, with the thermal path designed in." },
+        new { comp = true,  tag = "RFID Tire Tags",  name = "RFID Tire Tags",               x = 47.0,  y = 79.0, color = "#1F8A5B", desc = "Ruggedized RFID tags engineered to survive cure, flex and road heat inside a tire for its full service life." },
+        new { comp = true,  tag = "Sensor Assembly", name = "Automotive Sensor Assembly",   x = 37.0,  y = 48.0, color = "#FF883E", desc = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing — stress-managed packages in controlled environments." },
+        new { comp = false, tag = "Sensor",  name = "Pressure & fuel sensor",   x = 44.0,  y = 62.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Sensor",  name = "Passenger weight sensor",  x = 73.0,  y = 35.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Sensor",  name = "Air pressure sensor",      x = 22.5,  y = 60.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Control", name = "Intake air control",       x = 38.0,  y = 67.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Sensor",  name = "Intake sensor",            x = 30.0,  y = 64.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Sensor",  name = "Temp & fog sensors",       x = 16.0,  y = 64.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Sensor",  name = "Brake sensor",             x = 52.0,  y = 71.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Control", name = "Gear transmission",        x = 50.0,  y = 60.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Control", name = "Armrest control",          x = 82.0,  y = 42.0, color = "#FF883E", desc = "" },
+        new { comp = false, tag = "Sensor",  name = "Steering sensor",          x = 57.5,  y = 45.0, color = "#FF883E", desc = "" }
+    };
+
+    var subs = new[] {
+        new { slug = "power-modules",   name = "Power Modules",   live = true,  blurb = "Die attach, sintering and clip/wire bonding for IGBT and SiC power modules — built for the current and heat of electrified powertrains." },
+        new { slug = "sensor-assembly", name = "Sensor Assembly", live = false, blurb = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing — stress-managed packages in controlled environments." },
+        new { slug = "led-lighting",    name = "LED Lighting",    live = false, blurb = "LED module and driver assembly for headlamps, signaling and interior lighting, with the thermal path designed in." },
+        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  live = false, blurb = "Ruggedized RFID tags engineered to survive cure, flex and road heat inside a tire for its full service life." },
+        new { slug = "automotive-pcba", name = "Automotive PCBA", live = false, blurb = "Board assembly for automotive electronics — fine-pitch SMT with inspection and traceability on every board, on IATF 16949 lines." }
+    };
+
+    var plants = new[] {
+        new { country = "Thailand", name = "Lamphun",  note = "PCBA · box build · lighting" },
+        new { country = "Thailand", name = "Ayutthaya", note = "Power modules · microelectronics" },
+        new { country = "China",    name = "Jiaxing",  note = "High-volume PCBA · modules" },
+        new { country = "Cambodia", name = "Koh Kong", note = "PCBA · assembly" },
+        new { country = "USA",      name = "Ohio",     note = "Regional PCBA · support" }
+    };
+
+    var proofStats = new[] {
+        new { v = "IATF 16949", l = "Automotive QMS" },
+        new { v = "AEC-Q", l = "Qualified parts" },
+        new { v = "4", l = "Countries" },
+        new { v = "20+ yrs", l = "Program continuity" }
+    };
+
+    var proof = new[] {
+        new { t = "Automotive quality system", icon = "shield", d = "IATF 16949 lines with PPAP and APQP discipline — the documentation and process control automotive programs require, not bolted on after the fact." },
+        new { t = "Traceable by default", icon = "layers", d = "Material, unit and product traceability captured at every step, so a field question can be traced back to a board, a reel and a shift." },
+        new { t = "Resilient footprint", icon = "globe", d = "The same processes are qualified across China, Thailand, Cambodia and the USA — so a program can shift sites for capacity or supply continuity." },
+        new { t = "Relationships that last", icon = "check", d = "Some automotive programs have run with Hana for over twenty years. Continuity of people and process is part of the quality story." }
+    };
+
+    var faq = new[] {
+        new { q = "Which automotive quality standards do you run to?", a = "Automotive lines run to IATF 16949, with PPAP and APQP discipline. Parts are qualified to the relevant AEC-Q stress qualifications for the device type." },
+        new { q = "Can a program move between your plants?", a = "Yes. The same processes are qualified across China, Thailand, Cambodia and the USA, so a program can transfer sites as a documented first-article qualification for capacity or supply continuity." },
+        new { q = "Do you support us from design, or only build to print?", a = "We work alongside your team from DFM through production. A design-for-manufacturing read happens before NPI, so issues surface on paper rather than on the line." },
+        new { q = "What level of traceability do you provide?", a = "Material, unit and product traceability is captured at every step, so a field question can be traced back to a board, a reel and a shift — on every program, not only high-reliability work." },
+        new { q = "How do we start a conversation?", a = "Tell us what the part does in the vehicle and your target volumes. We will point you to the right line and come back with a plan. Send a BOM or talk to an engineer to begin." }
+    };
+}
+
+<div class="auto-page">
+
+  @* breadcrumb *@
+  <div class="auto-crumb">
+    <div class="inner">
+      <a href="/markets">Markets</a>
+      <span class="sep">›</span>
+      <span class="here">Automotive</span>
+    </div>
+  </div>
+
+  @* editorial hero — centered statement → cutaway diagram *@
+  <div style="position:relative; overflow:hidden; background:#fff;">
+    <img src="~/images/hana-mark.svg" alt="" aria-hidden="true"
+         style="position:absolute; left:-440px; top:-120px; width:860px; height:auto; opacity:0.10; transform:rotate(-12deg); pointer-events:none; z-index:0;" />
+
+    <div style="position:relative; z-index:1; max-width:980px; margin:0 auto; padding:60px 32px 36px; text-align:center;">
+      <div class="auto-eyebrow">Markets we serve</div>
+      <h1 style="font-family:var(--font-display); font-size:50px; font-weight:700; color:var(--ink); line-height:1.04; letter-spacing:-0.03em; margin:0 auto 18px; max-width:760px; text-wrap:balance;">Automotive electronics manufacturing service</h1>
+      <p style="font-size:18px; color:var(--ink-2); line-height:1.55; margin:0 auto 26px; max-width:600px; text-wrap:pretty;">From the sensor on the bumper to the power module in the drivetrain, Hana builds the electronics that go into vehicles — assembled to automotive quality standards, across four countries, under one group.</p>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="#products" class="auto-btn auto-btn--primary">Explore automotive components <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
+        <a href="/contact" class="auto-btn auto-btn--secondary">Start a conversation</a>
+      </div>
+    </div>
+
+    <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:0 32px 8px;">
+      <div class="auto-cutaway">
+        <div class="auto-stage">
+          <img src="~/images/automotive-cutaway.png" alt="Transparent cutaway of an electric vehicle showing internal components" />
+          @for (var i = 0; i < cut.Length; i++)
+          {
+              var p = cut[i];
+              <div class="auto-marker" style="left:@(p.x)%; top:@(p.y)%;">
+                  <span class="dot" style="background:@p.color;">@(i + 1)</span>
+                  <span class="tip">
+                      <span class="tag" style="color:@p.color;">@p.tag</span>
+                      <span class="nm">@p.name</span>
+                      @if (!string.IsNullOrEmpty(p.desc)) { <span class="ds">@p.desc</span> }
+                  </span>
+              </div>
+          }
+        </div>
+        <div class="auto-legend">
+          <div>
+            <div class="head">Parts we produce</div>
+            @for (var i = 0; i < cut.Length; i++)
+            {
+                var p = cut[i];
+                if (!p.comp) { continue; }
+                <div class="auto-legitem">
+                    <span class="n" style="background:@p.color;">@(i + 1)</span>
+                    <span>
+                        <span class="nm">@p.name</span>
+                        <span class="ds">@p.desc</span>
+                    </span>
+                </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @* proof stat bar *@
+  <div style="background:#EAF2FB; border-bottom:1px solid #DCE8F5;">
+    <div class="auto-wrap" style="padding-top:28px; padding-bottom:28px;">
+      <div class="auto-spec is-hero">
+        @foreach (var s in proofStats)
+        {
+            <div class="cell">
+                <div class="l">@s.l</div>
+                <div class="v @(s.v.Length > 8 ? "long" : "")">@s.v</div>
+            </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  @* the Hana automotive advantage — dark grid band *@
+  <div class="auto-advantage" data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none">
+    <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:56px 32px;">
+      <div class="auto-sechead on-dark">
+        <h2>The Hana automotive advantage</h2>
+        <p>Automotive buyers measure a supplier on quality discipline, traceability and resilience. Here is where Hana stands.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;">
+        @foreach (var p in proof)
+        {
+            <div class="auto-advcard">
+                <span class="ic"><i data-lucide="@p.icon" style="width:17px;height:17px;color:#fff;"></i></span>
+                <div>
+                    <div class="t">@p.t</div>
+                    <p>@p.d</p>
+                </div>
+            </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  @* explore automotive — sub-market cards *@
+  <div id="products" style="background:var(--bg); border-top:1px solid var(--line);">
+    <div class="auto-wrap" style="padding-top:52px; padding-bottom:52px;">
+      <div class="auto-sechead">
+        <h2>Automotive products we produce</h2>
+        <p>Five areas cover what we build for vehicles today — from the power that moves them to the boards and tags inside. Each is qualified on automotive lines.</p>
+      </div>
+      <div class="auto-subgrid">
+        @foreach (var s in subs)
+        {
+            <div class="auto-subcard">
+                <div class="thumb">
+                    @if (s.slug == "power-modules")
+                    {
+                        <img src="~/images/photos/power-module-ecu.png" alt="@s.name" />
+                    }
+                    else
+                    {
+                        <span class="soon">Soon</span>
+                    }
+                </div>
+                <div style="display:flex; flex-direction:column; min-width:0;">
+                    @if (s.live)
+                    {
+                        <a class="nm" href="/markets/automotive/@s.slug">@s.name</a>
+                    }
+                    else
+                    {
+                        <span class="nm" style="color:var(--ink);">@s.name</span>
+                    }
+                    <p>@s.blurb</p>
+                    @if (s.live)
+                    {
+                        <a class="cta" href="/markets/automotive/@s.slug" style="color:var(--accent); text-decoration:none;">Explore product <i data-lucide="arrow-right" style="width:11px;height:11px;"></i></a>
+                    }
+                    else
+                    {
+                        <span class="cta" style="color:var(--ink-3);">Coming soon <i data-lucide="arrow-right" style="width:11px;height:11px;color:var(--ink-3);"></i></span>
+                    }
+                </div>
+            </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  @* where we build automotive — plants band *@
+  <div style="background:#E5EEF5; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="auto-wrap" style="padding-top:52px; padding-bottom:52px;">
+      <div class="auto-sechead">
+        <h2>Where we build automotive</h2>
+        <p>Automotive programs run across five plants in four countries — so capacity and supply continuity are built into the footprint.</p>
+      </div>
+      <div class="auto-plants" style="grid-template-columns:repeat(5, 1fr);">
+        @foreach (var p in plants)
+        {
+            <a class="auto-plantcard" href="/locations" style="text-decoration:none; color:inherit;">
+                <div>
+                    <span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> @p.country</span>
+                    <div class="nm">@p.name</div>
+                    <div class="note">@p.note</div>
+                </div>
+                <span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+            </a>
+        }
+      </div>
+    </div>
+  </div>
+
+  @* FAQ *@
+  <div class="auto-wrap" style="padding-top:40px; padding-bottom:8px;">
+    <div class="auto-sechead">
+      <h2>Automotive — frequently asked</h2>
+      <p>Common questions from automotive engineering and procurement teams.</p>
+    </div>
+    <div class="auto-faq">
+      @for (var i = 0; i < faq.Length; i++)
+      {
+          var f = faq[i];
+          <div class="item @(i == 0 ? "is-open" : "")">
+              <button type="button" class="q">
+                  <span class="num">@($"0{i + 1}")</span>
+                  <h3 class="qt">@f.q</h3>
+                  <span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+              </button>
+              <div class="panel"><span></span><p>@f.a</p></div>
+          </div>
+      }
+    </div>
+  </div>
+
+  @* closing CTA *@
+  <div style="margin-top:52px;">
+    <section class="auto-cta" data-hana-bg="flow" data-variant="dark" data-accent="cyan" data-fade="none">
+      <div class="inner">
+        <div>
+          <h2>Have an automotive program in mind?</h2>
+          <p>Tell us what the part does in the vehicle and your target volumes. We'll point you to the right line and come back with a plan.</p>
+        </div>
+        <div class="actions">
+          <a href="/contact" class="auto-btn auto-btn--ondark-primary">Start a quote <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
+          <a href="/contact" class="auto-btn auto-btn--ondark-secondary">Talk to an engineer</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/automotive.js"></script>
+}

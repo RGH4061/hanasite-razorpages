@@ -44,6 +44,27 @@
   }
   ::selection { background: var(--hana-blue-tint); }
 
+  /* ── Hero band + topo canvas (missing from original export) ── */
+  .hero-band {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ebeef2 0%, #dce6f0 65%, #e4ecf6 100%);
+  }
+  #hero-topo {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+
   /* ── Topbar ── */
   .topbar {
     position: sticky; top: 0; z-index: 50;
