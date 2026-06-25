@@ -92,6 +92,18 @@ The Locations data (specs, certifications, addresses, capability lists) is **har
 
 ## Status
 
+### Re-export — 25 Jun 2026 (changes since the 23 Jun export)
+- **Header.** `_Header.cshtml` re-synced to the live homepage chrome: switched the logo to the trimmed PNG lockup (`~/images/hana-logo-full-trimmed.png`, 200×65, also in `_Footer`), simplified the **About** mega-menu to two columns (Company · Connect), and synced menu copy (Markets blurbs, Automation → "Manufacturing Traceability", DFx/JDM/NPI labels, "Investor FAQ & Knowledge Hub").
+- **Capabilities hub redesign.** `Capabilities/Index.cshtml` replaced the card grid with the new **radial diagram** hero — a dark globe-backed section with the six capability nodes arranged around the Hana mark (vanilla JS positions nodes + draws connector lines, re-renders on resize). The six parent-capability hubs and their sub-cards were already in sync.
+- **Markets / Automotive — all five sub-markets now live.** The hub (`Markets/Automotive.cshtml`) cards link through to live spokes (no more "Soon"). Added the four remaining lite-spoke pages alongside Power Modules:
+  - `Markets/AutomotiveSensorAssembly.cshtml` (`/markets/automotive/sensor-assembly`) — with the interactive vehicle-cutaway hero + sensor legend.
+  - `Markets/AutomotiveLedLighting.cshtml` (`/markets/automotive/led-lighting`).
+  - `Markets/AutomotiveRfidTireTags.cshtml` (`/markets/automotive/rfid-tire-tags`).
+  - `Markets/AutomotivePcba.cshtml` (`/markets/automotive/automotive-pcba`).
+  - `Markets/AutomotivePowerModules.cshtml` rebuilt to the current lite-spoke template (simplified capability cross-link block, dark "Where we build it" band, all-five-live sidebar, 3-item FAQ).
+  Each spoke carries self-referencing SEO + `FAQPage` JSON-LD and cross-links to the capability that executes the work. Sitemap Markets section now lists all five.
+- **Investor Relations.** Verified all eight IR pages against the current prototypes (in sync); corrected the hub feature-banner label to "Investor Financial News".
+
 ### Re-export — 23 Jun 2026 (changes since the prior export)
 - **New — Markets / Automotive.** `Pages/Markets/Automotive.cshtml` (`/markets/automotive`, Direction A: editorial cutaway hero + interactive component markers, the automotive advantage grid, sub-market cards, plants band, FAQ, CTA) and `Pages/Markets/AutomotivePowerModules.cshtml` (`/markets/automotive/power-modules` — the worked "lite spoke", with sidebar, capability cross-link, and `FAQPage` JSON-LD). The other four sub-markets are anchors until they have real content. CSS: `wwwroot/css/automotive.css`; interactions: `wwwroot/js/automotive.js`. Header mega-menu + footer Markets → Automotive now resolve. Sitemap gains a Markets section.
 - **Fixed — Locations world map.** `wwwroot/js/locations-map.js` now nests the map image inside the SVG (`viewBox 0 0 1000 310`, `preserveAspectRatio="xMidYMid slice"`, `940/352` wrapper) so the empty bottom band is cropped — matching the prototype.

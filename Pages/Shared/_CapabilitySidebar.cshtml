@@ -1,0 +1,255 @@
+@{
+    var capSlug  = ViewData["CapSlug"]  as string ?? "";
+    var capGroup = ViewData["CapGroup"] as string ?? "";
+
+    // Auto-detect parent group from slug so callers only need to set CapSlug.
+    if (string.IsNullOrEmpty(capGroup) && !string.IsNullOrEmpty(capSlug))
+    {
+        var slugToGroup = new System.Collections.Generic.Dictionary<string, string>
+        {
+            ["smt-assembly"]          = "pcba-box-build",
+            ["cob-assembly"]          = "pcba-box-build",
+            ["box-build"]             = "pcba-box-build",
+            ["chip-on-flex"]          = "pcba-box-build",
+            ["flip-chip"]             = "osat",
+            ["wafer-processing"]      = "osat",
+            ["die-attach-wire-bond"]  = "osat",
+            ["flip-chip-sip"]         = "osat",
+            ["wafer-probe-final-test"]= "osat",
+            ["wafer-level-packaging"] = "osat",
+            ["flip-chip-micro"]       = "microelectronics",
+            ["mems-sensor-assembly"]  = "microelectronics",
+            ["precision-interconnect"]= "microelectronics",
+            ["micro-assembly"]        = "microelectronics",
+            ["rfid-tire-tags"]        = "rfid-smart-tags",
+            ["rfid-inlays"]           = "rfid-smart-tags",
+            ["inline-aoi-spi"]        = "automation",
+            ["robotic-handling-test"] = "automation",
+            ["mes-traceability"]      = "automation",
+            ["dfx-dfm"]               = "dfx-jdm",
+            ["jdm"]                   = "dfx-jdm",
+            ["npi"]                   = "dfx-jdm",
+        };
+        slugToGroup.TryGetValue(capSlug, out capGroup!);
+        capGroup ??= "";
+    }
+
+    string A(string s)  => s == capSlug  ? "cap-active" : "";
+    string GA(string g) => g == capGroup ? "cap-group-active" : "";
+    string GO(string g) => g == capGroup ? "open" : "";
+}
+
+<style>
+  /* ── two-column page grid ──────────────────────────────── */
+  .cap-page-grid {
+    display: grid;
+    grid-template-columns: 272px minmax(0, 1fr);
+    background: #fff;
+    transition: grid-template-columns 200ms ease-out;
+  }
+  .cap-page-grid.cpsb-col { grid-template-columns: 56px minmax(0, 1fr); }
+  .cap-page-main { min-width: 0; }
+
+  /* ── sidebar shell ─────────────────────────────────────── */
+  #cap-sb { background: var(--bg); border-right: 1px solid var(--line); }
+  #cap-sb-col { display: none; }
+  .cpsb-col #cap-sb-exp { display: none; }
+  .cpsb-col #cap-sb-col { display: flex; }
+
+  /* ── tree items ────────────────────────────────────────── */
+  .cap-leaf {
+    display: block; padding: 9px 24px; font-size: 13px;
+    text-decoration: none; font-family: var(--font-text);
+    font-weight: 500; color: var(--ink-2); background: transparent;
+    border-left: 2px solid transparent;
+    transition: color 130ms ease, background 130ms ease;
+  }
+  .cap-leaf:hover { color: var(--hana-blue); background: #fff; }
+  .cap-leaf.cap-active {
+    font-weight: 700; color: var(--hana-blue); background: #fff;
+    border-left-color: var(--hana-blue);
+  }
+  .cap-sub-leaf {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 24px; font-size: 13px;
+    text-decoration: none; font-family: var(--font-text);
+    font-weight: 500; color: var(--ink-2); background: transparent;
+    border-left: 2px solid transparent;
+    transition: color 130ms ease, background 130ms ease;
+  }
+  .cap-sub-leaf:hover { color: var(--hana-blue); background: #fff; }
+  .cap-sub-leaf.cap-active {
+    font-weight: 700; color: var(--hana-blue); background: #fff;
+    border-left-color: var(--hana-blue);
+  }
+  .cap-sub-leaf .cap-sub-arr { color: var(--ink-3); font-weight: 700; font-size: 12px; flex-shrink: 0; }
+  .cap-sub-leaf.cap-active .cap-sub-arr { color: var(--hana-blue); }
+
+  /* ── group header (uses <summary>) ─────────────────────── */
+  details.cap-group > summary {
+    list-style: none; cursor: pointer;
+    padding: 11px 24px 7px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-text); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink); transition: color 130ms ease;
+    user-select: none;
+  }
+  details.cap-group > summary::-webkit-details-marker { display: none; }
+  details.cap-group > summary:hover { color: var(--hana-blue); }
+  details.cap-group > summary.cap-group-active { color: var(--hana-blue); }
+  .cap-chev { display: inline-flex; color: var(--ink-3); transition: transform 160ms ease; }
+  details.cap-group[open] .cap-chev { transform: rotate(180deg); }
+  details.cap-group > div { padding-bottom: 6px; }
+
+  /* ── collapse-toggle buttons ────────────────────────────── */
+  .cap-sb-toggle-btn {
+    width: 26px; height: 26px;
+    border: 1px solid color-mix(in srgb, var(--hana-blue) 45%, var(--line));
+    border-radius: 4px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--hana-blue); padding: 0; background: #fff;
+    font-size: 14px; line-height: 1;
+  }
+  .cap-sb-expand-btn {
+    width: 34px; height: 34px;
+    border: 1px solid var(--line); border-radius: 4px;
+    background: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--hana-blue); padding: 0; font-size: 16px; line-height: 1;
+  }
+</style>
+
+<aside id="cap-sb">
+  <!-- ── expanded state ─────────────────────────────── -->
+  <div id="cap-sb-exp" style="padding:28px 0 40px;">
+    <div style="position:sticky;top:92px;">
+
+      <div style="padding:0 16px 14px 24px;display:flex;align-items:center;
+                  justify-content:space-between;border-bottom:1px solid var(--line);margin-bottom:8px;">
+        <span class="hana-spec-label" style="color:var(--ink);">Browse capabilities</span>
+        <button class="cap-sb-toggle-btn" title="Collapse"
+                onclick="document.querySelector('.cap-page-grid').classList.add('cpsb-col')">&#8249;</button>
+      </div>
+
+      <a href="/capabilities" class="cap-leaf @A("")">Overview</a>
+
+      <details class="cap-group" @GO("pcba-box-build")>
+        <summary class="@GA("pcba-box-build")">
+          <span>PCBA &amp; Box Build</span>
+          <span class="cap-chev">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div>
+          <a href="/capabilities/pcba-box-build/smt-assembly"  class="cap-sub-leaf @A("smt-assembly")"><span class="cap-sub-arr">&#8250;</span>SMT Assembly</a>
+          <a href="/capabilities/pcba-box-build/cob-assembly"  class="cap-sub-leaf @A("cob-assembly")"><span class="cap-sub-arr">&#8250;</span>COB Assembly</a>
+          <a href="/capabilities/pcba-box-build/box-build"     class="cap-sub-leaf @A("box-build")"><span class="cap-sub-arr">&#8250;</span>Box Build</a>
+          <a href="/capabilities/pcba-box-build/chip-on-flex"  class="cap-sub-leaf @A("chip-on-flex")"><span class="cap-sub-arr">&#8250;</span>Chip on Flex</a>
+        </div>
+      </details>
+
+      <details class="cap-group" @GO("osat")>
+        <summary class="@GA("osat")">
+          <span>OSAT</span>
+          <span class="cap-chev">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div>
+          <a href="/capabilities/osat/flip-chip"               class="cap-sub-leaf @A("flip-chip")"><span class="cap-sub-arr">&#8250;</span>Flip Chip</a>
+          <a href="/capabilities/osat/wafer-processing"        class="cap-sub-leaf @A("wafer-processing")"><span class="cap-sub-arr">&#8250;</span>Wafer Processing</a>
+          <a href="/capabilities/osat/die-attach-wire-bond"    class="cap-sub-leaf @A("die-attach-wire-bond")"><span class="cap-sub-arr">&#8250;</span>Die Attach &amp; Wire Bond</a>
+          <a href="/capabilities/osat/flip-chip-sip"           class="cap-sub-leaf @A("flip-chip-sip")"><span class="cap-sub-arr">&#8250;</span>System in Package (SiP)</a>
+          <a href="/capabilities/osat/wafer-probe-final-test"  class="cap-sub-leaf @A("wafer-probe-final-test")"><span class="cap-sub-arr">&#8250;</span>Wafer Probe &amp; Final Test</a>
+          <a href="/capabilities/osat/wafer-level-packaging"   class="cap-sub-leaf @A("wafer-level-packaging")"><span class="cap-sub-arr">&#8250;</span>Wafer Level Packaging</a>
+        </div>
+      </details>
+
+      <details class="cap-group" @GO("microelectronics")>
+        <summary class="@GA("microelectronics")">
+          <span>Microelectronic Assembly</span>
+          <span class="cap-chev">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div>
+          <a href="/capabilities/microelectronic-assembly/flip-chip"          class="cap-sub-leaf @A("flip-chip-micro")"><span class="cap-sub-arr">&#8250;</span>Flip Chip</a>
+          <a href="/capabilities/microelectronic-assembly/mems-sensor-assembly" class="cap-sub-leaf @A("mems-sensor-assembly")"><span class="cap-sub-arr">&#8250;</span>MEMS &amp; Sensor Assembly</a>
+          <a href="/capabilities/microelectronic-assembly/precision-interconnect" class="cap-sub-leaf @A("precision-interconnect")"><span class="cap-sub-arr">&#8250;</span>Interconnect Solutions</a>
+          <a href="/capabilities/microelectronic-assembly/micro-assembly"      class="cap-sub-leaf @A("micro-assembly")"><span class="cap-sub-arr">&#8250;</span>Micro-Assembly</a>
+        </div>
+      </details>
+
+      <details class="cap-group" @GO("rfid-smart-tags")>
+        <summary class="@GA("rfid-smart-tags")">
+          <span>RFID &amp; Smart Tags</span>
+          <span class="cap-chev">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div>
+          <a href="/capabilities/rfid-smart-tags/rfid-tire-tags"  class="cap-sub-leaf @A("rfid-tire-tags")"><span class="cap-sub-arr">&#8250;</span>RFID Tire Tags</a>
+          <a href="/capabilities/rfid-smart-tags/rfid-inlays"     class="cap-sub-leaf @A("rfid-inlays")"><span class="cap-sub-arr">&#8250;</span>RFID Inlays</a>
+        </div>
+      </details>
+
+      <details class="cap-group" @GO("automation")>
+        <summary class="@GA("automation")">
+          <span>Automation</span>
+          <span class="cap-chev">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div>
+          <a href="/capabilities/automation/inline-aoi-spi"         class="cap-sub-leaf @A("inline-aoi-spi")"><span class="cap-sub-arr">&#8250;</span>In-line AOI &amp; SPI</a>
+          <a href="/capabilities/automation/robotic-handling-test"  class="cap-sub-leaf @A("robotic-handling-test")"><span class="cap-sub-arr">&#8250;</span>Robotic Handling &amp; Test</a>
+          <a href="/capabilities/automation/mes-traceability"       class="cap-sub-leaf @A("mes-traceability")"><span class="cap-sub-arr">&#8250;</span>Manufacturing Traceability</a>
+        </div>
+      </details>
+
+      <details class="cap-group" @GO("dfx-jdm")>
+        <summary class="@GA("dfx-jdm")">
+          <span>DFx &amp; JDM Collaboration</span>
+          <span class="cap-chev">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </summary>
+        <div>
+          <a href="/capabilities/dfx-jdm/dfx-dfm"  class="cap-sub-leaf @A("dfx-dfm")"><span class="cap-sub-arr">&#8250;</span>Design for Excellence (DFx)</a>
+          <a href="/capabilities/dfx-jdm/jdm"       class="cap-sub-leaf @A("jdm")"><span class="cap-sub-arr">&#8250;</span>Joint Development Model (JDM)</a>
+          <a href="/capabilities/dfx-jdm/npi"       class="cap-sub-leaf @A("npi")"><span class="cap-sub-arr">&#8250;</span>New Product Introduction (NPI)</a>
+        </div>
+      </details>
+
+      <div style="margin:20px 16px 0 24px;padding:16px;background:#fff;
+                  border:1px solid var(--line);border-radius:var(--radius-card);">
+        <div class="hana-spec-label" style="margin-bottom:6px;">Not sure which fits?</div>
+        <p style="font-family:var(--font-text);font-size:12.5px;line-height:1.5;
+                  color:var(--ink-2);margin:0 0 12px;">
+          Send a BOM and we'll point you to the right process.
+        </p>
+        <a href="/contact" class="hana-link"
+           style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+                  display:inline-flex;align-items:center;gap:6px;">
+          Talk to engineering
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div><!-- /#cap-sb-exp -->
+
+  <!-- ── collapsed state ────────────────────────────── -->
+  <div id="cap-sb-col" style="flex-direction:column;align-items:center;gap:18px;padding:16px 0;">
+    <div style="position:sticky;top:92px;display:flex;flex-direction:column;align-items:center;gap:18px;">
+      <button class="cap-sb-expand-btn" title="Expand capabilities"
+              onclick="document.querySelector('.cap-page-grid').classList.remove('cpsb-col')">&#8250;</button>
+      <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;font-weight:700;
+                  text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-3);margin-top:12px;">Capabilities</div>
+    </div>
+  </div><!-- /#cap-sb-col -->
+</aside>

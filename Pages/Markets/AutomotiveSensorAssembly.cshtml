@@ -1,0 +1,205 @@
+@page "/markets/automotive/sensor-assembly"
+@{
+    ViewData["Title"] = "Automotive Sensor Assembly | Hana";
+    ViewData["Description"] = "Hana assembles MEMS and optical automotive sensors for ADAS, radar and in-cabin sensing — stress-managed, cavity-packaged and AEC-Q100-qualified, in controlled environments in Thailand and China.";
+    ViewData["Canonical"] = "https://www.hanagroup.com/markets/automotive/sensor-assembly";
+
+    var activeSlug = "sensor-assembly";
+    var subs = new[] {
+        new { slug = "power-modules",   name = "Power Modules",   icon = "zap" },
+        new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio" },
+        new { slug = "led-lighting",    name = "LED Lighting",    icon = "lightbulb" },
+        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  icon = "circle-dot" },
+        new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu" }
+    };
+    var heroStats = new[] {
+        new { v = "MEMS · Optical", l = "Sensor types" },
+        new { v = "Cavity pkg", l = "Package style" },
+        new { v = "AEC-Q100", l = "Qualified" },
+        new { v = "Controlled env", l = "Assembly" }
+    };
+    var pts = new[] {
+        new { x = 37.0, y = 48.0, name = "Automotive Sensor Assembly", comp = true },
+        new { x = 44.0, y = 62.0, name = "Pressure & fuel sensor", comp = false },
+        new { x = 73.0, y = 35.0, name = "Passenger weight sensor", comp = false },
+        new { x = 22.5, y = 60.0, name = "Air pressure sensor", comp = false },
+        new { x = 38.0, y = 67.0, name = "Intake air control", comp = false },
+        new { x = 30.0, y = 64.0, name = "Intake sensor", comp = false },
+        new { x = 16.0, y = 64.0, name = "Temp & fog sensors", comp = false },
+        new { x = 52.0, y = 71.0, name = "Brake sensor", comp = false },
+        new { x = 50.0, y = 60.0, name = "Gear transmission", comp = false },
+        new { x = 82.0, y = 42.0, name = "Armrest control", comp = false },
+        new { x = 57.5, y = 45.0, name = "Steering sensor", comp = false }
+    };
+    var plants = new[] {
+        new { route = "ayutthaya", country = "Thailand", name = "Ayutthaya", note = "Power modules · microelectronics" },
+        new { route = "jiaxing",   country = "China",    name = "Jiaxing",   note = "High-volume PCBA · modules" }
+    };
+    var faq = new[] {
+        new { q = "What sensor types can Hana assemble?", a = "MEMS-based pressure, inertial and acoustic sensors, optical proximity and ambient-light detectors, and radar front-end modules — packaged in cavity, LCC and custom housings." },
+        new { q = "How is stress managed at the die-attach level?", a = "Die-attach material, cure profile and substrate stiffness are selected to minimize induced stress on the sensing element — a mismatch here shifts the sensor output, so it is engineered in rather than compensated out." },
+        new { q = "What environment controls are in place?", a = "Assembly areas maintain controlled temperature, humidity and particulate levels appropriate to the device type. Cavity packages are closed in the controlled zone to prevent contamination before seal." }
+    };
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/automotive.css" />
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "FAQPage",
+      "mainEntity": [
+        { "@@type": "Question", "name": "What sensor types can Hana assemble?", "acceptedAnswer": { "@@type": "Answer", "text": "MEMS-based pressure, inertial and acoustic sensors, optical proximity and ambient-light detectors, and radar front-end modules — packaged in cavity, LCC and custom housings." } },
+        { "@@type": "Question", "name": "How is stress managed at the die-attach level?", "acceptedAnswer": { "@@type": "Answer", "text": "Die-attach material, cure profile and substrate stiffness are selected to minimize induced stress on the sensing element — a mismatch here shifts the sensor output, so it is engineered in rather than compensated out." } },
+        { "@@type": "Question", "name": "What environment controls are in place?", "acceptedAnswer": { "@@type": "Answer", "text": "Assembly areas maintain controlled temperature, humidity and particulate levels appropriate to the device type. Cavity packages are closed in the controlled zone to prevent contamination before seal." } }
+      ]
+    }
+    </script>
+}
+
+<div class="auto-page">
+
+  <div class="auto-crumb">
+    <div class="inner">
+      <a href="/markets">Markets</a><span class="sep">›</span>
+      <a href="/markets/automotive">Automotive</a><span class="sep">›</span>
+      <span class="here">Sensor Assembly</span>
+    </div>
+  </div>
+
+  <div class="auto-spoke-grid">
+
+    <aside class="auto-side">
+      <div class="side-head">Automotive sub-markets</div>
+      @foreach (var s in subs)
+      {
+          <a class="s @(s.slug == activeSlug ? "active" : "")" href="/markets/automotive/@s.slug">
+              <i data-lucide="@s.icon" style="width:15px;height:15px;@(s.slug == activeSlug ? "" : "color:var(--ink-3);")"></i>
+              <span>@s.name</span>
+          </a>
+      }
+      <div class="helper">
+        <div class="h">Not sure which fits?</div>
+        <p>Tell us what the part does in the vehicle and we'll point you to the right line.</p>
+        <a class="cta" href="/contact" style="text-decoration:none;">Talk to engineering <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+      </div>
+    </aside>
+
+    <main style="min-width:0; overflow:hidden;">
+
+      <div style="padding:44px 48px 22px;">
+        <div style="display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:40px; align-items:center;">
+          <div>
+            <div class="auto-eyebrow">Automotive — Sensor Assembly</div>
+            <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">Sensor assembly for ADAS and in-cabin sensing</h1>
+            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">MEMS pressure sensors, radar front-ends, optical proximity detectors — the parts that read the road and the cabin. Hana assembles automotive sensor packages in controlled environments, with stress-managed attachment and cavity packaging where the device requires it.</p>
+          </div>
+          <div style="position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:#000;">
+            <img src="~/images/automotive-cutaway.png" alt="Sensor locations across the vehicle" style="display:block; width:100%; height:auto;" />
+            @for (var i = 0; i < pts.Length; i++)
+            {
+                var pt = pts[i];
+                <span title="@pt.name" style="position:absolute; left:@(pt.x)%; top:@(pt.y)%; transform:translate(-50%,-50%); width:18px; height:18px; border-radius:50%; background:@(pt.comp ? "var(--hana-blue)" : "#FF883E"); border:2px solid #fff; color:#fff; font-family:var(--font-mono); font-size:9px; font-weight:700; display:grid; place-items:center; box-shadow:0 1px 4px rgba(0,0,0,0.5);">@(i + 1)</span>
+            }
+          </div>
+        </div>
+
+        <div style="margin-top:24px; background:rgba(255,255,255,0.82); border:1px solid var(--line); border-radius:var(--radius-card); padding:18px 20px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:12px;">Sensors &amp; controls we assemble</div>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:4px 16px;">
+            @for (var i = 0; i < pts.Length; i++)
+            {
+                var pt = pts[i];
+                <div style="display:flex; align-items:center; gap:8px; padding:5px 7px;">
+                    <span style="width:17px; height:17px; border-radius:50%; flex-shrink:0; background:@(pt.comp ? "var(--hana-blue)" : "#FF883E"); color:#fff; font-family:var(--font-mono); font-size:9px; font-weight:700; display:grid; place-items:center;">@(i + 1)</span>
+                    <span style="font-size:12px; color:var(--ink-2); line-height:1.3;">@pt.name</span>
+                </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:10px 48px;">
+        <div class="auto-spec">
+          @foreach (var s in heroStats)
+          {
+              <div class="cell"><div class="l">@s.l</div><div class="v @(s.v.Length > 8 ? "long" : "")">@s.v</div></div>
+          }
+        </div>
+      </div>
+
+      <div style="padding:20px 48px;">
+        <div class="auto-sechead">
+          <h2>The capability behind sensor assembly</h2>
+          <p>The sub-market page frames the application. The capability page carries the process depth.</p>
+        </div>
+        <div style="border:1px solid var(--line); border-radius:var(--radius-card); background:#fff; padding:28px 30px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px;">The capability behind it</div>
+          <h3 style="font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--ink); line-height:1.2; letter-spacing:-0.01em; margin:0 0 12px;">Built on Hana's Microelectronic Assembly</h3>
+          <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">Sensor packaging draws on die-attach, wire bonding and cavity-close processes Hana runs for microelectronics — the same skill set, applied to the automotive sensor stack.</p>
+          <a href="/capabilities/microelectronic-assembly" style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hana-blue); text-decoration:none; display:inline-flex; align-items:center; gap:6px;">See Microelectronic Assembly <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+        </div>
+      </div>
+
+      <div style="background:#071f35; border-top:1px solid var(--line); padding:40px 48px;">
+        <div class="auto-sechead on-dark">
+          <h2>Where we build it</h2>
+          <p>Sensor assembly is qualified in Thailand and China, on lines controlled for particulate and humidity.</p>
+        </div>
+        <div class="auto-plants" style="grid-template-columns:repeat(@plants.Length, 1fr);">
+          @foreach (var p in plants)
+          {
+              <a class="auto-plantcard" href="/locations/@p.route" style="text-decoration:none; color:inherit;">
+                  <div>
+                      <span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> @p.country</span>
+                      <div class="nm">@p.name</div>
+                      <div class="note">@p.note</div>
+                  </div>
+                  <span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+              </a>
+          }
+        </div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.5); line-height:1.5; margin:18px 0 0;"><a href="/locations" style="color:rgba(255,255,255,0.75); text-decoration:none; font-weight:600;">View all locations →</a></p>
+      </div>
+
+      <div style="background:var(--bg); border-top:1px solid var(--line); padding:40px 48px 48px;">
+        <div class="auto-sechead"><h2>Frequently asked questions</h2></div>
+        <div class="auto-faq">
+          @for (var i = 0; i < faq.Length; i++)
+          {
+              var f = faq[i];
+              <div class="item @(i == 0 ? "is-open" : "")">
+                  <button type="button" class="q">
+                      <span class="num">@($"0{i + 1}")</span>
+                      <h3 class="qt">@f.q</h3>
+                      <span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span>
+                  </button>
+                  <div class="panel"><span></span><p>@f.a</p></div>
+              </div>
+          }
+        </div>
+        <div style="margin-top:22px; padding-top:18px; border-top:1px solid var(--line);">
+          <a href="/markets/automotive" style="font-size:12px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--hana-blue); text-decoration:none; display:inline-flex; align-items:center; gap:6px;"><i data-lucide="arrow-right" style="width:13px;height:13px;"></i> Back to the Automotive market hub</a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <section class="auto-cta" data-hana-bg="flow" data-variant="dark" data-accent="cyan" data-fade="none">
+    <div class="inner">
+      <div>
+        <h2>Have an automotive sensor to build?</h2>
+        <p>Send the device and its role in the vehicle. We'll come back with a packaging approach and an indicative plan.</p>
+      </div>
+      <div class="actions">
+        <a href="/contact" class="auto-btn auto-btn--ondark-primary">Start a quote <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
+        <a href="/contact" class="auto-btn auto-btn--ondark-secondary">Talk to an engineer</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/automotive.js"></script>
+}

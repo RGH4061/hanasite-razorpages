@@ -1,10 +1,10 @@
-@page "/markets/automotive/power-modules"
+@page "/markets/automotive/led-lighting"
 @{
-    ViewData["Title"] = "Automotive Power Module Assembly | Hana";
-    ViewData["Description"] = "Hana assembles IGBT and silicon-carbide power modules for EV traction inverters, chargers and converters — on AEC-Q101-qualified lines across Thailand and China.";
-    ViewData["Canonical"] = "https://www.hanagroup.com/markets/automotive/power-modules";
+    ViewData["Title"] = "Automotive LED Lighting Assembly | Hana";
+    ViewData["Description"] = "Hana assembles LED modules and driver boards for automotive headlamps, signaling and interior lighting — thermal-path engineered, on AEC-Q-qualified COB and SMT lines in Thailand.";
+    ViewData["Canonical"] = "https://www.hanagroup.com/markets/automotive/led-lighting";
 
-    var activeSlug = "power-modules";
+    var activeSlug = "led-lighting";
     var subs = new[] {
         new { slug = "power-modules",   name = "Power Modules",   icon = "zap" },
         new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio" },
@@ -13,20 +13,19 @@
         new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu" }
     };
     var heroStats = new[] {
-        new { v = "AEC-Q101", l = "Qualified" },
-        new { v = "IGBT · SiC", l = "Device types" },
-        new { v = "Ag sinter", l = "Die attach" },
-        new { v = "Power cycle", l = "Tested in-house" }
+        new { v = "Headlamp · DRL · Signal", l = "Applications" },
+        new { v = "Thermal-managed", l = "Design-in" },
+        new { v = "COB · SMT", l = "Process" },
+        new { v = "AEC-Q", l = "Qualified" }
     };
     var plants = new[] {
         new { route = "ayutthaya", country = "Thailand", name = "Ayutthaya", note = "Power modules · microelectronics" },
-        new { route = "jiaxing",   country = "China",    name = "Jiaxing",   note = "High-volume PCBA · modules" },
         new { route = "lamphun",   country = "Thailand", name = "Lamphun",   note = "PCBA · box build · lighting" }
     };
     var faq = new[] {
-        new { q = "What power devices can Hana assemble into modules?", a = "IGBT and silicon-carbide (SiC) die, in single- and multi-die layouts, with solder and silver-sinter die attach and aluminum-wire or copper-clip interconnect." },
-        new { q = "Why does silver sintering matter for SiC?", a = "SiC runs hotter and switches faster than silicon. A sintered die-attach joint holds up to higher temperatures and thermal cycling than standard solder, so the module survives the powertrain's duty cycle." },
-        new { q = "How is the thermal path controlled?", a = "Through DBC or AMB ceramic substrates, baseplate attach, and void-controlled solder joints verified by X-ray — the heat path from die to coolant is designed and inspected, not assumed." }
+        new { q = "What LED applications does Hana assemble for?", a = "Headlamps, daytime running lights, turn and brake signals, and interior ambient lighting — including matrix and adaptive headlamp modules that combine multiple LED clusters with a driver board." },
+        new { q = "How is the thermal path handled?", a = "Thermal interface material, substrate, and heatsink attach are specified alongside the LED die selection — so junction temperature stays within rating over the product lifetime, not just at first power-on." },
+        new { q = "Do you support the full module, or only the LED array?", a = "Both. Hana assembles the LED array (COB or SMT), the driver PCB, and the integrated module — with box-build capability to complete the housing assembly in the same facility." }
     };
 }
 @section Head {
@@ -36,9 +35,9 @@
       "@@context": "https://schema.org",
       "@@type": "FAQPage",
       "mainEntity": [
-        { "@@type": "Question", "name": "What power devices can Hana assemble into modules?", "acceptedAnswer": { "@@type": "Answer", "text": "IGBT and silicon-carbide (SiC) die, in single- and multi-die layouts, with solder and silver-sinter die attach and aluminum-wire or copper-clip interconnect." } },
-        { "@@type": "Question", "name": "Why does silver sintering matter for SiC?", "acceptedAnswer": { "@@type": "Answer", "text": "SiC runs hotter and switches faster than silicon. A sintered die-attach joint holds up to higher temperatures and thermal cycling than standard solder, so the module survives the powertrain's duty cycle." } },
-        { "@@type": "Question", "name": "How is the thermal path controlled?", "acceptedAnswer": { "@@type": "Answer", "text": "Through DBC or AMB ceramic substrates, baseplate attach, and void-controlled solder joints verified by X-ray — the heat path from die to coolant is designed and inspected, not assumed." } }
+        { "@@type": "Question", "name": "What LED applications does Hana assemble for?", "acceptedAnswer": { "@@type": "Answer", "text": "Headlamps, daytime running lights, turn and brake signals, and interior ambient lighting — including matrix and adaptive headlamp modules that combine multiple LED clusters with a driver board." } },
+        { "@@type": "Question", "name": "How is the thermal path handled?", "acceptedAnswer": { "@@type": "Answer", "text": "Thermal interface material, substrate, and heatsink attach are specified alongside the LED die selection — so junction temperature stays within rating over the product lifetime, not just at first power-on." } },
+        { "@@type": "Question", "name": "Do you support the full module, or only the LED array?", "acceptedAnswer": { "@@type": "Answer", "text": "Both. Hana assembles the LED array (COB or SMT), the driver PCB, and the integrated module — with box-build capability to complete the housing assembly in the same facility." } }
       ]
     }
     </script>
@@ -50,7 +49,7 @@
     <div class="inner">
       <a href="/markets">Markets</a><span class="sep">›</span>
       <a href="/markets/automotive">Automotive</a><span class="sep">›</span>
-      <span class="here">Power Modules</span>
+      <span class="here">LED Lighting</span>
     </div>
   </div>
 
@@ -77,12 +76,12 @@
       <div style="padding:44px 48px 22px;">
         <div style="display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:40px; align-items:center;">
           <div>
-            <div class="auto-eyebrow">Automotive — Power Modules</div>
-            <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">Power modules for electrified vehicles</h1>
-            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">Power modules are the assemblies that switch high current in a vehicle's powertrain — inside traction inverters, on-board chargers and DC-DC converters. Hana assembles IGBT and silicon-carbide modules on automotive-qualified lines, built around the thermal path that keeps them reliable.</p>
+            <div class="auto-eyebrow">Automotive — LED Lighting</div>
+            <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">LED module and driver assembly for automotive lighting</h1>
+            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">Headlamps, daytime running lights, turn signals and interior lighting — Hana assembles LED modules and driver boards for the full lighting stack. The thermal path is designed in from the start, so lumens and lifetime hold under the hood.</p>
           </div>
-          <div style="position:relative; overflow:hidden; border-radius:10px; border:1px solid var(--line); background:var(--surface); height:300px;">
-            <img src="~/images/photos/power-module-ecu.png" alt="Power module — die attach over a DBC substrate" style="width:100%; height:100%; object-fit:cover; display:block;" />
+          <div style="position:relative; overflow:hidden; border-radius:10px; border:1px solid var(--line); background:var(--surface); height:300px; display:flex; align-items:center; justify-content:center; background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);">
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-3); text-align:center; padding:0 18px; line-height:1.5;">[ LED headlamp module on the assembly line ]</span>
           </div>
         </div>
       </div>
@@ -98,13 +97,13 @@
 
       <div style="padding:20px 48px;">
         <div class="auto-sechead">
-          <h2>The capability behind power modules</h2>
+          <h2>The capability behind led lighting</h2>
           <p>The sub-market page frames the application. The capability page carries the process depth.</p>
         </div>
         <div style="border:1px solid var(--line); border-radius:var(--radius-card); background:#fff; padding:28px 30px;">
           <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px;">The capability behind it</div>
           <h3 style="font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--ink); line-height:1.2; letter-spacing:-0.01em; margin:0 0 12px;">Built on Hana's Microelectronic Assembly</h3>
-          <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">Power-module assembly draws on the same die-attach, bonding and encapsulation processes Hana runs for microelectronics and OSAT. The full process detail lives there.</p>
+          <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">LED module assembly uses the same COB die-attach, wire bonding and encapsulation processes Hana runs for microelectronics — with thermal interface design layered in for the automotive lighting environment.</p>
           <a href="/capabilities/microelectronic-assembly" style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hana-blue); text-decoration:none; display:inline-flex; align-items:center; gap:6px;">See Microelectronic Assembly <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
         </div>
       </div>
@@ -112,7 +111,7 @@
       <div style="background:#071f35; border-top:1px solid var(--line); padding:40px 48px;">
         <div class="auto-sechead on-dark">
           <h2>Where we build it</h2>
-          <p>Power-module assembly is qualified in Thailand and China, weighted to automotive and high-reliability programs.</p>
+          <p>LED lighting assembly runs in Thailand, combining COB and SMT capability across two plants.</p>
         </div>
         <div class="auto-plants" style="grid-template-columns:repeat(@plants.Length, 1fr);">
           @foreach (var p in plants)
@@ -157,8 +156,8 @@
   <section class="auto-cta" data-hana-bg="flow" data-variant="dark" data-accent="cyan" data-fade="none">
     <div class="inner">
       <div>
-        <h2>Have a power-module program in mind?</h2>
-        <p>Send a device spec and target volumes. We'll come back with a DFM read, a thermal-path view, and an indicative plan.</p>
+        <h2>Have a lighting module to build?</h2>
+        <p>Send the optical and driver spec. We'll come back with a thermal-path view and an indicative plan.</p>
       </div>
       <div class="actions">
         <a href="/contact" class="auto-btn auto-btn--ondark-primary">Start a quote <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
