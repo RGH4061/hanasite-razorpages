@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Microelectronic Assembly — capabilities";
     ViewData["Description"] = "The precision end of the group — flip chip, MEMS and sensor assembly, fine interconnect and micro-assembly, where placement is measured in microns.";
+    ViewData["CapSlug"]  = "";
+    ViewData["CapGroup"] = "microelectronics";
 }
 
 @* Microelectronic Assembly — capability hub page. Static content; section
@@ -22,8 +24,11 @@
   </div>
 </div>
 
-<div style="background:#fff;position:relative;z-index:1;">
-  <div style="max-width:1000px;margin:0 auto;padding:56px 48px 36px;">
+<div class="cap-page-grid">
+@await Html.PartialAsync("_CapabilitySidebar")
+<div class="cap-page-main">
+<div data-hana-bg="flow" data-variant="light" data-fade="none" style="background:#fff;position:relative;z-index:1;overflow:hidden;"><img src="/images/hana-mark.svg" alt="" aria-hidden="true" style="position:absolute;top:-240px;right:-240px;width:620px;height:620px;opacity:0.13;pointer-events:none;z-index:0;user-select:none;transform:rotate(45deg);" />
+  <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:56px 48px 36px;">
     <div style="margin-bottom:8px;">
       <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Capability</div>
       <h1 style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin:0 0 18px;max-width:760px;text-wrap:balance;">Microelectronic assembly</h1>
@@ -70,6 +75,9 @@
 </div>
 
 <div style="height:64px;background:#fff;"></div>
+
+</div><!-- /.cap-page-main -->
+</div><!-- /.cap-page-grid -->
 
 <section data-hana-bg="halftone" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);color:#fff;position:relative;overflow:hidden;">
   <div style="max-width:1040px;margin:0 auto;padding:64px 48px;position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:center;">
