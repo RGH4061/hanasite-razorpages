@@ -3,11 +3,16 @@
    Requires: _components.css (hana-market-tile, chamfer clip-paths)
 
    Photo assets needed (wwwroot/images/photos/):
-     homepage-markets-automotive.jpg
-     homepage-markets-industrial.jpg
-     homepage-markets-telecom.jpg
-     homepage-markets-rfid.jpg
-     homepage-markets-medical.jpg
+     homepage-markets-automotive.webp
+     homepage-markets-industrial.webp
+     homepage-markets-telecom.webp
+     homepage-markets-rfid.jpg            (no webp supplied; original retained)
+     homepage-markets-medical.webp
+     homepage-markets-optical.webp
+     homepage-markets-consumer.webp
+     homepage-markets-access.webp
+     homepage-markets-power.webp
+     homepage-markets-data.webp
 
    Spec ref: design_handoff_homepage/README.md §5
 *@
@@ -54,7 +59,7 @@
                data-chamfer="br"
                style="grid-area:hero;"
                aria-label="Automotive">
-                <img src="~/images/photos/homepage-markets-automotive.jpg"
+                <img src="~/images/photos/homepage-markets-automotive.webp"
                      alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text hana-tile-text--hero">
@@ -72,7 +77,7 @@
                data-chamfer="tr"
                style="grid-area:ind;"
                aria-label="Industrial and IoT">
-                <img src="~/images/photos/homepage-markets-industrial.png"
+                <img src="~/images/photos/homepage-markets-industrial.webp"
                      alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
@@ -89,7 +94,7 @@
                class="hana-market-tile"
                style="grid-area:tel;"
                aria-label="Telecommunications">
-                <img src="~/images/photos/homepage-markets-telecom.jpg"
+                <img src="~/images/photos/homepage-markets-telecom.webp"
                      alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
@@ -122,7 +127,8 @@
                class="hana-market-tile"
                style="grid-area:opt;"
                aria-label="Optical and sensors">
-                <div class="hana-tile-no-photo"></div>
+                <img src="~/images/photos/homepage-markets-optical.webp"
+                     alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
                     <p class="hana-tile-name">Optical &amp; sensors</p>
@@ -138,7 +144,8 @@
                data-chamfer="tr"
                style="grid-area:cons;"
                aria-label="Consumer electronics">
-                <div class="hana-tile-no-photo"></div>
+                <img src="~/images/photos/homepage-markets-consumer.webp"
+                     alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
                     <p class="hana-tile-name">Consumer electronics</p>
@@ -154,7 +161,7 @@
                data-chamfer="bl"
                style="grid-area:med;"
                aria-label="Medical">
-                <img src="~/images/photos/homepage-markets-medical.jpg"
+                <img src="~/images/photos/homepage-markets-medical.webp"
                      alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
@@ -170,7 +177,8 @@
                class="hana-market-tile"
                style="grid-area:acc;"
                aria-label="Access control">
-                <div class="hana-tile-no-photo"></div>
+                <img src="~/images/photos/homepage-markets-access.webp"
+                     alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
                     <p class="hana-tile-name">Access control</p>
@@ -185,7 +193,8 @@
                class="hana-market-tile"
                style="grid-area:pwr;"
                aria-label="Power management">
-                <div class="hana-tile-no-photo"></div>
+                <img src="~/images/photos/homepage-markets-power.webp"
+                     alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text">
                     <p class="hana-tile-name">Power management</p>
@@ -201,7 +210,8 @@
                data-chamfer="br"
                style="grid-area:data;"
                aria-label="Data Centers">
-                <div class="hana-tile-no-photo"></div>
+                <img src="~/images/photos/homepage-markets-data.webp"
+                     alt="" class="hana-tile-img" />
                 <div class="hana-tile-overlay"></div>
                 <div class="hana-tile-text hana-tile-text--hero">
                     <p class="hana-tile-name hana-tile-name--hero">Data Centers</p>
