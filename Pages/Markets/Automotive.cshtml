@@ -16,6 +16,25 @@
         new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu",        blurb = "Board assembly for automotive electronics — fine-pitch SMT with inspection and traceability on every board, on IATF 16949 lines." }
     };
 
+    // Cutaway hotspots — first 5 (components) are the legend; the rest are sensors/controls.
+    var hotspots = new[] {
+        new { type = "c", tag = "Power Modules",   name = "Power Modules",              x = 32.0,  y = 57.0, color = "#1283DD", desc = "Die attach, sintering and clip/wire bonding for IGBT and SiC power modules — built for the current and heat of electrified powertrains." },
+        new { type = "c", tag = "Automotive PCBA", name = "Automotive PCBA",            x = 62.0,  y = 55.0, color = "#0E9E8A", desc = "Fine-pitch SMT board assembly with inspection and traceability on every board, on IATF 16949 lines." },
+        new { type = "c", tag = "LED Lighting",    name = "LED front lights",           x = 11.5,  y = 57.0, color = "#C97010", desc = "LED module and driver assembly for headlamps and signaling, with the thermal path designed in." },
+        new { type = "c", tag = "RFID Tire Tags",  name = "RFID Tire Tags",             x = 47.0,  y = 79.0, color = "#1F8A5B", desc = "Ruggedized RFID tags engineered to survive cure, flex and road heat inside a tire for its full service life." },
+        new { type = "c", tag = "Sensor Assembly", name = "Automotive Sensor Assembly", x = 37.0,  y = 48.0, color = "#FF883E", desc = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing — stress-managed packages in controlled environments." },
+        new { type = "s", tag = "Sensor",  name = "Pressure & fuel sensor",  x = 44.0,  y = 62.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Sensor",  name = "Passenger weight sensor", x = 73.0,  y = 35.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Sensor",  name = "Air pressure sensor",     x = 22.5,  y = 60.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Control", name = "Intake air control",      x = 38.0,  y = 67.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Sensor",  name = "Intake sensor",           x = 30.0,  y = 64.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Sensor",  name = "Temp & fog sensors",      x = 16.0,  y = 64.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Sensor",  name = "Brake sensor",            x = 52.0,  y = 71.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Control", name = "Gear transmission",       x = 50.0,  y = 60.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Control", name = "Armrest control",         x = 82.0,  y = 42.0, color = "#FF883E", desc = "" },
+        new { type = "s", tag = "Sensor",  name = "Steering sensor",         x = 57.5,  y = 45.0, color = "#FF883E", desc = "" }
+    };
+
     var plants = new[] {
         new { country = "Thailand", name = "Lamphun",  note = "PCBA · box build · lighting" },
         new { country = "Thailand", name = "Ayutthaya", note = "Power modules · microelectronics" },
@@ -58,26 +77,57 @@
     </div>
   </div>
 
-  @* editorial hero — centered statement + full-width car image *@
-  <div style="position:relative; overflow:hidden; background:#fff;">
+  @* editorial hero — centred statement, then the interactive cutaway + legend *@
+  <div style="position:relative; overflow:hidden; background:#fff;" data-hana-bg="globe" data-variant="light" data-accent="cyan">
     <img src="~/images/hana-mark.svg" alt="" aria-hidden="true"
          style="position:absolute; left:-440px; top:-120px; width:860px; height:auto; opacity:0.10; transform:rotate(-12deg); pointer-events:none; z-index:0;" />
 
     <div style="position:relative; z-index:1; max-width:980px; margin:0 auto; padding:60px 32px 36px; text-align:center;">
-      <div class="auto-eyebrow">Market served</div>
-      <h1 style="font-family:var(--font-display); font-size:50px; font-weight:700; color:var(--ink); line-height:1.04; letter-spacing:-0.03em; margin:0 auto 18px; max-width:760px; text-wrap:balance;">Automotive electronics manufacturing</h1>
+      <div class="auto-eyebrow">Markets we serve</div>
+      <h1 style="font-family:var(--font-display); font-size:50px; font-weight:700; color:var(--ink); line-height:1.04; letter-spacing:-0.03em; margin:0 auto 18px; max-width:820px; text-wrap:balance;">Automotive electronics manufacturing service</h1>
       <p style="font-size:18px; color:var(--ink-2); line-height:1.55; margin:0 auto 26px; max-width:600px; text-wrap:pretty;">From the sensor on the bumper to the power module in the drivetrain, Hana builds the electronics that go into vehicles — assembled to automotive quality standards, across four countries, under one group.</p>
       <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <a href="#products" class="auto-btn auto-btn--primary">Explore sub-markets <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
-        <a href="/contact/rfq" class="auto-btn auto-btn--secondary">Send a BOM</a>
+        <a href="#products" class="auto-btn auto-btn--primary">Explore automotive components <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
+        <a href="/contact" class="auto-btn auto-btn--secondary">Start a conversation</a>
       </div>
     </div>
 
-    <div style="position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 32px 0;">
-      <div style="border-radius:12px; overflow:hidden; border:1px solid var(--line);">
-        <img src="~/images/automotive-cutaway.png"
-             alt="Transparent cutaway of an electric vehicle showing internal components"
-             style="display:block; width:100%; height:auto;" />
+    @{ Func<double, string> P = v => v.ToString(System.Globalization.CultureInfo.InvariantCulture); }
+    <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:0 32px 8px;">
+      <div class="auto-cutaway">
+        <div class="auto-stage">
+          <img src="~/images/automotive-cutaway.png"
+               alt="Transparent cutaway of an electric vehicle showing internal components" />
+          @for (var i = 0; i < hotspots.Length; i++)
+          {
+              var h = hotspots[i];
+              <div class="auto-marker" data-hot="@i" style="left:@(P(h.x))%; top:@(P(h.y))%;">
+                  <span class="dot" style="background:@h.color;">@(i + 1)</span>
+                  <div class="tip">
+                      <div class="tag" style="color:@h.color;">@h.tag</div>
+                      <div class="nm">@h.name</div>
+                      @if (!string.IsNullOrEmpty(h.desc))
+                      {
+                          <div class="ds">@h.desc</div>
+                      }
+                  </div>
+              </div>
+          }
+        </div>
+        <div class="auto-legend">
+          <div class="head">Parts we produce</div>
+          @for (var i = 0; i < 5; i++)
+          {
+              var h = hotspots[i];
+              <div class="auto-legitem" data-hot="@i">
+                  <span class="n" style="background:@h.color;">@(i + 1)</span>
+                  <div>
+                      <span class="nm">@h.name</span>
+                      <span class="ds">@h.desc</span>
+                  </div>
+              </div>
+          }
+        </div>
       </div>
     </div>
   </div>
