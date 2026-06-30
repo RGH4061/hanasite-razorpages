@@ -13,6 +13,7 @@
   .sc-pillar{ transition:border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
   .sc-pillar:hover{ border-color:color-mix(in srgb, var(--hana-blue) 55%, var(--line)) !important; box-shadow:0 6px 18px rgba(18,131,221,.10); transform:translateY(-2px); }
   .sc-pillars-band > .hana-bg-layer{ opacity:.55 !important; background:transparent !important; }
+  .sc-hero-band > .hana-bg-layer{ opacity:.7 !important; }
   details.sc-faq{ border-top:1px solid var(--line); }
   details.sc-faq:first-child{ border-top:none; }
   details.sc-faq > summary{ list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-family:var(--font-text); font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
@@ -36,7 +37,7 @@
 <div class="cap-page-grid">
 @await Html.PartialAsync("_CapabilitySidebar")
 <div class="cap-page-main">
-<div style="background:#fff;position:relative;z-index:1;"><div style="max-width:1000px;margin:0 auto;padding:56px 48px 40px;"><div style="margin-bottom:64px;">
+<div class="sc-hero-band" data-hana-bg="flow" data-variant="light" data-fade="none" style="background:#fff;position:relative;z-index:1;overflow:hidden;"><img src="~/images/circuit-board-blue.png" aria-hidden="true" style="position:absolute;top:15px;right:-80px;width:300px;height:300px;opacity:0.4;pointer-events:none;z-index:0;user-select:none;transform:rotate(8deg);" /><div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:56px 48px 40px;"><div style="margin-bottom:64px;">
     <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">PCBA & Box Build · Sub-capability</div>
     <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 18px;max-width:740px;text-wrap:balance;">Surface mount technology (SMT) assembly</h1>
     <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0 0 32px;text-wrap:pretty;">Fine-pitch, double-sided SMT — down to 01005 passives and 0.2 mm micro-BGA pitch — with solder-paste inspection, 3D AOI and X-ray built into every board, not just automotive jobs. The same qualified process runs across our plants in China, Thailand, Cambodia and the USA.</p>

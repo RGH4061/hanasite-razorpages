@@ -111,15 +111,15 @@
   .subbar .meta strong { color: rgba(255,255,255,0.80); font-weight: 500; }
 
   /* Hero */
-  .hero { position: relative; z-index: 2; border-bottom: none; }
+  .hero { background: var(--hana-blue-deep); border-bottom: none; }
   .hero-inner { max-width: var(--max); margin: 0 auto; padding: var(--s-7) var(--s-6) var(--s-6); }
   .hero h1 {
     font-family: 'Geist', sans-serif; font-weight: 600; font-size: 38px;
-    line-height: 1.15; letter-spacing: -0.022em; color: #15171C;
+    line-height: 1.15; letter-spacing: -0.022em; color: #FFFFFF;
     margin: 0 0 var(--s-4); max-width: 22ch;
   }
   .hero .lede {
-    font-size: 16px; line-height: 1.55; color: rgba(74,79,88,0.75);
+    font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.65);
     max-width: 70ch; margin: 0;
   }
 

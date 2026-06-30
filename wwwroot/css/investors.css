@@ -75,8 +75,20 @@
   }
 
   /* ── Main layout ── */
-  .layout-bg { background: var(--bg); border-bottom: 1px solid var(--line); }
-  .layout { max-width: var(--max); margin: 0 auto; padding: var(--s-7) var(--s-6) var(--s-8); }
+  .layout-bg { background: linear-gradient(135deg,#ebeef2 0%,#dce6f0 65%,#e4ecf6 100%); border-bottom: 1px solid var(--line); position: relative; overflow: visible; }
+  .layout-bg::after {
+    content: '';
+    position: absolute;
+    left: -60px;
+    bottom: -60px;
+    width: 480px;
+    height: 480px;
+    background: url('../images/hana-mark.svg') center/contain no-repeat;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .layout { max-width: var(--max); margin: 0 auto; padding: var(--s-7) var(--s-6) var(--s-8); position: relative; z-index: 1; }
 
   /* ── Section label ── */
   .section-label {
@@ -94,9 +106,23 @@
     border: 1px solid var(--line);
     border-left: 3px solid var(--hana-blue);
     border-radius: 8px;
-    overflow: hidden;
     margin-bottom: var(--s-5);
+    background: #fff;
+    position: relative;
   }
+  .feature-banner::before {
+    content: '';
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 480px;
+    height: 480px;
+    background: url('../images/hana-mark.svg') center/contain no-repeat;
+    opacity: 0.30;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .feature-body, .stock-panel { position: relative; z-index: 1; }
 
   .feature-body {
     padding: var(--s-6) var(--s-6);

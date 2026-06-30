@@ -16,23 +16,3 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
-
-/* Cutaway: hover a legend item to highlight its marker (and vice versa). */
-(function () {
-  function init() {
-    var els = document.querySelectorAll('.auto-legitem[data-hot], .auto-marker[data-hot]');
-    if (!els.length) return;
-    function setActive(idx, on) {
-      document.querySelectorAll('[data-hot="' + idx + '"]').forEach(function (el) {
-        el.classList.toggle('is-active', on);
-      });
-    }
-    els.forEach(function (el) {
-      var idx = el.getAttribute('data-hot');
-      el.addEventListener('mouseenter', function () { setActive(idx, true); });
-      el.addEventListener('mouseleave', function () { setActive(idx, false); });
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();

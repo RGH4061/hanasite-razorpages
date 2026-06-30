@@ -1,0 +1,134 @@
+/* ============================================================
+   homepage-mobile.css — responsive layer for the Hana homepage
+   The homepage is built with desktop-only inline styles; these
+   rules retrofit small-screen behaviour. Loaded AFTER the other
+   stylesheets and use !important to override inline styles.
+   ============================================================ */
+
+/* ── Page gutters ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hana-wrap { padding-left: 20px !important; padding-right: 20px !important; }
+}
+
+/* ── Header: wrap the primary nav below the logo on small screens ── */
+@media (max-width: 900px) {
+  /* allow the logo / nav / contact row to wrap */
+  .hana-header [style*="display:flex"][style*="gap:32px"] {
+    flex-wrap: wrap !important;
+    gap: 12px 16px !important;
+  }
+  .hana-header nav[aria-label="Primary navigation"] {
+    order: 3;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 12px;
+    flex-wrap: wrap !important;
+    gap: 12px 18px !important;
+  }
+  .hana-header nav[aria-label="Primary navigation"] .hana-nav-chevron { display: none !important; }
+  /* hover mega-panels can't work on touch — keep them hidden */
+  .hana-header .hana-mega { display: none !important; }
+}
+
+/* ── Hero: stack the headline block above the video/stats ─── */
+@media (max-width: 900px) {
+  .hana-hero-section { height: auto !important; padding: 40px 0 48px !important; }
+
+  /* headline / copy block (was absolutely centred on the left) */
+  .hana-hero-section > div[style*="left:52px"] {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    max-width: 100% !important;
+    padding: 0 20px !important;
+  }
+  .hana-hero-section > div[style*="left:52px"] h1 { font-size: 34px !important; }
+  .hana-hero-section > div[style*="left:52px"] p  { font-size: 15px !important; }
+
+  /* video + stats panel (was absolutely positioned on the right) */
+  .hana-hero-section > aside {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: auto !important;
+    margin: 28px 20px 0 !important;
+  }
+  /* hero stat row: 4 columns → 2 */
+  .hana-hero-section aside [style*="grid-template-columns:repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── "Why Hana" two-column band → single column ───────────── */
+@media (max-width: 900px) {
+  .hana-why-section { min-height: 0 !important; }
+  .hana-why-section .hana-wrap[style*="grid-template-columns:minmax(0, 1.2fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+}
+
+/* ── Markets bento mosaic → simple flowing grid ───────────── */
+@media (max-width: 760px) {
+  .hana-markets-section { padding: 48px 0 40px !important; }
+  /* stack the section header (title / "all markets") */
+  .hana-markets-section [style*="justify-content:space-between"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+  .hana-markets-section h2 { font-size: 26px !important; }
+
+  .hana-markets-section [style*="grid-template-areas"] {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: none !important;
+    grid-template-areas: none !important;
+    grid-auto-rows: 150px !important;
+  }
+  .hana-markets-section .hana-market-tile { grid-area: auto !important; }
+  /* keep the two flagship tiles full-width for emphasis */
+  .hana-markets-section .hana-market-tile[aria-label="Automotive"],
+  .hana-markets-section .hana-market-tile[aria-label="Data Centers"] {
+    grid-column: span 2 !important;
+  }
+}
+@media (max-width: 460px) {
+  .hana-markets-section [style*="grid-template-areas"] { grid-template-columns: 1fr !important; }
+  .hana-markets-section .hana-market-tile[aria-label="Automotive"],
+  .hana-markets-section .hana-market-tile[aria-label="Data Centers"] { grid-column: auto !important; }
+}
+
+/* ── Capabilities carousel: widen cards so they swipe nicely ─ */
+@media (max-width: 760px) {
+  .hana-capabilities-section [data-carousel-track] {
+    grid-template-columns: none !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: 80% !important;
+  }
+}
+
+/* ── Locations band → single column ───────────────────────── */
+@media (max-width: 900px) {
+  .hana-locations-section { padding: 56px 0 !important; }
+  .hana-locations-section .hana-wrap[style*="grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+@media (max-width: 540px) {
+  .hana-loc-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Closing CTA band → single column ─────────────────────── */
+@media (max-width: 760px) {
+  .hana-cta-section { padding: 56px 0 !important; }
+  .hana-cta-section [style*="grid-template-columns:minmax(0, 1.2fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .hana-cta-section h2 { font-size: 26px !important; }
+}

@@ -92,6 +92,9 @@ The Locations data (specs, certifications, addresses, capability lists) is **har
 
 ## Status
 
+### Fix — 25 Jun 2026 (Automotive hub re-synced to prototype)
+- **Markets / Automotive hub** (`Markets/Automotive.cshtml`) re-synced to the current "Hana Automotive Hub" prototype: the hero now uses the dotted-**globe** background (`data-hana-bg="globe" data-variant="light"`), the cutaway is the interactive **side-by-side** stage + legend (15 numbered markers with hover tips, "Parts we produce" legend of the 5 components), and the hero copy matches the prototype ("Markets we serve" / "…manufacturing service" / "Explore automotive components" · "Start a conversation"). The earlier plain-image hero variant has been removed. `preview-automotive.html` and the static `site-html/markets-automotive.html` are now exact copies of the prototype.
+
 ### Re-export — 25 Jun 2026 (changes since the 23 Jun export)
 - **Header.** `_Header.cshtml` re-synced to the live homepage chrome: switched the logo to the trimmed PNG lockup (`~/images/hana-logo-full-trimmed.png`, 200×65, also in `_Footer`), simplified the **About** mega-menu to two columns (Company · Connect), and synced menu copy (Markets blurbs, Automation → "Manufacturing Traceability", DFx/JDM/NPI labels, "Investor FAQ & Knowledge Hub").
 - **Capabilities hub redesign.** `Capabilities/Index.cshtml` replaced the card grid with the new **radial diagram** hero — a dark globe-backed section with the six capability nodes arranged around the Hana mark (vanilla JS positions nodes + draws connector lines, re-renders on resize). The six parent-capability hubs and their sub-cards were already in sync.
