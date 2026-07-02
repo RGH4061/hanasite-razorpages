@@ -1,0 +1,47 @@
+/* ============================================================
+   capabilities-mobile.css — responsive layer for the
+   Capabilities hub (radial wheel page).
+
+   The wheel is a fixed 960×800 canvas: the page JS scales it
+   to fit (scaleRadial) but only POSITIONS the six satellite
+   cards when window.innerWidth >= 980 — below that the cards
+   pile up unpositioned on one spot. So below 980px we retire
+   the wheel entirely: keep the centre hub as a visual, hide
+   the SVG connector lines, and stack the six capability cards
+   as a full-width list. !important is required to beat the
+   inline transform/margin the JS writes on the wrap.
+   ============================================================ */
+
+@media (max-width: 979.98px) {
+  /* the wheel canvas becomes a normal flowing block */
+  .radial-wrap {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    margin-bottom: 0 !important;
+    padding: 8px 20px 40px;
+    box-sizing: border-box;
+  }
+
+  /* connector lines mean nothing once the cards stack */
+  .radial-svg { display: none; }
+
+  /* centre hub: keep the emblem + pulsing rings as a header visual */
+  .radial-center {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 36px;
+  }
+
+  /* the six capability cards: full-width stacked list */
+  .cap-node {
+    position: static !important;
+    width: 100% !important;
+    max-width: 480px;
+    margin: 0 auto 14px;
+  }
+}

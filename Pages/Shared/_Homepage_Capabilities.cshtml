@@ -10,15 +10,15 @@
 
 <section class="hana-capabilities-section"
          style="position:relative; z-index:1; padding:30px 0 96px;">
-    <div class="hana-wrap">
+    <div class="hana-wrap" data-carousel>
 
         @* ── Section header + carousel controls inline ────── *@
         <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:28px; flex-wrap:wrap;">
             <div>
-                <div class="hana-spec-label" style="margin-bottom:12px;">Capabilities</div>
-                <h2 class="hana-h2" style="margin-bottom:8px;">Or browse by capability.</h2>
+                <div class="hana-spec-label" style="margin-bottom:12px;">WHAT WE DO</div>
+                <h2 class="hana-h2" style="margin-bottom:8px;">Browse our capabilities</h2>
                 <p class="hana-body" style="color:var(--ink-2); margin:0;">
-                    Six capability families spanning PCBA, OSAT, microelectronics, RFID, automation, and DFx.
+                    Hana's range of diversified capabilities has been built to provide our customer's with end to end solutions in a vertically integrated operating structure. Click to browse detailed specifications.
                 </p>
             </div>
             <div class="hana-carousel__controls" style="display:flex; gap:8px; flex-shrink:0;">
@@ -42,7 +42,7 @@
         </div>
 
         @* ── Carousel ─────────────────────────────────────── *@
-        <div class="hana-carousel" data-carousel>
+        <div class="hana-carousel">
 
             @* Scrollable track *@
             <div class="hana-carousel__track" data-carousel-track
@@ -54,7 +54,7 @@
                         -ms-overflow-style:none;">
 
                 @* PCBA / Box Build *@
-                <a href="/capabilities/pcba-box-build" class="hana-cap-card">
+                                <a href="/capabilities/pcba-box-build" class="hana-cap-card">
                     <div class="hana-cap-card__top">
                         <span class="hana-arrow-reveal" aria-hidden="true">
                             <i data-lucide="arrow-right"
@@ -62,17 +62,16 @@
                         </span>
                     </div>
                     <div class="hana-cap-card__icon-area">
-                        <partial name="_Icon_Pcb" />
+                        <img class="hana-cap-icon" src="~/images/icons/pcba-box-build.png" alt="PCBA / Box build" width="88" height="88" />
                     </div>
                     <div class="hana-cap-card__body">
-                        <h3 class="hana-cap-card__title">PCBA / Box build</h3>
+                        <h3 class="hana-cap-card__title">PCBA / Box Build</h3>
                         <p class="hana-cap-card__desc">
-                            End-to-end electronics manufacturing. SMT, through-hole, box build, system integration.
+                            Populated boards through to fully assembled, tested products — one line from prototype to volume.
                         </p>
                     </div>
                 </a>
 
-                @* OSAT *@
                 <a href="/capabilities/osat" class="hana-cap-card">
                     <div class="hana-cap-card__top">
                         <span class="hana-arrow-reveal" aria-hidden="true">
@@ -81,17 +80,16 @@
                         </span>
                     </div>
                     <div class="hana-cap-card__icon-area">
-                        <partial name="_Icon_Chip" />
+                        <img class="hana-cap-icon" src="~/images/icons/osat.png" alt="OSAT" width="88" height="88" />
                     </div>
                     <div class="hana-cap-card__body">
                         <h3 class="hana-cap-card__title">OSAT</h3>
                         <p class="hana-cap-card__desc">
-                            Outsourced semiconductor assembly and test — die attach, wire bonding, flip chip, final test.
+                            Advanced semiconductor assembly and test at the die level, from bare wafer to packaged, qualified parts.
                         </p>
                     </div>
                 </a>
 
-                @* Microelectronics *@
                 <a href="/capabilities/microelectronic-assembly" class="hana-cap-card">
                     <div class="hana-cap-card__top">
                         <span class="hana-arrow-reveal" aria-hidden="true">
@@ -100,17 +98,16 @@
                         </span>
                     </div>
                     <div class="hana-cap-card__icon-area">
-                        <partial name="_Icon_Micro" />
+                        <img class="hana-cap-icon" src="~/images/icons/microelectronic-assembly.png" alt="Microelectronic assembly" width="88" height="88" />
                     </div>
                     <div class="hana-cap-card__body">
                         <h3 class="hana-cap-card__title">Microelectronic Assembly</h3>
                         <p class="hana-cap-card__desc">
-                            Hybrid microcircuits, MEMS, sensors, and precision interconnect.
+                            Precision joining of chips, sensors, MEMS and micro-assembly with micron level tolerance
                         </p>
                     </div>
                 </a>
 
-                @* Automation *@
                 <a href="/capabilities/automation" class="hana-cap-card">
                     <div class="hana-cap-card__top">
                         <span class="hana-arrow-reveal" aria-hidden="true">
@@ -119,36 +116,16 @@
                         </span>
                     </div>
                     <div class="hana-cap-card__icon-area">
-                        <partial name="_Icon_Gear" />
+                        <img class="hana-cap-icon" src="~/images/icons/automation.png" alt="Automation" width="88" height="88" />
                     </div>
                     <div class="hana-cap-card__body">
                         <h3 class="hana-cap-card__title">Automation</h3>
                         <p class="hana-cap-card__desc">
-                            Automated SMT lines, in-line AOI, and robotics-augmented box build for repeatable yield at volume.
+                            Full Inspection, handling, and traceability built into the line for consistent yield at scale.
                         </p>
                     </div>
                 </a>
 
-                @* RFID & Smart Tags *@
-                <a href="/capabilities/rfid-smart-tags" class="hana-cap-card">
-                    <div class="hana-cap-card__top">
-                        <span class="hana-arrow-reveal" aria-hidden="true">
-                            <i data-lucide="arrow-right"
-                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
-                        </span>
-                    </div>
-                    <div class="hana-cap-card__icon-area">
-                        <partial name="_Icon_Rfid" />
-                    </div>
-                    <div class="hana-cap-card__body">
-                        <h3 class="hana-cap-card__title">RFID &amp; Smart Tags</h3>
-                        <p class="hana-cap-card__desc">
-                            High-volume RFID and smart-label inlay manufacturing for retail, logistics, and tire ID.
-                        </p>
-                    </div>
-                </a>
-
-                @* DFx & JDM Collaboration *@
                 <a href="/capabilities/dfx-jdm" class="hana-cap-card">
                     <div class="hana-cap-card__top">
                         <span class="hana-arrow-reveal" aria-hidden="true">
@@ -157,15 +134,43 @@
                         </span>
                     </div>
                     <div class="hana-cap-card__icon-area">
-                        <partial name="_Icon_Merge" />
+                        <img class="hana-cap-icon" src="~/images/icons/dfx-npi-collaboration.png" alt="DFx and NPI collaboration" width="88" height="88" />
                     </div>
                     <div class="hana-cap-card__body">
-                        <h3 class="hana-cap-card__title">DFx &amp; JDM Collaboration</h3>
+                        <h3 class="hana-cap-card__title">DFx &amp; NPI Collaborations</h3>
                         <p class="hana-cap-card__desc">
-                            Engineering teams embedded from NPI through production. We speak engineer.
+                            Work along us from design and DFM through first builds to production and on-going improvement.
                         </p>
                     </div>
                 </a>
+
+                <a href="/capabilities/rfid-smart-tags" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="~/images/icons/rfid-inlay.png" alt="RFID inlay" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">RFID Inlay</h3>
+                        <p class="hana-cap-card__desc">
+                            High-volume smart tags and inlays for tire ID, logistics, and retail.
+                        </p>
+                    </div>
+                </a>
+
+                @* OSAT *@
+
+                @* Microelectronics *@
+
+                @* Automation *@
+
+                @* RFID & Smart Tags *@
+
+                @* DFx & JDM Collaboration *@
 
             </div>@* /track *@
 

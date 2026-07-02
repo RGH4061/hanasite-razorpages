@@ -151,12 +151,31 @@
 .auto-cta p { font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,0.78); margin: 0; max-width: 460px; }
 .auto-cta .actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-/* sub-market (spoke) sidebar */
-.auto-spoke-grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 264px minmax(0,1fr); background: #fff; }
+/* sub-market (spoke) sidebar — full-bleed, left-anchored, collapsible */
+.auto-spoke-grid { display: grid; grid-template-columns: 264px minmax(0,1fr); background: #fff;
+  transition: grid-template-columns 200ms ease-out; }
+.auto-spoke-grid.cpsb-col { grid-template-columns: 56px minmax(0,1fr); }
 .auto-side { background: var(--bg); border-right: 1px solid var(--line); padding: 26px 0 40px; }
 .auto-side .side-head { padding: 0 16px 12px 24px; display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid var(--line); margin-bottom: 8px; font-size: 10px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+/* collapse toggle button (injected by automotive.js) */
+.auto-side-toggle { width: 24px; height: 24px; flex-shrink: 0; border: 1px solid var(--line); border-radius: 4px;
+  background: #fff; color: var(--accent); cursor: pointer; padding: 0;
+  display: flex; align-items: center; justify-content: center; }
+.auto-side-toggle svg { width: 13px; height: 13px; transition: transform 180ms ease; transform: rotate(180deg); }
+.cpsb-col .auto-side-toggle svg { transform: none; }
+/* hide the unwanted per-item lucide icons */
+.auto-side .s > i[data-lucide], .auto-side .s > svg.lucide { display: none; }
+/* collapsed-state: hide labels, center items, show 2-letter initials */
+.auto-side .s .ini { display: none; font-family: var(--font-mono); font-size: 10px; font-weight: 700; }
+.cpsb-col .auto-side .side-head-label,
+.cpsb-col .auto-side .helper,
+.cpsb-col .auto-side .s > span:not(.ini),
+.cpsb-col .auto-side .s .soon { display: none; }
+.cpsb-col .auto-side .side-head { justify-content: center; padding: 0 0 12px; }
+.cpsb-col .auto-side .s { justify-content: center; padding: 11px 0; }
+.cpsb-col .auto-side .s .ini { display: inline; }
 .auto-side .s { display: flex; align-items: center; gap: 10px; padding: 10px 24px; font-size: 13px; font-weight: 500;
   color: var(--ink-2); text-decoration: none; border-left: 2px solid transparent; }
 .auto-side .s.active { font-weight: 700; color: var(--accent); background: #fff; border-left-color: var(--accent); }
@@ -185,16 +204,52 @@
 .auto-caplink .specs .row .l { font-size: 11.5px; color: var(--ink-3); }
 .auto-caplink .specs .row .v { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink); font-weight: 500; }
 
+/* ============================================================================
+   Responsive — the automotive hub + spokes reflow to a single stackable column
+   at tablet/phone widths. Desktop layout is unchanged above 1024px. Grids that
+   are set with inline styles (advantage cards, plant cards, footer) are variable
+   or per-element, so they are overridden here with !important.
+   ========================================================================== */
 @media (max-width: 1024px) {
+  /* HERO: interactive car on top, "parts we produce" legend directly beneath it */
   .auto-cutaway { grid-template-columns: 1fr; }
   .auto-subgrid { grid-template-columns: 1fr 1fr; }
   .auto-cta .inner { grid-template-columns: 1fr; }
+  .auto-plants { grid-template-columns: repeat(3, 1fr) !important; }
 }
+
+@media (max-width: 900px) {
+  /* shared header / footer chrome — wrap the nav, drop hover mega-menus, stack footer */
+  .hana-wrap { padding-left: 20px; padding-right: 20px; }
+  .hana-util-bar .hana-wrap { height: auto !important; flex-wrap: wrap; gap: 8px 16px;
+    padding-top: 8px; padding-bottom: 8px; }
+  .hana-util-bar .hana-wrap > div { flex-wrap: wrap; }
+  .hana-util-bar [style*="min-width:220px"] { min-width: 0 !important; }
+  .hana-header .hana-wrap[style*="gap:32px"] { flex-wrap: wrap !important; gap: 12px 16px !important; }
+  .hana-header nav[aria-label="Primary navigation"] { order: 3; width: 100%; margin-left: 0 !important;
+    margin-top: 12px; flex-wrap: wrap !important; gap: 12px 18px !important; }
+  .hana-header nav[aria-label="Primary navigation"] .hana-nav-chevron { display: none !important; }
+  .hana-header .hana-mega { display: none !important; }
+  .hana-footer .hana-wrap[style*="grid-template-columns:1.4fr"] { grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important; }
+  /* page sections → collapse multi-column grids */
+  .auto-advantage [style*="grid-template-columns:repeat(2, 1fr)"] { grid-template-columns: 1fr !important; }
+  .auto-plants { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
 @media (max-width: 680px) {
+  /* every section is now a single full-width column */
+  .auto-page h1 { font-size: 32px !important; }
   .auto-subgrid { grid-template-columns: 1fr; }
   .auto-spec { flex-wrap: wrap; }
   .auto-spec .cell { flex: 1 0 50%; }
+  .auto-spec .cell:nth-child(2) { border-right: none; }
+  .auto-plants { grid-template-columns: 1fr !important; }
   .auto-caplink { grid-template-columns: 1fr; }
   .auto-spoke-grid { grid-template-columns: 1fr; }
+  .auto-spoke-grid.cpsb-col { grid-template-columns: 1fr; }
+  .auto-side-toggle { display: none; }
   .auto-side { border-right: none; border-bottom: 1px solid var(--line); }
+  .hana-footer .hana-wrap[style*="grid-template-columns:1.4fr"] { grid-template-columns: 1fr !important;
+    gap: 28px !important; }
 }

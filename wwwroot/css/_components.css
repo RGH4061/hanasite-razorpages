@@ -227,18 +227,19 @@ body {
 }
 
 .hana-cap-card__icon-area {
-  padding: 28px 20px 24px;
+  padding: 18px 20px 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--ink);
   background-image: radial-gradient(rgba(18,131,221,0.12) 1px, transparent 1.2px);
   background-size: 14px 14px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, #000 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 70% at center, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
   transition: color 150ms ease;
 }
 .hana-cap-card:hover .hana-cap-card__icon-area { color: var(--hana-blue); }
+.hana-cap-icon { display: block; width: 88px; height: 88px; object-fit: contain; }
 
 .hana-cap-card__body { padding: 0 20px 22px; }
 .hana-cap-card__title {
@@ -322,15 +323,14 @@ body {
 
 .hana-tile-name {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.018em;
   color: #ffffff;
   margin: 0 0 3px;
   transition: color 180ms ease;
 }
-.hana-tile-name--medium { font-size: 20px; }
-.hana-tile-name--hero { font-size: 26px; }
+.hana-tile-name--hero { font-size: 15px; }
 
 .hana-tile-body {
   font-family: var(--font-text);
@@ -556,4 +556,142 @@ body {
   .hana-footer [style*="grid-template-columns:1.4fr"] {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* ============================================================
+   Mobile header — ≤900px  (Option C: dark half-width slide-in)
+   Compact sticky bar + right-docked accordion built by
+   js/mobile-nav.js from the existing header markup. Desktop
+   (≥901px) is untouched — all injected chrome is display:none
+   here and only revealed inside the ≤900px media query.
+   ============================================================ */
+
+.hana-mnav-burger,
+.hana-mnav-panel,
+.hana-mnav-backdrop { display: none; }
+
+@media (max-width: 900px) {
+
+  /* ── Compact sticky bar ─────────────────────────────── */
+  .hana-header { position: sticky; top: 0; z-index: 200; }
+  /* utility bar → slim ticker only (right cluster moves into the menu) */
+  .hana-util-bar .hana-wrap > div:last-child { display: none !important; }
+  /* hide the desktop hover nav + its mega panels on touch */
+  .hana-header nav[aria-label="Primary navigation"] { display: none !important; }
+  .hana-header .hana-mega { display: none !important; }
+  /* tighten the nav row: logo left · Contact + burger right */
+  .hana-header #hana-nav-wrap > div > .hana-wrap {
+    padding-top: 11px !important; padding-bottom: 11px !important; gap: 14px !important;
+  }
+  .hana-header #hana-nav-wrap img[alt="Hana"] { width: 150px !important; height: 48px !important; }
+  .hana-header #hana-nav-wrap .hana-btn { padding: 11px 16px !important; font-size: 11px !important; }
+
+  .hana-mnav-burger {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; padding: 0; background: #fff; color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--radius-button);
+    cursor: pointer; transition: color 150ms ease, border-color 150ms ease;
+  }
+  .hana-mnav-burger:hover { color: var(--hana-blue); border-color: var(--hana-blue); }
+  .hana-mnav-burger svg { width: 20px; height: 20px; }
+
+  /* ── Backdrop ───────────────────────────────────────── */
+  .hana-mnav-backdrop {
+    display: block; position: fixed; inset: 0; background: rgba(3,10,23,0.5);
+    opacity: 0; transition: opacity 240ms ease; z-index: 300;
+  }
+  .hana-mnav-backdrop.is-open { opacity: 1; }
+  .hana-mnav-backdrop[hidden] { display: none; }
+
+  /* ── Slide-in panel (dark, half width) ──────────────── */
+  .hana-mnav-panel {
+    display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
+    height: 100%; height: 100dvh; width: 50%;
+    background: var(--hana-blue-deep); border-left: 1px solid rgba(255,255,255,0.12);
+    box-shadow: -24px 0 48px rgba(3,10,23,0.32);
+    transform: translateX(100%); transition: transform 300ms cubic-bezier(0.2,0.6,0.2,1);
+    z-index: 301; font-family: var(--font-text);
+  }
+  .hana-mnav-panel.is-open { transform: translateX(0); }
+  .hana-mnav-panel[hidden] { display: none; }
+
+  .hana-mnav-head {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-end;
+    padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.14);
+  }
+  .hana-mnav-close {
+    width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18);
+    color: #fff; cursor: pointer; border-radius: 6px;
+  }
+  .hana-mnav-close svg { width: 18px; height: 18px; }
+
+  .hana-mnav-scroll { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; }
+  .hana-mnav-scroll::-webkit-scrollbar { width: 0; }
+
+  /* ── Accordion ──────────────────────────────────────── */
+  .hana-macc { list-style: none; margin: 0; padding: 0; }
+  .hana-macc-item { border-bottom: 1px solid rgba(255,255,255,0.10); }
+  .hana-macc-row { display: flex; align-items: center; min-height: 56px; transition: background 150ms ease; }
+  .hana-macc-item.is-open .hana-macc-row { background: rgba(18,131,221,0.20); }
+  .hana-macc-name {
+    flex: 1 1 auto; display: flex; align-items: center; padding: 0 20px; min-height: 56px;
+    font-weight: 600; font-size: 13px; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #fff; text-decoration: none;
+  }
+  .hana-macc-item.is-open .hana-macc-name { color: #7EC8FF; }
+  .hana-macc-tog {
+    flex: 0 0 auto; width: 56px; min-height: 56px; align-self: stretch;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: none; border: none; border-left: 1px solid rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.55); cursor: pointer;
+  }
+  .hana-macc-item.is-open .hana-macc-tog { color: #7EC8FF; }
+  .hana-macc-tog svg { width: 16px; height: 16px; transition: transform 200ms ease; }
+  .hana-macc-item.is-open .hana-macc-tog svg { transform: rotate(180deg); }
+
+  /* expanded body — darker inset + blue accent, cloned desktop content recolored */
+  .hana-macc-body {
+    background: rgba(3,10,23,0.34); border-top: 1px solid rgba(18,131,221,0.35);
+    box-shadow: inset 3px 0 0 var(--hana-blue); padding: 8px 20px 18px;
+  }
+  .hana-macc-body[hidden] { display: none; }
+  .hana-macc-body .hana-wrap { max-width: none !important; margin: 0 !important; padding: 0 !important; display: block !important; }
+  .hana-macc-body [style*="grid-template-columns"] { display: block !important; }
+  /* drop the desktop lead column (title/blurb/CTA) — the row name links to the hub */
+  .hana-macc-body [style*="padding-right:40px"] { display: none !important; }
+  .hana-macc-body .hana-wrap > div > div { margin-bottom: 18px; }
+  .hana-macc-body .hana-wrap > div > div:last-child { margin-bottom: 0; }
+  /* recolor cloned content for the dark panel */
+  .hana-macc-body [style*="var(--ink-3)"] { color: rgba(255,255,255,0.55) !important; }
+  .hana-macc-body [style*="var(--ink-2)"] { color: rgba(255,255,255,0.80) !important; }
+  .hana-macc-body [style*="var(--ink)"]:not([style*="var(--ink-"]) { color: #fff !important; }
+  .hana-macc-body [style*="var(--line)"] { border-color: rgba(255,255,255,0.14) !important; }
+  .hana-macc-body .hana-mega-sub-link { color: rgba(255,255,255,0.80) !important; }
+  .hana-macc-body .hana-mega-sub-link:hover { color: #fff !important; }
+  .hana-macc-body .hana-mega-name { color: #fff; }
+  .hana-macc-body .hana-mega-card:hover { background: rgba(255,255,255,0.06) !important; }
+  .hana-macc-body .hana-mega-group-heading { color: #7EC8FF !important; }
+  .hana-macc-body .hana-spec-label[style] { color: rgba(126,200,255,0.85) !important; }
+  .hana-macc-body .hana-link { color: #7EC8FF !important; }
+
+  /* ── Foot — search label + icon field + util links ──── */
+  .hana-mnav-foot { flex: 0 0 auto; padding: 14px 20px 22px; border-top: 1px solid rgba(255,255,255,0.14); background: rgba(3,10,23,0.20); }
+  .hana-mnav-slabel {
+    font-family: var(--font-mono); font-weight: 500; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;
+  }
+  .hana-mnav-search {
+    display: flex; align-items: center; min-height: 42px; padding: 0 12px; margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06);
+    border-radius: 6px; color: rgba(255,255,255,0.55);
+  }
+  .hana-mnav-search svg { width: 15px; height: 15px; }
+  .hana-mnav-utrow { display: flex; align-items: center; gap: 20px; }
+  .hana-mnav-utrow a {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 40px;
+    color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px;
+  }
+  .hana-mnav-utrow a:hover { color: #fff; }
+  .hana-mnav-utrow svg { width: 14px; height: 14px; }
 }

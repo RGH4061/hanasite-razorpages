@@ -137,6 +137,8 @@
     border-bottom: none;
   }
   .hero-inner {
+    position: relative;
+    z-index: 2;
     max-width: var(--max);
     margin: 0 auto;
     padding: var(--s-7) var(--s-6) var(--s-6);

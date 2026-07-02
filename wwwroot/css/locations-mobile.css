@@ -1,0 +1,32 @@
+/* ============================================================
+   locations-mobile.css — responsive layer for the Locations
+   hub + six plant pages. These pages are built with desktop
+   inline styles; these rules retrofit small-screen behaviour
+   (same approach as homepage-mobile.css). Loaded AFTER the
+   page styles; !important is needed to beat inline styles.
+   ============================================================ */
+
+/* ── Tablet: split layouts → single column ────────────────── */
+@media (max-width: 900px) {
+  /* two-column content splits (text + media, 64px gutter) */
+  [style*="grid-template-columns:1fr 1fr;gap:64px"] { grid-template-columns: 1fr !important; gap: 32px !important; }
+  [style*="grid-template-columns:1.05fr 0.95fr"]    { grid-template-columns: 1fr !important; gap: 32px !important; }
+}
+
+/* ── Phone: everything stacks ─────────────────────────────── */
+@media (max-width: 680px) {
+  /* stat strips: 4 tiles → 2×2 (stays readable) */
+  [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+
+  /* card grids → single column */
+  [style*="grid-template-columns:1fr 1fr;gap:22px"] { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns:repeat(3,1fr)"]    { grid-template-columns: 1fr !important; }
+  [style*="grid-template-columns:repeat(2,1fr)"]    { grid-template-columns: 1fr !important; }
+
+  /* spec rows: 150px label column + value → label stacks above value */
+  [style*="display:flex;gap:20px;padding:13px 0"] { flex-wrap: wrap; row-gap: 4px; }
+  [style*="display:flex;gap:20px;padding:13px 0"] > [style*="width:150px"] { width: 100% !important; }
+
+  /* plant hero: trim the fixed banner height a little on phones */
+  .lc-hero-veil[style*="height:440px"] { height: 380px !important; }
+}

@@ -53,12 +53,27 @@
       }
     }
 
+    function animateScrollBy(delta) {
+      var start = track.scrollLeft;
+      var max = track.scrollWidth - track.clientWidth;
+      var target = Math.max(0, Math.min(start + delta, max));
+      var t0 = null, dur = 320;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        track.scrollLeft = start + (target - start) * ease;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
     btnPrev.addEventListener('click', function () {
-      track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+      animateScrollBy(-getCardWidth());
     });
 
     btnNext.addEventListener('click', function () {
-      track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+      animateScrollBy(getCardWidth());
     });
 
     track.addEventListener('scroll', syncButtons, { passive: true });
