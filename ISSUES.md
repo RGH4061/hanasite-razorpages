@@ -15,6 +15,26 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
+- [ ] **Asset cleanup + WebP conversion (done in this repo 3 Jul, NOT yet in Design
+  source — next export will revert it unless synced with exclusions).**
+  - Deleted 14 dead `wwwroot` assets (~8 MB): 7 were byte-identical duplicates of images
+    used under other names (`Hana_bkk.jpg`, `automotive.jpeg` ×2, `medical.jpeg`,
+    `rfid-tire.jpeg`, `telecommunications.jpeg`, `video-placeholder-factory.jpg`,
+    `photos/homepage-markets-industrial.png`), plus genuinely unused `world-map.png`,
+    `photos/homepage-what-sets-apart.png`, `cleanroom-smt-line.png`, and 3 white logo
+    variants. Also deleted `README 2.md` (stale macOS duplicate).
+  - Converted 6 photo PNGs → WebP at q82 (~13 MB → ~1.2 MB): `ayutthaya-facility`,
+    `ohio-facility`, `automotive-cutaway`, `photos/power-module-ecu`, `photo-cleanroom`,
+    `jiaxing-facility`; updated the 9 referencing pages. **The Design source still holds
+    the PNGs and `.png` references** — ideally swap them there too, otherwise re-apply
+    after each export (same drill as the mobile link tags below).
+- [ ] **Razor `@` escaping — export generator emits bare `@` in two places (build
+  breaker; fixed in repo 3 Jul, needs fixing at source).** `dotnet build` failed on:
+  `Pages/Locations/Index.cshtml` inline `<style>` had `@media` (must be `@@media` in
+  Razor — the export escapes it correctly in 3 other files but missed this one), and
+  `Pages/Capabilities/SmtAssembly.cshtml` had the literal text `±20 µm @ 6σ` (bare `@`
+  before a space; now `&#64;`). If the site "ran fine" before, it was a stale build —
+  HEAD did not compile until these fixes.
 - [ ] **Section-body mobile optimisation — Locations / Investors / About / Capabilities
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
