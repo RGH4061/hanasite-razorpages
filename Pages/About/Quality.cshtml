@@ -5,13 +5,28 @@
 }
 @section Head {
     <link rel="stylesheet" href="~/css/about-quality.css" />
+    <style>
+      .hero-band { background: var(--bg, #F7F8FA) !important; }
+      .cert-band {
+        position: relative; scroll-margin-top: 72px;
+        border-top: 1px solid var(--line, #D2D7DE); border-bottom: 1px solid var(--line, #D2D7DE);
+        background-image:
+          linear-gradient(rgba(247,248,250,0.62), rgba(247,248,250,0.70)),
+          url('/images/DSC_5075.jpg');
+        background-size: cover; background-position: center; background-repeat: no-repeat;
+      }
+      .cert-band .section { position: relative; z-index: 1; }
+      .anchor-nav--onphoto { position: relative; z-index: 2; background: transparent; border-bottom: none; }
+      .anchor-nav--onphoto .anchor-chip { background: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.9); }
+      .anchor-nav--onphoto .anchor-chip:hover { background: #fff; color: var(--hana-blue, #1283DD); border-color: var(--hana-blue, #1283DD); }
+    </style>
 }
 
 @* Awards, recognition & certifications. Static content; page CSS in
    ~/css/about-quality.css; backgrounds via ~/js/hana-backgrounds.js. *@
 
 <!-- ── Hero band: breadcrumb + hero over flow background ── -->
-<div class="hero-band hero-band--flow" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="none">
+<div class="hero-band">
 
   <div class="subbar">
     <div class="subbar-inner">
@@ -34,16 +49,15 @@
   </section>
 </div>
 
-<!-- ── Anchor subnav ── -->
-<nav class="anchor-nav">
-  <div class="anchor-nav-inner">
-    <a class="anchor-chip" href="#certifications">Certifications</a>
-    <a class="anchor-chip" href="#recognition">Awards</a>
-  </div>
-</nav>
-
 <!-- ── Certifications ── -->
-<section class="section" id="certifications">
+<section class="cert-band" id="certifications">
+  <nav class="anchor-nav anchor-nav--onphoto">
+    <div class="anchor-nav-inner">
+      <a class="anchor-chip" href="#certifications">Certifications</a>
+      <a class="anchor-chip" href="#recognition">Awards</a>
+    </div>
+  </nav>
+  <div class="section">
   <div class="section-head">
     <div class="section-label">Certifications</div>
     <h2>Our Certifications</h2>
@@ -115,6 +129,7 @@
     per-site certification matrix — with certificate numbers and validity dates —
     for the sites relevant to your programme.
   </p>
+  </div>
 </section>
 
 <!-- ── Recognition ── -->

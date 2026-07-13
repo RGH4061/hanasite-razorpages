@@ -77,10 +77,48 @@ const LIFE_DATA = {
 const lifeGrid = document.getElementById('life-grid');
 const lifeSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="2"/><path d="M3 17l4-4 3 3 4-5 7 6"/></svg>';
 
-function lifeCard(card) {
-  const slide = n => '<div class="life-img-slide">' + lifeSvg + '<span>Image ' + n + '</span></div>';
+function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+
+// Life-at-Hana photos that exist as files under wwwroot/images/life/. Slides
+// without a photo fall back to the placeholder icon.
+const LIFE_PHOTOS = new Set([
+  "life-ayutthaya-annual-company-days-1","life-ayutthaya-annual-company-days-2",
+  "life-ayutthaya-celebrations-1","life-ayutthaya-celebrations-2",
+  "life-ayutthaya-community-outreach-1",
+  "life-ayutthaya-technical-training-programme-1","life-ayutthaya-technical-training-programme-2",
+  "life-ayutthaya-health-and-wellbeing-1","life-ayutthaya-health-and-wellbeing-2",
+  "life-ayutthaya-student-scholarship-1",
+  "life-bangkok-annual-company-days-1",
+  "life-bangkok-celebrations-1","life-bangkok-celebrations-2",
+  "life-bangkok-community-outreach-1",
+  "life-bangkok-technical-training-programme-1",
+  "life-bangkok-health-and-wellbeing-1","life-bangkok-health-and-wellbeing-2",
+  "life-bangkok-student-scholarship-1","life-bangkok-student-scholarship-2",
+  "life-lamphun-annual-company-days-1","life-lamphun-annual-company-days-2",
+  "life-lamphun-celebrations-1","life-lamphun-celebrations-2","life-lamphun-celebrations-3",
+  "life-lamphun-community-outreach-1","life-lamphun-community-outreach-2",
+  "life-lamphun-technical-training-programme-1","life-lamphun-technical-training-programme-2",
+  "life-lamphun-health-and-wellbeing-1","life-lamphun-health-and-wellbeing-2","life-lamphun-health-and-wellbeing-3",
+  "life-lamphun-student-scholarship-1","life-lamphun-student-scholarship-2","life-lamphun-student-scholarship-3",
+  "life-kohkong-annual-company-days-1","life-kohkong-celebrations-1",
+  "life-kohkong-community-outreach-1","life-kohkong-technical-training-programme-1",
+  "life-kohkong-health-and-wellbeing-1","life-kohkong-student-scholarship-1"
+]);
+
+function lifeCard(card, loc) {
+  const base = 'life-' + loc + '-' + slugify(card.title) + '-';
+  let slides = '';
+  for (let n = 1; n <= 6; n++) {
+    const id = base + n;
+    if (!LIFE_PHOTOS.has(id)) continue;
+    slides += '<div class="life-img-slide"><img class="life-photo" loading="lazy" ' +
+              'src="/images/life/' + id + '.webp" alt="' + card.title + ' at Hana ' + loc + '" /></div>';
+  }
+  if (!slides) {
+    slides = '<div class="life-img-slide">' + lifeSvg + '<span>Photo coming soon</span></div>';
+  }
   return '<div class="life-img">' +
-           '<div class="life-img-scroll">' + slide(1) + slide(2) + slide(3) + '</div>' +
+           '<div class="life-img-scroll">' + slides + '</div>' +
            '<div class="life-img-cap">' +
              '<div class="cap-title">' + card.title + '</div>' +
              '<p class="cap-desc">' + card.desc + '</p>' +
@@ -89,7 +127,7 @@ function lifeCard(card) {
 }
 
 function renderLife(loc) {
-  lifeGrid.innerHTML = LIFE_DATA[loc].map(lifeCard).join('');
+  lifeGrid.innerHTML = LIFE_DATA[loc].map(card => lifeCard(card, loc)).join('');
   initCarousels(lifeGrid);
 }
 

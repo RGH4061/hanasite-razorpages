@@ -56,6 +56,17 @@
   @media (max-width: 820px) { .hero-summary { font-size: 17px; } }
   .btn-row { display: flex; flex-wrap: wrap; gap: var(--s-3); }
 
+  /* hero HQ photo (right) */
+  .hero-photo { position: absolute; top: 0; right: 0; bottom: 0; width: 52%; min-width: 380px; max-width: 960px; z-index: 0; overflow: hidden; pointer-events: none; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.55) 13%, #000 38%);
+            mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.55) 13%, #000 38%); }
+  @media (min-width: 861px) {
+    .hero h1 { max-width: 46%; }
+    .hero-summary { max-width: 45%; }
+  }
+  @media (max-width: 860px) { .hero-photo { display: none; } }
+
   /* ── Pillars ── */
   .pillar { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(36px, 5vw, 80px); align-items: start; }
   @media (max-width: 880px) { .pillar { grid-template-columns: 1fr; gap: var(--s-7); } }
@@ -147,18 +158,39 @@
   .vi-points strong { display: block; font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 4px; }
   .vi-points p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; max-width: none; }
 
+  /* vertical-integration — dark image band */
+  .vi-band { background: #000; position: relative; overflow: hidden; border-top: none; }
+  .vi-band::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: url("../images/vertical-integration-bg.jpg") right center / cover no-repeat;
+  }
+  .vi-band::after {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(90deg, #000 0%, #000 30%, rgba(0,0,0,0.74) 60%, rgba(0,0,0,0.38) 100%);
+  }
+  .vi-band .band-inner { position: relative; z-index: 1; }
+  .vi-band h2 { color: #fff; }
+  .vi-band .vi-head p { color: rgba(255,255,255,0.78); }
+  .vi-band .vi-rail-name { color: rgba(255,255,255,0.6); }
+  .vi-band .vi-rail-line { border-top-color: rgba(255,255,255,0.24); }
+  .vi-band .vi-rail-line::before, .vi-band .vi-rail-line::after { background: rgba(255,255,255,0.24); }
+  .vi-band .vi-arrow--phase { color: var(--hana-blue-soft); }
+  .vi-band .vi-points { border-top-color: rgba(255,255,255,0.18); }
+  .vi-band .vi-points strong { color: #fff; }
+  .vi-band .vi-points p { color: rgba(255,255,255,0.72); }
+
   /* track-record image slot */
   .tr-shot { margin: 0; }
   .tr-shot image-slot { width: 100%; height: 210px; display: block; border: 1px solid var(--line); border-radius: var(--radius-card); }
   .tr-shot figcaption { margin-top: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--ink-3); text-transform: uppercase; }
 
-  /* ── Vision & Mission (dark) ── */
-  .vm-band { background: var(--hana-blue-deep); border-top: none; position: relative; overflow: hidden; }
+  /* ── Vision & Mission (light, calm) ── */
+  .vm-band { background: var(--surface-2); border-top: 1px solid var(--line-soft); position: relative; overflow: hidden; }
   .vm-band .band-inner { padding-top: clamp(48px, 5.5vw, 72px); padding-bottom: clamp(48px, 5.5vw, 72px); }
   .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); }
   @media (max-width: 760px) { .vm-grid { grid-template-columns: 1fr; gap: var(--s-7); } }
-  .vm-band .pillar-label { color: var(--hana-blue-soft); margin-bottom: var(--s-3); }
-  .vm-text { font-family: var(--font-display); font-weight: 500; font-size: clamp(18px, 2vw, 22px); line-height: 1.42; letter-spacing: -0.01em; color: #fff; margin: 0; max-width: 520px; }
+  .vm-band .pillar-label { color: var(--hana-blue); margin-bottom: var(--s-3); }
+  .vm-text { font-family: var(--font-display); font-weight: 500; font-size: clamp(18px, 2vw, 22px); line-height: 1.42; letter-spacing: -0.01em; color: var(--ink); margin: 0; max-width: 520px; }
 
   /* ── Closing (dark) ── */
   .closing { background: var(--hana-blue-deep); color: #fff; position: relative; overflow: hidden; }

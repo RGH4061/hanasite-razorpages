@@ -5,6 +5,12 @@
 }
 @section Head {
     <link rel="stylesheet" href="~/css/careers-stories.css" />
+    <style>
+      .hero .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: var(--s-7); align-items: center; }
+      .hero-card { width: 500px; max-width: 46vw; background: var(--hana-blue-deep, #0E4A7C); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+      .hero-card img { display: block; width: 100%; height: 320px; object-fit: cover; }
+      @@media (max-width: 820px) { .hero .hero-inner { grid-template-columns: 1fr; align-items: start; } .hero-card { width: 100%; max-width: none; } }
+    </style>
 }
 
 @* Stories — Careers at Hana. Static content + vanilla interactions in ~/js/careers-stories.js. *@
@@ -64,6 +70,9 @@
         <h1>Hana Stories</h1>
         <p class="lead">Hear from engineers, technicians, and operators across all our sites. In their own words — their professional and personal experiences of life at Hana.</p>
       </div>
+      <figure class="hero-card">
+        <img src="~/images/hana-team-heart.jpg" alt="Hana team on the production floor holding a hand-made HANA heart" />
+      </figure>
     </div>
   </section>
 </div>
@@ -89,170 +98,238 @@
 
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 1</span>
+          <img class="story-img" src="~/images/stories/pim-suwannakij.webp" alt="Story from Monthana Banyen, Ayutthaya" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">I started on the line and now I'm leading process improvements across three SMT cells. Hana gave me the training and the space to grow.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Pim Suwannakij</div><div class="role">Process Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2017</span></div>
+            <div class="story-person"><div class="name">Monthana Banyen</div><div class="role">Sr. NPI Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2012</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="lamphun">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 2</span>
+          <img class="story-img" src="~/images/stories/nattaporn-saetang.webp" alt="Story from Hanson Zhou, Jiaxing" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">What I love about Lamphun is how supportive the team is. Everyone shares what they know — there's no gatekeeping. That's how you learn fast.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Nattaporn Saetang</div><div class="role">SMT Operator</div></div>
-            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2020</span></div>
+            <div class="story-person"><div class="name">Hanson Zhou</div><div class="role">QM Section Manager</div></div>
+            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2017</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 3</span>
+          <img class="story-img" src="~/images/stories/somchai-ratchada.webp" alt="Story from Rhodora F. Ceballo, Ayutthaya" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">Every NPI project is different. One week it's a wireless charging module, next week it's an automotive sensor. You're always learning.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Somchai Ratchada</div><div class="role">NPI Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2019</span></div>
+            <div class="story-person"><div class="name">Rhodora F. Ceballo</div><div class="role">Director, Assembly Engineering</div></div>
+            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2005</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="bangkok">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 4</span>
+          <img class="story-img" src="~/images/stories/apinya-boonmee.webp" alt="Story from Sarun Chantaraniyom, Bangkok HQ" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">The variety of customers we support from Bangkok keeps the work fresh. One day you're talking automotive, the next it's medical devices.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Apinya Boonmee</div><div class="role">Customer Account Manager</div></div>
-            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2015</span></div>
+            <div class="story-person"><div class="name">Sarun Chantaraniyom</div><div class="role">Sr. System Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2007</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="kohkong">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 5</span>
+          <img class="story-img" src="~/images/stories/sokha-phon.webp" alt="Story from Thol Channy, Koh Kong" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">When the Koh Kong site opened, I was one of the first hires. Watching it grow from an empty hall to a full assembly facility has been incredible.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Sokha Phon</div><div class="role">Production Supervisor</div></div>
-            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2014</span></div>
+            <div class="story-person"><div class="name">Thol Channy</div><div class="role">Test Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2017</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 6</span>
+          <img class="story-img" src="~/images/stories/thanawat-phromchai.webp" alt="Story from Veasna Thyda, Koh Kong" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">I joined Hana straight out of university through the scholarship programme. Six years later, I'm running my own OSAT line.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Thanawat Phromchai</div><div class="role">OSAT Line Lead</div></div>
-            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2019</span></div>
+            <div class="story-person"><div class="name">Veasna Thyda</div><div class="role">QA Leader</div></div>
+            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2015</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="lamphun">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 7</span>
+          <img class="story-img" src="~/images/stories/wirat-khampan.webp" alt="Story from Patsawan T., Lamphun" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">The Lamphun site feels like home. Many of us come from the local community — when we say we're growing together, we mean it.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Wirat Khampan</div><div class="role">Quality Technician</div></div>
-            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2012</span></div>
+            <div class="story-person"><div class="name">Patsawan T.</div><div class="role">Traffic Officer</div></div>
+            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2017</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="bangkok">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 8</span>
+          <img class="story-img" src="~/images/stories/kanyarat-chaiyaphum.webp" alt="Story from Nutthanun Phataranutmeatikul, Bangkok HQ" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">Working in HR at Hana, I see every part of the business. From recruiting fresh graduates to running our scholarship programme, it's all connected.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Kanyarat Chaiyaphum</div><div class="role">HR Business Partner</div></div>
-            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2018</span></div>
+            <div class="story-person"><div class="name">Nutthanun Phataranutmeatikul</div><div class="role">Secretary to President &amp; COO</div></div>
+            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2006</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 9</span>
+          <img class="story-img" src="~/images/stories/patcharin-sukhum.webp" alt="Story from Pattarapol K., Lamphun" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">I came in as a junior test engineer. Now I lead the test department at Ayutthaya. The path was clear, and the support was real.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Patcharin Sukhum</div><div class="role">Test Engineering Manager</div></div>
-            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2011</span></div>
+            <div class="story-person"><div class="name">Pattarapol K.</div><div class="role">Senior Customer Service Manager</div></div>
+            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2008</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="jiaxing">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 10</span>
+          <img class="story-img" src="~/images/stories/liu-wei.webp" alt="Story from Ryan Wang, Jiaxing" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">Jiaxing is where Hana's group standards meet the speed of the China market. You learn to move quickly without cutting corners on quality.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Liu Wei</div><div class="role">RFID Process Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2016</span></div>
+            <div class="story-person"><div class="name">Ryan Wang</div><div class="role">Sr. Accountant</div></div>
+            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2009</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
       <article class="story-card" data-loc="ohio">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 11</span>
+          <img class="story-img" src="~/images/stories/mike-reynolds.webp" alt="Story from Michelle Urban, Ohio" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">The Ohio site is small but specialised. We design and build the RFID tire tags running on highways across North America. That's something to be proud of.</p>
           <div class="story-meta">
-            <div class="story-person"><div class="name">Mike Reynolds</div><div class="role">RFID Engineering Lead</div></div>
-            <div class="story-place"><span class="story-chip">Ohio</span><span class="story-year">Joined 2010</span></div>
+            <div class="story-person"><div class="name">Michelle Urban</div><div class="role">Accounting Specialist</div></div>
+            <div class="story-place"><span class="story-chip">Ohio</span><span class="story-year">Joined 2017</span></div>
           </div>
         </div>
-        <a href="#" class="read-more">Read full story →</a>
       </article>
 
-    </div>
+      <article class="story-card" data-loc="ohio">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/ohio-2.webp" alt="Story from Mike Hanna, Ohio" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Mike Hanna</div><div class="role">Engineering Manager</div></div>
+            <div class="story-place"><span class="story-chip">Ohio</span><span class="story-year">Joined 2000</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card" data-loc="kohkong">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/kohkong-2.webp" alt="Story from Sourng Rethysak, Koh Kong" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Sourng Rethysak</div><div class="role">Line Leader</div></div>
+            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2015</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card" data-loc="lamphun">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/lamphun-3.webp" alt="Story from Wonnisa S., Lamphun" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Wonnisa S.</div><div class="role">Sr. Product Engineer</div></div>
+            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2011</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card" data-loc="lamphun">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/lamphun-4.webp" alt="Story from Veasna Thyda, Lamphun" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Veasna Thyda</div><div class="role">QA Leader</div></div>
+            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2015</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card" data-loc="jiaxing">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/jiaxing-2.webp" alt="Story from April Xiang, Jiaxing" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">April Xiang</div><div class="role">Project Manager</div></div>
+            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2007</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card" data-loc="jiaxing">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/jiaxing-3.webp" alt="Story from Sophie Yang, Jiaxing" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Sophie Yang</div><div class="role">Executive Secretary</div></div>
+            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2017</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card" data-loc="jiaxing">
+        <div class="story-photo">
+          <img class="story-img" src="~/images/stories/jiaxing-4.webp" alt="Story from Toyma Wang, Jiaxing" />
+          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+        </div>
+        <div class="story-body">
+          <div class="story-meta">
+            <div class="story-person"><div class="name">Toyma Wang</div><div class="role">Engineering Department Manager</div></div>
+            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2004</span></div>
+          </div>
+        </div>
+      </article>
+
     <div class="stories-empty" id="stories-empty">No stories from this location yet — check back soon.</div>
   </div>
 </div>
@@ -267,6 +344,14 @@
     <a href="careers.html#open-roles" class="btn">View open roles →</a>
   </div>
 </section>
+
+<!-- ── Story photo lightbox ── -->
+<div class="story-lightbox" id="story-lightbox" role="dialog" aria-modal="true" aria-label="Expanded story photo">
+  <button class="story-lightbox-close" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
+  </button>
+  <img alt="Story testimonial">
+</div>
 
 @section Scripts {
     <script src="~/js/careers-stories.js"></script>

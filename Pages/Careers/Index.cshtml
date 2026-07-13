@@ -5,6 +5,21 @@
 }
 @section Head {
     <link rel="stylesheet" href="~/css/careers.css" />
+    <style>
+      .story-photo { position: relative; overflow: hidden; }
+      .story-photo .story-photo-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+      .story-photo > svg, .story-photo .photo-label { display:none; }
+      .story-photo .zoom-btn { position:absolute; top:12px; right:12px; z-index:3; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:none; border-radius:8px; cursor:pointer; background: var(--hana-blue, #1283DD); color:#fff; opacity:0; transition:opacity .15s, background .15s; }
+      .story-photo:hover .zoom-btn, .story-photo .zoom-btn:focus-visible { opacity:1; }
+      .story-photo .zoom-btn:hover { background: var(--hana-blue-deep, #0E4A7C); }
+      .story-photo .zoom-btn svg { width:18px; height:18px; }
+      .story-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; background:rgba(9,30,50,0.92); }
+      .story-lightbox.open { display:flex; }
+      .story-lightbox img { max-width:min(1100px,92vw); max-height:92vh; width:auto; height:auto; object-fit:contain; border-radius:8px; border:1px solid rgba(255,255,255,0.15); }
+      .story-lightbox-close { position:absolute; top:20px; right:24px; display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:none; border-radius:10px; background:rgba(255,255,255,0.14); color:#fff; cursor:pointer; }
+      .story-lightbox-close:hover { background:rgba(255,255,255,0.24); }
+      .story-lightbox-close svg { width:20px; height:20px; }
+    </style>
 }
 
 @* Careers landing. Static content + vanilla interactions (tabs, job
@@ -125,8 +140,7 @@
 <div class="ceo-band">
   <div class="ceo-inner">
     <div class="ceo-photo">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      <span>Photo — Richard Han, CEO</span>
+      <img src="~/images/careers-ceo-richard-han.webp" alt="Richard Han, Chief Executive Officer" />
     </div>
     <div class="ceo-text">
       <div class="ceo-from">A message from our CEO</div>
@@ -309,19 +323,18 @@
 
       <article class="story-card">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 1</span>
+          <img class="story-photo-img" src="~/images/careers-story-pim-suwannakij.webp" alt="Monthana Banyen, Sr. NPI Engineer, Ayutthaya" loading="lazy">
+          <button class="zoom-btn" type="button" data-full="/images/careers-story-pim-suwannakij.webp" aria-label="Expand photo to read testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">I started on the line and now I'm leading process improvements across three SMT cells. Hana gave me the training and the space to grow.</p>
           <div class="story-meta">
             <div class="story-person">
-              <div class="name">Pim Suwannakij</div>
-              <div class="role">Process Engineer</div>
+              <div class="name">Monthana Banyen</div>
+              <div class="role">Sr. NPI Engineer</div>
             </div>
             <div class="story-place">
               <span class="story-chip">Ayutthaya</span>
-              <span class="story-year">Joined 2017</span>
+              <span class="story-year">Joined 2012</span>
             </div>
           </div>
         </div>
@@ -330,19 +343,18 @@
 
       <article class="story-card">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 2</span>
+          <img class="story-photo-img" src="~/images/careers-story-nattaporn-saetang.webp" alt="Chanon A-Pornrat, Production staff engineer, Lamphun" loading="lazy">
+          <button class="zoom-btn" type="button" data-full="/images/careers-story-nattaporn-saetang.webp" aria-label="Expand photo to read testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">What I love about Lamphun is how supportive the team is. Everyone shares what they know — there's no gatekeeping. That's how you learn fast.</p>
           <div class="story-meta">
             <div class="story-person">
-              <div class="name">Nattaporn Saetang</div>
-              <div class="role">SMT Operator</div>
+              <div class="name">Chanon A-Pornrat</div>
+              <div class="role">Production staff engineer</div>
             </div>
             <div class="story-place">
               <span class="story-chip">Lamphun</span>
-              <span class="story-year">Joined 2020</span>
+              <span class="story-year">Joined 2009</span>
             </div>
           </div>
         </div>
@@ -351,19 +363,18 @@
 
       <article class="story-card">
         <div class="story-photo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
-          <span class="photo-label">Photo 3</span>
+          <img class="story-photo-img" src="~/images/careers-story-somchai-ratchada.webp" alt="Nunttanun Phataranutmeatkul, Secretary to President & COO, Bangkok" loading="lazy">
+          <button class="zoom-btn" type="button" data-full="/images/careers-story-somchai-ratchada.webp" aria-label="Expand photo to read testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
-          <p class="story-quote">Every NPI project is different. One week it's a wireless charging module, next week it's an automotive sensor. You're always learning.</p>
           <div class="story-meta">
             <div class="story-person">
-              <div class="name">Somchai Ratchada</div>
-              <div class="role">NPI Engineer</div>
+              <div class="name">Nunttanun Phataranutmeatkul</div>
+              <div class="role">Secretary to President & Coo</div>
             </div>
             <div class="story-place">
-              <span class="story-chip">Ayutthaya</span>
-              <span class="story-year">Joined 2019</span>
+              <span class="story-chip">BANGKOK</span>
+              <span class="story-year">Joined 2006</span>
             </div>
           </div>
         </div>
@@ -563,6 +574,25 @@
   /careers · anchors: #open-roles · #stories
 </div>
 
+<div class="story-lightbox" id="story-lightbox" role="dialog" aria-modal="true" aria-label="Expanded story photo">
+  <button class="story-lightbox-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <img alt="Expanded story photo" src="" />
+</div>
+
 @section Scripts {
     <script src="~/js/careers.js"></script>
+    <script>
+    (function(){
+      var lb = document.getElementById('story-lightbox');
+      if(!lb) return;
+      var img = lb.querySelector('img');
+      function open(src){ img.src = src; lb.classList.add('open'); }
+      function close(){ lb.classList.remove('open'); img.src=''; }
+      document.querySelectorAll('.story-photo .zoom-btn').forEach(function(b){
+        b.addEventListener('click', function(){ open(b.getAttribute('data-full')); });
+      });
+      lb.addEventListener('click', function(e){ if(e.target===lb || e.target.closest('.story-lightbox-close')) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    })();
+    </script>
 }

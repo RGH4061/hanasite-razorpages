@@ -6,6 +6,22 @@
 @section Head {
     <link rel="stylesheet" href="~/css/investors-faq.css" />
     <link rel="stylesheet" href="~/css/investors-mobile.css" />
+    <style>
+      .frame.has-poster {
+        background-image:
+          url('/images/set-oppday-q1-2026.png'),
+          radial-gradient(120% 120% at 50% 40%, #16324A 0%, #0B2236 70%, #08192A 100%);
+        background-size: cover, cover;
+        background-position: center center, center center;
+        background-repeat: no-repeat, no-repeat;
+      }
+      .frame.has-poster::after {
+        background-image: linear-gradient(180deg, rgba(6,18,30,0) 40%, rgba(6,18,30,0.45) 100%);
+        background-size: auto;
+      }
+      .frame.has-poster .play,
+      .frame.has-poster .embed-tag { z-index: 2; }
+    </style>
 }
 
 @* Investor FAQ — Hana Microelectronics. Static content. *@

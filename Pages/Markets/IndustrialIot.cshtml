@@ -1,0 +1,200 @@
+@page "/markets/industrial-iot"
+@{
+    ViewData["Title"] = "Industrial & IoT Electronics Manufacturing — Hana Microelectronics";
+    ViewData["Description"] = "Hana manufactures industrial and IoT electronics — ruggedised PCBA and box build, connected device assembly, RFID asset tracking and power modules — across Thailand and China.";
+}
+
+@{
+    var products = new[] { "Environmental monitors", "Meters", "Controllers", "Connected sensors", "Label printers", "Drone sensors" };
+
+    var points = new[] {
+        new { t = "Ruggedised build",       d = "Conformal coating, mixed-technology boards and through-hole for heavy connectors — assembly choices made for heat, vibration and moisture, not the bench." },
+        new { t = "Long-programme support", d = "Change control and obsolescence discipline over runs that last years, so the product you qualify is the product that keeps shipping." },
+        new { t = "More than one country",  d = "The same processes run across our sites in Thailand and China — dual-source capacity within one company, not a migration." }
+    };
+
+    var subs = new[] {
+        new { name = "PCBA & box build",    cap = "Conformal-coated industrial board", blurb = "Ruggedised board assembly through to the tested, finished unit — conformal coating, mixed-technology boards and functional test for controls and equipment that run for decades." },
+        new { name = "IoT device assembly", cap = "Connected device on the line",      blurb = "Complete connected devices assembled and tested as one unit — board, radio, sensors, battery and enclosure — with wireless functional test before shipment." },
+        new { name = "RFID asset tracking", cap = "Industrial UHF asset tag",          blurb = "Rugged UHF tags and inlays that survive tools, pallets and outdoor exposure, so plants, fleets and warehouses can track equipment — built on 20+ years of RFID manufacturing." },
+        new { name = "Power modules",       cap = "IGBT power module",                 blurb = "The power modules inside EV chargers, solar inverters and motor drives — IGBT and SiC assembly built around the thermal path and the duty cycle of industrial energy." }
+    };
+
+    var locs = new[] {
+        new { country = "Thailand", city = "Lamphun",   role = "PCBA · EMS",         href = "/locations/lamphun" },
+        new { country = "Thailand", city = "Ayutthaya", role = "OSAT · PCBA",        href = "/locations/ayutthaya" },
+        new { country = "China",    city = "Jiaxing",   role = "EMS · OSAT · RFID",  href = "/locations/jiaxing" }
+    };
+
+    var faqs = new[] {
+        new { q = "What does Hana build for industrial and IoT?", a = "Ruggedised PCBAs and full box-build products, complete connected IoT devices, RFID asset-tracking tags, and power modules for industrial energy and drives. In most cases we can build the complete unit, not only the board." },
+        new { q = "Can Hana build products designed to last 10–20 years?", a = "Yes. Long-life industrial programs are the norm here rather than the exception. We apply conformal coating and mixed-technology assembly for harsh environments, and hold change control and obsolescence discipline over long production runs." },
+        new { q = "Which sites serve industrial programs?", a = "Industrial work runs across our sites in Thailand and China. We treat this as dual-source capacity within one company — a program can qualify at a second site for supply continuity." },
+        new { q = "Does Hana offer conformal coating and ruggedised finishing?", a = "Conformal coating and harsh-environment finishing are part of our industrial box-build scope. The exact finish set per site is confirmed during the program review." }
+    };
+}
+
+<style>
+  .ind-wrap{ max-width:1240px; margin:0 auto; padding-left:32px; padding-right:32px; }
+  .ind-loc{ transition:border-color 160ms ease, box-shadow 160ms ease; }
+  .ind-loc:hover{ border-color:color-mix(in srgb, var(--hana-blue) 50%, var(--line)); box-shadow:0 6px 18px rgba(18,131,221,.08); }
+  details.ind-faq{ border-bottom:1px solid var(--line); }
+  details.ind-faq:first-of-type{ border-top:1px solid var(--line); }
+  details.ind-faq > summary{ list-style:none; cursor:pointer; padding:20px 0; display:flex; align-items:flex-start; gap:16px; font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; line-height:1.3; }
+  details.ind-faq > summary::-webkit-details-marker{ display:none; }
+  .ind-faq-mk{ margin-top:2px; flex-shrink:0; display:inline-flex; color:var(--hana-blue); transition:transform 180ms ease; }
+  details.ind-faq[open] .ind-faq-mk{ transform:rotate(90deg); }
+  .ind-faq-a{ margin:0 0 22px 32px; max-width:720px; font-family:var(--font-text); font-size:14.5px; color:var(--ink-2); line-height:1.65; }
+  .ind-ph{ position:relative; overflow:hidden; border:1px solid var(--line); background:var(--surface); display:flex; align-items:center; justify-content:center; background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px); }
+  .ind-ph .cap{ font-family:var(--font-mono); font-size:11px; color:var(--ink-3); text-align:center; padding:0 18px; line-height:1.5; }
+  @@media(max-width:900px){ .ind-hero-grid{ grid-template-columns:1fr !important; } .ind-cols-3{ grid-template-columns:1fr !important; } .ind-cols-4{ grid-template-columns:1fr 1fr !important; } }
+</style>
+
+@* breadcrumb *@
+<div style="border-bottom:1px solid var(--line);background:var(--bg);">
+  <div class="ind-wrap" style="padding-top:11px;padding-bottom:11px;font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;align-items:center;">
+    <a href="#" class="hana-link" style="font-size:12.5px;">Markets</a>
+    <span style="color:var(--line);">&rsaquo;</span>
+    <span style="color:var(--ink);font-weight:600;">Industrial &amp; IoT</span>
+  </div>
+</div>
+
+@* hero *@
+<div data-hana-bg="flow" data-variant="light" data-fade="none" style="position:relative;overflow:hidden;background:var(--bg);">
+  <div class="ind-wrap" style="position:relative;z-index:1;padding-top:64px;padding-bottom:56px;">
+    <div class="ind-hero-grid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:52px;align-items:center;margin-bottom:40px;">
+      <div style="min-width:0;">
+        <div style="font-family:var(--font-text);font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Markets we serve</div>
+        <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 20px;text-wrap:balance;">Industrial and IoT electronics manufacturing</h1>
+        <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;margin:0 0 30px;max-width:520px;text-wrap:pretty;">The controllers, connected devices and power electronics behind industrial equipment — built for the long service lives, harsh environments and supply continuity these products demand. We assemble the board and, where you need it, the finished unit.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="/contact" class="hana-btn hana-btn-primary" style="padding:12px 22px;font-size:12px;">Talk to us <i data-lucide="arrow-right" style="width:14px;height:14px;margin-left:6px;"></i></a>
+          <a href="#sub-markets" class="hana-btn hana-btn-secondary" style="padding:12px 22px;font-size:12px;">Explore Industrial &amp; IoT product types</a>
+        </div>
+      </div>
+      <div style="min-width:0;">
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);">
+          <img src="~/images/industrial-iot-hero.webp" alt="Industrial flow meter on a process line" style="display:block;width:100%;height:432px;object-fit:cover;object-position:center;" />
+          <div style="position:absolute;left:12px;bottom:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:rgba(255,255,255,0.9);text-shadow:0 1px 4px rgba(0,0,0,0.6);text-transform:uppercase;">Industrial flow meter on a process line</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:16px;background:var(--surface);border-radius:var(--radius-spec);padding:18px 24px;">
+      <span class="hana-spec-label" style="flex-shrink:0;">Product examples</span>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        @foreach (var p in products)
+        {
+          <span style="font-family:var(--font-text);font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px 14px;">@p</span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+@* market context (dark) *@
+<div style="position:relative;overflow:hidden;background:var(--hana-blue-deep);">
+  <img src="~/images/wire-bond-line.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;" />
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.88) 32%, rgba(0,0,0,0.62) 62%, rgba(0,0,0,0.42) 100%);"></div>
+  <div class="ind-wrap" style="position:relative;z-index:1;padding-top:64px;padding-bottom:64px;">
+    <div style="max-width:760px;margin-bottom:40px;">
+      <div style="font-family:var(--font-text);font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7EC8FF;margin-bottom:14px;">Why industrial buyers choose Hana</div>
+      <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;color:#fff;line-height:1.15;letter-spacing:-0.02em;margin:0 0 18px;text-wrap:balance;">Built for the long life of industrial electronics</h2>
+      <p style="font-family:var(--font-text);font-size:15.5px;color:rgba(255,255,255,0.74);line-height:1.7;margin:0;text-wrap:pretty;">Industrial and IoT products are not consumer volume ramps. They sit in cabinets, plants and outdoor enclosures for a decade or more, and they have to keep working. That changes what a manufacturer has to be good at: ruggedised assembly, disciplined change control over long production runs, and the ability to keep building a product after its first components go end-of-life. We build to that standard, and we run the same qualified processes across more than one country so a program has somewhere to go if it needs to.</p>
+    </div>
+    <div class="ind-cols-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+      @{ var pi = 0; }
+      @foreach (var pt in points)
+      {
+        pi++;
+        <div style="padding-top:18px;border-top:2px solid #7EC8FF;">
+          <div style="font-family:var(--font-mono);font-size:11px;color:#7EC8FF;margin-bottom:8px;">0@pi</div>
+          <div style="font-family:var(--font-display);font-size:18px;font-weight:600;color:#fff;letter-spacing:-0.01em;margin-bottom:8px;">@pt.t</div>
+          <p style="font-family:var(--font-text);font-size:13.5px;color:rgba(255,255,255,0.68);line-height:1.6;margin:0;">@pt.d</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@* sub-markets *@
+<div id="sub-markets" data-hana-bg="pcb" data-variant="light" data-fade="none" style="position:relative;overflow:hidden;background:#fff;border-top:1px solid var(--line);">
+  <div class="ind-wrap" style="position:relative;z-index:1;padding-top:72px;padding-bottom:52px;">
+    <div style="margin-bottom:34px;max-width:700px;">
+      <div style="font-family:var(--font-text);font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">What we build</div>
+      <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--ink);line-height:1.15;letter-spacing:-0.02em;margin:0 0 14px;">Industrial &amp; IoT products we build</h2>
+      <p style="font-family:var(--font-text);font-size:15.5px;color:var(--ink-2);line-height:1.6;margin:0;text-wrap:pretty;">Four areas cover what we build for this market — from the board to the connected product, the tag and the power module inside the equipment.</p>
+    </div>
+    <div class="ind-cols-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      @foreach (var s in subs)
+      {
+        <div style="border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;">
+          <div class="ind-ph" style="width:100%;aspect-ratio:16 / 10.8;">
+            <div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div>
+            <span class="cap">[ @s.cap ]</span>
+          </div>
+          <div style="padding:24px;display:flex;flex-direction:column;flex:1;">
+            <div style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:9px;text-wrap:balance;">@s.name</div>
+            <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0;">@s.blurb</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+@* locations *@
+<div style="background:var(--hana-blue-tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="ind-wrap" style="padding-top:56px;padding-bottom:56px;">
+    <div style="margin-bottom:30px;max-width:680px;">
+      <div style="font-family:var(--font-text);font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Footprint</div>
+      <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.18;letter-spacing:-0.02em;margin:0 0 12px;">Where we build for Industrial &amp; IoT</h2>
+      <p style="font-family:var(--font-text);font-size:15px;color:var(--ink-2);line-height:1.6;margin:0;text-wrap:pretty;">Industrial programs run across our sites in Thailand and China — framed as dual-source capacity within one company. A program can qualify at a second site for continuity, not migrate away.</p>
+    </div>
+    <div class="ind-cols-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      @foreach (var l in locs)
+      {
+        <a class="ind-loc" href="@l.href" style="text-decoration:none;border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;padding:22px;display:block;">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;"><i data-lucide="map-pin" style="width:13px;height:13px;color:var(--hana-blue);"></i><span class="hana-spec-label">@l.country</span></div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-0.02em;margin-bottom:6px;">@l.city</div>
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--ink-3);margin-bottom:16px;">@l.role</div>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--hana-blue);">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span>
+        </a>
+      }
+    </div>
+  </div>
+</div>
+
+@* FAQ *@
+<div style="background:var(--bg);">
+  <div class="ind-wrap" style="padding-top:64px;padding-bottom:72px;">
+    <div style="margin-bottom:28px;max-width:680px;">
+      <div style="font-family:var(--font-text);font-size:10.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">FAQ</div>
+      <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.18;letter-spacing:-0.02em;margin:0 0 12px;">Industrial and IoT — frequently asked</h2>
+      <p style="font-family:var(--font-text);font-size:15px;color:var(--ink-2);line-height:1.6;margin:0;">Common questions from industrial and IoT engineering and procurement teams.</p>
+    </div>
+    <div style="max-width:860px;">
+      @{ var fi = 0; }
+      @foreach (var f in faqs)
+      {
+        fi++;
+        <details class="ind-faq" open="@(fi == 1)">
+          <summary><span class="ind-faq-mk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span><span style="flex:1;">@f.q</span></summary>
+          <p class="ind-faq-a">@f.a</p>
+        </details>
+      }
+    </div>
+  </div>
+</div>
+
+@* closing CTA (dark) *@
+<div data-hana-bg="flow" data-variant="dark" data-fade="none" style="position:relative;overflow:hidden;background:var(--hana-blue-deep);">
+  <div class="ind-wrap" style="position:relative;z-index:1;padding-top:60px;padding-bottom:60px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:center;">
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;color:#fff;line-height:1.15;letter-spacing:-0.02em;margin:0 0 12px;max-width:520px;text-wrap:balance;">Start an Industrial electronics build program with Hana</h2>
+      <p style="font-family:var(--font-text);font-size:16px;line-height:1.6;color:rgba(255,255,255,0.78);margin:0;max-width:480px;">Tell us what the product does and where it runs. We will point you to the right site and processes, and come back with a plan.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;">
+      <a href="/contact" class="hana-btn hana-btn-on-dark" style="padding:12px 22px;font-size:12px;">Contact us <i data-lucide="arrow-right" style="width:14px;height:14px;margin-left:6px;"></i></a>
+    </div>
+  </div>
+</div>

@@ -113,7 +113,60 @@
     box-shadow: 0 8px 28px rgba(0,0,0,0.32), 0 2px 6px rgba(18,131,221,0.25);
     transform: translateY(-3px);
   }
-  .cap-node-count { display: none; }
+  .cap-node { border-top-width: 4px; border-top-color: rgba(18,131,221,.5); overflow: hidden; }
+  .cap-node::before {
+    content: ''; position: absolute; top: -46px; right: -46px;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: repeating-radial-gradient(circle at center, rgba(18,131,221,.13) 0 1px, transparent 1px 13px);
+    pointer-events: none;
+  }
+  .hero-orbit {
+    position: absolute; z-index: 1; top: 64px;
+    right: max(36px, calc(50% - 636px));
+    width: 440px; pointer-events: none;
+  }
+  .hero-orbit-img {
+    position: relative; width: 100%; aspect-ratio: 1;
+    border-radius: 50%; overflow: hidden;
+    border: 1px solid rgba(126,200,255,.38);
+  }
+  .hero-orbit-img img {
+    width: 100%; height: 100%; object-fit: cover; object-position: 30% 42%;
+    display: block; filter: saturate(.85) contrast(1.05);
+  }
+  .hero-orbit-tint {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(7,44,77,.55) 0%, rgba(7,44,77,.12) 50%, rgba(18,131,221,.28) 100%);
+    mix-blend-mode: multiply;
+  }
+  .hero-orbit-ring { position: absolute; border-radius: 50%; pointer-events: none; }
+  .hero-orbit-ring.r1 { inset: -16px; border: 1px solid rgba(126,200,255,.30); }
+  .hero-orbit-ring.r2 { inset: -38px; border: 1px dashed rgba(126,200,255,.20); }
+  .hero-orbit-ring.r3 { inset: -62px; border: 1px solid rgba(126,200,255,.09); }
+  .hero-orbit-ring.r2::after {
+    content: ''; position: absolute; width: 7px; height: 7px; border-radius: 50%;
+    background: #7EC8FF; opacity: .75; left: 14%; top: 7%;
+  }
+  .hero-orbit-cap {
+    margin-top: 16px; text-align: center;
+    font-family: var(--font-mono);
+    font-size: 9.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(126,200,255,.75);
+  }
+  @@media (max-width: 1140px) { .hero-orbit { display: none; } }
+  @@media (max-width: 979px) {
+    .radial-hero { padding: 56px 24px 28px; }
+    .radial-scale-wrap { overflow: visible; }
+    .radial-wrap { width: auto; height: auto; transform: none !important; margin: 0 !important; padding: 0 24px; }
+    .radial-svg { display: none; }
+    .radial-center { position: relative; left: auto; top: auto; transform: none; width: 132px; height: 132px; margin: 12px auto 40px; }
+    .radial-center-ring { inset: -14px; } .radial-center-ring-2 { inset: -28px; } .radial-center-ring-3 { inset: -42px; }
+    .cap-nodes-fallback { display: flex !important; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
+    .cap-node { position: static; width: 100%; left: auto !important; top: auto !important; }
+  }
+  @@media (max-width: 640px) {
+    .radial-hero h1 { font-size: 36px; }
+  }
   .radial-hero-bg {
     position: absolute; inset: 0;
     z-index: 0; pointer-events: none;
@@ -149,6 +202,16 @@
     <div class="radial-eyebrow">Capabilities</div>
     <h1>End to End Capabilities With Hana</h1>
     <p class="lede">From a fine-pitch surface-mount line through die-level packaging and test to the finished, tested unit &mdash; the same qualified processes run across our plants in China, Thailand, Cambodia and the USA.</p>
+  </div>
+  <div class="hero-orbit" aria-hidden="true">
+    <div class="hero-orbit-ring r3"></div>
+    <div class="hero-orbit-ring r2"></div>
+    <div class="hero-orbit-ring r1"></div>
+    <div class="hero-orbit-img">
+      <img src="~/images/lpn-product-shot-01-web.jpg" alt="" />
+      <div class="hero-orbit-tint"></div>
+    </div>
+    <div class="hero-orbit-cap">Bare-die assembly · Micron-level placement</div>
   </div>
   <div class="radial-scale-wrap"><div class="radial-wrap" id="radial-wrap">
 
@@ -188,7 +251,7 @@
       <a class="cap-node" href="/capabilities/rfid-smart-tags" data-cap-index="3">
         <div class="cap-node-count">2 Processes</div>
         <div class="cap-node-name">RFID &amp; Smart Tags</div>
-        <p class="cap-node-desc">High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination, built for environments that destroy ordinary labels.</p>
+        <p class="cap-node-desc">High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination.</p>
         <span class="cap-node-cta">Explore &rarr;</span>
       </a>
 
@@ -290,6 +353,7 @@
   function scaleRadial() {
     const wrap = document.getElementById('radial-wrap');
     if (!wrap) return;
+    if (window.innerWidth < 980) { wrap.style.transform = ''; wrap.style.marginBottom = ''; return; }
     const available = wrap.parentElement.clientWidth;
     const scale = Math.min(1, available / 960);
     wrap.style.transform = 'scale(' + scale + ')';

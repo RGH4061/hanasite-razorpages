@@ -220,6 +220,8 @@
     color: var(--ink-4);
     border-right: 1px solid var(--line);
   }
+  .ceo-photo { overflow: hidden; }
+  .ceo-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
   .ceo-photo svg { opacity: 0.3; }
   .ceo-photo span {
     font-family: 'IBM Plex Mono', monospace;
@@ -389,6 +391,7 @@
     color: var(--ink-4);
   }
   .life-img-slide:last-child { border-right: none; width: 100%; }
+  .life-img-slide .life-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
   .life-img-slide svg { opacity: 0.5; }
   .life-img-slide span {
     font-family: 'IBM Plex Mono', monospace;

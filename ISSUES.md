@@ -15,26 +15,28 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
-- [ ] **Asset cleanup + WebP conversion (done in this repo 3 Jul, NOT yet in Design
-  source — next export will revert it unless synced with exclusions).**
-  - Deleted 14 dead `wwwroot` assets (~8 MB): 7 were byte-identical duplicates of images
-    used under other names (`Hana_bkk.jpg`, `automotive.jpeg` ×2, `medical.jpeg`,
-    `rfid-tire.jpeg`, `telecommunications.jpeg`, `video-placeholder-factory.jpg`,
-    `photos/homepage-markets-industrial.png`), plus genuinely unused `world-map.png`,
-    `photos/homepage-what-sets-apart.png`, `cleanroom-smt-line.png`, and 3 white logo
-    variants. Also deleted `README 2.md` (stale macOS duplicate).
-  - Converted 6 photo PNGs → WebP at q82 (~13 MB → ~1.2 MB): `ayutthaya-facility`,
-    `ohio-facility`, `automotive-cutaway`, `photos/power-module-ecu`, `photo-cleanroom`,
-    `jiaxing-facility`; updated the 9 referencing pages. **The Design source still holds
-    the PNGs and `.png` references** — ideally swap them there too, otherwise re-apply
-    after each export (same drill as the mobile link tags below).
-- [ ] **Razor `@` escaping — export generator emits bare `@` in two places (build
-  breaker; fixed in repo 3 Jul, needs fixing at source).** `dotnet build` failed on:
-  `Pages/Locations/Index.cshtml` inline `<style>` had `@media` (must be `@@media` in
-  Razor — the export escapes it correctly in 3 other files but missed this one), and
-  `Pages/Capabilities/SmtAssembly.cshtml` had the literal text `±20 µm @ 6σ` (bare `@`
-  before a space; now `&#64;`). If the site "ran fine" before, it was a stale build —
-  HEAD did not compile until these fixes.
+- [ ] **Dead-asset re-cleanup (done in this repo, NOT yet in Design source — every
+  export re-adds these; re-deleted 3 Jul, again 13 Jul).**
+  - Delete 14 dead `wwwroot` assets (~8 MB) the export keeps re-adding: 7 byte-identical
+    duplicates of images used under other names (`Hana_bkk.jpg`, `automotive.jpeg` ×2,
+    `medical.jpeg`, `rfid-tire.jpeg`, `telecommunications.jpeg`,
+    `video-placeholder-factory.jpg`, `photos/homepage-markets-industrial.png`), plus
+    genuinely unused `world-map.png`, `photos/homepage-what-sets-apart.png`,
+    `cleanroom-smt-line.png`, and 3 white logo variants. Also `README 2.md` (stale macOS dup).
+  - **Note:** `Hana_bkk.jpg` is byte-identical to canonical `hana-bkk.jpg`, but the export's
+    `Pages/Investors/EventsContact.cshtml` re-points the head-office photo at the uppercase
+    duplicate — re-point it to `~/images/hana-bkk.jpg` before deleting, each export.
+  - ✅ **WebP conversion is now at source** (13 Jul export): the 6 photo PNGs
+    (`ayutthaya-facility`, `ohio-facility`, `automotive-cutaway`, `photos/power-module-ecu`,
+    `photo-cleanroom`, `jiaxing-facility`) ship as `.webp` and pages reference `.webp`. No
+    longer needs re-applying.
+- [ ] **Razor `@` escaping — export generator emits bare `@` in inline `<style>` at-rules
+  (build breaker; needs fixing at source).** `dotnet build` fails on any unescaped `@media`
+  etc. Re-fixed each export in: `Pages/Locations/Index.cshtml` (`@media` → `@@media`),
+  `Pages/Capabilities/SmtAssembly.cshtml` (text `±20 µm @ 6σ` → `&#64;`), and — new in the
+  13 Jul export — `Pages/Careers/Stories.cshtml` (`@media` → `@@media` in the hero-card
+  `<style>`). The generator escapes `@media` correctly in most files but keeps missing some;
+  grep `[^@]@media` across `Pages/` after every export.
 - [ ] **Section-body mobile optimisation — Locations / Investors / About / Capabilities
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
@@ -59,6 +61,20 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 13 Jul 2026 — export sync ("Hana Site (12).zip")
+
+- **Synced the 10 Jul Design export into the repo** and re-applied the three repo-side
+  retrofits above (dead-asset re-cleanup, `@`-escaping build fixes ×3 files, and the ~16
+  `-mobile.css` link tags across Capabilities / Locations ×7 / Investors ×8). WebP is now
+  baked into source, so that item is retired.
+- New at source in this export (kept as-is):
+  - **Industrial & IoT market hub** — `Pages/Markets/IndustrialIot.cshtml`
+    (`@page "/markets/industrial-iot"`), previously 404'ing; added to the sitemap. Ships
+    `industrial-iot-hero.webp` + `wire-bond-line.jpg`.
+  - **OSAT sub-capability sidebar** restored in the static HTML export (Razor already had it).
+  - New Careers story photos and Annual-Report cover images; assorted cshtml/CSS content
+    updates across About, Careers, Investors, Locations, Sitemap.
 
 ### 2 Jul 2026 — mobile header & footer (built at source ✅)
 
