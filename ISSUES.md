@@ -62,6 +62,27 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Fixed
 
+### 20 Jul 2026 — export sync ("Hana Site (13).zip")
+
+- **Synced the 20 Jul Design export into the repo** and re-applied the three repo-side
+  retrofits (all reverted by the export, as usual):
+  - **Dead-asset re-cleanup** — deleted the same 14 dead/duplicate `wwwroot` assets the
+    export re-added (~8 MB); re-pointed `Investors/EventsContact.cshtml` head-office photo
+    from the uppercase `Hana_bkk.jpg` duplicate back to canonical `~/images/hana-bkk.jpg`.
+  - **`@`-escaping build breakers ×3** — `@media` → `@@media` in `Careers/Stories.cshtml`
+    and `Locations/Index.cshtml`; text `±20 µm @ 6σ` → `&#64;` in `Capabilities/SmtAssembly.cshtml`.
+  - **Mobile CSS link tags ×16** — restored the `-mobile.css` `<link>` tags:
+    `capabilities-mobile.css` (Capabilities/Index), `locations-mobile.css` (7 Locations pages),
+    `investors-mobile.css` (8 Investors pages). The 3 repo-only mobile stylesheets themselves
+    survived the export untouched.
+  - `dotnet build` clean afterwards (0 warnings, 0 errors).
+- Genuine content changes at source this export (kept as-is): **Careers** — new `JobPost.cshtml`
+  content, `Careers/Index.cshtml` + `careers.css` updates, new `careers-hero.jpg` hero image;
+  **Contact** — `Index.cshtml` / `Rfq.cshtml` tweaks; assorted `investors-*.css` refinements
+  (annual-report, events-contact, faq, news, sustainability, structure-shareholders). No new or
+  removed pages this export. The investor hero `z-index` fix and footer LinkedIn SVG remain baked
+  into source.
+
 ### 13 Jul 2026 — export sync ("Hana Site (12).zip")
 
 - **Synced the 10 Jul Design export into the repo** and re-applied the three repo-side

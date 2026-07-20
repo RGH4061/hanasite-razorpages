@@ -206,6 +206,21 @@
     color: var(--ink-3); margin-top: var(--s-2);
   }
 
+  /* Stats sitting inside the hero blurb — compact, left-aligned, on dark */
+  .hero .stats-inner {
+    display: flex; flex-wrap: wrap;
+    max-width: 100%; width: auto !important; height: auto !important;
+    padding: 0; margin: var(--s-6) 0;
+    gap: var(--s-4) var(--s-6);
+  }
+  .hero .stat { text-align: left; padding: 0; border-right: none; background: transparent; }
+  .hero .stat:not(:last-child) {
+    padding-right: var(--s-6);
+    border-right: 1px solid rgba(255,255,255,0.16);
+  }
+  .hero .stat-num { font-size: 24px; color: #FFFFFF; }
+  .hero .stat-lbl { color: rgba(255,255,255,0.55); }
+
   /* ── CEO statement ── */
   .ceo-band { background: var(--bg); border-bottom: 1px solid var(--line); overflow: hidden; }
   .ceo-inner {
