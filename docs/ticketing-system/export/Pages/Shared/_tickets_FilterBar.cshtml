@@ -1,0 +1,47 @@
+@*
+   _tickets_FilterBar.cshtml — status / market / service / reason / owner
+   filters + search. Filtering is applied client-side (tickets.js) over the
+   rendered rows via the data-f attributes. Model: owner name list.
+*@
+@model IReadOnlyList<string>
+<section class="filters" data-filters>
+    <label for="f-status">Status</label>
+    <select id="f-status" data-f="status">
+        <option>All open</option><option>New</option><option>Claimed</option>
+        <option>Responded</option><option>Closed</option><option>Spam</option>
+    </select>
+
+    <label for="f-market">Market</label>
+    <select id="f-market" data-f="market">
+        <option>All markets</option><option>Automotive</option><option>Industrial &amp; IoT</option>
+        <option>Telecommunications</option><option>RFID</option><option>Optical &amp; Sensors</option>
+        <option>Consumer Electronics</option><option>Medical</option><option>Access Control</option>
+        <option>Power Management</option><option>Other</option>
+    </select>
+
+    <label for="f-service">Service</label>
+    <select id="f-service" data-f="service">
+        <option>All services</option><option>PCBA &amp; Box Build</option>
+        <option>IC Assembly &amp; Test (OSAT)</option><option>RFID &amp; Smart Tags</option>
+        <option>Sensors &amp; Optical</option><option>Power Solutions</option>
+        <option>DFM / NPI support</option><option>Other</option>
+    </select>
+
+    <label for="f-reason">Reason</label>
+    <select id="f-reason" data-f="reason">
+        <option>All reasons</option><option>Sales &amp; customer support</option>
+        <option>Capability / technical question</option><option>Investor relations</option>
+        <option>Careers</option><option>Supplier / vendor inquiry</option><option>Other</option>
+    </select>
+
+    <label for="f-owner">Owner</label>
+    <select id="f-owner" data-f="owner">
+        <option>Anyone</option><option>Unassigned</option>
+        @foreach (var o in Model)
+        {
+            <option>@o</option>
+        }
+    </select>
+
+    <input class="filters-search" data-f="q" type="search" placeholder="Search name, company, message…" aria-label="Search inquiries" />
+</section>

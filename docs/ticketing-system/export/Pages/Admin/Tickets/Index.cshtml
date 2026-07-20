@@ -1,0 +1,108 @@
+@page
+@model HanaSite.Pages.Admin.Tickets.TicketListModel
+@{
+    // Self-contained for standalone export rendering. On merge, lift the
+    // <main> block onto the site's admin layout and drop this shell.
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana — Website Tickets (Admin)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+</head>
+<body class="admin-body">
+    <partial name="_AdminHeader" model="@Model.CurrentUser" />
+
+    <main class="admin-wrap">
+        <partial name="_tickets_FilterBar" model="@Model.Owners" />
+
+        <div class="legend">
+            <div class="legend-item"><span class="legend-swatch" style="background:#B42318"></span>New — unclaimed</div>
+            <div class="legend-item"><span class="legend-swatch" style="background:#D99A1B"></span>Claimed — being worked on</div>
+            <div class="legend-item"><span class="legend-swatch" style="background:#4E9BDA"></span>Responded — waiting on customer</div>
+            <div class="legend-item"><span class="legend-swatch" style="background:#0A7C3F"></span>Closed — routed and complete</div>
+            <div class="legend-item"><span class="legend-swatch" style="background:#9BA3AF"></span>Spam</div>
+        </div>
+
+        @* ── Open inquiries ── *@
+        <section aria-label="Open inquiries">
+            <div class="section-head">
+                <h2>Open inquiries</h2>
+                <div class="count">@Model.Open.Count open</div>
+            </div>
+            <div class="ticket-list">
+                <div class="col-headers">
+                    <div>Status</div><div>Date</div><div>Contact / Company</div>
+                    <div>Market · Service / Reason</div><div>Owner</div><div></div>
+                </div>
+                @foreach (var t in Model.Open)
+                {
+                    <partial name="_tickets_TicketRow" model="t" />
+                }
+                @if (Model.Open.Count == 0)
+                {
+                    <div class="list-empty">No open inquiries.</div>
+                }
+            </div>
+        </section>
+
+        @* ── Closed inquiries (collapsible) ── *@
+        <section class="collapse" aria-label="Closed inquiries">
+            <button type="button" class="collapse-toggle" data-collapse="closed-list">
+                <span class="collapse-arrow"><partial name="_icon_Chevron" /></span>
+                <span>Closed inquiries</span>
+                <span class="collapse-count">@Model.Closed.Count closed (last 30 days)</span>
+            </button>
+            <div class="collapse-body" id="closed-list">
+                <div class="ticket-list">
+                    <div class="col-headers">
+                        <div>Status</div><div>Closed</div><div>Contact / Company</div>
+                        <div>Market · Service / Reason</div><div>Routed to</div><div></div>
+                    </div>
+                    @foreach (var t in Model.Closed)
+                    {
+                        <partial name="_tickets_TicketRow" model="t" />
+                    }
+                </div>
+            </div>
+        </section>
+
+        @* ── Spam (collapsible, muted) ── *@
+        <section class="collapse collapse--spam" aria-label="Spam">
+            <button type="button" class="collapse-toggle collapse-toggle--spam" data-collapse="spam-list">
+                <span class="collapse-arrow"><partial name="_icon_Chevron" /></span>
+                <span>Spam</span>
+                <span class="collapse-count">@Model.Spam.Count flagged (last 30 days)</span>
+            </button>
+            <div class="collapse-body" id="spam-list">
+                <div class="ticket-list">
+                    <div class="col-headers">
+                        <div>Status</div><div>Flagged</div><div>Contact / Company</div>
+                        <div>Market · Service / Reason</div><div>Flagged by</div><div></div>
+                    </div>
+                    @foreach (var t in Model.Spam)
+                    {
+                        <partial name="_tickets_TicketRow" model="t" />
+                    }
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @if (!string.IsNullOrEmpty(Model.Toast))
+    {
+        <div class="toast" role="status">@Model.Toast</div>
+    }
+
+    <script src="~/js/hana-backgrounds.js" asp-append-version="true"></script>
+    <script src="~/js/tickets.js" asp-append-version="true"></script>
+</body>
+</html>

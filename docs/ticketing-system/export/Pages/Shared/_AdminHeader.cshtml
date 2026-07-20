@@ -1,0 +1,34 @@
+@*
+   _AdminHeader.cshtml — admin topbar: brand, hero stats dashboard, user chip.
+   The hero bar carries the Flow background (hana-backgrounds.js, light).
+   Model: the signed-in user name. Stats are read from TicketStore.
+   This partial is discarded on merge if the site's admin _Layout already
+   provides a header; kept here so the export renders standalone.
+*@
+@model string
+@{
+    var all = HanaSite.Models.Admin.TicketStore.All;
+    int last30 = all.Count(t => t.Status != "spam");
+    int newCount = all.Count(t => t.Status == "new");
+    int inProgress = all.Count(t => t.Status is "claimed" or "responded");
+    int closed = all.Count(t => t.Status == "closed");
+}
+<header id="hero-topbar" class="admin-topbar" data-hana-bg="flow" data-variant="light" data-fade="none">
+    <div class="admin-brand">
+        <img class="admin-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+        <span class="admin-divider"></span>
+        <h1 class="admin-title">Hana Website Tickets</h1>
+    </div>
+    <div class="admin-right">
+        <div class="topbar-stats" role="group" aria-label="Inquiry stats (last 30 days)">
+            <div class="stat-cell"><div class="stat-value stat-value--total">@last30</div><div class="stat-label">Last 30 days</div></div>
+            <div class="stat-cell"><div class="stat-value stat-value--new">@newCount</div><div class="stat-label">New</div></div>
+            <div class="stat-cell"><div class="stat-value stat-value--progress">@inProgress</div><div class="stat-label">In progress</div></div>
+            <div class="stat-cell"><div class="stat-value stat-value--closed">@closed</div><div class="stat-label">Closed</div></div>
+        </div>
+        <div class="admin-user">
+            <span class="admin-user-dot"></span>
+            <span>Logged in · @Model</span>
+        </div>
+    </div>
+</header>

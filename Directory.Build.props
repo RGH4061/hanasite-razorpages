@@ -1,0 +1,30 @@
+<Project>
+
+  <!--
+    Keeps everything under docs/ out of the build.
+
+    docs/ holds design source: static mockups, specs, and raw Claude Design
+    exports that are NOT part of the running site. A Razor export contains its
+    own Program.cs, .csproj, _Layout.cshtml and wwwroot — dropping one into the
+    project without this exclusion breaks the build immediately with
+    "CS8802: Only one compilation unit can have top-level statements".
+
+    WHY DefaultItemExcludes AND NOT <Compile Remove="docs/**" />:
+    Directory.Build.props is imported BEFORE the SDK defines its default file
+    globs, so a Remove here would run before the items exist and silently do
+    nothing (verified — the build still failed). DefaultItemExcludes feeds into
+    the globbing itself, so it works for .cs, .cshtml and content alike.
+
+    WHY THIS LIVES HERE RATHER THAN IN HanaSite.csproj:
+    the Design export overwrites HanaSite.csproj on every sync, so an exclusion
+    placed there would be silently lost. Directory.Build.props is not an export
+    output, so it survives. MSBuild imports it automatically.
+
+    Do not add live application code under docs/. It will not compile.
+  -->
+
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);docs/**</DefaultItemExcludes>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+@*
+   _tickets_StatusPill.cshtml — status badge. Model: the status string
+   (new | claimed | responded | closed | spam).
+*@
+@model string
+@{
+    var label = Model switch
+    {
+        "new" => "New",
+        "claimed" => "Claimed",
+        "responded" => "Responded",
+        "closed" => "Closed",
+        "spam" => "Spam",
+        _ => Model
+    };
+}
+<span class="pill pill--@Model">@label</span>

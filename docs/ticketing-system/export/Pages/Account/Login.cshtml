@@ -1,0 +1,56 @@
+@page
+@model HanaSite.Pages.Account.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Sign in — Hana Site CRM Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<body class="login-body">
+    @* The login page is the one admin view allowed the decorative background. *@
+    <main class="login-stage" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="none">
+        <div class="login-inner">
+            <img class="login-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+            <h1 class="login-h1">Hana Site CRM Hub</h1>
+            <p class="login-sub">Sign in to manage website inquiries.</p>
+
+            <form class="login-card" method="post">
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="login-validation" role="alert">@Model.ErrorMessage</div>
+                }
+                <div class="login-field">
+                    <label for="Input_Email">Email</label>
+                    <input class="login-input" id="Input_Email" name="Input.Email" type="email" autocomplete="username" placeholder="you@hanagroup.com" />
+                </div>
+                <div class="login-field">
+                    <div class="login-field-head">
+                        <label for="Input_Password">Password</label>
+                        <a href="#">Forgot?</a>
+                    </div>
+                    <input class="login-input" id="Input_Password" name="Input.Password" type="password" autocomplete="current-password" placeholder="••••••••" />
+                </div>
+                <label class="login-remember">
+                    <input type="checkbox" name="Input.RememberMe" value="true" checked />
+                    Keep me signed in
+                </label>
+                <button type="submit" class="login-submit">Sign in</button>
+            </form>
+
+            <div class="login-foot">Access is restricted to authorized Hana staff.<br />Contact IT if you need an account.</div>
+        </div>
+    </main>
+
+    <script src="~/js/hana-backgrounds.js" asp-append-version="true"></script>
+</body>
+</html>

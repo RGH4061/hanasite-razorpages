@@ -1,0 +1,4 @@
+# Admin ticketing is behind auth and must never be indexed.
+User-agent: *
+Disallow: /admin/tickets/
+Disallow: /account/login

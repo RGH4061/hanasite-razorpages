@@ -1,0 +1,156 @@
+@*
+   _tickets_TicketRow.cshtml — one inquiry as a collapsed row + expandable
+   detail panel + "more actions" dropdown. Behaviour driven by Status.
+   Action buttons POST to the handlers on TicketListModel (PRG).
+   Model: Ticket.
+*@
+@model Ticket
+@{
+    // Column 2 (date) content varies by section.
+    string dateTop = Model.Status switch { "closed" => Model.ClosedDate ?? Model.Date, "spam" => Model.SpamDate ?? Model.Date, _ => Model.Date };
+    string dateBot = Model.Status switch
+    {
+        "closed" => "by " + (Model.ClosedBy ?? "—"),
+        "spam" => Model.FlaggedBy == "auto-flagged" ? "auto" : "by " + (Model.FlaggedBy ?? "—"),
+        _ => Model.Time
+    };
+    bool unassigned = Model.Status is not "closed" and not "spam" && string.IsNullOrEmpty(Model.Owner);
+    string msgLabel = Model.Auto ? "Submission — auto-blocked (honeypot field was filled)" : "Message";
+}
+<article class="ticket-entry"
+         data-status="@Model.Status"
+         data-market="@Model.Market"
+         data-service="@Model.Service"
+         data-reason="@Model.Reason"
+         data-owner="@Model.Owner"
+         data-haystack="@Model.HaystackLower">
+    <div class="ticket ticket--@Model.Status" data-expand="@Model.Id">
+        <div><partial name="_tickets_StatusPill" model="@Model.Status" /></div>
+        <div class="cell-date">@dateTop<br />@dateBot</div>
+        <div class="cell-who">
+            <div class="name">@Model.Name</div>
+            <div class="company">@Model.Company</div>
+        </div>
+        <div class="cell-meta">
+            @if (!string.IsNullOrEmpty(Model.Market))
+            {
+                <div><strong>@Model.Market</strong> · @Model.Service</div>
+            }
+            @if (!string.IsNullOrEmpty(Model.Reason))
+            {
+                <div><span class="reason-tag">@Model.Reason</span></div>
+            }
+            @if (!string.IsNullOrEmpty(Model.Source))
+            {
+                <div>From: @Model.Source</div>
+            }
+        </div>
+        <div class="cell-owner @(unassigned ? "cell-owner--unassigned" : "")">@Model.OwnerDisplay</div>
+        <div class="cell-actions" onclick="event.stopPropagation()">
+            @if (Model.Status == "new")
+            {
+                <form method="post" asp-page-handler="Claim">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit" class="btn btn--primary">Claim</button>
+                </form>
+            }
+            <button type="button" class="btn-icon" id="exp-@Model.Id" data-expand="@Model.Id" title="Expand" aria-label="Expand inquiry">
+                <partial name="_icon_Chevron" />
+            </button>
+            <div class="menu-wrap">
+                <button type="button" class="btn-icon" data-menu="@Model.Id" title="More actions" aria-label="More actions">
+                    <partial name="_icon_Dots" />
+                </button>
+                <div class="dropdown" id="menu-@Model.Id">
+                    @switch (Model.Status)
+                    {
+                        case "new":
+                            <form method="post" asp-page-handler="Claim"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item">Claim</button></form>
+                            foreach (var o in TicketStore.Owners)
+                            {
+                                <form method="post" asp-page-handler="Assign"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="owner" value="@o" /><button type="submit" class="dropdown-item dropdown-item--sub">Assign to @o</button></form>
+                            }
+                            <hr class="dropdown-divider" />
+                            <hr class="dropdown-divider" />
+                            <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item dropdown-item--danger">Mark as spam</button></form>
+                            break;
+
+                        case "claimed":
+                        case "responded":
+                            <form method="post" asp-page-handler="Status"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="status" value="@(Model.Status == "claimed" ? "responded" : "closed")" /><button type="submit" class="dropdown-item">@(Model.Status == "claimed" ? "Mark as responded" : "Mark as closed")</button></form>
+                            foreach (var o in TicketStore.Owners)
+                            {
+                                <form method="post" asp-page-handler="Assign"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="owner" value="@o" /><button type="submit" class="dropdown-item dropdown-item--sub">Reassign to @o</button></form>
+                            }
+                            <hr class="dropdown-divider" />
+                            <hr class="dropdown-divider" />
+                            <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item dropdown-item--danger">Mark as spam</button></form>
+                            break;
+
+                        case "closed":
+                            <form method="post" asp-page-handler="Reopen"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item">Reopen</button></form>
+                            <hr class="dropdown-divider" />
+                            <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item dropdown-item--danger">Mark as spam</button></form>
+                            break;
+
+                        case "spam":
+                            <form method="post" asp-page-handler="Restore"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item">Restore as real inquiry</button></form>
+                            @if (Model.Auto)
+                            {
+                                <button type="button" class="dropdown-item" data-expand="@Model.Id">View raw data</button>
+                            }
+                            <hr class="dropdown-divider" />
+                            <form method="post" asp-page-handler="Delete"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item dropdown-item--danger">Delete permanently</button></form>
+                            break;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ticket-expand" id="expand-@Model.Id">
+        <div class="expand-msg">
+            <div class="expand-label">@msgLabel</div>
+            <p class="@(Model.Status == "spam" || Model.Auto ? "is-muted" : "")">@Model.Message</p>
+            @if (!string.IsNullOrEmpty(Model.Footer))
+            {
+                <div class="expand-source">@Model.Footer</div>
+            }
+            else if (!string.IsNullOrEmpty(Model.Source))
+            {
+                <div class="expand-source">From: @Model.Source</div>
+            }
+        </div>
+        <aside class="expand-side">
+            @if (!string.IsNullOrEmpty(Model.Email))
+            {
+                <div class="expand-contact">
+                    <a href="mailto:@Model.Email">@Model.Email</a>
+                    @if (!string.IsNullOrEmpty(Model.Phone)) { <br />@Model.Phone }
+                    @if (!string.IsNullOrEmpty(Model.Address)) { <br />@Model.Address }
+                </div>
+            }
+            <div class="expand-actions">
+                @if (Model.Status == "new")
+                {
+                    <form method="post" asp-page-handler="Claim"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn btn--primary">Claim</button></form>
+                    <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn btn--danger">Mark as spam</button></form>
+                }
+                else if (Model.Status == "claimed" || Model.Status == "responded")
+                {
+                    <form method="post" asp-page-handler="Status"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="status" value="@(Model.Status == "claimed" ? "responded" : "closed")" /><button type="submit" class="btn btn--primary">@(Model.Status == "claimed" ? "Mark as responded" : "Mark as closed")</button></form>
+                    <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn btn--danger">Mark as spam</button></form>
+                }
+                else if (Model.Status == "closed")
+                {
+                    <form method="post" asp-page-handler="Reopen"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn">Reopen</button></form>
+                }
+                else
+                {
+                    <form method="post" asp-page-handler="Restore"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn">Restore</button></form>
+                    <form method="post" asp-page-handler="Delete"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn btn--danger">Delete permanently</button></form>
+                }
+            </div>
+        </aside>
+    </div>
+</article>

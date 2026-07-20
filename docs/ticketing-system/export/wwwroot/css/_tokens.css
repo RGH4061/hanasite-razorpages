@@ -1,0 +1,38 @@
+/* ============================================================
+   Hana design tokens — reused from the main site (_tokens.css).
+   Ticketing merges into the same repo; do not redefine the palette
+   downstream. Status colors + form/admin extras live in admin.css.
+   ============================================================ */
+
+:root {
+  /* Brand — Hana Blue family */
+  --hana-blue:      #1283DD;
+  --hana-blue-deep: #0E4A7C;
+  --hana-blue-soft: #4E9BDA;
+  --hana-blue-tint: #E5EEF5;
+
+  /* Neutrals — surface */
+  --bg:      #F7F8FA;
+  --surface: #EBEEF2;
+  --line:    #D2D7DE;
+  --white:   #FFFFFF;
+
+  /* Neutrals — text */
+  --ink:   #0E1116;
+  --ink-2: #444B54;
+  --ink-3: #6B7280;
+
+  /* Accent + functional (UI only) */
+  --warm-accent: #FF883E;
+  --error:       #B42318;
+  --success:     #0A7C3F;
+
+  /* Type families — loaded by the main site's site.css */
+  --font-display: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-text:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Radii */
+  --radius-button: 4px;
+  --radius-card:   8px;
+}

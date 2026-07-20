@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hana — Inquiry Tickets (Admin)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Inter:wght@400;500;600;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ── Hana brand palette ────────────────────── */
+    --hana-blue:       #1F5BA6;
+    --hana-blue-deep:  #0E3A66;
+    --hana-blue-soft:  #3A7DC4;
+    --hana-blue-tint:  #E8EFF7;
+    --off-white:       #FBFBFA;
+    --surface:         #F2F4F6;
+    --line:            #E6E8EB;
+    --ink:             #0E1116;
+    --ink-2:           #444B54;
+    --ink-3:           #6B7280;
+    --warm-accent:     #FF883E;
+    --error:           #B42318;
+    --success:         #0A7C3F;
+
+    /* ── Status colors (functional UI) ───────── */
+    --status-new-bg:        #FFF2F0;
+    --status-new-fg:        #B42318;
+    --status-new-border:    #E05A4A;
+
+    --status-claimed-bg:    #FFF8E6;
+    --status-claimed-fg:    #7A4F01;
+    --status-claimed-border:#E6A817;
+
+    --status-responded-bg:  #E8EFF7;
+    --status-responded-fg:  #0E3A66;
+    --status-responded-border: #3A7DC4;
+
+    --status-closed-bg:     #E6F4EC;
+    --status-closed-fg:     #0A7C3F;
+    --status-closed-border: #0A7C3F;
+
+    --status-spam-bg:       #F2F4F6;
+    --status-spam-fg:       #6B7280;
+    --status-spam-border:   #9BA3AF;
+
+    /* ── Form-type pill colors ────────────────── */
+    --form-rfq-bg:     #0E3A66;
+    --form-rfq-fg:     #FFFFFF;
+    --form-general-bg: #F2F4F6;
+    --form-general-fg: #6B7280;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Topbar ─────────────────────────────────── */
+  .topbar {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 16px; }
+  .topbar .brand img {
+    height: 32px;
+    width: auto;
+    /* Transparent PNG — no background plate needed */
+  }
+  .topbar .divider {
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  .topbar h1 {
+    margin: 0;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .topbar .user {
+    font-size: 13px;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+
+  /* ── Container ───────────────────────────────── */
+  .container { max-width: 1280px; margin: 24px auto; padding: 0 24px; }
+
+  /* ── Filter bar ──────────────────────────────── */
+  .filters {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .filters label {
+    font-size: 10px;
+    color: var(--ink-3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Inter', sans-serif;
+  }
+  .filters select, .filters input[type="search"] {
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    min-width: 140px;
+  }
+  .filters select:focus, .filters input:focus {
+    outline: 2px solid var(--hana-blue-tint);
+    border-color: var(--hana-blue-soft);
+  }
+  .filters .search { margin-left: auto; min-width: 220px; }
+
+  /* ── Legend ──────────────────────────────────── */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; font-size: 12px; color: var(--ink-3); }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; }
+  .legend-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+
+  /* ── Section heading ─────────────────────────── */
+  .section-heading {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 22px 0 10px; padding: 0 2px;
+  }
+  .section-heading h2 {
+    margin: 0;
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+  }
+  .section-heading .count { font-size: 12px; color: var(--ink-3); font-family: 'Inter', sans-serif; }
+
+  /* ── Ticket list container ───────────────────── */
+  .ticket-list {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* Column headers */
+  .col-headers {
+    display: grid;
+    grid-template-columns: 110px 100px 95px 1fr 220px 130px 120px;
+    gap: 18px;
+    padding: 8px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  /* ── Ticket entry (row + expand wrapper) ─────── */
+  .ticket-entry { border-bottom: 1px solid var(--line); position: relative; }
+  .ticket-entry:last-child { border-bottom: none; }
+
+  /* ── Ticket row ──────────────────────────────── */
+  .ticket {
+    display: grid;
+    grid-template-columns: 110px 100px 95px 1fr 220px 130px 120px;
+    gap: 18px;
+    padding: 13px 18px;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.1s ease;
+    border-left: 3px solid transparent;
+    user-select: none;
+  }
+  .ticket:hover { background: var(--hana-blue-tint); }
+
+  .ticket.status-new       { border-left-color: var(--status-new-border); }
+  .ticket.status-claimed   { border-left-color: var(--status-claimed-border); }
+  .ticket.status-responded { border-left-color: var(--status-responded-border); }
+  .ticket.status-closed    { border-left-color: var(--status-closed-border); }
+  .ticket.status-spam      { border-left-color: var(--status-spam-border); }
+
+  /* ── Pills ───────────────────────────────────── */
+  .pill {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pill.status-new       { background: var(--status-new-bg);       color: var(--status-new-fg); }
+  .pill.status-claimed   { background: var(--status-claimed-bg);   color: var(--status-claimed-fg); }
+  .pill.status-responded { background: var(--status-responded-bg); color: var(--status-responded-fg); }
+  .pill.status-closed    { background: var(--status-closed-bg);    color: var(--status-closed-fg); }
+  .pill.status-spam      { background: var(--status-spam-bg);      color: var(--status-spam-fg); }
+
+  .form-pill {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .form-pill.rfq     { background: var(--form-rfq-bg);     color: var(--form-rfq-fg); }
+  .form-pill.general { background: var(--form-general-bg); color: var(--form-general-fg); }
+
+  /* ── Row cell types ──────────────────────────── */
+  .ticket .date {
+    color: var(--ink-3);
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+  }
+  .ticket .who { font-weight: 600; font-size: 13px; color: var(--ink); }
+  .ticket .who .company { font-weight: 400; color: var(--ink-3); font-size: 12px; margin-top: 1px; }
+  .ticket .meta { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+  .ticket .meta strong { color: var(--ink-2); font-weight: 600; }
+  .reason-tag {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: var(--hana-blue);
+    background: var(--hana-blue-tint);
+    border-radius: 4px;
+    padding: 1px 6px;
+    letter-spacing: 0.02em;
+  }
+  .ticket .owner { font-size: 13px; color: var(--ink-2); }
+  .ticket .owner.unassigned { color: var(--ink-3); font-style: italic; }
+  .ticket .actions { display: flex; justify-content: flex-end; align-items: center; gap: 5px; }
+
+  /* ── Buttons ─────────────────────────────────── */
+  .btn {
+    padding: 5px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    background: #FFFFFF;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--ink-2);
+    white-space: nowrap;
+    transition: background 0.1s, border-color 0.1s;
+  }
+  .btn:hover { background: var(--surface); border-color: #C8CDD4; }
+
+  .btn.primary {
+    background: var(--hana-blue);
+    color: #FFFFFF;
+    border-color: var(--hana-blue);
+  }
+  .btn.primary:hover { background: var(--hana-blue-deep); border-color: var(--hana-blue-deep); }
+
+  .btn.danger {
+    color: var(--error);
+    border-color: #F5B4AD;
+    background: #FFFFFF;
+  }
+  .btn.danger:hover { background: #FFF2F0; border-color: #E05A4A; }
+
+  /* Expand toggle (▸/▾) */
+  .btn-expand {
+    padding: 4px 7px;
+    font-size: 10px;
+    border: 1px solid var(--line);
+    background: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--ink-3);
+    line-height: 1;
+    transition: all 0.1s;
+  }
+  .btn-expand:hover { background: var(--surface); color: var(--ink); }
+  .btn-expand.open  { background: var(--hana-blue-tint); color: var(--hana-blue); border-color: #C0D4EE; }
+
+  /* ··· menu */
+  .btn-menu {
+    padding: 4px 7px;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
+    border: 1px solid var(--line);
+    background: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--ink-3);
+    transition: all 0.1s;
+  }
+  .btn-menu:hover { background: var(--surface); color: var(--ink); }
+
+  /* ── Dropdown menu ───────────────────────────── */
+  .menu-wrap { position: relative; }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(14,17,22,0.12);
+    min-width: 176px;
+    z-index: 200;
+    overflow: hidden;
+  }
+  .dropdown-menu.open { display: block; }
+  .dropdown-item {
+    display: block;
+    padding: 9px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    color: var(--ink);
+    white-space: nowrap;
+    text-align: left;
+    background: none;
+    border: none;
+    width: 100%;
+    transition: background 0.08s;
+  }
+  .dropdown-item:hover { background: var(--surface); }
+  .dropdown-item.danger { color: var(--error); }
+  .dropdown-item.danger:hover { background: #FFF2F0; }
+  .dropdown-divider { border: none; border-top: 1px solid var(--line); margin: 3px 0; }
+
+  /* ── Expand panel ────────────────────────────── */
+  .ticket-expand {
+    display: none;
+    background: var(--hana-blue-tint);
+    border-top: 1px solid #C8D8EA;
+    padding: 18px 22px 20px;
+    gap: 28px;
+  }
+  .ticket-expand.open { display: flex; }
+
+  .expand-message { flex: 1; min-width: 0; }
+  .expand-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .expand-message p {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .expand-message .source {
+    margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  .expand-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .expand-contact {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink-3);
+    line-height: 1.9;
+  }
+  .expand-contact strong { color: var(--ink); font-weight: 500; }
+  .expand-actions { display: flex; flex-direction: column; gap: 7px; }
+  .expand-actions .row { display: flex; gap: 6px; }
+
+  /* ── Collapsible sections ────────────────────── */
+  .closed-section { margin-top: 28px; }
+  .closed-toggle {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 13px 18px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    transition: background 0.1s;
+  }
+  .closed-toggle:hover { background: var(--surface); }
+  .closed-toggle .arrow { display: inline-block; color: var(--ink-3); width: 12px; font-size: 11px; }
+  .closed-toggle .count {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink-3);
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: auto;
+  }
+  .spam-toggle { background: var(--surface); border-color: #D0D4DA; color: var(--ink-3); }
+  .spam-toggle:hover { background: #E8EAED; }
+  .closed-list { display: none; margin-top: 8px; }
+  .closed-list.open { display: block; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="../Brand/hana-logo.png" alt="Hana Microelectronics Group">
+    <div class="divider"></div>
+    <h1>Inquiry Tickets</h1>
+  </div>
+  <div class="user">Logged in: Rupert Han ▾</div>
+</div>
+
+<div class="container">
+
+  <!-- Filters -->
+  <div class="filters">
+    <label>Status</label>
+    <select>
+      <option>All open</option><option>New</option><option>Claimed</option>
+      <option>Responded</option><option>Closed</option><option>Spam</option>
+    </select>
+    <label>Form</label>
+    <select>
+      <option>All forms</option><option>Plant Inquiry</option><option>General Inquiry</option>
+    </select>
+    <label>Market</label>
+    <select>
+      <option>All markets</option><option>Automotive</option><option>Industrial &amp; IoT</option>
+      <option>Telecommunications</option><option>RFID</option><option>Optical &amp; Sensors</option>
+      <option>Consumer Electronics</option><option>Medical</option><option>Access Control</option>
+      <option>Power Management</option><option>Other</option>
+    </select>
+    <label>Service</label>
+    <select>
+      <option>All services</option><option>PCBA &amp; Box Build</option>
+      <option>IC Assembly &amp; Test (OSAT)</option><option>RFID &amp; Smart Tags</option>
+      <option>Sensors &amp; Optical</option><option>Power Solutions</option>
+      <option>DFM / NPI support</option><option>Other</option>
+    </select>
+    <label>Reason</label>
+    <select>
+      <option>All reasons</option><option>Sales &amp; customer support</option>
+      <option>Capability / technical question</option><option>Investor relations</option>
+      <option>Careers</option><option>Supplier / vendor inquiry</option><option>Other</option>
+    </select>
+    <label>Owner</label>
+    <select>
+      <option>Anyone</option><option>Unassigned</option><option>Sanjay</option>
+      <option>Mark</option><option>Thang</option><option>Rupert</option>
+    </select>
+    <input class="search" type="search" placeholder="Search name, company, message…">
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch" style="background:var(--status-new-border)"></span>New — unclaimed</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:var(--status-claimed-border)"></span>Claimed — being worked on</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:var(--status-responded-border)"></span>Responded — waiting on customer</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:var(--status-closed-border)"></span>Closed — routed and complete</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:var(--status-spam-border)"></span>Spam</div>
+  </div>
+
+  <!-- ═══ OPEN INQUIRIES ═══ -->
+  <div class="section-heading">
+    <h2>Open inquiries</h2>
+    <div class="count">6 open</div>
+  </div>
+
+  <div class="ticket-list">
+    <div class="col-headers">
+      <div>Status</div><div>Date</div><div>Form</div>
+      <div>Contact / Company</div><div>Market · Service / Reason</div>
+      <div>Owner</div><div></div>
+    </div>
+
+    <!-- ── Karl Becker — NEW, Plant Inquiry ── -->
+    <div class="ticket-entry">
+      <div class="ticket status-new" onclick="toggleExpand('t1')">
+        <div><span class="pill status-new">New</span></div>
+        <div class="date">2026-05-09<br>09:42</div>
+        <div><span class="form-pill rfq">Plant Inquiry</span></div>
+        <div class="who">Karl Becker<div class="company">SchliessTech GmbH · Germany</div></div>
+        <div class="meta"><strong>Access Control</strong> · RFID &amp; Smart Tags<br>From: /capabilities/rfid-inlay/</div>
+        <div class="owner unassigned">— unassigned —</div>
+        <div class="actions" onclick="event.stopPropagation()">
+          <button class="btn primary">Claim</button>
+          <button class="btn-expand" id="exp-t1" onclick="toggleExpand('t1')">▸</button>
+          <div class="menu-wrap">
+            <button class="btn-menu" onclick="toggleMenu('m1')">···</button>
+            <div class="dropdown-menu" id="m1">
+              <button class="dropdown-item">Claim</button>
+              <button class="dropdown-item">Assign to…</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item">View full record</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item danger" onclick="markSpam(this)">Mark as Spam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-expand" id="t1">
+        <div class="expand-message">
+          <div class="expand-label">Message</div>
+          <p>We are currently evaluating suppliers for a new access control product line using RFID technology. Our estimated annual volume is 50,000 units initially, scaling to 150,000 within 18 months. I can send our preliminary BOM once we have a contact. Could you confirm your RFID inlay capabilities and typical lead times? We'd like to arrange a call next week if possible.</p>
+          <div class="source">From: /capabilities/rfid-inlay/</div>
+        </div>
+        <div class="expand-sidebar">
+          <div class="expand-contact">
+            <strong>karl.becker@schliesst.de</strong><br>
+            +49 89 4521 7730<br>
+            SchliessTech GmbH, Munich, Germany
+          </div>
+          <div class="expand-actions">
+            <div class="row">
+              <button class="btn primary">Claim</button>
+              <button class="btn">View full record</button>
+            </div>
+            <button class="btn danger" style="width:100%;text-align:center">Mark as Spam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Anita Patel — NEW, General ── -->
+    <div class="ticket-entry">
+      <div class="ticket status-new" onclick="toggleExpand('t2')">
+        <div><span class="pill status-new">New</span></div>
+        <div class="date">2026-05-09<br>08:15</div>
+        <div><span class="form-pill general">General</span></div>
+        <div class="who">Anita Patel<div class="company">Helios Medical Devices · UK</div></div>
+        <div class="meta"><strong>Medical</strong> · PCBA &amp; Box Build<br><span class="reason-tag">Sales &amp; customer support</span><br>From: /markets/medical/</div>
+        <div class="owner unassigned">— unassigned —</div>
+        <div class="actions" onclick="event.stopPropagation()">
+          <button class="btn primary">Claim</button>
+          <button class="btn-expand" id="exp-t2" onclick="toggleExpand('t2')">▸</button>
+          <div class="menu-wrap">
+            <button class="btn-menu" onclick="toggleMenu('m2')">···</button>
+            <div class="dropdown-menu" id="m2">
+              <button class="dropdown-item">Claim</button>
+              <button class="dropdown-item">Assign to…</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item">View full record</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item danger" onclick="markSpam(this)">Mark as Spam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-expand" id="t2">
+        <div class="expand-message">
+          <div class="expand-label">Message</div>
+          <p>Hi, I came across Hana via a recommendation from a colleague. We're a UK-based medical device startup looking for an EMS partner for our first production run — approximately 500 units of a wearable patient monitoring device. Could you tell me more about your medical PCBA capabilities and whether you hold ISO 13485 certification?</p>
+          <div class="source">From: /markets/medical/</div>
+        </div>
+        <div class="expand-sidebar">
+          <div class="expand-contact">
+            <strong>a.patel@heliosmed.co.uk</strong><br>
+            +44 7712 334 890<br>
+            Helios Medical Devices Ltd, Bristol, UK
+          </div>
+          <div class="expand-actions">
+            <div class="row">
+              <button class="btn primary">Claim</button>
+              <button class="btn">View full record</button>
+            </div>
+            <button class="btn danger" style="width:100%;text-align:center">Mark as Spam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Pierre Lambert — CLAIMED, Plant Inquiry ── -->
+    <div class="ticket-entry">
+      <div class="ticket status-claimed" onclick="toggleExpand('t3')">
+        <div><span class="pill status-claimed">Claimed</span></div>
+        <div class="date">2026-05-08<br>16:30</div>
+        <div><span class="form-pill rfq">Plant Inquiry</span></div>
+        <div class="who">Pierre Lambert<div class="company">Volterra Mobility · France</div></div>
+        <div class="meta"><strong>Automotive</strong> · IC Assembly &amp; Test (OSAT)<br>From: /capabilities/ic-assembly/</div>
+        <div class="owner">Sanjay</div>
+        <div class="actions" onclick="event.stopPropagation()">
+          <button class="btn-expand" id="exp-t3" onclick="toggleExpand('t3')">▸</button>
+          <div class="menu-wrap">
+            <button class="btn-menu" onclick="toggleMenu('m3')">···</button>
+            <div class="dropdown-menu" id="m3">
+              <button class="dropdown-item">View full record</button>
+              <button class="dropdown-item">Reassign to…</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item danger" onclick="markSpam(this)">Mark as Spam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-expand" id="t3">
+        <div class="expand-message">
+          <div class="expand-label">Message</div>
+          <p>We are a French EV mobility company looking for an OSAT partner to support our power module assembly. We currently use a European supplier but need to diversify our manufacturing base. Annual volume is approximately 200,000 units. We can share our initial product specs, preferred test protocols, and a draft supply agreement.</p>
+          <div class="source">From: /capabilities/ic-assembly/</div>
+        </div>
+        <div class="expand-sidebar">
+          <div class="expand-contact">
+            <strong>p.lambert@volterra-mobility.fr</strong><br>
+            +33 1 44 82 3300<br>
+            Volterra Mobility SAS, Paris, France
+          </div>
+          <div class="expand-actions">
+            <div class="row">
+              <button class="btn">View full record</button>
+              <button class="btn">Reassign</button>
+            </div>
+            <button class="btn danger" style="width:100%;text-align:center">Mark as Spam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Lisa Andersson — CLAIMED, General ── -->
+    <div class="ticket-entry">
+      <div class="ticket status-claimed" onclick="toggleExpand('t4')">
+        <div><span class="pill status-claimed">Claimed</span></div>
+        <div class="date">2026-05-08<br>11:02</div>
+        <div><span class="form-pill general">General</span></div>
+        <div class="who">Lisa Andersson<div class="company">NordicSense AB · Sweden</div></div>
+        <div class="meta"><strong>Optical &amp; Sensors</strong> · Sensors &amp; Optical<br><span class="reason-tag">Capability / technical question</span><br>From: /markets/optical-sensors/</div>
+        <div class="owner">Mark</div>
+        <div class="actions" onclick="event.stopPropagation()">
+          <button class="btn-expand" id="exp-t4" onclick="toggleExpand('t4')">▸</button>
+          <div class="menu-wrap">
+            <button class="btn-menu" onclick="toggleMenu('m4')">···</button>
+            <div class="dropdown-menu" id="m4">
+              <button class="dropdown-item">View full record</button>
+              <button class="dropdown-item">Reassign to…</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item danger" onclick="markSpam(this)">Mark as Spam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-expand" id="t4">
+        <div class="expand-message">
+          <div class="expand-label">Message</div>
+          <p>We design optical sensor modules for industrial inspection systems and are looking for a manufacturing partner in Asia who can support low to medium volume production with high accuracy requirements. We'd be interested in learning more about Hana's Sensors &amp; Optical capabilities and experience with camera module assembly.</p>
+          <div class="source">From: /markets/optical-sensors/</div>
+        </div>
+        <div class="expand-sidebar">
+          <div class="expand-contact">
+            <strong>lisa.andersson@nordicsense.se</strong><br>
+            +46 8 555 7842<br>
+            NordicSense AB, Stockholm, Sweden
+          </div>
+          <div class="expand-actions">
+            <div class="row">
+              <button class="btn">View full record</button>
+              <button class="btn">Reassign</button>
+            </div>
+            <button class="btn danger" style="width:100%;text-align:center">Mark as Spam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Diego Ferreira — RESPONDED, Plant Inquiry ── -->
+    <div class="ticket-entry">
+      <div class="ticket status-responded" onclick="toggleExpand('t5')">
+        <div><span class="pill status-responded">Responded</span></div>
+        <div class="date">2026-05-07<br>14:18</div>
+        <div><span class="form-pill rfq">Plant Inquiry</span></div>
+        <div class="who">Diego Ferreira<div class="company">Iberian IoT · Portugal</div></div>
+        <div class="meta"><strong>Industrial &amp; IoT</strong> · PCBA &amp; Box Build<br>From: /capabilities/pcba/</div>
+        <div class="owner">Rupert</div>
+        <div class="actions" onclick="event.stopPropagation()">
+          <button class="btn-expand" id="exp-t5" onclick="toggleExpand('t5')">▸</button>
+          <div class="menu-wrap">
+            <button class="btn-menu" onclick="toggleMenu('m5')">···</button>
+            <div class="dropdown-menu" id="m5">
+              <button class="dropdown-item">View full record</button>
+              <button class="dropdown-item">Mark as Closed</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item danger" onclick="markSpam(this)">Mark as Spam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-expand" id="t5">
+        <div class="expand-message">
+          <div class="expand-label">Message</div>
+          <p>Following our initial conversation last week, I wanted to formally submit our inquiry for review. As discussed, we need PCBA assembly for our industrial IoT gateway — 2,000 units in the first run with a target of 10,000 per year. We have the Gerber files and BOM ready to send. Please confirm receipt and advise on next steps.</p>
+          <div class="source">From: /capabilities/pcba/</div>
+        </div>
+        <div class="expand-sidebar">
+          <div class="expand-contact">
+            <strong>d.ferreira@iberian-iot.pt</strong><br>
+            +351 21 300 4420<br>
+            Iberian IoT Lda, Lisbon, Portugal
+          </div>
+          <div class="expand-actions">
+            <div class="row">
+              <button class="btn">View full record</button>
+              <button class="btn">Mark Closed</button>
+            </div>
+            <button class="btn danger" style="width:100%;text-align:center">Mark as Spam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── James Whitfield — NEW, General, Investor Relations ── -->
+    <div class="ticket-entry">
+      <div class="ticket status-new" onclick="toggleExpand('t6')">
+        <div><span class="pill status-new">New</span></div>
+        <div class="date">2026-05-10<br>10:05</div>
+        <div><span class="form-pill general">General</span></div>
+        <div class="who">James Whitfield<div class="company">Meridian Capital · UK</div></div>
+        <div class="meta"><span class="reason-tag">Investor relations</span><br>From: /about/</div>
+        <div class="owner unassigned">— unassigned —</div>
+        <div class="actions" onclick="event.stopPropagation()">
+          <button class="btn primary">Claim</button>
+          <button class="btn-expand" id="exp-t6" onclick="toggleExpand('t6')">▸</button>
+          <div class="menu-wrap">
+            <button class="btn-menu" onclick="toggleMenu('m6')">···</button>
+            <div class="dropdown-menu" id="m6">
+              <button class="dropdown-item">Claim</button>
+              <button class="dropdown-item">Assign to…</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item">View full record</button>
+              <hr class="dropdown-divider">
+              <button class="dropdown-item danger" onclick="markSpam(this)">Mark as Spam</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-expand" id="t6">
+        <div class="expand-message">
+          <div class="expand-label">Message</div>
+          <p>I am a portfolio analyst at Meridian Capital in London. We have been following Hana Microelectronics Group on the Stock Exchange of Thailand and are interested in requesting the latest annual report and any available investor presentation materials. Could you also advise on the best point of contact for investor relations inquiries going forward?</p>
+          <div class="source">From: /about/</div>
+        </div>
+        <div class="expand-sidebar">
+          <div class="expand-contact">
+            <strong>j.whitfield@meridiancap.co.uk</strong><br>
+            +44 20 7946 0312<br>
+            Meridian Capital Partners, London, UK
+          </div>
+          <div class="expand-actions">
+            <div class="row">
+              <button class="btn primary">Claim</button>
+              <button class="btn">View full record</button>
+            </div>
+            <button class="btn danger" style="width:100%;text-align:center">Mark as Spam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ticket-list -->
+
+  <!-- ═══ CLOSED INQUIRIES ═══ -->
+  <div class="closed-section">
+    <div class="closed-toggle" onclick="toggleClosed()" id="closed-toggle">
+      <span class="arrow">▶</span>
+      <span>Closed inquiries</span>
+      <span class="count">12 closed (last 30 days)</span>
+    </div>
+    <div class="closed-list" id="closed-list">
+      <div class="ticket-list" style="margin-top:8px">
+        <div class="col-headers">
+          <div>Status</div><div>Closed</div><div>Form</div>
+          <div>Contact / Company</div><div>Market · Service / Reason</div>
+          <div>Routed to</div><div></div>
+        </div>
+        <div class="ticket-entry">
+          <div class="ticket status-closed" onclick="toggleExpand('c1')">
+            <div><span class="pill status-closed">Closed</span></div>
+            <div class="date">2026-05-06<br>by Sanjay</div>
+            <div><span class="form-pill rfq">Plant Inquiry</span></div>
+            <div class="who">Hannah Müller<div class="company">KeyLogic Systems · Germany</div></div>
+            <div class="meta"><strong>Access Control</strong> · RFID &amp; Smart Tags</div>
+            <div class="owner">Lamphun PCBA team</div>
+            <div class="actions" onclick="event.stopPropagation()">
+              <button class="btn-expand" id="exp-c1" onclick="toggleExpand('c1')">▸</button>
+              <div class="menu-wrap">
+                <button class="btn-menu" onclick="toggleMenu('mc1')">···</button>
+                <div class="dropdown-menu" id="mc1">
+                  <button class="dropdown-item">View full record</button>
+                  <button class="dropdown-item">Reopen</button>
+                  <hr class="dropdown-divider">
+                  <button class="dropdown-item danger">Mark as Spam</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-expand" id="c1">
+            <div class="expand-message">
+              <div class="expand-label">Message</div>
+              <p>We are looking for a manufacturer to support a new RFID-enabled access control reader. Volumes are 30,000 units per year. We can send the product brief and preliminary BOM.</p>
+            </div>
+            <div class="expand-sidebar">
+              <div class="expand-contact"><strong>h.muller@keylogic.de</strong><br>KeyLogic Systems, Berlin, Germany</div>
+              <div class="expand-actions"><div class="row"><button class="btn">View full record</button><button class="btn">Reopen</button></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-entry">
+          <div class="ticket status-closed" onclick="toggleExpand('c2')">
+            <div><span class="pill status-closed">Closed</span></div>
+            <div class="date">2026-05-05<br>by Mark</div>
+            <div><span class="form-pill general">General</span></div>
+            <div class="who">Tomás Silva<div class="company">DriveCircuit Ltd · UK</div></div>
+            <div class="meta"><strong>Automotive</strong> · PCBA &amp; Box Build<br><span class="reason-tag">Sales &amp; customer support</span></div>
+            <div class="owner">ASSA Abloy China team</div>
+            <div class="actions" onclick="event.stopPropagation()">
+              <button class="btn-expand" id="exp-c2" onclick="toggleExpand('c2')">▸</button>
+              <div class="menu-wrap">
+                <button class="btn-menu" onclick="toggleMenu('mc2')">···</button>
+                <div class="dropdown-menu" id="mc2">
+                  <button class="dropdown-item">View full record</button>
+                  <button class="dropdown-item">Reopen</button>
+                  <hr class="dropdown-divider">
+                  <button class="dropdown-item danger">Mark as Spam</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-expand" id="c2">
+            <div class="expand-message">
+              <div class="expand-label">Message</div>
+              <p>General question about Hana's automotive PCBA capabilities. We're a UK electronics company with a new EV charging controller design and are exploring manufacturing options in Asia.</p>
+            </div>
+            <div class="expand-sidebar">
+              <div class="expand-contact"><strong>t.silva@drivecircuit.co.uk</strong><br>DriveCircuit Ltd, Birmingham, UK</div>
+              <div class="expand-actions"><div class="row"><button class="btn">View full record</button><button class="btn">Reopen</button></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-entry">
+          <div class="ticket status-closed" onclick="toggleExpand('c3')">
+            <div><span class="pill status-closed">Closed</span></div>
+            <div class="date">2026-05-03<br>by Rupert</div>
+            <div><span class="form-pill rfq">Plant Inquiry</span></div>
+            <div class="who">Sara Lindqvist<div class="company">Aurora Imaging · Sweden</div></div>
+            <div class="meta"><strong>Optical &amp; Sensors</strong> · Sensors &amp; Optical</div>
+            <div class="owner">Ohio (USA)</div>
+            <div class="actions" onclick="event.stopPropagation()">
+              <button class="btn-expand" id="exp-c3" onclick="toggleExpand('c3')">▸</button>
+              <div class="menu-wrap">
+                <button class="btn-menu" onclick="toggleMenu('mc3')">···</button>
+                <div class="dropdown-menu" id="mc3">
+                  <button class="dropdown-item">View full record</button>
+                  <button class="dropdown-item">Reopen</button>
+                  <hr class="dropdown-divider">
+                  <button class="dropdown-item danger">Mark as Spam</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-expand" id="c3">
+            <div class="expand-message">
+              <div class="expand-label">Message</div>
+              <p>We design camera modules for industrial inspection and are looking for a manufacturing partner. Volume is small initially — 500 units — but we expect to scale to 5,000+ within two years.</p>
+            </div>
+            <div class="expand-sidebar">
+              <div class="expand-contact"><strong>s.lindqvist@aurora-imaging.se</strong><br>Aurora Imaging AB, Gothenburg, Sweden</div>
+              <div class="expand-actions"><div class="row"><button class="btn">View full record</button><button class="btn">Reopen</button></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SPAM ═══ -->
+  <div class="closed-section" style="margin-top:10px; margin-bottom: 40px;">
+    <div class="closed-toggle spam-toggle" onclick="toggleSpam()" id="spam-toggle">
+      <span class="arrow">▶</span>
+      <span>Spam</span>
+      <span class="count">8 flagged (last 30 days)</span>
+    </div>
+    <div class="closed-list" id="spam-list">
+      <div class="ticket-list" style="margin-top:8px">
+        <div class="col-headers">
+          <div>Status</div><div>Flagged</div><div>Form</div>
+          <div>Contact / Company</div><div>Market · Service / Reason</div>
+          <div>Flagged by</div><div></div>
+        </div>
+        <div class="ticket-entry">
+          <div class="ticket status-spam" onclick="toggleExpand('s1')">
+            <div><span class="pill status-spam">Spam</span></div>
+            <div class="date">2026-05-07<br>auto-flagged</div>
+            <div><span class="form-pill general">General</span></div>
+            <div class="who">(honeypot triggered)<div class="company">—</div></div>
+            <div class="meta">— · —</div>
+            <div class="owner">—</div>
+            <div class="actions" onclick="event.stopPropagation()">
+              <button class="btn-expand" id="exp-s1" onclick="toggleExpand('s1')">▸</button>
+              <div class="menu-wrap">
+                <button class="btn-menu" onclick="toggleMenu('ms1')">···</button>
+                <div class="dropdown-menu" id="ms1">
+                  <button class="dropdown-item">View raw data</button>
+                  <button class="dropdown-item">Restore as real inquiry</button>
+                  <hr class="dropdown-divider">
+                  <button class="dropdown-item danger">Delete permanently</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-expand" id="s1">
+            <div class="expand-message">
+              <div class="expand-label">Submission — auto-blocked (honeypot field was filled)</div>
+              <p style="color:var(--ink-3); font-style:italic">No message stored — bot submission detected at ingestion.</p>
+              <div class="source">IP: 185.220.101.47 &nbsp;·&nbsp; 2026-05-07 03:14 UTC</div>
+            </div>
+            <div class="expand-sidebar">
+              <div class="expand-actions"><div class="row"><button class="btn">View raw data</button><button class="btn danger">Delete</button></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-entry">
+          <div class="ticket status-spam" onclick="toggleExpand('s2')">
+            <div><span class="pill status-spam">Spam</span></div>
+            <div class="date">2026-05-05<br>by Sanjay</div>
+            <div><span class="form-pill general">General</span></div>
+            <div class="who">SEO services offer<div class="company">unknowndomain.biz</div></div>
+            <div class="meta">— · —</div>
+            <div class="owner">Sanjay</div>
+            <div class="actions" onclick="event.stopPropagation()">
+              <button class="btn-expand" id="exp-s2" onclick="toggleExpand('s2')">▸</button>
+              <div class="menu-wrap">
+                <button class="btn-menu" onclick="toggleMenu('ms2')">···</button>
+                <div class="dropdown-menu" id="ms2">
+                  <button class="dropdown-item">View full record</button>
+                  <button class="dropdown-item">Restore as real inquiry</button>
+                  <hr class="dropdown-divider">
+                  <button class="dropdown-item danger">Delete permanently</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-expand" id="s2">
+            <div class="expand-message">
+              <div class="expand-label">Message</div>
+              <p style="color:var(--ink-3)">Hi, I noticed your website could benefit from our premium SEO services. We can get you to the top of Google in 30 days — guaranteed! Please reply for a free audit...</p>
+            </div>
+            <div class="expand-sidebar">
+              <div class="expand-contact"><strong>info@unknowndomain.biz</strong><br>Marked spam by Sanjay · 2026-05-05</div>
+              <div class="expand-actions"><div class="row"><button class="btn">Restore</button><button class="btn danger">Delete</button></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+  function toggleExpand(id) {
+    const panel = document.getElementById(id);
+    const btn   = document.getElementById('exp-' + id);
+    const isOpen = panel.classList.toggle('open');
+    if (btn) { btn.textContent = isOpen ? '▾' : '▸'; btn.classList.toggle('open', isOpen); }
+  }
+
+  function toggleMenu(id) {
+    const menu = document.getElementById(id);
+    const isOpen = !menu.classList.contains('open');
+    document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
+    if (isOpen) menu.classList.add('open');
+  }
+
+  function markSpam(btn) {
+    const entry = btn.closest('.ticket-entry');
+    if (entry) { entry.style.opacity = '0.35'; entry.style.pointerEvents = 'none'; setTimeout(() => entry.remove(), 350); }
+    document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
+  }
+
+  function toggleClosed() {
+    const t = document.getElementById('closed-toggle'), l = document.getElementById('closed-list');
+    t.classList.toggle('open'); l.classList.toggle('open');
+    t.querySelector('.arrow').textContent = t.classList.contains('open') ? '▼' : '▶';
+  }
+
+  function toggleSpam() {
+    const t = document.getElementById('spam-toggle'), l = document.getElementById('spam-list');
+    t.classList.toggle('open'); l.classList.toggle('open');
+    t.querySelector('.arrow').textContent = t.classList.contains('open') ? '▼' : '▶';
+  }
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.menu-wrap'))
+      document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
