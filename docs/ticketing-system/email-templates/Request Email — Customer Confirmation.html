@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>We've received your request — Hana Microelectronics</title>
+<!--
+  ══════════════════════════════════════════════════════════════════
+  CUSTOMER CONFIRMATION — goes to the person who filled in the form
+  ══════════════════════════════════════════════════════════════════
+
+  Sent immediately on submission. Paired with
+  "Inquiry Email — Internal Notification.html", which goes to the team.
+
+  ── TERMINOLOGY (decided July 2026) ──────────────────────────────
+  Customer-facing: "request"  — what the visitor submits.
+  Internal:        "inquiry"  — the record the team works.
+  This file is customer-facing, so it says REQUEST throughout.
+  The internal notification says INQUIRY. Do not mix them: the whole
+  point of the split is that the customer never sees internal wording.
+  ──────────────────────────────────────────────────────────────────
+
+  Purpose: reassure the sender it arrived, set a clear expectation of
+  when they'll hear back, and give them a written record of what they
+  sent. This is the first thing a prospect ever receives from Hana, so
+  it is brand copy — warm and credible, not a system receipt.
+
+  SUBJECT LINE:
+    We've received your request — Hana Microelectronics
+
+  FROM:     A monitored, human address — NOT no-reply@.
+            Suggested: info-request@hanaus.com
+            If someone replies to this email with extra detail, that
+            reply needs to reach a person. A no-reply sender loses it.
+  REPLY-TO: same monitored address.
+
+  DELIBERATELY NOT INCLUDED:
+    - No internal ticket link, status, or owner.
+    - No "your reference is #47" style raw database ID — {{ticket_ref}}
+      is a friendly formatted reference (e.g. HAN-2026-0412).
+    - No attachments — the forms do not accept file uploads.
+
+  FORM TYPE VARIANTS (form names are being finalised separately):
+    General form  — "Your message" label on the recap; the Market and
+                    Capability rows are optional on that form, so hide
+                    either row when empty.
+    Detailed form — "Project description" label on the recap.
+
+  PLACEHOLDERS TO WIRE UP:
+    {{logo_url}}     hosted URL for the Hana logo PNG
+    {{first_name}}   first name only — friendlier than the full name
+    {{ticket_ref}}   friendly reference, e.g. HAN-2026-0412
+    {{privacy_url}}  link to the site privacy policy
+    all other {{double_brace}} fields echo what they submitted.
+
+  COPY NOTES (brand voice):
+    - No exclamation marks, no emoji, no "get a quote today".
+    - Avoids "world-class", "cutting-edge", "seamless", "solutions
+      provider" and similar. Avoids "no handoffs".
+    - Leads with EMS + semiconductor assembly, not NPI.
+-->
+<style>
+  body, table, td { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
+  a { text-decoration: none; }
+  @media only screen and (max-width: 600px) {
+    .email-wrap { width: 100% !important; }
+    /* Stacked cells drop their column gutter so everything lines up flush left */
+    .stack-col { display: block !important; width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
+    .pad-mobile { padding-left: 22px !important; padding-right: 22px !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background:#F2F4F6; font-family:'Inter',Arial,sans-serif;">
+
+<!-- Preheader — the grey preview text shown in the inbox list -->
+<div style="display:none; max-height:0; overflow:hidden; opacity:0;">
+  Thanks for getting in touch. We'll route your request to the right team and reply within one business day.
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F2F4F6;">
+<tr>
+<td align="center" style="padding:32px 16px;">
+
+<table role="presentation" class="email-wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background:#FFFFFF; border-radius:12px; overflow:hidden; border:1px solid #E6E8EB;">
+
+  <!-- ── Header ── -->
+  <tr>
+    <td align="center" style="background:#FFFFFF; padding:30px 40px 26px;" class="pad-mobile">
+      <img src="{{logo_url}}" alt="Hana Microelectronics" height="30" style="height:30px; width:auto; display:block;">
+    </td>
+  </tr>
+
+  <!-- ── Hero ── -->
+  <tr>
+    <td style="background:#E8EFF7; padding:30px 40px;" class="pad-mobile">
+      <div style="font-family:'Geist',Arial,sans-serif; font-size:26px; font-weight:700; color:#0E3A66; line-height:1.25; letter-spacing:-0.02em;">
+        Thanks for getting in touch
+      </div>
+    </td>
+  </tr>
+
+  <!-- ── Body copy ── -->
+  <tr>
+    <td style="padding:32px 40px 8px;" class="pad-mobile">
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:15px; color:#444B54; line-height:1.75;">
+        Hi {{first_name}},
+      </div>
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:15px; color:#444B54; line-height:1.75; margin-top:14px;">
+        Thank you for contacting Hana Microelectronics. Your request has been
+        received by our team, and we'll make sure it reaches the correct
+        channels to help — whether that's a specific Hana site, a technical
+        process specialist, or one of our sales offices.
+      </div>
+    </td>
+  </tr>
+
+  <!-- ── What happens next ── -->
+  <tr>
+    <td style="padding:26px 40px 8px;" class="pad-mobile">
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#1F5BA6; margin-bottom:18px;">
+        What happens next
+      </div>
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <!-- Step 1 -->
+        <tr>
+          <td width="32" valign="top" style="padding:0 14px 16px 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="26" height="26" align="center" valign="middle" style="width:26px; height:26px; background:#1F5BA6; border-radius:13px; font-family:'Inter',Arial,sans-serif; font-size:12px; font-weight:700; color:#FFFFFF; line-height:26px;">1</td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" style="padding:0 0 16px 0;">
+            <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#444B54; line-height:1.65;">We review and route your enquiry to the suitable team or any named persons in your enquiry.</div>
+          </td>
+        </tr>
+        <!-- Step 2 -->
+        <tr>
+          <td width="32" valign="top" style="padding:0 14px 16px 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="26" height="26" align="center" valign="middle" style="width:26px; height:26px; background:#1F5BA6; border-radius:13px; font-family:'Inter',Arial,sans-serif; font-size:12px; font-weight:700; color:#FFFFFF; line-height:26px;">2</td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" style="padding:0 0 16px 0;">
+            <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#444B54; line-height:1.65;">A member of our team will respond and request any required details (e.g. RFQ material)</div>
+          </td>
+        </tr>
+        <!-- Step 3 -->
+        <tr>
+          <td width="32" valign="top" style="padding:0 14px 0 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="26" height="26" align="center" valign="middle" style="width:26px; height:26px; background:#1F5BA6; border-radius:13px; font-family:'Inter',Arial,sans-serif; font-size:12px; font-weight:700; color:#FFFFFF; line-height:26px;">3</td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" style="padding:0;">
+            <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#444B54; line-height:1.65;">Schedule an introduction call or emailed response to speak.</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr><td style="padding:28px 40px 0;" class="pad-mobile"><div style="height:1px; background:#E6E8EB;"></div></td></tr>
+
+  <!-- ── Recap of what they sent ── -->
+  <tr>
+    <td style="padding:24px 40px 8px;" class="pad-mobile">
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#9AA1AA; margin-bottom:16px;">
+        A copy of what you sent
+      </div>
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FBFBFA; border:1px solid #E6E8EB; border-radius:10px;">
+        <tr>
+          <td style="padding:18px 20px 4px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="50%" valign="top" class="stack-col" style="padding:0 10px 14px 0;">
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:3px;">Name</div>
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#0E1116;">{{name}}</div>
+                </td>
+                <td width="50%" valign="top" class="stack-col" style="padding:0 0 14px 10px;">
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:3px;">Company</div>
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#0E1116;">{{company}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td width="50%" valign="top" class="stack-col" style="padding:0 10px 14px 0;">
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:3px;">Email</div>
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#0E1116;">{{email}}</div>
+                </td>
+                <td width="50%" valign="top" class="stack-col" style="padding:0 0 14px 10px;">
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:3px;">Country</div>
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#0E1116;">{{country}}</div>
+                </td>
+              </tr>
+              <!-- Hide these two cells if the sender left them blank (optional on the general form) -->
+              <tr>
+                <td width="50%" valign="top" class="stack-col" style="padding:0 10px 14px 0;">
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:6px;">Market</div>
+                  <span style="display:inline-block; background:#E8EFF7; color:#1F5BA6; font-family:'Inter',Arial,sans-serif; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px; margin:0 4px 4px 0;">Automotive</span>
+                </td>
+                <td width="50%" valign="top" class="stack-col" style="padding:0 0 14px 10px;">
+                  <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:6px;">Service</div>
+                  <span style="display:inline-block; background:#E8EFF7; color:#1F5BA6; font-family:'Inter',Arial,sans-serif; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px; margin:0 4px 4px 0;">PCBA &amp; Box Build</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 20px 18px;">
+            <div style="height:1px; background:#E6E8EB; margin-bottom:14px;"></div>
+            <!-- "Your message" for General Inquiry · "Project description" for Plant Inquiry -->
+            <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-weight:600; color:#9AA1AA; margin-bottom:5px;">Your message</div>
+            <div style="font-family:'Inter',Arial,sans-serif; font-size:14px; color:#444B54; line-height:1.7;">{{message_body}}</div>
+          </td>
+        </tr>
+      </table>
+
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; color:#9AA1AA; margin-top:10px;">
+        Reference <span style="font-family:'IBM Plex Mono',monospace; color:#6B7280;">{{ticket_ref}}</span>
+        — quote this if you need to follow up.
+      </div>
+    </td>
+  </tr>
+
+  <!-- ── Sign-off ── -->
+  <tr>
+    <td style="padding:24px 40px 30px;" class="pad-mobile">
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:15px; color:#444B54; line-height:1.75;">
+        If anything changes in the meantime, or you have more detail to add,
+        just reply to this email and it will reach the same team.
+      </div>
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:15px; color:#444B54; line-height:1.75; margin-top:16px;">
+        Best regards,<br>
+        <span style="font-weight:600; color:#0E1116;">The team at Hana Microelectronics</span>
+      </div>
+    </td>
+  </tr>
+
+  <!-- ── Company strip ── -->
+  <tr>
+    <!-- Company paragraph removed — strip is now the link only, so padding is tightened. -->
+    <td align="center" style="background:#0E3A66; padding:18px 40px;" class="pad-mobile">
+      <a href="https://www.hanagroup.com" style="font-family:'Inter',Arial,sans-serif; font-size:12px; font-weight:700; letter-spacing:0.04em; color:#FFFFFF; text-transform:uppercase;">
+        Visit hanagroup.com →
+      </a>
+    </td>
+  </tr>
+
+  <!-- ── Footer ── -->
+  <tr>
+    <td style="background:#F2F4F6; padding:18px 40px; border-top:1px solid #E6E8EB;" class="pad-mobile">
+      <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; color:#9AA1AA; line-height:1.7;">
+        You're receiving this because you submitted a request on hanagroup.com.
+        We use your details only to respond to your request and do not share them with
+        third parties. Email
+        <a href="mailto:info-request@hanaus.com" style="color:#1F5BA6;">info-request@hanaus.com</a>
+        to request deletion, or read our
+        <a href="{{privacy_url}}" style="color:#1F5BA6;">privacy policy</a>.
+      </div>
+    </td>
+  </tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
