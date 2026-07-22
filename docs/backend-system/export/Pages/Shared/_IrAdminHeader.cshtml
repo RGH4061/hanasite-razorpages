@@ -1,0 +1,17 @@
+@*
+   _IrAdminHeader.cshtml — Investor Relations topbar. Same visual language
+   as the CRM _AdminHeader, named per dashboard with its own title.
+   Model: the signed-in user display string.
+*@
+@model string
+<header class="ir-topbar">
+    <div class="ir-brand">
+        <img class="ir-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+        <span class="ir-divider"></span>
+        <h1 class="ir-title">Investor relations</h1>
+    </div>
+    <div class="ir-user">
+        <span class="ir-user-dot"></span>
+        <span>@Model</span>
+    </div>
+</header>

@@ -1,0 +1,25 @@
+@*
+   _ir_TabBar.cshtml — IR section tabs. Model: the active tab key
+   (news | events | reports | presentations). The "New …" tabs jump
+   straight into the matching form pages.
+*@
+@model string
+@{
+    (string key, string label, string href, bool spaced)[] tabs =
+    {
+        ("news", "News", Url.Page("/Admin/InvestorRelations/Index", new { tab = "news" })!, false),
+        ("events", "Events", Url.Page("/Admin/InvestorRelations/Index", new { tab = "events" })!, false),
+        ("reports", "Reports", Url.Page("/Admin/InvestorRelations/Index", new { tab = "reports" })!, false),
+        ("presentations", "FAQ & Presentations", Url.Page("/Admin/InvestorRelations/Index", new { tab = "presentations" })!, false),
+        ("news-form", "News form", Url.Page("/Admin/InvestorRelations/NewsForm")!, true),
+        ("report-form", "Report form", Url.Page("/Admin/InvestorRelations/ReportForm")!, false),
+        ("pres-form", "Presentation form", Url.Page("/Admin/InvestorRelations/PresentationForm")!, false)
+    };
+}
+<nav class="ir-tabs" aria-label="Investor relations sections">
+    @foreach (var t in tabs)
+    {
+        var cls = "ir-tab" + (t.spaced ? " ir-tab--spaced" : "") + (t.key == Model ? " is-active" : "");
+        <a class="@cls" href="@t.href">@t.label</a>
+    }
+</nav>

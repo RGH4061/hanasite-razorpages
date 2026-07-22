@@ -1,0 +1,160 @@
+@page
+@model HanaSite.Pages.Admin.InvestorRelations.PresentationFormModel
+@using HanaSite.Models.Ir
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>@(Model.Editing ? "Edit" : "New") presentation — Hana Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_IrAdminHeader" model="Jirapa K. · Corporate Affairs" />
+    <partial name="_ir_TabBar" model="@("pres-form")" />
+
+    <main class="ir-wrap">
+        <div class="ir-form-wrap">
+            <div class="ir-form-head">
+                <h2>@(Model.Editing ? "Edit presentation" : "New presentation")</h2>
+                <div class="sub">@(Model.Editing ? "Changes save straight to the live page" : "Draft — not visible to the public")</div>
+            </div>
+
+            @if (Model.Existing != null)
+            {
+                <div class="ir-editbar ir-editbar--live">
+                    <div class="who">
+                        <div class="t">@Model.Existing.Title</div>
+                        <div class="a">Published @Model.Existing.Date by Penpimol K. · last edited 2 Jun 2026</div>
+                    </div>
+                    <div class="right">
+                        <span class="ir-pill ir-pill--live">Live</span>
+                        <button type="button" class="ir-btn">View on website ↗</button>
+                    </div>
+                </div>
+            }
+
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>1 · Presentation details</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-formgrid">
+                            <div class="ir-field">
+                                <label asp-for="Input.Kind">Event kind <span class="ir-req">*</span></label>
+                                <select asp-for="Input.Kind" class="ir-select"><option>SET Opportunity Day</option><option>Analyst Meeting</option></select>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Period">Period <span class="ir-req">*</span></label>
+                                <input asp-for="Input.Period" class="ir-input" placeholder="Q2 2026" />
+                                <div class="ir-help">As investors refer to it — <code style="font-family:var(--font-mono);font-size:11px;background:var(--surface);padding:1px 5px;border-radius:3px">Q2 2026</code>, <code style="font-family:var(--font-mono);font-size:11px;background:var(--surface);padding:1px 5px;border-radius:3px">FY 2025</code>.</div>
+                                <span class="ir-val" asp-validation-for="Input.Period"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Date">Presentation date <span class="ir-req">*</span></label>
+                                <input asp-for="Input.Date" class="ir-input" type="date" value="2026-08-26" />
+                                <span class="ir-val" asp-validation-for="Input.Date"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label>Featured on the page <span class="ir-auto">Automatic</span></label>
+                                <input class="ir-input ir-input--auto" value="Yes — this is the newest" readonly />
+                                <div class="ir-help">The newest presentation gets the video and reading pane at the top of the page.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>2 · The video</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-cover-grid" style="grid-template-columns:1fr 260px">
+                            <div class="ir-field">
+                                <label asp-for="Input.YouTubeUrl">YouTube link <span class="ir-req">*</span></label>
+                                <input asp-for="Input.YouTubeUrl" class="ir-input" placeholder="https://www.youtube.com/watch?v=…" />
+                                <div class="ir-help">Paste the link straight from the address bar — there is no embed code to find.</div>
+                                <span class="ir-val" asp-validation-for="Input.YouTubeUrl"></span>
+                            </div>
+                            <div>
+                                <div class="cap" style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:8px">What appears on the page</div>
+                                <div class="ir-yt-preview">
+                                    <div class="ir-yt-play"><i></i></div>
+                                    <div class="ir-yt-cap">Thumbnail from YouTube · 16:9</div>
+                                </div>
+                                <div class="ir-help" style="margin-top:9px">The picture updates as soon as you paste the link.</div>
+                            </div>
+                        </div>
+                        <div class="ir-note" style="margin-top:18px"><strong>The video plays on the Hana page.</strong> It is embedded the privacy-friendly way, so no YouTube cookie is set unless someone actually presses play.</div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>3 · Summary and transcript</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-note ir-note--warn" style="margin-bottom:18px"><strong>Two rules for this section.</strong> The transcript is published word for word as SET produced it. The written summary must have <strong>customer names removed</strong>.</div>
+                        <div style="display:grid;grid-template-columns:1fr;gap:18px">
+                            <div class="ir-field">
+                                <label asp-for="Input.KeyTakeaways">Key takeaways <span class="ir-req">*</span></label>
+                                <textarea asp-for="Input.KeyTakeaways" class="ir-textarea" placeholder="One per line — each line becomes a bullet."></textarea>
+                                <div class="ir-help">These sit beside the video and are always visible.</div>
+                                <span class="ir-val" asp-validation-for="Input.KeyTakeaways"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Summary">Full summary <span class="ir-req">*</span></label>
+                                <textarea asp-for="Input.Summary" class="ir-textarea" placeholder="The longer written summary, in the reading pane under the video."></textarea>
+                                <div class="ir-help">This is the text search engines and AI answer tools read.</div>
+                                <span class="ir-val" asp-validation-for="Input.Summary"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.TranscriptEn">Transcript <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">English</span></label>
+                                <textarea asp-for="Input.TranscriptEn" class="ir-textarea" style="min-height:150px" placeholder="Paste the verbatim transcript — timestamps and speaker names included."></textarea>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.TranscriptTh">Transcript <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">ไทย</span></label>
+                                <textarea asp-for="Input.TranscriptTh" class="ir-textarea" style="min-height:150px" placeholder="The published Thai version, pasted the same way."></textarea>
+                                <div class="ir-help">Both languages sit in one record — English answer followed by Thai.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>4 · Attachments</h3></div>
+                    <div class="ir-card-body">
+                        <partial name="_ir_AttachmentEditor" model="Model.Input.Attachments" view-data='new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary(ViewData) { { "field", "Input.Attachments" } }' />
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>5 · Publishing</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-note"><strong>Nothing to schedule here.</strong> The Opportunity Day has already happened and the recording is public on YouTube, so this can go live as soon as the summary is written.</div>
+                        <div style="margin-top:18px">
+                            <label style="display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:6px">Page address <span class="ir-auto">Automatic</span></label>
+                            <input class="ir-input ir-input--auto" value="hanagroup.com/investor-relations/faq/" readonly />
+                        </div>
+                    </div>
+                    <div class="ir-card-foot">
+                        <button type="submit" class="ir-btn ir-btn--primary ir-btn--lg">@(Model.Editing ? "Save changes" : "Publish to website")</button>
+                        <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Save as draft</button>
+                        <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Preview</button>
+                        <span class="hint">Draft saved automatically at 14:48</span>
+                    </div>
+                </div>
+
+                <div style="margin:0 0 40px"><a class="ir-btn" asp-page="/Admin/InvestorRelations/Index" asp-route-tab="presentations">← Back to presentations</a></div>
+            </form>
+        </div>
+    </main>
+
+    <script src="~/js/ir-admin.js" asp-append-version="true"></script>
+</body>
+</html>

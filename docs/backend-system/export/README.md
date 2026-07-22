@@ -15,27 +15,44 @@ export/
 │   ├── Admin/Tickets/
 │   │   ├── Index.cshtml                        ticket list page (/admin/tickets/)
 │   │   └── Index.cshtml.cs                     TicketListModel + action handlers
+│   ├── Admin/InvestorRelations/               IR admin hub (/admin/investor-relations/)
+│   │   ├── Index.cshtml(.cs)                   tabbed lists: news/events/reports/presentations
+│   │   ├── NewsForm.cshtml(.cs)                new/edit news item (also events via ?kind=event)
+│   │   ├── ReportForm.cshtml(.cs)              new/edit report + cover
+│   │   └── PresentationForm.cshtml(.cs)        new/edit Opportunity Day presentation
 │   ├── Account/
 │   │   ├── Login.cshtml                        sign-in page
 │   │   └── Login.cshtml.cs                     LoginModel (Identity stub)
 │   └── Shared/
-│       ├── _AdminHeader.cshtml
+│       ├── _AdminHeader.cshtml                 CRM topbar
 │       ├── _tickets_FilterBar.cshtml
 │       ├── _tickets_StatusPill.cshtml
 │       ├── _tickets_TicketRow.cshtml
 │       ├── _icon_Chevron.cshtml
-│       └── _icon_Dots.cshtml
+│       ├── _icon_Dots.cshtml
+│       ├── _IrAdminHeader.cshtml               IR topbar (same style, own title)
+│       ├── _ir_TabBar.cshtml                   IR section tabs
+│       ├── _ir_StatusPill.cshtml               shared publishing-status badge
+│       ├── _ir_NewsRow / _ir_EventRow / _ir_ReportRow / _ir_PresRow.cshtml
+│       ├── _ir_AttachmentEditor.cshtml         repeatable attachment rows
+│       └── _ir_PublishBlock.cshtml             publish now / at a set time
 ├── Models/Admin/
 │   ├── Ticket.cs                               inquiry model + view helpers
 │   └── TicketStore.cs                          in-memory seed (replace on merge)
+├── Models/Ir/
+│   ├── Attachment.cs                           attachment + IrStatus enum/helpers
+│   ├── IrRecords.cs                            NewsItem / IrEvent / Report / Presentation / FaqCategory
+│   └── IrStore.cs                              in-memory seed (replace on merge)
 └── wwwroot/
     ├── css/_tokens.css                         palette — reuse the site's copy
     ├── css/admin.css                           ticket list styles
+    ├── css/ir-admin.css                        IR hub styles
     ├── css/login.css                           sign-in styles
     ├── js/tickets.js                           expand / menu / collapse / filter
+    ├── js/ir-admin.js                          publish toggle / repeatable rows / period field
     ├── js/hana-backgrounds.js                  login-only decorative background
     ├── images/hana-logo-full.svg, hana-mark.svg
-    └── robots.txt                              blocks /admin/tickets/
+    └── robots.txt                              blocks /admin/tickets/ + /admin/investor-relations/
 ```
 
 ## Merge notes
@@ -61,6 +78,32 @@ export/
   the CRM only routes tickets to the correct owner, so the expand panel is the
   full view. A dedicated record/audit page is deferred as possible future work.
   (Honeypot spam rows keep a "View raw data" action that opens the expand panel.)
+
+## Investor Relations hub (`/admin/investor-relations/`)
+
+- **One page, four tabs.** `Index.cshtml` renders news / events / reports /
+  presentations by `?tab=`. The tab bar (`_ir_TabBar`) also links straight into
+  the three form pages. Tables scroll inside `.ir-listwrap` and the form grids
+  collapse to one column below 820px.
+- **Forms use model binding + validation.** Each form page has an `InputModel`
+  with `[Required]` attributes (plus a server rule: Financial Information items
+  must carry a Period). Invalid posts return the page with `asp-validation-for`
+  messages; valid posts write to `IrStore` and redirect (PRG).
+- **Client-side JS (`ir-admin.js`) is enhancement only.** It drives the publish
+  now/schedule toggle, the repeatable attachment rows (add/remove + filename
+  reflect), and the Period field that appears only for Financial Information.
+  The save itself is a normal form POST, so it works if JS fails.
+- **Attachments** are one record with many files (EN + TH + statements), bound
+  as `Input.Attachments[i]` and rendered by `_ir_AttachmentEditor`; the JS
+  renumbers indices as rows are added/removed.
+- **Header named per dashboard.** `_IrAdminHeader` shares the CRM header's
+  visual language but carries the title "Investor relations" — the CRM keeps
+  `_AdminHeader`. 150px logo kept to match the prototypes.
+- **Same in-memory-store caveat as the CRM.** `IrStore` is a seed; swap for the
+  real repository on merge (page models only touch `Find*` + the lists).
+- **Content rules preserved from the wireframe:** transcripts published verbatim,
+  written summaries with customer names removed, and the SET-filing scheduler
+  note that files stay unreachable until go-live.
 
 ## Razor build safety
 

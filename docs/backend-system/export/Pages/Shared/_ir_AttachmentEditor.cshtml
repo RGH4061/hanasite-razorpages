@@ -1,0 +1,54 @@
+@*
+   _ir_AttachmentEditor.cshtml — repeatable attachment rows for the IR forms.
+   Enhanced by ir-admin.js (add / remove / filename reflect); without JS the
+   seeded rows still POST and the form saves. Model: List<Attachment>.
+   ViewData["field"] sets the POST binding prefix (e.g. "Attachments").
+*@
+@using HanaSite.Models.Ir
+@model List<Attachment>
+@{
+    var field = ViewData["field"] as string ?? "Attachments";
+}
+<div data-repeat>
+    <div class="ir-att-head">
+        <div>Label shown on the website</div><div>Language</div><div>File</div><div>Type &amp; size</div><div></div>
+    </div>
+    <div class="ir-att-rows" data-repeat-rows>
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            var a = Model[i];
+            <div class="ir-att-row" data-repeat-row>
+                <input class="ir-att-input" type="text" name="@(field)[@i].Label" value="@a.Label" aria-label="Attachment label" placeholder="e.g. Financial Statements Q2/2026" />
+                <select class="ir-att-input" name="@(field)[@i].Language" aria-label="Language">
+                    <option selected="@(a.Language == "English")">English</option>
+                    <option selected="@(a.Language == "ไทย (Thai)")">ไทย (Thai)</option>
+                    <option selected="@(a.Language == "Bilingual")">Bilingual</option>
+                </select>
+                <label class="ir-att-file @(a.HasFile ? "has-file" : "")">
+                    <span data-file-face>@(a.HasFile ? a.FileName : "Choose file…")</span>
+                    <input type="file" name="@(field)[@i].Upload" style="display:none" />
+                </label>
+                <div class="ir-att-meta">@a.Meta</div>
+                <button type="button" class="ir-att-rm" data-repeat-rm title="Remove this file">×</button>
+            </div>
+        }
+    </div>
+
+    @* Template cloned by ir-admin.js for each new row (index rewritten on add). *@
+    <template data-repeat-tmpl>
+        <div class="ir-att-row" data-repeat-row>
+            <input class="ir-att-input" type="text" name="@(field)[0].Label" aria-label="Attachment label" placeholder="e.g. Financial Statements Q2/2026" />
+            <select class="ir-att-input" name="@(field)[0].Language" aria-label="Language">
+                <option>English</option><option>ไทย (Thai)</option><option>Bilingual</option>
+            </select>
+            <label class="ir-att-file">
+                <span data-file-face>Choose file…</span>
+                <input type="file" name="@(field)[0].Upload" style="display:none" />
+            </label>
+            <div class="ir-att-meta">—</div>
+            <button type="button" class="ir-att-rm" data-repeat-rm title="Remove this file">×</button>
+        </div>
+    </template>
+
+    <button type="button" class="ir-btn" data-repeat-add style="margin-top:10px">+ Add another file</button>
+</div>

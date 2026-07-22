@@ -1,0 +1,32 @@
+@*
+   _ir_EventRow.cshtml — one investor event. Row links to the news-shaped
+   form (events reuse it). Model: IrEvent.
+*@
+@using HanaSite.Models.Ir
+@model IrEvent
+@{
+    var editHref = Url.Page("/Admin/InvestorRelations/NewsForm", new { id = Model.Id, kind = "event" });
+    var pillLabel = Model.Upcoming ? "Upcoming" : Model.Status.Label();
+    var pillCss = Model.Upcoming ? "upcoming" : Model.Status.Css();
+}
+<a class="ir-row ir-row--@Model.Status.Css()" href="@editHref">
+    <div class="ir-cell-title">
+        <div class="t">@Model.Title</div>
+        @if (!string.IsNullOrEmpty(Model.Subtitle)) { <div class="sub">@Model.Subtitle</div> }
+    </div>
+    <div class="ir-cell-muted">@Model.Kind</div>
+    <div class="ir-cell-mono">@Model.Date@if (!string.IsNullOrEmpty(Model.Time)) { <span class="sub">@Model.Time</span> }</div>
+    <div class="ir-cell-muted">@Model.Format</div>
+    <div><span class="ir-pill ir-pill--@pillCss">@pillLabel</span></div>
+    <div class="ir-cell-actions" onclick="event.stopPropagation()">
+        @if (Model.Status == IrStatus.ToBeConfirmed)
+        {
+            <a class="ir-btn" href="@editHref">View</a>
+            <a class="ir-btn ir-btn--primary" href="@editHref">Set date</a>
+        }
+        else
+        {
+            <a class="ir-btn" href="@editHref">Edit</a>
+        }
+    </div>
+</a>

@@ -1,0 +1,150 @@
+@page
+@model HanaSite.Pages.Admin.InvestorRelations.IndexModel
+@using HanaSite.Models.Ir
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana — Investor relations (Admin)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_IrAdminHeader" model="@Model.CurrentUser" />
+    <partial name="_ir_TabBar" model="@Model.Tab" />
+
+    <main class="ir-wrap">
+        @if (Model.Tab == "news")
+        {
+            <div class="ir-filters" data-filters>
+                <label for="f-type">Type</label>
+                <select id="f-type" data-f="type"><option>All types</option><option>SET Announcement</option><option>Press Release &amp; Financial News</option><option>Financial Information</option></select>
+                <label for="f-year">Year</label>
+                <select id="f-year" data-f="year"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>All years</option></select>
+                <label for="f-status">Status</label>
+                <select id="f-status" data-f="status"><option>Live, scheduled &amp; draft</option><option>Live only</option><option>Scheduled only</option><option>Draft only</option><option>All</option></select>
+                <input class="ir-search" data-f="q" type="search" placeholder="Search title…" aria-label="Search news" />
+            </div>
+
+            <div class="ir-sec-head">
+                <h2>Investor news — 2026</h2>
+                <div class="count">@Model.News.Count items · @Model.NewsLiveCount live on the website · @Model.NewsScheduledCount scheduled</div>
+            </div>
+            <div class="ir-listwrap">
+                <div class="ir-grid ir-grid--news">
+                    <div class="ir-headrow"><div>Title</div><div>Type</div><div>Document date</div><div>Files</div><div>Status</div><div></div></div>
+                    @foreach (var n in Model.News) { <partial name="_ir_NewsRow" model="n" /> }
+                </div>
+            </div>
+            <div class="ir-legend">
+                <span><span class="sw" style="background:#0A7C3F"></span>Live — on hanagroup.com now</span>
+                <span><span class="sw" style="background:#4E9BDA"></span>Scheduled — appears by itself at the time set</span>
+                <span><span class="sw" style="background:#9BA3AF"></span>Draft — not visible to the public</span>
+                <span><span class="sw" style="background:#E05A4A"></span>Archived — taken off the page</span>
+            </div>
+            <div class="ir-add-head"><h2>Add an item</h2></div>
+            <div class="ir-note"><strong>The year selector on the website builds itself.</strong> Pick the document date and the item files itself under the right year — the counts beside each year update on their own.</div>
+            <div style="margin-top:14px"><a class="ir-btn ir-btn--primary ir-btn--lg" asp-page="/Admin/InvestorRelations/NewsForm">+ New investor news item</a></div>
+        }
+        else if (Model.Tab == "events")
+        {
+            <div class="ir-filters" data-filters>
+                <label for="f-kind">Event kind</label>
+                <select id="f-kind" data-f="kind"><option>All kinds</option><option>SET Opportunity Day</option><option>Analyst Meeting</option></select>
+                <label for="f-show">Showing</label>
+                <select id="f-show" data-f="show"><option>Upcoming &amp; past</option><option>Upcoming only</option><option>Past only</option></select>
+                <input class="ir-search" data-f="q" type="search" placeholder="Search event…" aria-label="Search events" />
+            </div>
+            <div class="ir-sec-head">
+                <h2>Investor events — 2026</h2>
+                <div class="count">@Model.Events.Count events · @Model.EventsUpcomingCount showing as upcoming</div>
+            </div>
+            <div class="ir-listwrap">
+                <div class="ir-grid ir-grid--events">
+                    <div class="ir-headrow"><div>Event</div><div>Kind</div><div>Date</div><div>Format</div><div>Status</div><div></div></div>
+                    @foreach (var e in Model.Events) { <partial name="_ir_EventRow" model="e" /> }
+                </div>
+            </div>
+            <div class="ir-add-head"><h2>Add an event</h2></div>
+            <div class="ir-note"><strong>Events move to "past" on their own.</strong> The website compares the event date to today and changes the label, and the button, by itself. An event with no date shows as <em>To be confirmed</em> until a date is entered.</div>
+            <div style="margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <a class="ir-btn ir-btn--primary ir-btn--lg" asp-page="/Admin/InvestorRelations/NewsForm" asp-route-kind="event">+ New event</a>
+                <span style="font-size:12px;color:var(--ink-3)">Uses the news form shape, with date, time and format instead of attachments.</span>
+            </div>
+        }
+        else if (Model.Tab == "reports")
+        {
+            <div class="ir-filters" data-filters>
+                <label for="f-rtype">Report type</label>
+                <select id="f-rtype" data-f="rtype"><option>All reports</option><option>Annual Report</option><option>56-1 One Report</option></select>
+                <label for="f-ryear">Year</label>
+                <select id="f-ryear" data-f="ryear"><option>All years</option><option>2025</option><option>2024</option><option>2023</option></select>
+                <input class="ir-search" data-f="q" type="search" placeholder="Search report…" aria-label="Search reports" />
+            </div>
+            <div class="ir-sec-head">
+                <h2>Reports</h2>
+                <div class="count">@Model.Reports.Count records · @Model.ReportsDraftCount in draft</div>
+            </div>
+            <div class="ir-listwrap">
+                <div class="ir-grid ir-grid--reports">
+                    <div class="ir-headrow"><div>Cover</div><div>Report</div><div>Type</div><div>Files</div><div>Status</div><div></div></div>
+                    @foreach (var r in Model.Reports) { <partial name="_ir_ReportRow" model="r" /> }
+                </div>
+            </div>
+            <div class="ir-note" style="margin-top:18px"><strong>Reports are the only records with a cover image.</strong> Leave it empty and the system uses page one of the PDF, so a report never sits on the live site with a grey box where the cover should be.</div>
+            <div style="margin-top:14px"><a class="ir-btn ir-btn--primary ir-btn--lg" asp-page="/Admin/InvestorRelations/ReportForm">+ New report</a></div>
+        }
+        else if (Model.Tab == "presentations")
+        {
+            <div class="ir-sec-head">
+                <h2>Presentations</h2>
+                <div class="count">Updated each quarter after the Opportunity Day</div>
+            </div>
+            <div class="ir-listwrap">
+                <div class="ir-grid ir-grid--pres">
+                    <div class="ir-headrow"><div>Thumbnail</div><div>Presentation</div><div>Date</div><div>Summary / transcript</div><div>Status</div><div></div></div>
+                    @foreach (var p in Model.Presentations) { <partial name="_ir_PresRow" model="p" /> }
+                </div>
+            </div>
+            <div class="ir-note" style="margin-top:16px"><strong>The newest presentation becomes the featured one automatically.</strong> It gets the video, the key takeaways and the reading pane at the top of the page; the previous one drops back to a card below.</div>
+            <div class="ir-note ir-note--warn" style="margin-top:12px"><strong>Two content rules carry over.</strong> Transcripts are published word for word as SET produced them. The written summary must have customer names removed — the same rule that applies everywhere else on the website.</div>
+            <div style="margin-top:14px"><a class="ir-btn ir-btn--primary ir-btn--lg" asp-page="/Admin/InvestorRelations/PresentationForm">+ New presentation</a></div>
+
+            <div class="ir-sec-head ir-sec-head--gap">
+                <h2>Investor FAQs</h2>
+                <div class="count">14 questions across 3 categories</div>
+            </div>
+            <div class="ir-listwrap" style="overflow-x:visible">
+                <div class="ir-grid ir-grid--faq">
+                    <div class="ir-headrow"><div>Category</div><div>Questions</div><div>Status</div><div></div></div>
+                    @foreach (var c in Model.Faqs)
+                    {
+                        <div class="ir-row ir-row--live" style="cursor:default">
+                            <div class="ir-cell-title"><div class="t">@c.Title</div><div class="sub">@c.Subtitle</div></div>
+                            <div class="ir-cell-muted">@c.Count</div>
+                            <div><span class="ir-pill ir-pill--live">Live</span></div>
+                            <div class="ir-cell-actions"><button type="button" class="ir-btn">Edit questions</button></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div style="margin-top:14px"><button type="button" class="ir-btn">+ Add a question</button></div>
+        }
+    </main>
+
+    @if (!string.IsNullOrEmpty(Model.Toast))
+    {
+        <div class="ir-toast" role="status">@Model.Toast</div>
+    }
+
+    <script src="~/js/ir-admin.js" asp-append-version="true"></script>
+</body>
+</html>

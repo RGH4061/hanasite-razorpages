@@ -1,0 +1,146 @@
+@page
+@model HanaSite.Pages.Admin.InvestorRelations.NewsFormModel
+@using HanaSite.Models.Ir
+@{
+    Layout = null;
+    var ed = Model.Existing;
+    var barCss = ed == null ? "" : "ir-editbar--" + ed.Status.Css();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>@(Model.Editing ? "Edit" : "New") investor news — Hana Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_IrAdminHeader" model="Jirapa K. · Corporate Affairs" />
+    <partial name="_ir_TabBar" model="@("news-form")" />
+
+    <main class="ir-wrap">
+        <div class="ir-form-wrap">
+            <div class="ir-form-head">
+                <h2>@(Model.Editing ? "Edit investor news item" : "New investor news item")</h2>
+                <div class="sub">@(Model.Editing ? (Model.IsLive ? "Changes save straight to the live page" : "Not yet public") : "Draft — not visible to the public")</div>
+            </div>
+
+            @if (ed != null)
+            {
+                <div class="ir-editbar @barCss">
+                    <div class="who">
+                        <div class="t">@ed.Title</div>
+                        <div class="a">@(Model.IsLive ? "Published " + ed.DocumentDate + " by Penpimol K. · last edited 2 Jun 2026" : "Not yet public · created 18 Jul 2026 by Jirapa K.")</div>
+                    </div>
+                    <div class="right">
+                        <partial name="_ir_StatusPill" model="ed.Status" />
+                        <button type="button" class="ir-btn">View on website ↗</button>
+                    </div>
+                </div>
+            }
+
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Kind" />
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>1 · Item details</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-formgrid">
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.Type">Type <span class="ir-req">*</span></label>
+                                <select asp-for="Input.Type" id="ir-news-type" class="ir-select">
+                                    <option value="set">SET Announcement</option>
+                                    <option value="press">Press Release &amp; Financial News</option>
+                                    <option value="fin">Financial Information</option>
+                                </select>
+                                <div class="ir-help">Decides which of the three sections the item appears under on the Investor News page.</div>
+                                <span class="ir-val" asp-validation-for="Input.Type"></span>
+                            </div>
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.Title">Title <span class="ir-req">*</span></label>
+                                <input asp-for="Input.Title" class="ir-input" placeholder="e.g. Notification of Board of Directors' Meeting No. 3/2026" />
+                                <div class="ir-help">Use the document's own title — the wording an investor scans for and what search engines index.</div>
+                                <span class="ir-val" asp-validation-for="Input.Title"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.DocumentDate">Document date <span class="ir-req">*</span></label>
+                                <input asp-for="Input.DocumentDate" class="ir-input" type="date" value="2026-08-12" />
+                                <div class="ir-help">The date on the document — not the date you upload it.</div>
+                                <span class="ir-val" asp-validation-for="Input.DocumentDate"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label>Filed under year <span class="ir-auto">Automatic</span></label>
+                                <input class="ir-input ir-input--auto" value="2026" readonly />
+                                <div class="ir-help">Taken from the document date — puts the item behind the right year and updates that year's count.</div>
+                            </div>
+                            <div class="ir-field" id="ir-period-field" style="display:none">
+                                <label asp-for="Input.Period">Period <span class="ir-req">*</span></label>
+                                <input asp-for="Input.Period" class="ir-input" placeholder="e.g. Q2 2026 or FY 2025" />
+                                <div class="ir-help">Shown in the Period column. Only Financial Information items use this.</div>
+                                <span class="ir-val" asp-validation-for="Input.Period"></span>
+                            </div>
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.Summary">One-line summary <span class="ir-opt">(optional)</span></label>
+                                <input asp-for="Input.Summary" class="ir-input" placeholder="A short line under the title, if the title alone isn't clear." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>2 · Attachments</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-note" style="margin-bottom:16px"><strong>One item, all its files.</strong> A quarterly release is the statements, the MD&amp;A and the presentation, in both languages — as separate download buttons on this one item.</div>
+                        <partial name="_ir_AttachmentEditor" model="Model.Input.Attachments" view-data='new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary(ViewData) { { "field", "Input.Attachments" } }' />
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>3 · Publishing</h3></div>
+                    <div class="ir-card-body">
+                        @if (Model.IsLive)
+                        {
+                            <div class="ir-note ir-note--warn"><strong>This item is already on the website.</strong> Pressing <em>Save changes</em> updates the live page straight away. Use <em>Unpublish</em> first if you need it off the page while you work on it.</div>
+                        }
+                        else
+                        {
+                            <partial name="_ir_PublishBlock" view-data='new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary(ViewData) { { "mode", Model.Input.PublishMode } }' />
+                        }
+                        <div style="margin-top:18px">
+                            <label style="display:block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:6px">Page address <span class="ir-auto">Automatic</span></label>
+                            <input class="ir-input ir-input--auto" value="hanagroup.com/investor-relations/investor-news/?year=2026" readonly />
+                        </div>
+                    </div>
+                    <div class="ir-card-foot">
+                        @if (Model.IsLive)
+                        {
+                            <button type="submit" class="ir-btn ir-btn--primary ir-btn--lg">Save changes</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Preview</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Unpublish</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Archive</button>
+                            <span class="hint">Every change is recorded against your name</span>
+                        }
+                        else
+                        {
+                            <button type="submit" class="ir-btn ir-btn--primary ir-btn--lg">Publish to website</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Save as draft</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" formnovalidate>Preview</button>
+                            <span class="hint">Draft saved automatically at 14:48</span>
+                        }
+                    </div>
+                </div>
+
+                <div style="margin:0 0 40px"><a class="ir-btn" asp-page="/Admin/InvestorRelations/Index" asp-route-tab="news">← Back to investor news</a></div>
+            </form>
+        </div>
+    </main>
+
+    <script src="~/js/ir-admin.js" asp-append-version="true"></script>
+</body>
+</html>

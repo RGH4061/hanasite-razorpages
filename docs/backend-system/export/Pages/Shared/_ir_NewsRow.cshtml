@@ -1,0 +1,35 @@
+@*
+   _ir_NewsRow.cshtml — one investor-news item as a clickable list row.
+   The whole row links to the edit form; action buttons override with
+   their own hrefs. Model: NewsItem.
+*@
+@using HanaSite.Models.Ir
+@model NewsItem
+@{
+    var editHref = Url.Page("/Admin/InvestorRelations/NewsForm", new { id = Model.Id });
+    var filesEmpty = Model.FileCount == 0;
+}
+<a class="ir-row ir-row--@Model.Status.Css()" href="@editHref">
+    <div class="ir-cell-title">
+        <div class="t">@Model.Title</div>
+        @if (!string.IsNullOrEmpty(Model.Subtitle)) { <div class="sub">@Model.Subtitle</div> }
+    </div>
+    <div class="ir-cell-muted">@Model.TypeLabel</div>
+    <div class="ir-cell-mono">@Model.DocumentDate</div>
+    <div style="font-size:13px;color:@(filesEmpty ? "var(--ink-3)" : "var(--ink-2)");font-weight:@(filesEmpty ? "400" : "600")">@Model.FileCount</div>
+    <div>
+        <partial name="_ir_StatusPill" model="Model.Status" />
+        @if (!string.IsNullOrEmpty(Model.GoLive)) { <span class="ir-golive">@Model.GoLive</span> }
+    </div>
+    <div class="ir-cell-actions" onclick="event.stopPropagation()">
+        @if (Model.Status == IrStatus.Draft)
+        {
+            <a class="ir-btn" href="@editHref">Preview</a>
+            <form method="post" asp-page-handler="Publish" asp-route-id="@Model.Id" asp-route-kind="news"><button type="submit" class="ir-btn ir-btn--primary">Publish</button></form>
+        }
+        else
+        {
+            <a class="ir-btn" href="@editHref">Edit</a>
+        }
+    </div>
+</a>

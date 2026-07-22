@@ -1,0 +1,26 @@
+@*
+   _ir_PresRow.cshtml — one Opportunity Day presentation. Model: Presentation.
+*@
+@using HanaSite.Models.Ir
+@model Presentation
+@{
+    var editHref = Url.Page("/Admin/InvestorRelations/PresentationForm", new { id = Model.Id });
+}
+<a class="ir-row ir-row--live" href="@editHref">
+    <div><div class="ir-yt">YouTube</div></div>
+    <div class="ir-cell-title">
+        <div class="t">@Model.Title</div>
+        <div class="sub">@Model.Subtitle@if (Model.Featured) { <span class="ir-featured">Featured</span> }</div>
+    </div>
+    <div class="ir-cell-mono">@Model.Date</div>
+    <div class="ir-cell-muted">
+        <span style="color:#0A7C3F;font-weight:600">✓</span> Summary &nbsp;
+        <span style="color:@(Model.HasTranscript ? "#0A7C3F" : "#9BA3AF");font-weight:600">@(Model.HasTranscript ? "✓" : "—")</span>
+        @(Model.HasTranscript ? "Transcript (EN + ไทย)" : "Transcript")
+    </div>
+    <div><span class="ir-pill ir-pill--live">Live</span></div>
+    <div class="ir-cell-actions" onclick="event.stopPropagation()">
+        <a class="ir-btn" href="@editHref">View</a>
+        <a class="ir-btn" href="@editHref">Edit</a>
+    </div>
+</a>

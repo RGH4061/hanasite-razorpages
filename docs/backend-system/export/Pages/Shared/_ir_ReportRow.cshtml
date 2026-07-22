@@ -1,0 +1,38 @@
+@*
+   _ir_ReportRow.cshtml — one report with its cover thumbnail. When no cover
+   is uploaded the thumbnail shows the "Auto" (page 1 of PDF) treatment.
+   Model: Report.
+*@
+@using HanaSite.Models.Ir
+@model Report
+@{
+    var editHref = Url.Page("/Admin/InvestorRelations/ReportForm", new { id = Model.Id });
+    var coverCls = Model.HasCover ? "ir-cover--img" : "ir-cover--auto";
+    var yearText = Model.HasCover ? Model.Year : "Auto";
+}
+<a class="ir-row ir-row--@Model.Status.Css()" href="@editHref">
+    <div>
+        <div class="ir-cover @coverCls">
+            <div class="eyebrow">@Model.CoverEyebrow</div>
+            <div class="yr">@yearText</div>
+        </div>
+    </div>
+    <div class="ir-cell-title">
+        <div class="t">@Model.Title</div>
+        @if (!string.IsNullOrEmpty(Model.Subtitle)) { <div class="sub">@Model.Subtitle</div> }
+    </div>
+    <div class="ir-cell-muted">@Model.Type</div>
+    <div style="font-size:13px;color:var(--ink-2);font-weight:600">@Model.FileCount</div>
+    <div><partial name="_ir_StatusPill" model="Model.Status" /></div>
+    <div class="ir-cell-actions" onclick="event.stopPropagation()">
+        @if (Model.Status == IrStatus.Draft)
+        {
+            <a class="ir-btn" href="@editHref">Preview</a>
+            <form method="post" asp-page-handler="Publish" asp-route-id="@Model.Id" asp-route-kind="report"><button type="submit" class="ir-btn ir-btn--primary">Publish</button></form>
+        }
+        else
+        {
+            <a class="ir-btn" href="@editHref">Edit</a>
+        }
+    </div>
+</a>

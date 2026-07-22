@@ -1,0 +1,10 @@
+@*
+   _ir_StatusPill.cshtml — publishing-status badge shared by every IR list.
+   Model: the IrStatus value. Optional custom label via ViewData["label"].
+*@
+@using HanaSite.Models.Ir
+@model IrStatus
+@{
+    var label = ViewData["label"] as string ?? Model.Label();
+}
+<span class="ir-pill ir-pill--@Model.Css()">@label</span>
