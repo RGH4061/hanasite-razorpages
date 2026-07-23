@@ -8,7 +8,9 @@ namespace HanaSite.Models.Ir
     {
         public string Id { get; set; } = "";
         public string Title { get; set; } = "";
+        public string TitleTh { get; set; } = "";
         public string? Subtitle { get; set; }
+        public string? SubtitleTh { get; set; }
         public string Type { get; set; } = "set";        // set | press | fin
         public string DocumentDate { get; set; } = "";    // display string, e.g. "14 Jul 2026"
         public string? Period { get; set; }               // Financial Information only
@@ -48,7 +50,9 @@ namespace HanaSite.Models.Ir
     {
         public string Id { get; set; } = "";
         public string Title { get; set; } = "";
+        public string TitleTh { get; set; } = "";
         public string? Subtitle { get; set; }
+        public string? SubtitleTh { get; set; }
         public string Type { get; set; } = "Annual Report"; // Annual Report | 56-1 One Report
         public string Year { get; set; } = "";
         public bool HasCover { get; set; }                   // false => auto from PDF p.1

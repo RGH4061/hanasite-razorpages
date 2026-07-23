@@ -24,7 +24,10 @@ namespace HanaSite.Pages.Admin.InvestorRelations
             [Required] public string Year { get; set; } = "2026";
             [Required(ErrorMessage = "Give the report a title.")]
             public string Title { get; set; } = "";
+            [Required(ErrorMessage = "Enter the Thai title.")]
+            public string TitleTh { get; set; } = "";
             public string? Description { get; set; }
+            public string? DescriptionTh { get; set; }
             public List<Attachment> Attachments { get; set; } = new();
             public string PublishMode { get; set; } = "now";
             public string? GoLiveAt { get; set; }
@@ -42,7 +45,9 @@ namespace HanaSite.Pages.Admin.InvestorRelations
                         Type = Existing.Type,
                         Year = Existing.Year,
                         Title = Existing.Title,
+                        TitleTh = Existing.TitleTh,
                         Description = Existing.Subtitle,
+                        DescriptionTh = Existing.SubtitleTh,
                         Attachments = new List<Attachment>(Existing.Attachments)
                     };
                 }
@@ -61,9 +66,11 @@ namespace HanaSite.Pages.Admin.InvestorRelations
             if (Existing != null)
             {
                 Existing.Title = Input.Title;
+                Existing.TitleTh = Input.TitleTh;
                 Existing.Type = Input.Type;
                 Existing.Year = Input.Year;
                 Existing.Subtitle = Input.Description;
+                Existing.SubtitleTh = Input.DescriptionTh;
                 Existing.Attachments = Input.Attachments;
                 Toast = "Changes saved to the live page";
             }

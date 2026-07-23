@@ -63,10 +63,16 @@
                                 <span class="ir-val" asp-validation-for="Input.Type"></span>
                             </div>
                             <div class="ir-field ir-col-full">
-                                <label asp-for="Input.Title">Title <span class="ir-req">*</span></label>
+                                <label asp-for="Input.Title">Title <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">English</span> <span class="ir-req">*</span></label>
                                 <input asp-for="Input.Title" class="ir-input" placeholder="e.g. Notification of Board of Directors' Meeting No. 3/2026" />
                                 <div class="ir-help">Use the document's own title — the wording an investor scans for and what search engines index.</div>
                                 <span class="ir-val" asp-validation-for="Input.Title"></span>
+                            </div>
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.TitleTh">Title <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">ไทย</span> <span class="ir-req">*</span></label>
+                                <input asp-for="Input.TitleTh" class="ir-input" placeholder="เช่น แจ้งมติที่ประชุมคณะกรรมการบริษัท ครั้งที่ 3/2569" />
+                                <div class="ir-help">The same title in Thai — shown when the site is viewed in Thai.</div>
+                                <span class="ir-val" asp-validation-for="Input.TitleTh"></span>
                             </div>
                             <div class="ir-field">
                                 <label asp-for="Input.DocumentDate">Document date <span class="ir-req">*</span></label>
@@ -86,8 +92,12 @@
                                 <span class="ir-val" asp-validation-for="Input.Period"></span>
                             </div>
                             <div class="ir-field ir-col-full">
-                                <label asp-for="Input.Summary">One-line summary <span class="ir-opt">(optional)</span></label>
+                                <label asp-for="Input.Summary">One-line summary <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">English</span> <span class="ir-opt">(optional)</span></label>
                                 <input asp-for="Input.Summary" class="ir-input" placeholder="A short line under the title, if the title alone isn't clear." />
+                            </div>
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.SummaryTh">One-line summary <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">ไทย</span> <span class="ir-opt">(optional)</span></label>
+                                <input asp-for="Input.SummaryTh" class="ir-input" placeholder="ประโยคสั้น ๆ ใต้หัวข้อ หากหัวข้อยังไม่ชัดเจน" />
                             </div>
                         </div>
                     </div>

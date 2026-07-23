@@ -61,13 +61,22 @@
                                 <div class="ir-help">Decides where the report sits in the grid — newest first, always.</div>
                             </div>
                             <div class="ir-field ir-col-full">
-                                <label asp-for="Input.Title">Title <span class="ir-req">*</span></label>
+                                <label asp-for="Input.Title">Title <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">English</span> <span class="ir-req">*</span></label>
                                 <input asp-for="Input.Title" class="ir-input" placeholder="e.g. Annual Report 2025" />
                                 <span class="ir-val" asp-validation-for="Input.Title"></span>
                             </div>
                             <div class="ir-field ir-col-full">
-                                <label asp-for="Input.Description">Short description <span class="ir-opt">(optional)</span></label>
+                                <label asp-for="Input.TitleTh">Title <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">ไทย</span> <span class="ir-req">*</span></label>
+                                <input asp-for="Input.TitleTh" class="ir-input" placeholder="เช่น รายงานประจำปี 2568" />
+                                <span class="ir-val" asp-validation-for="Input.TitleTh"></span>
+                            </div>
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.Description">Short description <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">English</span> <span class="ir-opt">(optional)</span></label>
                                 <textarea asp-for="Input.Description" class="ir-textarea" placeholder="One line shown under the title on the report card."></textarea>
+                            </div>
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.DescriptionTh">Short description <span class="ir-auto" style="color:var(--ink-3);background:var(--surface);border:1px solid var(--line)">ไทย</span> <span class="ir-opt">(optional)</span></label>
+                                <textarea asp-for="Input.DescriptionTh" class="ir-textarea" placeholder="ประโยคเดียวที่แสดงใต้หัวข้อบนการ์ดรายงาน"></textarea>
                             </div>
                         </div>
                     </div>

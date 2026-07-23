@@ -30,10 +30,13 @@ namespace HanaSite.Pages.Admin.InvestorRelations
             [Required] public string Type { get; set; } = "set";
             [Required(ErrorMessage = "Give the item its document title.")]
             public string Title { get; set; } = "";
+            [Required(ErrorMessage = "Enter the Thai title.")]
+            public string TitleTh { get; set; } = "";
             [Required(ErrorMessage = "Enter the document date.")]
             public string DocumentDate { get; set; } = "";
             public string? Period { get; set; }
             public string? Summary { get; set; }
+            public string? SummaryTh { get; set; }
 
             public List<Attachment> Attachments { get; set; } = new();
 
@@ -52,9 +55,11 @@ namespace HanaSite.Pages.Admin.InvestorRelations
                     {
                         Type = Existing.Type,
                         Title = Existing.Title,
+                        TitleTh = Existing.TitleTh,
                         DocumentDate = Existing.DocumentDate,
                         Period = Existing.Period,
                         Summary = Existing.Subtitle,
+                        SummaryTh = Existing.SubtitleTh,
                         Attachments = new List<Attachment>(Existing.Attachments),
                         PublishMode = Existing.Status == IrStatus.Scheduled ? "later" : "now"
                     };
@@ -81,10 +86,12 @@ namespace HanaSite.Pages.Admin.InvestorRelations
             if (Existing != null)
             {
                 Existing.Title = Input.Title;
+                Existing.TitleTh = Input.TitleTh;
                 Existing.Type = Input.Type;
                 Existing.DocumentDate = Input.DocumentDate;
                 Existing.Period = Input.Period;
                 Existing.Subtitle = Input.Summary;
+                Existing.SubtitleTh = Input.SummaryTh;
                 Existing.Attachments = Input.Attachments;
                 Toast = "Changes saved to the live page";
             }
