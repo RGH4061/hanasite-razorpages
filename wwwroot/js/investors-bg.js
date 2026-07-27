@@ -78,6 +78,7 @@
   var band = document.querySelector('.page-end');
   var cvs  = document.getElementById('enquiries-topo');
   if (!band || !cvs) return;
+  if (getComputedStyle(band).position === 'static') return; // band not set up as a backdrop
   var ctx = cvs.getContext('2d'), W, H;
   function resize() { W = cvs.width = band.offsetWidth; H = cvs.height = band.offsetHeight; }
   function draw() {
