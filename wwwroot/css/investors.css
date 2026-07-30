@@ -21,7 +21,7 @@
     margin: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 15px; line-height: 1.6; color: var(--ink-2);
-    background: var(--bg);
+    background: linear-gradient(135deg,#ebeef2 0%,#dce6f0 65%,#e4ecf6 100%) fixed;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }

@@ -16,10 +16,10 @@
             ["flip-chip-sip"]         = "osat",
             ["wafer-probe-final-test"]= "osat",
             ["wafer-level-packaging"] = "osat",
-            ["flip-chip-micro"]       = "microelectronics",
-            ["mems-sensor-assembly"]  = "microelectronics",
-            ["precision-interconnect"]= "microelectronics",
-            ["micro-assembly"]        = "microelectronics",
+            ["flip-chip-micro"]       = "microelectronic-assembly",
+            ["mems-sensor-assembly"]  = "microelectronic-assembly",
+            ["precision-interconnect"]= "microelectronic-assembly",
+            ["micro-assembly"]        = "microelectronic-assembly",
             ["rfid-tire-tags"]        = "rfid-smart-tags",
             ["rfid-inlays"]           = "rfid-smart-tags",
             ["inline-aoi-spi"]        = "automation",
@@ -130,11 +130,11 @@
                 onclick="document.querySelector('.cap-page-grid').classList.add('cpsb-col')">&#8249;</button>
       </div>
 
-      <a href="/capabilities" class="cap-leaf @A("")">Overview</a>
+      <a href="/capabilities" class="cap-leaf">Overview</a>
 
       <details class="cap-group" @GO("pcba-box-build")>
         <summary class="@GA("pcba-box-build")">
-          <span>PCBA &amp; Box Build</span>
+          <span>PCBA &amp; Box Build Assembly</span>
           <span class="cap-chev">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
@@ -142,13 +142,13 @@
         <div>
           <a href="/capabilities/pcba-box-build/smt-assembly"  class="cap-sub-leaf @A("smt-assembly")"><span class="cap-sub-arr">&#8250;</span>SMT Assembly</a>
           <a href="/capabilities/pcba-box-build/cob-assembly"  class="cap-sub-leaf @A("cob-assembly")"><span class="cap-sub-arr">&#8250;</span>COB Assembly</a>
-          <a href="/capabilities/pcba-box-build/box-build"     class="cap-sub-leaf @A("box-build")"><span class="cap-sub-arr">&#8250;</span>Box Build</a>
+          <a href="/capabilities/pcba-box-build/box-build"     class="cap-sub-leaf @A("box-build")"><span class="cap-sub-arr">&#8250;</span>Box Build Assembly</a>
         </div>
       </details>
 
       <details class="cap-group" @GO("osat")>
         <summary class="@GA("osat")">
-          <span>OSAT</span>
+          <span>OSAT Services</span>
           <span class="cap-chev">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
@@ -163,15 +163,15 @@
         </div>
       </details>
 
-      <details class="cap-group" @GO("microelectronics")>
-        <summary class="@GA("microelectronics")">
+      <details class="cap-group" @GO("microelectronic-assembly")>
+        <summary class="@GA("microelectronic-assembly")">
           <span>Microelectronic Assembly</span>
           <span class="cap-chev">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </span>
         </summary>
         <div>
-          <a href="/capabilities/microelectronic-assembly/flip-chip"          class="cap-sub-leaf @A("flip-chip-micro")"><span class="cap-sub-arr">&#8250;</span>Flip Chip</a>
+          <a href="/capabilities/microelectronic-assembly/flip-chip-micro"    class="cap-sub-leaf @A("flip-chip-micro")"><span class="cap-sub-arr">&#8250;</span>Flip Chip</a>
           <a href="/capabilities/microelectronic-assembly/mems-sensor-assembly" class="cap-sub-leaf @A("mems-sensor-assembly")"><span class="cap-sub-arr">&#8250;</span>MEMS &amp; Sensor Assembly</a>
           <a href="/capabilities/microelectronic-assembly/precision-interconnect" class="cap-sub-leaf @A("precision-interconnect")"><span class="cap-sub-arr">&#8250;</span>Interconnect Solutions</a>
           <a href="/capabilities/microelectronic-assembly/micro-assembly"      class="cap-sub-leaf @A("micro-assembly")"><span class="cap-sub-arr">&#8250;</span>Micro-Assembly</a>
@@ -229,7 +229,7 @@
         <a href="/contact" class="hana-link"
            style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
                   display:inline-flex;align-items:center;gap:6px;">
-          Talk to engineering
+          Work with us
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)"
                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>

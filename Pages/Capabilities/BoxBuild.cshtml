@@ -6,8 +6,14 @@
     ViewData["CapGroup"] = "pcba-box-build";
 }
 
-@* Box build and full product assembly — sub-capability detail page. FAQ uses native <details>;
-   section backgrounds via ~/js/hana-backgrounds.js. *@
+@* Sub-capability page. FAQ uses native <details>; section backgrounds via ~/js/hana-backgrounds.js. *@
+
+<div class="cap-page-grid">
+@await Html.PartialAsync("_CapabilitySidebar")
+<div class="cap-page-main">
+
+
+
 
 <style>
   .sc-pillar{ transition:border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
@@ -26,17 +32,14 @@
 
 <div style="border-bottom:1px solid var(--line);background:var(--bg);">
   <div style="max-width:1240px;margin:0 auto;padding:11px 32px;font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-    <a href="/capabilities" class="hana-link" style="font-size:12.5px;">Capabilities</a>
+    <a href="/capabilities" class="hana-link" style="font-size:12.5px;text-transform:none;letter-spacing:0;font-weight:500;">Capabilities</a>
     <span style="color:var(--line);">&rsaquo;</span>
-    <a href="/capabilities/pcba-box-build" class="hana-link" style="font-size:12.5px;">PCBA & Box Build</a>
+    <a href="/capabilities/pcba-box-build" class="hana-link" style="font-size:12.5px;text-transform:none;letter-spacing:0;font-weight:500;">PCBA & Box Build Assembly</a>
     <span style="color:var(--line);">&rsaquo;</span>
-    <span style="color:var(--ink);font-weight:600;">Box Build</span>
+    <span style="color:var(--ink);font-weight:600;">Box Build Assembly</span>
   </div>
 </div>
 
-<div class="cap-page-grid">
-@await Html.PartialAsync("_CapabilitySidebar")
-<div class="cap-page-main">
 <div class="sc-hero-band" data-hana-bg="flow" data-variant="light" data-fade="none" style="background:#fff;position:relative;z-index:1;overflow:hidden;"><img src="~/images/circuit-board-blue.png" aria-hidden="true" style="position:absolute;top:15px;right:-80px;width:300px;height:300px;opacity:0.4;pointer-events:none;z-index:0;user-select:none;transform:rotate(8deg);" /><div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:56px 48px 40px;"><div style="margin-bottom:64px;">
     <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">PCBA & Box Build · Sub-capability</div>
     <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 18px;max-width:740px;text-wrap:balance;">Box build and full product assembly</h1>
@@ -110,7 +113,7 @@
       <div style="font-family:var(--font-text);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:10px;">Send us your BOM</div>
       <div style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.01em;">We&rsquo;ll respond with a DFM read and an indicative quote within two business days.</div>
     </div>
-    <a href="/contact/rfq" class="hana-btn hana-btn-on-dark" style="white-space:nowrap;position:relative;z-index:1;">Send to engineering <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    <a href="/contact/rfq" class="hana-btn hana-btn-on-dark" style="white-space:nowrap;position:relative;z-index:1;">Start a program <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
   </div></div></div>
 
 <div style="background:var(--hana-blue-tint);"><div style="max-width:1000px;margin:0 auto;padding:52px 48px;"><div style="margin-bottom:8px;"><div style="margin-bottom:26px;"><h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.02em;margin:0;">Where we run Box Build</h2><p style="font-family:var(--font-text);font-size:15.5px;color:var(--ink-2);line-height:1.6;max-width:640px;margin:10px 0 0;">Box build runs at Lamphun (Thailand), Jiaxing (China) and Koh Kong (Cambodia); volume mix per site varies.</p></div>
@@ -158,9 +161,7 @@
     </div>
   </div></div></div>
 
-</div><!-- /.cap-page-main -->
-</div><!-- /.cap-page-grid -->
-
+</div></div>
 <section data-hana-bg="pcb" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);color:#fff;position:relative;overflow:hidden;">
   <div style="max-width:1040px;margin:0 auto;padding:72px 48px;position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:center;">
     <div>
@@ -168,8 +169,8 @@
       <p style="font-family:var(--font-text);font-size:16px;line-height:1.6;color:rgba(255,255,255,0.78);margin:0;max-width:480px;">Send us your BOM and target volumes. We&rsquo;ll come back with a DFM read, an indicative lead time, and a price.</p>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="/contact/rfq" class="hana-btn hana-btn-on-dark">Request a quote <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-      <a href="/contact" class="hana-btn hana-btn-secondary" style="color:#fff;border-color:rgba(255,255,255,0.4);">Talk to an engineer</a>
+      <a href="/contact" class="hana-btn hana-btn-on-dark">Work with us <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
     </div>
   </div>
-</section>
+</section></div><!-- /.cap-page-main -->
+</div><!-- /.cap-page-grid -->

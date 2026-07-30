@@ -1,0 +1,185 @@
+@page "/insights/automotive-pcba-assembly"
+@{
+    ViewData["Title"] = "Automotive PCBA Assembly";
+    ViewData["Description"] = "How automotive PCBA programs are built, qualified and traced at Hana.";
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/css/insights.css" />
+}
+
+
+<div class="ins-page">
+
+  <!-- breadcrumb + last updated -->
+  <div class="ins-subbar">
+    <div class="hana-wrap ins-subbar-inner">
+      <nav class="ins-crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <a href="/insights">Insights</a>
+        <span class="sep">/</span>
+        <span>PCB Assembly for Automotive Electronics</span>
+      </nav>
+      <div class="meta">Updated <strong>28 Jun 2026</strong></div>
+    </div>
+  </div>
+
+  <!-- article header -->
+  <header class="ins-art-head">
+    <div class="ins-art-head-inner">
+      <span class="ins-cpill ins-cpill--on-dark">Technical &middot; Automotive</span>
+      <h1>PCB Assembly for Automotive Electronics</h1>
+      <div class="ins-byline">
+        <span class="who">Hana Engineering Team</span>
+        <span class="dot">&middot;</span>
+        <span>Published 18 Jun 2026</span>
+        <span class="dot">&middot;</span>
+        <span>5 min read</span>
+      </div>
+      <div class="ins-share-row">
+        <span class="lbl">Share</span>
+        <a href="#">LinkedIn</a>
+        <span class="sep">&middot;</span>
+        <a href="#">Email</a>
+        <span class="sep">&middot;</span>
+        <a href="#">Copy link</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="ins-layout-bg">
+    <div class="hana-wrap ins-layout">
+
+      <!-- TOC -->
+      <aside class="ins-sidenav" aria-label="On this page">
+        <div class="label">On this page</div>
+        <ul class="ins-toc" id="insToc">
+          <li><a href="#what-we-assemble">What we assemble</a></li>
+          <li><a href="#inspection">Inspection on every board</a></li>
+          <li><a href="#discipline">Automotive program discipline</a></li>
+          <li><a href="#one-company">One company, more than one country</a></li>
+          <li><a href="#capability">The capability behind this page</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+
+      <article class="ins-article">
+
+        <div class="ins-tldr">
+          <div class="lbl">Key takeaways</div>
+          <p>Hana assembles automotive PCBAs — control units, infotainment, charging and safety-system boards — on fine-pitch SMT lines with automated optical inspection on <em>every</em> board, under an IATF 16949 automotive quality system, and qualified across sites in Thailand and China.</p>
+        </div>
+
+        <p class="lede">Almost every electronic function in a vehicle begins as a populated circuit board — engine and body control units, infotainment and connectivity, charging and power electronics, and the safety systems that have to work every time. Automotive boards are unforgiving: components keep getting smaller and more densely packed, boards run hot and vibrate for years, and a single weak solder joint can mean a field failure.</p>
+        <p>That puts the weight on placement accuracy and on inspection — catching the defect on the line, not in the car. Hana assembles automotive PCBAs on lines built for fine-pitch placement and inspection on every board, so each one ships proven rather than sampled. It is the same SMT, inspection and test base we run across PCBA and box build, applied to automotive's reliability bar.</p>
+
+        <figure class="ins-figure">
+          <div class="img">
+            <img src="~/images/photos/smt-line-inspection-console.jpg" alt="Fine-pitch SMT placement and inspection console on an automotive board line at a Hana facility"/>
+          </div>
+          <figcaption>Fine-pitch SMT placement and inline inspection on an automotive board.</figcaption>
+        </figure>
+
+        <h2 id="what-we-assemble">What we assemble</h2>
+        <p>Hana assembles automotive boards across technologies and complexity — from single control units to double-sided, mixed-technology boards:</p>
+        <ul>
+          <li><strong>Fine-pitch board assembly</strong> — fine-pitch and small-component placement, double-sided and mixed-technology boards.</li>
+          <li><strong>Soldering</strong> — reflow, plus selective and through-hole soldering where the design needs it.</li>
+          <li><strong>Inspection on every board</strong> — automated optical inspection (AOI) on every board, with X-ray for hidden and BGA joints.</li>
+          <li><strong>Test</strong> — in-circuit and functional test to the program's requirements.</li>
+        </ul>
+
+        <h2 id="inspection">Inspection on every board, not a sample</h2>
+        <p>The difference between consumer and automotive board assembly is what happens after placement. Hana runs automated optical inspection on every board, X-ray to see the joints under BGAs and other hidden packages, and in-circuit or functional test as the program requires. Defects are caught and contained on the line, so a board that ships has been proven — not assumed good because its neighbours passed.</p>
+
+        <h2 id="discipline">Built to automotive program discipline</h2>
+        <p>Automotive programs run on traceability and change control, and Hana builds to that: board-level traceability, controlled changes, and the program discipline a long-lived automotive part needs. Boards are assembled under an IATF 16949 automotive quality management system, and box build is available alongside when the program needs the full product, not just the board.</p>
+
+        <h2 id="one-company">One company, more than one country</h2>
+        <p>Automotive PCBA is qualified across Hana sites in Thailand and China, with box build available alongside. The same capability in more than one country, inside a single company, lets a program be dual-sourced for capacity or supply-chain resilience without leaving Hana.</p>
+
+        <h2 id="capability">The capability behind this page</h2>
+        <p>Automotive board assembly runs on Hana's <a class="inline" href="/capabilities/pcba-box-build">PCBA &amp; Box Build</a> capability — the same SMT, inspection and test lines we use across circuit-board and product assembly. The full process detail lives on that capability page.</p>
+
+        <section class="ins-faq" id="faq">
+          <h2>Frequently asked questions</h2>
+          <details open>
+            <summary>What automotive boards can Hana assemble?</summary>
+            <p>Control units, infotainment and connectivity boards, charging and power electronics, and safety-system boards — fine-pitch, double-sided and mixed-technology, with through-hole and selective soldering where needed.</p>
+          </details>
+          <details>
+            <summary>How does Hana check board quality?</summary>
+            <p>Every board passes automated optical inspection, with X-ray for hidden and BGA joints and in-circuit or functional test as the program requires — so faults are caught before the board leaves the line.</p>
+          </details>
+          <details>
+            <summary>Can Hana support automotive quality requirements?</summary>
+            <p>Hana runs an IATF 16949 automotive quality management system with board-level traceability and change control. Confirm the PPAP scope and any device-level qualification for your program with our team.</p>
+          </details>
+        </section>
+
+        <div class="ins-author">
+          <div class="avatar"><img src="~/images/hana-mark-white.svg" alt=""/></div>
+          <div>
+            <p class="who">Hana Engineering Team</p>
+            <p class="bio">Hana Microelectronics is an EMS and OSAT manufacturer with operations in Thailand, China and Cambodia, assembling automotive electronics under IATF 16949.</p>
+          </div>
+        </div>
+
+        <div class="ins-related">
+          <span class="lbl">Related</span>
+          <a href="/capabilities/pcba-box-build">PCBA &amp; Box Build capability</a>
+          <span class="sep">&middot;</span>
+          <a href="/markets/automotive">Automotive market</a>
+          <span class="sep">&middot;</span>
+          <a href="/locations">Manufacturing locations</a>
+        </div>
+
+      </article>
+    </div>
+  </div>
+
+  <!-- more from insights -->
+  <div class="hana-wrap ins-more">
+    <div class="hd">More from Insights</div>
+    <div class="ins-more-grid">
+      <a class="ins-card" href="/insights">
+        <div class="thumb"><img src="~/images/photo-cleanroom.webp" alt=""/></div>
+        <div class="body">
+          <span class="ins-cpill">Technical</span>
+          <h3>Flip chip assembly explained</h3>
+          <div class="ins-meta">6 min read</div>
+        </div>
+      </a>
+      <a class="ins-card" href="/insights">
+        <div class="thumb"><img src="~/images/automotive-sensor-samples.jpg" alt=""/></div>
+        <div class="body">
+          <span class="ins-cpill">Market</span>
+          <h3>Sensor assembly for ADAS and safety systems</h3>
+          <div class="ins-meta">5 min read</div>
+        </div>
+      </a>
+      <a class="ins-card" href="/insights">
+        <div class="thumb"><img src="~/images/world-map.png" alt=""/></div>
+        <div class="body">
+          <span class="ins-cpill">News</span>
+          <h3>Dual-sourcing across Thailand and China</h3>
+          <div class="ins-meta">7 min read</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- page-end CTA — contact only -->
+  <section class="ins-page-end" aria-label="Contact Hana" style="margin-top:48px;" data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none">
+    <div class="hana-wrap ins-page-end-inner">
+      <div>
+        <p class="ttl">Talk to us about your board program</p>
+        <p class="desc">Share your requirements and our team will route your enquiry to the right facility.</p>
+      </div>
+      <div style="display:flex; gap:12px;">
+        <a href="/contact" class="hana-btn hana-btn-primary">Contact us <i data-lucide="arrow-right" style="width:13px; height:13px;"></i></a>
+      </div>
+    </div>
+  </section>
+</div>

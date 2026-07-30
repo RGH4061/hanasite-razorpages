@@ -150,10 +150,11 @@
   .vi-arrow { display: flex; align-items: center; justify-content: center; flex: none; width: 22px; color: var(--hana-blue); }
   .vi-arrow svg { display: block; }
   .vi-arrow--phase { width: 34px; color: var(--hana-blue-deep); }
-  .vi-points { list-style: none; margin: var(--s-8) 0 0; padding: var(--s-7) 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
-  [data-density="compact"] .vi-points { margin-top: var(--s-7); padding-top: var(--s-6); }
-  @media (max-width: 880px) { .vi-points { grid-template-columns: 1fr; gap: var(--s-5); } }
-  .vi-points li { display: flex; gap: 14px; align-items: flex-start; }
+  .vi-points { list-style: none; margin: 104px 0 0; padding: var(--s-7) 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); }
+  [data-density="compact"] .vi-points { margin-top: 104px; padding-top: var(--s-6); }
+  @media (max-width: 1000px) { .vi-points { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .vi-points { grid-template-columns: 1fr; } }
+  .vi-points li { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
   .vi-point-ic { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--hana-blue-tint); color: var(--hana-blue-deep); display: flex; align-items: center; justify-content: center; }
   .vi-points strong { display: block; font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 4px; }
   .vi-points p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; max-width: none; }

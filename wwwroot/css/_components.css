@@ -234,12 +234,19 @@ body {
   color: var(--ink);
   background-image: radial-gradient(rgba(18,131,221,0.12) 1px, transparent 1.2px);
   background-size: 14px 14px;
-  -webkit-mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
-  mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, #000 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 70% at center, #000 50%, transparent 100%);
   transition: color 150ms ease;
 }
 .hana-cap-card:hover .hana-cap-card__icon-area { color: var(--hana-blue); }
+
+/* Illustrated capability icons (raster line illustrations) */
 .hana-cap-icon { display: block; width: 88px; height: 88px; object-fit: contain; }
+/* Widen the vignette so the fuller illustrations aren't clipped */
+.hana-cap-card__icon-area {
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
+}
 
 .hana-cap-card__body { padding: 0 20px 22px; }
 .hana-cap-card__title {
@@ -695,3 +702,5 @@ body {
   .hana-mnav-utrow a:hover { color: #fff; }
   .hana-mnav-utrow svg { width: 14px; height: 14px; }
 }
+
+.hana-cap-icon { display: block; width: 88px; height: 88px; object-fit: contain; }

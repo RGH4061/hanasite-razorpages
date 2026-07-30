@@ -1,3 +1,41 @@
+## Sync — 30 Jul 2026 (parity sweep against exports/site-html)
+- **New page** — `Markets/DataCenters.cshtml` (`/markets/data-centers`). The route was already
+  linked from the header mega-menu, footer and homepage tile but had no page behind it.
+- **Industrial & IoT re-exported** — hub + all four spokes re-synced to the current static HTML
+  (section headings and copy had drifted; the hub's C# data arrays are replaced by the exported
+  markup). Spoke pages carry the `.mk-caplinks .pending` styles from the HTML head.
+- **IR events & contact** — closing CTA now "FAQ & Presentations" + "Contact Hana" (both primary);
+  the `mailto:` "Email IR" button is gone, matching the HTML.
+- **About / Quality** — the Impinj-NXP and ARC cert cards now use the partner logos
+  (`wwwroot/images/partners/*.png`) instead of text codes.
+- **Investors hub** — feature-banner label back to "Investor news"; **Capabilities hub** regained
+  its closing "Tell us what you're building" band; **Sitemap** rebuilt (adds the four Industrial
+  & IoT spokes).
+- **CSS re-synced** from `site-html/css` (11 files, incl. `market-page.css`, `investors*.css`,
+  `about*.css`, `careers-job-post.css`, `_components.css` — the razor-only `.hana-cap-icon` rule
+  is preserved).
+- *Left divergent on purpose:* `automotive.css` / `automotive.js` (Razor build has the extra
+  collapsible spoke-sidebar), the Automotive FAQ blocks (Razor renders them from a C# array),
+  `careers-stories.js` and `hana-backgrounds.js` (Razor copies are ahead of the static export),
+  and the homepage, which is composed from `_Homepage_*` partials.
+
+## Sync — 27 Jul 2026 (parity with exports/site-html)
+- **New pages** — `Insights/Index`, `Insights/AutomotivePcbaAssembly`, `Legal/PrivacyPolicy`,
+  `Legal/TermsOfUse`, `Legal/CookiePolicy` (+ `wwwroot/css/insights.css`); footer legal links
+  now resolve. Utility bar is **Careers + Insights** (News removed).
+- **17 new sub-capability pages** under `Pages/Capabilities/` — OSAT (5), Microelectronic
+  Assembly (4), DFx & JDM (3), Automation (3), RFID & Smart Tags (2). Routes follow
+  `/capabilities/{group}/{slug}`.
+- **Six capability hub pages rebuilt** — nested inset blue "choose a detailed capability"
+  panel, every card links through, "Page in progress" badges and closing CTA removed.
+- **CTA labels synced** — sub-capability BOM band "Start a program"; capability closing CTA
+  a single "Work with us"; sidebar nudge "Work with us"; automotive hub + five sub-markets
+  "Start a program" / "Work with us". Contact and RFQ pages keep "Request a quote".
+- **Nav fixed** — mega-menu sub-capability routes were stubs (`/osat/sip`, `/automation/mes`…)
+  and now point at the real pages; `_CapabilitySidebar` group key for Microelectronic
+  Assembly corrected to `microelectronic-assembly`; "Box Build" → "Box Build Assembly";
+  Overview no longer highlighted on hub pages.
+
 # Hana — corporate site (ASP.NET Core Razor Pages export)
 
 **Format:** ASP.NET Core 8 · Razor Pages (`.cshtml`) · vanilla CSS · vanilla JS

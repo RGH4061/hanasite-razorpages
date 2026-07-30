@@ -1,0 +1,2 @@
+(function(){function init(){document.querySelectorAll('.mk-side-toggle').forEach(function(btn){btn.addEventListener('click',function(){var g=btn.closest('.mk-spoke-grid');if(!g)return;var c=g.classList.toggle('is-collapsed');btn.setAttribute('aria-label',c?'Expand sidebar':'Collapse sidebar');if(typeof lucide!=='undefined')lucide.createIcons();});});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();

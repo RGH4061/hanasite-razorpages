@@ -110,9 +110,10 @@
 
   /* Sub-bar: IR section header — acts as a contextual location marker */
   .subbar {
-    position: relative; z-index: 2;
+    position: relative;
+    z-index: 2;
     background: transparent;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.10);
   }
   .subbar-inner {
     max-width: var(--max);
@@ -135,10 +136,10 @@
   .subbar .meta {
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
     font-size: 11px;
-    color: rgba(74,79,88,0.55);
+    color: rgba(74,79,88,0.60);
     letter-spacing: -0.005em;
   }
-  .subbar .meta strong { color: rgba(21,23,28,0.80); font-weight: 500; }
+  .subbar .meta strong { color: var(--ink); font-weight: 500; }
 
   /* ──────────────────────────────────────────────
      Hero — compact, institutional, evidence-forward
@@ -146,10 +147,9 @@
   .hero {
     position: relative;
     z-index: 2;
+    border-bottom: none;
   }
   .hero-inner {
-    position: relative;
-    z-index: 2;
     max-width: var(--max);
     margin: 0 auto;
     padding: var(--s-7) var(--s-6) var(--s-6);

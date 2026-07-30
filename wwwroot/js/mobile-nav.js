@@ -9,7 +9,7 @@
  *     to its hub and whose chevron expands a clone of the matching
  *     <div.hana-mega[data-panel]> content (markets / capability pillars / IR
  *     groups / locations). Content is cloned, so it never drifts from desktop.
- *   • relocates Search / Careers / News / EN to the panel foot
+ *   • relocates Search / Careers / Insights / EN to the panel foot
  *   • single section open at a time; closes on link tap, ×, backdrop, Escape
  *
  * No dependencies. Auto-inits on DOMContentLoaded.
@@ -133,7 +133,7 @@
       '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>' +
       '<div class="hana-mnav-utrow">' +
         '<a href="' + findUtilHref(header, 'careers') + '">Careers</a>' +
-        '<a href="' + findUtilHref(header, 'news') + '">News</a>' +
+        '<a href="' + findUtilHref(header, 'insights') + '">Insights</a>' +
         '<a href="#" class="hana-mnav-lang">' + svg(I.globe) + ' EN</a>' +
       '</div>';
     panel.appendChild(foot);

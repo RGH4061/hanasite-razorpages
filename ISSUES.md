@@ -62,6 +62,36 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Fixed
 
+### 30 Jul 2026 — export sync ("razor 30-7 Hana Site.zip")
+
+- **Synced the 30 Jul export.** Large: 134 files, +6149/-775. New pages — Insights (hub +
+  Automotive PCBA article), Legal (Privacy, Terms, Cookies), `Markets/DataCenters`, the
+  Capabilities process pages, and an Industrial & IoT re-export.
+- **`ISSUES.md` deliberately EXCLUDED from the sync.** The export ships its own 73-line copy;
+  this file is 138 lines and is repo-maintained. Syncing it would have destroyed the whole
+  Open section. **Always `rsync --exclude 'ISSUES.md'`.** (`README.md` was taken from the
+  export — that one *is* newer, and carries the export's own 30 Jul sync notes.)
+- **NEW BUG CLASS — five pages exported as complete standalone HTML documents.** Build broke
+  with 5× `RZ1034: Found a malformed 'body' tag helper`. `Legal/{CookiePolicy,PrivacyPolicy,
+  TermsOfUse}.cshtml` and `Insights/{Index,AutomotivePcbaAssembly}.cshtml` each contained a
+  mangled `<html>` opener (the literal line `ang="en"><head>…`, i.e. `<!DOCTYPE html><html l`
+  had been eaten), their own `<head>`, `<body>`, and a full duplicate `<header class=
+  "hana-header">` — 314-371 lines of chrome the layout already provides. Body content itself
+  was complete; only the closing `</main></body></html>` was absent.
+  **Repo-side repair:** removed everything from the `ang="en">` line through `</header>`, and
+  replaced `<main id="main-content" class="ins-page">` with `<div class="ins-page">` + a
+  closing `</div>`, since `_Layout.cshtml` already supplies `<main id="main-content">` and
+  `.ins-page` carries real styling (`insights.css:8`). Verified: one `<html>`/`<head>`/
+  `<body>` per rendered page, header and footer once each, all routes 200.
+- **Re-applied the three standing retrofits, all reverted by this export as usual:**
+  - **Mobile CSS `<link>` tags ×16** — this export stripped *all* of them (locations 7,
+    investors 8, capabilities 1; only `homepage-mobile.css` survived, being at source).
+  - **`@`-escaping build breakers ×2** — `@media` → `@@media` in `Careers/Stories.cshtml`
+    and `Locations/Index.cshtml`. (`Capabilities/SmtAssembly.cshtml` is now clean at source.)
+  - **`Hana_bkk.jpg`** — re-pointed to canonical `~/images/hana-bkk.jpg` in
+    `Investors/EventsContact.cshtml`.
+- `dotnet build` clean afterwards: 0 warnings, 0 errors.
+
 ### 20 Jul 2026 — export sync ("Hana Site (13).zip")
 
 - **Synced the 20 Jul Design export into the repo** and re-applied the three repo-side
