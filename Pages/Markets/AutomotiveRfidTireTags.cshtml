@@ -23,9 +23,9 @@
         new { route = "ohio",    country = "USA",      name = "Ohio",    note = "Regional PCBA · support" }
     };
     var faq = new[] {
-        new { q = "What makes a tire tag different from a standard RFID label?", a = "A tire tag is embedded in rubber during vulcanization, so it must survive cure temperatures above 150°C, then hundreds of millions of flex cycles over a decade of road use — a standard logistics inlay fails within the first cure cycle." },
-        new { q = "What frequency and protocol does Hana produce for?", a = "UHF (860–960 MHz) to ISO 18000-63 / EPC Gen 2, which is the standard mandated or adopted by automotive OEMs for tire identification. Other protocols on request." },
-        new { q = "Can Hana support the antenna design as well as production?", a = "Yes — Hana works with the customer from antenna geometry through encapsulation material selection, so the tag is qualified for the specific tire compound and geometry before production begins." }
+        new { q = "What makes a tire tag different from a standard RFID label?", a = "A tire tag is embedded in rubber during vulcanization and must therefore withstand cure temperatures above 150°C, followed by repeated flex and temperature exposure throughout the tire's service life. The antenna, chip attachment and encapsulation materials are selected for this environment." },
+        new { q = "What frequency and protocol does Hana produce for?", a = "Hana supports UHF operation across 860–960 MHz to ISO 18000-63 / EPC Gen 2. Other protocols can be considered to program requirements." },
+        new { q = "Can Hana support the antenna design as well as production?", a = "Yes. Hana can work with the customer on antenna geometry and encapsulation material selection so the tag can be qualified against the required tire compound, geometry and production process before volume manufacturing." }
     };
 }
 @section Head {
@@ -35,9 +35,9 @@
       "@@context": "https://schema.org",
       "@@type": "FAQPage",
       "mainEntity": [
-        { "@@type": "Question", "name": "What makes a tire tag different from a standard RFID label?", "acceptedAnswer": { "@@type": "Answer", "text": "A tire tag is embedded in rubber during vulcanization, so it must survive cure temperatures above 150°C, then hundreds of millions of flex cycles over a decade of road use — a standard logistics inlay fails within the first cure cycle." } },
-        { "@@type": "Question", "name": "What frequency and protocol does Hana produce for?", "acceptedAnswer": { "@@type": "Answer", "text": "UHF (860–960 MHz) to ISO 18000-63 / EPC Gen 2, which is the standard mandated or adopted by automotive OEMs for tire identification. Other protocols on request." } },
-        { "@@type": "Question", "name": "Can Hana support the antenna design as well as production?", "acceptedAnswer": { "@@type": "Answer", "text": "Yes — Hana works with the customer from antenna geometry through encapsulation material selection, so the tag is qualified for the specific tire compound and geometry before production begins." } }
+        { "@@type": "Question", "name": "What makes a tire tag different from a standard RFID label?", "acceptedAnswer": { "@@type": "Answer", "text": "A tire tag is embedded in rubber during vulcanization and must therefore withstand cure temperatures above 150°C, followed by repeated flex and temperature exposure throughout the tire's service life. The antenna, chip attachment and encapsulation materials are selected for this environment." } },
+        { "@@type": "Question", "name": "What frequency and protocol does Hana produce for?", "acceptedAnswer": { "@@type": "Answer", "text": "Hana supports UHF operation across 860–960 MHz to ISO 18000-63 / EPC Gen 2. Other protocols can be considered to program requirements." } },
+        { "@@type": "Question", "name": "Can Hana support the antenna design as well as production?", "acceptedAnswer": { "@@type": "Answer", "text": "Yes. Hana can work with the customer on antenna geometry and encapsulation material selection so the tag can be qualified against the required tire compound, geometry and production process before volume manufacturing." } }
       ]
     }
     </script>
@@ -80,8 +80,8 @@
         <div style="display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:40px; align-items:center;">
           <div>
             <div class="auto-eyebrow">Automotive — RFID Tire Tags</div>
-            <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">RFID tire tags engineered to last the life of the tire</h1>
-            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">A tire RFID tag is embedded during cure and must survive a decade of heat, flex and road load. Hana builds the antenna-chip assembly and encapsulation for embeddable tire tags — engineered for the environment, not adapted from a logistics label.</p>
+            <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">RFID tire tags for embedded automotive identification</h1>
+            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">Hana manufactures antenna-chip assemblies and encapsulated RFID tire tags for embedding during tire production. Materials and assembly processes are selected for exposure to cure temperature, repeated flex and long-term road conditions.</p>
           </div>
           <div style="position:relative; overflow:hidden; border-radius:10px; border:1px solid var(--line); background:var(--surface); height:300px; display:flex; align-items:center; justify-content:center; background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);">
             <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-3); text-align:center; padding:0 18px; line-height:1.5;">[ RFID tag embedded in a tire under assembly ]</span>
@@ -101,13 +101,13 @@
       <div style="position:relative; z-index:1; padding:20px 48px 44px; max-width:976px;">
         <div class="auto-sechead">
           <h2>The capability behind rfid tire tags</h2>
-          <p>The sub-market page frames the application. The capability page carries the process depth.</p>
+          <p>Automotive tire-tag programs use Hana's RFID inlay, antenna attachment and encapsulation capabilities with materials and processes qualified for the tire environment.</p>
         </div>
         <div style="border:1px solid var(--line); border-radius:var(--radius-card); overflow:hidden; background:#fff; display:grid; grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr); align-items:stretch;">
           <div style="padding:28px 30px;">
           <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px;">The capability behind it</div>
           <h3 style="font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--ink); line-height:1.2; letter-spacing:-0.01em; margin:0 0 12px;">Built on Hana's RFID &amp; Smart Tag capability</h3>
-          <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">Tire-tag assembly draws on the same RFID inlay, antenna attach and encapsulation processes Hana runs across its RFID lines — with material and process qualification extended to the automotive tire environment.</p>
+          <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">RFID tire-tag assembly draws on the same inlay, antenna attachment and encapsulation processes used across Hana's RFID manufacturing operations, with qualification extended to automotive tire requirements.</p>
           <a href="/capabilities/rfid-smart-tags" style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hana-blue); text-decoration:none; display:inline-flex; align-items:center; gap:6px;">See RFID &amp; Smart Tags <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
           </div>
           <div style="border-left:1px solid var(--line); padding:20px; display:flex; align-items:center;">
@@ -122,7 +122,7 @@
         <div style="max-width:976px; padding:0 48px;">
         <div class="auto-sechead on-dark">
           <h2>Where we build it</h2>
-          <p>RFID tire-tag production runs in Thailand and the USA, on qualified RFID assembly lines.</p>
+          <p>RFID tire-tag production is supported in Thailand and the USA on qualified RFID assembly lines.</p>
         </div>
         <div class="auto-plants" style="grid-template-columns:repeat(@plants.Length, 1fr);">
           @foreach (var p in plants)

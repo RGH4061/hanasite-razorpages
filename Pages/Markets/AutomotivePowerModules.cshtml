@@ -24,9 +24,9 @@
         new { route = "jiaxing",   country = "China",    name = "Jiaxing",   note = "High-volume PCBA · modules" }
     };
     var faq = new[] {
-        new { q = "What power devices can Hana assemble into modules?", a = "IGBT and silicon-carbide (SiC) die, in single- and multi-die layouts, with solder and silver-sinter die attach and aluminum-wire or copper-clip interconnect." },
-        new { q = "Why does silver sintering matter for SiC?", a = "SiC runs hotter and switches faster than silicon. A sintered die-attach joint holds up to higher temperatures and thermal cycling than standard solder, so the module survives the powertrain's duty cycle." },
-        new { q = "How is the thermal path controlled?", a = "Through DBC or AMB ceramic substrates, baseplate attach, and void-controlled solder joints verified by X-ray — the heat path from die to coolant is designed and inspected, not assumed." }
+        new { q = "What power devices can Hana assemble into modules?", a = "Hana supports IGBT and silicon-carbide (SiC) die in single- and multi-die layouts, with solder or silver-sinter die attach and aluminum-wire or copper-clip interconnect." },
+        new { q = "Why does silver sintering matter for SiC?", a = "SiC devices operate at higher temperatures and switching speeds than conventional silicon devices. Silver-sinter die attach provides improved thermal and mechanical performance under elevated temperature and repeated thermal cycling." },
+        new { q = "How is the thermal path controlled?", a = "The thermal path is managed through DBC or AMB ceramic substrates, baseplate attachment and controlled solder or sinter interfaces. X-ray inspection is used where required to verify joint quality and voiding." }
     };
 }
 @section Head {
@@ -36,9 +36,9 @@
       "@@context": "https://schema.org",
       "@@type": "FAQPage",
       "mainEntity": [
-        { "@@type": "Question", "name": "What power devices can Hana assemble into modules?", "acceptedAnswer": { "@@type": "Answer", "text": "IGBT and silicon-carbide (SiC) die, in single- and multi-die layouts, with solder and silver-sinter die attach and aluminum-wire or copper-clip interconnect." } },
-        { "@@type": "Question", "name": "Why does silver sintering matter for SiC?", "acceptedAnswer": { "@@type": "Answer", "text": "SiC runs hotter and switches faster than silicon. A sintered die-attach joint holds up to higher temperatures and thermal cycling than standard solder, so the module survives the powertrain's duty cycle." } },
-        { "@@type": "Question", "name": "How is the thermal path controlled?", "acceptedAnswer": { "@@type": "Answer", "text": "Through DBC or AMB ceramic substrates, baseplate attach, and void-controlled solder joints verified by X-ray — the heat path from die to coolant is designed and inspected, not assumed." } }
+        { "@@type": "Question", "name": "What power devices can Hana assemble into modules?", "acceptedAnswer": { "@@type": "Answer", "text": "Hana supports IGBT and silicon-carbide (SiC) die in single- and multi-die layouts, with solder or silver-sinter die attach and aluminum-wire or copper-clip interconnect." } },
+        { "@@type": "Question", "name": "Why does silver sintering matter for SiC?", "acceptedAnswer": { "@@type": "Answer", "text": "SiC devices operate at higher temperatures and switching speeds than conventional silicon devices. Silver-sinter die attach provides improved thermal and mechanical performance under elevated temperature and repeated thermal cycling." } },
+        { "@@type": "Question", "name": "How is the thermal path controlled?", "acceptedAnswer": { "@@type": "Answer", "text": "The thermal path is managed through DBC or AMB ceramic substrates, baseplate attachment and controlled solder or sinter interfaces. X-ray inspection is used where required to verify joint quality and voiding." } }
       ]
     }
     </script>
@@ -82,7 +82,7 @@
           <div>
             <div class="auto-eyebrow">Automotive — Power Modules</div>
             <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">Power modules for electrified vehicles</h1>
-            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">Power modules are the assemblies that switch high current in a vehicle's powertrain — inside traction inverters, on-board chargers and DC-DC converters. Hana assembles IGBT and silicon-carbide modules on automotive-qualified lines, built around the thermal path that keeps them reliable.</p>
+            <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0; text-wrap:pretty;">Hana assembles IGBT and silicon-carbide power modules for traction inverters, on-board chargers and DC-DC converters. Automotive-qualified processes include die attach, silver sintering, wire or clip interconnect and thermal-path control.</p>
           </div>
           <div style="position:relative; overflow:hidden; border-radius:10px; border:1px solid var(--line); background:var(--surface); height:300px;">
             <img src="~/images/photos/power-module-ecu.webp" alt="Power module — die attach over a DBC substrate" style="width:100%; height:100%; object-fit:cover; display:block;" />
@@ -102,13 +102,13 @@
       <div style="position:relative; z-index:1; padding:20px 48px 44px; max-width:976px;">
         <div class="auto-sechead">
           <h2>The capability behind power modules</h2>
-          <p>The sub-market page frames the application. The capability page carries the process depth.</p>
+          <p>Automotive power-module programs draw on Hana's broader microelectronics and OSAT assembly processes.</p>
         </div>
         <div style="border:1px solid var(--line); border-radius:var(--radius-card); overflow:hidden; background:#fff; display:grid; grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr); align-items:stretch;">
           <div style="padding:28px 30px;">
             <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px;">The capability behind it</div>
             <h3 style="font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--ink); line-height:1.2; letter-spacing:-0.01em; margin:0 0 12px;">Built on Hana's Microelectronic Assembly</h3>
-            <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">Power-module assembly draws on the same die-attach, bonding and encapsulation processes Hana runs for microelectronics and OSAT. The full process detail lives there.</p>
+            <p style="font-size:14px; color:var(--ink-2); line-height:1.65; margin:0 0 20px; max-width:560px;">Power-module assembly uses die-attach, bonding and encapsulation processes established across Hana's microelectronics operations, with the process route adapted to the electrical and thermal requirements of the module.</p>
             <a href="/capabilities/microelectronic-assembly" style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hana-blue); text-decoration:none; display:inline-flex; align-items:center; gap:6px;">See Microelectronic Assembly <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
           </div>
           <div style="border-left:1px solid var(--line); padding:20px; display:flex; align-items:center;">
@@ -125,7 +125,7 @@
         <div style="max-width:976px; padding:0 48px;">
         <div class="auto-sechead on-dark">
           <h2>Where we build it</h2>
-          <p>Power-module assembly is qualified in Thailand and China, weighted to automotive and high-reliability programs.</p>
+          <p>Power-module assembly is supported in Thailand and China, with production focused on automotive and other high-reliability applications.</p>
         </div>
         <div class="auto-plants" style="grid-template-columns:repeat(@plants.Length, 1fr);">
           @foreach (var p in plants)

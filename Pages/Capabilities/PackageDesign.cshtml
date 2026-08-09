@@ -1,0 +1,199 @@
+@page "/capabilities/osat/package-design"
+@{
+    ViewData["Title"] = "Package Design &amp; Simulation — capabilities";
+    ViewData["CapSlug"]  = "package-design";
+    ViewData["CapGroup"] = "osat";
+}
+
+<div class="cap-page-grid">
+@await Html.PartialAsync("_CapabilitySidebar")
+<div class="cap-page-main">
+<style>
+  .sc-pillar{ transition:border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+  .sc-pillar:hover{ border-color:color-mix(in srgb, var(--hana-blue) 55%, var(--line)) !important; box-shadow:0 6px 18px rgba(18,131,221,.10); transform:translateY(-2px); }
+  .sc-pillars-band > .hana-bg-layer{ opacity:.55 !important; background:transparent !important; }
+  .sc-hero-band > .hana-bg-layer{ opacity:.7 !important; }
+  details.sc-faq{ border-top:1px solid var(--line); }
+  details.sc-faq:first-child{ border-top:none; }
+  details.sc-faq > summary{ list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-family:var(--font-text); font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
+  details.sc-faq > summary::-webkit-details-marker{ display:none; }
+  details.sc-faq[open] > summary{ background:var(--bg); }
+  .sc-faq-mk{ color:var(--hana-blue); font-size:22px; line-height:1; flex-shrink:0; transition:transform 150ms ease; }
+  details.sc-faq[open] .sc-faq-mk{ transform:rotate(45deg); }
+  .sc-faq-a{ padding:0 22px 20px; font-family:var(--font-text); font-size:14px; color:var(--ink-2); line-height:1.65; max-width:720px; }
+</style>
+<div class="cap-draft-band"><div class="cap-draft-inner"><span class="cap-draft-dot"></span>Draft — page structure only. Copy, specs and imagery to be supplied.</div></div>
+<div style="border-bottom:1px solid var(--line);background:var(--bg);">
+  <div style="max-width:1240px;margin:0 auto;padding:11px 32px;font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <a href="/capabilities" class="hana-link" style="font-size:12.5px;text-transform:none;letter-spacing:0;font-weight:500;">Capabilities</a>
+    <span style="color:var(--line);">&rsaquo;</span>
+    <a href="/capabilities/osat" class="hana-link" style="font-size:12.5px;text-transform:none;letter-spacing:0;font-weight:500;">OSAT</a>
+    <span style="color:var(--line);">&rsaquo;</span>
+    <span style="color:var(--ink);font-weight:600;">Package Design &amp; Simulation</span>
+  </div>
+</div>
+<details class="cap-mobnav"><summary><span>OSAT Services</span><span class="cap-mobnav-meta">11<span class="cap-mobnav-chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span></span></summary><div class="cap-mobnav-list"><div class="cap-sb-glabel">Design</div><a aria-current="page" href="/capabilities/osat/package-design" class="cap-sub-leaf cap-active"><span class="cap-sub-arr">&#8250;</span>Package Design &amp; Simulation<span class="mm-new">New</span></a><div class="cap-sb-glabel">Packaging solutions</div><a href="/capabilities/osat/power-packages" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Power Packages — SiC &amp; GaN<span class="mm-new">New</span></a><a href="/capabilities/osat/qfn-dfn-lga" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>QFN, DFN &amp; LGA<span class="mm-new">New</span></a><a href="/capabilities/osat/optical-packaging" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Clear &amp; Optical Packaging<span class="mm-new">New</span></a><a href="/capabilities/osat/hermetic-ceramic" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Hermetic &amp; Ceramic Packaging<span class="mm-new">New</span></a><a href="/capabilities/osat/ultra-small-packages" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Ultra-small Packages<span class="mm-new">New</span></a><a href="/capabilities/osat/system-in-package" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>System in Package (SiP)</a><div class="cap-sb-glabel">Wafer, assembly &amp; test</div><a href="/capabilities/osat/wafer-processing" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Wafer Processing</a><a href="/capabilities/osat/wafer-level-packaging" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Wafer Level Packaging</a><a href="/capabilities/osat/flip-chip" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Flip Chip &amp; Interconnect</a><a href="/capabilities/osat/wafer-probe-final-test" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>Wafer Probe &amp; Final Test</a><span class="cap-sub-leaf cap-removed"><span class="cap-sub-arr">&#8250;</span>Die Attach &amp; Wire Bond</span></div></details>
+<div class="sc-hero-band" data-hana-bg="flow" data-variant="light" data-fade="none" style="background:#fff;position:relative;z-index:1;overflow:hidden;"><div class="cap-section cap-section--band cap-section--hero"><div style="margin-bottom:8px;">
+    <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">OSAT · Package Design &amp; Simulation</div>
+    <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 18px;max-width:740px;text-wrap:balance;">Package Design &amp; Simulation</h1>
+    <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0;text-wrap:pretty;">Thermal, electrical and mechanical package design and simulation to support manufacturability, performance and reliability before assembly begins.</p>
+    <p style="font-family:var(--font-mono);font-size:12px;color:var(--ink-3);margin:16px 0 0;">[ Hero lede and spec block to be supplied ]</p>
+  </div></div></div>
+<div style="background:var(--bg);"><div class="cap-section"><div class="cap-stub"><div class="cap-stub-label">Spec block</div><p class="cap-stub-note">Label / value pairs — e.g. package families, body sizes, qualifications, sites. Values to be supplied.</p></div></div></div>
+<div style="background:#fff;"><div class="cap-section"><style>
+.pf-wrap{position:relative;background:#000;overflow:hidden;border-radius:var(--radius-panel)}
+.pf-wrap::before{content:"";position:absolute;inset:0;z-index:0;background:url("images/vertical-integration-bg.jpg") right center / cover no-repeat}
+.pf-wrap::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,#000 0%,#000 30%,rgba(0,0,0,.74) 60%,rgba(0,0,0,.38) 100%)}
+.pf-inner{position:relative;z-index:1;padding:52px 44px 54px}
+.pf-hd{max-width:760px;margin-bottom:34px}
+.pf-hd h2{font-family:var(--font-display);font-weight:600;font-size:34px;letter-spacing:-.025em;line-height:1.1;color:#fff;margin:0 0 12px;text-wrap:balance}
+.pf-hd p{font-family:var(--font-text);font-size:16px;line-height:1.6;color:rgba(255,255,255,.78);margin:0;max-width:680px;text-wrap:pretty}
+.pf-img{height:132px;background:#E7ECF1;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:0 12px}
+.pf-img span{font-family:var(--font-mono);font-size:10px;line-height:1.45;color:var(--ink-3);text-align:center;text-transform:uppercase;letter-spacing:.04em}
+.pf-wrap .flow{display:flex;align-items:stretch;gap:10px}
+.pf-wrap .arw{display:flex;align-items:center;flex:none;width:24px;color:var(--hana-blue-soft)}
+.pf-wrap .arw svg{display:block}
+.pf-wrap .st{flex:1;display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden}
+.pf-wrap .ops{list-style:none;margin:0;padding:0}
+.pf-wrap .sub{font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:12px 0 4px;color:var(--ink-3)}
+.pf-wrap .phase{display:flex;flex-direction:column;gap:12px}
+.pf-wrap .phase--eng{flex:2}.pf-wrap .phase--mfg{flex:2.95}.pf-wrap .phase--ship{flex:1}
+.pf-wrap .rail{display:flex;flex-direction:column;gap:7px}
+.pf-wrap .rail-lb{display:flex;align-items:baseline;gap:9px;padding:0 2px;min-height:16px;white-space:nowrap}
+.pf-wrap .rail-tag{font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.12em;color:#fff}
+.pf-wrap .rail-nm{font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.pf-wrap .rail-ln{position:relative;height:7px;border-top:1px solid rgba(255,255,255,.28)}
+.pf-wrap .rail-ln::before,.pf-wrap .rail-ln::after{content:"";position:absolute;top:-1px;width:1px;height:7px;background:rgba(255,255,255,.28)}
+.pf-wrap .rail-ln::before{left:0}.pf-wrap .rail-ln::after{right:0}
+.pf-wrap .steps{flex:1;display:flex;align-items:stretch;gap:10px}
+.pf-wrap .arw--phase{width:36px}
+.pf-wrap .cap{height:6px;background:var(--c)}
+.pf-wrap .hdr{padding:14px 16px 12px;border-bottom:1px solid var(--line);background:var(--tint)}
+.pf-wrap .numband{padding:11px 16px 10px;border-bottom:1px solid var(--line);background:var(--tint);font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--hana-blue-deep)}
+.pf-wrap .nm{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.15;color:var(--ink)}
+.pf-wrap .bd{padding:12px 16px 18px}
+.pf-wrap .subsec{margin:14px -16px 0;padding:12px 16px 0;border-top:1px solid var(--line)}
+.pf-wrap .subsec:first-child{margin-top:0;padding-top:0;border-top:0}
+.pf-wrap .subsec-lb{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.pf-wrap .subsec-n{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--hana-blue-deep)}
+.pf-wrap .subsec-t{font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.pf-wrap .st--wide{flex:1.9}
+.pf-wrap .subsec--intro{display:flex;align-items:baseline;gap:8px 18px;flex-wrap:wrap}
+.pf-wrap .subsec--intro .ops{display:flex;gap:0 18px}
+.pf-wrap .subsec--intro .ops li{border-top:0;padding:0}
+.pf-wrap .subsec--intro .ops li+li::before{content:"\00B7";color:var(--ink-3);margin-right:18px}
+.pf-wrap .subsec-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;margin:14px -16px 0;padding:12px 16px 0;border-top:1px solid var(--line)}
+.pf-wrap .subsec-cols .subsec{margin:0;padding:0;border-top:0}
+.pf-wrap .ops li{font-family:var(--font-text);font-size:13px;font-weight:400;line-height:1.5;padding:4px 0;color:var(--ink-2);border-top:1px solid #E5E8EC}
+.pf-wrap .ops li:first-child{border-top:0}
+.pf-wrap .legend{margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);display:flex;gap:28px;flex-wrap:wrap}
+.pf-wrap .legend div{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:8px}
+.pf-wrap .legend i{width:10px;height:10px;border-radius:2px;display:block}
+.pf-scroll{overflow-x:auto}
+.pf-scroll>.pf-wrap{min-width:1160px}
+@@media (max-width:1100px){.pf-inner{padding:40px 32px 44px}.pf-hd h2{font-size:28px}}
+</style><div class="pf-scroll"><div class="pf-wrap"><div class="pf-inner">
+  <div class="pf-hd"><h2>Packaging solution and services</h2><p>Package development from initial design and simulation through assembly, electrical test and packing, with each stage managed within the same manufacturing group.</p></div>
+<div class="flow">
+    <div class="phase phase--eng">
+      <div class="rail"><div class="rail-lb"><span class="rail-tag">ENGINEER</span><span class="rail-nm">Design and Simulation</span></div><div class="rail-ln"></div></div>
+      <div class="steps">
+    <div class="st st--num" style="--c:#0E4A7C;--tint:#EAF1F7">
+      <div class="cap"></div>
+      <div class="numband">STAGE 01</div>
+      <div class="pf-img"><span>[ Package layout / CAD screen ]</span></div>
+      <div class="hdr"><div class="nm">Package design</div></div>
+      <div class="bd">
+        <ul class="ops"><li>Leadframe design</li><li>Cu clip design</li><li>Die and wire-bond layout</li><li>Package outline</li><li>PCB schematic</li><li>PCB footprint</li></ul>
+        <div class="sub">Software</div>
+        <ul class="ops"><li>AutoCAD</li><li>SolidWorks</li><li>Altium PCB</li></ul>
+      </div>
+    </div>
+    <div class="arw" aria-hidden="true"><svg width="24" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9H18"/><path d="M12 3l7 6-7 6"/></svg></div>
+    <div class="st st--num" style="--c:#0F7391;--tint:#E6F2F5">
+      <div class="cap"></div>
+      <div class="numband">STAGE 02</div>
+      <div class="pf-img"><span>[ Thermal / warpage simulation ]</span></div>
+      <div class="hdr"><div class="nm">Simulation</div></div>
+      <div class="bd">
+        <ul class="ops"><li>3D assembly modelling</li><li>Thermal stress</li><li>Thermal resistance</li><li>Mechanical stress</li><li>Warpage analysis</li></ul>
+        <div class="sub">Software</div>
+        <ul class="ops"><li>SolidWorks Simulation</li><li>Ansys Mechanical</li></ul>
+      </div>
+    </div>
+      </div>
+    </div>
+    <div class="arw arw--phase" aria-hidden="true"><svg width="34" height="22" viewBox="0 0 38 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h31"/><path d="M25 4l9 7-9 7"/></svg></div>
+    <div class="phase phase--mfg">
+      <div class="rail"><div class="rail-lb"><span class="rail-tag">MANUFACTURE</span><span class="rail-nm">Assembly and Test</span></div><div class="rail-ln"></div></div>
+      <div class="steps">
+    <div class="st st--wide st--num" style="--c:#1283DD;--tint:#E9F2FB">
+      <div class="cap"></div>
+      <div class="numband">STAGE 03</div>
+      <div class="pf-img"><span>[ Die attach / wire bond close-up ]</span></div>
+      <div class="hdr"><div class="nm">Assembly</div></div>
+      <div class="bd">
+        <div class="subsec subsec--intro">
+          <div class="subsec-lb"><span class="subsec-n">03·0</span><span class="subsec-t">Wafer preparation</span></div>
+          <ul class="ops"><li>Wafer thinning</li><li>Dicing and inspection</li></ul>
+        </div>
+        <div class="subsec-cols">
+        <div class="subsec">
+          <div class="subsec-lb"><span class="subsec-n">03A</span><span class="subsec-t">Front of line</span></div>
+          <ul class="ops"><li>Wafer service</li><li>Die attach</li><li>Wire bonding</li><li>Cu clip / flip chip</li><li>Plasma clean</li></ul>
+        </div>
+        <div class="subsec">
+          <div class="subsec-lb"><span class="subsec-n">03B</span><span class="subsec-t">End of line</span></div>
+          <ul class="ops"><li>Mold</li><li>Wettable flank</li><li>SMT / surface mount</li><li>Leadframe and PCB</li><li>MUF / CUF underfill</li><li>Box build</li></ul>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="arw" aria-hidden="true"><svg width="24" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9H18"/><path d="M12 3l7 6-7 6"/></svg></div>
+    <div class="st st--num" style="--c:#55606E;--tint:#EDEFF2">
+      <div class="cap"></div>
+      <div class="numband">STAGE 04</div>
+      <div class="pf-img"><span>[ Test handler / probe station ]</span></div>
+      <div class="hdr"><div class="nm">Electrical test</div></div>
+      <div class="bd">
+        <ul class="ops"><li>Analog IC</li><li>Logic and memory</li><li>Linear and mixed signal</li><li>Power management IC</li><li>Opto coupler</li><li>Sensor</li><li>RF and microwave</li><li>FET, diode, metal can</li><li>Hybrid device</li><li>Wafer probe / sort</li><li>Burn-in</li></ul>
+      </div>
+    </div>
+      </div>
+    </div>
+    <div class="arw arw--phase" aria-hidden="true"><svg width="34" height="22" viewBox="0 0 38 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h31"/><path d="M25 4l9 7-9 7"/></svg></div>
+    <div class="phase phase--ship">
+      <div class="rail"><div class="rail-lb"><span class="rail-tag">SHIP</span><span class="rail-nm">Fulfillment</span></div><div class="rail-ln"></div></div>
+      <div class="steps">
+    <div class="st st--num" style="--c:#FF883E;--tint:#FDF1E8">
+      <div class="cap"></div>
+      <div class="numband">STAGE 05</div>
+      <div class="pf-img"><span>[ Tape and reel / tray packing ]</span></div>
+      <div class="hdr"><div class="nm">Packing</div></div>
+      <div class="bd">
+        <ul class="ops"><li>Tape and reel</li><li>Tubes</li><li>Canister</li><li>JEDEC tray</li></ul>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div><i style="background:#0E4A7C"></i>Design</div>
+    <div><i style="background:#0F7391"></i>Simulate</div>
+    <div><i style="background:#1283DD"></i>Build</div>
+    <div><i style="background:#55606E"></i>Test</div>
+    <div><i style="background:#FF883E"></i>Ship</div>
+  </div>
+</div></div></div></div></div>
+<div style="background:#fff;"><div class="cap-section"><div class="cap-stub"><div class="cap-stub-label">Case study</div><p class="cap-stub-note">One package design program presented from initial design challenge through simulation, engineering changes and measured outcome. Anonymized, with one image and a short spec block. Program to be confirmed.</p></div></div></div>
+<div style="background:#fff;"><div class="cap-section"><div class="cap-stub"><div class="cap-stub-label">Where we run it</div><p class="cap-stub-note">Site cards for the plants that run this process. Site list to be confirmed.</p></div></div></div>
+<div style="background:#fff;"><div class="cap-section"><div class="cap-stub"><div class="cap-stub-label">Frequently asked questions</div><p class="cap-stub-note">Four to six questions in the accordion pattern used on the other OSAT pages.</p></div></div></div>
+<div style="background:#fff;"><div class="cap-section"><div data-hana-bg="pcb" data-variant="dark" data-accent="" data-fade="none" style="margin:0 0 64px;padding:30px 34px;border-radius:var(--radius-panel);background:var(--hana-blue-deep);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden;">
+    <div style="max-width:620px;position:relative;z-index:1;">
+      <div style="font-family:var(--font-text);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:10px;">Send us your BOM</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.01em;">We&rsquo;ll respond with a DFM read and an indicative quote within two business days.</div>
+    </div>
+    <a href="/contact/rfq" class="hana-btn hana-btn-on-dark" style="white-space:nowrap;position:relative;z-index:1;">Start a program <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+  </div></div></div>
+</div></div>
+</div><!-- /.cap-page-grid -->

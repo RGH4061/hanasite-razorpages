@@ -71,7 +71,6 @@
                                 <form method="post" asp-page-handler="Assign"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="owner" value="@o" /><button type="submit" class="dropdown-item dropdown-item--sub">Assign to @o</button></form>
                             }
                             <hr class="dropdown-divider" />
-                            <hr class="dropdown-divider" />
                             <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item dropdown-item--danger">Mark as spam</button></form>
                             break;
 
@@ -82,7 +81,10 @@
                             {
                                 <form method="post" asp-page-handler="Assign"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="owner" value="@o" /><button type="submit" class="dropdown-item dropdown-item--sub">Reassign to @o</button></form>
                             }
-                            <hr class="dropdown-divider" />
+                            @if (!string.IsNullOrEmpty(Model.Owner))
+                            {
+                                <form method="post" asp-page-handler="ResendSummary"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item">Resend summary email</button></form>
+                            }
                             <hr class="dropdown-divider" />
                             <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item dropdown-item--danger">Mark as spam</button></form>
                             break;
@@ -119,6 +121,14 @@
             else if (!string.IsNullOrEmpty(Model.Source))
             {
                 <div class="expand-source">From: @Model.Source</div>
+            }
+            @if (Model.WasNotified)
+            {
+                <div class="expand-notified">
+                    <div class="expand-label">Assignment email</div>
+                    Sent to <strong>@Model.NotifiedName</strong> · <a href="mailto:@Model.NotifiedEmail">@Model.NotifiedEmail</a>
+                    <div class="expand-source">@Model.NotifiedAt · @Model.NotifiedSubject</div>
+                </div>
             }
         </div>
         <aside class="expand-side">

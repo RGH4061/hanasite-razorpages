@@ -22,6 +22,9 @@ namespace HanaSite.Models.Admin
         public string Reason { get; set; } = "";
         public string Source { get; set; } = "";  // originating page path
 
+        // customer | supplier — supplier/vendor offers sit in their own queue
+        public string Kind { get; set; } = "customer";
+
         public string? Owner { get; set; }
 
         public string Email { get; set; } = "";
@@ -34,6 +37,14 @@ namespace HanaSite.Models.Admin
         public string? ClosedBy { get; set; }
         public string? RoutedTo { get; set; }
 
+        // Assignment notification — set when the summary email is sent
+        public string? NotifiedName { get; set; }
+        public string? NotifiedEmail { get; set; }
+        public string? NotifiedAt { get; set; }     // yyyy-MM-dd HH:mm
+        public string? NotifiedSubject { get; set; }
+
+        public bool WasNotified => !string.IsNullOrEmpty(NotifiedEmail);
+
         // Spam-only
         public string? SpamDate { get; set; }
         public string? FlaggedBy { get; set; }
@@ -42,6 +53,8 @@ namespace HanaSite.Models.Admin
 
         // ── Derived helpers for the view ──────────────────────
         public bool IsOpen => Status is "new" or "claimed" or "responded";
+
+        public bool IsSupplier => Kind == "supplier";
 
         public string StatusLabel => Status switch
         {

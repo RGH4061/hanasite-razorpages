@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  assignment-summary.preview.html — sample render of assignment-summary.html
+  with placeholder data filled in. Review copy only; the mailer uses the
+  template file, not this one.
+  Sent by Services/AssignmentMailer.cs when an inquiry is claimed or assigned.
+
+  Tokens replaced at send time:
+    Mark   assignee's first name
+    [T1] Karl Becker · SchliessTech GmbH     "[T1] Karl Becker · SchliessTech GmbH"
+    <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Ticket number</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:'Courier New',Courier,monospace;font-size:13px;color:#0E1116;">T1</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Received</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:'Courier New',Courier,monospace;font-size:13px;color:#0E1116;">2026-05-09 09:42</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Name</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">Karl Becker</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Company</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">SchliessTech GmbH · Germany</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Email</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;"><a href="mailto:karl.becker@schliesst.de" style="color:#1283DD;text-decoration:none;">karl.becker@schliesst.de</a></td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Phone</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">+49 89 4521 7730</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Market</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">Access Control</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Service</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">RFID &amp; Smart Tags</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Page</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">/capabilities/rfid-inlay/</td></tr>  the field rows (built server-side, empty fields omitted)
+    We are currently evaluating suppliers for a new access control product line using RFID technology. Our estimated annual volume is 50,000 units initially, scaling to 150,000 within 18 months. I can send our preliminary BOM once we have a contact. Could you confirm your RFID inlay capabilities and typical lead times? We would like to arrange a call next week if possible.     the submitted message, HTML-escaped, <br> for newlines
+    https://hanagroup.com/admin/tickets#t1         deep link to the inquiry in /admin/tickets
+    2026        current year
+
+  Email HTML rules apply: tables for layout, inline styles only, no external
+  CSS, no web fonts. Colors are the Hana palette; radii 4px on the button,
+  6px on blocks; 1px borders, no shadows.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[T1] Karl Becker · SchliessTech GmbH</title>
+</head>
+<body style="margin:0;padding:0;background:#F2F4F6;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F2F4F6;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#FBFBFA;border:1px solid #E6E8EB;">
+
+        <tr>
+          <td style="background:#0E3A66;padding:20px 24px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="vertical-align:middle;"><img src="../wwwroot/images/hana-logo-full-white.png" width="122" height="40" alt="Hana Microelectronics Group" style="display:block;border:0;width:122px;height:40px;" /></td>
+                <td align="right" style="font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#9FC2E4;">Website inquiry</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:26px 24px 6px;">
+            <p style="margin:0 0 14px;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#0E1116;">Hi Mark, this ticket was assigned to you.</p>
+            <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#444B54;">Reply directly to Sanjay if you have any questions rather than the ticketing system.</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:18px 24px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;border:1px solid #E6E8EB;">
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Ticket number</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:'Courier New',Courier,monospace;font-size:13px;color:#0E1116;">T1</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Received</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:'Courier New',Courier,monospace;font-size:13px;color:#0E1116;">2026-05-09 09:42</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Name</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">Karl Becker</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Company</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">SchliessTech GmbH · Germany</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Email</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;"><a href="mailto:karl.becker@schliesst.de" style="color:#1283DD;text-decoration:none;">karl.becker@schliesst.de</a></td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Phone</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">+49 89 4521 7730</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Market</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">Access Control</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Service</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">RFID &amp; Smart Tags</td></tr>
+              <tr><td width="34%" style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;vertical-align:top;">Page</td><td style="padding:11px 14px;border-bottom:1px solid #E6E8EB;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#0E1116;">/capabilities/rfid-inlay/</td></tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:18px 24px 0;">
+            <div style="font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;padding-bottom:7px;">Message</div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;border:1px solid #E6E8EB;">
+              <tr>
+                <td style="padding:16px 18px;font-family:Helvetica,Arial,sans-serif;font-size:14px;line-height:1.65;color:#0E1116;">We are currently evaluating suppliers for a new access control product line using RFID technology. Our estimated annual volume is 50,000 units initially, scaling to 150,000 within 18 months. I can send our preliminary BOM once we have a contact. Could you confirm your RFID inlay capabilities and typical lead times? We would like to arrange a call next week if possible.</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:22px 24px 26px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background:#1283DD;border-radius:4px;">
+                  <a href="https://hanagroup.com/admin/tickets#t1" style="display:inline-block;padding:11px 20px;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#FFFFFF;text-decoration:none;">Open the inquiry</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="border-top:1px solid #E6E8EB;padding:16px 24px 20px;font-family:Helvetica,Arial,sans-serif;font-size:11px;line-height:1.6;color:#6B7280;">
+            Sent automatically by the Hana website ticketing system · 2026<br />
+            You receive this because the inquiry is assigned to you.
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

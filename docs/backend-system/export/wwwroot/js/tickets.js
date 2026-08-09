@@ -16,16 +16,8 @@
   }
 
   document.addEventListener('click', function (e) {
-    var expandToggle = e.target.closest('[data-expand]');
-    if (expandToggle) {
-      var id = expandToggle.getAttribute('data-expand');
-      var panel = document.getElementById('expand-' + id);
-      var btn = document.getElementById('exp-' + id);
-      if (panel) panel.classList.toggle('is-open');
-      if (btn) btn.classList.toggle('is-open');
-      return;
-    }
-
+    // Menu button first: it sits inside a row that also carries [data-expand],
+    // so checking expand first would swallow the click and never open the menu.
     var menuBtn = e.target.closest('[data-menu]');
     if (menuBtn) {
       e.stopPropagation();
@@ -33,6 +25,25 @@
       var willOpen = menu && !menu.classList.contains('is-open');
       closeAllMenus(menu);
       if (menu) menu.classList.toggle('is-open', willOpen);
+      return;
+    }
+
+    // Clicks on the dropdown's own items (forms POST to the page handlers)
+    // must not also toggle the row.
+    var inDropdown = e.target.closest('.dropdown');
+    if (inDropdown && !e.target.closest('[data-expand]')) {
+      closeAllMenus(null);
+      return;
+    }
+
+    var expandToggle = e.target.closest('[data-expand]');
+    if (expandToggle) {
+      closeAllMenus(null);
+      var id = expandToggle.getAttribute('data-expand');
+      var panel = document.getElementById('expand-' + id);
+      var btn = document.getElementById('exp-' + id);
+      if (panel) panel.classList.toggle('is-open');
+      if (btn) btn.classList.toggle('is-open');
       return;
     }
 

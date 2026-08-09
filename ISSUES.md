@@ -15,8 +15,11 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
-- [ ] **Dead-asset re-cleanup (done in this repo, NOT yet in Design source — every
-  export re-adds these; re-deleted 3 Jul, again 13 Jul).**
+- [ ] **Dead-asset re-cleanup — ⚠️ LIST STALE, RE-SCOPE BEFORE NEXT RUN (see 9 Aug Fixed).**
+  As of the 9 Aug export, `world-map.png`, `rfid-tire.jpeg` and `hana-mark-white.svg` are now
+  LIVE (referenced by the Insights pages and `Capabilities/RfidSmartTags.cshtml`) — do NOT delete
+  them. Re-verify every remaining candidate with a fresh `grep -rl` across `Pages/` before deleting.
+  (done in this repo historically, NOT yet in Design source — every export re-adds these.)
   - Delete 14 dead `wwwroot` assets (~8 MB) the export keeps re-adding: 7 byte-identical
     duplicates of images used under other names (`Hana_bkk.jpg`, `automotive.jpeg` ×2,
     `medical.jpeg`, `rfid-tire.jpeg`, `telecommunications.jpeg`,
@@ -61,6 +64,40 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 9 Aug 2026 — export sync ("razor pages 9-8 Hana Site.zip") + backend update
+
+- **Synced the 9 Aug Razor export.** Large Capabilities restructure: **8 new sub-pillar
+  pages** (`HermeticCeramic`, `OpticalPackaging`, `PackageDesign`, `PowerPackages`,
+  `QfnDfnLga`, `SystemInPackage`, `UltraSmallPackages` under `/capabilities/osat/…`, plus
+  `RoboticSmartManufacturing` under `/capabilities/automation/…`) and **4 superseded pages
+  deleted** (`DieAttachWireBond`, `FlipChipSip`, `InlineAoiSpi`, `RoboticHandlingTest`).
+  New **site search** feature shipped at source (`wwwroot/css/search.css`, `js/site-search.js`,
+  `js/search-shell.js`, `js/search/*`). ~101 files changed overall.
+- **`ISSUES.md` excluded from the sync** (repo-maintained); `README.md` taken from export
+  (identical this time). `Directory.Build.props` and the 3 repo-only `-mobile.css` files preserved.
+- **Standalone-HTML build breakers recurred (RZ1034) — same 5 pages as 30 Jul.** Repaired
+  `Insights/{Index,AutomotivePcbaAssembly}.cshtml` and `Legal/{PrivacyPolicy,TermsOfUse,
+  CookiePolicy}.cshtml`: stripped the mangled `ang="en">` doc opener through the duplicate
+  `</header>`, swapped `<main id="main-content" class="ins-page">` for `<div class="ins-page">`
+  + closing `</div>`. Verified at runtime: every page renders one `hana-header` / `hana-footer` /
+  `<!DOCTYPE`, all routes 200.
+- **Re-applied the standing retrofits:**
+  - **Mobile CSS `<link>` tags ×16** — capabilities 1, locations 7, investors 8 (all stripped by export).
+  - **`@`-escaping ×2** — `@media` → `@@media` in `Careers/Stories.cshtml` and `Locations/Index.cshtml`.
+  - **`Hana_bkk.jpg`** — re-pointed to canonical `~/images/hana-bkk.jpg` in `Investors/EventsContact.cshtml`.
+- **Dead-asset cleanup NOT run this round — list has drifted.** Three of the 14 formerly-dead
+  assets are now genuinely referenced by the restructured export: `world-map.png` (Insights hub +
+  article thumbs), `rfid-tire.jpeg` (`Capabilities/RfidSmartTags.cshtml`), `hana-mark-white.svg`
+  (`Insights/AutomotivePcbaAssembly.cshtml`). Deleting the old list wholesale would now 404 live
+  images. The Open item needs re-scoping before the next cleanup. (The `Hana_bkk.jpg` byte-dup is
+  still safe to remove — done via the re-point above; other genuinely-dead files left in place pending
+  a corrected list.)
+- **Backend system export updated** (`docs/backend-system/export/`, design source, build-excluded):
+  new `Services/AssignmentMailer.cs` + `emails/assignment-summary.html(.preview.html)` (ticket
+  assignment email), updated Tickets list/store/row UI, `admin.css`, `tickets.js`, `README.md`,
+  and a `hana-logo-full-white.png` asset. No files removed.
+- `dotnet build` clean afterwards: 0 warnings, 0 errors.
 
 ### 30 Jul 2026 — export sync ("razor 30-7 Hana Site.zip")
 

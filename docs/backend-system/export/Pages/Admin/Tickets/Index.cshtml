@@ -54,6 +54,32 @@
             </div>
         </section>
 
+        @* ── Supplier & vendor inquiries (collapsible, open by default) ── *@
+        <section class="collapse" aria-label="Supplier and vendor inquiries">
+            <button type="button" class="collapse-toggle is-open" data-collapse="supplier-list">
+                <span class="collapse-arrow"><partial name="_icon_Chevron" /></span>
+                <span>Supplier &amp; vendor inquiries</span>
+                <span class="collapse-count">@Model.Supplier.Count in this queue</span>
+            </button>
+            <div class="collapse-body is-open" id="supplier-list">
+                <div class="ticket-list">
+                    <div class="col-headers">
+                        <div>Status</div><div>Date</div><div>Contact / Company</div>
+                        <div>Reason</div><div>Owner</div><div></div>
+                    </div>
+                    @foreach (var t in Model.Supplier)
+                    {
+                        <partial name="_tickets_TicketRow" model="t" />
+                    }
+                    @if (Model.Supplier.Count == 0)
+                    {
+                        <div class="list-empty">No supplier or vendor inquiries.</div>
+                    }
+                </div>
+                <p class="section-note">Offers of parts, tooling, equipment and services. Routed to procurement, not to the sales team.</p>
+            </div>
+        </section>
+
         @* ── Closed inquiries (collapsible) ── *@
         <section class="collapse" aria-label="Closed inquiries">
             <button type="button" class="collapse-toggle" data-collapse="closed-list">

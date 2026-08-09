@@ -13,16 +13,34 @@ namespace HanaSite.Models.Admin
     {
         public static readonly List<string> Owners = new() { "Sanjay", "Mark", "Thang", "Rupert" };
 
+        /// <summary>Mailbox per team member — the assignment summary is sent here.</summary>
+        public static readonly Dictionary<string, string> OwnerMailboxes = new()
+        {
+            ["Sanjay"] = "sanjay.p@hanagroup.com",
+            ["Mark"] = "mark.t@hanagroup.com",
+            ["Thang"] = "thang.n@hanagroup.com",
+            ["Rupert"] = "rupert.h@hanagroup.com"
+        };
+
+        public static string MailboxFor(string owner) =>
+            OwnerMailboxes.TryGetValue(owner, out var mail) ? mail : owner.ToLowerInvariant() + "@hanagroup.com";
+
         public static List<Ticket> All { get; } = Seed();
 
         public static Ticket? Find(string id) => All.FirstOrDefault(t => t.Id == id);
 
         public static IEnumerable<Ticket> Open =>
-            All.Where(t => t.IsOpen)
+            All.Where(t => t.IsOpen && !t.IsSupplier)
+               .OrderByDescending(t => t.Date).ThenByDescending(t => t.Time);
+
+        // Supplier / vendor offers — parts, tooling, equipment, services.
+        // Routed to procurement, so they are kept out of the sales queues.
+        public static IEnumerable<Ticket> Supplier =>
+            All.Where(t => t.IsSupplier && t.Status != "spam")
                .OrderByDescending(t => t.Date).ThenByDescending(t => t.Time);
 
         public static IEnumerable<Ticket> Closed =>
-            All.Where(t => t.Status == "closed")
+            All.Where(t => t.Status == "closed" && !t.IsSupplier)
                .OrderByDescending(t => t.ClosedDate);
 
         public static IEnumerable<Ticket> Spam =>
@@ -61,6 +79,8 @@ namespace HanaSite.Models.Admin
                 Market = "Automotive", Service = "IC Assembly & Test (OSAT)", Source = "/capabilities/ic-assembly/",
                 Email = "p.lambert@volterra-mobility.fr", Phone = "+33 1 44 82 3300",
                 Address = "Volterra Mobility SAS, Paris, France",
+                NotifiedName = "Sanjay", NotifiedEmail = "sanjay.p@hanagroup.com", NotifiedAt = "2026-05-08 16:31",
+                NotifiedSubject = "[T3] Pierre Lambert · Volterra Mobility · France",
                 Message = "We are a French EV mobility company looking for an OSAT partner to support our power module assembly. We currently use a European supplier but need to diversify our manufacturing base. Annual volume is approximately 200,000 units. We can share our initial product specs, preferred test protocols, and a draft supply agreement."
             },
             new Ticket {
@@ -69,6 +89,8 @@ namespace HanaSite.Models.Admin
                 Market = "Optical & Sensors", Service = "Sensors & Optical", Reason = "Capability / technical question", Source = "/markets/optical-sensors/",
                 Email = "lisa.andersson@nordicsense.se", Phone = "+46 8 555 7842",
                 Address = "NordicSense AB, Stockholm, Sweden",
+                NotifiedName = "Mark", NotifiedEmail = "mark.t@hanagroup.com", NotifiedAt = "2026-05-08 11:04",
+                NotifiedSubject = "[T4] Lisa Andersson · NordicSense AB · Sweden",
                 Message = "We design optical sensor modules for industrial inspection systems and are looking for a manufacturing partner in Asia who can support low to medium volume production with high accuracy requirements. We'd be interested in learning more about Hana's Sensors & Optical capabilities and experience with camera module assembly."
             },
             new Ticket {
@@ -77,6 +99,8 @@ namespace HanaSite.Models.Admin
                 Market = "Industrial & IoT", Service = "PCBA & Box Build", Source = "/capabilities/pcba/",
                 Email = "d.ferreira@iberian-iot.pt", Phone = "+351 21 300 4420",
                 Address = "Iberian IoT Lda, Lisbon, Portugal",
+                NotifiedName = "Rupert", NotifiedEmail = "rupert.h@hanagroup.com", NotifiedAt = "2026-05-07 14:20",
+                NotifiedSubject = "[T5] Diego Ferreira · Iberian IoT · Portugal",
                 Message = "Following our initial conversation last week, I wanted to formally submit our inquiry for review. As discussed, we need PCBA assembly for our industrial IoT gateway — 2,000 units in the first run with a target of 10,000 per year. We have the Gerber files and BOM ready to send. Please confirm receipt and advise on next steps."
             },
             new Ticket {
@@ -102,6 +126,41 @@ namespace HanaSite.Models.Admin
                 ClosedDate = "2026-05-03", ClosedBy = "Rupert", RoutedTo = "Ayutthaya (Thailand)",
                 Email = "s.lindqvist@aurora-imaging.se", Address = "Aurora Imaging AB, Gothenburg, Sweden",
                 Message = "We design camera modules for industrial inspection and are looking for a manufacturing partner. Volume is small initially — 500 units — but we expect to scale to 5,000+ within two years."
+            },
+            new Ticket {
+                Id = "v1", Kind = "supplier", Status = "new", Date = "2026-05-09", Time = "13:20",
+                Name = "Wanchai Rattanakorn", Company = "Thai Precision Tooling · Thailand",
+                Reason = "Supplier / vendor inquiry", Source = "/contact/",
+                Email = "wanchai@thaiprecision.example", Phone = "+66 38 771 220",
+                Address = "Thai Precision Tooling Co., Chonburi, Thailand",
+                Message = "We manufacture precision jigs and fixtures in Chonburi and would like to be considered as a tooling supplier for your Lamphun and Ayutthaya plants. We hold ISO 9001 and already supply two other electronics manufacturers in Thailand. I can send our capability statement and a list of the machines on our floor."
+            },
+            new Ticket {
+                Id = "v2", Kind = "supplier", Status = "new", Date = "2026-05-08", Time = "09:05",
+                Name = "Grace Lim", Company = "Eastgate Components · Singapore",
+                Reason = "Supplier / vendor inquiry", Source = "/contact/",
+                Email = "g.lim@eastgatecomp.example", Phone = "+65 6221 8830",
+                Address = "Eastgate Components Pte Ltd, Singapore",
+                Message = "We are an authorized distributor for several passive component and connector lines across Southeast Asia. I wanted to introduce ourselves as a second source for your Thailand plants, particularly where allocation is tight. Happy to share our franchise line card and current stock positions."
+            },
+            new Ticket {
+                Id = "v3", Kind = "supplier", Status = "claimed", Date = "2026-05-06", Time = "15:40", Owner = "Thang",
+                Name = "Ruben Ortiz", Company = "Vertex Test Systems · Malaysia",
+                Reason = "Supplier / vendor inquiry", Source = "/contact/",
+                Email = "r.ortiz@vertextest.example", Phone = "+60 4 226 7710",
+                Address = "Vertex Test Systems Sdn Bhd, Penang, Malaysia",
+                NotifiedName = "Thang", NotifiedEmail = "thang.n@hanagroup.com", NotifiedAt = "2026-05-06 15:42",
+                NotifiedSubject = "[V3] Ruben Ortiz · Vertex Test Systems · Malaysia",
+                Message = "We supply and service test handlers and ATE interface hardware from Penang. We understand Hana runs test operations in Thailand and China and would like to discuss a preventive maintenance agreement, along with spare handler capacity we can offer at short notice."
+            },
+            new Ticket {
+                Id = "v4", Kind = "supplier", Status = "closed", Date = "2026-04-30", Time = "11:26", Owner = "Thang",
+                Name = "Kanya Srisuk", Company = "Siam Packaging Group · Thailand",
+                Reason = "Supplier / vendor inquiry", Source = "/contact/",
+                ClosedDate = "2026-05-04", ClosedBy = "Thang", RoutedTo = "Procurement — Bangkok",
+                Email = "kanya@siampackaging.example", Phone = "+66 2 660 4412",
+                Address = "Siam Packaging Group, Bangkok, Thailand",
+                Message = "Following up on our quotation for ESD trays and moisture barrier bags. We have sent revised pricing for the twelve-month volume discussed and can hold it until the end of the quarter. Please let me know if you need samples before deciding."
             },
             new Ticket {
                 Id = "s1", Status = "spam", Date = "2026-05-07", Time = "03:14",

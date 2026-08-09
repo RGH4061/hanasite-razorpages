@@ -165,3 +165,11 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 }
 
 .mk-sheet .desc{flex-direction:column}.mk-sheet .desc p{margin:0 0 12px}.mk-sheet .desc p:last-child{margin-bottom:0}
+
+/* illustrated spec sheet — .mk-sheet.has-media adds a photo cell per row */
+.mk-sheet.has-media .row{grid-template-columns:340px minmax(0,1fr) 220px}
+.mk-sheet.has-media .pic{border-top:1px solid var(--line);border-left:1px solid var(--line);background:#E7ECF1;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;overflow:hidden}
+.mk-sheet.has-media .row:first-child .pic{border-top:0}
+.mk-sheet.has-media .pic span{font-family:var(--font-mono);font-size:10px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.mk-sheet.has-media .pic img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:980px){.mk-sheet.has-media .row{grid-template-columns:1fr}.mk-sheet.has-media .pic{border-left:0;border-top:1px solid var(--line);min-height:150px}}

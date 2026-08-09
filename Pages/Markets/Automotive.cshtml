@@ -9,11 +9,11 @@
 
 @{
     var subs = new[] {
-        new { slug = "power-modules",   name = "Power Modules",   icon = "zap",        blurb = "Die attach, sintering and clip/wire bonding for IGBT and SiC power modules — built for the current and heat of electrified powertrains." },
-        new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio",      blurb = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing — stress-managed packages in controlled environments." },
-        new { slug = "led-lighting",    name = "LED Lighting",    icon = "lightbulb",  blurb = "LED module and driver assembly for headlamps, signaling and interior lighting, with the thermal path designed in." },
-        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  icon = "circle-dot", blurb = "Ruggedized RFID tags engineered to survive cure, flex and road heat inside a tire for its full service life." },
-        new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu",        blurb = "Board assembly for automotive electronics — fine-pitch SMT with inspection and traceability on every board, on IATF 16949 lines." }
+        new { slug = "power-modules",   name = "Power Modules",   icon = "zap",        blurb = "Die attach, silver sintering and clip or wire bonding for IGBT and SiC power modules used in electrified powertrains." },
+        new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio",      blurb = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing, including stress-managed attachment and controlled-environment packaging." },
+        new { slug = "led-lighting",    name = "LED Lighting",    icon = "lightbulb",  blurb = "LED module and driver assembly for headlamps, signaling and interior lighting, including thermal-management requirements within the module design." },
+        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  icon = "circle-dot", blurb = "Ruggedized RFID tags designed for embedding in tires and qualified for cure temperature, flex and road-temperature exposure." },
+        new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu",        blurb = "Fine-pitch SMT board assembly for automotive electronics, with inspection and traceability on IATF 16949 lines." }
     };
 
     var plants = new[] {
@@ -32,27 +32,27 @@
     };
 
     var proof = new[] {
-        new { t = "Automotive quality system", icon = "shield", d = "IATF 16949 lines with PPAP and APQP discipline — the documentation and process control automotive programs require, not bolted on after the fact." },
-        new { t = "Traceable by default", icon = "layers", d = "Material, unit and product traceability captured at every step, so a field question can be traced back to a board, a reel and a shift." },
-        new { t = "Resilient footprint", icon = "globe", d = "The same processes are qualified across China, Thailand, Cambodia and the USA — so a program can shift sites for capacity or supply continuity." },
-        new { t = "Relationships that last", icon = "check", d = "Some automotive programs have run with Hana for over twenty years. Continuity of people and process is part of the quality story." }
+        new { t = "Automotive quality system", icon = "shield", d = "IATF 16949 production with PPAP and APQP discipline, supported by the documentation and process controls required for automotive programs." },
+        new { t = "Traceable by default", icon = "layers", d = "Material, unit and product traceability is captured through production, allowing field and quality questions to be traced back to the relevant board, material lot and production shift." },
+        new { t = "Resilient footprint", icon = "globe", d = "Automotive manufacturing runs across China, Thailand, Cambodia and the USA, providing options for multi-site qualification, additional capacity and supply continuity." },
+        new { t = "Relationships that last", icon = "check", d = "Some Hana automotive programs have been in production for more than twenty years, supporting continuity of process knowledge and manufacturing experience." }
     };
 
     var faq = new[] {
         new { q = "Which automotive quality standards do you run to?", a = "Automotive lines run to IATF 16949, with PPAP and APQP discipline. Parts are qualified to the relevant AEC-Q stress qualifications for the device type." },
-        new { q = "Can a program move between your plants?", a = "Yes. The same processes are qualified across China, Thailand, Cambodia and the USA, so a program can transfer sites as a documented first-article qualification for capacity or supply continuity." },
-        new { q = "Do you support us from design, or only build to print?", a = "We work alongside your team from DFM through production. A design-for-manufacturing read happens before NPI, so issues surface on paper rather than on the line." },
-        new { q = "What level of traceability do you provide?", a = "Material, unit and product traceability is captured at every step, so a field question can be traced back to a board, a reel and a shift — on every program, not only high-reliability work." },
-        new { q = "How do we start a conversation?", a = "Tell us what the part does in the vehicle and your target volumes. We will point you to the right line and come back with a plan. Send a BOM or talk to an engineer to begin." }
+        new { q = "Can a program move between your plants?", a = "Yes. Automotive processes are qualified across China, Thailand, Cambodia and the USA. Where a transfer is required for capacity or supply continuity, the program follows a documented qualification process at the receiving site." },
+        new { q = "Do you support us from design, or only build to print?", a = "Hana can support programs from DFM through production. Design-for-manufacturing review is carried out before NPI so manufacturing issues can be addressed before the product reaches the line." },
+        new { q = "What level of traceability do you provide?", a = "Material, unit and product traceability is captured through production, allowing field and quality questions to be traced back to the relevant board, material lot and production shift." },
+        new { q = "How do we start a conversation?", a = "Tell us what the part does in the vehicle and your target volumes. We can identify the appropriate Hana site, process route and next steps for the program." }
     };
 
     // cutaway markers — 5 components (numbered, colored) + 10 sensor/control points (warm accent)
     var markers = new[] {
-        new { n = 1,  color = "#1283DD", x = "32",   y = "57", tag = "Power Modules",   name = "Power Modules",              desc = "Die attach, sintering and clip/wire bonding for IGBT and SiC power modules \u2014 built for the current and heat of electrified powertrains." },
-        new { n = 2,  color = "#0E9E8A", x = "62",   y = "55", tag = "Automotive PCBA", name = "Automotive PCBA",            desc = "Fine-pitch SMT board assembly with inspection and traceability on every board, on IATF 16949 lines." },
-        new { n = 3,  color = "#C97010", x = "11.5", y = "57", tag = "LED Lighting",    name = "LED front lights",           desc = "LED module and driver assembly for headlamps and signaling, with the thermal path designed in." },
-        new { n = 4,  color = "#1F8A5B", x = "47",   y = "79", tag = "RFID Tire Tags",  name = "RFID Tire Tags",             desc = "Ruggedized RFID tags engineered to survive cure, flex and road heat inside a tire for its full service life." },
-        new { n = 5,  color = "#FF883E", x = "37",   y = "48", tag = "Sensor Assembly", name = "Automotive Sensor Assembly", desc = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing \u2014 stress-managed packages in controlled environments." },
+        new { n = 1,  color = "#1283DD", x = "32",   y = "57", tag = "Power Modules",   name = "Power Modules",              desc = "Die attach, silver sintering and clip or wire bonding for IGBT and SiC power modules used in electrified powertrains." },
+        new { n = 2,  color = "#0E9E8A", x = "62",   y = "55", tag = "Automotive PCBA", name = "Automotive PCBA",            desc = "Fine-pitch SMT assembly for automotive electronics, with inspection and traceability on IATF 16949 lines." },
+        new { n = 3,  color = "#C97010", x = "11.5", y = "57", tag = "LED Lighting",    name = "LED front lights",           desc = "LED module and driver assembly for headlamps and signaling, including thermal-management requirements within the module design." },
+        new { n = 4,  color = "#1F8A5B", x = "47",   y = "79", tag = "RFID Tire Tags",  name = "RFID Tire Tags",             desc = "Ruggedized RFID tags designed for embedding in tires and qualified for cure temperature, flex and road-temperature exposure." },
+        new { n = 5,  color = "#FF883E", x = "37",   y = "48", tag = "Sensor Assembly", name = "Automotive Sensor Assembly", desc = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing, including stress-managed attachment and controlled-environment packaging." },
         new { n = 6,  color = "#FF883E", x = "44",   y = "62", tag = "Sensor",  name = "Pressure & fuel sensor",  desc = "" },
         new { n = 7,  color = "#FF883E", x = "73",   y = "35", tag = "Sensor",  name = "Passenger weight sensor", desc = "" },
         new { n = 8,  color = "#FF883E", x = "22.5", y = "60", tag = "Sensor",  name = "Air pressure sensor",     desc = "" },
@@ -66,11 +66,11 @@
     };
 
     var legendItems = new[] {
-        new { n = 1, color = "#1283DD", name = "Power Modules",              desc = "Die attach, sintering and clip/wire bonding for IGBT and SiC power modules \u2014 built for the current and heat of electrified powertrains." },
-        new { n = 2, color = "#0E9E8A", name = "Automotive PCBA",            desc = "Fine-pitch SMT board assembly with inspection and traceability on every board, on IATF 16949 lines." },
-        new { n = 3, color = "#C97010", name = "LED front lights",           desc = "LED module and driver assembly for headlamps and signaling, with the thermal path designed in." },
-        new { n = 4, color = "#1F8A5B", name = "RFID Tire Tags",             desc = "Ruggedized RFID tags engineered to survive cure, flex and road heat inside a tire for its full service life." },
-        new { n = 5, color = "#FF883E", name = "Automotive Sensor Assembly", desc = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing \u2014 stress-managed packages in controlled environments." }
+        new { n = 1, color = "#1283DD", name = "Power Modules",              desc = "Die attach, silver sintering and clip or wire bonding for IGBT and SiC power modules used in electrified powertrains." },
+        new { n = 2, color = "#0E9E8A", name = "Automotive PCBA",            desc = "Fine-pitch SMT assembly for automotive electronics, with inspection and traceability on IATF 16949 lines." },
+        new { n = 3, color = "#C97010", name = "LED front lights",           desc = "LED module and driver assembly for headlamps and signaling, including thermal-management requirements within the module design." },
+        new { n = 4, color = "#1F8A5B", name = "RFID Tire Tags",             desc = "Ruggedized RFID tags designed for embedding in tires and qualified for cure temperature, flex and road-temperature exposure." },
+        new { n = 5, color = "#FF883E", name = "Automotive Sensor Assembly", desc = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing, including stress-managed attachment and controlled-environment packaging." }
     };
 }
 
@@ -95,7 +95,7 @@
     <div style="position:relative; z-index:1; max-width:980px; margin:0 auto; padding:60px 32px 36px; text-align:center;">
       <div class="auto-eyebrow">Markets we serve</div>
       <h1 style="font-family:var(--font-display); font-size:50px; font-weight:700; color:var(--ink); line-height:1.04; letter-spacing:-0.03em; margin:0 auto 18px; max-width:760px; text-wrap:balance;">Automotive electronics manufacturing service</h1>
-      <p style="font-size:18px; color:var(--ink-2); line-height:1.55; margin:0 auto 26px; max-width:600px; text-wrap:pretty;">From the sensor on the bumper to the power module in the drivetrain, Hana builds the electronics that go into vehicles — assembled to automotive quality standards, across four countries, under one group.</p>
+      <p style="font-size:18px; color:var(--ink-2); line-height:1.55; margin:0 auto 26px; max-width:600px; text-wrap:pretty;">Hana manufactures automotive electronics from sensor and lighting assemblies through to PCBAs, RFID tire tags and power modules for electrified powertrains. Programs run to automotive quality requirements across four countries within the Hana manufacturing group.</p>
       <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
         <a href="#products" class="auto-btn auto-btn--primary">Explore automotive components <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>
         <a href="/contact" class="auto-btn auto-btn--secondary">Start a conversation</a>
@@ -158,7 +158,7 @@
     <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:56px 32px;">
       <div class="auto-sechead on-dark">
         <h2>The Hana automotive advantage</h2>
-        <p>Automotive buyers measure a supplier on quality discipline, traceability and resilience. Here is where Hana stands.</p>
+        <p>Automotive programs depend on controlled processes, traceability and manufacturing continuity. Hana supports these requirements across its automotive production network.</p>
       </div>
       <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;">
         @foreach (var p in proof)
@@ -180,7 +180,7 @@
     <div class="auto-wrap" style="padding-top:52px; padding-bottom:52px;">
       <div class="auto-sechead">
         <h2>Automotive products we produce</h2>
-        <p>Five areas cover what we build for vehicles today — from the power that moves them to the boards and tags inside. Each is qualified on automotive lines.</p>
+        <p>Hana supports five principal areas of automotive electronics manufacturing, spanning power electronics, sensors, lighting, RFID and board assembly.</p>
       </div>
       <div class="auto-subgrid">
         @foreach (var s in subs)
@@ -212,7 +212,7 @@
     <div class="auto-wrap" style="padding-top:52px; padding-bottom:52px;">
       <div class="auto-sechead">
         <h2>Where we build automotive</h2>
-        <p>Automotive programs run across five plants in four countries — so capacity and supply continuity are built into the footprint.</p>
+        <p>Automotive programs are supported across five plants in four countries, providing manufacturing capacity and options for supply continuity.</p>
       </div>
       <div class="auto-plants" style="grid-template-columns:repeat(5, 1fr);">
         @foreach (var p in plants)
@@ -258,7 +258,7 @@
       <div class="inner">
         <div>
           <h2>Have an automotive program in mind?</h2>
-          <p>Tell us what the part does in the vehicle and your target volumes. We'll point you to the right line and come back with a plan.</p>
+          <p>Tell us what the part does in the vehicle and your target volumes. We can identify the appropriate Hana site and process route for your program.</p>
         </div>
         <div class="actions">
           <a href="/contact" class="auto-btn auto-btn--ondark-primary">Start a program <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a>

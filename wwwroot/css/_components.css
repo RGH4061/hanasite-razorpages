@@ -703,4 +703,20 @@ body {
   .hana-mnav-utrow svg { width: 14px; height: 14px; }
 }
 
-.hana-cap-icon { display: block; width: 88px; height: 88px; object-fit: contain; }
+
+/* --- OSAT restructure draft (4 Aug 2026) --- */
+.mm-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.mm-grouplabel{font-family:var(--font-text);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px}
+.mm-new{display:inline-block;margin-left:7px;font-family:var(--font-text);font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--hana-blue);border:1px solid color-mix(in srgb, var(--hana-blue) 38%, var(--line));border-radius:3px;padding:1px 4px;vertical-align:1.5px;text-decoration:none}
+.mm-removed{color:var(--ink-3);text-decoration:line-through;cursor:default}
+.mm-gone{display:inline-block;margin-left:7px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-3)}
+.cap-sb-glabel{font-family:var(--font-text);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);padding:14px 16px 6px 24px}
+.cap-mobnav-list .cap-sb-glabel{padding-left:16px}
+.cap-sub-leaf.cap-removed{color:var(--ink-3);text-decoration:line-through;opacity:.75;cursor:default}
+.cap-draft-band{background:var(--surface);border-bottom:1px solid var(--line)}
+.cap-draft-inner{max-width:1240px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11.5px;color:var(--ink-3);letter-spacing:0.02em}
+.cap-draft-dot{width:7px;height:7px;border-radius:50%;background:var(--hana-blue);flex-shrink:0}
+.cap-stub{border:1px dashed color-mix(in srgb, var(--hana-blue) 32%, var(--line));border-radius:var(--radius-card);background:var(--surface);padding:38px 28px}
+.cap-stub-label{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:8px}
+.cap-stub-note{font-family:var(--font-mono);font-size:12px;color:var(--ink-3);margin:0;line-height:1.6;max-width:640px}
+@media (max-width:900px){.hana-macc-body .mm-grouplabel{color:rgba(126,200,255,0.75) !important}}

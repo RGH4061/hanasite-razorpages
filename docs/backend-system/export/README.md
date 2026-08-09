@@ -71,6 +71,23 @@ export/
 - **Auth.** `LoginModel.OnPost` is a stub that accepts any input and redirects.
   Wire `SignInManager.PasswordSignInAsync` during merge. All four users
   (Sanjay, Mark, Thang, Rupert) have full access.
+- **Assignment emails.** Claim / Assign send the inquiry summary to the owner's
+  mailbox via `Services/AssignmentMailer.cs` (`IAssignmentMailer`), which also
+  stamps `NotifiedName / NotifiedEmail / NotifiedAt / NotifiedSubject` on the
+  ticket — shown in the expand panel and re-sendable from the row menu
+  ("Resend summary email"). Register the transport in `Program.cs`:
+  `builder.Services.AddSingleton<IAssignmentMailer, SmtpAssignmentMailer>();`
+  and pass real host / port / from-address, or implement the interface against
+  the site's existing mail sender. The email body is the Hana-branded HTML
+  template at `export/emails/assignment-summary.html` (tables + inline styles,
+  `{{Token}}` placeholders, palette and 4px button radius per the design
+  system); the mailer fills it and attaches a plain-text alternate view. Keep
+  the file deployed alongside the app or point `templatePath` at its location. Mailboxes live in `TicketStore.OwnerMailboxes`
+  — move them to the Identity user records on merge. Delivery failures are
+  swallowed so an SMTP outage cannot block an assignment.
+- **Supplier & vendor queue.** Tickets with `Kind = "supplier"` are excluded
+  from the sales queues and listed in their own section between Open and Closed
+  (`TicketStore.Supplier`).
 - **Filtering** runs client-side in `tickets.js` over the rendered rows
   (`data-*` attributes). If the dataset grows, move it to a server-side query on
   `OnGet`.

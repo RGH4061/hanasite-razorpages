@@ -79,8 +79,8 @@ const lifeSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" str
 
 function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
 
-// Life-at-Hana photos that exist as files under wwwroot/images/life/. Slides
-// without a photo fall back to the placeholder icon.
+// Life-at-Hana photos that exist as files under images/life/. Slides without
+// a photo fall back to the placeholder icon.
 const LIFE_PHOTOS = new Set([
   "life-ayutthaya-annual-company-days-1","life-ayutthaya-annual-company-days-2",
   "life-ayutthaya-celebrations-1","life-ayutthaya-celebrations-2",
@@ -112,7 +112,7 @@ function lifeCard(card, loc) {
     const id = base + n;
     if (!LIFE_PHOTOS.has(id)) continue;
     slides += '<div class="life-img-slide"><img class="life-photo" loading="lazy" ' +
-              'src="/images/life/' + id + '.webp" alt="' + card.title + ' at Hana ' + loc + '" /></div>';
+              'src="images/life/' + id + '.webp" alt="' + card.title + ' at Hana ' + loc + '" /></div>';
   }
   if (!slides) {
     slides = '<div class="life-img-slide">' + lifeSvg + '<span>Photo coming soon</span></div>';

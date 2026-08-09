@@ -1,12 +1,9 @@
 @page "/capabilities/rfid-smart-tags"
 @{
     ViewData["Title"] = "RFID and Smart Tags — capabilities";
-    ViewData["Description"] = "High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination, built for environments that destroy ordinary labels.";
     ViewData["CapSlug"]  = "";
     ViewData["CapGroup"] = "rfid-smart-tags";
 }
-
-@* Capability hub page. Static content; section backgrounds via ~/js/hana-backgrounds.js. *@
 
 <div class="cap-page-grid">
 @await Html.PartialAsync("_CapabilitySidebar")
@@ -29,31 +26,32 @@
     <span style="color:var(--ink);font-weight:600;">RFID &amp; Smart Tags</span>
   </div>
 </div>
+<details class="cap-mobnav"><summary><span>RFID &amp; Smart Tags</span><span class="cap-mobnav-meta">2<span class="cap-mobnav-chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span></span></summary><div class="cap-mobnav-list"><a href="/capabilities/rfid-smart-tags/rfid-tire-tags" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>RFID Tire Tags</a><a href="/capabilities/rfid-smart-tags/rfid-inlays" class="cap-sub-leaf"><span class="cap-sub-arr">&#8250;</span>RFID Inlays</a></div></details>
 
 <div data-hana-bg="flow" data-variant="light" data-fade="none" style="background:#fff;position:relative;z-index:1;overflow:hidden;"><img src="~/images/hana-mark.svg" alt="" aria-hidden="true" style="position:absolute;top:-240px;right:-240px;width:620px;height:620px;opacity:0.13;pointer-events:none;z-index:0;user-select:none;transform:rotate(45deg);">
-  <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:56px 48px 56px;">
+  <div class="cap-section cap-section--band cap-section--hero">
     <div style="margin-bottom:52px;">
       <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Capability</div>
       <h1 style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin:0 0 18px;max-width:760px;text-wrap:balance;">RFID and smart tags</h1>
-      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination, built for environments that destroy ordinary labels. The capability behind tens of millions of tracked items a year.</p>
+      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">Hana manufactures RFID inlays and ruggedized tags from chip attach and antenna assembly through lamination, encapsulation, encoding and read verification. Capabilities cover high-volume reel-to-reel inlays as well as tags designed for demanding environments such as automotive tires.</p>
       <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:320px;"><img src="~/images/rfid-tire.jpeg" alt="RFID tire tag under assembly" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"><div style="position:absolute;left:12px;bottom:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:rgba(255,255,255,0.9);text-shadow:0 1px 4px rgba(0,0,0,0.6);text-transform:uppercase;">RFID tire tag under assembly</div></div>
     </div>
     <div class="cap-subsel" data-hana-bg="halftone" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);position:relative;overflow:hidden;border-radius:16px;">
-      <div style="position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:44px 44px 48px;">
+      <div class="cap-section cap-section--band">
         <div style="margin-bottom:26px;">
           <div style="font-family:var(--font-text);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#7EC8FF;margin-bottom:12px;">Choose a detailed capability</div>
           <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:#fff;line-height:1.2;letter-spacing:-0.02em;margin:0 0 10px;">Explore RFID &amp; Smart Tags</h2>
-          <p style="font-family:var(--font-text);font-size:15.5px;color:rgba(255,255,255,0.72);line-height:1.6;max-width:660px;margin:0;">Two product families, from embeddable ruggedized tags to high-throughput inlays.</p>
+          <p style="font-family:var(--font-text);font-size:15.5px;color:rgba(255,255,255,0.72);line-height:1.6;max-width:660px;margin:0;">RFID manufacturing capabilities covering rugged embedded tags and high-volume inlays for downstream label and tag conversion.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;">
+        <div class="cap-grid-2s">
             <a href="/capabilities/rfid-smart-tags/rfid-tire-tags" class="hub-card" style="border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;"><div style="position:relative;overflow:hidden;border-top-left-radius:var(--radius-card);border-top-right-radius:var(--radius-card);border-bottom:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:16px;height:16px;opacity:.4;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--ink-3);text-align:center;padding:0 14px;line-height:1.5;text-transform:uppercase;letter-spacing:0.04em;">[ RFID tire tags ]</span></div><div style="padding:24px;display:flex;flex-direction:column;flex:1;">
               <div style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:9px;text-wrap:balance;">RFID tire tags</div>
-              <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 18px;">Ruggedized tags engineered to survive cure, flex and road temperature inside a tire for its full service life.</p>
+              <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 18px;">Ruggedized UHF tags designed to withstand tire vulcanization, flexing and service-life environmental exposure.</p>
               <span class="hub-card-go" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--hana-blue);">View capability <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
             </div></a>
             <a href="/capabilities/rfid-smart-tags/rfid-inlays" class="hub-card" style="border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;"><div style="position:relative;overflow:hidden;border-top-left-radius:var(--radius-card);border-top-right-radius:var(--radius-card);border-bottom:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:16px;height:16px;opacity:.4;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--ink-3);text-align:center;padding:0 14px;line-height:1.5;text-transform:uppercase;letter-spacing:0.04em;">[ RFID inlays ]</span></div><div style="padding:24px;display:flex;flex-direction:column;flex:1;">
               <div style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:9px;text-wrap:balance;">RFID inlays</div>
-              <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 18px;">High-throughput inlay assembly — chip attach and antenna lamination, reel-to-reel for label and ticket converters.</p>
+              <p style="font-family:var(--font-text);font-size:13.5px;color:var(--ink-2);line-height:1.55;margin:0 0 18px;">High-volume dry and wet inlay assembly using reel-to-reel processing, chip attach, antenna integration, encoding and inline read verification.</p>
               <span class="hub-card-go" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--hana-blue);">View capability <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
             </div></a>
         </div>
@@ -63,5 +61,5 @@
 </div>
 
 
-</div><!-- /.cap-page-main -->
+</div></div>
 </div><!-- /.cap-page-grid -->

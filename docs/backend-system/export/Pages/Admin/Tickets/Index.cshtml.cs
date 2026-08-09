@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HanaSite.Models.Admin;
+using HanaSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,10 +15,15 @@ namespace HanaSite.Pages.Admin.Tickets
     public class TicketListModel : PageModel
     {
         public IReadOnlyList<Ticket> Open { get; private set; } = new List<Ticket>();
+        public IReadOnlyList<Ticket> Supplier { get; private set; } = new List<Ticket>();
         public IReadOnlyList<Ticket> Closed { get; private set; } = new List<Ticket>();
         public IReadOnlyList<Ticket> Spam { get; private set; } = new List<Ticket>();
 
         public IReadOnlyList<string> Owners => TicketStore.Owners;
+
+        private readonly IAssignmentMailer _mailer;
+
+        public TicketListModel(IAssignmentMailer mailer) => _mailer = mailer;
 
         // Signed-in user — supplied by ASP.NET Core Identity in the real site.
         public string CurrentUser => User?.Identity?.Name ?? "Sanjay";
@@ -30,6 +36,7 @@ namespace HanaSite.Pages.Admin.Tickets
         private void Load()
         {
             Open = TicketStore.Open.ToList();
+            Supplier = TicketStore.Supplier.ToList();
             Closed = TicketStore.Closed.ToList();
             Spam = TicketStore.Spam.ToList();
         }
@@ -37,14 +44,25 @@ namespace HanaSite.Pages.Admin.Tickets
         public IActionResult OnPostClaim(string id)
         {
             var t = TicketStore.Find(id);
-            if (t != null) { t.Status = "claimed"; t.Owner = CurrentUser; Toast = $"Claimed — assigned to {CurrentUser}"; }
+            if (t != null)
+            {
+                t.Status = "claimed"; t.Owner = CurrentUser;
+                var to = _mailer.SendAssignmentSummary(t, CurrentUser, CurrentUser);
+                Toast = $"Claimed — summary emailed to {to}";
+            }
             return RedirectToPage();
         }
 
         public IActionResult OnPostAssign(string id, string owner)
         {
             var t = TicketStore.Find(id);
-            if (t != null) { if (t.Status == "new") t.Status = "claimed"; t.Owner = owner; Toast = $"Assigned to {owner}"; }
+            if (t != null)
+            {
+                if (t.Status == "new") t.Status = "claimed";
+                t.Owner = owner;
+                var to = _mailer.SendAssignmentSummary(t, owner, CurrentUser);
+                Toast = $"Assigned to {owner} — summary emailed to {to}";
+            }
             return RedirectToPage();
         }
 
@@ -61,6 +79,17 @@ namespace HanaSite.Pages.Admin.Tickets
                     t.RoutedTo ??= t.Owner ?? CurrentUser;
                     Toast = "Closed and archived";
                 }
+            }
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostResendSummary(string id)
+        {
+            var t = TicketStore.Find(id);
+            if (t != null && !string.IsNullOrEmpty(t.Owner))
+            {
+                var to = _mailer.SendAssignmentSummary(t, t.Owner, CurrentUser);
+                Toast = $"Summary emailed again to {to}";
             }
             return RedirectToPage();
         }

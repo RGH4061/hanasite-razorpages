@@ -1,361 +1,121 @@
-@page
+@page "/capabilities"
 @{
-    ViewData["Title"] = "Capabilities — EMS, OSAT & microelectronics";
-    ViewData["Description"] = "Board assembly, semiconductor packaging and test, microelectronic assembly, RFID, automation and engineering partnership — under one group.";
+    ViewData["Title"] = "Capabilities Hub — EMS, OSAT & microelectronics";
 }
+
 @section Head {
     <link rel="stylesheet" href="~/css/capabilities-mobile.css" />
 }
 
-
-@* Capabilities overview — radial diagram of the six parent-capability hubs.
-   Nodes are positioned in a circle by the inline script; the globe background
-   and node geometry re-render on resize. *@
-
 <style>
-  .radial-section {
-    background: var(--bg);
-    padding: 0 0 72px;
-    overflow: hidden;
-    position: relative;
-  }
-  .radial-hero {
-    max-width: 1080px; margin: 0 auto;
-    padding: 72px 40px 32px;
-    position: relative; z-index: 1;
-  }
-  .radial-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-    color: #7EC8FF; margin-bottom: 18px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .radial-eyebrow::before {
-    content: ''; display: inline-block;
-    width: 24px; height: 1px;
-    background: #7EC8FF; opacity: 0.6;
-  }
-  .radial-hero h1 {
-    font-family: var(--font-display); font-weight: 700; font-size: 56px;
-    line-height: 1.02; letter-spacing: -.032em; color: #fff;
-    margin: 0 0 22px; max-width: 13ch;
-  }
-  .radial-hero .lede {
-    font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.62);
-    max-width: 66ch; margin: 0;
-  }
-  .radial-scale-wrap { overflow: hidden; width: 100%; }
-  .radial-wrap {
-    position: relative;
-    width: 960px; height: 800px;
-    margin: 0 auto;
-    transform-origin: top center;
-  }
-  .radial-svg {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; overflow: visible;
-  }
-  .radial-center {
-    position: absolute;
-    width: 252px; height: 252px;
-    left: 480px; top: 400px;
-    transform: translate(-50%, -50%);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .radial-center-ring {
-    position: absolute; inset: -22px; border-radius: 50%;
-    border: 1px solid rgba(18,131,221,.35);
-    animation: ring-pulse 3s ease-in-out infinite;
-  }
-  .radial-center-ring-2 {
-    position: absolute; inset: -48px; border-radius: 50%;
-    border: 1px solid rgba(18,131,221,.18);
-    animation: ring-pulse 3s ease-in-out infinite 1s;
-  }
-  .radial-center-ring-3 {
-    position: absolute; inset: -76px; border-radius: 50%;
-    border: 1px solid rgba(18,131,221,.08);
-  }
-  .radial-center-glow {
-    position: absolute; inset: -30px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(18,131,221,0.22) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  @@keyframes ring-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.04); }
-  }
-  @@media (prefers-reduced-motion: reduce) {
-    .radial-center-ring, .radial-center-ring-2 { animation: none; }
-  }
-  .radial-center img {
-    width: 100%; height: 100%; object-fit: contain;
-    position: relative; z-index: 1;
-  }
-
-  .cap-node {
-    position: absolute;
-    width: 224px;
-    background: rgba(255,255,255,0.97);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-top: 2px solid transparent;
-    border-radius: 12px;
-    padding: 18px 16px 14px;
-    text-decoration: none; color: inherit;
-    transition: border-color 150ms, box-shadow 150ms, transform 150ms;
-    display: flex; flex-direction: column; gap: 6px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.22), 0 1px 3px rgba(0,0,0,0.14);
-  }
-  .cap-node:hover {
-    border-color: rgba(18,131,221,0.3);
-    border-top-color: #1283DD;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.32), 0 2px 6px rgba(18,131,221,0.25);
-    transform: translateY(-3px);
-  }
-  .cap-node { border-top-width: 4px; border-top-color: rgba(18,131,221,.5); overflow: hidden; }
-  .cap-node::before {
-    content: ''; position: absolute; top: -46px; right: -46px;
-    width: 150px; height: 150px; border-radius: 50%;
-    background: repeating-radial-gradient(circle at center, rgba(18,131,221,.13) 0 1px, transparent 1px 13px);
-    pointer-events: none;
-  }
-  .hero-orbit {
-    position: absolute; z-index: 1; top: 64px;
-    right: max(36px, calc(50% - 636px));
-    width: 440px; pointer-events: none;
-  }
-  .hero-orbit-img {
-    position: relative; width: 100%; aspect-ratio: 1;
-    border-radius: 50%; overflow: hidden;
-    border: 1px solid rgba(126,200,255,.38);
-  }
-  .hero-orbit-img img {
-    width: 100%; height: 100%; object-fit: cover; object-position: 30% 42%;
-    display: block; filter: saturate(.85) contrast(1.05);
-  }
-  .hero-orbit-tint {
-    position: absolute; inset: 0;
-    background: linear-gradient(160deg, rgba(7,44,77,.55) 0%, rgba(7,44,77,.12) 50%, rgba(18,131,221,.28) 100%);
-    mix-blend-mode: multiply;
-  }
-  .hero-orbit-ring { position: absolute; border-radius: 50%; pointer-events: none; }
-  .hero-orbit-ring.r1 { inset: -16px; border: 1px solid rgba(126,200,255,.30); }
-  .hero-orbit-ring.r2 { inset: -38px; border: 1px dashed rgba(126,200,255,.20); }
-  .hero-orbit-ring.r3 { inset: -62px; border: 1px solid rgba(126,200,255,.09); }
-  .hero-orbit-ring.r2::after {
-    content: ''; position: absolute; width: 7px; height: 7px; border-radius: 50%;
-    background: #7EC8FF; opacity: .75; left: 14%; top: 7%;
-  }
-  .hero-orbit-cap {
-    margin-top: 16px; text-align: center;
-    font-family: var(--font-mono);
-    font-size: 9.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-    color: rgba(126,200,255,.75);
-  }
-  @@media (max-width: 1140px) { .hero-orbit { display: none; } }
-  @@media (max-width: 979px) {
-    .radial-hero { padding: 56px 24px 28px; }
-    .radial-scale-wrap { overflow: visible; }
-    .radial-wrap { width: auto; height: auto; transform: none !important; margin: 0 !important; padding: 0 24px; }
-    .radial-svg { display: none; }
-    .radial-center { position: relative; left: auto; top: auto; transform: none; width: 132px; height: 132px; margin: 12px auto 40px; }
-    .radial-center-ring { inset: -14px; } .radial-center-ring-2 { inset: -28px; } .radial-center-ring-3 { inset: -42px; }
-    .cap-nodes-fallback { display: flex !important; flex-direction: column; gap: 14px; max-width: 480px; margin: 0 auto; }
-    .cap-node { position: static; width: 100%; left: auto !important; top: auto !important; }
-  }
-  @@media (max-width: 640px) {
-    .radial-hero h1 { font-size: 36px; }
-  }
-  .radial-hero-bg {
-    position: absolute; inset: 0;
-    z-index: 0; pointer-events: none;
-    overflow: hidden;
-  }
-  .radial-hero-bg > div {
-    position: absolute;
-    width: 1200px; height: 100%;
-    left: 50%; transform: translateX(-50%);
-  }
-  .cap-node-name {
-    font-family: var(--font-display); font-weight: 600; font-size: 18px;
-    letter-spacing: -.010em; color: var(--ink); line-height: 1.2;
-  }
-  .cap-node-desc {
-    font-size: 11.5px; color: var(--ink-3); line-height: 1.5;
-    margin: 2px 0 4px;
-  }
-  .cap-node-cta {
-    font-family: var(--font-mono);
-    font-size: 9.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--hana-blue); display: inline-flex; align-items: center; gap: 4px;
-    margin-top: 2px;
-  }
-  @@media (max-width: 640px) {
-    .radial-hero h1 { font-size: 36px; }
-  }
+.radial-section{background:var(--bg);padding:0 0 72px;overflow:hidden;position:relative;}
+.radial-hero{max-width:1080px;margin:0 auto;padding:72px 40px 32px;position:relative;z-index:1;}
+.radial-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7EC8FF;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.radial-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:#7EC8FF;opacity:.6;}
+.radial-hero h1{font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.02;letter-spacing:-.032em;color:#fff;margin:0 0 22px;max-width:13ch;}
+.radial-hero .lede{font-size:17px;line-height:1.6;color:rgba(255,255,255,.62);max-width:66ch;margin:0;}
+.radial-scale-wrap{overflow:hidden;width:100%;}
+.radial-wrap{position:relative;width:960px;height:800px;margin:0 auto;transform-origin:top center;}
+.radial-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+.radial-center{position:absolute;width:252px;height:252px;left:480px;top:400px;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;}
+.radial-center-ring{position:absolute;inset:-22px;border-radius:50%;border:1px solid rgba(18,131,221,.35);animation:ring-pulse 3s ease-in-out infinite;}
+.radial-center-ring-2{position:absolute;inset:-48px;border-radius:50%;border:1px solid rgba(18,131,221,.18);animation:ring-pulse 3s ease-in-out infinite 1s;}
+.radial-center-ring-3{position:absolute;inset:-76px;border-radius:50%;border:1px solid rgba(18,131,221,.08);}
+.radial-center-glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(18,131,221,0.22) 0%,transparent 70%);pointer-events:none;}
+@@keyframes ring-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.04);}}
+@@media (prefers-reduced-motion: reduce){.radial-center-ring,.radial-center-ring-2{animation:none;}}
+.radial-center img{width:100%;height:100%;object-fit:contain;position:relative;z-index:1;}
+.cap-node{position:absolute;width:224px;background:rgba(255,255,255,0.97);border:1px solid rgba(255,255,255,0.25);border-top:2px solid transparent;border-radius:12px;padding:18px 16px 14px;text-decoration:none;color:inherit;transition:border-color 150ms,box-shadow 150ms,transform 150ms;display:flex;flex-direction:column;gap:6px;box-shadow:0 2px 12px rgba(0,0,0,0.22),0 1px 3px rgba(0,0,0,0.14);}
+.cap-node:hover{border-color:rgba(18,131,221,0.3);border-top-color:#1283DD;box-shadow:0 8px 28px rgba(0,0,0,0.32),0 2px 6px rgba(18,131,221,0.25);transform:translateY(-3px);}
+.cap-node{border-top-width:4px;border-top-color:rgba(18,131,221,.5);overflow:hidden;}
+.cap-node::before{content:'';position:absolute;top:-46px;right:-46px;width:150px;height:150px;border-radius:50%;background:repeating-radial-gradient(circle at center,rgba(18,131,221,.13) 0 1px,transparent 1px 13px);pointer-events:none;}
+.hero-orbit{position:absolute;z-index:1;top:64px;right:max(36px,calc(50% - 636px));width:440px;pointer-events:none;}
+.hero-orbit-img{position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:1px solid rgba(126,200,255,.38);}
+.hero-orbit-img img{width:100%;height:100%;object-fit:cover;object-position:30% 42%;display:block;filter:saturate(.85) contrast(1.05);}
+.hero-orbit-tint{position:absolute;inset:0;background:linear-gradient(160deg,rgba(7,44,77,.55) 0%,rgba(7,44,77,.12) 50%,rgba(18,131,221,.28) 100%);mix-blend-mode:multiply;}
+.hero-orbit-ring{position:absolute;border-radius:50%;pointer-events:none;}
+.hero-orbit-ring.r1{inset:-16px;border:1px solid rgba(126,200,255,.30);}
+.hero-orbit-ring.r2{inset:-38px;border:1px dashed rgba(126,200,255,.20);}
+.hero-orbit-ring.r3{inset:-62px;border:1px solid rgba(126,200,255,.09);}
+.hero-orbit-ring.r2::after{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:#7EC8FF;opacity:.75;left:14%;top:7%;}
+.hero-orbit-cap{margin-top:16px;text-align:center;font-family:var(--font-mono);font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(126,200,255,.75);}
+@@media (max-width:1140px){.hero-orbit{display:none;}}
+@@media (max-width:979px){
+.radial-hero{padding:56px 24px 28px;}
+.radial-scale-wrap{overflow:visible;}
+.radial-wrap{width:auto;height:auto;transform:none !important;margin:0 !important;padding:0 24px;}
+.radial-svg{display:none;}
+.radial-center{position:relative;left:auto;top:auto;transform:none;width:132px;height:132px;margin:12px auto 40px;}
+.radial-center-ring{inset:-14px;}.radial-center-ring-2{inset:-28px;}.radial-center-ring-3{inset:-42px;}
+#cap-nodes{display:flex !important;flex-direction:column;gap:14px;max-width:480px;margin:0 auto;}
+.cap-node{position:static;width:100%;left:auto !important;top:auto !important;}
+}
+.cap-node-count{display:none;}
+.radial-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.radial-hero-bg > div{position:absolute;width:1200px;height:100%;left:50%;transform:translateX(-50%);}
+.cap-node-name{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.010em;color:var(--ink);line-height:1.2;}
+.cap-node-desc{font-size:11.5px;color:var(--ink-3);line-height:1.5;margin:2px 0 4px;}
+.cap-node-cta{font-family:var(--font-mono);font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hana-blue);display:inline-flex;align-items:center;gap:4px;margin-top:2px;}
+@@media (max-width:640px){.radial-hero h1{font-size:36px;}}
 </style>
-
 <section class="radial-section" id="radial-hero">
-  <div class="radial-hero-bg" id="radial-hero-bg"></div>
-  <div class="radial-hero">
-    <div class="radial-eyebrow">Capabilities</div>
-    <h1>End to End Capabilities With Hana</h1>
-    <p class="lede">From a fine-pitch surface-mount line through die-level packaging and test to the finished, tested unit &mdash; the same qualified processes run across our plants in China, Thailand, Cambodia and the USA.</p>
+<div class="radial-hero-bg" id="radial-hero-bg"></div>
+<div class="radial-hero"><div class="radial-eyebrow">Capabilities</div><h1>End to End Capabilities With Hana</h1><p class="lede">From a fine-pitch surface-mount line through die-level packaging and test to the finished, tested unit &mdash; the same qualified processes run across our plants in China, Thailand, Cambodia and the USA.</p>
+<div class="cap-find" id="cap-find">
+  <div class="cap-find-lb">Find a process</div>
+  <div class="cap-find-box" style="width:442px;height:45px;">
+    <i data-lucide="search" style="width:19px;height:19px;flex:none"></i>
+    <input id="cap-find-q" type="search" spellcheck="false" placeholder="e.g. QFN · ceramic packaging · Flip Chip · back grind" aria-label="Find a process">
   </div>
-  <div class="hero-orbit" aria-hidden="true">
-    <div class="hero-orbit-ring r3"></div>
-    <div class="hero-orbit-ring r2"></div>
-    <div class="hero-orbit-ring r1"></div>
-    <div class="hero-orbit-img">
-      <img src="~/images/lpn-product-shot-01-web.jpg" alt="" />
-      <div class="hero-orbit-tint"></div>
-    </div>
-    <div class="hero-orbit-cap">Bare-die assembly · Micron-level placement</div>
-  </div>
-  <div class="radial-scale-wrap"><div class="radial-wrap" id="radial-wrap">
-
-    <svg class="radial-svg" id="radial-svg" xmlns="http://www.w3.org/2000/svg"></svg>
-
-    <div class="radial-center" id="radial-center">
-      <div class="radial-center-ring-3"></div>
-      <div class="radial-center-ring-2"></div>
-      <div class="radial-center-ring"></div>
-      <div class="radial-center-glow"></div>
-      <img src="~/images/hana-mark.svg" alt="Hana Microelectronics" />
-    </div>
-
-    <div class="cap-nodes-fallback" id="cap-nodes" style="display:contents">
-
-      <a class="cap-node" href="/capabilities/pcba-box-build" data-cap-index="0">
-        <div class="cap-node-count">3 Processes</div>
-        <div class="cap-node-name">PCBA &amp; Box Build</div>
-        <p class="cap-node-desc">Board assembly and full product assembly under one group — from a fine-pitch surface-mount line through bare-die work to the finished, tested unit.</p>
-        <span class="cap-node-cta">Explore &rarr;</span>
-      </a>
-
-      <a class="cap-node" href="/capabilities/osat" data-cap-index="1">
-        <div class="cap-node-count">6 Processes</div>
-        <div class="cap-node-name">OSAT</div>
-        <p class="cap-node-desc">Packaging and test at the die level — wafer processing, die attach, wire bond, flip chip and final test under one roof.</p>
-        <span class="cap-node-cta">Explore &rarr;</span>
-      </a>
-
-      <a class="cap-node" href="/capabilities/microelectronic-assembly" data-cap-index="2">
-        <div class="cap-node-count">4 Processes</div>
-        <div class="cap-node-name">Microelectronic Assembly</div>
-        <p class="cap-node-desc">The precision end of the group — flip chip, MEMS and sensor assembly, fine interconnect and micro-assembly, where placement is measured in microns.</p>
-        <span class="cap-node-cta">Explore &rarr;</span>
-      </a>
-
-      <a class="cap-node" href="/capabilities/rfid-smart-tags" data-cap-index="3">
-        <div class="cap-node-count">2 Processes</div>
-        <div class="cap-node-name">RFID &amp; Smart Tags</div>
-        <p class="cap-node-desc">High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination.</p>
-        <span class="cap-node-cta">Explore &rarr;</span>
-      </a>
-
-      <a class="cap-node" href="/capabilities/automation" data-cap-index="4">
-        <div class="cap-node-count">3 Processes</div>
-        <div class="cap-node-name">Automation</div>
-        <p class="cap-node-desc">The inspection, handling and data layer that runs underneath every line — in-line optical inspection, robotic handling and unit-level traceability.</p>
-        <span class="cap-node-cta">Explore &rarr;</span>
-      </a>
-
-      <a class="cap-node" href="/capabilities/dfx-jdm" data-cap-index="5">
-        <div class="cap-node-count">3 Processes</div>
-        <div class="cap-node-name">DFx &amp; JDM Collaboration</div>
-        <p class="cap-node-desc">How we work with your engineering team before volume — design-for-excellence review, joint development and new product introduction.</p>
-        <span class="cap-node-cta">Explore &rarr;</span>
-      </a>
-
-    </div>
-  </div></div>
+  <div class="cap-find-meta" id="cap-find-meta">Searches the 27 processes below. Type the shorthand — the index carries it or search by our categories below.</div>
+  <div class="cap-find-out" id="cap-find-out" hidden></div>
+</div></div>
+<div class="hero-orbit" aria-hidden="true"><div class="hero-orbit-ring r3"></div><div class="hero-orbit-ring r2"></div><div class="hero-orbit-ring r1"></div><div class="hero-orbit-img"><img src="~/images/lpn-product-shot-01-web.jpg" alt="" /><div class="hero-orbit-tint"></div></div><div class="hero-orbit-cap">Bare-die assembly · Micron-level placement</div></div>
+<div class="radial-scale-wrap"><div class="radial-wrap" id="radial-wrap">
+<svg class="radial-svg" id="radial-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="radial-center" id="radial-center"><div class="radial-center-ring-3"></div><div class="radial-center-ring-2"></div><div class="radial-center-ring"></div><div class="radial-center-glow"></div><img src="~/images/hana-mark.svg" alt="Hana Microelectronics" /></div>
+<div id="cap-nodes" style="display:contents"><a class="cap-node" href="/capabilities/pcba-box-build" data-cap-index="0"><div class="cap-node-count">3 Processes</div><div class="cap-node-name">PCBA &amp; Box Build</div><p class="cap-node-desc">Board and full product assembly in one group — fine-pitch surface mount and chip on board through to enclosure, box build and the finished, tested unit.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/osat" data-cap-index="1"><div class="cap-node-count">11 Processes</div><div class="cap-node-name">OSAT</div><p class="cap-node-desc">Semiconductor packaging from package design to finished device — power SiC and GaN, QFN and leadless, clear optical, hermetic ceramic, and ultra-small molded bodies.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/microelectronic-assembly" data-cap-index="2"><div class="cap-node-count">4 Processes</div><div class="cap-node-name">Microelectronic Assembly</div><p class="cap-node-desc">The precision end of the group — flip chip, MEMS and sensor assembly, fine interconnect and micro-assembly, where placement is measured in microns.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/rfid-smart-tags" data-cap-index="3"><div class="cap-node-count">2 Processes</div><div class="cap-node-name">RFID &amp; Smart Tags</div><p class="cap-node-desc">High-volume RFID inlays and ruggedized tags — coil and antenna assembly, chip attach and lamination.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/automation" data-cap-index="4"><div class="cap-node-count">2 Processes</div><div class="cap-node-name">Automation &amp; Smart Manufacturing</div><p class="cap-node-desc">The inspection, handling and data layer that runs underneath every line — in-line optical inspection, robotic handling and unit-level traceability.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/dfx-jdm" data-cap-index="5"><div class="cap-node-count">3 Processes</div><div class="cap-node-name">DFx &amp; JDM Collaboration</div><p class="cap-node-desc">How we work with your engineering team before volume — design-for-excellence review, joint development and new product introduction.</p><span class="cap-node-cta">Explore &rarr;</span></a></div>
+</div></div>
 </section>
-
-<section data-hana-bg="halftone" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);color:#fff;position:relative;overflow:hidden;"><div style="max-width:1080px;margin:0 auto;padding:72px 32px;text-align:center;position:relative;z-index:1;"><h2 class="hana-h2" style="color:#fff;margin:0 auto 16px;max-width:640px;">Tell us what you&rsquo;re building</h2><p style="font-size:17px;line-height:1.6;color:rgba(255,255,255,0.8);max-width:560px;margin:0 auto 32px;">Send a BOM or a design file and our engineering team will point you to the right process.</p></div></section>
-
-@section Scripts {
 <script>
-(function () {
-  const WRAP_W = 960, WRAP_H = 800;
-  const CX = 480, CY = 400;
-  const R = 300;
-  const CARD_W = 224;
-  const START_ANGLE = -90;
-
-  function toRad(deg) { return deg * Math.PI / 180; }
-
-  function positionNodes() {
-    const wrap = document.getElementById('radial-wrap');
-    if (!wrap) return;
-    if (window.innerWidth < 980) return;
-
-    const nodes = wrap.querySelectorAll('.cap-node');
-    const svg = document.getElementById('radial-svg');
-    svg.innerHTML = '';
-
-    nodes.forEach((node, i) => {
-      const angle = START_ANGLE + i * 60;
-      const rad = toRad(angle);
-      const cardCX = CX + R * Math.cos(rad);
-      const cardCY = CY + R * Math.sin(rad);
-      const cardH = node.offsetHeight || 170;
-      node.style.left = (cardCX - CARD_W / 2) + 'px';
-      node.style.top = (cardCY - cardH / 2) + 'px';
-
-      const dx = cardCX - CX, dy = cardCY - CY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const ux = dx / dist, uy = dy / dist;
-
-      const x1 = CX + ux * 93;
-      const y1 = CY + uy * 62;
-
-      const halfW = CARD_W / 2, halfH = cardH / 2;
-      const ex = Math.max(-halfW, Math.min(halfW, -ux * halfW / Math.max(Math.abs(ux), Math.abs(uy) * halfW / halfH)));
-      const ey = Math.max(-halfH, Math.min(halfH, -uy * halfH / Math.max(Math.abs(uy), Math.abs(ux) * halfH / halfW)));
-      const x2 = cardCX + ex;
-      const y2 = cardCY + ey;
-
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-      line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-      line.setAttribute('stroke', '#7EC8FF'); line.setAttribute('stroke-width', '1');
-      line.setAttribute('stroke-opacity', '0.35');
-      line.setAttribute('stroke-dasharray', '4 4');
+(function(){
+  var CX=480,CY=400,R=300,CARD_W=224,START=-90;
+  function rad(d){return d*Math.PI/180;}
+  function positionNodes(){
+    var wrap=document.getElementById('radial-wrap'); if(!wrap) return;
+    if(window.innerWidth<980) return;
+    var nodes=wrap.querySelectorAll('.cap-node'); var svg=document.getElementById('radial-svg'); svg.innerHTML='';
+    nodes.forEach(function(node,i){
+      var a=rad(START+i*60); var cx=CX+R*Math.cos(a), cy=CY+R*Math.sin(a); var h=node.offsetHeight||170;
+      node.style.left=(cx-CARD_W/2)+'px'; node.style.top=(cy-h/2)+'px';
+      var dx=cx-CX,dy=cy-CY,dist=Math.sqrt(dx*dx+dy*dy),ux=dx/dist,uy=dy/dist;
+      var x1=CX+ux*93,y1=CY+uy*62,hw=CARD_W/2,hh=h/2;
+      var ex=Math.max(-hw,Math.min(hw,-ux*hw/Math.max(Math.abs(ux),Math.abs(uy)*hw/hh)));
+      var ey=Math.max(-hh,Math.min(hh,-uy*hh/Math.max(Math.abs(uy),Math.abs(ux)*hh/hw)));
+      var x2=cx+ex,y2=cy+ey;
+      var line=document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',x1);line.setAttribute('y1',y1);line.setAttribute('x2',x2);line.setAttribute('y2',y2);
+      line.setAttribute('stroke','#7EC8FF');line.setAttribute('stroke-width','1');line.setAttribute('stroke-opacity','0.35');line.setAttribute('stroke-dasharray','4 4');
       svg.appendChild(line);
-
-      const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      dot.setAttribute('cx', x2); dot.setAttribute('cy', y2);
-      dot.setAttribute('r', '3'); dot.setAttribute('fill', '#7EC8FF');
-      dot.setAttribute('fill-opacity', '0.6');
+      var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      dot.setAttribute('cx',x2);dot.setAttribute('cy',y2);dot.setAttribute('r','3');dot.setAttribute('fill','#7EC8FF');dot.setAttribute('fill-opacity','0.6');
       svg.appendChild(dot);
     });
   }
-
-  function applyGlobe() {
-    const outer = document.getElementById('radial-hero-bg');
-    if (!outer || !window.HanaBG) return;
-    let inner = outer.querySelector('div');
-    if (!inner) { inner = document.createElement('div'); outer.appendChild(inner); }
-    HanaBG.apply(inner, { pattern: 'globe', variant: 'dark', accent: 'cyan', fade: 'none' });
-    document.getElementById('radial-hero').style.background = 'radial-gradient(ellipse 80% 100% at 80% 50%, #072c4d 0%, #030a17 65%)';
+  function applyGlobe(){
+    var outer=document.getElementById('radial-hero-bg'); if(!outer||!window.HanaBG) return;
+    var inner=outer.querySelector('div'); if(!inner){inner=document.createElement('div');outer.appendChild(inner);}
+    HanaBG.apply(inner,{pattern:'globe',variant:'dark',accent:'cyan',fade:'none'});
+    document.getElementById('radial-hero').style.background='radial-gradient(ellipse 80% 100% at 80% 50%, #072c4d 0%, #030a17 65%)';
   }
-
-  function scaleRadial() {
-    const wrap = document.getElementById('radial-wrap');
-    if (!wrap) return;
-    if (window.innerWidth < 980) { wrap.style.transform = ''; wrap.style.marginBottom = ''; return; }
-    const available = wrap.parentElement.clientWidth;
-    const scale = Math.min(1, available / 960);
-    wrap.style.transform = 'scale(' + scale + ')';
-    wrap.style.marginBottom = ((scale - 1) * 800) + 'px';
+  function scaleRadial(){
+    var wrap=document.getElementById('radial-wrap'); if(!wrap) return;
+    if(window.innerWidth<980){wrap.style.transform='';wrap.style.marginBottom='';return;}
+    var avail=wrap.parentElement.clientWidth, scale=Math.min(1,avail/960);
+    wrap.style.transform='scale('+scale+')'; wrap.style.marginBottom=((scale-1)*800)+'px';
   }
-
-  function run() { applyGlobe(); scaleRadial(); positionNodes(); }
-  if (document.readyState === 'complete') { setTimeout(run, 100); }
-  else { window.addEventListener('load', () => setTimeout(run, 100)); }
-  window.addEventListener('resize', () => { scaleRadial(); positionNodes(); });
+  function run(){applyGlobe();scaleRadial();positionNodes();}
+  window.addEventListener('load',function(){setTimeout(run,100);});
+  window.addEventListener('resize',function(){scaleRadial();positionNodes();});
 })();
 </script>
-}
