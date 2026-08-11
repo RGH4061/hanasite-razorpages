@@ -197,3 +197,25 @@
   .ir-cover-grid { grid-template-columns: 1fr; }
   .ir-search { margin-left: 0; width: 100%; flex: 1 1 100%; }
 }
+
+
+/* ── Responsive — reflow list rows to stacked cards ────────── */
+@media (max-width: 760px) {
+  .ir-topbar { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+  .ir-logo { height: 56px; }
+  .ir-title { font-size: 20px; }
+  .ir-wrap { padding-left: 16px; padding-right: 16px; }
+  .ir-filters { padding: 12px; }
+  .ir-filters select { flex: 1 1 44%; min-width: 0; }
+  .ir-listwrap { overflow-x: visible; }
+  .ir-grid, .ir-grid--news, .ir-grid--events, .ir-grid--reports, .ir-grid--pres, .ir-grid--faq { min-width: 0; }
+  .ir-headrow { display: none; }
+  .ir-row { display: block; padding: 14px 16px 14px 15px; }
+  .ir-row > div { margin: 0 0 7px; }
+  .ir-row > div:last-child { margin: 10px 0 0; display: flex; flex-wrap: wrap; justify-content: flex-start; }
+  .ir-row button, .ir-row .btn { min-height: 44px; }
+  .ir-att-head { display: none; }
+  .ir-att-row { grid-template-columns: 1fr; }
+  .ir-tabs { overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+  .ir-tabs::-webkit-scrollbar { display: none; }
+}

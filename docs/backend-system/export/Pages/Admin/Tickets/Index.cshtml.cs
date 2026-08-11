@@ -15,11 +15,14 @@ namespace HanaSite.Pages.Admin.Tickets
     public class TicketListModel : PageModel
     {
         public IReadOnlyList<Ticket> Open { get; private set; } = new List<Ticket>();
-        public IReadOnlyList<Ticket> Supplier { get; private set; } = new List<Ticket>();
         public IReadOnlyList<Ticket> Closed { get; private set; } = new List<Ticket>();
         public IReadOnlyList<Ticket> Spam { get; private set; } = new List<Ticket>();
 
         public IReadOnlyList<string> Owners => TicketStore.Owners;
+
+        /// <summary>Open inquiries in one tab bucket — see Ticket.Bucket.</summary>
+        public IReadOnlyList<Ticket> OpenIn(string bucket) =>
+            Open.Where(t => t.Bucket == bucket).ToList();
 
         private readonly IAssignmentMailer _mailer;
 
@@ -36,7 +39,6 @@ namespace HanaSite.Pages.Admin.Tickets
         private void Load()
         {
             Open = TicketStore.Open.ToList();
-            Supplier = TicketStore.Supplier.ToList();
             Closed = TicketStore.Closed.ToList();
             Spam = TicketStore.Spam.ToList();
         }

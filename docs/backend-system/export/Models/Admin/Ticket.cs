@@ -56,6 +56,14 @@ namespace HanaSite.Models.Admin
 
         public bool IsSupplier => Kind == "supplier";
 
+        // Which open-inquiry tab this ticket belongs to. Sales & support is
+        // the catch-all: sales, customer support, capability and technical
+        // questions, "other", and inquiries submitted without a reason.
+        public string Bucket =>
+            IsSupplier || Reason == "Supplier / vendor inquiry" ? "supplier" :
+            Reason == "Investor relations" ? "ir" :
+            Reason == "Careers" ? "careers" : "sales";
+
         public string StatusLabel => Status switch
         {
             "new" => "New",

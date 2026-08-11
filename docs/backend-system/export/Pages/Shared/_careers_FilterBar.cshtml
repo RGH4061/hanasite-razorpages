@@ -1,0 +1,30 @@
+@*
+   _careers_FilterBar.cshtml — plant / department / status / search.
+   Filtering runs client-side in careers-admin.js over the rendered rows.
+*@
+@using HanaSite.Models.Careers
+@model object
+<div class="ir-filters" data-filters>
+    <label for="f-plant">Plant</label>
+    <select id="f-plant" data-f="plant">
+        <option>All plants</option>
+        @foreach (var p in JobStore.Plants) { <option>@p</option> }
+    </select>
+
+    <label for="f-dept">Department</label>
+    <select id="f-dept" data-f="dept">
+        <option>All departments</option>
+        @foreach (var d in JobStore.Departments) { <option>@d</option> }
+    </select>
+
+    <label for="f-status">Status</label>
+    <select id="f-status" data-f="status">
+        <option>Live &amp; draft</option>
+        <option>Live only</option>
+        <option>Draft only</option>
+        <option>Expired</option>
+        <option>All</option>
+    </select>
+
+    <input class="ir-search" id="f-q" data-f="q" type="search" placeholder="Search job title or reference…" aria-label="Search listings" />
+</div>

@@ -1,0 +1,16 @@
+@*
+   _CareersHeader.cshtml — careers admin topbar. Same visual language as
+   _AdminHeader / _IrAdminHeader, own title. Model: signed-in user string.
+*@
+@model string
+<header class="ir-topbar">
+    <div class="ir-brand">
+        <img class="ir-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+        <span class="ir-divider"></span>
+        <h1 class="ir-title">Job listings</h1>
+    </div>
+    <div class="ir-user">
+        <span class="ir-user-dot"></span>
+        <span>@Model</span>
+    </div>
+</header>

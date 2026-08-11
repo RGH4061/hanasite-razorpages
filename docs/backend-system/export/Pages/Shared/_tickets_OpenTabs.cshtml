@@ -1,0 +1,30 @@
+@model IReadOnlyList<HanaSite.Models.Admin.Ticket>
+@{
+    // Tab bar above the open-inquiry list. Each tab carries the number of open
+    // inquiries in its bucket so an unworked queue is visible without opening
+    // it. Switching is client-side (tickets.js) — no reload, filters persist.
+    var tabs = new[]
+    {
+        ("sales",    "Sales & support"),
+        ("ir",       "Investor relations"),
+        ("careers",  "Careers"),
+        ("supplier", "Supplier & vendor")
+    };
+}
+<div class="tabbar" role="tablist" aria-label="Open inquiry queues" data-tabs>
+    @foreach (var (key, label) in tabs)
+    {
+        var count = Model.Count(t => t.Bucket == key);
+        var isFirst = key == "sales";
+        <button type="button"
+                class="tab @(isFirst ? "is-active" : "")"
+                role="tab"
+                id="tab-@key"
+                aria-controls="panel-@key"
+                aria-selected="@(isFirst ? "true" : "false")"
+                data-tab="@key">
+            <span>@label</span>
+            <span class="tab-count tab-count--@key @(count == 0 ? "is-zero" : "")">@count</span>
+        </button>
+    }
+</div>

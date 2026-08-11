@@ -1,0 +1,9 @@
+@*
+   _careers_TabBar.cshtml — section tabs. Model: active key
+   ("list" | "form").
+*@
+@model string
+<nav class="ir-tabs" aria-label="Careers admin sections">
+    <a class="ir-tab @(Model == "list" ? "is-active" : "")" href="@Url.Page("/Admin/Careers/Index")">All listings</a>
+    <a class="ir-tab @(Model == "form" ? "is-active" : "")" href="@Url.Page("/Admin/Careers/JobForm")">New listing form</a>
+</nav>

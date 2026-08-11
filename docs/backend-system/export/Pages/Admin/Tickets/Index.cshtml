@@ -32,52 +32,42 @@
             <div class="legend-item"><span class="legend-swatch" style="background:#9BA3AF"></span>Spam</div>
         </div>
 
-        @* ── Open inquiries ── *@
+        @* ── Open inquiries — four tabs, switched client-side ── *@
         <section aria-label="Open inquiries">
             <div class="section-head">
                 <h2>Open inquiries</h2>
-                <div class="count">@Model.Open.Count open</div>
             </div>
-            <div class="ticket-list">
-                <div class="col-headers">
-                    <div>Status</div><div>Date</div><div>Contact / Company</div>
-                    <div>Market · Service / Reason</div><div>Owner</div><div></div>
-                </div>
-                @foreach (var t in Model.Open)
-                {
-                    <partial name="_tickets_TicketRow" model="t" />
-                }
-                @if (Model.Open.Count == 0)
-                {
-                    <div class="list-empty">No open inquiries.</div>
-                }
-            </div>
-        </section>
 
-        @* ── Supplier & vendor inquiries (collapsible, open by default) ── *@
-        <section class="collapse" aria-label="Supplier and vendor inquiries">
-            <button type="button" class="collapse-toggle is-open" data-collapse="supplier-list">
-                <span class="collapse-arrow"><partial name="_icon_Chevron" /></span>
-                <span>Supplier &amp; vendor inquiries</span>
-                <span class="collapse-count">@Model.Supplier.Count in this queue</span>
-            </button>
-            <div class="collapse-body is-open" id="supplier-list">
-                <div class="ticket-list">
-                    <div class="col-headers">
-                        <div>Status</div><div>Date</div><div>Contact / Company</div>
-                        <div>Reason</div><div>Owner</div><div></div>
+            <partial name="_tickets_OpenTabs" model="@Model.Open" />
+
+            @foreach (var bucket in new[] { "sales", "ir", "careers", "supplier" })
+            {
+                var rows = Model.OpenIn(bucket);
+                <div class="tab-panel @(bucket == "sales" ? "is-active" : "")"
+                     id="panel-@bucket" role="tabpanel" aria-labelledby="tab-@bucket" data-panel="@bucket">
+                    <div class="tabpanel-head">
+                        <span class="count">@rows.Count open in this tab</span>
                     </div>
-                    @foreach (var t in Model.Supplier)
+                    <div class="ticket-list ticket-list--tabbed">
+                        <div class="col-headers">
+                            <div>Status</div><div>Date</div><div>Contact / Company</div>
+                            <div>Market · Service / Reason</div><div>Owner</div><div></div>
+                        </div>
+                        @foreach (var t in rows)
+                        {
+                            <partial name="_tickets_TicketRow" model="t" />
+                        }
+                        @if (rows.Count == 0)
+                        {
+                            <div class="list-empty">No open inquiries in this queue.</div>
+                        }
+                    </div>
+                    @if (bucket == "supplier")
                     {
-                        <partial name="_tickets_TicketRow" model="t" />
-                    }
-                    @if (Model.Supplier.Count == 0)
-                    {
-                        <div class="list-empty">No supplier or vendor inquiries.</div>
+                        <p class="section-note">Offers of parts, tooling, equipment and services. Routed to procurement, not to the sales team.</p>
                     }
                 </div>
-                <p class="section-note">Offers of parts, tooling, equipment and services. Routed to procurement, not to the sales team.</p>
-            </div>
+            }
         </section>
 
         @* ── Closed inquiries (collapsible) ── *@

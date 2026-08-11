@@ -1,0 +1,200 @@
+@page "/admin/careers/job"
+@model HanaSite.Pages.Admin.Careers.JobFormModel
+@using HanaSite.Models.Careers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>@(Model.Editing ? "Edit job listing" : "New job listing") — Hana (Admin)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/careers-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_CareersHeader" model="@Model.CurrentUser" />
+    <partial name="_careers_TabBar" model="@("form")" />
+
+    <main class="ir-wrap">
+        <div class="ir-form-wrap">
+            <div class="ir-form-head">
+                <h2>@(Model.Editing ? "Edit job listing" : "New job listing")</h2>
+                <div class="sub">@Model.SubHeading</div>
+            </div>
+
+            @if (Model.Editing)
+            {
+                <div class="job-auditbar job-auditbar--@Model.Existing!.Status">
+                    <div>
+                        <div class="t">@Model.Existing.Title</div>
+                        <div class="ir-cell-mono">@Model.AuditLine</div>
+                    </div>
+                    <div class="right">
+                        <partial name="_careers_StatusPill" model="@Model.Existing.Status" />
+                        <a class="ir-btn" href="https://@Model.Existing.PublicUrl">View on website ↗</a>
+                    </div>
+                </div>
+            }
+
+            <form method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>1 · Role details</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-formgrid">
+                            <div class="ir-field ir-col-full">
+                                <label asp-for="Input.Title">Job title <span class="ir-req">*</span></label>
+                                <input asp-for="Input.Title" class="ir-input" placeholder="e.g. Pre-Assembly Engineer" />
+                                <div class="ir-help">This becomes the page heading and the web address. Use the everyday job title, not an internal grade code.</div>
+                                <span class="ir-val" asp-validation-for="Input.Title"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Plant">Plant / location <span class="ir-req">*</span></label>
+                                <select asp-for="Input.Plant" class="ir-select">
+                                    <option value="">Choose a plant…</option>
+                                    @foreach (var p in JobStore.Plants) { <option>@p</option> }
+                                </select>
+                                <div class="ir-help">Also decides which benefits wording appears at the bottom of the page.</div>
+                                <span class="ir-val" asp-validation-for="Input.Plant"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Department">Department <span class="ir-req">*</span></label>
+                                <select asp-for="Input.Department" class="ir-select">
+                                    <option value="">Choose a department…</option>
+                                    @foreach (var d in JobStore.Departments) { <option>@d</option> }
+                                </select>
+                                <span class="ir-val" asp-validation-for="Input.Department"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.EmploymentType">Employment type <span class="ir-req">*</span></label>
+                                <select asp-for="Input.EmploymentType" class="ir-select">
+                                    <option>Full time</option><option>Contract</option><option>Internship</option>
+                                </select>
+                            </div>
+                            <div class="ir-field">
+                                <label>Reference code <span class="ir-auto">Automatic</span></label>
+                                <input class="ir-input ir-input--auto" value="@Model.ReferencePreview" readonly />
+                                <div class="ir-help">Built from the plant and department. Quote this when you post the same role on Indeed so the two can be matched up.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>2 · The advert</h3></div>
+                    <div class="ir-card-body">
+                        <div class="job-stack">
+                            <div class="ir-field">
+                                <label asp-for="Input.About">About the role <span class="ir-req">*</span></label>
+                                <textarea asp-for="Input.About" class="ir-textarea" placeholder="One short paragraph — what the job is and who it works with."></textarea>
+                                <div class="ir-help">Two or three sentences is plenty. This is the first thing a candidate reads.</div>
+                                <span class="ir-val" asp-validation-for="Input.About"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Responsibilities">Responsibilities <span class="ir-req">*</span></label>
+                                <textarea asp-for="Input.Responsibilities" class="ir-textarea" placeholder="One per line — each line becomes a bullet point."></textarea>
+                                <div class="ir-help">Put each responsibility on its own line. The website turns each line into a bullet point.</div>
+                                <span class="ir-val" asp-validation-for="Input.Responsibilities"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.Requirements">Requirements <span class="ir-req">*</span></label>
+                                <textarea asp-for="Input.Requirements" class="ir-textarea" placeholder="One per line — each line becomes a bullet point."></textarea>
+                                <div class="ir-help">Same again — one requirement per line.</div>
+                                <span class="ir-val" asp-validation-for="Input.Requirements"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>3 · Sections you don't need to write</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-note" style="margin-bottom:16px"><strong>These appear on every job page automatically.</strong> They are managed centrally so the wording stays consistent across all plants. This is just so you know what the candidate sees above and below your text.</div>
+                        <div class="job-fixed">
+                            <div class="job-fixed-head">
+                                <h4>Working at Hana</h4>
+                                <span class="job-fixed-tag">Same on all listings</span>
+                            </div>
+                            <p>The standard introduction about Hana as an employer, shown between the job title and your role description.</p>
+                        </div>
+                        <div class="job-fixed">
+                            <div class="job-fixed-head">
+                                <h4>Life at Hana — pay &amp; benefits</h4>
+                                <span class="job-fixed-tag">Set by plant</span>
+                            </div>
+                            <p>Salary, insurance and leave wording, shown at the bottom of the page. Each country has its own version, chosen automatically from the plant you picked in section 1 — so a Koh Kong role never shows Thai public holidays.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ir-card">
+                    <div class="ir-card-head"><h3>4 · Publishing</h3></div>
+                    <div class="ir-card-body">
+                        <div class="ir-formgrid">
+                            <div class="ir-field">
+                                <label asp-for="Input.Closes">Closing date <span class="ir-req">*</span></label>
+                                <input asp-for="Input.Closes" class="ir-input" type="date" />
+                                <div class="ir-help">The listing comes off the website by itself on this date. You can extend it any time.</div>
+                                <span class="ir-val" asp-validation-for="Input.Closes"></span>
+                            </div>
+                            <div class="ir-field">
+                                <label>Date posted <span class="ir-auto">Automatic</span></label>
+                                <input class="ir-input ir-input--auto" value="@Model.PostedPreview" readonly />
+                            </div>
+                        </div>
+
+                        <div class="ir-field" style="margin-top:18px">
+                            <label>Job board links <span class="ir-opt">(optional — add as many as you need)</span></label>
+                            <partial name="_careers_LinkEditor" model="@Model.Input.Links" />
+                        </div>
+
+                        <div class="ir-field" style="margin-top:18px">
+                            <label>Page address <span class="ir-auto">Automatic</span></label>
+                            <input class="ir-input ir-input--auto" value="@Model.UrlPreview" readonly />
+                        </div>
+
+                        @if (Model.IsLive)
+                        {
+                            <div class="ir-note ir-note--warn" style="margin-top:18px"><strong>This role is already on the website.</strong> Pressing <em>Save changes</em> updates the live page straight away. Use <em>Unpublish</em> to take it down while you work on it.</div>
+                        }
+                        else
+                        {
+                            <div class="ir-note ir-note--warn" style="margin-top:18px"><strong>Publish puts this live straight away.</strong> The role appears on the careers page within a few seconds — there is no developer step. Check the wording before you press it. <em>Save as draft</em> keeps it hidden until you are ready.</div>
+                        }
+                    </div>
+
+                    <div class="ir-card-foot">
+                        @if (Model.IsLive)
+                        {
+                            <button type="submit" class="ir-btn ir-btn--primary ir-btn--lg" name="action" value="save">Save changes</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" name="action" value="preview">Preview</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" name="action" value="unpublish">Unpublish</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="ir-btn ir-btn--primary ir-btn--lg" name="action" value="publish">Publish to website</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" name="action" value="draft">Save as draft</button>
+                            <button type="submit" class="ir-btn ir-btn--lg" name="action" value="preview">Preview</button>
+                        }
+                        <span class="job-savehint">@Model.SaveHint</span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="job-backrow">
+                <a class="ir-btn" href="@Url.Page("/Admin/Careers/Index")">← Back to all listings</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="~/js/careers-admin.js" asp-append-version="true"></script>
+</body>
+</html>

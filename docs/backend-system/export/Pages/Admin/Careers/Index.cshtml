@@ -1,0 +1,73 @@
+@page "/admin/careers"
+@model HanaSite.Pages.Admin.Careers.JobListModel
+@using HanaSite.Models.Careers
+@{
+    // Self-contained for standalone export rendering. On merge, lift the
+    // <main> block onto the site's admin layout and drop this shell.
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana — Job listings (Admin)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/careers-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_CareersHeader" model="@Model.CurrentUser" />
+    <partial name="_careers_TabBar" model="@("list")" />
+
+    <main class="ir-wrap">
+        <partial name="_careers_FilterBar" />
+
+        <div class="ir-listhead">
+            <h2>Current listings</h2>
+            <div class="count">@Model.Jobs.Count roles · @Model.LiveCount live on the website</div>
+        </div>
+
+        <div class="ir-listwrap">
+            <div class="ir-grid ir-grid--jobs">
+                <div class="ir-headrow">
+                    <div>Job title</div><div>Plant</div><div>Department</div>
+                    <div>Closes</div><div>Status</div><div>Applications</div><div></div>
+                </div>
+                @foreach (var j in Model.Jobs)
+                {
+                    <partial name="_careers_JobRow" model="j" />
+                }
+                @if (Model.Jobs.Count == 0)
+                {
+                    <div class="ir-empty">No job listings yet.</div>
+                }
+            </div>
+        </div>
+
+        <div class="job-legend">
+            <div class="job-legend-item"><span class="job-swatch" style="background:#0A7C3F"></span>Live — visible on hanagroup.com</div>
+            <div class="job-legend-item"><span class="job-swatch" style="background:#D99A1B"></span>Closing soon — under 7 days left</div>
+            <div class="job-legend-item"><span class="job-swatch" style="background:#9BA3AF"></span>Draft — not yet visible to the public</div>
+            <div class="job-legend-item"><span class="job-swatch" style="background:#E05A4A"></span>Expired — came down automatically</div>
+        </div>
+
+        <div class="ir-listhead"><h2>Add a role</h2></div>
+        <div class="ir-note"><strong>Expired listings come down on their own.</strong> Once the closing date passes, the role disappears from the careers page automatically. It stays here in the admin list so you can reuse it later with <em>Repost</em>.</div>
+        <div class="job-newrow">
+            <a class="ir-btn ir-btn--primary" href="@Url.Page("/Admin/Careers/JobForm")">+ New job listing</a>
+        </div>
+    </main>
+
+    @if (!string.IsNullOrEmpty(Model.Toast))
+    {
+        <div class="ir-toast" role="status">@Model.Toast</div>
+    }
+
+    <script src="~/js/careers-admin.js" asp-append-version="true"></script>
+</body>
+</html>

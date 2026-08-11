@@ -1,0 +1,78 @@
+/* ============================================================
+   careers-admin.css — job listings admin.
+   Loaded AFTER _tokens.css and ir-admin.css: the careers pages
+   reuse the IR admin shell (topbar, tabs, cards, fields, lists)
+   and this file carries only the job-specific pieces.
+   Plain CSS, no inline <style>.
+   ============================================================ */
+
+/* ── List ─────────────────────────────────────────────────── */
+.ir-listhead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 10px; padding: 0 2px; }
+.ir-listhead h2 { margin: 0; font-family: var(--font-text); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); }
+.ir-listhead .count { font-size: 12px; color: var(--ink-3); }
+.ir-empty { padding: 36px 18px; text-align: center; color: var(--ink-3); font-size: 13px; border-top: 1px solid #E3E7EC; }
+
+.ir-grid--jobs { min-width: 980px; }
+.ir-grid--jobs .ir-headrow,
+.ir-grid--jobs .ir-row { grid-template-columns: minmax(0,1fr) 140px 130px 120px 130px 90px 150px; }
+
+.job-row--live { border-left-color: #0A7C3F; }
+.job-row--closing { border-left-color: #D99A1B; }
+.job-row--draft { border-left-color: #9BA3AF; }
+.job-row--expired { border-left-color: #E05A4A; }
+.job-row--expired .ir-cell-title .t { color: var(--ink-3); }
+
+/* ── Status pill ──────────────────────────────────────────── */
+.job-pill { display: inline-block; padding: 3px 8px; border-radius: var(--radius-button); font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.job-pill--live { background: #E4F1EA; color: #0A7C3F; }
+.job-pill--closing { background: #FBF3E1; color: #8A5A00; }
+.job-pill--draft { background: var(--surface); color: var(--ink-3); }
+.job-pill--expired { background: #FBEAE8; color: var(--error); }
+
+/* ── Legend + add-a-role ──────────────────────────────────── */
+.job-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--ink-3); }
+.job-legend-item { display: flex; align-items: center; gap: 6px; }
+.job-swatch { width: 10px; height: 10px; border-radius: 2px; }
+.job-newrow { margin-top: 14px; }
+
+/* ── Form ─────────────────────────────────────────────────── */
+.job-stack { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.job-savehint { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+.job-backrow { margin: 0 0 40px; }
+
+.job-auditbar {
+  background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--hana-blue-soft);
+  border-radius: var(--radius-card); padding: 14px 18px; margin-bottom: 20px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+}
+.job-auditbar .t { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--ink); }
+.job-auditbar .right { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.job-auditbar--live { border-left-color: #0A7C3F; }
+.job-auditbar--closing { border-left-color: #D99A1B; }
+.job-auditbar--draft { border-left-color: #9BA3AF; }
+.job-auditbar--expired { border-left-color: #E05A4A; }
+
+/* Centrally-managed sections the editor cannot write */
+.job-fixed { border: 1px dashed #C8CDD4; border-radius: 6px; background: var(--surface); padding: 14px 16px; margin-bottom: 12px; }
+.job-fixed:last-child { margin-bottom: 0; }
+.job-fixed-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.job-fixed-head h4 { margin: 0; font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.job-fixed-tag { font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-button); padding: 2px 7px; white-space: nowrap; }
+.job-fixed p { margin: 0; font-size: 12px; color: var(--ink-3); line-height: 1.6; }
+
+/* Repeatable job-board links */
+.job-link-rows { display: flex; flex-direction: column; gap: 8px; }
+.job-link-row { display: grid; grid-template-columns: 170px 1fr 34px; gap: 10px; align-items: center; }
+.job-link-remove { padding: 8px 0; width: 34px; font-size: 15px; line-height: 1; border: 1px solid var(--line); background: var(--white); border-radius: var(--radius-button); cursor: pointer; color: var(--ink-3); transition: background 150ms ease-out, color 150ms ease-out; }
+.job-link-remove:hover { background: #FBEAE8; color: var(--error); border-color: #E05A4A; }
+.job-links .ir-btn { margin-top: 10px; }
+
+/* ── Responsive — same reflow as the ticket and IR lists ──── */
+@media (max-width: 760px) {
+  .ir-grid--jobs { min-width: 0; }
+  .job-auditbar .right { margin-left: 0; }
+  .job-link-row { grid-template-columns: 1fr; }
+  .job-link-remove { width: 100%; min-height: 44px; }
+  .ir-listhead { flex-direction: column; gap: 4px; }
+  .job-newrow .ir-btn { display: block; text-align: center; min-height: 44px; line-height: 28px; }
+}

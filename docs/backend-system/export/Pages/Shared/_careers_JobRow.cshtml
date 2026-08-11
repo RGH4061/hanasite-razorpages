@@ -1,0 +1,41 @@
+@*
+   _careers_JobRow.cshtml — one job listing as a clickable list row.
+   The whole row links to the edit form; the action buttons override.
+   Model: Job.
+*@
+@using HanaSite.Models.Careers
+@model Job
+@{
+    var editHref = Url.Page("/Admin/Careers/JobForm", new { id = Model.Id });
+    var noApps = Model.Status == "draft" || Model.Applications == 0;
+}
+<a class="ir-row job-row job-row--@Model.Status" href="@editHref"
+   data-plant="@Model.Plant" data-dept="@Model.Department"
+   data-status="@Model.Status" data-haystack="@Model.HaystackLower">
+    <div class="ir-cell-title">
+        <div class="t">@Model.Title</div>
+        <div class="sub ir-cell-mono">@Model.Reference</div>
+    </div>
+    <div class="ir-cell-muted">@Model.Plant</div>
+    <div class="ir-cell-muted">@Model.Department</div>
+    <div class="ir-cell-mono">@Model.ClosesDisplay</div>
+    <div><partial name="_careers_StatusPill" model="@Model.Status" /></div>
+    <div style="font-size:13px;color:@(noApps ? "var(--ink-3)" : "var(--ink-2)");font-weight:@(noApps ? "400" : "600")">@Model.ApplicationsDisplay</div>
+    <div class="ir-cell-actions" onclick="event.stopPropagation()">
+        @if (Model.Status == "draft")
+        {
+            <a class="ir-btn" href="@editHref">Preview</a>
+            <form method="post" asp-page-handler="Publish" asp-route-id="@Model.Id"><button type="submit" class="ir-btn ir-btn--primary">Publish</button></form>
+        }
+        else if (Model.Status == "expired")
+        {
+            <a class="ir-btn" href="@editHref">View</a>
+            <form method="post" asp-page-handler="Repost" asp-route-id="@Model.Id"><button type="submit" class="ir-btn">Repost</button></form>
+        }
+        else
+        {
+            <a class="ir-btn" href="@editHref">View</a>
+            <a class="ir-btn" href="@editHref">Edit</a>
+        }
+    </div>
+</a>

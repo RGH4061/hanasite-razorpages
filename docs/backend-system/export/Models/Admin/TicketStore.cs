@@ -30,7 +30,7 @@ namespace HanaSite.Models.Admin
         public static Ticket? Find(string id) => All.FirstOrDefault(t => t.Id == id);
 
         public static IEnumerable<Ticket> Open =>
-            All.Where(t => t.IsOpen && !t.IsSupplier)
+            All.Where(t => t.IsOpen)
                .OrderByDescending(t => t.Date).ThenByDescending(t => t.Time);
 
         // Supplier / vendor offers — parts, tooling, equipment, services.
@@ -40,7 +40,7 @@ namespace HanaSite.Models.Admin
                .OrderByDescending(t => t.Date).ThenByDescending(t => t.Time);
 
         public static IEnumerable<Ticket> Closed =>
-            All.Where(t => t.Status == "closed" && !t.IsSupplier)
+            All.Where(t => t.Status == "closed")
                .OrderByDescending(t => t.ClosedDate);
 
         public static IEnumerable<Ticket> Spam =>

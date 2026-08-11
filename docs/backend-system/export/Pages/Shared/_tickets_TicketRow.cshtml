@@ -38,7 +38,7 @@
             }
             @if (!string.IsNullOrEmpty(Model.Reason))
             {
-                <div><span class="reason-tag">@Model.Reason</span></div>
+                <div><span class="reason-tag reason-tag--@Model.Bucket">@Model.Reason</span></div>
             }
             @if (!string.IsNullOrEmpty(Model.Source))
             {

@@ -20,6 +20,9 @@ export/
 │   │   ├── NewsForm.cshtml(.cs)                new/edit news item (also events via ?kind=event)
 │   │   ├── ReportForm.cshtml(.cs)              new/edit report + cover
 │   │   └── PresentationForm.cshtml(.cs)        new/edit Opportunity Day presentation
+│   ├── Admin/Careers/                      job listings (/admin/careers/)
+│   │   ├── Index.cshtml(.cs)                filterable listing table
+│   │   └── JobForm.cshtml(.cs)              new/edit a role
 │   ├── Account/
 │   │   ├── Login.cshtml                        sign-in page
 │   │   └── Login.cshtml.cs                     LoginModel (Identity stub)
@@ -39,6 +42,9 @@ export/
 ├── Models/Admin/
 │   ├── Ticket.cs                               inquiry model + view helpers
 │   └── TicketStore.cs                          in-memory seed (replace on merge)
+├── Models/Careers/
+│   ├── Job.cs                                  listing model; status derived from the closing date
+│   └── JobStore.cs                             in-memory seed (replace on merge)
 ├── Models/Ir/
 │   ├── Attachment.cs                           attachment + IrStatus enum/helpers
 │   ├── IrRecords.cs                            NewsItem / IrEvent / Report / Presentation / FaqCategory
@@ -46,13 +52,15 @@ export/
 └── wwwroot/
     ├── css/_tokens.css                         palette — reuse the site's copy
     ├── css/admin.css                           ticket list styles
-    ├── css/ir-admin.css                        IR hub styles
+    ├── css/ir-admin.css                        IR hub styles (also the careers shell)
+    ├── css/careers-admin.css                   job-listing specifics
     ├── css/login.css                           sign-in styles
     ├── js/tickets.js                           expand / menu / collapse / filter
     ├── js/ir-admin.js                          publish toggle / repeatable rows / period field
+    ├── js/careers-admin.js                     listing filters / repeatable job-board links
     ├── js/hana-backgrounds.js                  login-only decorative background
     ├── images/hana-logo-full.svg, hana-mark.svg
-    └── robots.txt                              blocks /admin/tickets/ + /admin/investor-relations/
+    └── robots.txt                              blocks /admin/tickets/, /admin/investor-relations/, /admin/careers/
 ```
 
 ## Merge notes
@@ -85,9 +93,18 @@ export/
   the file deployed alongside the app or point `templatePath` at its location. Mailboxes live in `TicketStore.OwnerMailboxes`
   — move them to the Identity user records on merge. Delivery failures are
   swallowed so an SMTP outage cannot block an assignment.
-- **Supplier & vendor queue.** Tickets with `Kind = "supplier"` are excluded
-  from the sales queues and listed in their own section between Open and Closed
-  (`TicketStore.Supplier`).
+- **Open inquiries are tabbed.** Four queues — sales & support, investor
+  relations, careers, supplier & vendor — derived from `Ticket.Bucket`
+  (`_tickets_OpenTabs.cshtml` renders the bar with a live count per tab; zero
+  counts render gray). Sales & support is the catch-all: sales, customer
+  support, capability and technical questions, "other", and inquiries with no
+  reason set. Switching is client-side in `tickets.js` — all four panels are
+  rendered, so filters and expand state survive a tab change. `TicketStore.Open`
+  and `.Closed` no longer exclude supplier tickets; `TicketStore.Supplier` is
+  retained but unused by the page.
+- **Reason pill by queue.** `.reason-tag--ir` (deep blue) and
+  `.reason-tag--careers` (warm accent) separate those two from the blue sales
+  pill.
 - **Filtering** runs client-side in `tickets.js` over the rendered rows
   (`data-*` attributes). If the dataset grows, move it to a server-side query on
   `OnGet`.
@@ -137,8 +154,12 @@ export/
   not the older `#1F5BA6` mockup values.
 - The **Form / Plant-Inquiry column and filter were removed** — individual plant
   inquiry forms no longer exist.
-- Responsive: the wide ticket table reflows to stacked cards below 760px; the
-  login page adapts below 480px.
+- Responsive: the wide ticket table reflows to stacked cards below 760px, the
+  tab bar scrolls sideways with 44px targets, and the topbar wraps with a
+  smaller logo. The IR lists reflow the same way (`ir-admin.css`, 760px): row
+  grids stack, column headers hide, section tabs scroll sideways, attachment
+  rows go single-column. The login page adapts below 480px.
+- Careers admin (`/admin/careers/`) ships with the same mobile treatment.
 - The hero bar shows a **stats dashboard** (Last 30 days / New / In progress /
   Closed), computed in `_AdminHeader` from `TicketStore`, hidden below 1024px.
 - The hero bar carries the **Flow** background (`hana-backgrounds.js`, light) —
@@ -146,3 +167,29 @@ export/
   to change pattern, swap the value (grid / pcb / hex / wafer / flow / topo).
 - Prototype default signed-in user is Sanjay (fallback only; real value comes
   from Identity).
+
+## Careers admin (`/admin/careers/`)
+
+- **Two pages.** `Index.cshtml` is the filterable listing table;
+  `JobForm.cshtml` creates and edits a role in four numbered sections (role
+  details, the advert, centrally-managed sections, publishing).
+- **Status is derived, not stored.** `Job.Status` reads the closing date and
+  the published flag: live, closing soon (under 7 days), draft, expired. An
+  expired role leaves the public careers page on its own and stays in the admin
+  list for `Repost`, which opens a fresh listing pre-filled from it.
+  `Job.Today` is a prototype clock — swap it for `DateTime.Today` on merge.
+- **Reference code and page address are generated**, from the plant and
+  department (`AYT-ENG-0143`) and from plant + title respectively.
+- **Drafts can be saved incomplete.** Publishing runs the full validation set;
+  `Save as draft` only requires a title. The footer buttons post an `action`
+  value (`publish` / `draft` / `preview` / `unpublish`) to one handler.
+- **Job board links** are repeatable rows bound as `Input.Links[i]`;
+  `careers-admin.js` renumbers the indices so model binding stays contiguous.
+  They are a record of where else the role was posted — candidates still apply
+  through the Hana form.
+- **Shares the IR shell.** The careers pages load `ir-admin.css` for the topbar,
+  tabs, cards and fields, then `careers-admin.css` for the listing grid, status
+  pills and form specifics. If the two dashboards ever diverge, split the shared
+  block out of `ir-admin.css` rather than duplicating it.
+- **Same in-memory-store caveat.** `JobStore` is a seed; swap for the real
+  repository on merge.

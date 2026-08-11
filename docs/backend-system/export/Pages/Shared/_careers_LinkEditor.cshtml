@@ -1,0 +1,26 @@
+@*
+   _careers_LinkEditor.cshtml — repeatable job-board link rows, bound as
+   Input.Links[i]. careers-admin.js renumbers indices as rows are added or
+   removed; the save itself is a normal form POST.
+*@
+@using HanaSite.Models.Careers
+@model List<JobLink>
+<div class="job-links" data-repeat="links">
+    <div class="job-link-rows" data-repeat-rows>
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            <div class="job-link-row" data-repeat-row>
+                <select name="Input.Links[@i].Board" aria-label="Job board" class="ir-select">
+                    @foreach (var b in JobStore.Boards)
+                    {
+                        <option selected="@(Model[i].Board == b)">@b</option>
+                    }
+                </select>
+                <input name="Input.Links[@i].Url" value="@Model[i].Url" class="ir-input" type="text" placeholder="https://th.indeed.com/…" aria-label="Link address" />
+                <button type="button" class="job-link-remove" data-repeat-remove title="Remove this link">×</button>
+            </div>
+        }
+    </div>
+    <button type="button" class="ir-btn" data-repeat-add>+ Add another link</button>
+    <div class="ir-help">Wherever else you have posted this role. Kept for our records so the postings can be matched up; candidates still apply through the Hana form.</div>
+</div>

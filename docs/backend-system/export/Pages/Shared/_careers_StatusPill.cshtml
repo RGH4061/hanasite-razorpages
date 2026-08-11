@@ -1,0 +1,13 @@
+@*
+   _careers_StatusPill.cshtml — Live / Closing soon / Draft / Expired badge.
+   Model: the job's status key.
+*@
+@model string
+<span class="job-pill job-pill--@Model">@(Model switch
+{
+    "live" => "Live",
+    "closing" => "Closing soon",
+    "draft" => "Draft",
+    "expired" => "Expired",
+    _ => Model
+})</span>

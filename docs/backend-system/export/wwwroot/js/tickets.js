@@ -47,6 +47,20 @@
       return;
     }
 
+    var tab = e.target.closest('[data-tab]');
+    if (tab) {
+      var key = tab.getAttribute('data-tab');
+      document.querySelectorAll('[data-tabs] [data-tab]').forEach(function (b) {
+        var on = b === tab;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-panel]').forEach(function (p) {
+        p.classList.toggle('is-active', p.getAttribute('data-panel') === key);
+      });
+      return;
+    }
+
     var collapse = e.target.closest('[data-collapse]');
     if (collapse) {
       var body = document.getElementById(collapse.getAttribute('data-collapse'));
