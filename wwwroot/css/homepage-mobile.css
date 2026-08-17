@@ -30,35 +30,44 @@
   .hana-header .hana-mega { display: none !important; }
 }
 
-/* ── Hero: stack the headline block above the video/stats ─── */
-@media (max-width: 900px) {
+/* ── Hero: fixed 660px panel + 520px copy block need ~1270px to sit
+      side by side, so stack them below 1220px, not just at phone widths ── */
+@media (max-width: 1220px) {
   .hana-hero-section { height: auto !important; padding: 40px 0 48px !important; }
 
   /* headline / copy block (was absolutely centred on the left) */
+  .hana-hero-section > .hana-hero-copy,
   .hana-hero-section > div[style*="left:52px"] {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     transform: none !important;
     max-width: 100% !important;
-    padding: 0 20px !important;
+    padding: 0 32px !important;
   }
-  .hana-hero-section > div[style*="left:52px"] h1 { font-size: 34px !important; }
-  .hana-hero-section > div[style*="left:52px"] p  { font-size: 15px !important; }
+  .hana-hero-section > .hana-hero-copy h1 { font-size: clamp(30px, 5.2vw, 48px) !important; }
+  .hana-hero-section > .hana-hero-copy p  { font-size: 16px !important; max-width: 560px !important; }
 
-  /* video + stats panel (was absolutely positioned on the right) */
+  /* video panel (was absolutely positioned on the right) */
+  .hana-hero-section > .hana-hero-panel,
   .hana-hero-section > aside {
     position: relative !important;
     top: auto !important;
     right: auto !important;
     transform: none !important;
     width: auto !important;
-    margin: 28px 20px 0 !important;
+    max-width: 660px !important;
+    margin: 28px 32px 0 !important;
   }
-  /* hero stat row: 4 columns → 2 */
-  .hana-hero-section aside [style*="grid-template-columns:repeat(4, 1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+  /* vignette + bottom fade must not sit over the now-taller stacked content */
+  .hana-hero-section > div[aria-hidden="true"] { z-index: 1 !important; }
+}
+@media (max-width: 640px) {
+  .hana-hero-section > .hana-hero-copy,
+  .hana-hero-section > div[style*="left:52px"] { padding: 0 20px !important; }
+  .hana-hero-section > .hana-hero-panel,
+  .hana-hero-section > aside { margin: 24px 20px 0 !important; }
+  .hana-hero-section > .hana-hero-copy p { font-size: 15px !important; }
 }
 
 /* ── "Why Hana" two-column band → single column ───────────── */

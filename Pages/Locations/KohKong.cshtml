@@ -81,8 +81,9 @@
   </div>
 </section>
 
-<div style="max-width:1240px;margin:0 auto;padding:52px 32px;">
-  <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:start;">
+<style>.kk-ph{position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;aspect-ratio:3/2}.kk-ph img{width:100%;height:100%;object-fit:cover;display:block}@@media(max-width:900px){.kk-ph-about{grid-template-columns:1fr!important;gap:36px!important}}</style>
+<div style="max-width:1240px;margin:0 auto;padding:64px 32px;">
+  <div class="kk-ph-about" style="display:grid;grid-template-columns:0.72fr 1.28fr;gap:48px;align-items:start;">
     <div>
       <div class="hana-spec-label" style="color:#0E4A7C;margin-bottom:12px;">About Hana Koh Kong</div>
       <h2 class="hana-h3" style="margin-bottom:18px;">Electronics manufacturing in the Koh Kong SEZ</h2>
@@ -90,7 +91,12 @@
       <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Located two kilometres from the Thai border, the site offers labour-competitive assembly within the Hana group. As a TAA-designated country, products substantially transformed in Cambodia are eligible for US federal and government procurement — a route few low-cost manufacturing locations can offer.</p>
       <a href="/locations" class="hana-btn hana-btn-secondary" style="margin-top:8px;display:inline-flex;align-items:center;gap:8px;">Explore locations hub <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
     </div>
-    <div><div style="position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:var(--surface);width:100%;height:360px;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ Production floor — Koh Kong ]</span></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/factory-floor-1.jpg" alt="Production floor, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/factory-floor-2.jpg" alt="Inspection, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/micro-assembly-bench.webp" alt="Micro-assembly benches, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/ict-test-station.webp" alt="In-circuit test station, Koh Kong" loading="lazy" /></figure>
+    </div>
   </div>
 </div>
 
@@ -117,7 +123,6 @@
             <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:9px;">Explore</div>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
               <li><a href="/capabilities/pcba-box-build/smt-assembly/" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">SMT Assembly<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
-              <li><span style="color:var(--ink-3);font-size:12.5px;font-weight:600;line-height:1.5;">Mixed-technology PCBA</span></li>
               <li><a href="/capabilities/automation/aoi-spi/" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">In-line AOI &amp; SPI<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
             </ul>
           </div>
@@ -133,7 +138,6 @@
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
               <li><a href="/capabilities/pcba-box-build/box-build/" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Box Build<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
               <li><a href="/capabilities/microelectronic-assembly/micro-assembly/" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Micro-assembly<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
-              <li><span style="color:var(--ink-3);font-size:12.5px;font-weight:600;line-height:1.5;">Conformal Coating &amp; Potting</span></li>
             </ul>
           </div>
         </div>
@@ -186,38 +190,10 @@
     </div>
     <div class="lc-prod-scroll" data-scroller style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;">
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:4 / 3;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ Access control reader ]</span></div>
-        <div style="margin-top:12px;">
-          <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Security &amp; access</div>
-          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Access control readers</div>
-        </div>
-      </div>
-      <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:4 / 3;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ USB security token ]</span></div>
-        <div style="margin-top:12px;">
-          <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Security</div>
-          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">USB security tokens</div>
-        </div>
-      </div>
-      <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:4 / 3;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ Remote control ]</span></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="~/images/products/entry-exit-controller.jpg" alt="Entry and Exit Controller" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Consumer electronics</div>
-          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Remote controls</div>
-        </div>
-      </div>
-      <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:4 / 3;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ Medical device ]</span></div>
-        <div style="margin-top:12px;">
-          <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Medical</div>
-          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Medical device assemblies</div>
-        </div>
-      </div>
-      <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:4 / 3;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(45deg,transparent 0 13px,rgba(18,131,221,0.06) 13px 14px);"><div style="position:absolute;top:10px;left:12px;width:18px;height:18px;opacity:.4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path></svg></div><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-3);text-align:center;padding:0 18px;line-height:1.5;">[ IoT device ]</span></div>
-        <div style="margin-top:12px;">
-          <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Consumer electronics</div>
-          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">IoT &amp; consumer devices</div>
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Entry and Exit Controller</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">

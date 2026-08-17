@@ -33,7 +33,6 @@
     "/locations/china/jiaxing/": "locations-jiaxing.html",
     "/locations/cambodia/koh-kong/": "locations-koh-kong.html",
     "/locations/usa/ohio/": "locations-ohio.html",
-    "/locations/south-korea/cheongju/": "locations-cheongju.html",
     "/investor-relations/investor-news": "investor-relations-news.html",
     "/investor-relations/group-structure-shareholders": "investor-relations-structure.html",
     "/investor-relations/annual-report": "investor-relations-annual.html",

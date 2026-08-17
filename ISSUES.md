@@ -39,7 +39,9 @@ A screenshot or the prototype filename it should match is ideal but not required
   `Pages/Capabilities/SmtAssembly.cshtml` (text `±20 µm @ 6σ` → `&#64;`), and — new in the
   13 Jul export — `Pages/Careers/Stories.cshtml` (`@media` → `@@media` in the hero-card
   `<style>`). The generator escapes `@media` correctly in most files but keeps missing some;
-  grep `[^@]@media` across `Pages/` after every export.
+  grep `[^@]@media` across `Pages/` after every export. **Use a line-start-aware grep** — a bare
+  `@` can sit at column 0, which `[^@]@media` misses (bit us on `Capabilities/PackageDesign.cshtml`
+  `@supports`/`@media`, 17 Aug): `grep -rnE '(^|[^@])@(media|supports|keyframes|font-face)' Pages/ | grep -vE '@@'`.
 - [ ] **Section-body mobile optimisation — Locations / Investors / About / Capabilities
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
@@ -64,6 +66,29 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 17 Aug 2026 — export sync ("razor pages - Hana Site.zip")
+
+- **Synced the 17 Aug Razor export.** No structural change — same page set (62 pages changed,
+  no adds/removes). 26 new image assets: plant-floor photos for Ayutthaya / Jiaxing / Koh Kong /
+  Lamphun, li-fi module images, IGBT/SiC power-module photos, and 5 access-control product photos.
+  `ISSUES.md` excluded; `README.md` taken from export; `Directory.Build.props` + 3 mobile CSS preserved.
+- **`@`-escaping breakers — MORE than usual this export (6 files + a NEW line-start variant):**
+  the usual `Careers/Stories.cshtml` and `Locations/Index.cshtml`, PLUS four plant pages
+  (`Locations/{Lamphun,Ayutthaya,Jiaxing,KohKong}.cshtml`) whose new photo-grid inline `<style>`
+  carried `@media(max-width:900px)`. **New trap:** `Capabilities/PackageDesign.cshtml` had
+  `@supports` and `@media` at *column 0* (line start), which the old `grep '[^@]@media'` misses
+  because there's no preceding char — the build caught them (CS0103 'supports'/'media'). Now escaped
+  with a line-start-aware pass: `grep -rnE '(^|[^@])@(media|supports|keyframes|font-face)' Pages/`.
+- **Standalone-HTML build breakers — same 5 pages again** (`Insights/{Index,AutomotivePcbaAssembly}`,
+  `Legal/{PrivacyPolicy,TermsOfUse,CookiePolicy}`): repaired as before (strip `ang="en">`→`</header>`,
+  `<main …ins-page>` → `<div class="ins-page">` + closing `</div>`). Runtime-verified: one
+  `hana-header`/`hana-footer`/`<!DOCTYPE` per page, all routes 200.
+- **Standing retrofits re-applied:** 16 `-mobile.css` `<link>` tags (cap 1 / loc 7 / inv 8);
+  `Hana_bkk.jpg` re-pointed to canonical `~/images/hana-bkk.jpg` in `Investors/EventsContact.cshtml`
+  — and this round the byte-identical `Hana_bkk.jpg` dup was actually **deleted** (0 refs, verified
+  `cmp`-identical). Broader dead-asset cleanup still deferred pending list re-scope (see Open).
+- `dotnet build` clean afterwards: 0 warnings, 0 errors.
 
 ### 9 Aug 2026 — export sync ("razor pages 9-8 Hana Site.zip") + backend update
 

@@ -1,3 +1,16 @@
+## Latest changes (13 Aug 2026 — Korea detached)
+Korea / Cheongju is unlinked site-wide: mega-menu Korea column, homepage location
+card and Place schema, locations hub plant card, world-map marker and map data,
+sitemap entry (locations branch now 5 pages), search index and search-shell header.
+Footprint copy now reads "four countries" and omits Korea from the country lists.
+
+**Kept, but unlinked** — Pages/Locations/Cheongju.cshtml is untouched and can be re-linked as-is if the
+direction reverses. Nothing else references it.
+
+**Left in place on purpose** — About / History milestone "Power Master
+Semiconductor, in Korea", the PMS Korea commentary on the IR FAQ, and the Korea
+entity in the IR group-structure diagram (corporate record, not location marketing).
+
 ## Sync — 30 Jul 2026 (parity sweep against exports/site-html)
 - **New page** — `Markets/DataCenters.cshtml` (`/markets/data-centers`). The route was already
   linked from the header mega-menu, footer and homepage tile but had no page behind it.

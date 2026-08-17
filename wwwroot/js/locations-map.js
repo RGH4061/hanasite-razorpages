@@ -8,15 +8,15 @@
 (function () {
   var MAP_W = 1000, MAP_H = 352;
   var POS = {
-    ohio: [269, 68], jiaxing: [766, 122], cheongju: [805, 120],
+    ohio: [269, 68], jiaxing: [766, 122],
     lamphun: [737, 178], ayutthaya: [741, 189], 'koh-kong': [746, 200]
   };
   var LINE = '#FFFFFF', PIN = '#FF883E';
-  var FLAG = { Thailand: 'th', China: 'cn', USA: 'us', Cambodia: 'kh', 'South Korea': 'kr' };
+  var FLAG = { Thailand: 'th', China: 'cn', USA: 'us', Cambodia: 'kh' };
   var cardW = 258, cardH = 150, cardX = 312, cardY = 44;
 
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-  function viewLabel(p) { return p.linkLabel || (p.status === 'affiliate' ? 'Visit Cheongju site' : 'View ' + String(p.city).split(',')[0] + ' plant'); }
+  function viewLabel(p) { return p.linkLabel || ('View ' + String(p.city).split(',')[0] + ' plant'); }
 
   function calloutHTML(p, accent) {
     var code = FLAG[p.country];

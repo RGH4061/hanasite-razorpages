@@ -720,3 +720,22 @@ body {
 .cap-stub-label{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:8px}
 .cap-stub-note{font-family:var(--font-mono);font-size:12px;color:var(--ink-3);margin:0;line-height:1.6;max-width:640px}
 @media (max-width:900px){.hana-macc-body .mm-grouplabel{color:rgba(126,200,255,0.75) !important}}
+
+/* --- Mega-menu spacing + row markers (applied from _draft-nav-spacing.html, 11 Aug 2026) --- */
+.hana-mega>.hana-wrap{max-width:1160px !important;padding-top:24px !important;padding-bottom:28px !important}
+.hana-mega .mm-list,.hana-mega ul[style*="flex-direction:column"]{gap:13px !important}
+.hana-mega .hana-mega-sub-link{font-size:13.5px !important;line-height:1.65 !important}
+.hana-mega .hana-mega-group-heading{margin-bottom:8px !important;padding-bottom:4px !important}
+.hana-mega[data-panel="Capabilities"] .hana-wrap>div[style*="repeat(7"]{column-gap:16px !important;row-gap:22px !important}
+.hana-mega[data-panel="Capabilities"] .hana-wrap>div[style*="repeat(7"]>div{border-left:1px solid var(--line);padding-left:8px}
+.hana-mega[data-panel="Capabilities"] .hana-wrap>div[style*="repeat(7"]>div:first-child{border-left:0;padding-left:0}
+.hana-mega[data-panel="Capabilities"] .mm-list .hana-mega-sub-link,.hana-mega[data-panel="Capabilities"] ul[style*="flex-direction:column"] .hana-mega-sub-link{display:inline-flex;align-items:baseline;gap:7px}
+.hana-mega[data-panel="Capabilities"] .mm-list .hana-mega-sub-link::before,.hana-mega[data-panel="Capabilities"] ul[style*="flex-direction:column"] .hana-mega-sub-link::before,.hana-mega[data-panel="Markets"] .hana-mega-card .hana-mega-name::before{content:"\203A";flex-shrink:0;color:var(--hana-blue);font-weight:700;font-size:13px;line-height:1}
+.hana-mega[data-panel="Markets"] .hana-mega-card .hana-mega-name{display:flex;align-items:baseline;gap:7px}
+
+/* Row markers on About + Investor Relations sub-links (11 Aug 2026) */
+.hana-mega[data-panel="About"] .hana-mega-sub-link,.hana-mega[data-panel="Investor Relations"] .hana-mega-sub-link{display:inline-flex;align-items:baseline;gap:7px}
+.hana-mega[data-panel="About"] .hana-mega-sub-link::before,.hana-mega[data-panel="Investor Relations"] .hana-mega-sub-link::before{content:"\203A";flex-shrink:0;color:var(--hana-blue);font-weight:700;font-size:13px;line-height:1}
+
+.hana-mega[data-panel="Investor Relations"] .hana-mega-card .hana-mega-name{display:flex;align-items:baseline;gap:7px}
+.hana-mega[data-panel="Investor Relations"] .hana-mega-card .hana-mega-name::before{content:"\203A";flex-shrink:0;color:var(--hana-blue);font-weight:700;font-size:13px;line-height:1}
