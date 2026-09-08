@@ -37,7 +37,7 @@
     var wrap = document.createElement('div');
     wrap.style.cssText = 'position:relative;width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#05101f;aspect-ratio:940 / 352;';
     wrap.innerHTML = '<svg viewBox="0 0 ' + MAP_W + ' 310" preserveAspectRatio="xMidYMid slice" style="display:block;width:100%;height:100%;">'
-      + '<image href="images/world-map3.png" x="0" y="0" width="' + MAP_W + '" height="' + MAP_H + '" preserveAspectRatio="none"></image>'
+      + '<image href="images/world-map3.webp" x="0" y="0" width="' + MAP_W + '" height="' + MAP_H + '" preserveAspectRatio="none"></image>'
       + '<defs><marker id="loc-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4.2" orient="auto"><path d="M1,1 L7.5,4.2 L1,7.4" fill="none" stroke="' + LINE + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs>'
       + '<line class="lc-leader" stroke="' + LINE + '" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#loc-arrow)" opacity="0.95"></line>'
       + '<g class="lc-pins"></g>'

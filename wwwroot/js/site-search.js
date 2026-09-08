@@ -133,7 +133,7 @@
     const input = document.createElement("input");
     input.type = "search";
     input.className = "hs-hdr-input";
-    input.placeholder = box.dataset.placeholder || "Search capabilities, markets, news…";
+    input.placeholder = box.dataset.placeholder || "Search capabilities, package sizes, certs and more…";
     input.setAttribute("aria-label", "Search this site");
     box.appendChild(input);
     box.classList.add("hs-hdr-box");

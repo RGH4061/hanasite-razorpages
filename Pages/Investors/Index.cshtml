@@ -2,9 +2,15 @@
 @{
     ViewData["Title"] = "Investor Relations — Hana Microelectronics";
     ViewData["Description"] = "SET-listed (HANA): financial reporting, governance, and shareholder information.";
+    ViewData["Canonical"] = "https://www.hanagroup.com/investor-relations";
+    ViewData["AltLang"] = "th";
+    ViewData["AltLangUrl"] = "/th/investor-relations";
 }
 @section Head {
     <link rel="stylesheet" href="~/css/investors.css" />
+    <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/investor-relations" />
+    <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/investor-relations" />
+    <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/investor-relations" />
     <link rel="stylesheet" href="~/css/investors-mobile.css" />
 }
 
@@ -38,7 +44,7 @@
     <a class="feature-body" href="/investor-relations/news">
       <div class="fb-label">Featured section</div>
       <h2 class="fb-title">Investor news</h2>
-      <p class="fb-desc">SET announcements, financial statements, AGM notices, board resolutions, and dividend disclosures — organised by year.</p>
+      <p class="fb-desc">SET announcements, financial statements, AGM notices, and dividend disclosures — organised by year.</p>
       <div class="fb-meta">
         <div class="m">
           <div class="m-val">14 May 2026</div>
@@ -87,7 +93,7 @@
     <!-- 02 Annual Report — live -->
     <a class="ir-card" href="/investor-relations/annual">
       <div class="ic-top"></div>
-      <h3 class="ic-title">Annual Report &amp; 56-1 One Report</h3>
+      <h3 class="ic-title">Annual Reports &amp; 56-1 One Report</h3>
       <p class="ic-desc">Audited financials and 56-1 One Report submitted to the SET — business overview and sustainability disclosures for each financial year.</p>
 
       <span class="ic-cta">View section →</span>

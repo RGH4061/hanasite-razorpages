@@ -43,6 +43,7 @@
 .mk-cards.c4{grid-template-columns:repeat(4,1fr)}
 .mk-cards.c3{grid-template-columns:repeat(3,1fr)}
 .mk-cards.c2{grid-template-columns:repeat(2,1fr)}
+.mk-cards.c1{grid-template-columns:repeat(2,1fr)}
 .mk-card{border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;color:inherit;transition:border-color 160ms ease,box-shadow 160ms ease}
 a.mk-card:hover{border-color:color-mix(in srgb,var(--hana-blue) 50%,var(--line));box-shadow:0 6px 18px rgba(18,131,221,.08)}
 .mk-card .body{padding:24px;display:flex;flex-direction:column;flex:1}
@@ -86,7 +87,7 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 .mk-hero-media img{height:300px}
 .mk-h1{font-size:34px}
 .mk-h2{font-size:26px}
-.mk-points,.mk-locs,.mk-cards.c2,.mk-build{grid-template-columns:1fr}
+.mk-points,.mk-locs,.mk-cards.c2,.mk-cards.c1,.mk-build{grid-template-columns:1fr}
 .mk-cards.c4,.mk-cards.c3{grid-template-columns:1fr 1fr}
 .mk-cta .in{grid-template-columns:1fr;gap:24px}
 .mk-cta .acts{justify-content:flex-start}

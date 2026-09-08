@@ -14,6 +14,32 @@
 @font-face { font-family: 'Inter';        src: url('../fonts/Inter-ExtraBold.ttf')    format('truetype'); font-weight: 800; font-display: swap; }
 @font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
 
+/* ── Thai — Sarabun (Thai National Font project, OFL — OFL.txt ships beside the files).
+   TODO: replace each src's TTF with the Thai+Latin-subset WOFF2 (fontTools command in the
+   20 Aug Thai-layer note); woff2 is already first in the src chain, so no CSS edit needed. */
+@font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-Regular.woff2') format('woff2'), url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-SemiBold.woff2') format('woff2'), url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+
+/* Thai text — fires on <html lang="th"> (part B) and any inline lang="th" block.
+   The display/text TOKENS are re-pointed inside the Thai scope, so every page rule that
+   sets font via var(--font-text) / var(--font-display) resolves to Sarabun with no
+   specificity fight — Geist and Inter carry no Thai glyphs. --font-mono is left alone
+   deliberately (part numbers, tickers, table clause numbers stay Plex Mono).
+   line-height 1.8 is the floor for Thai stacked vowel/tone marks — not cosmetic; the
+   tripled :lang() in the second rule outranks page-level line-heights like
+   .ins-article p (insights.css) and .th (investors-faq.css:477). */
+:lang(th) { --font-text: var(--font-thai); --font-display: var(--font-thai); font-family: var(--font-thai); line-height: 1.8; }
+:lang(th):lang(th) p:lang(th), :lang(th):lang(th) li:lang(th), :lang(th):lang(th) td:lang(th), :lang(th):lang(th) th:lang(th), :lang(th):lang(th) dt:lang(th), :lang(th):lang(th) dd:lang(th), :lang(th):lang(th) blockquote:lang(th) { line-height: 1.8; }
+
+/* Page sheets that hardcode 'Geist' rather than var(--font-display) don't pick up the
+   token re-point above. Force Sarabun on Thai heading/display text; numeric display
+   values (stock price, spec values) deliberately stay on Geist. */
+:lang(th) h1, :lang(th) h2, :lang(th) h3, :lang(th) h4,
+:lang(th) .hero h1, :lang(th) .section-head h2, :lang(th) .statement h3,
+:lang(th) .page-end .ttl, :lang(th) .fb-title, :lang(th) .fb-label, :lang(th) .ic-title,
+:lang(th) .sectionnav .label, :lang(th) .initiatives .kicker, :lang(th) .related .lbl { font-family: var(--font-thai); }
+
+
 /* ── Base reset ───────────────────────────────────────────── */
 *,
 *::before,
@@ -553,6 +579,12 @@ body {
 }
 
 /* ── Footer ── */
+/* Footer column links carry only hover handlers inline (onmouseout resets to --ink-2),
+   so without this they fall back to the browser default blue. Resting + hover colour
+   defined here; the dark sub-footer band's links set color:inherit inline and win. */
+.hana-footer a { color: var(--ink-2); text-decoration: none; }
+.hana-footer a:hover { color: var(--hana-blue); }
+
 @media (max-width: 900px) {
   .hana-footer [style*="grid-template-columns:1.4fr"] {
     grid-template-columns: 1fr 1fr !important;

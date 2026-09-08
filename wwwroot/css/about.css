@@ -163,7 +163,7 @@
   .vi-band { background: #000; position: relative; overflow: hidden; border-top: none; }
   .vi-band::before {
     content: ""; position: absolute; inset: 0; z-index: 0;
-    background: url("../images/vertical-integration-bg.jpg") right center / cover no-repeat;
+    background: url("../images/vertical-integration-bg.webp") right center / cover no-repeat;
   }
   .vi-band::after {
     content: ""; position: absolute; inset: 0; z-index: 0;

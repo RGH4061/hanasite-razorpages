@@ -32,11 +32,13 @@
                                 
 
                 
-                <a href="#" style="color:inherit; text-decoration:none;
-                                   display:inline-flex; align-items:center; gap:6px;">
-                    <i data-lucide="globe" style="width:13px; height:13px;"></i>
-                    EN
-                </a>
+                @if (ViewData["AltLangUrl"] != null)
+                {
+                    <a href="@ViewData["AltLangUrl"]" class="hana-lang" style="color:inherit; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        <i data-lucide="globe" style="width:13px; height:13px;"></i>
+                        @if ((string?)ViewData["AltLang"] == "th") { <span lang="th">ไทย</span> } else { <span>EN</span> }
+                    </a>
+                }
             </div>
         </div>
     </div>
@@ -394,7 +396,7 @@
                 <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:40px; row-gap:2px;">
                     <a href="/investor-relations/news"        class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Investor Financial News</span></a>
                     <a href="/investor-relations/structure"   class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Group Structure &amp; Shareholders</span></a>
-                    <a href="/investor-relations/annual"      class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Annual Report</span></a>
+                    <a href="/investor-relations/annual"      class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Annual Reports</span></a>
                     <a href="/investor-relations/esg"         class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Sustainability</span></a>
                     <a href="/investor-relations/governance"  class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Governance Documents</span></a>
                     <a href="/investor-relations/contact"     class="hana-mega-card"><span class="hana-mega-name" style="font-size:13px; font-weight:600;">Investor Events &amp; Contacts</span></a>

@@ -34,6 +34,7 @@
   --font-display: 'Geist', 'Helvetica Neue', Arial, sans-serif;
   --font-text:    'Inter', 'Helvetica Neue', Arial, sans-serif;
   --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+  --font-thai:    'Sarabun', 'Noto Sans Thai', sans-serif;
 
   /* ── Spacing scale (4px base) ─────────────────────────── */
   --space-1:  4px;

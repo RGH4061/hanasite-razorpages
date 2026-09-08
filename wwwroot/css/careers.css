@@ -335,14 +335,14 @@
   .life-header-text p { font-size: 14px; color: var(--ink-2); margin: 0; max-width: 52ch; }
 
   .life-tabs {
-    display: flex; gap: var(--s-3); flex-wrap: wrap;
+    display: flex; gap: var(--s-2); flex-wrap: nowrap;
     margin-bottom: var(--s-6);
   }
   .life-tab {
-    flex: 1 1 180px;
+    flex: 1 1 0; min-width: 0; white-space: nowrap;
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 15px; font-weight: 500; letter-spacing: -0.005em;
-    padding: var(--s-4) var(--s-5);
+    font-size: 13px; font-weight: 500; letter-spacing: -0.01em;
+    padding: var(--s-3) var(--s-3);
     background: var(--surface-2); color: var(--ink-2);
     border: 1px solid var(--line); border-radius: 3px;
     cursor: pointer; text-align: center;

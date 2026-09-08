@@ -8,6 +8,18 @@
    Spec ref: design_handoff_homepage/README.md §2
 *@
 
+<style>
+/* Homepage hero — sequential line wipe entrance */
+.hha-line{display:block;position:relative}
+.hha-in{display:block;clip-path:inset(0 100% 0 0);animation:hhaWipe 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-edge{position:absolute;top:6%;bottom:12%;left:0;width:2px;background:#1283DD;opacity:0;box-shadow:0 0 18px rgba(18,131,221,0.9);animation:hhaEdge 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-badge,.hha-sub,.hha-acts{opacity:0;animation:hhaFade 700ms cubic-bezier(.16,.84,.3,1) forwards}
+.hha-badge{animation-delay:0ms}.hha-sub{animation-delay:1720ms}.hha-acts{animation-delay:1860ms}
+@@keyframes hhaWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@@keyframes hhaEdge{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@@keyframes hhaFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@@media (prefers-reduced-motion:reduce){.hha-in,.hha-edge,.hha-badge,.hha-sub,.hha-acts{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}.hha-edge{display:none}}
+</style>
 <section class="hana-hero-section"
          style="position:relative; background:#030a17; overflow:hidden; cursor:crosshair; height:550px;"
          aria-label="Homepage hero">
@@ -35,7 +47,7 @@
                 transform:translateY(-50%); max-width:520px; pointer-events:none;">
 
         @* Badge pill *@
-        <div style="display:inline-flex; align-items:center; gap:9px;
+        <div class="hha-badge" style="display:inline-flex; align-items:center; gap:9px;
                     padding:6px 14px 6px 10px;
                     border:1px solid rgba(18,131,221,0.28); border-radius:999px;
                     background:rgba(18,131,221,0.07);
@@ -52,11 +64,11 @@
         <h1 style="font-family:var(--font-display); font-size:58px; font-weight:700;
                    letter-spacing:-0.032em; line-height:1.04; color:#ffffff;
                    margin:0 0 20px; text-wrap:pretty;">
-            Electronics Manufacturing<br />That Goes Further.
+            <span class="hha-line" style="--d:160ms"><span class="hha-in">Electronics Manufacturing</span><span class="hha-edge" aria-hidden="true"></span></span><span class="hha-line" style="--d:940ms"><span class="hha-in">That Goes Further.</span><span class="hha-edge" aria-hidden="true"></span></span>
         </h1>
 
         @* Subhead *@
-        <p style="font-family:var(--font-text); font-size:17px; font-weight:400;
+        <p class="hha-sub" style="font-family:var(--font-text); font-size:17px; font-weight:400;
                   line-height:1.6; color:rgba(229,238,245,0.55);
                   margin:0 0 36px; max-width:470px; text-wrap:pretty;">
             A world-class independent electronics manufacturing services (EMS) and
@@ -65,7 +77,7 @@
         </p>
 
         @* CTAs *@
-        <div style="display:flex; gap:12px; pointer-events:auto;">
+        <div class="hha-acts" style="display:flex; gap:12px; pointer-events:auto;">
             <a href="/contact" class="hana-btn hana-btn-primary">
                 Let's talk
                 <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
@@ -91,8 +103,8 @@
                     border:1px solid rgba(18,131,221,0.22);
                     border-radius:10px; overflow:hidden;">
 
-            <video src="~/videos/hero-loop.mp4"
-                   poster="~/images/photos/homepage-hero-poster.jpg"
+            <video src="~/videos/hp-hero-loop.mp4"
+                   poster="~/images/photos/hp-hero-poster.jpg"
                    autoplay muted loop playsinline preload="metadata"
                    aria-label="Hana manufacturing facility"
                    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video>

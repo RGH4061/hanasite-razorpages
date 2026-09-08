@@ -277,6 +277,8 @@
   .sectionnav .footer-link a {
     color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line);
   }
+  .sectionnav .footer-link a { display: inline; grid-template-columns: none; }
+  .sectionnav .footer-link a:not(:last-of-type)::after { content: ", "; color: var(--ink-3); }
   .sectionnav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); }
 
   /* ── Content sections ── */

@@ -290,6 +290,8 @@
     text-decoration: none;
     border-bottom: 1px solid var(--line);
   }
+  .sidenav .footer-link a { display: inline; grid-template-columns: none; }
+  .sidenav .footer-link a:not(:last-of-type)::after { content: ", "; color: var(--ink-3); }
   .sidenav .footer-link a:hover {
     color: var(--hana-blue-deep);
     border-bottom-color: var(--hana-blue);

@@ -219,7 +219,7 @@
 
 
 /* ── header field + dropdown (placement B, live in the util bar) ── */
-.hs-hdr-box{position:relative}
+.hs-hdr-box{position:relative;width:326px;flex:0 1 326px;max-width:100%}
 .hs-hdr-box.on{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)}
 .hs-hdr-input{flex:1;min-width:0;background:none;border:0;outline:0;font-family:var(--font-text);font-size:12px;color:#fff;padding:0}
 .hs-hdr-input::placeholder{color:rgba(255,255,255,.55)}

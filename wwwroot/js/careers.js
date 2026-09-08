@@ -71,6 +71,14 @@ const LIFE_DATA = {
     { title: "Technical training programme", desc: "Building assembly and manufacturing skills from the ground up." },
     { title: "Health and wellbeing",        desc: "A safe, supportive workplace with on-site welfare facilities." },
     { title: "Student scholarship",         desc: "Opening pathways into electronics manufacturing for Cambodian students." }
+  ],
+  jiaxing: [
+    { title: "Annual company days",         desc: "The whole Jiaxing team together to mark the year's achievements." },
+    { title: "Celebrations",                desc: "Lunar New Year, Mid-Autumn Festival, and team milestones at Jiaxing." },
+    { title: "Community outreach",          desc: "Supporting the families and neighbourhoods around our Jiaxing site." },
+    { title: "Technical training programme", desc: "Die attach, wire bond, and test skills training at every level." },
+    { title: "Health and wellbeing",        desc: "Canteen, transport support, and health programmes for all employees." },
+    { title: "Student scholarship",         desc: "Working with local technical schools to bring new engineers into the industry." }
   ]
 };
 
@@ -105,14 +113,27 @@ const LIFE_PHOTOS = new Set([
   "life-kohkong-health-and-wellbeing-1","life-kohkong-student-scholarship-1"
 ]);
 
+// Jiaxing photos are supplied as .jpeg.
+const LIFE_PHOTOS_JPEG = new Set([
+  "life-jiaxing-annual-company-days-1","life-jiaxing-annual-company-days-2",
+  "life-jiaxing-annual-company-days-3","life-jiaxing-annual-company-days-4",
+  "life-jiaxing-celebrations-1","life-jiaxing-celebrations-2","life-jiaxing-celebrations-3",
+  "life-jiaxing-celebrations-4","life-jiaxing-celebrations-5",
+  "life-jiaxing-community-outreach-1","life-jiaxing-community-outreach-2","life-jiaxing-community-outreach-3",
+  "life-jiaxing-technical-training-programme-1","life-jiaxing-technical-training-programme-2",
+  "life-jiaxing-health-and-wellbeing-1","life-jiaxing-health-and-wellbeing-2","life-jiaxing-health-and-wellbeing-3",
+  "life-jiaxing-student-scholarship-1"
+]);
+
 function lifeCard(card, loc) {
   const base = 'life-' + loc + '-' + slugify(card.title) + '-';
   let slides = '';
   for (let n = 1; n <= 6; n++) {
     const id = base + n;
-    if (!LIFE_PHOTOS.has(id)) continue;
+    const ext = LIFE_PHOTOS.has(id) ? '.webp' : (LIFE_PHOTOS_JPEG.has(id) ? '.jpeg' : null);
+    if (!ext) continue;
     slides += '<div class="life-img-slide"><img class="life-photo" loading="lazy" ' +
-              'src="images/life/' + id + '.webp" alt="' + card.title + ' at Hana ' + loc + '" /></div>';
+              'src="images/life/' + id + ext + '" alt="' + card.title + ' at Hana ' + loc + '" /></div>';
   }
   if (!slides) {
     slides = '<div class="life-img-slide">' + lifeSvg + '<span>Photo coming soon</span></div>';

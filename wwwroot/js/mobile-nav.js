@@ -128,13 +128,16 @@
     /* foot — search label + icon field + util links */
     var foot = document.createElement('div');
     foot.className = 'hana-mnav-foot';
+    /* language control mirrors the desktop util-bar one — absent when the page has no twin */
+    var langA = header.querySelector('.hana-util-bar a.hana-lang');
+    var langLabel = langA ? (langA.textContent || '').trim() : '';
     foot.innerHTML =
       '<div class="hana-mnav-slabel">Search capabilities, markets</div>' +
       '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>' +
       '<div class="hana-mnav-utrow">' +
         '<a href="' + findUtilHref(header, 'careers') + '">Careers</a>' +
         '<a href="' + findUtilHref(header, 'insights') + '">Insights</a>' +
-        '<a href="#" class="hana-mnav-lang">' + svg(I.globe) + ' EN</a>' +
+        (langA ? '<a href="' + langA.getAttribute('href') + '" class="hana-mnav-lang" lang="' + (langLabel === 'EN' ? 'en' : 'th') + '">' + svg(I.globe) + ' ' + langLabel + '</a>' : '') +
       '</div>';
     panel.appendChild(foot);
 

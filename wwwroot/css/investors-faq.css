@@ -167,6 +167,8 @@
     font-size: 11px; color: var(--ink-3); letter-spacing: -0.005em;
   }
   .sectionnav .footer-link a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .sectionnav .footer-link a { display: inline; grid-template-columns: none; }
+  .sectionnav .footer-link a:not(:last-of-type)::after { content: ", "; color: var(--ink-3); }
   .sectionnav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); }
 
   /* Nested FAQ group in the side-nav */
@@ -607,10 +609,10 @@
     padding: var(--s-7) var(--s-6);
   }
 
-  /* SET Opportunity Day poster image on all video frames */
+  /* SET Earnings Call poster image on all video frames */
   .frame.has-poster {
     background-image:
-      url('../images/set-oppday-q1-2026.png'),
+      url('../images/set-oppday-q1-2026.webp'),
       radial-gradient(120% 120% at 50% 40%, #16324A 0%, #0B2236 70%, #08192A 100%);
     background-size: cover, cover;
     background-position: center center, center center;

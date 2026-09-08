@@ -7,3 +7,15 @@
 @import '_base.css';
 @import '_layout.css';
 @import '_components.css';
+
+/* ── Why Hana templates: Why Pair (panels two-up) and Why Photo ── */
+.why-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:stretch;margin-bottom:20px}
+.why-grid:last-child{margin-bottom:0}
+.why-grid > *{min-width:0}
+.why-cell{display:grid;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1100px){
+  .why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why-grid--single{grid-template-columns:minmax(0,1fr)}
+  .why-grid > .why-order-1{order:1}
+  .why-grid > .why-order-2{order:2}
+}

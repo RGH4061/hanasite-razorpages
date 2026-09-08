@@ -2,13 +2,20 @@
 @{
     ViewData["Title"] = "Privacy Policy";
     ViewData["Description"] = "How Hana Microelectronics collects, uses and protects personal data.";
+    ViewData["Canonical"] = "https://www.hanagroup.com/privacy-policy";
+    ViewData["AltLang"] = "th";
+    ViewData["AltLangUrl"] = "/th/privacy-policy";
 }
 
 @section Head {
     <link rel="stylesheet" href="~/css/insights.css" />
+    <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/privacy-policy" />
+    <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/privacy-policy" />
+    <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/privacy-policy" />
 }
 
 
+<style>.ins-article h3{font-family:var(--font-display);font-weight:600;font-size:17px;line-height:1.35;letter-spacing:-0.01em;color:var(--ink);margin:32px 0 12px}.ins-article h2+h3,.ins-article .lede+h3{margin-top:12px}.pdpa-table-wrap{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:16px 0 24px}.pdpa-table{width:100%;border-collapse:collapse;font-family:var(--font-text);font-size:13.5px}.pdpa-table th,.pdpa-table td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;line-height:1.55}.pdpa-table tr:last-child td{border-bottom:none}.pdpa-table th{background:var(--surface);font-family:var(--font-text);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);border-bottom:1px solid var(--line)}.pdpa-table td:first-child{width:52px;color:var(--ink-3);font-family:var(--font-mono);font-size:12.5px}.pdpa-table td:last-child{width:230px;color:var(--ink-2)}.pdpa-tab-link{display:block;padding:8px 0 8px 12px;border-left:2px solid transparent;margin-left:-2px;color:var(--ink-2);text-decoration:none;font-family:var(--font-text);font-size:13.5px;transition:color 150ms ease,border-color 150ms ease}.pdpa-tab-link:hover{color:var(--hana-blue-deep)}.pdpa-tab-link.is-active{color:var(--ink);font-weight:600;border-left-color:var(--hana-blue)}.pdpa-panel strong{color:var(--ink);font-weight:600}</style>
 <div class="ins-page">
 
   <div class="ins-subbar">
@@ -18,80 +25,191 @@
         <span class="sep">/</span>
         <span>Privacy policy</span>
       </nav>
-      <div class="meta">PDPA <strong>B.E. 2562 (2019)</strong></div>
+      
     </div>
   </div>
 
   <section class="ins-hero" style="height:200px;">
     <div class="hana-wrap ins-hero-inner">
       <h1 style="font-size:32px;">Privacy policy</h1>
-      <p class="lede">How Hana Microelectronics and its affiliates collect, use, disclose and protect personal data — in accordance with Thai law and the Personal Data Protection Act B.E. 2562 (2019).</p>
     </div>
   </section>
 
   <div class="ins-layout-bg">
     <div class="hana-wrap ins-layout">
 
-      <aside class="ins-sidenav" aria-label="On this page">
+      <aside class="ins-sidenav" aria-label="Privacy policy sections">
         <div class="label">On this page</div>
-        <ul class="ins-toc" id="legalToc">
-          <li><a href="#collect">Data we collect</a></li>
-          <li><a href="#purposes">Purposes of processing</a></li>
-          <li><a href="#retention">Retention</a></li>
-          <li><a href="#cookies">Use of cookies</a></li>
-          <li><a href="#disclosure">Disclosure of data</a></li>
-          <li><a href="#transfer">Transfer to foreign countries</a></li>
-          <li><a href="#rights">Your rights</a></li>
-          <li><a href="#security">Security &amp; contact</a></li>
-          <li><a href="#amendment">Amendment</a></li>
+        <ul class="ins-toc" id="pdpaTabs" role="tablist">
+          <li><a href="#" data-tab="notice" class="pdpa-tab-link is-active" role="tab" aria-selected="true">Personal Data Privacy Notice</a></li>
+          <li><a href="#" data-tab="prepdpa" class="pdpa-tab-link" role="tab" aria-selected="false">Notice before PDPA implement</a></li>
+          <li><a href="#" data-tab="rights" class="pdpa-tab-link" role="tab" aria-selected="false">Data Subject Right Request Form</a></li>
         </ul>
       </aside>
 
       <article class="ins-article">
-        <p class="lede">Hana Microelectronics Public Company Limited and its affiliates ("the Company") value your privacy and are committed to protecting personal data in accordance with the Personal Data Protection Act B.E. 2562 (2019) ("PDPA"), in effect as of 1 June 2022. This notice explains what data we collect, why, and the rights available to you as a data subject.</p>
 
-        <h2 id="collect">Data we collect</h2>
-        <p>Depending on your relationship with Hana — customer, trade partner, job applicant, employee, shareholder, or visitor to our sites — we may collect:</p>
-        <ul>
-          <li><strong>Identity &amp; contact data</strong> — name, ID/passport number, address, phone, email, signature, photo.</li>
-          <li><strong>Financial data</strong> — bank account details, invoices, receipts, delivery notes.</li>
-          <li><strong>Communication data</strong> — records of contact with the Company, including recordings where applicable.</li>
-          <li><strong>Employment &amp; professional data</strong> — company affiliation, role, education, training and performance records.</li>
-          <li><strong>Technical data</strong> — IP address, log files, and information collected via cookies or similar technologies.</li>
-          <li><strong>CCTV recordings</strong> — at Company premises for security purposes.</li>
-        </ul>
-        <p>We do not intentionally collect sensitive personal data (such as religion or blood type shown on ID documents) unless legally required, and we request that such fields be concealed wherever possible.</p>
+        <div class="pdpa-panel" data-panel="notice">
+          <h2 style="margin-top:0;">Personal Data Privacy Notice of Hana Microelectronics Group and Subsidiaries</h2>
+          <p class="lede">Hana Microelectronics Public Company Limited and its affiliates “The Company” values your privacy and strives to protect your personal data and personal data of persons related to your business collectively referred to as “Personal Data” in accordance with Thai law and in order to comply with the Personal Data Protection Act B.E. 2562 (2019) (“PDPA”), in effect as of 1 June 2022.</p>
+          <p>To ensure you that we will protect and manage your personal data in accordance with the laws concerning personal data protection, we then establish this Personal Data Privacy Notice for your acknowledgement of details of the processing of personal data, in term of the collection, use and disclosure (collectively referred to as the “Processing”) that may be occurred and also inform you of the rights on your personal data and our contact channels.</p>
 
-        <h2 id="purposes">Purposes of processing</h2>
-        <p>We process personal data to operate and coordinate our business, comply with legal and regulatory obligations, maintain premises security, manage customer and supplier relationships, administer employment, and exercise or defend legal claims. Depending on your relationship with Hana, additional purposes may apply — for example, managing a customer order, evaluating a job application, or administering shareholder communications.</p>
+          <h3>1. Types of persons whose personal data we collect</h3>
+          <p>Under this Personal Data Privacy Notice, the company shall collect the personal data of the following persons:</p>
+          <p><strong>1.1 Customers</strong> means who purchases or will purchase or the company’s product and/or services, and also including any individual who relates to or is representative of any juristic person who is the customer, such as the executive, director, officer, employee, agent or any other ordinary person, and the person having his/her personal data appeared in relevant documents in relation to the conducting of transaction between the company and such juristic person such as the person issuing purchase order, the person receiving product and the cheque payer, etc. including a person that such juristic person has provided data to the company.</p>
+          <p><strong>1.2 Trade Partner(s)</strong> means the person who sells or will sell product and / or provide service for the company such as the contractual party, service provider and advisor and shall mean to include an ordinary person who is related to or is a representative or the juristic person which is a trade partner such as the executive, director, employee, staff, agent, representative or any other ordinary person, and the person having his/her personal data appeared in relevant documents in relation to the conducting of transaction between the company and such juristic person such as the coordinator, the person delivering the product and the cheque payer, etc. including a person that such juristic person has provided data for the company.</p>
+          <p><strong>1.3 Person(s) Having Business Relation</strong> means the person who is not a customer, trade partner or the operator in the company that has relationship in the manner relating to the conduct of business such as the person who performs his/her duty in the government authority which regulate the conduct work compliance with laws, the person interested to participate in business project or the business project participant, the person interested making a joint investment or the co-investor, the agent or broker for the procurement of product or service for the company, and including an ordinary person who is related to or is an agent of such juristic person such as the executive, director, employee, agent, representative or any other ordinary person, and the person having his/her personal data appeared in relevant documents in relation to the conducting of transaction between the company and such juristic person.</p>
+          <p><strong>1.4 Operator(s) in Hana Microelectronics Group</strong> means the director, student trainee, employee or other personnel of the companies in Hana Microelectronics Group.</p>
+          <p><strong>1.5 Job applicants</strong> means persons who may be selected to be personnel of the company. The company may directly collect personal data of the job applicants by itself or from the third party. Their personal data are contained in the documents relating to the job applications, such as family members, reference person etc.</p>
+          <p><strong>1.6 General Public</strong> means any person apart from the above categories or the person whose personal data is processed by the company such Personal Data is directly received by the company, automatically collected through the use of Cookies or other technologies, or provided by a third party. An example of such person includes a person whose image is recorded by CCTV or who accesses the Company’s website, etc.</p>
 
-        <h2 id="retention">Retention period</h2>
-        <p>Personal data is retained only for as long as necessary for the purposes described in this notice — generally no more than 10 years — or for the period required by law, statutory limitation periods, or the establishment, exercise or defense of legal claims.</p>
+          <h3>2. Personal data which shall be collected</h3>
+          <p>In general, the company shall collect your personal data by directly requesting the data from you; nonetheless, there may be some circumstances that the company collects your personal data from other sources such as from the company that you are positioned in, government authorities or other sources of publicly disclosed information such as website and searchable data on the internet, etc. In this regard, the company shall proceed to collect your personal data as follows:</p>
+          <p><strong>2.1 General personal data</strong></p>
+          <p>(1) Identity data such as first name, last name, identification card number, passport number, date of birth, gender, age, nationality, signature, photo, identity number of the professional license, Employee ID (only for the case of an employee of companies in Hana Group), driving license, etc.</p>
+          <p>(2) Contact data such as address, a copy of house registration, phone number, facsimile number, email, Geolocation, emergency contact person, social media account, LINE ID, secretary information, etc.</p>
+          <p>(3) Financial data such as bank account number, tax invoice, delivery note, cheque and cheque stub, receipt.</p>
+          <p>(4) Communication data with the company such as information concerning date, time and place having contact with the company, information of the recording of video or voice upon having contact with the company, etc.</p>
+          <p>(5) Data regarding companies or authorities that you are working in, such as name of companies or authorities that you are working in, working location, etc.</p>
+          <p>(6) Data regarding educational profile, work profile, training, proficiency and relevant achievements, etc.</p>
+          <p>(7) Data regarding personal preferences and interest.</p>
+          <p>(8) Closed-circuit television (CCTV) recording.</p>
+          <p>(9) Data on the participation of meetings between the company and group companies including data on the participation of trainings, seminars, activities or other projects held by the company as there may be the recording of photo, video or voice during such meetings, trainings, seminars or activities.</p>
+          <p>(10) Other necessary data for the legal proceeding or legal execution such as marriage status and data concerning assets, etc.</p>
+          <p>(11) Opinions, recommendations and complaints.</p>
+          <p>(12) Screening data pursuant to communicable disease prevention measures.</p>
+          <p>(13) Data regarding performance and assessment of employees.</p>
+          <p>(14) Data regarding benefits, remuneration and working time record.</p>
+          <p>(15) Technical Data, such as a log file, IP Address, and information that the company collects through the use of Cookies or other similar technologies.</p>
+          <p><strong>2.2 Sensitive personal data</strong></p>
+          <p>Basically, the company has no intention to collect and use religious and blood type data specified in your identification card for any specific purpose. In the event that you provided the company the copy of your identification card, it is requested that you conceal such data. If you did not conceal such data, it shall be deemed that you authorized the company to conceal those data and it shall be deemed that such document with concealed data be valid and legally enforceable in all respects. In case that the company is unable to conceal those data due to some technical limitation, the company shall collect and use such data as a part of your identification documents only.</p>
+          <p>If it is necessary for the company to collect your sensitive personal data, the company shall be able to perform the processing of such data by relying on lawful basis, and the company shall inform the specific purpose and shall request for your express consent on case-by-case basis.</p>
 
-        <h2 id="cookies">Use of cookies</h2>
-        <p>Our websites use cookies and similar technologies to remember preferences, understand how our pages are used, and improve site performance. Information such as browser type or general browsing activity may be collected in aggregate, statistical form. You can control cookies through your browser settings; see our <a class="inline" href="/cookie-policy">Cookie Policy</a> for details.</p>
+          <h3>3. Purposes for the collection, use and disclosure of personal data</h3>
+          <p><strong>3.1 In general, whether you are a Customer, Trade Partner, the Person Having Business Relationship or the Operator in Hana Group</strong>, the company may proceed on the Processing of your data on the following purposes:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>For contacting and coordination in relation to the business operation of the company.</td><td>Legitimate interest basis and Legal obligation basis</td></tr><tr><td>(2)</td><td>For the collection and use of your personal data such as name-surname, position, work unit and/or picture or video in relation to the operations and activities of the company for dissemination or public relations through relevant channels such as internal email of the company and group companies, the company’s website, Facebook, LINE, YouTube or other online media of the company or other media such as television and publication, etc.</td><td>Legitimate interest basis, Contractual basis, Legal obligation basis and Consent basis</td></tr><tr><td>(3)</td><td>For the compliance with relevant laws, orders of the authorities, independent organizations or the officers having duties and authorities according to the laws.</td><td>Legal obligation basis</td></tr><tr><td>(4)</td><td>For the compliance with laws concerning public interest in respect of public health such as health protection against dangerous communicable disease or epidemic which may be contagious or spread into the kingdom.</td><td>Legal obligation basis, Preventing or suppressing danger to person’s body, or health basis</td></tr><tr><td>(5)</td><td>For maintaining security in building area, premises of the company including the exchange of Identity cards for the entry and exit of such area, the CCTV recording of the company or the buildings.</td><td>Legitimate interest basis, legal obligation basis and Preventing or suppressing danger to person’s body, or health basis</td></tr><tr><td>(6)</td><td>For the compliance, exercise or defense of legal claim, or for commencing relevant legal proceedings including for using as supporting evidence of the legal proceeding (if any) against the related person as well as the proceedings for legal execution.</td><td>Legal obligation basis</td></tr></tbody></table></div>
+          <p>Other than the above purposes, the company may further proceed on processing of your personal data for the relevant cases as follows:</p>
+          <p><strong>3.2 In case that you are a Customer</strong>, the company may proceed on processing of your personal data for additional relevant purposes as follows:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>To verify your identity or your authority in representing any person who has a transaction with us before signing contact agreement, to purchase products and/or use the services of the Company or others.</td><td>Contractual basis and legitimate interest basis</td></tr><tr><td>(2)</td><td>To manage customer’s order, prepare products and/or services and any other related activities.</td><td>Contractual basis and legitimate interest basis</td></tr><tr><td>(3)</td><td>To use as information and supporting documents for any transaction with banks, financial institutions, Department of Business Development, Revenue Department, Excise Department, Stock Exchange of Thailand, the Office of Securities and Exchange Commission and other relevant external authorities.</td><td>Legitimate interest basis, Legal basis</td></tr><tr><td>(4)</td><td>To changes customer’s detail in the Company's system.</td><td>Legitimate interest basis</td></tr></tbody></table></div>
+          <p><strong>3.3 In case that you are a Trade Partner</strong>, the company may proceed on the Processing of your personal data for additional relevant purposes as follows:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>To verify your identity and authority to act on behalf of your company, before signing any agreement, such as qualification consideration, information preparation before procurement process, purchasing, bidding, listening to the clarification, attending to the presentation relating the procurement works, agreement letter etc.</td><td>Contractual basis and legitimate interest basis</td></tr><tr><td>(2)</td><td>To conduct the transaction between Trade Partner and The Company such as identity and authority verification, granting or obtaining of authority, proceeding in accordance with the rules and regulations and relevant internal procedures of The Company, compliance to the hiring agreement, service agreement, other commercial agreements, and relevant agreements or cooperation between The Company and Trade Partner.</td><td>Contractual basis, legitimate interest basis and Legal obligation basis</td></tr><tr><td>(3)</td><td>To comply with relevant laws concerning the conducting of transactions between Trade Partners and The Company such as the laws concerning taxation, laws on the inspection of rights and benefits of the land, laws concerning state audit, laws concerning securities and exchange and laws concerning official information.</td><td>Legal obligation basis and Contractual basis</td></tr></tbody></table></div>
+          <p><strong>3.4 In case that you are a Person Having Business Relationship</strong>, the company may proceed on the Processing of your personal data for additional relevant purposes as follows:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>For business communication such as having business contact, appointment, attendance, conference, meeting and converse in relation to products or services and relevant projects of the company.</td><td>Legitimate interest basis</td></tr><tr><td>(2)</td><td>To verify an appropriateness before making a decision to enter into business transaction, risk assessment. To verify identity and authority, granting and obtaining of authority before entering into any execution of the agreement with the Company.</td><td>Legitimate interest basis, Legal obligation basis and Contractual basis</td></tr><tr><td>(3)</td><td>To consider the preparation, the signing of any contract or agreement, as well as the execution of such agreement with The Company.</td><td>Contractual basis and Legitimate interest basis</td></tr><tr><td>(4)</td><td>To Comply with laws and regulations related to business transaction between The Company and the third party, such as Tax Revenue Law, Land Benefit Check Law, Securities and Stock Exchange Law.</td><td>Contractual basis, Legal obligation basis and Legitimate interest basis</td></tr></tbody></table></div>
+          <p><strong>3.5 In case that you are job applicants and student trainee</strong>, the company may proceed on the Processing of your personal data for additional relevant purposes as follows:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>For recruitment, job applicant interview, or any actions related to job application. For necessary communication on recruitment process. For evaluation of the applicant’s qualification and appropriateness to the position required. For recording The Company’s employment process.</td><td>Legitimate interest basis and Consent basis</td></tr><tr><td>(2)</td><td>The Company may collect, use, or disclose Personal Data of the job applicant, or of his/her family member, or of other persons, provided by the job applicant. Such actions must comply with the law and be considered necessary or an emergency, for instance, checking Personal Data of the job applicant or student trainee from the referee, or checking the working record from the former employer, before reporting the incident or accident happened.</td><td>Legal obligation, Legitimate interests, Contractual basis and Consent basis</td></tr><tr><td>(3)</td><td>For necessary or emergency communication, such as the checking of Personal Data of the job applicant or student trainee the referee or checking the working record from the former employer.</td><td>Legitimate interests and Consent basis</td></tr></tbody></table></div>
+          <p><strong>3.6 In case that you are an Operator in Hana Group</strong>, the company may proceed on the Processing of your personal data for additional relevant purposes as follows:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>For management of Compensation, welfare, benefits, medical expense reimbursement, physical examination and insurance etc.</td><td>Contractual basis, Legitimate interest basis and Legal obligation basis</td></tr><tr><td>(2)</td><td>For the purpose of the performance of duty of employee according to the employment, employment agreement, or any other contracts entered into with the company.</td><td>Contractual basis, Legitimate interest basis and Legal obligation basis</td></tr><tr><td>(3)</td><td>For the compliance with relevant law of Human Resources management and company and lawful orders of government agencies and relevant officials.</td><td>Contractual basis, Legitimate interest basis and Legal obligation basis</td></tr><tr><td>(4)</td><td>For the purpose of performance appraisal management.</td><td>Contractual basis, Legitimate interest basis and Legal obligation basis</td></tr><tr><td>(5)</td><td>For the purpose of training management.</td><td>Contractual basis, Legitimate interest basis and Legal obligation basis</td></tr><tr><td>(6)</td><td>For the advantage of personnel transfer. In case of having to transfer personal data abroad, the company will take steps to ensure that the destination country or the recipient has adequate personal data protection measures. In some cases, the Company may require consent. This is to comply with the rules of the law on personal data protection.</td><td>Contractual basis, Legitimate interest basis, Legal obligation basis and Consent basis</td></tr></tbody></table></div>
+          <p><strong>3.7 In case that you are a shareholder</strong>, the company may proceed on the Processing of your personal data for additional relevant purposes as follows:</p>
+          <div class="pdpa-table-wrap"><table class="pdpa-table"><thead><tr><th>Clause</th><th>Purposes</th><th>Lawful basis</th></tr></thead><tbody><tr><td>(1)</td><td>For attend the shareholders’ meeting. For allow you to exercise your rights as shareholders through a ballot or appointment of a proxy. For the registration of the Company’s shareholder registration book, including keeping information up to date. For pay dividend. For communicate with you about a shareholder with related information, including a letter to shareholders, meeting invitation letters etc.</td><td>Contractual basis, Legitimate interest basis and Legal basis</td></tr><tr><td>(2)</td><td>For provide your personal information to authorized persons including the share registrar and securities register in order to benefit the managing of you shareholding on behalf of the company. For internal audit purposes and efficient business management of the Company. For comply with legal requirements.</td><td>Contractual basis, Legitimate interest basis and Legal basis</td></tr></tbody></table></div>
 
-        <h2 id="disclosure">Disclosure of personal data</h2>
-        <p>We may disclose personal data to: companies within the Hana Microelectronics Group; government and regulatory authorities where required by law; parties involved in legal proceedings; contractors, auditors and legal advisors performing services on our behalf; certification bodies; and financial institutions. Data is disclosed only as necessary to fulfil the purposes described above.</p>
+          <h3>4. Period for retention of personal data</h3>
+          <p>The company shall retain your personal data for the period necessary for the purposes of the collection, use or disclosure of personal data set out in this Privacy Notice. The period necessary for the company to utilize your personal data in accordance with the purposes are not over than 10 years and it shall be further retained pursuant to the period necessary for the compliance with laws or the statutory prescription period, or for the establishment, compliance, exercise or defense of legal claim, or for other reasons pursuant to the internal policies and rules in the organization of the company.</p>
 
-        <h2 id="transfer">Transfer to foreign countries</h2>
-        <p>Because Hana operates group companies outside Thailand, personal data may be transferred to other countries, which may have different data protection standards. Any such transfer is carried out in compliance with the PDPA.</p>
+          <h3>5. Use of Cookies</h3>
+          <p>The data subject may use features offered on Hana Group websites such as About, Worldwide Manufacturing and Product Information, Investor Relations and Careers page. Nevertheless, the personal information such as ISP name or the searching history will be stored by Cookies or other program in statistic form on behalf of the companies for the purpose of improving our website performance.</p>
 
-        <h2 id="rights">Your rights</h2>
-        <p>As a data subject under the PDPA, you have the right to: be notified of data collection; access and request a copy of your data; request data portability; restrict or object to processing; withdraw consent; request erasure; and request correction of inaccurate data. To exercise these rights, contact the relevant facility using the details below.</p>
+          <h3>6. Disclosure of personal data</h3>
+          <p>In order to carry out the proceedings for the purposes set out in this Privacy Notice, the company may disclose your personal data to the third parties as follows:</p>
+          <p>6.1 Companies in Hana Group;</p>
+          <p>6.2 The government authorities, regulatory authorities, state enterprises, state authorities, public organizations, independent organizations established under the laws or other authorities as prescribed by laws including the officers which exercise powers or perform duties under the laws such as court, polices, Revenue Department, Department of Labour Skill Development, Welfare and Labour Protection Department, Department of Legal Execution, Stock Exchange etc.</p>
+          <p>6.3 Authorities, organizations, or the person relating to the exercise of right of claim, the commencing of legal proceeding, the objection to the complaint or the allegation, the defending of the case of the company such as the parties of the case and witnesses, etc.</p>
+          <p>6.4 Agents, contractors/sub-contractors and/or service providers for any operation provided for the company such as insurers, auditors and legal advisors, etc.</p>
+          <p>6.5 Persons Having Business Relationship (in case that it is necessary for the compliance with agreements in case that there is a joint operation of project or business).</p>
+          <p>6.6 Management system standards certification institutes.</p>
+          <p>6.7 Training participants.</p>
+          <p>6.8 Shareholders, debenture holders and the representatives of such persons.</p>
+          <p>6.9 Banks or financial institutions.</p>
+          <p>6.10 Other third parties such as the announcement of relevant persons who have been selected through social media channels of the company or the public relations of activity photos or news and information on the conducting of activities or projects of the company to the mass media and third parties, etc.</p>
 
-        <h2 id="security">Security &amp; contact</h2>
-        <p>We maintain administrative, physical and technical safeguards appropriate to the sensitivity of the data we hold. For privacy questions or to exercise your rights, contact the PDPA team at your nearest Hana facility:</p>
-        <ul>
-          <li><strong>Bangkok</strong> — 65/98 Soi Viphavadi-Rangsit 64 Junction 2, Talad Bangkhen, Laksi, Bangkok 10210 &middot; Tel. 02-551-1297</li>
-          <li><strong>Lamphun</strong> — 101/2 Moo4, Northern Region Industrial Estate, T. Baan-Klang, A. Muang Lamphun 51000 &middot; Tel. (053) 581-567-73</li>
-          <li><strong>Ayutthaya</strong> — 100 Moo1, KM.59 Asia Road, T. Bann-Len, A. Bang Pa-in, Ayutthaya 13160 &middot; Tel. (035) 350-803-4</li>
-        </ul>
-        <p>You may also reach us via our <a class="inline" href="/contact">contact page</a>.</p>
+          <h3>7. The submission or transfer of personal data to foreign countries</h3>
+          <p>In some circumstance, we may be required to disclose your personal data to foreign countries, which may have standards of personal data protection different than those of Thailand because the company has companies in the group which are located offshore, there might be the disclosure of information to foreign countries. In this regard, for the submission or transfer of your data to foreign countries in whatsoever case, the company shall comply with the Personal Data Protection Act B.E 2562 (2019).</p>
 
-        <h2 id="amendment">Amendment of this notice</h2>
-        <p>We review this privacy notice periodically and will post any changes on this page. This policy is effective as of 17 May 2022 and was last reviewed 2 July 2026.</p>
+          <h3>8. Your rights as the owner of personal data</h3>
+          <p>As the owner of personal data, you have the rights as prescribed in the Personal Data Protection Act B.E 2562 (2019). In this respect, you can request to exercise your relevant rights through the channels specified by the company in Clause 9 or through the company website. In this respect, your relevant rights shall have details as follows:</p>
+          <p>8.1 Right to be Notified: The data subject shall be notified when personal data is necessary to be collected for use.</p>
+          <p>8.2 Right to Access: The data subject can request a copy of his/her personal data, as collected by the company in order to improve and update the information, and can ask for explanations in the case that his/her personal data has been disclosed without any prior consent (if any).</p>
+          <p>8.3 Right to Data Portability: The data subject has the right to ask the data controller to transmit his/her data to another data controller.</p>
+          <p>8.4 Right to Restrict Processing: The data subject has right to restrict the processing of his/her personal data to others.</p>
+          <p>8.5 Right to Withdraw Consent: The data subject can petition cancellation of the company access to his/her personal data.</p>
+          <p>8.6 Right to object: The data subject can object / or erase the company’s storage retention, use or disclosure of personal data in some certain cases as prescribed by law.</p>
+          <p>8.7 Right to Erase: The data subject has the right to request the company to delete, destroy or anonymize the personal data.</p>
+          <p>8.8 Right to notify the company to modify, change or delete his/her personal data.</p>
+          <p>8.8.1 The data subject has the duty to send accurate and up-to-date personal data to the company within the given time span.</p>
+          <p>8.8.2 The data subject must inform the company immediately if any of his/her personal data leads to harm or damage to the company.</p>
+          <p>All the rights stated herein will be granted to the data subject upon his/her written request or through electronic tool. The company will exercise in discrete evaluation of the calls and may reject in some certain instances, including, in the case that is determined by legal requirements, or in the case that the personal data is no longer specified with the data.</p>
+
+          <h3>9. Security of your personal information</h3>
+          <p>The Company attaches great importance to the security of your personal data. The Company will regularly monitor and implement appropriate corporate, physical and technical security measures. To store and process your personal data please be assured that your personal information will not be lost, accidentally destroyed, exposed, and misused or disclose to other persons who are not employees or processors of personal data performing the duties of the Company.</p>
+
+          <p><strong>Hana Microelectronics Public Co., Ltd (Bangkok)</strong><br>
+          65/98 Soi Viphavadi-Rangsit 64 Junction 2, Talad Bangkhen, Laksi, Bangkok 10210<br>
+          Tel. 02-551-1297, 02-521-4935</p>
+
+          <p><strong>Hana Microelectronics Public Co., Ltd (Lamphun)</strong><br>
+          101/2 Moo4, Northern Region Industrial Estate, T. Baan-Klang, A. Muang Lamphun 51000<br>
+          or 123 Moo5, Sahaphat Industrial Estate, T.Phasak, A. Muang Lamphun 51000, Thailand<br>
+          Tel. (053) 581-567-73, (053) 552-361</p>
+
+          <p><strong>Hana Semiconductor (Ayutthaya) Co., Ltd</strong><br>
+          100 Moo1, KM.59 Asia Road, T. Bann-Len, A.Bang Pa-in, Ayutthaya 13160<br>
+          Tel. (035) 350-803-4, (035) 729-297-301</p>
+
+          <h3>10. Amendment of the Personal Data Protection Notice</h3>
+          <p>This privacy notice it is part of the Company’s privacy protection policy where the company will review the privacy policy on a regular basis and may affect the privacy notice of the owner of the personal information. You can see the latest changes from the date at the bottom of the Privacy Notice via the Company’s website <a class="inline" href="https://www.hanagroup.com" target="_blank" rel="noopener">https://www.hanagroup.com</a>.</p>
+          <p>The Privacy Policy shall be effective from 17 May, 2022.</p>
+        </div>
+
+        <div class="pdpa-panel" data-panel="prepdpa" hidden>
+          <h2 style="margin-top:0;">Notice of processing of personal data before the Personal Data Protection Act B.E.2562 implement</h2>
+          <p class="lede">Hana Microelectronics Public Company Limited and its affiliates “The Company” values your privacy and strives to protect your personal data and personal data of persons related to your business collectively referred to as “Personal Data” in accordance with Thai law and in order to comply with the Personal Data Protection Act B.E. 2562 (2019) (“PDPA”), in effect as of 1 June 2022. The Company has therefore prepared this notice regarding the processing of Personal Data you have provided to The Company before the effective date of the PDPA.</p>
+          <p>As The Company has collected, used and/or disclosed of your Personal Data provided to Hana in any means due to the relationship between The Company and you as student trainee, Job applicants, employee, customer, vendor, business partner, shareholder, director or other relationship before the effective date of PDPA.</p>
+          <p>1. The Company would like to inform you that The Company will continue to collect and use of your Personal Data only for the same purpose that The Company has collected and used before the PDPA came into effect. The Company will not disclose your Personal Data without your prior written consent unless it is permitted by the law.</p>
+          <p>2. In case where The Company shall collect, use or disclose your Personal Data for any other purpose than originally stated, The Company shall notify you, and shall do it in accordance with the Personal Data Protection Act. For more details, please see the Privacy Notice above.</p>
+          <p>3. If you no longer allow The Company to collect and use of the said Personal Data, you are entitled to withdraw your consent that you have given to The Company before the PDPA came into effect at any time by notifying The Company of such withdrawal of consent through the channels below.</p>
+
+          <p><strong>Hana Microelectronics Public Co., Ltd (Bangkok)</strong><br>
+          65/98 Soi Viphavadi-Rangsit 64 Junction 2, Talad Bangkhen, Laksi, Bangkok 10210<br>
+          Tel. 02-551-1297, 02-521-4935</p>
+
+          <p><strong>Hana Microelectronics Public Co., Ltd (Lamphun)</strong><br>
+          101/2 Moo4, Northern Region Industrial Estate, T. Baan-Klang, A. Muang Lamphun 51000<br>
+          or 123 Moo5, Sahaphat Industrial Estate,T.Phasak, A. Muang Lamphun 51000, Thailand<br>
+          Tel. (053) 581-567-73 / (053) 552-361</p>
+
+          <p><strong>Hana Semiconductor (Ayutthaya) Co., Ltd</strong><br>
+          100 Moo1, KM.59 Asia Road,T. Bann-Len, A.Bang Pa-in, Ayutthaya 13160<br>
+          Tel. (035) 350-803-4, (035) 729-297-301</p>
+        </div>
+
+        <div class="pdpa-panel" data-panel="rights" hidden>
+          <h2 style="margin-top:0;">Data Subject Right Request Form</h2>
+          <p class="lede">If you have any questions or concerns about Personal Data Protection Policy and would like to exercise your rights as a data subject related to Personal Data Protection Act B.E. 2562 (A.D. 2019), please download Data Subject Right Request form (<a href="~/documents/data-subject-right-request-form.pdf" target="_blank">here</a>), fill in and submit/contact the Human Resource Department of company through one of the following channels;</p>
+
+          <p><strong>Hana Microelectronics Public Co., Ltd (Bangkok)</strong><br>
+          65/98 Soi Viphavadi-Rangsit 64 Junction 2, Talad Bangkhen, Laksi, Bangkok 10210<br>
+          Tel. 02-551-1297, 02-521-4935<br>
+          Or Contact us via email: HanaPDPA@@hanabk.th.com</p>
+
+          <p><strong>Hana Microelectronics Public Co., Ltd (Lamphun)</strong><br>
+          101/2 Moo4, Northern Region Industrial Estate, T. Baan-Klang, A. Muang Lamphun 51000<br>
+          or 123 Moo5, Sahaphat Industrial Estate,T.Phasak, A. Muang Lamphun 51000, Thailand<br>
+          Tel. (053) 581-567-73, (053) 552-361<br>
+          Or Contact us via email: HanaPDPA@@lpn.hanabk.th.com</p>
+
+          <p><strong>Hana Semiconductor (Ayutthaya) Co., Ltd</strong><br>
+          100 Moo1, KM.59 Asia Road,T. Bann-Len, A.Bang Pa-in, Ayutthaya 13160<br>
+          Tel. (035) 350-803-4, (035) 729-297-301<br>
+          Or Contact us via email: HanaPDPA@@ayt.hanabk.th.com</p>
+        </div>
+
       </article>
     </div>
   </div>
+
 </div>
+
+<script>document.querySelectorAll('.pdpa-tab-link').forEach(function(link){link.addEventListener('click',function(e){e.preventDefault();document.querySelectorAll('.pdpa-tab-link').forEach(function(l){l.classList.remove('is-active');l.setAttribute('aria-selected','false');});document.querySelectorAll('.pdpa-panel').forEach(function(p){p.hidden=true;});link.classList.add('is-active');link.setAttribute('aria-selected','true');document.querySelector('.pdpa-panel[data-panel="'+link.dataset.tab+'"]').hidden=false;});});</script>
+
+@section Scripts {
+    <script>if(typeof lucide!=="undefined"){lucide.createIcons();}</script>
+}

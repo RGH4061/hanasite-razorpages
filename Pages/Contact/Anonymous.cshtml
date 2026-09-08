@@ -1,0 +1,69 @@
+@page "/contact/anonymous"
+@{
+    ViewData["Title"] = "Anonymous Communication Form — Hana";
+    ViewData["Description"] = "Report concerns or potential violations of our Code of Conduct anonymously.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/contact-forms.css" />
+}
+
+@* Anonymous Communication Form. Static form markup; helper JS in ~/js/contact-forms.js
+   (demo submit — wire OnPost for the backend). Hero background via ~/js/hana-backgrounds.js. *@
+
+<div class="cf-page">
+  <section class="cf-hero" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner">
+      <p class="cf-eyebrow" style="color:#7EC8FF;">Contact us</p>
+      <h1 style="color:#fff;">Anonymous Communication Form</h1>
+      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">Through this form, you may ask questions relating to our Code of Conduct.</p>
+    </div>
+  </section>
+  <section class="cf-section">
+    <div class="cf-wrap" style="position:relative;z-index:1;">
+      <div class="cf-grid">
+        <div class="cf-intro">
+          <p class="cf-eyebrow">About this channel</p>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 18px;">Please note that this form is anonymous, but we encourage you to identify yourself to facilitate tracking and answering your questions. We will not be able to respond to you if you do not provide any means of contact.</p>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 18px;">Open communication is essential to our success. Hana has established a regulatory communication channel where employees or relevant individuals can report any illegal or unethical conduct, with strict confidentiality guaranteed for the reporting party.</p>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 28px;">You may report any concerns or allegations, potential violations of law or regulations, or our Code of Conduct. Hana will ensure that there will be no negative work-related consequences resulting from any individual reporting a violation of law, the Code of Conduct, or other Company guidelines in good faith, or who raises questions about ongoing or anticipated conduct. Individuals who believe that they have been retaliated against for reporting a potential violation should contact the Hana Head of Human Resources and Training. Top management will take all reports seriously, investigate the matter, and take appropriate action.</p>
+
+          <div class="cf-offices-label">Anonymous communication via post</div>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 18px;">You may also contact us anonymously via post at the following mailing address:</p>
+          <div class="cf-office"><div class="cf-office-name">Head of HR &amp; Training Department</div><div class="cf-office-name" style="margin-top:2px;">Hana Semiconductor (Ayutthaya) Co., Ltd.</div><div class="cf-office-addr" style="margin-top:10px;">Hi-Tech Industrial Estate Authority of Thailand<br>100 Moo 1, T. Baan-Len, A. Bang Pa-In KM. 59 Asia Road,<br>Ayutthaya 13160, Thailand</div></div>
+        </div>
+        <div class="cf-card" id="anon-form">
+  <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Report received</h3><p>Thanks — we&rsquo;ve received your submission. If you provided contact details, we will follow up.</p></div>
+
+  <form class="cf-form" method="post" novalidate>
+    <button type="button" id="cf-guideline-btn" class="hana-btn hana-btn-secondary" style="margin-top:20px;padding:11px 22px;font-size:12px;background-color:var(--hana-blue-tint)">Guideline for complaint channel</button>
+    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field"><label for="an-message" style="padding:5px;"><span class="req">*</span>Question or description of the issue</label><textarea id="an-message" name="an-message" placeholder="Please be as specific as possible — describe the issue, the type of issue, the name of the person or organization involved, the date and time, the monetary value, etc." required style="min-height:160px;"></textarea></div></div>
+    <div class="cf-privacy" style="margin:4px 0 18px;">We will investigate the issue and take appropriate action based on the information provided. If you would like us to follow up with you, please let us know above and provide contact details below. If you choose to remain anonymous, we will not be able to contact you — to remain anonymous, do not include your name or contact information.</div>
+    <div class="cf-divider"></div>
+    <div class="cf-offices-label" style="margin:18px 0 4px;">Optional</div>
+    <div class="cf-row two"><div class="cf-field"><label for="an-name">Name</label><input type="text" id="an-name" name="an-name" placeholder="First and last name"></div><div class="cf-field"><label for="an-email">Email</label><input type="email" id="an-email" name="an-email" placeholder="you@@company.com"></div></div>
+    <div class="cf-row two"><div class="cf-field"><label for="an-phone">Contact no.</label><input type="tel" id="an-phone" name="an-phone" placeholder="+44 …"></div></div>
+    <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-an"><label for="cf-rc-an" class="rc-label">I'm not a robot</label>
+    <div class="rc-logo"><span class="rc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue-soft)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Submit</button></div>
+    <div class="cf-privacy">This form is anonymous by default. We do not link submissions to your identity unless you choose to provide contact details.</div>
+  </form>
+</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="cf-guideline-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(3,10,23,0.6);align-items:center;justify-content:center;padding:32px;">
+  <div style="background:#fff;border-radius:8px;max-width:920px;width:100%;max-height:88vh;overflow:auto;position:relative;">
+    <button type="button" id="cf-guideline-close" aria-label="Close" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border:1px solid var(--line);border-radius:4px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-2);">&times;</button>
+    <div style="padding:32px;">
+      <h3 style="font-family:var(--font-display);font-weight:600;font-size:20px;color:var(--ink);margin:0 0 20px;">Guideline for complaint channel</h3>
+      <img src="~/images/complaint-channel-en.webp" alt="Guideline for complaint channel (English)" style="width:100%;display:block;border:1px solid var(--line);border-radius:6px;margin-bottom:20px;">
+      <img src="~/images/complaint-channel-th.webp" alt="\u0e41\u0e19\u0e27\u0e17\u0e32\u0e07\u0e0a\u0e48\u0e2d\u0e07\u0e17\u0e32\u0e07\u0e23\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19 (\u0e44\u0e17\u0e22)" style="width:100%;display:block;border:1px solid var(--line);border-radius:6px;">
+    </div>
+  </div>
+</div>
+<script>(function(){var b=document.getElementById('cf-guideline-btn'),m=document.getElementById('cf-guideline-modal'),c=document.getElementById('cf-guideline-close');if(b&&m){b.addEventListener('click',function(){m.style.display='flex';});c.addEventListener('click',function(){m.style.display='none';});m.addEventListener('click',function(e){if(e.target===m)m.style.display='none';});}})();</script>
+
+@section Scripts {
+    <script src="~/js/contact-forms.js"></script>
+}

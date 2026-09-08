@@ -15,24 +15,21 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
-- [ ] **Dead-asset re-cleanup — ⚠️ LIST STALE, RE-SCOPE BEFORE NEXT RUN (see 9 Aug Fixed).**
-  As of the 9 Aug export, `world-map.png`, `rfid-tire.jpeg` and `hana-mark-white.svg` are now
-  LIVE (referenced by the Insights pages and `Capabilities/RfidSmartTags.cshtml`) — do NOT delete
-  them. Re-verify every remaining candidate with a fresh `grep -rl` across `Pages/` before deleting.
-  (done in this repo historically, NOT yet in Design source — every export re-adds these.)
-  - Delete 14 dead `wwwroot` assets (~8 MB) the export keeps re-adding: 7 byte-identical
-    duplicates of images used under other names (`Hana_bkk.jpg`, `automotive.jpeg` ×2,
-    `medical.jpeg`, `rfid-tire.jpeg`, `telecommunications.jpeg`,
-    `video-placeholder-factory.jpg`, `photos/homepage-markets-industrial.png`), plus
-    genuinely unused `world-map.png`, `photos/homepage-what-sets-apart.png`,
-    `cleanroom-smt-line.png`, and 3 white logo variants. Also `README 2.md` (stale macOS dup).
-  - **Note:** `Hana_bkk.jpg` is byte-identical to canonical `hana-bkk.jpg`, but the export's
-    `Pages/Investors/EventsContact.cshtml` re-points the head-office photo at the uppercase
-    duplicate — re-point it to `~/images/hana-bkk.jpg` before deleting, each export.
-  - ✅ **WebP conversion is now at source** (13 Jul export): the 6 photo PNGs
-    (`ayutthaya-facility`, `ohio-facility`, `automotive-cutaway`, `photos/power-module-ecu`,
-    `photo-cleanroom`, `jiaxing-facility`) ship as `.webp` and pages reference `.webp`. No
-    longer needs re-applying.
+- [ ] **Dead-asset re-cleanup — ✅ LARGELY RESOLVED BY THE 8 SEP SYNC; keep watching.**
+  The 8 Sep export renamed almost every legacy asset to a `-hero`/`mk-`/`svc-`/`hp-` name and
+  shipped WebP versions, so the sync was run with `rsync --delete` and removed **46 superseded
+  assets** after verifying each was unreferenced across the export's `Pages/`, `css/` and `js/`.
+  The old duplicate-name problem is gone at source: `Hana_bkk.webp` is now the single canonical
+  head-office photo (no `hana-bkk.jpg` / `Hana_bkk.jpg` pair), so **the standing `Hana_bkk`
+  re-point retrofit is retired**.
+  - **Method for future syncs:** run `rsync --delete` with the exclusion list below, then
+    re-verify with a basename `grep -rl` across the export before accepting deletions.
+    **Watch for substring false positives** — `osat.png` matches `svc-osat.png`,
+    `hero-loop.mp4` matches `hp-hero-loop.mp4`. Match on the full `~/images/...` path.
+  - **Permanent exclusions (must survive every sync):** `ISSUES.md`, `Directory.Build.props`,
+    `docs/`, the 3 repo-only `-mobile.css` files, `Pages/Locations/Cheongju.cshtml` **and its
+    `wwwroot/images/cheongju-facility.jpg`** (the page is dormant but kept re-linkable — the
+    export deletes the image if you don't exclude it).
 - [ ] **Razor `@` escaping — export generator emits bare `@` in inline `<style>` at-rules
   (build breaker; needs fixing at source).** `dotnet build` fails on any unescaped `@media`
   etc. Re-fixed each export in: `Pages/Locations/Index.cshtml` (`@media` → `@@media`),
@@ -41,18 +38,24 @@ A screenshot or the prototype filename it should match is ideal but not required
   `<style>`). The generator escapes `@media` correctly in most files but keeps missing some;
   grep `[^@]@media` across `Pages/` after every export. **Use a line-start-aware grep** — a bare
   `@` can sit at column 0, which `[^@]@media` misses (bit us on `Capabilities/PackageDesign.cshtml`
-  `@supports`/`@media`, 17 Aug): `grep -rnE '(^|[^@])@(media|supports|keyframes|font-face)' Pages/ | grep -vE '@@'`.
+  `@supports`/`@media`, 17 Aug): use a **broad at-rule alternation** — the 8 Sep export added a
+  brand-new variant, `@container` in `Capabilities/PackageDesign.cshtml`, which the old
+  four-keyword grep missed and which broke the build (CS0103 'container'). Current sweep:
+  `grep -rnE '(^|[^@[:alnum:]_])@(media|supports|keyframes|font-face|container|layer|scope|property)\b' Pages/ | grep -vE '@@'`
+  (ignore the legitimate Razor `@page` directives and `_ViewImports.cshtml`'s `@namespace`).
 - [ ] **Section-body mobile optimisation — Locations / Investors / About / Capabilities
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
   which still live only as repo-side retrofit stylesheets loaded per page via `@section
-  Head`. Each export overwrites the ~16 link tags (the CSS files themselves survive as
+  Head`. Each export overwrites the ~17 link tags (the CSS files themselves survive as
   untracked extras), so they must be re-applied after every export — or, better, built
   into the Design source so they export everywhere:
   - `wwwroot/css/locations-mobile.css` (7 pages) — inline-styled grids collapse (2-col
     splits → 1, stat strips 4 → 2×2, card grids → 1), spec-row labels stack above values,
     plant hero 440 → 380px.
-  - `wwwroot/css/investors-mobile.css` (8 pages) — group-structure org chart (inline
+  - `wwwroot/css/investors-mobile.css` (9 pages — the 8 English IR pages plus, from the
+    8 Sep export, the Thai twin `Pages/ThaiPages/Investors/Index.cshtml`, which loads the
+    same `investors.css` and therefore inherits the same defects) — group-structure org chart (inline
     `width:1100px` figure + 1020px canvas) → 70%-zoom horizontal touch-scroller;
     `.section-head .intro` inline `width:593px` released; hub's decorative 480px pseudo-
     circles clipped. Also a genuine all-widths bug: `.page-end`/`#enquiries-topo`
@@ -62,10 +65,64 @@ A screenshot or the prototype filename it should match is ideal but not required
     below `innerWidth < 980`, piling all six capability cards on one spot; below 980px the
     wheel retires and the six cards stack as a full-width list.
   - About pages needed no section file — clean once the chrome reflows.
+- [ ] **Thai font — `Sarabun-*.woff2` 404s on every `/th/` page (source-side, non-breaking).**
+  `wwwroot/css/_components.css` declares `@font-face` with `url(../fonts/Sarabun-Regular.woff2)
+  format('woff2')` first and the `.ttf` as fallback, but the export ships **only** the two
+  `.ttf` files. Every Thai page therefore fires 2 failed requests before falling back; the
+  text renders correctly, so this is a performance/console-noise issue, not a visual bug.
+  **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
+  `@font-face` rules. Deliberately NOT patched repo-side (the next export would overwrite it).
 
 ---
 
 ## Fixed
+
+### 8 Sep 2026 — export sync ("razor pages 8-9 Hana Site.zip")
+
+- **Synced the 8 Sep Razor export** (`rsync --delete`): 118 files added, 119 modified,
+  47 removed. `dotnet build` clean afterwards (0 warnings, 0 errors) and **all 102 routes
+  verified 200 at runtime**.
+- **Page set — 3 in, 3 out (net 119, unchanged).**
+  - **New:** `Contact/Anonymous.cshtml` (`/contact/anonymous` — anonymous Code-of-Conduct
+    communication form) and the **first two Thai twins**, `ThaiPages/Investors/Index.cshtml`
+    (`/th/investor-relations`) and `ThaiPages/Legal/PrivacyPolicy.cshtml` (`/th/privacy-policy`).
+    Ships the Sarabun Thai font pair + `OFL.txt`, and
+    `wwwroot/documents/data-subject-right-request-form.pdf`.
+  - **Removed at source (verified unreferenced anywhere in the new export, both arrived via
+    earlier exports — not repo-side work):** `Markets/IndustrialIotPowerModules.cshtml` and
+    `Markets/OpticalSensorsMicrodisplay.cshtml`.
+  - **`Locations/Cheongju.cshtml` deliberately preserved** (excluded from the sync), together
+    with its `wwwroot/images/cheongju-facility.jpg` — the export would have deleted the image
+    and left the dormant page with a broken hero.
+- **Large asset pass — 46 superseded files deleted.** Wholesale renames plus WebP conversion:
+  `icons/*.png` → `icons/svc-*.png`, `photos/homepage-markets-*` → `photos/mk-*-hero.webp`,
+  `videos/hero-loop.mp4` → `videos/hp-hero-loop.mp4`, and jpg/png → webp for `careers-hero`,
+  `hana-team-heart`, `hero-bg`, `hq-cover`, `koh-kong-facility`, `lamphun-facility`, `lifi-*`,
+  `vertical-integration-bg`, `wire-bond-line`, `world-map`, `world-map3`, `DSC_5075`, `Hana_bkk`.
+  Each deletion was checked against the export's `Pages/` + `css/` + `js/` first. Also lands
+  ~19 Jiaxing "life at Hana" photos and a batch of new capability/market hero photography.
+- **`@`-escaping breakers — 9 files, and a NEW at-rule keyword.** The usual six
+  (`Careers/Stories`, `Locations/Index`, and the four plant pages) plus
+  `Capabilities/RfidTireTags.cshtml`. Then the build still failed on
+  `Capabilities/PackageDesign.cshtml` line 230: **`@container`** at column 0 — a keyword the
+  established four-word grep (`media|supports|keyframes|font-face`) does not match. The Open
+  item's sweep has been widened accordingly.
+- **Standalone-HTML build breakers — the same 5 pages AGAIN, plus a Thai variant (6 total).**
+  `Insights/{Index,AutomotivePcbaAssembly}` and `Legal/{PrivacyPolicy,TermsOfUse,CookiePolicy}`
+  as before, and now `ThaiPages/Legal/PrivacyPolicy.cshtml` — whose mangled opener reads
+  **`ang="th">`**, not `ang="en">`, so a literal `ang="en"` grep misses it. Repaired as usual
+  (strip the `ang="…">` line through the first following `</header>`; `<main id="main-content"
+  class="ins-page">` → `<div class="ins-page">` with a matching close, reusing the page's own
+  `</main>` where one existed). Verified at runtime: one `<!DOCTYPE>` / `<html>` / `hana-header`
+  / `hana-footer` / `<main>` per page.
+  **Note for `Insights/AutomotivePcbaAssembly.cshtml`:** it has a *second*, legitimate
+  `</header>` inside the article body — always cut to the FIRST `</header>` after the opener.
+- **Standing retrofits re-applied:** 17 `-mobile.css` `<link>` tags (capabilities 1 /
+  locations 6 + Cheongju's preserved / investors 8 + the new Thai IR twin). Confirmed loading
+  at runtime and no horizontal overflow at 375px on the IR group-structure org chart.
+- **`Hana_bkk` re-point retrofit RETIRED** — source now ships a single `Hana_bkk.webp`; the
+  byte-identical `hana-bkk.jpg` / `Hana_bkk.jpg` pair no longer exists.
+- **New open item logged:** `Sarabun-*.woff2` 404s on every `/th/` page (see Open).
 
 ### 17 Aug 2026 — export sync ("razor pages - Hana Site.zip")
 
