@@ -10,7 +10,7 @@ same set of accounts as the ticketing system and Careers Admin.
 Investor Relations is the fastest-moving section of the site. Careers gets a
 handful of new roles a month; IR gets SET announcements, press releases,
 quarterly financial statements, MD&A, investor presentations, analyst meeting
-dates, Opportunity Day recordings and the annual report — much of it on a
+dates, Earnings Call recordings and the annual report — much of it on a
 regulatory clock. Some of it has to appear on the website the same day it is
 filed with the Stock Exchange of Thailand.
 
@@ -26,9 +26,9 @@ people who already produce those documents in direct control of publishing them.
 | Section | Public page | Why it's in |
 |---|---|---|
 | Investor News | `/investor-relations/investor-news` | SET announcements, press releases, quarterly financial information — the highest-volume page on the site |
-| Investor Events | `/investor-relations/events-contact` (events half) | Analyst meetings and SET Opportunity Days — dates change every quarter |
+| Investor Events | `/investor-relations/events-contact` (events half) | Analyst meetings and SET Earnings Calls — dates change every quarter |
 | Reports | `/investor-relations/annual-report` | Annual Report and 56-1 One Report, plus their supporting files |
-| FAQ & Presentations | `/investor-relations/faq` | Updated quarterly — each Opportunity Day adds a video, summary and transcript (Rupert, July 2026) |
+| FAQ & Presentations | `/investor-relations/faq` | Updated quarterly — each Earnings Call adds a video, summary and transcript (Rupert, July 2026) |
 
 **Explicitly out of scope** — these change once a year or less, and a developer
 edit is cheaper than a form:
@@ -108,7 +108,7 @@ dropdown, so the same form serves all of them.
 ## 2 · Events
 
 **Entered by finance:**
-- Event kind — Analyst Meeting / SET Opportunity Day
+- Event kind — Analyst Meeting / SET Earnings Call
 - Title — e.g. "Q2/2026 Results"
 - Date, or **Date to be confirmed** tick box
 - Start and end time
@@ -150,14 +150,14 @@ The FAQ & Presentations page has two halves, and only one of them moves.
 
 ### Presentations — quarterly
 
-Every SET Opportunity Day adds a presentation record. The newest one gets the
+Every SET Earnings Call adds a presentation record. The newest one gets the
 featured treatment on the page (video, key takeaways, and a tabbed summary /
 transcript pane); older ones drop back to cards automatically, so nobody has to
 demote last quarter's by hand.
 
 **Entered by finance:**
 - Period — e.g. Q1 2026
-- Event kind — SET Opportunity Day / Analyst Meeting
+- Event kind — SET Earnings Call / Analyst Meeting
 - Presentation date
 - **YouTube link** — see below
 - Key takeaways — one per line, becomes the always-visible bullet list
@@ -179,7 +179,7 @@ summary field rather than relying on memory.
 
 ### The video — one pasted YouTube link
 
-The Opportunity Day recordings are on YouTube, so the form takes a single
+The Earnings Call recordings are on YouTube, so the form takes a single
 field: paste the ordinary link from the browser address bar.
 
 Any of the usual forms work — `youtube.com/watch?v=…`, the short `youtu.be/…`,

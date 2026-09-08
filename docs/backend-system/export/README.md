@@ -19,7 +19,7 @@ export/
 │   │   ├── Index.cshtml(.cs)                   tabbed lists: news/events/reports/presentations
 │   │   ├── NewsForm.cshtml(.cs)                new/edit news item (also events via ?kind=event)
 │   │   ├── ReportForm.cshtml(.cs)              new/edit report + cover
-│   │   └── PresentationForm.cshtml(.cs)        new/edit Opportunity Day presentation
+│   │   └── PresentationForm.cshtml(.cs)        new/edit Earnings Call presentation
 │   ├── Admin/Careers/                      job listings (/admin/careers/)
 │   │   ├── Index.cshtml(.cs)                filterable listing table
 │   │   └── JobForm.cshtml(.cs)              new/edit a role

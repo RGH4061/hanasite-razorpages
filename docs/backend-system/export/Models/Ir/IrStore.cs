@@ -32,13 +32,13 @@ namespace HanaSite.Models.Ir
 
         public static List<IrEvent> Events { get; } = new()
         {
-            new IrEvent { Id = "e1", Title = "Q2/2026 results", Subtitle = "hanagroup.com/investor-relations/events-contact", Kind = "SET Opportunity Day", Date = "26 Aug 2026", Time = "11:15 – 12:00", Status = IrStatus.Scheduled, Upcoming = true },
-            new IrEvent { Id = "e2", Title = "Q3/2026 results", Kind = "SET Opportunity Day", Date = "25 Nov 2026", Time = "11:15 – 12:00", Status = IrStatus.Scheduled, Upcoming = true },
+            new IrEvent { Id = "e1", Title = "Q2/2026 results", Subtitle = "hanagroup.com/investor-relations/events-contact", Kind = "SET Earnings Call", Date = "26 Aug 2026", Time = "11:15 – 12:00", Status = IrStatus.Scheduled, Upcoming = true },
+            new IrEvent { Id = "e2", Title = "Q3/2026 results", Kind = "SET Earnings Call", Date = "25 Nov 2026", Time = "11:15 – 12:00", Status = IrStatus.Scheduled, Upcoming = true },
             new IrEvent { Id = "e3", Title = "Q2/2026 analyst meeting", Subtitle = "Date not yet confirmed", Kind = "Analyst Meeting", Date = "TBC", Status = IrStatus.ToBeConfirmed },
             new IrEvent { Id = "e4", Title = "Q3/2026 analyst meeting", Subtitle = "Date not yet confirmed", Kind = "Analyst Meeting", Date = "TBC", Status = IrStatus.ToBeConfirmed },
-            new IrEvent { Id = "e5", Title = "Q1/2026 results", Subtitle = "Recording linked · shown on FAQ & Presentations", Kind = "SET Opportunity Day", Date = "28 May 2026", Time = "11:15 – 12:00", Status = IrStatus.Archived },
+            new IrEvent { Id = "e5", Title = "Q1/2026 results", Subtitle = "Recording linked · shown on FAQ & Presentations", Kind = "SET Earnings Call", Date = "28 May 2026", Time = "11:15 – 12:00", Status = IrStatus.Archived },
             new IrEvent { Id = "e6", Title = "Q1/2026 analyst meeting", Subtitle = "Materials attached", Kind = "Analyst Meeting", Date = "21 May 2026", Time = "14:30", Status = IrStatus.Archived },
-            new IrEvent { Id = "e7", Title = "FY2025 & Q4/2025 results", Kind = "SET Opportunity Day", Date = "13 Mar 2026", Time = "16:15 – 17:00", Status = IrStatus.Archived },
+            new IrEvent { Id = "e7", Title = "FY2025 & Q4/2025 results", Kind = "SET Earnings Call", Date = "13 Mar 2026", Time = "16:15 – 17:00", Status = IrStatus.Archived },
             new IrEvent { Id = "e8", Title = "FY2025 & Q4/2025 analyst meeting", Kind = "Analyst Meeting", Date = "6 Mar 2026", Time = "15:00", Status = IrStatus.Archived }
         };
 
@@ -58,9 +58,9 @@ namespace HanaSite.Models.Ir
 
         public static List<Presentation> Presentations { get; } = new()
         {
-            new Presentation { Id = "p1", Title = "Q1/2026 Opportunity Day", Subtitle = "Period: Q1 2026", Date = "28 May 2026", Featured = true, HasTranscript = true, YouTubeId = "hQ2mE4rNc8A" },
-            new Presentation { Id = "p2", Title = "FY2025 & Q4/2025 Opportunity Day", Subtitle = "Period: FY 2025", Date = "13 Mar 2026", Featured = false, HasTranscript = true, YouTubeId = "kLp9Rt2xY7Q" },
-            new Presentation { Id = "p3", Title = "Q3/2025 Opportunity Day", Subtitle = "Period: Q3 2025", Date = "26 Nov 2025", Featured = false, HasTranscript = false, YouTubeId = "Bd8sN1wQ0aE" }
+            new Presentation { Id = "p1", Title = "Q1/2026 Earnings Call", Subtitle = "Period: Q1 2026", Date = "28 May 2026", Featured = true, HasTranscript = true, YouTubeId = "hQ2mE4rNc8A" },
+            new Presentation { Id = "p2", Title = "FY2025 & Q4/2025 Earnings Call", Subtitle = "Period: FY 2025", Date = "13 Mar 2026", Featured = false, HasTranscript = true, YouTubeId = "kLp9Rt2xY7Q" },
+            new Presentation { Id = "p3", Title = "Q3/2025 Earnings Call", Subtitle = "Period: Q3 2025", Date = "26 Nov 2025", Featured = false, HasTranscript = false, YouTubeId = "Bd8sN1wQ0aE" }
         };
 
         public static List<FaqCategory> Faqs { get; } = new()
