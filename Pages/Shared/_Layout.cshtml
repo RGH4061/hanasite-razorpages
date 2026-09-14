@@ -55,6 +55,9 @@
     <script src="~/js/mega-menu.js"></script>
     <script src="~/js/mobile-nav.js"></script>
     <script src="~/js/search/data.js"></script>
+    @* engine.js reads window.HS_PACKAGES once, at load — the package card in the header
+       dropdown, the mobile menu and /search all depend on this file loading first. *@
+    <script src="~/js/search/packages.js"></script>
     <script src="~/js/search/engine.js"></script>
     <script src="~/js/site-search.js"></script>
     <script>

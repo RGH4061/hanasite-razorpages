@@ -29,5 +29,7 @@
 </div>
 
 @section Scripts {
+    @* window.HS_PACKAGES is loaded site-wide in _Layout (before search/engine.js) —
+       do not load js/search/packages.js again here. *@
     <script src="~/js/package-finder.js"></script>
 }

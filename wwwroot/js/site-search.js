@@ -5,54 +5,55 @@
   const SEC_ABBR = { "Investor Relations": "Investors" };
 
   /* ── page URL map ──────────────────────────────────────────────
-     The index carries live site paths; this export is flat files whose names
-     don't always match. Explicit map — null means the page has no destination
-     in this export, so the row renders unlinked rather than 404ing. */
-  const FILE = {
-    "/": "index.html",
-    "/about/why-hana": "about.html", "/about/heritage": "about-history.html",
-    "/about/leadership": "about-leadership.html", "/about/awards": "about-quality.html",
-    "/markets/": null,
-    "/markets/automotive/pcba/": "markets-automotive-automotive-pcba.html",
-    "/markets/telecommunications/pcba/": null,
-    "/capabilities/pcba-box-build/chip-on-board/": "capabilities-pcba-box-build-cob-assembly.html",
-    "/capabilities/osat/system-in-package/": "capabilities-osat-system-in-package.html",
-    "/capabilities/microelectronic-assembly/flip-chip/": "capabilities-microelectronic-assembly-flip-chip-micro.html",
-    "/capabilities/microelectronic-assembly/interconnect-solutions/": "capabilities-microelectronic-assembly-precision-interconnect.html",
-    "/capabilities/rfid/": "capabilities-rfid-smart-tags.html",
-    "/capabilities/rfid/rfid-tire-tags/": "capabilities-rfid-smart-tags-rfid-tire-tags.html",
-    "/capabilities/rfid/rfid-inlay/": "capabilities-rfid-smart-tags-rfid-inlays.html",
-    "/capabilities/automation/robotic-smart-manufacturing/": "capabilities-automation-robotic-smart-manufacturing.html",
-    "/capabilities/dfx-jdm/design-for-excellence/": "capabilities-dfx-jdm-dfx-dfm.html",
-    "/capabilities/dfx-jdm/joint-development-model/": "capabilities-dfx-jdm-jdm.html",
-    "/capabilities/dfx-jdm/new-product-introduction/": "capabilities-dfx-jdm-npi.html",
-    "/capabilities/osat/ultra-small-packages/": "capabilities-osat-ultra-small-packages.html",
-    "/capabilities/osat/qfn-dfn-lga/": "capabilities-osat-qfn-dfn-lga.html",
-    "/capabilities/osat/package-finder/": "capabilities-osat-package-finder.html",
-    /* Renamed in the Aug 2026 restructure — the URL is now /clear-mold-packaging, but the
-       file keeps the old slug by decision (Rupert, 14 Aug 2026). This line is the bridge. */
-    "/capabilities/osat/clear-mold-packaging/": "capabilities-osat-optical-packaging.html",
-    "/locations/thailand/ayutthaya/": "locations-ayutthaya.html",
-    "/locations/thailand/lamphun/": "locations-lamphun.html",
-    "/locations/china/jiaxing/": "locations-jiaxing.html",
-    "/locations/cambodia/koh-kong/": "locations-koh-kong.html",
-    "/locations/usa/ohio/": "locations-ohio.html",
-    "/investor-relations/investor-news": "investor-relations-news.html",
-    "/investor-relations/group-structure-shareholders": "investor-relations-structure.html",
-    "/investor-relations/annual-report": "investor-relations-annual.html",
-    "/investor-relations/sustainability": "investor-relations-esg.html",
-    "/investor-relations/governance-documents": "investor-relations-governance.html",
-    "/investor-relations/events-contact": "investor-relations-contact.html",
-    "/investor-relations/faqs": "investor-relations-faq.html",
-    "/careers/bangkok": null, "/careers/ayutthaya": null, "/careers/lamphun": null, "/careers/cambodia": null,
-    "/news/": "insights.html", "/faq/": null, "/code-of-conduct": null
+     The index carries the URL tracker's addresses; this export serves Razor routes, and
+     32 of them differ. Built from the @page directives under Pages/ at export time — when
+     a route is renamed, regenerate this map rather than hand-patching links. Anything not
+     listed already matches its route once the trailing slash is dropped. */
+  const ROUTE = {
+    "/about/why-hana": "/about",
+    "/about/heritage": "/about/history",
+    "/about/awards": "/about/quality",
+    "/capabilities/pcba-box-build/chip-on-board": "/capabilities/pcba-box-build/cob-assembly",
+    /* Renamed in the Aug 2026 restructure — the index address is /clear-mold-packaging,
+       the Razor page is /optical-packaging (Rupert, 14 Aug 2026). */
+    "/capabilities/osat/clear-mold-packaging": "/capabilities/osat/optical-packaging",
+    "/capabilities/microelectronic-assembly/flip-chip": "/capabilities/microelectronic-assembly/flip-chip-micro",
+    "/capabilities/microelectronic-assembly/interconnect-solutions": "/capabilities/microelectronic-assembly/precision-interconnect",
+    "/capabilities/rfid": "/capabilities/rfid-smart-tags",
+    "/capabilities/rfid/rfid-inlay": "/capabilities/rfid-smart-tags/rfid-inlays",
+    "/capabilities/rfid/rfid-tire-tags": "/capabilities/rfid-smart-tags/rfid-tire-tags",
+    "/capabilities/dfx-jdm/design-for-excellence": "/capabilities/dfx-jdm/dfx-dfm",
+    "/capabilities/dfx-jdm/joint-development-model": "/capabilities/dfx-jdm/jdm",
+    "/capabilities/dfx-jdm/new-product-introduction": "/capabilities/dfx-jdm/npi",
+    "/markets/automotive/pcba": "/markets/automotive/automotive-pcba",
+    "/markets/consumer-electronics": "/markets/consumer",
+    "/markets/consumer-electronics/smt-sensors": "/markets/consumer/smt-sensors",
+    "/markets/consumer-electronics/wireless-charging": "/markets/consumer/wireless-charging",
+    "/markets/telecommunications": "/markets/telecom",
+    "/markets/telecommunications/rf-assembly": "/markets/telecom/rf-assembly",
+    "/locations/thailand/ayutthaya": "/locations/ayutthaya",
+    "/locations/thailand/lamphun": "/locations/lamphun",
+    "/locations/china/jiaxing": "/locations/jiaxing",
+    "/locations/cambodia/koh-kong": "/locations/koh-kong",
+    "/locations/usa/ohio": "/locations/ohio",
+    "/investor-relations/investor-news": "/investor-relations/news",
+    "/investor-relations/annual-report": "/investor-relations/annual",
+    "/investor-relations/governance-documents": "/investor-relations/governance",
+    "/investor-relations/group-structure-shareholders": "/investor-relations/structure",
+    "/investor-relations/sustainability": "/investor-relations/esg",
+    "/investor-relations/events-contact": "/investor-relations/contact",
+    "/investor-relations/faqs": "/investor-relations/faq",
+    "/news": "/insights"
   };
+  /* Index address -> Razor route. Trailing slashes are dropped (the homepage keeps its
+     single slash); an #anchor is carried through. null means no page, so the row renders
+     unlinked rather than 404ing. */
   function href(u) {
-    if (u in FILE) return FILE[u];
-    const clean = u.replace(/#.+$/, "").replace(/^\/|\/$/g, "");
-    if (!clean) return "index.html";
-    const f = clean.replace(/\//g, "-") + ".html";
-    return f;
+    const hash = (String(u).match(/#.+$/) || [""])[0];
+    const path = String(u).replace(/#.+$/, "");
+    const key = path.length > 1 ? path.replace(/\/+$/, "") : "/";
+    if (key in ROUTE) return ROUTE[key] ? ROUTE[key] + hash : null;
+    return key + hash;
   }
 
   function query(q, opts) {
@@ -126,7 +127,7 @@
       m.dims ? `body <b>${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm</b>` : null,
       m.leads ? `leads <b>${m.leads}</b>` : null,
       m.grade ? `<b>Grade ${esc(m.grade)}</b>` : null].filter(Boolean).join(" &middot; ");
-    const finder = "capabilities-osat-package-finder.html?q=" + encodeURIComponent(m.raw || "");
+    const finder = "/capabilities/osat/package-finder?q=" + encodeURIComponent(m.raw || "");
     return `<section class="hs-pkg${mobile ? " hs-pkg--m" : ""}">
       <div class="hs-pkg-h">
         <div class="hs-cert-lb">Direct answer &middot; package sizes</div>
@@ -147,7 +148,7 @@
       </div>
       <div class="hs-pkg-band">
         <b>Don&rsquo;t see the size you need? We can customize packaging sizes.</b>
-        <a class="hs-pkg-cta" href="contact.html">Tell us what you&rsquo;re building</a>
+        <a class="hs-pkg-cta" href="/contact">Tell us what you&rsquo;re building</a>
       </div></section>`;
   }
 
@@ -156,9 +157,9 @@
       <h2>No page matches &ldquo;${esc(q)}&rdquo;.</h2>
       <p>Nothing in the index carries that term. Start from a capability or a market, or ask us directly.</p>
       <div class="hs-empty-g">
-        <a href="capabilities.html" class="hs-empty-c"><span class="hs-empty-l">Browse</span><b>Capabilities</b><small>Six groups of processes</small></a>
-        <a href="markets.html" class="hs-empty-c"><span class="hs-empty-l">Browse</span><b>Markets</b><small>The industries we build for</small></a>
-        <a href="contact.html" class="hs-empty-c hs-empty-c--cta"><span class="hs-empty-l">Ask an engineer</span><b>Contact us</b><small>We answer process questions directly</small></a>
+        <a href="/capabilities" class="hs-empty-c"><span class="hs-empty-l">Browse</span><b>Capabilities</b><small>Six groups of processes</small></a>
+        <a href="/markets" class="hs-empty-c"><span class="hs-empty-l">Browse</span><b>Markets</b><small>The industries we build for</small></a>
+        <a href="/contact" class="hs-empty-c hs-empty-c--cta"><span class="hs-empty-l">Ask an engineer</span><b>Contact us</b><small>We answer process questions directly</small></a>
       </div></section>`;
   }
 
@@ -201,11 +202,11 @@
       panel.innerHTML = `<div class="hs-ac-in">
         ${res.cert ? certCard(res.cert) : ""}
         ${res.pkg ? pkgCard(res.pkg) : ""}
-        ${shown === 0 && !res.cert && !res.pkg ? `<p class="hs-ac-none">No page matches &ldquo;${esc(q)}&rdquo;. <a href="contact.html">Contact us</a> and we will answer directly.</p>` : ""}
+        ${shown === 0 && !res.cert && !res.pkg ? `<p class="hs-ac-none">No page matches &ldquo;${esc(q)}&rdquo;. <a href="/contact">Contact us</a> and we will answer directly.</p>` : ""}
         ${top.map(g => `<section class="hs-group">
             <h2 class="hs-group-h">${esc(SEC_ABBR[g.section] || g.section)}<span>${g.items.length}</span></h2>
             <div class="hs-group-b">${g.items.map(resultRow).join("")}</div></section>`).join("")}
-        ${res.total > shown || res.pkg ? `<a class="hs-ac-all" href="search.html?q=${encodeURIComponent(q)}">See all ${res.total} results<span>&rarr;</span></a>` : ""}
+        ${res.total > shown || res.pkg ? `<a class="hs-ac-all" href="/search?q=${encodeURIComponent(q)}">See all ${res.total} results<span>&rarr;</span></a>` : ""}
       </div>`;
       panel.hidden = false;
       box.classList.add("on");
@@ -215,7 +216,7 @@
     input.addEventListener("focus", draw);
     input.addEventListener("keydown", e => {
       if (e.key === "Escape") { input.blur(); close(); }
-      if (e.key === "Enter" && input.value.trim()) location.href = "search.html?q=" + encodeURIComponent(input.value.trim());
+      if (e.key === "Enter" && input.value.trim()) location.href = "/search?q=" + encodeURIComponent(input.value.trim());
     });
     document.addEventListener("click", e => { if (!box.contains(e.target) && !panel.contains(e.target)) close(); });
   }
@@ -264,7 +265,7 @@
   /* ── mobile: the burger panel's search foot ───────────────────
      At ≤900px the util bar's right cluster (and so the desktop field) is hidden
      by the site's own CSS, and mobile-nav.js ships the panel's search box as a
-     dead placeholder. Wire it: suggestions inline, full answers on search.html. */
+     dead placeholder. Wire it: suggestions inline, full answers on /search. */
   function initMobile() {
     const foot = document.querySelector(".hana-mnav-foot");
     if (!foot || foot.querySelector(".hs-mnav-input") || !window.HS) return false;
@@ -293,7 +294,7 @@
     list.hidden = true;
     scroll.prepend(list);
 
-    const go = q => { location.href = "search.html?q=" + encodeURIComponent(q); };
+    const go = q => { location.href = "/search?q=" + encodeURIComponent(q); };
 
     input.addEventListener("input", () => {
       const q = input.value.trim();
@@ -301,16 +302,16 @@
       const res = query(q);
       const top = res.groups.flatMap(g => g.items.map(r => ({ r, section: g.section })))
         .sort((a, b) => b.r.s - a.r.s).slice(0, 6);
-      list.innerHTML = (res.cert ? `<a class="hs-mnav-s hs-mnav-s--cert" href="search.html?q=${encodeURIComponent(q)}">
+      list.innerHTML = (res.cert ? `<a class="hs-mnav-s hs-mnav-s--cert" href="/search?q=${encodeURIComponent(q)}">
           <b>${esc(res.cert.full)}</b><small>Direct answer · which plants hold it</small></a>` : "")
-        + (res.pkg ? `<a class="hs-mnav-s hs-mnav-s--cert" href="capabilities-osat-package-finder.html?q=${encodeURIComponent(q)}">
+        + (res.pkg ? `<a class="hs-mnav-s hs-mnav-s--cert" href="/capabilities/osat/package-finder?q=${encodeURIComponent(q)}">
           <b>${res.pkg.rows.length} package${res.pkg.rows.length === 1 ? "" : "s"} match</b><small>Direct answer · open in the package finder</small></a>` : "")
         + top.map(({ r, section }) => {
             const f = href(r.p.u);
-            return `<a class="hs-mnav-s" ${f ? `href="${esc(f)}"` : `href="search.html?q=${encodeURIComponent(q)}"`}>
+            return `<a class="hs-mnav-s" ${f ? `href="${esc(f)}"` : `href="/search?q=${encodeURIComponent(q)}"`}>
               <b>${esc(r.p.n)}</b><small>${esc(SEC_ABBR[section] || section)}${f ? "" : " · not in this export"}</small></a>`;
           }).join("")
-        + (res.total || res.cert ? `<a class="hs-mnav-all" href="search.html?q=${encodeURIComponent(q)}">See all ${res.total} results &rarr;</a>`
+        + (res.total || res.cert ? `<a class="hs-mnav-all" href="/search?q=${encodeURIComponent(q)}">See all ${res.total} results &rarr;</a>`
             : `<p class="hs-mnav-none">No page matches &ldquo;${esc(q)}&rdquo;.</p>`);
       list.hidden = false;
     });
@@ -336,7 +337,7 @@
       m.dims ? `${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm` : null,
       m.leads ? `${m.leads} leads` : null,
       m.grade ? `Grade ${esc(m.grade)}` : null].filter(Boolean).join(" &middot; ");
-    const finder = "capabilities-osat-package-finder.html?q=" + encodeURIComponent(m.raw || "");
+    const finder = "/capabilities/osat/package-finder?q=" + encodeURIComponent(m.raw || "");
     return `<div class="cap-find-pkg">
       <div class="cap-find-h">Package sizes${read ? " &middot; " + read : ""}</div>
       <div class="cap-find-pkgs">${shown.map(r => `<a class="cap-find-pkgr" href="${esc(finder)}">
@@ -371,12 +372,12 @@
       out.innerHTML = capPkg(pkg) + (items.length
         ? `<div class="cap-find-g">${items.map(r => {
               const f = href(r.p.u), par = parentOf(r.p.u);
-              return `<a class="cap-find-r${f ? "" : " dead"}" ${f ? `href="${esc(f)}"` : `href="search.html?q=${encodeURIComponent(q)}"`}>
+              return `<a class="cap-find-r${f ? "" : " dead"}" ${f ? `href="${esc(f)}"` : `href="/search?q=${encodeURIComponent(q)}"`}>
                 <b>${esc(r.p.n)}</b><small>${esc(par ? par.n : "Capability group")}${f ? "" : " · not yet written"}</small></a>`;
             }).join("")}</div>
-           <a class="cap-find-all" href="search.html?q=${encodeURIComponent(q)}">Search the whole site for “${esc(q)}” &rarr;</a>`
-        : (pkg ? `<a class="cap-find-all" href="search.html?q=${encodeURIComponent(q)}">Search the whole site for “${esc(q)}” &rarr;</a>`
-          : `<p class="cap-find-none">No capability page carries that term. <a href="search.html?q=${encodeURIComponent(q)}">Search the whole site</a> or <a href="contact.html">contact us</a>.</p>`));
+           <a class="cap-find-all" href="/search?q=${encodeURIComponent(q)}">Search the whole site for “${esc(q)}” &rarr;</a>`
+        : (pkg ? `<a class="cap-find-all" href="/search?q=${encodeURIComponent(q)}">Search the whole site for “${esc(q)}” &rarr;</a>`
+          : `<p class="cap-find-none">No capability page carries that term. <a href="/search?q=${encodeURIComponent(q)}">Search the whole site</a> or <a href="/contact">contact us</a>.</p>`));
       out.hidden = false;
     });
     input.addEventListener("keydown", e => {

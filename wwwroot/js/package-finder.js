@@ -3,7 +3,7 @@
    paste field that parses "QFN32 5x5" into family + leads + size.
 
    Two modes, one implementation:
-   · full page  — <div data-pkgfinder> on capabilities-osat-package-finder.html.
+   · full page  — <div data-pkgfinder> on /capabilities/osat/package-finder.
                   Reads and writes ?q= ?cat= ?grade= ?max= so a filtered view is linkable
                   and the handoff from site search lands pre-filtered.
    · embedded   — <div data-pkgfinder data-embed data-own="/capabilities/osat/qfn-dfn-lga">
@@ -15,14 +15,16 @@
 (function () {
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  /* The rows carry live site URLs; this export is flat files. */
+  /* The rows carry the URL tracker's addresses; this export serves Razor routes. Each
+     value is the route in that page's @page directive. Clear-mold is the one address that
+     differs from its route: the rows say clear-mold-packaging, the page is optical-packaging. */
   const OWN = {
-    "/capabilities/osat/ultra-small-packages": "capabilities-osat-ultra-small-packages.html",
-    "/capabilities/osat/qfn-dfn-lga": "capabilities-osat-qfn-dfn-lga.html",
-    "/capabilities/osat/power-packages": "capabilities-osat-power-packages.html",
-    "/capabilities/osat/clear-mold-packaging": "capabilities-osat-optical-packaging.html",
-    "/capabilities/osat/hermetic-ceramic": "capabilities-osat-hermetic-ceramic.html",
-    "/capabilities/osat/system-in-package": "capabilities-osat-system-in-package.html"
+    "/capabilities/osat/ultra-small-packages": "/capabilities/osat/ultra-small-packages",
+    "/capabilities/osat/qfn-dfn-lga": "/capabilities/osat/qfn-dfn-lga",
+    "/capabilities/osat/power-packages": "/capabilities/osat/power-packages",
+    "/capabilities/osat/clear-mold-packaging": "/capabilities/osat/optical-packaging",
+    "/capabilities/osat/hermetic-ceramic": "/capabilities/osat/hermetic-ceramic",
+    "/capabilities/osat/system-in-package": "/capabilities/osat/system-in-package"
   };
   const MAX_EDGE = 41;
   /* Body-size pair. The leading delimiter group keeps the digits from being read out of a
@@ -109,7 +111,7 @@
     const askBar = `<div class="pf-ask">
       <div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <div class="pf-ask-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</div></div>
-      <a class="pf-btn" href="contact.html">Tell us what you&rsquo;re building</a></div>`;
+      <a class="pf-btn" href="/contact">Tell us what you&rsquo;re building</a></div>`;
 
     function nearest(dims) {
       if (!dims) return "";

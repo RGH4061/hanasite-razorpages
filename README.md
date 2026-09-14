@@ -1,4 +1,34 @@
-## Latest changes (14 Sep 2026 — brought level with the static export)
+## Latest changes (14 Sep 2026 — package finder and site search wired for Razor)
+
+The finder and the search surfaces were written for the static export and copied across
+unchanged, so they linked to flat `.html` files and looked for data no Razor page loaded.
+Fixed at source (details in `ISSUES.md`):
+
+- `_Layout.cshtml` loads `js/search/packages.js` before `search/engine.js`, so
+  `window.HS_PACKAGES` exists site-wide — the finder renders, and the package card works
+  in the header dropdown, the mobile menu and on `/search`. It is ~35 KB on every page; if
+  that matters, load it on first keystroke instead, but keep it ahead of `engine.js`, which
+  reads it once at load. The finder pages must not load it a second time.
+- `js/site-search.js` — `FILE`/`href()` replaced by a `ROUTE` map of the 32 index addresses
+  whose Razor route differs, plus a trailing-slash-dropping fallback that keeps `#anchors`.
+  **The map is generated from the `@page` directives under `Pages/`** — regenerate it when a
+  route is renamed instead of hand-patching links. No `.html` anywhere in the file.
+- `js/search/data.js` — 11 entries for pages that don't exist removed; the index is 93 pages.
+- `js/package-finder.js` — `OWN` map points at Razor routes; clear-mold rows resolve to
+  `/capabilities/osat/optical-packaging`; the CTA goes to `/contact`.
+- `Capabilities/QfnDfnLga.cshtml` and `Capabilities/UltraSmallPackages.cshtml` regained the
+  embedded "Package reference · live" section they were missing.
+
+Fixed in the same pass, same class of bug (index addresses used as links): the new
+`Capabilities/DieAttachWireBond.cshtml` (the sidebar linked it on every capability page but
+it had never been exported), the plant pages' "Explore" lists, the two Markets hub tiles,
+and `/about/why-hana` on the homepage band. `Locations/Index.cshtml` now carries an explicit
+`@@page "/locations"`. Removed: `wwwroot/js/search-shell.js` and the `preview-*.html` files.
+
+Anything added to a Razor page must escape `@` as `@@` in inline `<style>` (`@@media`,
+`@@supports`) and in visible text, or the build fails.
+
+## Earlier changes (14 Sep 2026 — brought level with the static export)
 
 The static export had drifted ahead of this project. Ported in:
 
@@ -100,7 +130,7 @@ dotnet run
 
 Then browse to the root. Static assets (CSS, JS, fonts, images) serve from `wwwroot/` via `app.UseStaticFiles()`.
 
-`preview-locations.html` and `preview-capabilities.html` are **static, no-.NET previews** (header + footer + page) — open either directly in a browser to see the rendered output without installing the SDK. They are not part of the app; delete them before deploying.
+The `preview-*.html` no-.NET previews have been removed (14 Sep 2026) — they carried a stale copy of the header and footer with flat `.html` links, and drifted every time the chrome changed. Use `dotnet run`.
 
 ---
 
@@ -110,7 +140,6 @@ Then browse to the root. Static assets (CSS, JS, fonts, images) serve from `wwwr
 exports/razor-pages/
 ├── HanaSite.csproj                 ← net8.0 web project
 ├── Program.cs                      ← minimal Razor Pages host
-├── preview-locations.html          ← static preview (not deployed)
 ├── Pages/
 │   ├── _ViewImports.cshtml         ← namespace + tag helpers
 │   ├── _ViewStart.cshtml           ← applies _Layout to every page

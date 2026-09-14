@@ -29,7 +29,8 @@ A screenshot or the prototype filename it should match is ideal but not required
   - **Permanent exclusions (must survive every sync):** `ISSUES.md`, `Directory.Build.props`,
     `docs/`, the 3 repo-only `-mobile.css` files, `Pages/Locations/Cheongju.cshtml` **and its
     `wwwroot/images/cheongju-facility.jpg`** (the page is dormant but kept re-linkable — the
-    export deletes the image if you don't exclude it).
+    export deletes the image if you don't exclude it), and the 3 OSAT wafer images listed under
+    "Images the Razor export references but does not ship" below.
   - **14 Sep:** a further **69 superseded assets** removed (the export's second jpg/png → webp
     pass), each verified unreferenced by full-path match first.
 - [ ] **Razor `@` escaping — export generator emits bare `@` in inline `<style>` at-rules
@@ -76,35 +77,21 @@ A screenshot or the prototype filename it should match is ideal but not required
     below `innerWidth < 980`, piling all six capability cards on one spot; below 980px the
     wheel retires and the six cards stack as a full-width list.
   - About pages needed no section file — clean once the chrome reflows.
-- [ ] **Package finder renders BLANK + JS written for flat files (source-side, 14 Sep).**
-  `/capabilities/osat/package-finder` shows its heading, then nothing. `package-finder.js` reads
-  `window.HS_PACKAGES`, defined in `js/search/packages.js` — which no Razor page loads (not the
-  finder page, not `_Layout`). Even with the data, the script's `OWN` map and CTA link to
-  static-export filenames (`capabilities-osat-qfn-dfn-lga.html`, `contact.html`) → 404 here.
-  **Not patched repo-side yet — awaiting Rupert's call** (fix at source vs. standing retrofit).
-  Repo-side fix would be: add `<script src="~/js/search/packages.js">` before the finder script;
-  point `OWN` at the Razor routes (identity, except `clear-mold-packaging` →
-  `/capabilities/osat/optical-packaging`); `contact.html` → `/contact`.
-- [ ] **Site search links 404 on the Razor site (source-side, present since the 9 Aug export).**
-  `wwwroot/js/site-search.js` `href()` rewrites every live path to a flat filename
-  unconditionally — verified 14 Sep: `/search?q=qfn` returns 4 results, all 4 linking to `*.html`
-  (e.g. `capabilities-osat-qfn-dfn-lga.html`). Also `search.html?q=` on Enter / "See all",
-  `contact.html`, `capabilities.html`, `markets.html`, and the finder handoff. The package card
-  in search also has no data (same missing `packages.js`). Same root cause as the finder —
-  **awaiting Rupert's call**. NOT a one-line fix: the index `u` values are the URL-tracker
-  addresses, and 43 distinct ones match no Razor `@page` route (e.g. `/capabilities/rfid/` vs
-  `/capabilities/rfid-smart-tags`, `/locations/thailand/ayutthaya/` vs `/locations/ayutthaya`,
-  `/investor-relations/annual-report` vs `/investor-relations/annual`); 11 point at pages that
-  no longer exist (careers city pages, `[job-title]` templates, `/code-of-conduct`, `/faq/`,
-  `/markets/telecommunications/pcba/`). Fix instructions sent to Claude Design 14 Sep: generate
-  the Razor link map from the `@page` directives, drop dead entries, load `packages.js`.
-- [ ] **Images the Razor export references but does not ship (source-side, 14 Sep).** Copied
-  in from the static-preview repo (same Design project, same paths) so the pages aren't broken:
-  `images/cap-osat-wafer-probe-final-test-aoi-review.webp`, `images/cap-osat-wafer-processing-
-  {wafersaw,wire-bond}.webp`, `images/photos/mk-consumer-electronics-card-smt-sensors.webp`
-  (Markets hub). If the next export still omits them, `rsync --delete` will DELETE them —
-  re-copy them afterwards (or add them to the exclusions). Run the "refs with no file" sanity
-  pass every sync to catch this.
+- [ ] **Images the Razor export references but does not ship (source-side, since 14 Sep).**
+  Still missing in the 14 Sep (2nd) export — `WaferProcessing` and `WaferProbeFinalTest` reference
+  `images/cap-osat-wafer-probe-final-test-aoi-review.webp` and
+  `images/cap-osat-wafer-processing-{wafersaw,wire-bond}.webp`. The repo copies (taken from the
+  static-preview repo) are now in the **sync exclusion list** so `rsync --delete` keeps them.
+  (`photos/mk-consumer-electronics-card-smt-sensors.webp` now ships at source — no longer excluded.)
+- [ ] **Die Attach & Wire Bond page is back — conflicts with the 6 Aug merge decision (Rupert to
+  decide).** The 14 Sep (2nd) export adds `Capabilities/DieAttachWireBond.cshtml`
+  (`/capabilities/osat/die-attach-wire-bond`) because the capability sidebar and 8 other pages
+  linked it (6 of those links were already dead in the previous sync). The tracker says Die Attach
+  & Wire Bond was absorbed into Flip Chip & Interconnect on 6 Aug with a 301 — but the page has
+  stayed in the Claude Design source (static preview) throughout, and OSAT Flip Chip is still
+  titled just "Flip Chip". Its hero image is a placeholder. Either confirm the page stays, or ask
+  Claude Design to remove it and repoint every link (sidebar, WLP page, 3 plant pages, 4 market
+  pages, search index) to `/capabilities/osat/flip-chip`.
 - [ ] **Hotlinked images from the current live site (pre-existing, go-live risk).**
   `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
   load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
@@ -114,12 +101,40 @@ A screenshot or the prototype filename it should match is ideal but not required
   format('woff2')` first and the `.ttf` as fallback, but the export ships **only** the two
   `.ttf` files. Every Thai page therefore fires 2 failed requests before falling back; the
   text renders correctly, so this is a performance/console-noise issue, not a visual bug.
-  **Still present in the 14 Sep export.** **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
+  **Still present in the 14 Sep (2nd) export.** **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
   `@font-face` rules. Deliberately NOT patched repo-side (the next export would overwrite it).
 
 ---
 
 ## Fixed
+
+### 14 Sep 2026 (2nd) — export sync ("14-9-2 razor Hana Site.zip")
+
+- **Package Finder + site search FIXED AT SOURCE** (from the 14 Sep Claude Design fix note).
+  All runnable checks from that note pass on the running site: finder renders 117 rows, parses
+  "QFN32 5x5" and writes `?q=`; "Page →" links hit Razor routes (clear-mold →
+  `/capabilities/osat/optical-packaging`); CTA → `/contact`; QFN/DFN/LGA (25 rows) and
+  Ultra-small (35 rows) regained their embedded "Package reference · live" tables; `packages.js`
+  loads once per page from `_Layout`. Search: `/search?q=qfn` and "rfid", "ayutthaya",
+  "annual report", "npi", "telecom" all land on real pages; none of the 11 removed entries
+  surfaces; Enter and "See all" go to `/search?q=`; the package card hands off to
+  `/capabilities/osat/package-finder?q=QFN32%205x5`; mobile-menu search and the Capabilities hub
+  finder box link to real pages; no `.html` in `package-finder.js` / `site-search.js`. The index
+  still stores 76 slashed addresses but `href()` drops the slash at runtime (results are clean) —
+  regenerate the index slashless at launch as already planned. (Check 14, the static export,
+  belongs to the preview repo and was not run here.)
+- **Synced** (`rsync --delete`): 7 added, 47 changed, 9 removed — the 8 `preview-*.html` static
+  previews and the unused `js/search-shell.js`, both retired at source. Build clean
+  (0 warnings, 0 errors); **113 routes 200**; **224 rendered assets resolve**; and — new check
+  this sync — **all 104 distinct internal links resolve** (this would have caught the dead Die
+  Attach links last time).
+- **New page:** `Capabilities/DieAttachWireBond.cshtml` — see Open (conflicts with the 6 Aug
+  merge decision). Also new: `optical-sensors.css`, MEMS why-panel photos, OSAT flip-chip hero,
+  package-design thermal-simulation image, Optical SOT-packages photo.
+- **Retrofits re-applied:** `@`-escaping ×8 files + Sitemap prose `@page`; 23 mobile `<link>` tags.
+  Standalone-HTML chrome still fixed at source. `locations-mobile.css` merge kept (the export's copy
+  is unchanged and the `.lc-*` class hooks are still absent from the Razor markup).
+- **3 OSAT wafer images still not shipped** — kept via new sync exclusions (see Open).
 
 ### 14 Sep 2026 — export sync ("14-9 razor pages Hana Site.zip")
 

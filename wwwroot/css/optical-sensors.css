@@ -1,0 +1,25 @@
+.opd-sec .opd-bg,.opd-sec .opd-scrim{display:none;position:absolute;inset:0;z-index:0}
+.opd-sec .opd-bg{width:100%;height:100%;object-fit:cover}
+.opd-sec .mk-wrap{position:relative;z-index:1}
+.opd-tile{display:none;position:absolute;top:64px;right:32px;width:300px;border:1px solid rgba(255,255,255,.22);border-radius:8px;overflow:hidden;background:#fff}
+.opd-tile img{display:block;width:100%;height:auto}
+.opd-sec.img-corner .opd-tile{display:block}
+.opd-sec.img-wash .opd-bg{display:block;opacity:.14}
+.opd-sec.img-wash .opd-scrim{display:block;background:linear-gradient(90deg,#0E4A7C 0%,rgba(14,74,124,.92) 42%,rgba(14,74,124,.62) 100%)}
+.opd-sec.img-ghost .opd-bg{display:block;opacity:.26;object-position:right center;--gs:30%;--ge:78%;-webkit-mask-image:linear-gradient(90deg,transparent var(--gs),#000 var(--ge));mask-image:linear-gradient(90deg,transparent var(--gs),#000 var(--ge))}
+@media(max-width:1080px){.opd-tile{display:none!important}}
+.opd{--g:238px;font-family:var(--font-text)}
+.opd-axis{position:relative;height:40px;margin-left:var(--g)}
+.opd-axis .yr{position:absolute;top:0;width:70px;margin-left:-35px;text-align:center;font-family:var(--font-display);font-size:12.5px;font-weight:600;letter-spacing:-.01em;color:#fff}
+.opd-grid{position:relative;margin-left:var(--g)}
+.opd-grid .guide{position:absolute;top:0;bottom:0;border-left:1px dashed rgba(255,255,255,.13);width:0}
+.opd .trk{position:relative}
+.opd .side{position:absolute;left:calc(-1 * var(--g));top:6px;width:calc(var(--g) - 20px);display:flex;gap:10px;align-items:flex-start}
+.opd .ico{width:38px;height:38px;flex:none;border:1px solid rgba(255,255,255,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--c)}
+.opd .ico svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.opd .side h3{font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:-.015em;color:#fff;margin:0 0 3px;line-height:1.2}
+.opd .side p{font-family:var(--font-text);font-size:12.5px;font-weight:400;line-height:1.5;letter-spacing:0;color:rgba(255,255,255,.6);margin:0;text-wrap:pretty}
+.opd .card{position:absolute;display:flex;align-items:center;gap:7px;padding:4px 9px 4px 4px;border:1px solid var(--c);border-radius:6px;background:#12314D;transform:translateX(-13px)}
+.opd .slot{display:block;flex:none;width:46px;height:34px;border-radius:3px;overflow:hidden;opacity:.9}
+.opd .cl{font-size:11px;font-weight:500;line-height:1.25;color:#fff;white-space:nowrap}
+@media(max-width:1080px){.opd{overflow-x:auto;padding-bottom:8px}.opd-axis,.opd-grid{min-width:1160px}}
