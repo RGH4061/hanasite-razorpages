@@ -91,7 +91,13 @@ A screenshot or the prototype filename it should match is ideal but not required
   (e.g. `capabilities-osat-qfn-dfn-lga.html`). Also `search.html?q=` on Enter / "See all",
   `contact.html`, `capabilities.html`, `markets.html`, and the finder handoff. The package card
   in search also has no data (same missing `packages.js`). Same root cause as the finder —
-  **awaiting Rupert's call**. Razor fix: `href(u)` should return `u` (live paths ARE the routes).
+  **awaiting Rupert's call**. NOT a one-line fix: the index `u` values are the URL-tracker
+  addresses, and 43 distinct ones match no Razor `@page` route (e.g. `/capabilities/rfid/` vs
+  `/capabilities/rfid-smart-tags`, `/locations/thailand/ayutthaya/` vs `/locations/ayutthaya`,
+  `/investor-relations/annual-report` vs `/investor-relations/annual`); 11 point at pages that
+  no longer exist (careers city pages, `[job-title]` templates, `/code-of-conduct`, `/faq/`,
+  `/markets/telecommunications/pcba/`). Fix instructions sent to Claude Design 14 Sep: generate
+  the Razor link map from the `@page` directives, drop dead entries, load `packages.js`.
 - [ ] **Images the Razor export references but does not ship (source-side, 14 Sep).** Copied
   in from the static-preview repo (same Design project, same paths) so the pages aren't broken:
   `images/cap-osat-wafer-probe-final-test-aoi-review.webp`, `images/cap-osat-wafer-processing-
