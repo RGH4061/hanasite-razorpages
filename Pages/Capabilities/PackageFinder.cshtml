@@ -1,0 +1,33 @@
+@page "/capabilities/osat/package-finder"
+@{
+    ViewData["Title"] = "Package finder — OSAT";
+    ViewData["Description"] = "Filter Hana's OSAT package reference by family, body size, lead count and automotive grade — leaded and leadless bodies, power discretes and modules, optical, ceramic, TO-can, hermetic RF and SiP.";
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/css/package-finder.css" />
+}
+
+<div class="hs-page" data-screen-label="Package finder">
+  <nav aria-label="Breadcrumb" class="hs-eyebrow" style="margin-bottom:14px;">
+    <a href="/capabilities" style="color:var(--ink-3);">Capabilities</a> ·
+    <a href="/capabilities/osat" style="color:var(--ink-3);">OSAT</a> ·
+    <span style="color:var(--hana-blue);">Package finder</span>
+  </nav>
+  <div class="hs-hero" style="padding-bottom:28px;margin-bottom:26px;">
+    <h1 class="hs-h1" style="margin-top:0;">Find your package</h1>
+    <p style="font-size:17px;line-height:1.6;color:var(--ink-2);max-width:var(--prose-max,680px);margin:0;">
+      The OSAT package reference in full — leaded and leadless bodies, automotive-qualified
+      packages, power discretes and modules, optical, ceramic, TO-can, hermetic RF and SiP.
+      Filter it, or paste what you&rsquo;re building.</p>
+  </div>
+  <div data-pkgfinder></div>
+  <p style="margin:32px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);max-width:var(--prose-max,680px);">
+    Sizes are drawn from our OSAT package reference. The table describes what a package is —
+    family, body size, lead count, automotive grade. What we can build for a given program is
+    a conversation, so tell us what you&rsquo;re working to and we&rsquo;ll come back on it.</p>
+</div>
+
+@section Scripts {
+    <script src="~/js/package-finder.js"></script>
+}

@@ -1,17 +1,14 @@
 @page "/insights"
 @{
     ViewData["Title"] = "Insights";
-    ViewData["Description"] = "Engineering notes and manufacturing perspectives from Hana.";
+    ViewData["Description"] = "Technical and market insights from Hana Microelectronics — how EMS and OSAT manufacturing works across automotive, RFID, medical, industrial and more.";
 }
 
 @section Head {
     <link rel="stylesheet" href="~/css/insights.css" />
 }
 
-
-<div class="ins-page">
-
-  <!-- breadcrumb + updated -->
+<!-- breadcrumb + updated -->
   <div class="ins-subbar">
     <div class="hana-wrap ins-subbar-inner">
       <nav class="ins-crumbs" aria-label="Breadcrumb">
@@ -35,7 +32,7 @@
     <div class="hana-wrap ins-featured">
       <span class="ins-klabel">Featured</span>
       <a class="ins-feat-card" href="/insights/automotive-pcba-assembly">
-        <div class="img"><img src="~/images/photos/hp-what-sets-apart.jpg" alt="SMT inspection console on a Hana automotive PCBA line"/></div>
+        <div class="img"><img src="~/images/photos/hp-what-sets-apart.webp" alt="SMT inspection console on a Hana automotive PCBA line"/></div>
         <div class="body">
           <span class="ins-cpill">Technical &middot; Automotive</span>
           <h2>PCB Assembly for Automotive Electronics</h2>
@@ -103,7 +100,7 @@
             </div>
           </a>
           <a class="ins-card" href="#" data-cat="technical" data-buyer="tech">
-            <div class="thumb"><img src="~/images/photos/mk-rfid-hero.jpg" alt=""/></div>
+            <div class="thumb"><img src="~/images/photos/mk-rfid-hero.webp" alt=""/></div>
             <div class="body">
               <span class="ins-cpill">Technical</span>
               <h3>RFID inlay manufacturing, step by step</h3>
@@ -112,7 +109,7 @@
             </div>
           </a>
           <a class="ins-card" href="#" data-cat="market" data-buyer="ems">
-            <div class="thumb"><img src="~/images/circuit-board-blue.png" alt=""/></div>
+            <div class="thumb"><img src="~/images/circuit-board-blue.webp" alt=""/></div>
             <div class="body">
               <span class="ins-cpill">Market</span>
               <h3>Box build vs PCBA: what to outsource</h3>
@@ -146,4 +143,3 @@
       </div>
     </div>
   </section>
-</div>

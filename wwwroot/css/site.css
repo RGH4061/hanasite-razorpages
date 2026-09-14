@@ -7,6 +7,13 @@
 @import '_base.css';
 @import '_layout.css';
 @import '_components.css';
+@import '_mobile.css';
+
+/* Package Finder sits above the OSAT group labels — a tool over the whole portfolio, not a
+   member of any one group. Separated by a rule so it reads as the way in. */
+.mm-list.mm-tool{margin:0 0 12px;padding:0 0 12px;border-bottom:1px solid var(--line)}
+.mm-list.mm-tool .hana-mega-sub-link{font-weight:600;color:var(--hana-blue)}
+.mm-list.mm-tool .hana-mega-sub-link:hover{color:var(--hana-blue-deep)}
 
 /* ── Why Hana templates: Why Pair (panels two-up) and Why Photo ── */
 .why-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:stretch;margin-bottom:20px}

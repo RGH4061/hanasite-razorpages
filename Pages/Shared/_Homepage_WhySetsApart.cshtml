@@ -1,7 +1,7 @@
 @* _Homepage_WhySetsApart.cshtml — "From wafer to finished product" section
    Two-column layout: copy left, framed photo right (sized title→paragraph).
 
-   Photo required: wwwroot/images/photos/hp-what-sets-apart.jpg
+   Photo required: wwwroot/images/photos/hp-what-sets-apart.webp
    Spec ref: design_handoff_homepage/README.md §3
 *@
 
@@ -56,9 +56,9 @@
       }
     </style>
 
-    <div class="hana-wrap" style="padding-top:72px; padding-bottom:72px; position:relative; z-index:2;">
+    <div class="hana-wrap" id="rv-why" data-reveal-root data-reveal-hold="2500" style="padding-top:72px; padding-bottom:72px; position:relative; z-index:2;">
 
-        <div class="hana-spec-label" style="color:var(--hana-blue); margin-bottom:20px;">What sets us apart</div>
+        <div class="hana-spec-label hrv" style="--d:0ms; color:var(--hana-blue); margin-bottom:20px;">What sets us apart</div>
 
         <div class="hana-why-grid"
              style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.45fr); gap:48px; align-items:stretch;">
@@ -68,9 +68,9 @@
                 <h2 style="font-family:var(--font-display); font-weight:700; font-size:44px;
                             line-height:1.12; letter-spacing:-0.022em; color:var(--ink);
                             max-width:460px; margin:0 0 22px; text-wrap:balance;">
-                    From wafer to finished product. EMS &amp; OSAT under one group. One Partner.
+<span class="hrw-line" style="--d:120ms"><span class="hrw-in">From wafer to finished product.</span></span><span class="hrw-line" style="--d:720ms"><span class="hrw-in">EMS &amp; OSAT under one group.</span></span><span class="hrw-line" style="--d:1320ms"><span class="hrw-in">One Partner.</span></span>
                 </h2>
-                <p style="font-family:var(--font-text); font-size:16px; font-weight:400;
+                <p class="hrv" style="--d:1560ms; font-family:var(--font-text); font-size:16px; font-weight:400;
                            line-height:1.65; color:var(--ink-2); max-width:520px; margin:0; text-wrap:pretty;">
                     Programs that span PCB assembly and semiconductor packaging within one group —
                     single-source accountability, from die to box build. We hold that work to the
@@ -81,10 +81,10 @@
             </div>
 
             @* Right column — framed photo (matches copy height) *@
-            <div class="hana-why-photo"
-                 style="position:relative; min-height:440px; overflow:hidden; border-radius:8px;
+            <div class="hana-why-photo hrv"
+                 style="--d:260ms; position:relative; min-height:440px; overflow:hidden; border-radius:8px;
                         border:1px solid var(--line); box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-                <img src="~/images/photos/hp-what-sets-apart.jpg"
+                <img src="~/images/photos/hp-what-sets-apart.webp"
                      alt="SMT inspection console on the Hana production floor"
                      style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:38% center; display:block;" />
                 <div style="position:absolute; left:12px; bottom:10px; z-index:1;">
@@ -96,7 +96,7 @@
 
         </div>
 
-        <div style="margin-top:36px;">
+        <div class="hrv" style="--d:1700ms; margin-top:36px;">
             <a href="/about/why-hana" class="hana-btn hana-btn-primary">
                 Why Hana
                 <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>

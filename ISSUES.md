@@ -30,6 +30,8 @@ A screenshot or the prototype filename it should match is ideal but not required
     `docs/`, the 3 repo-only `-mobile.css` files, `Pages/Locations/Cheongju.cshtml` **and its
     `wwwroot/images/cheongju-facility.jpg`** (the page is dormant but kept re-linkable — the
     export deletes the image if you don't exclude it).
+  - **14 Sep:** a further **69 superseded assets** removed (the export's second jpg/png → webp
+    pass), each verified unreferenced by full-path match first.
 - [ ] **Razor `@` escaping — export generator emits bare `@` in inline `<style>` at-rules
   (build breaker; needs fixing at source).** `dotnet build` fails on any unescaped `@media`
   etc. Re-fixed each export in: `Pages/Locations/Index.cshtml` (`@media` → `@@media`),
@@ -43,19 +45,28 @@ A screenshot or the prototype filename it should match is ideal but not required
   four-keyword grep missed and which broke the build (CS0103 'container'). Current sweep:
   `grep -rnE '(^|[^@[:alnum:]_])@(media|supports|keyframes|font-face|container|layer|scope|property)\b' Pages/ | grep -vE '@@'`
   (ignore the legitimate Razor `@page` directives and `_ViewImports.cshtml`'s `@namespace`).
+  **Also escape `@` in prose.** 14 Sep: `Pages/Sitemap.cshtml` intro text mentions "the Razor
+  `<span …>@page</span>` directive" — Razor parsed it as a second `@page` directive (RZ2001 /
+  RZ2005 / RZ1011). Fixed as `@@page`. The at-rule grep can't see this; the build will.
 - [ ] **Section-body mobile optimisation — Locations / Investors / About / Capabilities
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
   which still live only as repo-side retrofit stylesheets loaded per page via `@section
-  Head`. Each export overwrites the ~17 link tags (the CSS files themselves survive as
+  Head`. Each export overwrites the 23 link tags (the CSS files themselves survive as
   untracked extras), so they must be re-applied after every export — or, better, built
   into the Design source so they export everywhere:
-  - `wwwroot/css/locations-mobile.css` (7 pages) — inline-styled grids collapse (2-col
+  - `wwwroot/css/locations-mobile.css` (7 pages) — **⚠️ REPO-MERGED FILE, EXCLUDE FROM SYNC.**
+    From 14 Sep the Design export ships its OWN `locations-mobile.css` (unlinked). Most of it
+    targets `.lc-certs` / `.lc-caps` / `.lc-split` / `.lc-photos`, class hooks that exist in the
+    HTML prototype but **not** in the Razor markup — taking it as-is would silently drop every
+    grid/spec-row rule. The repo file now = repo rules + the export's rules that DO match
+    (≤1270px full-frame hero scrim, hero heights 400/360 px, h1 46/36 px, 1240px wrap padding).
+    Re-diff against each export's copy and fold in any new matching rules. Original scope — inline-styled grids collapse (2-col
     splits → 1, stat strips 4 → 2×2, card grids → 1), spec-row labels stack above values,
     plant hero 440 → 380px.
-  - `wwwroot/css/investors-mobile.css` (9 pages — the 8 English IR pages plus, from the
-    8 Sep export, the Thai twin `Pages/ThaiPages/Investors/Index.cshtml`, which loads the
-    same `investors.css` and therefore inherits the same defects) — group-structure org chart (inline
+  - `wwwroot/css/investors-mobile.css` (16 pages — the 8 English IR pages plus all 8 Thai
+    twins under `Pages/ThaiPages/Investors/`, which load the same `investors-*.css` files and
+    so inherit the same defects; Rupert confirmed keeping the Thai tags, 10 Sep) — group-structure org chart (inline
     `width:1100px` figure + 1020px canvas) → 70%-zoom horizontal touch-scroller;
     `.section-head .intro` inline `width:593px` released; hub's decorative 480px pseudo-
     circles clipped. Also a genuine all-widths bug: `.page-end`/`#enquiries-topo`
@@ -65,17 +76,71 @@ A screenshot or the prototype filename it should match is ideal but not required
     below `innerWidth < 980`, piling all six capability cards on one spot; below 980px the
     wheel retires and the six cards stack as a full-width list.
   - About pages needed no section file — clean once the chrome reflows.
+- [ ] **Package finder renders BLANK + JS written for flat files (source-side, 14 Sep).**
+  `/capabilities/osat/package-finder` shows its heading, then nothing. `package-finder.js` reads
+  `window.HS_PACKAGES`, defined in `js/search/packages.js` — which no Razor page loads (not the
+  finder page, not `_Layout`). Even with the data, the script's `OWN` map and CTA link to
+  static-export filenames (`capabilities-osat-qfn-dfn-lga.html`, `contact.html`) → 404 here.
+  **Not patched repo-side yet — awaiting Rupert's call** (fix at source vs. standing retrofit).
+  Repo-side fix would be: add `<script src="~/js/search/packages.js">` before the finder script;
+  point `OWN` at the Razor routes (identity, except `clear-mold-packaging` →
+  `/capabilities/osat/optical-packaging`); `contact.html` → `/contact`.
+- [ ] **Site search links 404 on the Razor site (source-side, present since the 9 Aug export).**
+  `wwwroot/js/site-search.js` `href()` rewrites every live path to a flat filename
+  unconditionally — verified 14 Sep: `/search?q=qfn` returns 4 results, all 4 linking to `*.html`
+  (e.g. `capabilities-osat-qfn-dfn-lga.html`). Also `search.html?q=` on Enter / "See all",
+  `contact.html`, `capabilities.html`, `markets.html`, and the finder handoff. The package card
+  in search also has no data (same missing `packages.js`). Same root cause as the finder —
+  **awaiting Rupert's call**. Razor fix: `href(u)` should return `u` (live paths ARE the routes).
+- [ ] **Images the Razor export references but does not ship (source-side, 14 Sep).** Copied
+  in from the static-preview repo (same Design project, same paths) so the pages aren't broken:
+  `images/cap-osat-wafer-probe-final-test-aoi-review.webp`, `images/cap-osat-wafer-processing-
+  {wafersaw,wire-bond}.webp`, `images/photos/mk-consumer-electronics-card-smt-sensors.webp`
+  (Markets hub). If the next export still omits them, `rsync --delete` will DELETE them —
+  re-copy them afterwards (or add them to the exclusions). Run the "refs with no file" sanity
+  pass every sync to catch this.
+- [ ] **Hotlinked images from the current live site (pre-existing, go-live risk).**
+  `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
+  load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
+  domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
 - [ ] **Thai font — `Sarabun-*.woff2` 404s on every `/th/` page (source-side, non-breaking).**
   `wwwroot/css/_components.css` declares `@font-face` with `url(../fonts/Sarabun-Regular.woff2)
   format('woff2')` first and the `.ttf` as fallback, but the export ships **only** the two
   `.ttf` files. Every Thai page therefore fires 2 failed requests before falling back; the
   text renders correctly, so this is a performance/console-noise issue, not a visual bug.
-  **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
+  **Still present in the 14 Sep export.** **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
   `@font-face` rules. Deliberately NOT patched repo-side (the next export would overwrite it).
 
 ---
 
 ## Fixed
+
+### 14 Sep 2026 — export sync ("14-9 razor pages Hana Site.zip")
+
+- **Synced the 14 Sep Razor export** (`rsync --delete`): 84 added, 107 modified, 69 removed.
+  `dotnet build` clean (0 warnings, 0 errors); **all 112 routes 200** with one header /
+  `<!DOCTYPE>` each; **all 216 local assets the rendered pages request resolve**.
+- **10 new pages, none removed** (119 → 129 incl. dormant Cheongju): `Markets/Index`
+  (`/markets` hub — `markets-hub.css`), `Capabilities/PackageFinder`
+  (`/capabilities/osat/package-finder` — see Open, renders blank), `Search` (`/search`), and the
+  remaining **7 Thai IR twins** (`ThaiPages/Investors/{Annual,EventsContact,Faq,Governance,News,
+  Structure,Sustainability}`). New `wwwroot/css/_mobile.css` (site-wide small-screen type scale +
+  tap targets, imported from `site.css`), `reveal.js`, `yt-facade.js`, `oppday-tabs.js`,
+  `ir/oppday-*.webp` (the old `set-oppday-q1-2026.*` pair retired).
+- **69 superseded assets deleted** — second WebP pass (icons, partner logos, Jiaxing life
+  photos, product shots, QFN images, logo lockups, etc.), each verified unreferenced.
+- **Standalone-HTML chrome bug: FIXED AT SOURCE.** 0 pages carried a mangled `ang="…">` opener
+  this export — the Insights / Legal / Thai-privacy repair was not needed.
+- **`@`-escaping ×9:** the usual 8 files (incl. `PackageDesign` `@supports` + `@container`) plus a
+  **new prose variant** — `Sitemap.cshtml` text "the Razor `@page` directive" → `@@page`.
+- **`locations-mobile.css` merged** (export now ships its own; see Open item for why it could not
+  be taken as-is). Verified at 375px: hero 360px / h1 36px / full-width vertical scrim (export
+  rules) + spec rows wrap + stat strip 2×2 (repo rules), 0px horizontal overflow.
+- **4 missing images copied** from the static-preview repo (see Open).
+- **Mobile `<link>` tags ×23** — capabilities 1, locations 6 (+ Cheongju's preserved), investors
+  8 + all 8 Thai IR twins. Thai `/th/investor-relations/structure` verified 0px overflow at 375px.
+- **Found, logged, NOT patched (awaiting Rupert):** Package finder blank + site-search links to
+  `*.html` 404 on Razor (see Open).
 
 ### 8 Sep 2026 — export sync ("razor pages 8-9 Hana Site.zip")
 

@@ -1,0 +1,97 @@
+/* Package finder — the filter block, the results table and the dark customize band.
+   Tokens and chrome come from css/site.css. 1px borders, no shadows, 4px buttons. */
+.pf{--pf-radius:var(--radius-card,8px)}
+.pf-controls{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius)}
+.pf-paste{display:flex;align-items:center;gap:12px;padding:15px 18px;border-bottom:1px solid var(--line)}
+.pf-ico{color:var(--ink-3);display:grid;place-items:center;flex:none}
+.pf-paste:focus-within .pf-ico{color:var(--hana-blue)}
+.pf-q{flex:1;min-width:0;border:0;outline:0;background:none;font-family:var(--font-text);font-size:17px;color:var(--ink)}
+.pf-q::placeholder{color:var(--ink-3);font-size:16px}
+.pf-hint{font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.pf-hint b{font-family:var(--font-mono);font-weight:500;color:var(--ink-2)}
+.pf-label{display:block;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.pf-parse{display:none}
+.pf-parse.on{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 18px 0}
+.pf-parse .pf-label{margin:0}
+.pf-tok{display:inline-flex;gap:6px;border:1px solid var(--hana-blue);background:var(--hana-blue-tint);color:var(--hana-blue-deep);border-radius:4px;padding:4px 9px;font-size:12px}
+.pf-filters{display:flex;flex-wrap:wrap;gap:20px;padding:15px 18px 16px;align-items:flex-start}
+.pf-fgroup--wide{flex:1;min-width:320px}
+.pf-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pf-chip{white-space:nowrap;border:1px solid var(--line);background:var(--white);border-radius:4px;padding:5px 10px;font-family:var(--font-text);font-size:12.5px;color:var(--ink-2);cursor:pointer;transition:border-color var(--dur-base,.18s) var(--ease,ease-out),background var(--dur-base,.18s) var(--ease,ease-out),color var(--dur-base,.18s) var(--ease,ease-out)}
+.pf-chip:hover{border-color:var(--hana-blue)}
+.pf-chip.on{background:var(--hana-blue);border-color:var(--hana-blue);color:#fff}
+.pf-range{display:flex;align-items:center;gap:9px}
+.pf-size{width:150px;accent-color:var(--hana-blue)}
+.pf-rv{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-2);min-width:64px}
+.pf-clear{white-space:nowrap;margin-left:auto;align-self:center;background:none;border:0;color:var(--hana-blue);font-family:var(--font-text);font-size:12.5px;cursor:pointer;text-decoration:underline;padding:0}
+.pf-clear:hover{color:var(--hana-blue-deep)}
+.pf-count{margin:26px 0 8px;font-size:15px;color:var(--ink-2)}
+.pf-count b{font-weight:600;color:var(--ink)}
+.pf-count span{color:var(--ink-3)}
+/* The dark band sits under the count on every state — the leak isn't only the empty
+   search, it's the near miss. */
+.pf-ask{display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:var(--hana-blue-deep);border-radius:var(--pf-radius);padding:22px 26px;margin:0 0 16px;color:#fff}
+.pf-ask-t{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.pf-ask-s{font-size:14px;line-height:1.5;color:rgba(255,255,255,.78);margin-top:5px;max-width:62ch}
+.pf-btn{margin-left:auto;flex:none;background:#fff;color:var(--hana-blue-deep);border-radius:var(--radius-button,4px);padding:11px 22px;font-family:var(--font-text);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background var(--dur-base,.18s) var(--ease,ease-out)}
+.pf-btn:hover{background:var(--hana-blue-tint)}
+.pf-tablewrap{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);overflow-x:auto}
+.pf-table{border-collapse:collapse;width:100%;min-width:860px}
+.pf-table th{background:var(--hana-blue-deep);color:#fff;text-align:left;font-family:var(--font-text);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;padding:11px 16px;white-space:nowrap}
+.pf-table th[data-k]{cursor:pointer}
+.pf-arr{opacity:.5;font-size:9px;margin-left:5px}
+.pf-table td{padding:11px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2);vertical-align:top}
+.pf-table tbody tr:hover{background:var(--bg)}
+.pf-pk{font-weight:600;color:var(--ink)}
+.pf-det{display:block;font-size:12px;font-weight:400;color:var(--ink-3);margin-top:2px}
+.pf-num{font-family:var(--font-mono);font-size:13px;white-space:nowrap;color:var(--ink)}
+.pf-cat{font-size:12.5px;color:var(--ink-3)}
+.pf-grade{display:inline-block;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.06em;padding:3px 7px;border-radius:3px;background:var(--hana-blue-tint);color:var(--hana-blue-deep);white-space:nowrap}
+.pf-go{color:var(--hana-blue);font-size:12.5px;text-decoration:none;white-space:nowrap}
+.pf-go:hover{color:var(--hana-blue-deep)}
+.pf-near{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);padding:18px 22px;margin:0 0 16px}
+.pf-nearrow{display:flex;gap:18px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.pf-nearrow:first-of-type{border-top:0}
+.pf-nearrow b{min-width:130px;color:var(--ink)}
+.pf-nearrow .pf-d{color:var(--ink-3);font-size:12.5px;margin-left:auto;font-family:var(--font-mono)}
+.pf-empty{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);padding:34px 30px;text-align:center;margin-bottom:16px}
+.pf-empty b{display:block;font-family:var(--font-display);font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.pf-empty p{color:var(--ink-2);max-width:58ch;margin:0 auto;font-size:14.5px}
+/* embedded on the pages that own these rows */
+.pf--embed .pf-count{margin-top:20px;font-size:14px}
+.pf--embed .pf-ask{padding:18px 22px}
+.pf--embed .pf-ask-t{font-size:17px}
+/* Embedded on the page that owns the rows: category repeats the page and the "Page" link
+   points at itself, so both columns come off and the table fits the content column. */
+.pf--embed .pf-table{min-width:420px}
+.pf--embed .pf-table th,.pf--embed .pf-table td{padding-left:12px;padding-right:12px}
+.pf--embed .pf-table th:nth-child(5),.pf--embed .pf-table td:nth-child(5),
+.pf--embed .pf-table th:nth-child(6),.pf--embed .pf-table td:nth-child(6){display:none}
+/* Thickness ladder — shown under the results when leadless DFN/QFN rows are in view.
+   Two columns only, so it opts out of the 860px min-width the main table needs. */
+.pf-thk{margin:26px 0 0;padding-top:24px;border-top:1px solid var(--line)}
+.pf-thk-h{font-family:var(--font-display);font-size:18px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin:0 0 6px}
+.pf-thk-s{font-size:14px;line-height:1.55;color:var(--ink-2);margin:0 0 14px;max-width:62ch}
+.pf-thk-n{font-size:12.5px;line-height:1.55;color:var(--ink-3);margin:12px 0 0;max-width:62ch}
+.pf-table--thk{min-width:0}
+.pf-table--thk th{width:50%}
+
+@media(max-width:860px){
+  .pf-filters{gap:16px}
+  .pf-fgroup--wide{min-width:0;flex:1 1 100%}
+  .pf-hint{display:none}
+  .pf-clear{margin-left:0}
+  .pf-ask{padding:18px 20px}
+  .pf-btn{margin-left:0}
+  /* The table reflows to stacked rows rather than scrolling away from the package name —
+     the package → size → leads relationship has to survive. */
+  .pf-tablewrap{border:0;background:none;overflow:visible}
+  .pf-table,.pf--embed .pf-table{min-width:0;display:block}
+  .pf-table thead{display:none}
+  .pf-table tbody,.pf-table tr,.pf-table td{display:block}
+  .pf-table tr{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);padding:14px 16px;margin-bottom:10px}
+  .pf-table td{border:0;padding:2px 0}
+  .pf-table td:before{content:attr(data-l);display:inline-block;min-width:96px;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+  .pf-pk{font-size:17px;margin-bottom:4px}
+  .pf-table td.pf-pk:before{content:none}
+}

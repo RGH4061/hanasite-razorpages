@@ -1,0 +1,22 @@
+@page "/search"
+@{
+    ViewData["Title"] = "Search";
+}
+
+@section Head {
+    <meta name="robots" content="noindex" />
+}
+
+<div id="hs-search-page" class="hs-page">
+  <div class="hs-eyebrow">Search</div>
+  <div class="hs-searchhead">
+    <div class="hs-fieldwrap">
+      <div class="hs-field">
+        <span class="hs-field-ico"><i data-lucide="search" style="width:21px;height:21px"></i></span>
+        <input id="hs-q" type="search" spellcheck="false" placeholder="Search capabilities, markets, plants, certifications" aria-label="Search this site">
+        <button id="hs-clear" class="hs-field-x" aria-label="Clear"><i data-lucide="x" style="width:17px;height:17px"></i></button>
+      </div>
+    </div>
+  </div>
+  <div id="hs-body"></div>
+</div>

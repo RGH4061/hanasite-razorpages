@@ -4,13 +4,53 @@
    inline styles; these rules retrofit small-screen behaviour
    (same approach as homepage-mobile.css). Loaded AFTER the
    page styles; !important is needed to beat inline styles.
+
+   REPO-MERGED FILE (14 Sep 2026). The Design export now ships its
+   own locations-mobile.css, but most of it targets class hooks
+   (.lc-certs / .lc-caps / .lc-split / .lc-photos) that exist in the
+   HTML prototype and NOT in the Razor markup. This file keeps the
+   repo's inline-style rules (all still match the Razor pages) and
+   adds the export's rules that do match (hero scrim, hero sizing,
+   1240px wrap padding). Exclude it from export syncs — see ISSUES.md.
    ============================================================ */
+
+/* ── Hero legibility (from Design export, 14 Sep) ─────────────
+   The desktop scrim runs left→right and is only opaque to ~52%
+   of the hero, which assumes the ~460px copy block sits inside
+   that zone — true only above ~1270px. Below that, replace it
+   with a full-frame vertical scrim so the copy is never on bare
+   photo, whatever the viewport. */
+@media (max-width: 1270px){
+  .lc-hero-veil > div[style*="linear-gradient(to right"]:not(.lc-hero-tex),
+  .lc-hero-veil > div[style*="linear-gradient(to left"]:not(.lc-hero-tex){
+    width:100%!important;
+    background:linear-gradient(to bottom,rgba(3,10,23,0.55) 0%,rgba(3,10,23,0.78) 55%,rgba(3,10,23,0.92) 100%)!important;
+  }
+  .lc-hero-veil .lc-hero-tex{
+    width:100%!important;
+    -webkit-mask-image:linear-gradient(to bottom,#000 40%,transparent 100%)!important;
+            mask-image:linear-gradient(to bottom,#000 40%,transparent 100%)!important;
+    opacity:.55!important;
+  }
+  .lc-hero-veil p{max-width:46ch}
+}
 
 /* ── Tablet: split layouts → single column ────────────────── */
 @media (max-width: 900px) {
-  /* two-column content splits (text + media, 64px gutter) */
+  /* two-column content splits (text + media, 64px gutter) — repo rule */
   [style*="grid-template-columns:1fr 1fr;gap:64px"] { grid-template-columns: 1fr !important; gap: 32px !important; }
   [style*="grid-template-columns:1.05fr 0.95fr"]    { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* wrap padding + hero sizing — from Design export */
+  [style*="max-width:1240px"]{padding-left:20px!important;padding-right:20px!important}
+  .lc-hero-veil{height:400px!important}
+  .lc-hero-veil h1{font-size:46px!important}
+  .lc-hero-veil p{font-size:16.5px!important;max-width:34ch}
+
+  /* Design-prototype class hooks — NOT yet present in the Razor markup;
+     inert until the export adds these classes. Kept to stay close to source. */
+  .lc-certs,.lc-caps{grid-template-columns:1fr 1fr!important}
+  .lc-split{grid-template-columns:1fr!important;gap:36px!important}
 }
 
 /* ── Phone: everything stacks ─────────────────────────────── */
@@ -26,7 +66,15 @@
   /* spec rows: 150px label column + value → label stacks above value */
   [style*="display:flex;gap:20px;padding:13px 0"] { flex-wrap: wrap; row-gap: 4px; }
   [style*="display:flex;gap:20px;padding:13px 0"] > [style*="width:150px"] { width: 100% !important; }
+  /* (the old repo rule trimming the hero 440 → 380px is retired —
+     superseded by the Design hero heights above/below) */
+}
 
-  /* plant hero: trim the fixed banner height a little on phones */
-  .lc-hero-veil[style*="height:440px"] { height: 380px !important; }
+/* ── Phone: hero sizing — from Design export ─────────────── */
+@media (max-width: 620px){
+  .lc-hero-veil{height:360px!important}
+  .lc-hero-veil h1{font-size:36px!important}
+  .lc-hero-veil p{font-size:15.5px!important;max-width:32ch}
+  .lc-certs,.lc-caps{grid-template-columns:1fr!important}
+  .lc-photos{gap:10px!important}
 }

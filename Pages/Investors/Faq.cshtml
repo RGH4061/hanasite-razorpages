@@ -5,22 +5,6 @@
 }
 @section Head {
     <link rel="stylesheet" href="~/css/investors-faq.css" />
-    <style>
-      .frame.has-poster {
-        background-image:
-          url('/images/set-oppday-q1-2026.webp'),
-          radial-gradient(120% 120% at 50% 40%, #16324A 0%, #0B2236 70%, #08192A 100%);
-        background-size: cover, cover;
-        background-position: center center, center center;
-        background-repeat: no-repeat, no-repeat;
-      }
-      .frame.has-poster::after {
-        background-image: linear-gradient(180deg, rgba(6,18,30,0) 40%, rgba(6,18,30,0.45) 100%);
-        background-size: auto;
-      }
-      .frame.has-poster .play,
-      .frame.has-poster .embed-tag { z-index: 2; }
-    </style>
     <link rel="stylesheet" href="~/css/investors-mobile.css" />
 }
 
@@ -108,8 +92,8 @@
           <h2>Results Presentations</h2>
           <p class="intro">
             Recordings of management's quarterly results presentations from the
-            Stock Exchange of Thailand's Earnings Call sessions. Each video is
-            embedded from the SET media platform.
+            Stock Exchange of Thailand's Earnings Call sessions. Each recording is
+            published by the Stock Exchange of Thailand on its YouTube channel.
           </p>
         </header>
 
@@ -120,15 +104,16 @@
               <span class="latest">Latest</span>
               <span>Earnings Call</span>
               <span class="pip">·</span>
-              <span>28 May 2026</span>
+              <span>26 Aug 2026</span>
             </div>
-            <h3>Q1/2026 results presentation</h3>
+            <h3>Q2/2026 results presentation</h3>
           </div>
 
           <div class="feature-grid">
             <!-- data-yt accepts a YouTube video ID or a full YouTube URL -->
-            <button type="button" class="frame has-poster yt-facade" data-yt="dpO3qOWC51Q"
-                    aria-label="Play the Q1/2026 results presentation on YouTube">
+            <button type="button" class="frame has-poster yt-facade" data-yt="qypZsmot9Z8"
+                    aria-label="Play the Q2/2026 results presentation on YouTube">
+              <img src="~/images/ir/oppday-q2-2026.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
               <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="22" height="24" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
@@ -143,214 +128,233 @@
                 <button type="button" class="tab" data-panel="panel-transcript">Transcript</button>
               </div>
               <div class="detail-actions">
-                <a href="#">Download PDF ↓</a>
-                <a href="#">View on SET ↗</a>
+                <a href="#">Summary and transcript on SET ↗</a>
               </div>
             </div>
 
-            <!-- TAB 1: full summary — the official SET "Lecture Summary", verbatim, sectioned,
-                 scrolls within the box. -->
             <div class="detail-panel sumfull active" id="panel-summary" role="tabpanel">
-              <h4>Summary of performance for the first quarter</h4>
-              <p>Our operating profit was approximately 104 million baht, a 33% decrease compared to the previous quarter and a 77% decrease compared to the previous year. You may recall that last year we had an extraordinary profit in the first quarter, which caused the significant difference, but this year we did not have that kind of profit.</p>
-              <p>On a year-on-year basis, revenue decreased by 6% and operating profit decreased by 78% due to extraordinary gains in the first quarter of last year. The profit margin decreased from 9% to 2%, while EBITDA, a measure of cash flow generation, decreased by 35% from approximately 900 million baht to 588 million baht. Net profit was 103 million baht, a decrease of 78%. However, our net cash and short-term investments increased by 14% to 11.63 billion baht.</p>
-
-              <h4>Key factors impacting first-quarter earnings</h4>
+              <h4>Overview of financial performance</h4>
+              <p>For the second quarter, the company's operating profit was 278 million baht, a 169% increase compared to the previous quarter and an 84% increase year-on-year, despite the baht depreciating by approximately 2%.</p>
+              <h4>Summary of key points compared to the previous year (Year-on-Year)</h4>
               <ul>
-                <li>An additional 114.5 million baht was set aside because one of our customers in the United States, a hearing aid company, filed for Chapter 7 bankruptcy.</li>
-                <li>The PMS, SiC and silicon businesses in China weakened and were impacted by the New Year holiday, resulting in decreased revenue.</li>
-                <li>In Ayutthaya, we saw an improvement compared to Q4 last year and returned to operating profitability.</li>
-                <li>In Lamphun, EMS demand remained stable and operating profit was flat, excluding the aforementioned provisions.</li>
-                <li>In China, our IC business saw operating profit increase both quarter-on-quarter and year-on-year, driven by strong demand for EV modules.</li>
-                <li>Our EMS business in China declined, as last year's complex tariff situation led most American customers to relocate production; we moved those operations to other business units within the company.</li>
-                <li>In the United States, our RFID business improved but remained unprofitable despite increased revenue, due to a significant decline in profit margins.</li>
-                <li>In Cambodia, the relocation of manufacturing away from China brought increased revenue and maintained profitability.</li>
-                <li>Fluctuations in the Thai baht produced a loss of approximately 63 million baht in the quarter, relative to the average exchange rate in the second half of last year.</li>
-                <li>Cash reserves increased 14% year-on-year, but decreased 2% quarter-on-quarter.</li>
+                <li>Sales revenue increased by 3%.</li>
+                <li>Normal profit increased by 84% from 151 million baht in the previous year.</li>
+                <li>The profit margin increased from 3% to 5%.</li>
+                <li>EBITDA increased by almost 50% to 684 million baht.</li>
+                <li>Net profit increased significantly by over 800% due to the very low base in the previous year.</li>
+                <li>Net cash and short-term investments increased by 15%.</li>
               </ul>
-
-              <h4>Hana Micro Lamphun (EMS business)</h4>
-              <p>Revenue remained stable at 2.2 billion baht but decreased 19% year-on-year, related to last year's switch to a consignment model — a decline that is now reversing and will begin to increase during the remainder of the year. The automotive sector weakened due to cost pressures and tariffs, while RF, test and measurement equipment, and computing remained strong. We set aside a special reserve of 114.5 million baht for a client of more than 17 years that entered receivership; however, revenue from this company accounts for less than 1% of the Hana Group, so the event did not significantly impact our business. Our medical business continued to grow strongly, and the pipeline of new projects for Hana Lamphun remains very promising.</p>
-
-              <h4>Micro Packaging (EMS business in China)</h4>
-              <p>This business was severely impacted by U.S. tariffs, causing many American customers to relocate production. Revenue decreased 8% quarter-on-quarter and 21% year-on-year. We implemented cost restructuring, including some personnel adjustments, to align costs with lower revenue. Despite the downturn, the EMS business in China is expected to remain profitable.</p>
-
-              <h4>Factory in Ayutthaya (IC business)</h4>
-              <p>In Q4 we experienced our lowest capacity utilization on record at approximately 43%, but in Q1 we saw improvement, with revenue increasing 5% both quarter-on-quarter and year-on-year and utilization improving from 43% to approximately 50%. We are seeing cyclical recovery and a return of demand, but face difficulty finding the necessary labour and technicians due to high competition in the Ayutthaya and Bang Pa-in areas. Our existing major customers will drive further recovery and improved utilization.</p>
-
-              <h4>Factory in Jiaxing (IC business)</h4>
-              <p>The IC business improved significantly, with sales up 16% quarter-on-quarter and over 100% year-on-year, largely driven by very strong EV module activity. Our standard IC business is improving, but as it is a low-margin industry, we selectively reduced some less profitable clients and cut costs to improve overall profitability. The business has returned to profitability following this restructuring, and we believe Jiaxing will remain strong and profitable in the coming quarters. Workload was high in mid-2025, decreased in Q4, and began to recover in Q1; we are confident it will rise from Q2 onwards.</p>
-
-              <h4>United States (RFID business)</h4>
-              <p>Although total revenue increased 30% quarter-on-quarter and 5% year-on-year, we were unable to turn a profit due to the sharp drop in inlay prices. This business is growing very rapidly and has attracted large companies, which has driven down prices. We anticipate needing to double the business this year to return to profitability — challenging, but achievable, as we have received many large new orders and are increasing capacity. We expect to return to profitability in the second half, possibly late Q3 or early Q4. The higher-margin tire-tag business has weakened but shows signs of recovery in the second half.</p>
-
-              <h4>Cambodia</h4>
-              <p>Our Cambodian factory has benefited from the relocation of business away from China and is progressing well. The ongoing Thailand–Cambodia conflict creates some inconvenience and increases logistics costs but has not halted the business; customers continue to support and grow with us. Sales increased 40% quarter-on-quarter and almost doubled year-on-year. New medical business will contribute to growth, and we are confident Cambodia will remain profitable throughout the year.</p>
-
-              <h4>Overview of end applications</h4>
+              <h4>Summary of key points compared to the previous quarter (Quarter-on-Quarter)</h4>
               <ul>
-                <li><strong>Telecommunications:</strong> declined, mainly due to the consignment model, and is expected to recover.</li>
-                <li><strong>Industrial:</strong> beginning to recover after the turmoil caused by tariff issues.</li>
-                <li><strong>Automotive:</strong> slight decrease.</li>
-                <li><strong>RFID:</strong> revenue increased, but profit margins decreased.</li>
-                <li><strong>Other:</strong> relatively stable.</li>
+                <li>Sales revenue increased at a higher rate of 9%.</li>
+                <li>Normal profit increased by 170% (including provisions for bad debts in the first quarter).</li>
+                <li>The normal profit margin is 3%.</li>
+                <li>EBITDA increased by 16% to 684 million baht.</li>
               </ul>
-
-              <h4>PMS business in Korea</h4>
-              <p>This quarter was another difficult one — up 21% quarter-on-quarter but down 36% year-on-year, with the Chinese market weakened particularly by the Chinese New Year holiday. We continue to invest heavily in marketing in India and Korea and are starting to see positive returns, with revenue growth anticipated in Q2. We will also focus on the AI-driven solid-state transformer business, which we believe has high potential.</p>
-
-              <h4>The transition to solid-state transformers (SSTs)</h4>
-              <p>A major challenge in building data centers is the enormous amount of electricity required. To support this demand, power companies are shifting from large, traditional magnetic transformers to solid-state transformers (SSTs), which are lighter and smaller, faster, bi-directional (ideal for renewable energy), more efficient, support smart-grid communication, and manage renewable energy and battery storage more efficiently.</p>
-
-              <h4>The importance of silicon carbide</h4>
-              <p>Silicon carbide (SiC) will play a crucial role in solid-state transformers because, compared to silicon, it offers much higher switching speed, greater efficiency, higher voltage tolerance and far better temperature resistance. As data centers consume so much power, this is one of the biggest challenges for the expansion of AI — without sufficient power it cannot function — and SiC is central to managing power consumption more efficiently.</p>
-
-              <h4>PMS's technology roadmap</h4>
-              <p>The roadmap shows our existing portfolio (blue) and new developments (red), notably MOSFETs, JFETs and SiC JFETs at very high voltages up to 1,200V, 2,300V and 3,300V, for use in solid-state transformers and applications such as railways and new power requirements. This will be developed by Power Master, expected in Q3 of next year, and should drive business towards the end of next year and into 2028.</p>
-
-              <h4>Liquidity</h4>
-              <p>We generated approximately 600 million baht in cash flow, down from 900 million baht. We spent 236 million baht, compared to 210 million baht last year, and this is expected to increase. As mentioned, cash increased 1.4 billion baht, or 14%.</p>
-
-              <h4>Updated information about Phononic</h4>
-              <p>Hana is building a fully automated, in-house-designed production line, currently undergoing testing and fine-tuning. The qualification process — internal certification, then the customer (Phononic), then their customers — is expected to complete by the end of June. The Phononic technical team visited Hana last month and were very impressed, and recently signed a second large-scale production agreement that doubles the previous order. The first phase of capacity increase takes place in the second half of this year; the second begins in Q1 next year, given equipment lead times. We are also discussing a next-generation Co-Packaged Optics (CPO) cooling project: as 1.6-terabyte GPUs run very hot and require cooling, Phononic has indicated that a successful TEC for this package would significantly exceed the volumes Hana has already agreed to produce.</p>
-
-              <h4>A new AI-driven project</h4>
-              <p>Hana has received a new AI-driven project, separate from Phononic, for an oscilloscope to test 1.6-terabyte optical transceivers. These devices monitor high-speed data transfer rates of 240 gigabits per second in data centers; they are expensive but in high demand, and our customer sells them to users such as Meta, Google, Amazon and Microsoft. The project begins in June, with staff training overseas, equipment arriving in Q3, capacity increasing in late Q3, and mass production hoped for early Q1 next year (or possibly year-end). Capex is relatively small, perhaps under $5 million, but working capital will be much higher. In revenue terms it is extremely significant — equivalent to a top-five customer by next year.</p>
-
-              <h4>Summary of AI-driven activities</h4>
+              <h4>Key factors affecting second-quarter earnings</h4>
               <ul>
-                <li>Cooling-equipment business for Phononic.</li>
-                <li>The newly acquired high-density PCBA business, commencing in the second half of this year and early next year.</li>
-                <li>Solid-state SiC transformer devices, expected in the second half of next year.</li>
+                <li><strong>PMS:</strong> Demand for silicon and silicon carbide has recovered significantly, resulting in reduced losses compared to the previous quarter due to increased sales.</li>
+                <li><strong>Hana Ayutthaya (IC/OSAT):</strong> Capacity utilization increased and operating profitability strengthened compared to Q1.</li>
+                <li><strong>Hana Lamphun (EMS):</strong> Operating profit recovered from the previous quarter after being affected by bad debts in the first quarter, but remained stable compared to the same period last year.</li>
+                <li><strong>Hana China (IC):</strong> Operating profit increased year-on-year but decreased quarter-on-quarter due to volatile demand for electric vehicle (EV) modules from major customers.</li>
+                <li><strong>Hana China (EMS):</strong> Operating profit decreased both quarter-on-quarter and year-on-year, primarily due to the US tariffs on China, which caused almost all of our American customers to relocate production to other Hana Group plants in Cambodia and Thailand. However, operations in China remained profitable due to reduced costs.</li>
+                <li><strong>Hana USA (RFID):</strong> The RFID business continues to incur losses, but revenue has improved significantly and is working towards a recovery in the second half of the year.</li>
+                <li><strong>Hana Cambodia:</strong> Benefited from customers relocating their manufacturing bases away from China, resulting in increased revenue and maintaining profitability.</li>
+                <li><strong>Impact of exchange rates:</strong> In the second quarter, there was an exchange rate gain of approximately 104 million baht, compared to the average exchange rate of the two previous quarters.</li>
+                <li><strong>Cash reserves:</strong> As of the end of the second quarter, they stood at 11.2 billion baht, an increase of 15% from the previous year but a decrease of 4% from the previous quarter.</li>
               </ul>
-
-              <h4>Summary and future trends</h4>
+              <h4>Hana Lamphun (EMS)</h4>
+              <p>Revenue in the second quarter was 2,335 million baht, up 7% from the previous quarter but down 9% from the same period last year. The main drivers were the automotive, industrial, RF, and computer sectors.</p>
               <ul>
-                <li><strong>Lamphun:</strong> many exciting new AI-driven projects, with winning more projects a strong opportunity.</li>
-                <li><strong>Jiaxing (EMS):</strong> business affected by tariffs has been resized to ensure profitability.</li>
-                <li><strong>Ayutthaya (IC):</strong> growing with improving utilization, though employment challenges remain.</li>
-                <li><strong>China (IC):</strong> profitability improved significantly, driven by EV modules and power-management activities.</li>
-                <li><strong>Ohio, USA (RFID):</strong> challenged by declining margins, but expected to return to profit by year-end as new orders offset lower margins.</li>
-                <li><strong>Cambodia:</strong> stable and profitable.</li>
-                <li><strong>PMS:</strong> still expected to report losses this year, but market recovery and new projects should bring improvement in the second half and beyond.</li>
+                <li>The RF (Field Radio) group, which focuses on Test and Measurement, is growing.</li>
+                <li>The computer industry is strengthened by the demand for AI-related services.</li>
+                <li>The medical sector remains consistently strong.</li>
+                <li lang="th">สายการผลิต Phononics ได้รับการติดตั้งและอนุมัติแล้ว ผ่านการรับรองคุณสมบัติ (Qualification) อย่างสมบูรณ์ และอยู่ระหว่างกระบวนการแจ้งการเปลี่ยนแปลงการผลิต (PCN) ของลูกค้า</li>
+                <li lang="th">สายการผลิต High-Density PCBA สำหรับ AI ได้รับการอนุมัติและฝึกอบรมเสร็จสิ้นแล้ว พร้อมเริ่มดำเนินการ</li>
+                <li lang="th">ต้นทุนวัตถุดิบที่สูงขึ้นยังคงเป็นความท้าทาย แต่เชื่อว่ายังสามารถบริหารจัดการได้</li>
               </ul>
-
-              <h4>Capital expenditure (CAPEX)</h4>
-              <p>From a very low 626 million baht last year, we forecast a threefold increase this year, potentially exceeding 2 billion baht, depending on when new machinery arrives. If it arrives before year-end it counts as investment for this year; if not, for the beginning of next year.</p>
-
-              <h4>Question &amp; answer session</h4>
-              <p><strong>How would a prolonged war affect the company?</strong><br>A prolonged war leads to higher energy costs and inflation, impacting consumer spending. If oil prices remain high until year-end, there are concerns it could affect demand for certain goods in 2027. However, AI-related businesses will not be affected, as their investments are in infrastructure.</p>
-              <p><strong>What are the outlooks and trends for the RFID business?</strong><br>The RFID business is growing rapidly, but large companies entering the market have lowered prices and impacted margins. The solution is to increase volume — the company needs at least 80–100% sales growth this year to return to profitability. We have received orders close to that target and are ordering additional machinery, so we expect to return to profitability by year-end.</p>
-              <p><strong>Can the company expand its operations in Cambodia?</strong><br>Yes — production capacity is available; the challenge is finding new business, not expanding floor space. As workload increases, we will move machinery from Lamphun to Cambodia. We will soon begin producing medical products (hearing aids) for our long-standing largest customer, who has shifted from remote controls to the medical business; this will be a growth driver.</p>
-              <p><strong>Has the Q1 profit reached its bottom?</strong><br>The company does not provide profit forecasts, so we cannot answer directly. We are not satisfied with Q1 but are confident we can improve as the outlook improves. Despite concerns about the war, we hope it will not affect us this year, and we remain confident the company can continue to grow.</p>
-              <p><strong>When do you expect PMS to return to profitability?</strong><br>PMS will continue to incur losses this year, but as business clearly improves we expect losses to decrease. The amount will still be significant, but we believe we will begin to see reduced losses in the second half — though the full year will remain a loss.</p>
-              <p><strong>What percentage of revenue will come from Phononic?</strong><br>We cannot disclose exact figures, but this business is very important and Phononic could become one of our top 5–7 customers within the next year — more if new projects are added.</p>
-              <p><strong>What is the progress of the joint venture with PTT (FT1)?</strong><br>As PTT is the major shareholder, we must comply with their announcements. The situation is unchanged; we continue to monitor the project, but it is currently temporarily suspended.</p>
-              <p><strong>Can I request the presentation file?</strong><br>We do not disclose the presentation file, but the session was recorded and is available on YouTube or the Stock Exchange of Thailand (SET) website, where you can review the slides.</p>
-              <p><strong>What are the trends in the gross margin of the IC business?</strong><br>Gross margin across all businesses is affected by two main factors: capacity utilization and exchange rates. IC utilization was very low in Q4 but began improving in Q1 and should continue through Q2 and Q3, despite recruitment challenges. The weakening Thai baht against the US dollar is beneficial, so positive movements in both factors will support improved gross margins.</p>
-              <p><strong>Does the company anticipate a loss this year?</strong><br>While Q1 results weren't great, we did not incur a loss, and the overall situation is improving. In principle, we do not anticipate a loss this year.</p>
-              <p><strong>Are you concerned about other customers in financial difficulty?</strong><br>For the customer requiring a bad-debt provision, we were unaware until they stopped paying, which was unexpected. Generally, at this time, we have not found any other customers in a worrying situation.</p>
-              <p><strong>What are the risks of doing business with Phononic?</strong><br>Risks always exist. One is that the product might fail qualification, which we consider low; the worst case would be a delay to the start of production, not a standstill. Another uncertainty is the actual size of demand, which Phononic reports as enormous. Considering the growth of companies like Nvidia, AI growth appears truly strong, and we are confident in their business — but no one knows the exact future.</p>
-              <p><strong>Besides the three projects presented, are there other AI-related businesses?</strong><br>We do have others, but as they are not yet large enough to significantly impact the company, we have not discussed them. We only highlight AI businesses clearly important to Hana's growth; these others have future potential, and if they grow we will be happy to discuss them.</p>
+              <h4>Hana เจียซิง (EMS)</h4>
+              <p lang="th">ยอดขายโดยรวมค่อนข้างทรงตัวเมื่อเทียบกับไตรมาสก่อน เนื่องจากลูกค้าในสหรัฐฯ ส่วนใหญ่ยังมีความกังวลเกี่ยวกับภาษี Section 301 ที่อาจกลับมาใช้ใหม่ ต้นทุนวัสดุ เช่น PCB และ MLCC เพิ่มขึ้นจากความต้องการที่เกี่ยวข้องกับ AI และราคาสินค้าโภคภัณฑ์ที่สูงขึ้น ซึ่งส่งผลกระทบต่ออัตรากำไร อย่างไรก็ตาม ปริมาณงาน RFID ดีขึ้นและคาดว่าจะเพิ่มขึ้นในไตรมาสที่สาม</p>
+              <h4>Hana อยุธยา (IC / OSAT)</h4>
+              <p lang="th">รายได้ในไตรมาสที่ 2 อยู่ที่ 1,501 ล้านบาท เพิ่มขึ้น 22% จากไตรมาสก่อน และ 14% จากปีก่อน วัฏจักรอุตสาหกรรมเซมิคอนดักเตอร์เริ่มกลับมาเป็นบวกอย่างชัดเจน ทำให้ปริมาณงานและแนวโน้มความต้องการแข็งแกร่งขึ้น</p>
+              <ul>
+                <li lang="th">อัตราการใช้กำลังการผลิตเพิ่มขึ้นจาก 55% ในไตรมาสที่ 1 เป็น 63% ในไตรมาสที่ 2</li>
+                <li lang="th">กิจกรรมการแนะนำผลิตภัณฑ์ใหม่ (NPI) เพิ่มขึ้นอย่างมีนัยสำคัญ ซึ่งเป็นตัวขับเคลื่อนการเติบโตในอนาคต</li>
+                <li lang="th">กำลังทบทวนการลงทุนเครื่องจักรเพิ่มเติมสำหรับปีหน้า เพื่อรองรับ NPI ใหม่ที่จะเปลี่ยนเป็นการผลิตจำนวนมาก (Mass Production) โดยมีระยะเวลารอเครื่องจักรและอุปกรณ์ที่ยาวนานขึ้น</li>
+              </ul>
+              <p lang="th">จากกราฟ จะเห็นได้ว่าปริมาณงาน (Loading) ซึ่งวัดจากจำนวนลวด Wire Bond ต่อเดือน มีแนวโน้มเพิ่มขึ้นอย่างต่อเนื่องในช่วงสามไตรมาสที่ผ่านมา</p>
+              <h4>Hana เจียซิง (IC)</h4>
+              <p lang="th">ธุรกิจส่วนนี้กำลังอยู่ในช่วงเปลี่ยนผ่าน โดยปรับทิศทางจากการเป็นผู้ให้บริการ OSAT แบบมาตรฐาน ไปสู่การเป็นผู้ผลิต Power Module แบบเฉพาะทางซึ่งมีอัตรากำไรสูงกว่า เนื่องจากธุรกิจ OSAT มาตรฐานมีการแข่งขันที่รุนแรงกับบริษัทท้องถิ่นในจีน</p>
+              <p lang="th">การเปลี่ยนแปลงนี้ต้องใช้เวลาและอาจส่งผลให้การดำเนินงานมีผลขาดทุนเล็กน้อยในอีก 2-3 ไตรมาสข้างหน้า ก่อนที่ธุรกิจ Power Module จะเริ่มเติบโต อย่างไรก็ตาม มีสัญญาณบวกจากการที่ผลิตภัณฑ์ TS Pack ซึ่งเป็นสิทธิบัตรของ Hana ได้รับการรับรองคุณสมบัติ (Qualification) จากผู้ผลิตรถยนต์ไฟฟ้ารายใหญ่รายหนึ่งของจีน และมีแนวโน้มที่จะแข็งแกร่งขึ้นในปีหน้า</p>
+              <h4>แนวโน้มตลาดสมาร์ทโฟน</h4>
+              <p lang="th">เนื่องจากราคาหน่วยความจำ (Memory) เพิ่มขึ้นอย่างมีนัยสำคัญ บริษัทผู้ผลิตรายใหญ่จึงมุ่งเน้นกำลังการผลิตไปที่หน่วยความจำแบนด์วิดท์สูง (High Bandwidth Memory) แทนหน่วยความจำมาตรฐานที่ใช้ในโทรศัพท์มือถือส่วนใหญ่ แบรนด์ใหญ่อย่าง Apple และ Samsung สามารถส่งผ่านต้นทุนนี้ไปยังผู้บริโภคได้ง่ายกว่า แต่ผู้ผลิตโทรศัพท์มือถือราคาประหยัด ซึ่งส่วนใหญ่เป็นแบรนด์จีนเช่น Oppo และ Vivo ประสบปัญหาในการส่งผ่านต้นทุน ทำให้ภาพรวมของธุรกิจนี้มีแนวโน้มลดลง</p>
+              <h4>Hana USA (โอไฮโอ)</h4>
+              <p lang="th">รายได้เติบโตขึ้น 25% จากไตรมาสก่อน และ 51% จากปีก่อน อย่างไรก็ตาม การดำเนินงานยังคงขาดทุนในไตรมาสที่ 2 เนื่องจากอัตรากำไรของผลิตภัณฑ์ Inlay ลดลงอย่างมาก จากการที่มีผู้เล่นรายใหญ่เข้ามาในธุรกิจที่มีการเติบโตสูงนี้มากขึ้น บริษัทตั้งเป้าหมายการเติบโตของรายได้มากกว่า 80% ในปีนี้เพื่อกลับมาทำกำไร และคาดว่าจะสามารถกลับมามีกำไรได้ภายในสิ้นปีนี้</p>
+              <h4>Hana กัมพูชา</h4>
+              <p lang="th">รายได้ในไตรมาสที่ 2 อยู่ที่ 138 ล้านบาท ลดลง 5% จากไตรมาสก่อน แต่เพิ่มขึ้น 53% จากปีก่อน ธุรกิจนี้ได้รับประโยชน์จากการย้ายฐานของลูกค้าสหรัฐฯ ออกจากจีน โดยผลิตภัณฑ์ด้าน Access Control และอุปกรณ์ตรวจหนังสือเดินทางมีส่วนสำคัญต่อการเติบโต แม้ว่าการปิดชายแดนไทย-กัมพูชาจะทำให้ต้นทุนโลจิสติกส์เพิ่มขึ้น แต่ลูกค้ายังไม่กังวลมากนัก ตราบใดที่ความขัดแย้งไม่รุนแรงขึ้น</p>
+              <p lang="th">นอกจากนี้ ผลิตภัณฑ์ทางการแพทย์ใหม่คือเครื่องช่วยฟัง (Hearing Aid) ได้ผ่านการรับรองคุณสมบัติแล้ว และมีแผนจะเริ่มการผลิตจำนวนมากในไตรมาสที่ 3 ซึ่งจะช่วยสนับสนุนยอดขายในช่วงครึ่งปีหลังให้เป็นบวก</p>
+              <h4>รายได้จากการขายตามกลุ่มอุตสาหกรรม</h4>
+              <p lang="th">สัดส่วนรายได้ตามกลุ่มอุตสาหกรรมค่อนข้างคงที่เมื่อเทียบกับปีก่อน โดยมีการเปลี่ยนแปลงเล็กน้อยคือกลุ่มอุตสาหกรรม (Industrial) ลดลงเล็กน้อย และกลุ่มวิจัยและพัฒนา (R&amp;D) เพิ่มขึ้น</p>
+              <h4>ผลการดำเนินงานของ PMS (Power Master Semiconductor)</h4>
+              <p lang="th">รายได้อยู่ที่ 93 ล้านบาท เพิ่มขึ้นเกือบ 80% จากไตรมาสก่อน และ 82% จากปีก่อน แม้จะมาจากฐานที่ค่อนข้างต่ำก็ตาม วัฏจักรเซมิคอนดักเตอร์ที่กลับมาเป็นบวกจากแรงหนุนของ AI และการเติมสต็อกใหม่ ส่งผลดีต่อ PMS เช่นกัน แม้จะยังคงมีผลขาดทุน แต่แนวโน้มกำลังลดลงและเป็นสัญญาณบวก การลงทุนในตลาดอินเดียและเกาหลีเริ่มแสดงผลลัพธ์ที่ดีขึ้น คาดว่าความต้องการในครึ่งปีหลังจะเติบโตอย่างต่อเนื่อง และ PMS จะลงทุนใน R&amp;D ต่อไปเพื่อเร่งการเปิดตัวผลิตภัณฑ์ใหม่</p>
+              <h4>กลุ่มผลิตภัณฑ์ที่ PMS มุ่งเน้น — โครงสร้างพื้นฐาน (Infrastructure)</h4>
+              <ul>
+                <li lang="th"><strong>หม้อแปลงไฟฟ้า:</strong> ได้ลงนามข้อตกลงกับบริษัทหม้อแปลงรายใหญ่ของเกาหลี เพื่อจัดหาโซลูชันสำหรับ AI Data Center ในสหรัฐอเมริกา เกาหลี และจีน</li>
+                <li lang="th"><strong>Solid-State Circuit Breaker:</strong> เป็นโครงการที่ใช้โซลูชัน JFET เพื่อลดปัญหาความไม่เสถียรของไฟฟ้าใน Data Center</li>
+                <li lang="th"><strong>Solid-State Transformer (SST):</strong> มีกำหนดเปิดตัวช่วงปลายไตรมาสที่ 3 หรือปลายปีนี้ เพื่อรองรับการพัฒนาหม้อแปลงไฟฟ้าให้มีขนาดเล็กลง โดยได้รับแรงผลักดันจาก AI และ Data Center</li>
+              </ul>
+              <h4>ยานยนต์ อุตสาหกรรม และการทหาร (Automotive, Industry, and Military)</h4>
+              <ul>
+                <li lang="th"><strong>ยานยนต์:</strong> ได้ส่งมอบผลิตภัณฑ์ล็อตก่อนการผลิตจริงสำหรับโครงการ Onboard Charger ให้แก่บริษัทผู้ผลิตรถยนต์รายใหญ่ของจีน และโครงการ E-Compressor จะเริ่มในเดือนกันยายน</li>
+                <li lang="th"><strong>อุตสาหกรรมและการทหาร:</strong> ได้ส่งมอบโมดูล Silicon Carbide (SiC) ปริมาณมากสำหรับงานทางการทหารของเกาหลี และส่งมอบผลิตภัณฑ์ SiC 650V สำหรับ Solar Pump รวมถึงโมดูล SiC 1200V สำหรับการควบคุมมอเตอร์ AC</li>
+              </ul>
+              <h4>สินค้าอุปโภคบริโภค (Consumer)</h4>
+              <p lang="th">PMS เป็นบริษัทแรกที่นำเทคโนโลยี Silicon Carbide มาปรับใช้เพื่อลดขนาดของ Die ให้สามารถแข่งขันกับซิลิคอนทั่วไปได้ในชื่ออุปกรณ์ Easy Drive ซึ่งใช้ในตลาดอะแดปเตอร์สำหรับชาร์จอุปกรณ์ต่างๆ ผลิตภัณฑ์นี้กำลังอยู่ระหว่างการทดสอบกับหลายบริษัท และคาดว่าจะเริ่มการผลิตจำนวนมากในไตรมาสนี้ โดยหวังว่าจะเป็นผลิตภัณฑ์ที่สำคัญในปีหน้า</p>
+              <h4>สภาพคล่องและกระแสเงินสด</h4>
+              <ul>
+                <li lang="th"><strong>EBITDA:</strong> อยู่ที่ 684 ล้านบาท เพิ่มขึ้น 49% จากปีก่อน</li>
+                <li lang="th"><strong>Capex:</strong> อยู่ที่ 314 ล้านบาท เพิ่มขึ้น 55% จากฐานที่ต่ำ</li>
+                <li lang="th"><strong>เงินสดสุทธิ:</strong> ยังคงอยู่ในระดับสูงที่ 11,200 ล้านบาท</li>
+              </ul>
+              <h4>โครงการสำคัญที่เกี่ยวข้องกับ AI</h4>
+              <p lang="th">บริษัทมีโครงการหลักที่เกี่ยวข้องกับ AI สองโครงการคือ ธุรกิจ Phononic (Thermoelectric Cooling - TEC) และ High-Density PCBA สำหรับ AI Oscilloscope</p>
+              <h4>Phononic</h4>
+              <ul>
+                <li lang="th"><strong>การผลิต:</strong> เริ่มการผลิต (Ramp-up) แล้วในไตรมาสที่ 3 และจะเพิ่มขึ้นตามเครื่องจักรใหม่ที่เข้ามา</li>
+                <li lang="th"><strong>การรับรองจากลูกค้า:</strong> ลูกค้าของ Phononic จำนวน 5 รายได้อนุมัติกระบวนการผลิต (PCN) แล้ว ทำให้สามารถเริ่มส่งมอบได้</li>
+                <li lang="th"><strong>โครงการใหม่:</strong> กำลังพัฒนาโครงการ Co-packaged Optics (CPO) ซึ่งคาดว่าจะมีขนาดใหญ่กว่าธุรกิจ TEC ในปัจจุบัน โดยจะมีการหารือเกี่ยวกับสัญญาภายในสิ้นปีนี้</li>
+              </ul>
+              <h4>High-Density PCBA</h4>
+              <p lang="th">เริ่มการผลิตแล้วในไตรมาสที่ 3 และจะเพิ่มกำลังการผลิตอย่างต่อเนื่อง โดยคาดว่าจะดำเนินการได้เต็มกำลังภายในสิ้นปีนี้หรือต้นปีหน้า</p>
+              <h4>ผลกระทบจากภาษีศุลกากร</h4>
+              <p lang="th">ภาษีใหม่ภายใต้ Section 301 ที่ริเริ่มโดยทรัมป์ คาดว่าจะไม่ส่งผลกระทบที่สำคัญต่อ Hana เนื่องจากปริมาณสินค้าที่ส่งไปยังอเมริกาโดยตรงมีสัดส่วนค่อนข้างน้อย (ประมาณ 4.5% จากอยุธยา และ 14% ในภาพรวมของกลุ่ม) แม้ว่าภาษีใหม่จะทำให้ไทยอาจถูกเก็บภาษีเพิ่มขึ้น แต่โครงสร้างภาษีโดยรวมสำหรับไทยและกัมพูชาคาดว่าจะดีกว่าเดิม โดยอัตราภาษีคาดว่าจะลดลงจากเดิมที่ประมาณ 19% มาอยู่ที่ระหว่าง 12% ถึงสูงสุด 17%</p>
+              <h4>แนวโน้มธุรกิจ</h4>
+              <ul>
+                <li lang="th"><strong>Hana ลำพูน (EMS):</strong> เริ่มการผลิตจำนวนมากสำหรับโครงการ AI ในไตรมาสนี้ ซึ่งจะเป็นตัวขับเคลื่อนการเติบโตในครึ่งปีหลัง</li>
+                <li lang="th"><strong>Hana เจียซิง (EMS):</strong> แนวโน้มการเติบโตยังคงอ่อนแอจากปัจจัยภูมิรัฐศาสตร์ แต่การปรับขนาดธุรกิจจะช่วยรักษาความสามารถในการทำกำไร</li>
+                <li lang="th"><strong>Hana อยุธยา (IC / OSAT):</strong> ยอดขายฟื้นตัวต่อเนื่องและคาดว่าจะเติบโตในครึ่งปีหลัง โดยมีผลิตภัณฑ์ใหม่ (NPI) ที่รอการผลิตจำนวนมาก ซึ่งเป็นสัญญาณการเติบโตที่แข็งแกร่งในอนาคต</li>
+                <li lang="th"><strong>Hana เจียซิง (IC):</strong> การเปลี่ยนผ่านไปสู่ธุรกิจ Power Module กำลังดำเนินการ ความสามารถในการทำกำไรยังคงอ่อนแอในครึ่งปีหลัง แต่แนวโน้มปีหน้าดีขึ้น</li>
+                <li lang="th"><strong>Hana USA (โอไฮโอ):</strong> แนวโน้มการปรับปรุงยังเป็นไปตามแผน และคาดว่าจะกลับมามีกำไรได้ภายในไตรมาสที่ 4</li>
+                <li lang="th"><strong>Hana กัมพูชา:</strong> สายการผลิตใหม่จะช่วยสนับสนุนการเติบโตและปรับปรุงผลกำไรในครึ่งปีหลัง</li>
+                <li lang="th"><strong>PMS:</strong> รายได้จะทยอยดีขึ้นในครึ่งปีหลังตามสภาวะตลาดที่ฟื้นตัว ซึ่งจะช่วยลดอัตราการใช้เงินสด</li>
+              </ul>
+              <h4>แนวโน้มการลงทุน (Capital Expenditure)</h4>
+              <p lang="th">บริษัทยังอยู่ในระหว่างการทบทวนแผนการลงทุน แต่คาดว่าจะมีการลงทุนเพิ่มขึ้นอย่างมีนัยสำคัญในปี 2024 เพื่อรองรับโครงการต่างๆ ดังนี้:</p>
+              <ul>
+                <li lang="th">โครงการ NPI ใหม่หลายโครงการที่โรงงานในอยุธยา</li>
+                <li lang="th">การขยายกำลังการผลิตสำหรับ Thermoelectric Cooling ที่ลำพูน</li>
+                <li lang="th">การเพิ่มกำลังการผลิต RFID ทั้งในโอไฮโอและเจียซิง</li>
+              </ul>
+              <h4>ช่วงถาม-ตอบ</h4>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับลูกหนี้การค้าที่เพิ่มขึ้น</strong><br>คำตอบ: เมื่อธุรกิจเติบโต ลูกหนี้การค้าจะเพิ่มขึ้นตามไปด้วย ซึ่งคาดว่าจะเกิดขึ้นต่อเนื่องไปอีกอย่างน้อย 12 เดือนข้างหน้าหรือมากกว่านั้น ดังนั้น เราจะเห็นลูกหนี้การค้าสุทธิสูงขึ้น</p>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับกระแสเงินสดบวกหรือกระแสเงินสดอิสระ (Free Cash Flow)</strong><br>คำตอบ: เมื่อบริษัทอยู่ในช่วงเติบโตและลงทุน จะมีการใช้เงินสด ซึ่งจะทำให้กระแสเงินสดอิสระติดลบไประยะหนึ่ง กระแสเงินสดอิสระจะเริ่มดีขึ้นเมื่อลดการลงทุนในสินทรัพย์ถาวร (Capital Expenditure) และเมื่อการลงทุนเริ่มสร้างกระแสเงินสดกลับมา ดังนั้น ในช่วงที่กลับมาลงทุนอีกครั้ง สถานะกระแสเงินสดจะติดลบ</p>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับกำลังการผลิตของ PMS</strong><br>คำตอบ: PMS มีกำลังการผลิตเพียงพอสำหรับการเติบโตจากระดับปัจจุบัน จึงยังไม่จำเป็นต้องมีการลงทุนขนาดใหญ่ในตอนนี้ โดยมุ่งเน้นไปที่การเพิ่มอัตราการใช้กำลังการผลิต ลดการใช้เงินสด และลดผลขาดทุนจากการดำเนินงาน</p>
+              <p lang="th"><strong>คำถาม: ผลิตภัณฑ์ประเภทใดที่ขับเคลื่อนการเติบโตในธุรกิจ OSAT</strong><br>คำตอบ: ตัวขับเคลื่อนหลักคืออุปกรณ์ Mixed Signal, เซ็นเซอร์, Analog, Optoelectronics และ Power</p>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับการที่ประเทศไทยส่งเสริมอุตสาหกรรมโดรนและอิเล็กทรอนิกส์ป้องกันประเทศและอากาศยาน</strong><br>คำตอบ: บริษัทไม่มีความสามารถหรือความรู้ความเชี่ยวชาญในด้านนี้ จึงอาจจะไม่ได้มุ่งเน้นไปในทิศทางดังกล่าว</p>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับระดับของการเปิดตัวผลิตภัณฑ์ใหม่ (New Product Introduction: NPI)</strong><br>คำตอบ: ปัจจุบัน โดยเฉพาะที่ ฮานา อยุธยา กำลังเห็นโอกาสในการเปิดตัวผลิตภัณฑ์ใหม่ในระดับที่สูงที่สุดครั้งหนึ่ง ซึ่งเป็นสัญญาณการเติบโตในอนาคต และเป็นเหตุผลที่เราจะต้องลงทุนเพิ่มในอยุธยา เพื่อนำผลิตภัณฑ์ใหม่เหล่านี้เข้าสู่การผลิตในปริมาณมาก (Mass Production) ซึ่งจะเกิดขึ้นในช่วงปลายปีนี้ถึงต้นปีหน้า</p>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับการลงทุนในเทคโนโลยีใหม่และผลตอบแทนที่คาดหวัง</strong><br>คำตอบ: ปัจจุบัน อัตราการใช้กำลังการผลิตของ PMS ในเกาหลียังไม่สูงพอ ซึ่งเป็นสาเหตุที่ทำให้เราขาดทุน เราจึงต้องพัฒนาผลิตภัณฑ์ใหม่เพื่อเพิ่มอัตราการใช้กำลังการผลิต ในตอนแรกเรามุ่งเน้นไปที่อุตสาหกรรมรถยนต์ไฟฟ้า (EV) แต่เป็นไปได้ยากมาก ตอนนี้เราจึงหันมาพัฒนาผลิตภัณฑ์สำหรับอะแดปเตอร์ (Low Power) และหม้อแปลง (High Power) เป้าหมายในขณะนี้คือการกลับไปสู่จุดคุ้มทุน (Cash Break-even) และหยุดการขาดทุน ซึ่งหวังว่าจะเกิดขึ้นได้ในช่วงครึ่งหลังของปีหน้าหากทุกอย่างเป็นไปตามแผน</p>
+              <p lang="th"><strong>คำถาม: เกี่ยวกับเงินปันผล</strong><br>คำตอบ: ในขณะนี้ยังไม่สามารถบอกได้ว่าเงินปันผลจะเป็นเท่าใด ต้องรอดูผลประกอบการสิ้นปีและความต้องการใช้เงินสดของบริษัทก่อน ซึ่งเป็นการตัดสินใจของคณะกรรมการบริษัท แต่เช่นเดียวกับบริษัททั่วไป เราจะพิจารณาจากผลการดำเนินงาน ความต้องการเงินสด แล้วจึงตัดสินใจว่าจะจ่ายเมื่อไหร่และอย่างไร อย่างไรก็ตาม เราพยายามจ่ายเงินปันผลทุกปีตามที่เคยปฏิบัติมาในอดีต</p>
+              <p class="note">Lecture summary generated and published by the Stock Exchange of Thailand and reproduced here. Published on 27 Aug 2026.</p>
             </div>
 
-            <!-- TAB 2: transcript — real SET transcript (English), prose format, same bounded box -->
             <div class="detail-panel tscript" id="panel-transcript" role="tabpanel">
               <div class="lead">
                 <span class="spk">Richard Han</span>
                 <span class="role">Chief Executive Officer, Hana Group</span>
               </div>
 
-              <p>Good morning everyone and welcome to Hana's first quarter overview and update. My name is Richard Han, I'm the CEO of the Hana Group. So let's start off with summarizing our first quarter performance.</p>
-
-              <h4>Q1 performance</h4>
-              <p>We registered a normalized profit of about 104 million Baht, which was down 33% on the quarter and 77% on the year. You may remember last year we had an exceptional gain in the first quarter — that's why the big difference, and this year we don't. So, year-on-year, revenues were down 6%, normalized profit down 78%. The margin reduced from 9% to 2%. Our cash generation, EBITDA, reduced 35% from around 900 to 588. Our net cash and short-term investments, however, increased 14% to 11.63 billion Baht.</p>
-
-              <h4>Key factors in the quarter</h4>
-              <p>Unfortunately, we had to take an exceptional provision of 114.5 million Baht due to one of our customers in America, a hearing aid company, that has filed for Chapter 7. In our PMS business, SiC and silicon were weak in China, with the impact of the New Year dragging earnings down. In Ayutthaya we saw an improvement over Q4 last year and returned to operational profitability. In Lamphun, EMS demand was stable and operating profits were flat, excluding that provision. In China, our IC business operating profits were up both quarter-on-quarter and on the year on the back of strong EV module demand; our China EMS business dropped as American customers relocated due to the tariff situation. In the US, our RFID business improved but remained in the red as margins dropped. In Cambodia, the beneficiary of the move out of China, revenues increased and profitability was maintained. The movement in the Thai Baht produced approximately a 63 million Baht loss in the quarter.</p>
-
-              <h4>Hana Micro Lamphun (EMS)</h4>
-              <p>Revenues were flat at 2.2 billion and down 19% on the year — the year-on-year drop relates to last year's change to a consignment model, which is now reversing. Automotive was weak due to cost pressures and tariffs; our RF, test and measurement and computer businesses were strong. We took the exceptional 114.5 million Baht provision for a customer of over 17 years that went into receivership; their revenue represents less than 1% of the group. Our medical business was strong and the pipeline for Lamphun is very strong.</p>
-
-              <h4>Micro-packaging (China EMS)</h4>
-              <p>This business was hit hard by US tariffs as American customers wanted to move out — revenues were down 8% on the quarter and 21% on the year. We restructured the cost base to align with lower revenue, so the China EMS group will remain profitable going forward.</p>
-
-              <h4>Ayutthaya (OSAT)</h4>
-              <p>In Q4 we hit an all-time low utilization of around 43%, and we saw an improvement in Q1 — revenues up 5% on the quarter and 5% on the year, with utilization improving from 43% to around 50%. Demand is coming back, although we are struggling to find the labour and technicians we need given strong local competition. Our existing major customers will drive the reversal and improvement in utilization going forward.</p>
-
-              <h4>Jiaxing (IC)</h4>
-              <p>A much-improved situation for our IC business — sales up 16% on the quarter and over 100% on the year, mainly driven by EV module activity. Standard IC was improving but margins are tight, so we selectively reduced low-margin customers and cut the cost base. The business is back to profitability after restructuring and should hold up in future quarters.</p>
-
-              <h4>United States (RFID)</h4>
-              <p>Despite top-line revenue up 30% on the quarter and 5% on the year, we could not break even because inlay prices dropped aggressively. This business is growing very fast and has attracted large competitors driving prices down. To return to profitability we will have to roughly double the business this year; we have secured substantial new orders and will increase capacity, so we expect to return to profit in the second half — towards the end of Q3 or early Q4. The higher-margin tire-tag business was weak but should recover in H2.</p>
-
-              <h4>Cambodia</h4>
-              <p>Cambodia benefited from the movement of business out of China. The Thailand–Cambodia conflict is an inconvenience that increases our logistics costs but does not stop the business; customers continue to increase their business with us. Sales were up 40% on the quarter and nearly double on the year, with new medical business coming through. I'm confident Cambodia will remain profitable throughout the year.</p>
-
-              <h4>Korea &amp; PMS</h4>
-              <p>A difficult quarter again — up 21% quarter-on-quarter but down 36% on the year, with China weak around the Chinese New Year. We continue to invest in marketing in India and Korea, which are beginning to pay back, and we expect Q2 revenues to grow. We are focusing on an AI-driven solid-state transformer (SST) opportunity. Data centres use enormous amounts of electricity, and utilities are moving from bulky magnetic transformers to solid-state transformers, which are lighter, faster and bi-directional — ideal for renewable energy. Silicon carbide will play an important role because, versus silicon, it offers higher switching speed, efficiency, voltage and temperature tolerance. The new SiC devices (1,200V, 2,300V and 3,300V MOSFETs and JFETs) will be developed by Power Master and are expected on board by Q3 of next year.</p>
-
-              <h4>Liquidity</h4>
-              <p>We generated around 600 million, down from 900 million; capex was 236 versus 210 a year ago and will grow; cash increased 1.4 billion, or 14%.</p>
-
-              <h4>Phononic update</h4>
-              <p>Hana is building a fully automated, in-house-designed production line for Phononic's thermoelectric cooling device, currently undergoing tests and fine-tuning. The qualification process — internal, then customer, then the customer's customer — should complete by the end of June. Phononic's technical team visited Hana last month and were very happy with our in-house system, and have signed a second mass-production agreement that effectively doubles the previous order. The first production ramps through H2 this year; the second agreement ramps from Q1 next year, given equipment lead times. We are also discussing the next-generation co-packaged optics (CPO) cooling project, where volumes could be significantly higher.</p>
-
-              <h4>New AI optical-test project</h4>
-              <p>Hana has won a new AI-driven project (the customer cannot be named) building an oscilloscope to test 1.6-terabyte transceiver optical performance for data centres. The customer sells these multi-million-dollar machines to users like Meta, Google, Amazon and Microsoft. The project kicks off in June, with equipment arriving in Q3 and mass production around early Q1. It uses standard Hana pick-and-place and reflow equipment — capex under $5 million — but is more working-capital intensive. In revenue terms it is substantial, equivalent to a top-five customer within the next year.</p>
-
-              <h4>2026 outlook &amp; capex</h4>
-              <p>In summary, we have three AI-driven activities: the Phononic cooling device; the recently won high-density PCBA business (H2 this year and early next year); and the SiC solid-state transformer devices (H2 next year). OSAT is recovering off a cyclical low, IC profitability is improving on EV-module and power-management demand, Ohio should return to profit by year-end, Cambodia will be stable and profitable, and PMS — though loss-making this year — should improve in H2. From a low of 626 million Baht last year, we project capex roughly three times higher, potentially over 2 billion Baht, depending on equipment delivery timing.</p>
+              <p>Welcome to Hana's second quarter financial review. So, our normalized profit was 278 million, which was up 169% on the quarter and 84% on the year. And that was despite a weakness in the Thai Baht of approximately 2%.</p>
+              <p>Year-on-year highlights are as follows:- Sales revenues were up 3%. Normalized profit, as I mentioned earlier, was up 84% from 151 a year ago. And the margin increased 2% from 3 to 5.</p>
+              <p>Our EBITDA was up nearly 50% up to 684 million and net profit was up substantially over 800%. Of course, last year was very weak. And our net cash and short-term investments were increasing 15% on the year.</p>
+              <p>For the quarter, the sales revenue increased at a higher rate at 9%and normalized profits increased 170%. And you may remember in the first quarter we had a bad debt which we had to take account for. Normalized profit margin again 3%and EBITDA was up 16% to 684.</p>
+              <p>So let me go through the key factors that impacted the second quarter results, starting with PMS. So we're definitely seeing a recovery in both silicon and silicon carbide. The cycle is definitely on the increase, and that helped, with reducing losses quarter-on-quarter as our sales increased, in PMS.</p>
+              <p>In Ayutthaya this is our OSAT business, the IC utilization also increased, and our operating profits strengthened, over Q1 as well.</p>
+              <p>In Lamphun, this is our EMS business, operating profits increased quarter-on-quarter, but it was flat year-on-year.</p>
+              <p>In China, our operating profits for IC were up year-on-year, but down on the quarter, and I will go into more details. We have a large customer involved in the EV module business, and that demand is fluctuating. The EMS business in China dropped both year-on-year and quarter-on-quarter, and this is really, due to the tariff issue that the US imposed on China, most, pretty much all of our US customers left us. Fortunately, they went to our other operations in Cambodia and in Thailand. But the China operation is struggling now because we had a big drop in, in revenue, but we have reduced our cost base and that operation still remains profitable.</p>
+              <p>In the USA, our RFID business was still loss-making, but we saw a significant improvement in the top line and we're working towards recovery in the second half of this year.</p>
+              <p>In Cambodia, they benefited from the move out of China, so we saw increasing revenues and profit, profitability was maintained. And we measure our foreign exchange impact based on the quarter versus the past two quarters. So on that basis, there was a gain of 104 million in the second quarter. And as I mentioned earlier, cash reserves were up 50% on the year, but down 5% the quarter, but still a very healthy 11.2 billion.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ปัจจัยสำคัญที่ส่งผลต่อการกระทบการดำเนินผลประกอบการของ Q2 PMS ฟื้นตัวของความต้องการมีแรงส่งมากขึ้นแล้วก็ส่งผลให้ผลขาดทุนลดลงเมื่อเทียบกับไตรมาสก่อน</p>
+              <p class="th" lang="th">ส่วน Hana อยุธยา IC อัตราการใช้กำลังผลิตเพิ่มขึ้นและก็ความสามารถในการดำเนิน การทำกำไร จากการดำเนินงานแข็งแกร่งขึ้น เทียบกับไตรมาสก่อน</p>
+              <p class="th" lang="th">ส่วนฮานา ลำพูน EMS กำไรจากการดำเนินงานฟื้นตัวจากไตรมาสที่แล้วหลังจากที่ ไตรมาส 1 ได้รับผลกระทบจากหนี้สูญ แต่ก็ทรงตัวเมื่อเทียบกับปีก่อน</p>
+              <p class="th" lang="th">ฮานา ที่เมืองจีน IC ผลประกอบการ กำไรจากการดำเนินงานเพิ่มขึ้น ปีต่อปี จากปีที่แล้วแต่ว่าลดลงจากไตรมาสที่แล้ว เนื่องจากว่าความต้องการของ EV โมดูล มีความผันผวน</p>
+              <p class="th" lang="th">ส่วนฮานา ที่ประเทศจีน EMS ผลประกอบการ กำไรจากการดำเนินงานลดลง ทั้งจากไตรมาสที่แล้วและจากปีที่แล้วเนื่องจากได้รับผลกระทบจากภาษี แต่ภาพรวมของ operating profit ยังเป็นบวก เนื่องจากการควบคุมต้นทุนของเรา</p>
+              <p class="th" lang="th">ส่วน Hana ที่ประเทศสหรัฐอเมริกายังคงขาดทุน แต่ว่าผลขาดทุนของการดำเนินงานลดลงเนื่องจากรายได้ที่ดีขึ้น</p>
+              <p class="th" lang="th">Hana กัมพูชา รายได้เพิ่มขึ้นจากไตรมาสก่อนแล้วก็ยังคงรักษาความสามารถในการทำกำไรผลกระทบจากอัตราแลกเปลี่ยน ไตรมาสที่ 2 มีกำไรจากอัตราแลกเปลี่ยนเนี่ยประมาณ 104 ล้านบาท เมื่อเทียบกับอัตราแลกเปลี่ยนเฉลี่ยของ 2 ไตรมาสก่อนหน้านี้เงินสดสำรอง ณ สิ้นไตรมาส 2 อยู่ที่ 11,200 ล้านบาท เพิ่มขึ้น 15% จากปีที่แล้ว แต่ว่าลดลง 4% จากไตรมาสที่แล้ว</p>
+              <p>So, I'll go through each operation quickly. And for Hana Micro, we saw revenues up on the quarter 7% but down on the year 9% This was driven predominantly by automotive, industrial, RF and computer. Test and measurement was strong and growing, and computer was also, because of AI-related demand, was also very positive. Medical also continued to remain strong. The photonic line was set up and approved, and full qualification was received, and customer PCNs were ongoing. Our AI high-density PCBA line was approved, training was completed, and we're going to start operation now. And high material costs are a challenge, but we think will be manageable.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>Hana ลำพูน รายได้ของ Hana ลำพูน Q2 2,335 ล้านบาท เพิ่มขึ้น 7% จากไตรมาสที่แล้ว แต่ลดลง 9% จากปีที่แล้วรายได้เพิ่มขึ้นจากไตรมาสก่อน แต่ลดลงจากปีก่อน โดยมีแรงขับเคลื่อนจากกลุ่มยานยนต์ อุตสาหกรรม RF และคอมพิวเตอร์ส่วนกลุ่ม RF ที่เป็น test measurement เติบโตขึ้น กลุ่มคอมพิวเตอร์แข็งแกร่งขึ้นจาก AI และกลุ่มการแพทย์ก็มีความแข็งแกร่งขึ้น สายการผลิตของ Phononics ได้รับการติดตั้งและอนุมัติ ผ่านการ qualification อย่างสมบูรณ์ และอยู่ระหว่างกระบวนการ PCN ของลูกค้า ส่วนสายการผลิตของ high density PCBA ได้รับการอนุมัติและก็ฝึกอบรมเสร็จเรียบร้อยแล้ว ต้นทุนวัตถุดิบที่สูงขึ้นก็ยังคงเป็นความท้าทาย แต่เรายังสามารถบริหารจัดการได้</p>
+              <p>Moving on to Micro Jaixing, as I mentioned earlier, business is struggling because of the tariff issue, where we lost a lot of business for US customers that moved to other parts of the Hana Group.</p>
+              <p>And now there's a new tax section 301. I will talk about that later on. That's going to cause us more challenges. Material costs such as PCBs and MLCCs are also increasing due to high AI demand driving costs up. But our RFID loading has improved and we'll expect it to increase in the third quarter.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนของ Hana Micro ที่เจียซิง ยอดขายโดยรวมค่อนข้างทรงตัว เทียบจากไตรมาสก่อน เนื่องจากลูกค้าสหรัฐฯ ส่วนใหญ่ยังมีความกังวลเกี่ยวกับภาษีที่กลับมาใช้ใหม่ของ Section 301 ซึ่งจะกล่าวถึงทีหลังต้นทุนวัสดุของ PCB และก็ MLCC เพิ่มขึ้น แต่เนื่องจากความต้องการที่เกี่ยวข้องกับ AI และราคาสินค้าโภคภัณฑ์ที่สูงขึ้น จากความขัดแย้งของในตะวันออกกลาง ซึ่งส่งผลกระทบเชิงลบต่อมาร์จิ้นของเราปริมาณงาน RFID ดีขึ้น และคาดว่าจะเพิ่มขึ้นในไตรมาสที่สาม</p>
+              <p>This year, we saw a good improvement on the quarter, up 22% and 14% on the year. And clearly, the semiconductor cycle has turned positive, and we see significant loading increases. Utilization improved from 55% in Q1 to 63% in Q2. And we see a significant increase on new product introduction activity, which is an indication of future growth. And we will be looking at uh investing um additional capital expenditure for end of this year and significantly more in next year as new orders come in.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ฮานา IC อยุธยา รายได้ของไตรมาสที่ 2 เป็น 1,501 ล้านบาทเพิ่มขึ้น 22% จากไตรมาสที่แล้ว และ 14% จากปีที่แล้ววัฏจักรอุตสาหกรรมเซมิคอนดักเตอร์เริ่มกลับมาเป็นบวกอย่างชัดเจน แล้วก็ปริมาณงานเพิ่มขึ้นแล้วก็แนวโน้มของความต้องการแข็งแกร่งขึ้น ส่วนอัตราการใช้กำลังการผลิตเพิ่มขึ้นจากไตรมาสที่แล้ว จาก 55% เป็น 63% เราเห็นว่ามีกิจกรรมทาง NPI เพิ่มขึ้นอย่างมีนัยสำคัญ ซึ่งเป็นตัวขับเคลื่อนการเติบโตของเราในอนาคตอยู่ระหว่างการทบทวนการลงทุนเครื่องจักรเพิ่มขึ้นสำหรับปีหน้าเพื่อรองรับ NPI ใหม่ที่กำลังจะเปลี่ยนเป็น mass production โดยระยะเวลารอเครื่องจักรและอุปกรณ์ยาวขึ้นตอนนี้</p>
+              <p>So you can see the chart here and we see the rising loadings. We measure that by million wire bonds per month. So the trend you can see moving up over the past three quarters.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>จากตัวชาร์ตนี้ เราจะเห็นว่าตัวปริมาณความต้องการ และ loading เพิ่มขึ้น อันนี้เราวัดจาก wire bond ของเรา เพิ่มขึ้นต่อเดือน ตั้งแต่ปี quarter ที่ 2 ปี 2022</p>
+              <p>Moving on to the IC operation in Jiaxing. So this division is going through a transformation as we refocus from our standard IC business into power management module business because the standard OSAT business is very difficult to compete with local Chinese companies. So, this will take time and this operation transition will mean that we will not make much money, maybe some operating losses over the next two to three quarters before we start to ramp up on the power module business. But we have some start, positive start, where we have qualified for one of China's major EV players using Hana's TS pack, which is a patented product that we have.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนของ Hana IC เจียชิงรายได้ของไตรมาสที่แล้ว 272 ล้านบาท ลดลง 33% จากไตรมาสก่อน แล้วก็เพิ่มขึ้น 15% จากปีที่แล้วกำลังปรับทิศทางจากการเป็นผู้ให้บริการ OSAT แบบมาตรฐาน ไปสู่การเป็นผู้ผลิต Power Module แบบเฉพาะทางซึ่งปัจจุบันมี Margin สูงกว่า ส่วนการลดธุรกิจ</p>
+              <p class="th" lang="th">ส่วนของ OSAT และเพิ่มกิจกรรม Power Module จะดำเนินการต่อไปในตลอดทั้งปี 2027 และก็หลังจากนั้นด้วยการเปลี่ยนผ่านนี้ต้องใช้เวลาและก็อาจจะไม่ได้ราบรื่นนักในทุกๆ ช่วงรายได้ที่ลดลงจากไตรมาสที่แล้ว เกิดจากลูกค้ารายหนึ่งในสหรัฐซึ่งสะสมสินค้าคงคลังไว้มากในสองไตรมาสที่ผ่านมา แล้วก็จำเป็นต้องปรับระดับสินค้าคงคลังโดยคาดว่าสถานการณ์จะดีขึ้นในช่วงต้นปีหน้าเห็นความคืบหน้าของตัว Power Module ที่เป็น TS Pack ซึ่งเราได้จดสิทธิบัตรแล้วก็ได้ได้รับการ Qualification จากผู้ผลิต EV รายใหญ่รายหนึ่งของจีน และมีแนวโน้มที่จะแข็งแกร่งขึ้นในปีหน้า</p>
+              <p>So, this slide just gives an idea what's going on in the smartphone business. Because of the significant increases in memory, the major memory companies are focusing their capacity on high bandwidth memory and not on standard memory, which is used in most mobile phones. But so what has happened is that the major brands like Apple and Samsung, they can more easily pass on this cost to their customers, but the shall we say the budget low-cost phone makers mostly Chinese like Oppo, Vivo, they struggle to pass on these additional costs, so we see a drop overall in this business.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>เราจะเห็นว่ากราฟของโทรศัพท์มือถือมีแนวโน้มที่จะลดลงเนื่องจากราคาต้นทุนของตัว memory standard memory เพิ่มขึ้นแต่ว่าบริษัทยักษ์ใหญ่อย่าง Apple หรือ Samsung ยังสามารถที่จะส่งผ่านราคาต้นทุนเนี่ยไปถึงผู้บริโภคได้ แต่บริษัทมือถือส่วนใหญ่ก็จะเป็นของจีนอย่าง Oppo, Vivo จะประสบปัญหาในการที่จะส่งผ่านต้นทุนไปหาผู้บริโภค เพราะฉะนั้นเราจะเห็นว่าเทรนด์โทรศัพท์มือถือก็เลยลดลง</p>
+              <p>Moving on to the USA, in Ohio, we saw top-line growth improving, up 25% on the quarter and 51% on the year. Despite that, this operation was still loss-making in the second quarter because the margin on the inlays have dropped very substantially due to many big players jumping into this high-growth business. And I discussed this earlier when we talked about this operation. We need to grow very significantly this year in order to get back to profitability, in excess of 80%. Actually, we're targeting to double. I'm not sure if we can do it, but we are making progress towards that, and we are optimistic that we can return back to profitability by the end of this year.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนของ Hana ที่ US Ohio รายได้ของไตรมาสที่แล้ว 458 ล้านบาท เพิ่มขึ้น 25% จากไตรมาสที่แล้วแล้วก็เพิ่มขึ้น 51% จากปีที่แล้วผลิตภัณฑ์หลักของ Ohio inlay เติบโตอย่างแข็งแกร่งจากไตรมาสที่แล้ว จากความต้องการด้านโลจิสติกส์และ transportation ในอเมริกาและ retail ในตลาดเอเชียด้วยความต้องการของ RFID tag ยังคงอ่อนตัว เนื่องจากความต้องการในยุโรปอ่อนแออยู่ส่วน HTI ยังขาดทุนในไตรมาสที่สอง แต่ผลขาดทุนก็ลดลง ไตรมาสต่อไตรมาสเนื่องจากรายได้ดีขึ้นจากความก้าวหน้าของการเติบโตด้านรายได้ของ Hana US ยังเป็นไปตามแผนจะกลับมามีทำกำไรได้ คาดว่าภายในไตรมาสที่สี่</p>
+              <p>And Cambodia, which benefited from the move of US customers from China, is seeing a big boost, even though it's slightly down on the quarter, but you see over 50% up on the year. Despite the Thai-Cambodian border remaining closed, which increases logistics costs, our customers are comfortable, they're okay as long as there's no significant increase in the conflict. And we have won a new product line, a hearing aid product, which is just passed qualification, and we plan to start mass production in this quarter, and that should give a positive boost further to sales for the second half of this year.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ฮานาที่ กัมพูชา รายได้ของไตรมาส 2 เป็น 138 ล้าน ลดลง 5% เทียบจากไตรมาสก่อน แต่ว่าเพิ่มขึ้น 53% จากปีที่แล้ว ผลิตภัณฑ์ access control อุปกรณ์ตรวจหนังสือเดินทางมีส่วนสำคัญต่อการเติบโตเพิ่มขึ้น แม้ว่ารายได้จะลดลงจากปีที่แล้วส่วนชายแดน ไทย-กัมพูชายังคงปิด และส่งผลให้ต้นทุนทางด้านขนส่งของเราเพิ่มขึ้น ลูกค้ายังไม่ได้มีความกังวลมากนัก ตราบใดที่ความขัดแย้งไม่รุนแรงมากขึ้นผลิตภัณฑ์ที่ทางการแพทย์ อย่าง เช่น พวก hearing aid ตัว ใหม่ของเราได้ผ่าน qualification และมีแผนที่จะเริ่มผลิต mass production ในไตรมาส 3 นี้ แล้วก็คงยังเป็นไปตามกำหนดแนวโน้มของครึ่งปีหลังยังเป็นบวกแล้วก็มีแรงสนับสนุนจากกิจกรรมจากผลิตภัณฑ์ hearing aid เครื่องช่วยฟังนี้</p>
+              <p>So here's a slide, not a huge difference from a year ago, other than industrials was a little bit down and R&amp;D was up, but otherwise pretty stable.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ตารางนี้ ถ้าดูจาก trend chart ก็คล้ายๆ เดิม แต่ในของ product ของแต่ละ industry มี industrial ลดลงนิดนึง แล้ว R&amp;D เพิ่มขึ้น</p>
+              <p>Finally on to PMS. So we saw, a good growth of nearly 80% quarter-on-quarter and over 80% on the year, albeit of course this is coming from a relatively low base. And as I mentioned earlier, the semiconductor cycle is turning very positive, driven by AI and restocking, and PMS is benefiting from that trend as well. Losses still remain, but they are beginning to reduce, which is a good positive trend for us. And we have invested, we continue to invest and have invested both in marketing efforts for Korea and India, and they're beginning to show results for us. So we believe that the second half will continue to see improvements in our revenue growth as well.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>PMS รายได้เพิ่มขึ้นเกือบ ๆ 80% 93 ล้านบาท จากไตรมาสที่แล้ว เป็น 82% จากปีที่แล้ว ถึงแม้ว่าเราจะนับจาก รายได้ low base ส่วนรายได้ปรับตัวดีขึ้นทั้งไตรมาสที่แล้ว จากไตรมาสที่แล้วและปีที่แล้ววัฏจักรเซมิคอนดักเตอร์กลับมาเป็นบวกจากแรงหนุนของ AI แล้วก็การที่เติมสต็อกใหม่แม้ว่าผลกำไร ผลขาดทุน แต่แนวโน้มของผลขาดทุนกำลังลดลงแล้วก็มีสัญญาณไปในเชิงบวกการลงทุนของเราในตลาดอินเดียและเกาหลีเริ่มแสดงผลลัพธ์ที่ดีขึ้นคาดว่าความต้องการในครึ่งปีหลังจะเติบโตอย่างต่อเนื่อง แล้วก็ PMS จะลงทุนใน R&amp;D ต่อไปเพื่อเร่งการเปิดตัวผลิตภัณฑ์ใหม่สำหรับปีหน้าแล้วก็ปีถัดไป</p>
+              <p>So, I want to run you through some of the areas that we are focusing on for PMS. So, starting with infrastructure. We've signed an agreement with one of Korea's largest transformer companies, this is sort of similar to Thailand's MEA type of, national company, to supply transformers, which will go to AI data centers. So that's an interesting development for us. Also, solid-state circuit breakers is another program that we're working on using our JFET solution. And this is again going to be focused on data centers. And finally, solid-state transformers, which will launch towards the end of this year or end of Q3, to support the development of the miniaturization and transforming from traditional transformer to solid state transformer solution. Again, very much driven by AI and data centers.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ในส่วนของ EMS ต่อเนื่องในส่วนของ Infrastructure เราได้ลงนามข้อตกลงร่วมกับการพัฒนาผลิตภัณฑ์กับบริษัทหม้อแปลงรายใหญ่รายหนึ่งของเกาหลีเพื่อจัดหา solution สำหรับ AI Data Center ในสหรัฐอเมริกา เกาหลี และจีนส่วนของ Solid State Circuit Breaker เป็นโครงการที่มีสำคัญระดับต้นๆ ของเรา การใช้ solution ของ JFET เพื่อลดปัญหาความไม่เสถียรจากไฟตกอย่างมีนัยสำคัญ ในกรณีที่ grid หรือ substation ไม่สามารถที่จะรองรับได้ เพื่อจัดการเรื่องแรงดันแล้วก็กำลังตกส่วนการออกแบบแล้วก็พัฒนาโซลูชันของ SST มีกำหนดเริ่มในเดือนกันยายนปีนี้ ส่วนภาพประกอบในสไลด์ที่แสดงโซลูชันเกี่ยวกับ product ต่างๆ</p>
+              <p>For automotive, we have delivered pre-production lots to a major Chinese automotive company for the onboard charger program. So that's very positive, not easy to get into these, big companies. And we've completed device qualifications, for onboard, sorry, board level and system level and that hopefully, that program hopefully to begin in September, or towards the end of this year. We've also, starting to deliver, product, for the military. This is the Korean military, not the Chinese military high volume 650 volt, SiC products, silicon carbide products for solar pumps.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วน Automotive กับ Industry และ Military product ผลิตภัณฑ์ยานยนต์ เราส่งมอบผลิตภัณฑ์ ล็อตก่อนการผลิตจริงให้แก่บริษัทผู้ผลิตรถยนต์รายใหญ่รายหนึ่งของจีนและสำหรับโครงการ Onboard Onboard Charger แล้วก็เราผ่านการ Qualify Device แล้ว เราได้ทดสอบระบบบอร์ด และระบบสำหรับโครงการ E-Compressor จะเริ่มในเดือนกันยายนส่วนตัวของอุตสาหกรรมและการทหาร เราส่งมอบ Silicon Carbide Module ในปริมาณที่มีนัยยะสำคัญ สำหรับงานทางการทหาร เพื่อใช้ทดสอบแล้วก็ทั้งระบบทั้งในระบบและก็ภาคสนามแล้วก็ส่งมอบผลิตภัณฑ์ 150 โวลต์ ของ Silicon Carbide สำหรับ Solar Pumpตัวโมเดลนี้เป็น 1,200 โวลต์ ซิลิคอนคาร์ไบด์ สำหรับการควบคุมมอร์เตอร์ไดรฟ์ของมอเตอร์ AC</p>
+              <p>And finally, consumer, we are very proud to be the first company to adapt silicon carbide to shrink the die, to make it so small it can compete with normal silicon. We call this the Easy Drive device, and this is used inthe adapter market. Everyone has an adapter to charge your laptop, your phone, or any electrical appliance. And we developed this product, which is undergoing many tests with different companies, and we expect to be in mass production, or start mass production, this quarter, and we hope that this will become a meaningful product next year.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ในส่วนของผลิตภัณฑ์ที่เป็น consumer เราค่อนข้างจะภูมิใจว่าเราได้ทำการผ่านการทดสอบตัว product แล้วเราสามารถลดขนาดของตัว IC ลงเราได้พัฒนา IC ตัวนี้สำหรับเครื่องซักผ้า เครื่องอบผ้าและส่งตัวอย่างให้แก่บริษัทเครื่องไฟฟ้ารายใหญ่ของจีนไปแล้วส่วนความต้องการของตัวผลิตภัณฑ์สำหรับตลาด adapter เพิ่มมากขึ้น</p>
+              <p>So, just a slide on our liquidity. So, EBITDA was up about 50%to 684 million. Capex increased from a low base, up 55% to 314 million. And net cash is still very comfortable at 1.4 billion, sorry, at 11.2 billion.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนกระแสเงินสดของเราของไตรมาส 2 EBITDA ของเราเป็น 684 ล้าน เพิ่มขึ้น 49% จากปีที่แล้วCAPEX 314 ล้าน เพิ่มขึ้น 55%เงินสดสำรองเพิ่มขึ้น 1,400 ล้านบาท 15%</p>
+              <p>Okay, and I'd like you to just briefly talk about the two major AI-related projects.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>AI พูดถึงเป็นตัวคีย์หลักตอนนี้</p>
+              <p>So as you know we have the Phononic business which is the thermal, the TEC thermoelectric cooling, and we have the high density PCBA which is used in AI oscilloscopes.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>มีของ Phononics ของตัว AIและตัว high density PCBA สำหรับ AI oscilloscope</p>
+              <p>So for Phononic, the ramp up has now started in this quarter, Q3, and this will increase as equipment comes in. We have already received, five customers, or I mean these are Phononic customers have qualified, what we call PCN, production control notice, passed. That means we can start delivery. And the ramp will steadily increase as new equipment is delivered throughout the second half of this year. And we are working on a new project with Phononic called CPO, co-packaged optics, which, we understand, is going to be or potentially can be significantly bigger than the current TEC, which is we call pluggable, which is kind of what we're doing. We're still working on the process and hopefully, if everything goes to plan, we can discuss contractual obligations between us and Phononics by the end of this year. And finally, for high-density PCBA, also the production has started ramp in Q3, and we expect that to continue throughout the rest of this year and be fully operational by end of the year or early next year.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนของ Phononics การทดสอบ สถานะของการทดสอบของเราผ่านแล้ว เริ่มการผลิตในไตรมาสนี้ซึ่งสอดคล้องกับกำลังผลิตที่เราติดตั้งอยู่ และเราผ่านลูกค้า 5 ราย ลูกค้าของ Phononics และจะมีเพิ่มเติมขึ้นมาอีกการผลิตเพิ่มขึ้นอย่างต่อเนื่อง เมื่อเครื่องจักรใหม่เนี่ยถูกส่งมอบ ภายในไตรมาสนี้และไตรมาสหน้า สำหรับสัญญาที่ 1 และสัญญาที่ 2 ส่วนโครงการ Co-packaged Optics อยู่ระหว่างการพัฒนา แล้วก็การทดสอบ กระบวนการผลิต การวางแผน การหารือเกี่ยวกับสัญญาจะเพิ่มภายในสิ้นปีนี้ โดยเพื่อการขยายกำลังการผลิตที่เพิ่มเติมส่วนของ High Density PCBA เริ่มผลิตแล้วในไตรมาสนี้จะ ramp up และดำเนินการอย่างต่อเนื่อง คาดว่าจะใช้กำลังผลิตเต็มกำลังภายในสิ้นปีนี้หรือเร็วกว่านั้น</p>
+              <p>A quick word on tariffs. As you know, Trump has started a new tariff called Section 301. Ultimately, I don't think this is going to have a major impact on Hana because the amount of goods we ship directly to America is relatively small, about 4.5% from Ayutthaya, and as a group, about 14%.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนของภาษีศุลกากร ทรัมป์ ที่เพิ่มภาษีขึ้นมา ก็มีภาษีใหม่ภายใต้ Section 301 ซึ่งไทยจะเพิ่มขึ้นอีก 12.5% กัมพูชาเพิ่ม 10% เกือบทุกประเทศได้รับผลกระทบจากภาษีเพิ่มเติมจาก section 301 ส่วนการดำเนินการสำหรับประเทศไทยยังคงอยู่ในระหว่างเจรจาไม่นับรายการที่ได้รับการยกเว้น ไทยจะถูกเรียกเก็บภาษีประมาณ 12.5%</p>
+              <p>So, in summary, if you remember, Thailand was 19%, most of Asia 19-20%, and now, after the Supreme Court stopped Trump on this tariff, we expect tariffs to drop overall, even with the 301, to between 12, 12% or maybe 17% maximum.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>โดยสรุปโครงสร้างภาษีใหม่สำหรับไทยกับกัมพูชาถือว่าน่าจะดีกว่าเดิมและsection 301 เราคาดว่าภาษีจะลงมา จาก 19% ก่อนหน้าที่ศาลตัดสินจะลดลงมาอยู่ที่ประมาณ 12% หรือมากสุด 17%</p>
+              <p>So outlook, mass production for EMS has started, for AI projects in Lamphun. So that will be a driver going forward in the second half. For Jiaxing, EMS, the growth will remain relatively weak due to political issues.</p>
+              <p>For Ayutthaya, we expect to see a continuing improvement in utilization, and with a very high NPI backlog, this is an indication of strong future growth.</p>
+              <p>For Jiaxing, as we transform from OSAT to power modules, profitability will remain under pressure, but we anticipate improvements next year.</p>
+              <p>Ohio, we are hopefully on track to get back to profitability by the end of this year, but we have a big challenge to grow the business by more than 80%. We have the orders, but we need to execute.</p>
+              <p>Cambodia, the new product lines will support growth, but we're confident this division will remain profitable for the rest of the year.</p>
+              <p>And for PMS, we continue to reduce our cash burn as the business starts to recover.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ส่วนอัตราแนวโน้มของปี 2026 ฮานา ลำพูนเริ่ม mass production ในไตรมาสนี้ สำหรับโครงการ AI โครงการ AI หลักของเรา 2 โครงการที่กล่าวไป</p>
+              <p class="th" lang="th">ส่วนฮานา เจียซิง แนวโน้มการเติบโตยังคงอ่อนแอเนื่องจากปัจจัยภูมิรัฐศาสตร์ แต่ปรับขนาดธุรกิจโดยรวมจะช่วยทำให้มีความสามารถในการทำกำไรเพิ่มขึ้นฮานา ยอดขายฟื้นตัวอย่างต่อเนื่องและคาดว่าจะเติบโตต่อเนื่องในครึ่งปีหลัง เพราะว่าเรามีตัวผลิตภัณฑ์ใหม่อยู่ในระดับค่อนข้างสูงและเป็นสัญญาณของการเติบโตที่แข็งแกร่งในอนาคตแล้วเรากำลังทบทวนพิจารณาการลงทุนเครื่องจักรของเราเพิ่มเติมเพื่อการขยายในปี 2027 ฮานา เจียซิง แผนการจากการเปลี่ยนจาก OSAT ไปเป็นธุรกิจ Power Module กำลังดำเนินการและความสามารถในการทำกำไรในครึ่งปีหลังยังคงอ่อนแอแต่ว่าแนวโน้มของปีหน้าดีขึ้น</p>
+              <p class="th" lang="th">ส่วนของ Ohio RFID แนวโน้มการปรับปรุงใน Q3 ยังเป็นไปตามแผน แล้วก็คาดว่าจะมีกำไรภายในไตรมาสหน้าโดยดำเนินแผนขยายตัว Relay เชิงรุก</p>
+              <p class="th" lang="th">ฮานา กัมพูชา สายการผลิตใหม่จะช่วยทำให้การสนับสนุนการเติบโต แล้วก็ช่วยปรับปรุงผลกำไรในครึ่งปีหลังPMS ซิลิคอนคาร์ไบด์ ซิลิคอน รายได้จะทยอยดีขึ้น ในครึ่งปีหลัง จากสภาวะตลาดที่ฟื้นตัว และจะช่วยลดอัตราการใช้เงินสด</p>
+              <p>In terms of capital expenditure, I don't have an update since Q1. But we are projecting a continued expansion driven by multiple new NPI products in the Ayutthaya. We anticipate further expansion for thermoelectric cooling in Lamphun. And we also need to invest to expand the capacity in our RFID both in US and in China. So this will drive a higher capex next year.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ในส่วนแนวโน้มการลงทุนของเราอยู่ในระหว่างการทบทวน ไม่ได้มีอะไรอัปเดตมากจากคราวที่แล้วซึ่งเราคาดว่าจะต้องมีการลงทุนเพิ่มในปี 2027 อย่างมีนัยสำคัญเนื่องจากว่ารายการที่อยู่ในรายการที่เราหารือกันเนี่ยมี NPI ใหม่หลายโครงการของทางฮานา อยุธยาแล้วเราขยายกำลังการผลิตเพิ่มเติมของฮานา ลำพูนแล้วก็เพิ่มกำลังการผลิต RFID ทั้งในโอไฮโอและก็เจียซิง</p>
 
               <div class="qa">
                 <div class="qa-label">Questions &amp; Answers</div>
-
-                <p class="tq"><span class="qmark">Q</span>If the war prolongs, what is the impact?</p>
-                <p>The war is increasing energy costs and inflation, which affects consumer discretionary spending. If high oil prices continue to year-end, we could see some reduction in demand for our goods in 2027. I do not think the war will impact our AI business, which is an infrastructure build-out.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>ถ้าสงครามยืดเยื้อก็คงยังจะมีปัญหาด้านพลังงาน แล้วก็เงินเฟ้อแล้วมีปัญหาเรื่องน้ำมันซึ่งจะมีผลกระทบสำหรับบริษัท และคำสั่งซื้อก็อาจจะลดลงในปีหน้า แต่ส่วนของธุรกิจของเราที่เป็น AI ไม่คิดว่าจะได้รับผลกระทบเกี่ยวกับสงคราม</p>
-
-                <p class="tq"><span class="qmark">Q</span>What is the view on the RFID business?</p>
-                <p>It's growing very fast, which is good, but big competitors have driven prices down, hurting margins. The only way out is to grow — for every low-margin unit we have to make more units. We need to grow at least 80%, maybe 100%, this year; we have orders close to that and are ordering more equipment, so I anticipate a return to profitability towards the end of this year.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>ตอนนี้ตัว product มีปัญหาเพราะว่ามีการแข่งขันเรื่องราคาสูงมาก แต่อย่างไรก็ตามในการที่จะกลับมามีกำไรจะต้องมีออเดอร์มากกว่า เพิ่มขึ้น 80 ถึง 100% ซึ่งตอนนี้เราก็มีคำสั่งซื้อเพิ่มเข้ามาประมาณนั้นแล้ว</p>
-
-                <p class="tq"><span class="qmark">Q</span>Can you scale up Cambodia?</p>
-                <p>Yes — we have open capacity and sufficient floor space; the challenge is winning more work. As we do, we'll transfer equipment from Lamphun. A medical (hearing-aid) product from our first major customer starts within a month or two and should be a driver.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>คำตอบ มีแนวโน้มในการที่จะเติบโตจากลูกค้าเจ้าใหญ่ที่เคยทำ remote control กับเรา แต่ตอนนี้หันไปโฟกัสเรื่องของ hearing aid เครื่องช่วยฟัง ซึ่งก็จะเริ่มภายในเดือนสองเดือนข้างหน้านี้</p>
-
-                <p class="tq"><span class="qmark">Q</span>Is Q1 profit the lowest?</p>
-                <p>We don't give specific profit guidance, but we're not happy with Q1 and are confident we can improve as the overall outlook improves. The war is a risk hanging over us, but I hope it won't impact us this year.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>ขออนุญาตไม่ตอบคำถามในรายละเอียดตรงนี้แต่ว่า ยังไงก็ตามเรามีความคาดหวังว่า เราจะมีกำไรที่เพิ่มขึ้นจากธุรกิจที่เรามองเห็น จาก outlook ของเรา</p>
-
-                <p class="tq"><span class="qmark">Q</span>When will PMS be profitable?</p>
-                <p>PMS will continue to lose money this year, but as the business improves the loss should reduce, and I'm positive we'll see a reduction in losses in H2 — though still a loss for the full year.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>ในส่วนของ PMS คาดว่าจะกำไรเมื่อไหร่ PMS มีแนวโน้มในการพัฒนาเพิ่มขึ้น แต่ว่าในเรื่องผลกำไรน่าจะเป็นเรื่องการลดการขาดทุนมากกว่า เพราะว่าบริษัทของ PMS ยังมีปัญหาขาดทุนแต่ก็จะลดลง</p>
-
-                <p class="tq"><span class="qmark">Q</span>What are the revenues from Phononic?</p>
-                <p>I can't disclose absolute revenue, but the business will be meaningful — potentially a top-five or top-seven customer by next year, and more if additional projects come in.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>คำถามเกี่ยวกับรายได้จาก Phononic ว่าจะเป็นกี่เปอร์เซ็นต์ ขอแจ้งว่าไม่สามารถที่จะเปิดเผยข้อมูลได้ในรายละเอียด แต่ว่าลูกค้าของเรา Phononic จะมีความยินดีที่จะให้เปิดเผยข้อมูลในลักษณะที่ว่าเรามีธุรกิจกับเขาเป็นธุรกิจอะไรซึ่งคาดว่าถ้าเริ่มผลิตแล้ว แล้วเป็นไปได้ดี ลูกค้า Phononics จะเป็นลูกค้าระดับต้นๆ ของ Hana</p>
-
-                <p class="tq"><span class="qmark">Q</span>FT1 status?</p>
-                <p>PTT is the major shareholder and I must be guided by their announcements. There's no change — the project is currently on hold.</p>
-                <p class="th" lang="th"><span class="thtag">TH</span>คำถามเกี่ยวกับการร่วมทุนกับ ปตท. อย่างที่คุณริชาร์ดเคยแจ้งไว้ว่าเราเป็นผู้ถือหุ้น ผู้ลงทุน ถ้าเทียบกับ ปตท. เราเป็นรายเล็กกว่า เราก็จะไม่สามารถตอบคำถามได้แทน ปตท. แต่ว่าตอนนี้โปรเจกต์กำลัง hold ไว้ก่อน</p>
-
-                <p class="tq"><span class="qmark">Q</span>Risk of delays on Phononic?</p>
-                <p>The main risk is qualification and testing, which we don't expect to be a problem. Worst case, a delay in qualification delays the ramp-up — it doesn't stop the business. The mass-production line remains on schedule.</p>
-
-                <p class="tq"><span class="qmark">Q</span>Any other AI activities beyond the three presented?</p>
-                <p>We do have others, but they are not yet large enough to be meaningful, so we don't discuss them. We only talk about AI businesses that will be meaningful for Hana; if the others grow, we'll open them up.</p>
+              <p>I've got a lot of questions here, but of course many of these questions I think I've answered or talked about during my presentation. But I'll try to focus on the ones that I didn't talk about.</p>
+              <p>One of the questions relating to increasing trade receivables, and this will always happen now as the business is growing. So we anticipate trade receivables to continue to increase. It will not go on forever, but as the growth period starts and we're going to continue to grow for at least, I think, the next 12 months or more, we will see our net receivables going higher.</p>
+              <p>Another question about cash positive or free cash flow. Again, when a company is growing, you are investing, so you're using your cash. And that will mean that you will be probably negative free cash flow. Free cash flow starts improving when you start reducing your capital expenditure and the investments you made are generating cash. So, as we go back to the investing stage, that free cash flow situation will be negative for a while.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ในส่วนของคำถามมีเข้ามาค่อนข้างเยอะ ขอตอบคำถามบางคำถามเพราะว่าบางส่วนตอบไปแล้วใน presentation ส่วนของกระแสเงินสดสำรองถ้าเรามีการลงทุนเพิ่มเติม ตัวเงินสดสำรองก็อาจจะลดลงได้ แต่เราก็ทบทวน review อย่างดีว่าเราจะลงทุนในตัวไหนอย่างไร</p>
+              <p>And then a question about PMS's capacity. PMS has sufficient capacity to continue to grow from the levels that we are currently now. So, we don't have to make any substantial investments at this point in time. Our focus is on improving our utilization, and reducing our cash burn and operating losses.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>PMS มีคำถามเข้ามาว่าจะมีการเพิ่ม capacity หรือเปล่า ตอนนี้ capacity เรายังพอเพียง แต่ตอนนี้อยู่ในระหว่างการมุ่งไปทางที่ในการใช้กำลังการผลิตให้เต็มกำลัง</p>
+              <p>A question about what type of products were driving the growth in in our OSAT business. So, mixed signal devices, sensors, analog, optoelectronics, and power were the main drivers.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>คำถาม ผลิตภัณฑ์ตัวไหนที่เป็นตัวหลักในการที่จะทำให้การเติบโตของ IC มีผลิตภัณฑ์ optoelectronics, power, analog sensor และ mixed signal</p>
+              <p>Another question about Thailand promoting drones and aerospace defense electronics. We don't really have that capability know-how, so probably we will not be focusing on that.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>คำถามเกี่ยวกับประเทศไทยมีความต้องการเกี่ยวกับโดรน และต่อสู้อากาศยาน เราไม่มีความเชี่ยวชาญทางนี้ เราก็จะไม่ได้มุ่งไปทางนี้</p>
+              <p>Another question about the level of new product introduction. So today particularly in from the Ayutthaya, we're seeing one of the highest levels of new product introduction opportunities coming through. So, this is an indication of the future, and when I mentioned earlier about we will have to invest more money in Ayutthaya, this relates to taking the new product development into mass production, which will come towards the end of this year and in the early part of next year.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>คำถามเกี่ยวกับ NPI หรือ product ใหม่ ซึ่งตอนนี้ อยุธยากำลังทำตัว product ใหม่ๆ เข้ามาเยอะมากเราเลยต้องทบทวนเรื่องการลงทุนแต่อย่างไรก็ตาม product ใหม่ๆ จะเป็นตัวชี้วัดการเติบโตในอนาคตของเราด้วย</p>
+              <p>Another question relating to our investments in new technologies and what kind of return do we expect. Currently, our utilization and I'm referring here to PMS in Korea is is not high enough, right? That's why we're making losses. So we've got to develop new products in order to improve our utilization rate. We initially focused on the EV car industry, but that has become very difficult. And as I showed you in my presentation, we have low power for adapters and high power for transformers. At this point in time, our target is just to get back to cash break-even and stop the losses, which we're hoping can happen sometime towards the second half of next year if everything goes to plan.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>ในส่วนของตัวการลงทุนของ New Technology อย่างที่อธิบายว่า ตอนนี้การใช้กำลังผลิตของ PMS ยังไม่เป็นที่พอใจตามความต้องการแต่ว่าอย่างไรก็ตามเราก็จะคิดค้นผลิตภัณฑ์ใหม่ๆ เพื่อที่จะเอามาเป็นตัว product ใหม่ของ PMS เพื่อที่เราจะได้ลดการขาดทุนลงแล้วก็เราหวังว่าจะไม่ขาดทุนแล้วภายในประมาณกลางๆ ปีหน้า</p>
+              <p>So, question about dividends. At this point in time, you know, I cannot, I don't know what the dividend is, we'll have to wait to see how the year ends, but this is a matter for the board's decision, and like any company, we look at our performance, our cash needs, and then we will decide, you know, when to pay and how to pay. But we always try to pay a dividend every year as, as you have seen historically.</p>
+              <p class="th" lang="th"><span class="thtag">TH</span>เงินปันผล ไตรมาสหน้า ยังตอบไม่ได้ว่าจะเป็นเท่าไหร่ อย่างไร แต่ว่าเราก็พยายามให้มีเงินปันผล</p>
               </div>
 
-              <p class="note">
-                Reproduced from the Stock Exchange of Thailand's bilingual (English/Thai) Opportunity
-                Day transcript; the presentation is in English and each Q&amp;A answer is shown in
-                English with the Thai summary as published. Published by SET on 29 May 2026.
-              </p>
+              <p class="note">Reproduced from the Stock Exchange of Thailand&rsquo;s bilingual (English/Thai) Earnings Call transcript; the presentation is in English with the Thai summary as published. Published by SET on 27 Aug 2026.</p>
             </div>
-
-            <p class="feature-source">
-              Summary and full transcript are generated and published by the Stock
-              Exchange of Thailand and reproduced here. <a href="#">View original on SET ↗</a>
-            </p>
           </div>
         </div>
 
@@ -358,12 +362,38 @@
 
         <div class="videogrid">
           <div class="videocard">
-            <div class="frame">
-              <span class="embed-tag">SET Embed</span>
+            <button type="button" class="frame has-poster yt-facade" data-yt="dpO3qOWC51Q"
+                    aria-label="Play the Q1/2026 results presentation on YouTube">
+              <img src="~/images/ir/oppday-q1-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
+              <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
               </span>
+            </button>
+            <div class="vc-body">
+              <div class="vc-kind">Earnings Call</div>
+              <h3>Q1/2026 results presentation</h3>
+              <div class="vc-formats">
+                <span class="fmt">Video</span>
+                <span class="fmt">Transcript</span>
+                <span class="fmt">Summary</span>
+              </div>
+              <div class="vc-meta">
+                <span class="vc-date">28 May 2026</span>
+                <a class="vc-watch" href="#">Transcript &amp; summary on SET ↗</a>
+              </div>
             </div>
+          </div>
+
+          <div class="videocard">
+            <button type="button" class="frame has-poster yt-facade" data-yt="kre-X63WrWE"
+                    aria-label="Play the FY2025 and Q4/2025 results presentation on YouTube">
+              <img src="~/images/ir/oppday-fy2025-q4-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
+              <span class="embed-tag">YouTube</span>
+              <span class="play" aria-hidden="true">
+                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
+              </span>
+            </button>
             <div class="vc-body">
               <div class="vc-kind">Earnings Call</div>
               <h3>FY2025 &amp; Q4/2025 results presentation</h3>
@@ -380,12 +410,14 @@
           </div>
 
           <div class="videocard">
-            <div class="frame">
-              <span class="embed-tag">SET Embed</span>
+            <button type="button" class="frame has-poster yt-facade" data-yt="Pgnee4KAqQo"
+                    aria-label="Play the Q3/2025 results presentation on YouTube">
+              <img src="~/images/ir/oppday-q3-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
+              <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
               </span>
-            </div>
+            </button>
             <div class="vc-body">
               <div class="vc-kind">Earnings Call</div>
               <h3>Q3/2025 results presentation</h3>
@@ -396,28 +428,6 @@
               </div>
               <div class="vc-meta">
                 <span class="vc-date">Nov 2025</span>
-                <a class="vc-watch" href="#">Transcript &amp; summary on SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <div class="frame">
-              <span class="embed-tag">SET Embed</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </div>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>Q2/2025 results presentation</h3>
-              <div class="vc-formats">
-                <span class="fmt">Video</span>
-                <span class="fmt">Transcript</span>
-                <span class="fmt">Summary</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">Aug 2025</span>
                 <a class="vc-watch" href="#">Transcript &amp; summary on SET ↗</a>
               </div>
             </div>
@@ -590,4 +600,6 @@
 
 @section Scripts {
     <script src="~/js/investors-bg.js"></script>
+    <script src="~/js/yt-facade.js" defer></script>
+    <script src="~/js/oppday-tabs.js" defer></script>
 }

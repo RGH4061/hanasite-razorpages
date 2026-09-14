@@ -1,4 +1,37 @@
-## Latest changes (13 Aug 2026 — Korea detached)
+## Latest changes (14 Sep 2026 — brought level with the static export)
+
+The static export had drifted ahead of this project. Ported in:
+
+- **New `Pages/Search.cshtml`** (`/search`) — the search results page. The search JS and CSS
+  were already deployed in `wwwroot/`; there was no page.
+- **New `Pages/Capabilities/PackageFinder.cshtml`** (`/capabilities/osat/package-finder`) —
+  the 117-row package finder. Added `wwwroot/js/package-finder.js`,
+  `wwwroot/js/search/packages.js` and `wwwroot/css/package-finder.css`.
+- **Seven new Thai IR pages** under `Pages/ThaiPages/Investors/` — Annual, EventsContact,
+  Sustainability, Faq, Governance, News, Structure (`/th/investor-relations/*`), each with
+  canonical + hreflang and `ViewData["Lang"] = "th"`. Thai now covers the eight IR pages and
+  the privacy policy, matching the static export.
+- **Six pages repaired** — Legal (privacy / terms / cookies), Insights (hub + article) and the
+  Thai privacy policy each contained a full second HTML document (`<html>`, `<head>`, its own
+  header and footer) inside the layout, so they rendered doubled chrome. Rebuilt as
+  content-only pages using `ViewData` and `@@section Head`.
+- **Assets synced** from the static export: `site.css` (was missing the `_mobile.css` import,
+  so the whole mobile pass was absent), `_mobile.css`, `locations-mobile.css`, `search.css`,
+  `market-page.css`, `site-search.js`, `search-shell.js`, `search/data.js`, `search/engine.js`.
+- **Shared chrome** — footer Why Hana / Sustainability / Investor news links wired; Markets nav
+  label converted to a menu trigger (no markets hub page exists); Insights links removed
+  sitewide while the section is held back; sitemap page rebuilt with all ten market hubs, their
+  24 sub-market pages and a Legal section.
+
+**Still drifting, flagged not fixed** — `_components.css`, `about.css`, `automotive.css`,
+`contact-forms.css`, `homepage-mobile.css`, `investors*.css`, `automotive.js`,
+`contact-forms.js` and `investors-structure-diagram.js` differ between this project and the
+static export, in both directions. They need a file-by-file diff, not a blind copy.
+
+**Thai page titles are English** in `ThaiPages/Investors/*` (carried over from the static
+export, e.g. "Group Structure & Shareholders"). Thai titles need to come from Corporate Affairs.
+
+## Earlier changes (13 Aug 2026 — Korea detached)
 Korea / Cheongju is unlinked site-wide: mega-menu Korea column, homepage location
 card and Place schema, locations hub plant card, world-map marker and map data,
 sitemap entry (locations branch now 5 pages), search index and search-shell header.
@@ -147,7 +180,7 @@ The Locations data (specs, certifications, addresses, capability lists) is **har
 - **Markets / Automotive hub** (`Markets/Automotive.cshtml`) re-synced to the current "Hana Automotive Hub" prototype: the hero now uses the dotted-**globe** background (`data-hana-bg="globe" data-variant="light"`), the cutaway is the interactive **side-by-side** stage + legend (15 numbered markers with hover tips, "Parts we produce" legend of the 5 components), and the hero copy matches the prototype ("Markets we serve" / "…manufacturing service" / "Explore automotive components" · "Start a conversation"). The earlier plain-image hero variant has been removed. `preview-automotive.html` and the static `site-html/markets-automotive.html` are now exact copies of the prototype.
 
 ### Re-export — 25 Jun 2026 (changes since the 23 Jun export)
-- **Header.** `_Header.cshtml` re-synced to the live homepage chrome: switched the logo to the trimmed PNG lockup (`~/images/hana-logo-full-trimmed.png`, 200×65, also in `_Footer`), simplified the **About** mega-menu to two columns (Company · Connect), and synced menu copy (Markets blurbs, Automation → "Manufacturing Traceability", DFx/JDM/NPI labels, "Investor FAQ & Knowledge Hub").
+- **Header.** `_Header.cshtml` re-synced to the live homepage chrome: switched the logo to the trimmed PNG lockup (`~/images/hana-logo-full-trimmed.webp`, 200×65, also in `_Footer`), simplified the **About** mega-menu to two columns (Company · Connect), and synced menu copy (Markets blurbs, Automation → "Manufacturing Traceability", DFx/JDM/NPI labels, "Investor FAQ & Knowledge Hub").
 - **Capabilities hub redesign.** `Capabilities/Index.cshtml` replaced the card grid with the new **radial diagram** hero — a dark globe-backed section with the six capability nodes arranged around the Hana mark (vanilla JS positions nodes + draws connector lines, re-renders on resize). The six parent-capability hubs and their sub-cards were already in sync.
 - **Markets / Automotive — all five sub-markets now live.** The hub (`Markets/Automotive.cshtml`) cards link through to live spokes (no more "Soon"). Added the four remaining lite-spoke pages alongside Power Modules:
   - `Markets/AutomotiveSensorAssembly.cshtml` (`/markets/automotive/sensor-assembly`) — with the interactive vehicle-cutaway hero + sensor legend.

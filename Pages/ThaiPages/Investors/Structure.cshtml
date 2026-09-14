@@ -1,0 +1,180 @@
+@page "/th/investor-relations/structure"
+@{
+    ViewData["Title"] = "Group Structure & Shareholders";
+    ViewData["Description"] = "Hana group structure and major shareholders.";
+    ViewData["Canonical"] = "https://www.hanagroup.com/th/investor-relations/structure";
+    ViewData["Lang"] = "th";
+    ViewData["AltLang"] = "en";
+    ViewData["AltLangUrl"] = "/investor-relations/structure";
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/css/investors-structure-shareholders.css" />
+    <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/investor-relations/structure" />
+    <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/investor-relations/structure" />
+    <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/investor-relations/structure" />
+    <link rel="stylesheet" href="~/css/investors-mobile.css" />
+}
+
+
+
+
+
+
+<!-- Hero band: breadcrumb + hero over topo canvas -->
+  <div class="hero-band">
+    <canvas id="hero-topo"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="subbar">
+      <div class="subbar-inner">
+        <nav class="crumbs" aria-label="เส้นทางการเข้าชม (Breadcrumb)">
+          <a href="/">Home</a>
+          <span class="sep">/</span>
+          <a href="/investor-relations">นักลงทุนสัมพันธ์</a>
+          <span class="sep">/</span>
+          <span>โครงสร้างกลุ่มบริษัทและผู้ถือหุ้น</span>
+        </nav>
+        <div class="meta">
+          ข้อมูลล่าสุด <strong>12 มีนาคม 2569</strong>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>โครงสร้างกลุ่มบริษัทและผู้ถือหุ้นรายใหญ่</h1>
+        <p class="lede">
+          ข้อมูลเกี่ยวกับโครงสร้างองค์กรของกลุ่มบริษัท Hana Microelectronics และรายชื่อผู้ถือหุ้นรายใหญ่ เพื่อประโยชน์สำหรับนักลงทุนและนักวิเคราะห์ในการประเมินข้อมูลของกลุ่มบริษัท ในฐานะบริษัทจดทะเบียนในตลาดหลักทรัพย์แห่งประเทศไทย
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- On-this-page — horizontal bar below the hero (full-width content beneath) -->
+  <div class="onpage-bg">
+    <nav class="sectionnav" aria-label="On this page">
+      <div class="label">On this page</div>
+      <ol>
+        <li>
+          <a href="#group-structure">
+            <span class="num">1</span>
+            <span>โครงสร้างกลุ่มบริษัท</span>
+          </a>
+        </li>
+        <li>
+          <a href="#major-shareholders">
+            <span class="num">2</span>
+            <span>ผู้ถือหุ้นรายใหญ่</span>
+          </a>
+        </li>
+      </ol>
+      <div class="footer-link">
+        See also: <a href="/investor-relations/annual">รายงานประจำปี</a><a href="/investor-relations/news">ข่าวสารสำหรับนักลงทุน</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- MAIN — full-width content -->
+  <div class="layout-bg">
+  <div class="layout">
+
+    <main class="content">
+
+      <!-- ─── 1. Group Structure ─── -->
+      <section class="doc" id="group-structure">
+        <header class="section-head">
+          <h2>โครงสร้างกลุ่มบริษัท</h2>
+          <p class="intro" style="max-width: 593px">บริษัทใหญ่ของกลุ่ม Hana Microelectronics รวมถึงบริษัทย่อยหลัก บริษัทร่วม และฐานการผลิตทั่วโลก</p>
+        </header>
+
+        <!-- Designed block — compact group-structure org chart, scaled to fit the column -->
+        <figure class="gs" role="group" aria-label="Hana Microelectronics group structure diagram" data-hana-bg="globe" data-variant="dark" data-accent="" data-fade="none" style="max-width: 1100px">
+          <div class="gs-head">
+            <div class="gs-key">
+              <span class="gs-key-item"><span class="gs-sw sub"></span>Subsidiary</span>
+              <span class="gs-key-item"><span class="gs-sw assoc"></span>Associate</span>
+            </div>
+            <div class="gs-legend-note">Ownership&nbsp;%&nbsp;·&nbsp;currency&nbsp;·&nbsp;function&nbsp;·&nbsp;country</div>
+          </div>
+          <div class="gs-fit">
+            <div class="gs-scale" id="gsScale">
+              <div class="gs-canvas" id="gsCanvas">
+                <svg class="gs-conn" id="gsConn" viewBox="0 0 1020 556" aria-hidden="true"></svg>
+                <div id="gsTree"></div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="gs-foot">
+            Hana Microelectronics Public Co., Ltd. and its principal subsidiaries and associate, as at 12 Mar 2026.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ─── 2. Major Shareholders ─── -->
+      <section class="doc" id="major-shareholders">
+        <header class="section-head">
+          <h2>ผู้ถือหุ้นรายใหญ่</h2>
+          <p class="intro">
+            ข้อมูลผู้ถือหุ้นรายใหญ่ของบริษัทตามที่ได้เปิดเผยต่อตลาดหลักทรัพย์แห่งประเทศไทย ซึ่งสามารถดาวน์โหลดได้
+          </p>
+        </header>
+
+        <table class="doctable">
+          <colgroup>
+            <col class="c-doc"><col class="c-date"><col class="c-act">
+          </colgroup>
+          <thead>
+            <tr>
+              <th class="c-doc"></th>
+              <th class="c-date">As at</th>
+              <th class="c-act r"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="c-doc"><span class="filetype">PDF</span><a href="#">Major Shareholders</a></td>
+              <td class="c-date">12 มี.ค. 2569</td>
+              <td class="c-act"><a href="#">ดาวน์โหลด <span class="arrow">↓</span></a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="related">
+          <span class="lbl">See also</span>
+          <a href="/investor-relations/annual">รายงานประจำปี</a>
+          <span class="sep">·</span>
+          <a href="/investor-relations/news">ข่าวสารสำหรับนักลงทุน</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  </div>
+
+  <!-- PAGE END -->
+  <section class="page-end" aria-label="ข้อมูลติดต่อนักลงทุนสัมพันธ์">
+    <canvas id="enquiries-topo"></canvas>
+    <div class="enquiries-topo-overlay"></div>
+    <div class="page-end-inner">
+      <div>
+        <p class="ttl">สอบถามข้อมูลสำหรับนักลงทุน</p>
+        <p class="desc">
+          For questions on the group structure or shareholding, please contact
+          the Investor Relations team.
+        </p>
+      </div>
+      <div class="actions">
+        <a href="/investor-relations/contact" class="btn">ข่าวสารนักลงทุน</a>
+        <a href="/investor-relations/contact#ir-contact" class="btn primary">ติดต่อนักลงทุนสัมพันธ์ &nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+@section Scripts {
+    <script src="~/js/investors-bg.js"></script>
+    <script src="~/js/investors-structure-diagram.js"></script>
+}

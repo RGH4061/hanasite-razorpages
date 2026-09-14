@@ -1,0 +1,45 @@
+/* ============================================================
+   _mobile.css — site-wide small-screen layer
+   Loaded last from site.css. The page templates carry desktop
+   type sizes inline, so these rules use !important to win; the
+   attribute selectors match the inline sizes actually in use.
+   ============================================================ */
+
+/* ── Type scale: tablets ──────────────────────────────────── */
+@media (max-width: 900px){
+  .hana-h1, .hana-hero,
+  h1[style*="font-size:60px"], h1[style*="font-size:58px"],
+  h1[style*="font-size:50px"], h1[style*="font-size:48px"],
+  h1[style*="font-size:46px"]{ font-size: 40px !important; letter-spacing: -0.025em !important; }
+  h2[style*="font-size:44px"]{ font-size: 32px !important; }
+}
+
+/* ── Type scale: phones ───────────────────────────────────── */
+@media (max-width: 640px){
+  .hana-h1, .hana-hero,
+  h1[style*="font-size:60px"], h1[style*="font-size:58px"],
+  h1[style*="font-size:50px"], h1[style*="font-size:48px"],
+  h1[style*="font-size:46px"]{ font-size: 32px !important; line-height: 1.1 !important; letter-spacing: -0.02em !important; }
+  h1[style*="font-size:40px"], h1[style*="font-size:32px"]{ font-size: 29px !important; }
+  h2[style*="font-size:44px"], h2[style*="font-size:36px"], h2[style*="font-size:32px"]{ font-size: 26px !important; }
+  .hana-h2{ font-size: 25px !important; }
+  .hana-h3{ font-size: 20px !important; }
+  .hana-sub, .hana-subhead{ font-size: 16.5px !important; }
+  p[style*="font-size:19px"], p[style*="font-size:18.5px"], p[style*="font-size:18px"]{ font-size: 16.5px !important; }
+  /* per-page hero headings (declared in the page stylesheets) */
+  .hero h1, .cf-hero h1, .hs-h1{ font-size: 30px !important; }
+}
+
+/* ── Section rhythm: phones ───────────────────────────────── */
+@media (max-width: 640px){
+  .hana-spec-item{ padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+/* ── Tap targets: phones ──────────────────────────────────── */
+@media (max-width: 640px){
+  .mk-side-toggle, .side-toggle, .filter-btn, .tab, .yr-btn, .zoom-btn, .hs-field-x, .decade-chip,
+  .btn-add, .scroll-arrow, .sp-set-link, .cert-cta{ min-height: 40px !important; }
+  .pf-chip{ min-height: 34px !important; }
+  .scroll-arrow{ min-width: 40px !important; }
+  .mk-side-toggle, .side-toggle{ display: flex !important; align-items: center; }
+}

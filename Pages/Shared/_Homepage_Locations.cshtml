@@ -5,34 +5,32 @@
 
 <section class="hana-locations-section"
          style="background:#ffffff; padding:96px 0;">
-    <div class="hana-wrap"
+    <div class="hana-wrap" data-reveal-root
          style="display:grid;
                 grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);
                 gap:64px; align-items:flex-start;">
 
         @* ── Left column ─────────────────────────────────── *@
         <div>
-            <div class="hana-spec-label" style="margin-bottom:12px;">OUR LOCATIONS</div>
+            <div class="hana-spec-label hrv" style="--d:0ms; margin-bottom:12px;">OUR LOCATIONS</div>
 
-            <h2 class="hana-h2" style="margin-bottom:16px;">
-                Our global footprint.
-            </h2>
+            <h2 class="hana-h2" style="margin-bottom:16px;"><span class="hrw-line" style="--d:120ms"><span class="hrw-in">Our global footprint.</span><span class="hrw-edge" aria-hidden="true"></span></span></h2>
 
             @* HQ building photo *@
-            <div style="border-radius:8px; overflow:hidden; aspect-ratio:16/9; margin-bottom:32px;">
+            <div class="hrv" style="--d:300ms; border-radius:8px; overflow:hidden; aspect-ratio:16/9; margin-bottom:32px;">
                 <img src="~/images/photos/hp-hq-building.webp"
                      alt="Hana Microelectronics headquarters, Bangkok"
                      style="width:100%; height:100%; object-fit:cover; display:block;" />
             </div>
 
-            <p class="hana-body" style="color:var(--ink-2); margin-bottom:24px;">
+            <p class="hana-body hrv" style="--d:440ms; color:var(--ink-2); margin-bottom:24px;">
                 From our headquarters in Bangkok, Hana's manufacturing reach spans across
                 Thailand, Cambodia, China and the USA giving your supply chain real
                 geographic resilience and diversification.
             </p>
 
-            <a href="/locations" class="hana-link"
-               style="font-size:12px; font-weight:600;
+            <a href="/locations" class="hana-link hrv"
+               style="--d:560ms; font-size:12px; font-weight:600;
                       text-transform:uppercase; letter-spacing:0.1em;">
                 View all locations
                 <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
@@ -40,7 +38,7 @@
         </div>
 
         @* ── Right column — location cards ────────────────── *@
-        <div class="hana-loc-grid">
+        <div class="hana-loc-grid" data-stagger="240,70">
 
             @* Bangkok HQ — spans full width *@
             <div class="hana-loc-card hana-loc-card--hq">

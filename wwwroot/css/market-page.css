@@ -15,6 +15,8 @@
 .mk-lede{font-family:var(--font-text);font-size:17.5px;color:var(--ink-2);line-height:1.6;margin:0 0 28px;max-width:560px;text-wrap:pretty}
 .mk-body{font-family:var(--font-text);font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:720px;text-wrap:pretty}
 .mk-body.on-dark{color:rgba(255,255,255,.74)}
+/* plates carry body copy over photography — full-opacity ink there */
+.mk-plate .mk-body.on-dark{color:#fff}
 .mk-body:last-child{margin-bottom:0}
 .mk-btns{display:flex;gap:12px;flex-wrap:wrap}
 .mk-hero{position:relative;overflow:hidden;background:var(--bg)}
@@ -58,6 +60,10 @@ a.mk-card:hover{border-color:color-mix(in srgb,var(--hana-blue) 50%,var(--line))
 .mk-build .t{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:7px}
 .mk-build p{font-family:var(--font-text);font-size:14px;color:var(--ink-2);line-height:1.6;margin:0}
 .mk-locs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mk-locs.c4{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mk-locs.c4 .mk-loc{padding:16px 14px}
+.mk-locs.c4 .mk-loc .cta{white-space:nowrap}
+@media (max-width:640px){.mk-locs.c4{grid-template-columns:1fr 1fr}}
 .mk-loc{text-decoration:none;border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;padding:22px;display:block;transition:border-color 160ms ease,box-shadow 160ms ease}
 .mk-loc:hover{border-color:color-mix(in srgb,var(--hana-blue) 50%,var(--line));box-shadow:0 6px 18px rgba(18,131,221,.08)}
 .mk-loc .co{display:flex;align-items:center;gap:7px;margin-bottom:10px}
@@ -174,3 +180,88 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 .mk-sheet.has-media .pic span{font-family:var(--font-mono);font-size:10px;line-height:1.5;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
 .mk-sheet.has-media .pic img{width:100%;height:100%;object-fit:cover;display:block}
 @media(max-width:980px){.mk-sheet.has-media .row{grid-template-columns:1fr}.mk-sheet.has-media .pic{border-left:0;border-top:1px solid var(--line);min-height:150px}}
+
+.mk-sheet .lab .caplink{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:2px;font-family:var(--font-text);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;opacity:.82;transition:opacity .18s ease-out}
+.mk-sheet .lab .caplink:hover{opacity:1}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Wash plate — dark full-width section template (.mk-washplate)
+   A full-bleed .bgimg plus one or two wash layers inside .mk-dark.
+   Five variants: WP-01 full wash, WP-02 duotone, WP-03 edge reveal,
+   WP-04 grain, WP-05 inset panel. Vary the photo per page; the wash
+   keeps every section reading as the same brand block.
+
+   Tunable on the section (or :root for a site-wide default):
+     --pp          photo presence, 0–1        (default .5)
+     --wash-rgb    base wash colour           (Hana blue-deep)
+     --edge-rgb    darker edge / vignette
+     --glow-rgb    accent glow
+     --img-filter  photo tone
+     --img-blend   photo blend mode
+   ───────────────────────────────────────────────────────────── */
+.mk-washplate{--wash-rgb:14,74,124;--edge-rgb:9,45,77;--glow-rgb:18,131,221;--pp:.5;--img-filter:saturate(.45) contrast(1.05);--img-blend:normal;background:rgb(var(--wash-rgb))}
+.mk-washplate .bgimg{filter:var(--img-filter)}
+.mk-washplate .w,.mk-washplate .w2{position:absolute;inset:0;z-index:0}
+
+/* WP-01 · Full wash */
+.mk-washplate.wp-full .bgimg{opacity:calc(.06 + .72*var(--pp));mix-blend-mode:var(--img-blend)}
+.mk-washplate.wp-full .w{background:linear-gradient(96deg,rgba(var(--wash-rgb),calc(.99 - .04*var(--pp))) 0%,rgba(var(--wash-rgb),calc(.98 - .16*var(--pp))) 44%,rgba(var(--edge-rgb),calc(.86 - .68*var(--pp))) 100%)}
+
+/* WP-02 · Duotone */
+.mk-washplate.wp-duotone .bgimg{opacity:1;mix-blend-mode:luminosity}
+.mk-washplate.wp-duotone .w{background:rgba(var(--wash-rgb),calc(.92 - .4*var(--pp)))}
+.mk-washplate.wp-duotone .w2{background:linear-gradient(90deg,rgba(var(--wash-rgb),calc(.97 - .1*var(--pp))) 0%,rgba(var(--edge-rgb),calc(.6 - .6*var(--pp))) 78%,rgba(var(--glow-rgb),.18) 100%)}
+
+/* WP-03 · Edge reveal — wants a photo with its subject on the right */
+.mk-washplate.wp-edge .bgimg{opacity:calc(.6 + .6*var(--pp));mix-blend-mode:var(--img-blend);-webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 52%,rgba(0,0,0,.55) 68%,#000 88%);mask-image:linear-gradient(90deg,transparent 0%,transparent 52%,rgba(0,0,0,.55) 68%,#000 88%)}
+.mk-washplate.wp-edge .w{background:linear-gradient(90deg,rgba(var(--wash-rgb),1) 0%,rgba(var(--wash-rgb),.98) 50%,rgba(var(--edge-rgb),calc(.95 - .9*var(--pp))) 78%,rgba(var(--edge-rgb),calc(1 - .76*var(--pp))) 100%)}
+
+/* WP-04 · Grain */
+.mk-washplate.wp-grain .bgimg{opacity:calc(.02 + .28*var(--pp));mix-blend-mode:screen}
+.mk-washplate.wp-grain .w{background:linear-gradient(180deg,rgba(var(--edge-rgb),.4) 0%,rgba(var(--edge-rgb),0) 55%)}
+
+/* WP-05 · Inset panel */
+.mk-washplate.wp-panel .in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:44px;align-items:center}
+.mk-washplate.wp-panel .pic{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.22)}
+.mk-washplate.wp-panel .pic img{display:block;width:100%;height:260px;object-fit:cover;filter:var(--img-filter)}
+@media(max-width:980px){.mk-washplate.wp-panel .in{grid-template-columns:1fr;gap:28px}}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Product plate (.mk-plate) — dark band + masked product photo.
+   Variants: .pl-fade  (soft linear mask, blue-deep field)
+             .pl-wedge (angled wedge, luminosity blend, Hana Blue)
+   Tunable: --plate-rgb  band colour (r,g,b)
+   Photo slot: <div class="art"><img …></div>, or
+               <div class="art pending" data-need="Shot name"></div>
+   ───────────────────────────────────────────────────────────── */
+.mk-plate{position:relative;overflow:hidden;--plate-rgb:14,74,124;background:rgb(var(--plate-rgb))}
+.mk-plate .in{position:relative;z-index:2;padding-top:66px;padding-bottom:66px}
+.mk-plate .in>div{max-width:560px}
+.mk-plate .art{position:absolute;top:0;right:0;bottom:0;width:52%;z-index:1}
+.mk-plate .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mk-plate.pl-fade .art img{filter:saturate(.5) contrast(1.04);-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.5) 34%,#000 72%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.5) 34%,#000 72%)}
+.mk-plate.pl-wedge{--plate-rgb:18,131,221}
+.mk-plate.pl-wedge .art{width:56%;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+.mk-plate.pl-wedge .art img{filter:saturate(.35) contrast(1.08);mix-blend-mode:luminosity;opacity:.92}
+.mk-plate.pl-wedge .art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(var(--plate-rgb),.9) 0,rgba(var(--plate-rgb),.15) 46%,rgba(var(--plate-rgb),0) 100%)}
+.mk-plate .art.pending{top:28px;bottom:28px;right:28px;width:44%;clip-path:none;border:1px dashed rgba(255,255,255,.38);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+.mk-plate .art.pending::after{content:attr(data-need);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.6);background:none}
+/* Plate role decides the field colour; the mask variant only decides geometry.
+   capability = main capability band · cta = the page's single call to action · technical = limits/spec band */
+/* Graded field is the shipped finish: corner light + bottom falloff over the plate colour.
+   Balanced presence and standard proportion are the base rules above — no override needed. */
+.mk-plate::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(120% 150% at 8% 0,rgba(255,255,255,.16) 0,rgba(255,255,255,0) 55%),linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.32) 100%)}
+.mk-plate[data-plate-role="capability"]{--plate-rgb:14,74,124}
+.mk-plate[data-plate-role="cta"]{--plate-rgb:18,131,221}
+.mk-plate[data-plate-role="technical"]{--plate-rgb:14,17,22}
+/* Between 760 and 1080 the 1080 wrap no longer protects the copy, so the column
+   narrows and both masks push their opaque start right of it. */
+@media(max-width:1080px){
+.mk-plate .in>div{max-width:46%}
+.mk-plate.pl-fade .art img{-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 55%,#000 86%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.35) 55%,#000 86%)}
+.mk-plate.pl-wedge .art{width:50%;clip-path:polygon(26% 0,100% 0,100% 100%,6% 100%)}
+.mk-plate.pl-wedge .art::after{background:linear-gradient(90deg,rgba(var(--plate-rgb),.96) 0,rgba(var(--plate-rgb),.5) 34%,rgba(var(--plate-rgb),0) 78%)}
+}
+@media(max-width:760px){.mk-plate .art,.mk-plate .art.pending{display:none}.mk-plate .in>div{max-width:none}}

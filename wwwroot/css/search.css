@@ -274,8 +274,50 @@
 .cap-find-r.dead b{color:var(--ink-2)}
 .cap-find-all{display:block;padding:12px 18px;border-top:1px solid var(--line);background:var(--bg);font-size:12px;font-weight:600;color:var(--hana-blue);text-decoration:none}
 .cap-find-none{margin:0;padding:16px 18px;font-size:14px;color:var(--ink-2)}
+.cap-find-pkg{border-bottom:1px solid var(--line)}
+.cap-find-pkg .cap-find-h{padding-top:12px}
+.cap-find-pkgs{display:flex;flex-direction:column;padding-bottom:6px}
+.cap-find-pkgr{display:grid;grid-template-columns:1fr auto auto;align-items:baseline;gap:14px;padding:8px 18px;text-decoration:none;transition:background var(--dur-base) var(--ease)}
+.cap-find-pkgr:hover{background:var(--bg)}
+.cap-find-pkgr b{font-family:var(--font-text);font-size:15px;font-weight:600;color:var(--hana-blue-deep)}
+.cap-find-pkgr span{font-family:var(--font-mono);font-size:12px;color:var(--ink)}
+.cap-find-pkgr small{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);min-width:64px;text-align:right}
 @media (max-width:900px){.cap-find{max-width:none}}
+/* mobile: quick-search box */
+@media (max-width:760px){.cap-find-box{width:auto!important;max-width:none!important;height:auto!important;min-height:48px;padding:8px 14px}.cap-find-box input{font-size:15px}}
+/* ── sidebar package finder (capability rail) ── */
+.cap-sb-pf{margin:6px 16px 12px 24px;padding:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card)}
+.cap-sb-pf-lb{font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.cap-sb-pf-box{display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border:1px solid var(--line);border-radius:var(--radius-button);color:var(--ink-3);transition:border-color var(--dur-base) var(--ease),color var(--dur-base) var(--ease)}
+.cap-sb-pf-box:focus-within{border-color:var(--hana-blue);color:var(--hana-blue)}
+.cap-sb-pf-box input{flex:1;min-width:0;border:0;outline:0;background:none;font-family:var(--font-text);font-size:13px;color:var(--ink)}
+.cap-sb-pf-box input::placeholder{color:var(--ink-3);font-size:12.5px}
+.cap-sb-pf-box input::-webkit-search-cancel-button{display:none}
+.cap-sb-pf-go{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-family:var(--font-text);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hana-blue);text-decoration:none}
 /* the radial hero is a dark panel */
 .radial-hero .cap-find-lb{color:rgba(255,255,255,.55)}
 .radial-hero .cap-find-meta{color:rgba(255,255,255,.7)}
 .radial-hero .cap-find-meta b{color:#fff}
+
+/* ── package card (the parametric handoff) ──
+   Same card pattern as the certification answer. No status column — the card says what a
+   package is, not whether it is available. */
+.hs-pkg{margin-top:26px;background:var(--white);border:1px solid var(--hana-blue);border-radius:var(--radius-card);overflow:hidden}
+.hs-pkg-h{padding:24px 24px 20px;background:var(--hana-blue-tint);border-bottom:1px solid var(--line)}
+.hs-pkg-t{border-collapse:collapse;width:100%}
+.hs-pkg-t th{text-align:left;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:11px 24px;border-bottom:1px solid var(--line);white-space:nowrap}
+.hs-pkg-t td{padding:11px 24px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.hs-pkg-t tbody tr:hover{background:var(--bg)}
+.hs-pkg-n{font-weight:600;color:var(--ink)}
+.hs-pkg-num{font-family:var(--font-mono);font-size:13px;color:var(--ink);white-space:nowrap}
+.hs-grade{display:inline-block;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.06em;padding:3px 7px;border-radius:3px;background:var(--hana-blue-tint);color:var(--hana-blue-deep);white-space:nowrap}
+.hs-pkg .hs-cert-f a{color:var(--hana-blue);font-weight:600}
+.hs-pkg-band{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--hana-blue-deep);color:#fff;padding:18px 24px}
+.hs-pkg-band b{font-size:15px;font-weight:600;line-height:1.35}
+.hs-pkg-cta{margin-left:auto;flex:none;background:#fff;color:var(--hana-blue-deep);border-radius:var(--radius-button);padding:10px 18px;font-family:var(--font-text);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.hs-pkg-cta:hover{background:var(--hana-blue-tint)}
+.hs-pkg--m .hs-pkg-h{padding:18px}
+.hs-pkg--m .hs-pkg-t th,.hs-pkg--m .hs-pkg-t td{padding:10px 18px}
+.hs-pkg--m .hs-pkg-band{padding:16px 18px}
+.hs-pkg--m .hs-pkg-cta{margin-left:0}
+@media(max-width:700px){.hs-pkg-band{padding:16px 18px}.hs-pkg-cta{margin-left:0}.hs-pkg-t th:nth-child(4),.hs-pkg-t td:nth-child(4){display:none}}

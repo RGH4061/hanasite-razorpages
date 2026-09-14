@@ -28,6 +28,10 @@
     "/capabilities/dfx-jdm/new-product-introduction/": "capabilities-dfx-jdm-npi.html",
     "/capabilities/osat/ultra-small-packages/": "capabilities-osat-ultra-small-packages.html",
     "/capabilities/osat/qfn-dfn-lga/": "capabilities-osat-qfn-dfn-lga.html",
+    "/capabilities/osat/package-finder/": "capabilities-osat-package-finder.html",
+    /* Renamed in the Aug 2026 restructure — the URL is now /clear-mold-packaging, but the
+       file keeps the old slug by decision (Rupert, 14 Aug 2026). This line is the bridge. */
+    "/capabilities/osat/clear-mold-packaging/": "capabilities-osat-optical-packaging.html",
     "/locations/thailand/ayutthaya/": "locations-ayutthaya.html",
     "/locations/thailand/lamphun/": "locations-lamphun.html",
     "/locations/china/jiaxing/": "locations-jiaxing.html",
@@ -111,6 +115,42 @@
       </div></section>`;
   }
 
+  /* ── package card ─────────────────────────────────────────────
+     The parametric handoff. A query that reads as a package — a real dimension, a known
+     family, an automotive grade — is answered with rows rather than pages, and hands off
+     to the finder pre-filtered. No status column: the card says what a package is, not
+     whether it is available. */
+  function pkgCard(m, mobile) {
+    const shown = m.rows.slice(0, 6);
+    const read = [m.fam ? `family <b>${esc(m.fam.toUpperCase())}</b>` : null,
+      m.dims ? `body <b>${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm</b>` : null,
+      m.leads ? `leads <b>${m.leads}</b>` : null,
+      m.grade ? `<b>Grade ${esc(m.grade)}</b>` : null].filter(Boolean).join(" &middot; ");
+    const finder = "capabilities-osat-package-finder.html?q=" + encodeURIComponent(m.raw || "");
+    return `<section class="hs-pkg${mobile ? " hs-pkg--m" : ""}">
+      <div class="hs-pkg-h">
+        <div class="hs-cert-lb">Direct answer &middot; package sizes</div>
+        <h2 class="hs-cert-n">${m.rows.length} package${m.rows.length === 1 ? "" : "s"} match</h2>
+        <p class="hs-cert-s">${read}</p>
+      </div>
+      <table class="hs-pkg-t">
+        <thead><tr><th>Package</th><th>Body size</th><th>Leads</th><th>Auto grade</th></tr></thead>
+        <tbody>${shown.map(r => `<tr>
+          <td class="hs-pkg-n">${esc(r.pkg)}</td>
+          <td class="hs-pkg-num">${esc(r.bs || "—")}</td>
+          <td class="hs-pkg-num">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>
+          <td>${r.grade ? `<span class="hs-grade">${esc(r.grade)}</span>` : "—"}</td></tr>`).join("")}</tbody>
+      </table>
+      <div class="hs-cert-f">
+        <p>${m.rows.length > 6 ? `Showing 6 of ${m.rows.length}. ` : ""}<a href="${esc(finder)}">Open in the package finder &rarr;</a></p>
+        <p class="hs-src">Filter the full reference by size, category and automotive grade.</p>
+      </div>
+      <div class="hs-pkg-band">
+        <b>Don&rsquo;t see the size you need? We can customize packaging sizes.</b>
+        <a class="hs-pkg-cta" href="contact.html">Tell us what you&rsquo;re building</a>
+      </div></section>`;
+  }
+
   function emptyState(q) {
     return `<section class="hs-empty">
       <h2>No page matches &ldquo;${esc(q)}&rdquo;.</h2>
@@ -133,7 +173,14 @@
     const input = document.createElement("input");
     input.type = "search";
     input.className = "hs-hdr-input";
-    input.placeholder = box.dataset.placeholder || "Search capabilities, package sizes, certs and more…";
+    /* The bar is the only search entry on phones, so it names the package finder there. */
+    const DESKTOP_PH = box.dataset.placeholder || "Search capabilities, package sizes, certs and more…";
+    const MOBILE_PH = "Search package sizes, capabilities and more..";
+    const narrow = window.matchMedia("(max-width: 900px)");
+    const setPh = () => { input.placeholder = narrow.matches ? MOBILE_PH : DESKTOP_PH; };
+    setPh();
+    if (narrow.addEventListener) narrow.addEventListener("change", setPh);
+    else if (narrow.addListener) narrow.addListener(setPh);
     input.setAttribute("aria-label", "Search this site");
     box.appendChild(input);
     box.classList.add("hs-hdr-box");
@@ -153,11 +200,12 @@
       const shown = top.reduce((n, g) => n + g.items.length, 0);
       panel.innerHTML = `<div class="hs-ac-in">
         ${res.cert ? certCard(res.cert) : ""}
-        ${shown === 0 && !res.cert ? `<p class="hs-ac-none">No page matches &ldquo;${esc(q)}&rdquo;. <a href="contact.html">Contact us</a> and we will answer directly.</p>` : ""}
+        ${res.pkg ? pkgCard(res.pkg) : ""}
+        ${shown === 0 && !res.cert && !res.pkg ? `<p class="hs-ac-none">No page matches &ldquo;${esc(q)}&rdquo;. <a href="contact.html">Contact us</a> and we will answer directly.</p>` : ""}
         ${top.map(g => `<section class="hs-group">
             <h2 class="hs-group-h">${esc(SEC_ABBR[g.section] || g.section)}<span>${g.items.length}</span></h2>
             <div class="hs-group-b">${g.items.map(resultRow).join("")}</div></section>`).join("")}
-        ${res.total > shown ? `<a class="hs-ac-all" href="search.html?q=${encodeURIComponent(q)}">See all ${res.total} results<span>&rarr;</span></a>` : ""}
+        ${res.total > shown || res.pkg ? `<a class="hs-ac-all" href="search.html?q=${encodeURIComponent(q)}">See all ${res.total} results<span>&rarr;</span></a>` : ""}
       </div>`;
       panel.hidden = false;
       box.classList.add("on");
@@ -181,17 +229,21 @@
 
     function draw() {
       const q = field.value.trim();
-      const res = q ? query(q) : { groups: [], total: 0, cert: null };
+      const res = q ? query(q) : { groups: [], total: 0, cert: null, pkg: null };
       const groups = sec ? res.groups.filter(g => g.section === sec) : res.groups;
       const shown = groups.reduce((n, g) => n + g.items.length, 0);
+      const answers = (res.cert ? 1 : 0) + (res.pkg ? 1 : 0);
       root.querySelector("#hs-body").innerHTML = !q ? "" : `
-        <div class="hs-countline"><b>${res.total}</b> ${res.total === 1 ? "result" : "results"} for &ldquo;${esc(q)}&rdquo;${res.cert ? `<span class="hs-countline-x">· 1 direct answer</span>` : ""}</div>
+        <div class="hs-countline">${res.total === 0 && answers
+          ? `<b>${answers}</b> direct answer${answers === 1 ? "" : "s"} for &ldquo;${esc(q)}&rdquo;<span class="hs-countline-x">· no page carries that term</span>`
+          : `<b>${res.total}</b> ${res.total === 1 ? "result" : "results"} for &ldquo;${esc(q)}&rdquo;${answers ? `<span class="hs-countline-x">· ${answers} direct answer${answers === 1 ? "" : "s"}</span>` : ""}`}</div>
         ${res.groups.length > 1 ? `<div class="hs-filters">
           <button class="hs-fchip${sec === null ? " on" : ""}" data-sec="">All<span>${res.total}</span></button>
           ${res.groups.map(g => `<button class="hs-fchip${sec === g.section ? " on" : ""}" data-sec="${esc(g.section)}">${esc(SEC_ABBR[g.section] || g.section)}<span>${g.items.length}</span></button>`).join("")}
         </div>` : ""}
         ${res.cert && !sec ? certCard(res.cert) : ""}
-        ${shown === 0 && !res.cert ? emptyState(q) : ""}
+        ${res.pkg && !sec ? pkgCard(res.pkg) : ""}
+        ${shown === 0 && !res.cert && !res.pkg ? emptyState(q) : ""}
         ${groups.map(g => `<section class="hs-group">
             <h2 class="hs-group-h">${esc(g.section)}<span>${g.items.length}</span></h2>
             <div class="hs-group-b">${g.items.map(resultRow).join("")}</div></section>`).join("")}
@@ -228,7 +280,7 @@
     const input = document.createElement("input");
     input.type = "search";
     input.className = "hs-mnav-input";
-    input.placeholder = "Search capabilities, markets…";
+    input.placeholder = "Search package sizes, capabilities and more..";
     input.setAttribute("aria-label", "Search this site");
     box.appendChild(input);
     old.replaceWith(box);
@@ -251,6 +303,8 @@
         .sort((a, b) => b.r.s - a.r.s).slice(0, 6);
       list.innerHTML = (res.cert ? `<a class="hs-mnav-s hs-mnav-s--cert" href="search.html?q=${encodeURIComponent(q)}">
           <b>${esc(res.cert.full)}</b><small>Direct answer · which plants hold it</small></a>` : "")
+        + (res.pkg ? `<a class="hs-mnav-s hs-mnav-s--cert" href="capabilities-osat-package-finder.html?q=${encodeURIComponent(q)}">
+          <b>${res.pkg.rows.length} package${res.pkg.rows.length === 1 ? "" : "s"} match</b><small>Direct answer · open in the package finder</small></a>` : "")
         + top.map(({ r, section }) => {
             const f = href(r.p.u);
             return `<a class="hs-mnav-s" ${f ? `href="${esc(f)}"` : `href="search.html?q=${encodeURIComponent(q)}"`}>
@@ -272,6 +326,25 @@
 
   /* ── scoped field on the capabilities hub ─────────────────────
      Capabilities only, framed as "find a process" rather than site search. */
+  /* Package rows inside the scoped field. The homepage field is labelled "capabilities &
+     packaging sizes", so a dimension or family query has to answer with packages, not with
+     "no capability page carries that term". Compact — the finder holds the full table. */
+  function capPkg(m) {
+    if (!m) return "";
+    const shown = m.rows.slice(0, 4);
+    const read = [m.fam ? esc(m.fam.toUpperCase()) : null,
+      m.dims ? `${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm` : null,
+      m.leads ? `${m.leads} leads` : null,
+      m.grade ? `Grade ${esc(m.grade)}` : null].filter(Boolean).join(" &middot; ");
+    const finder = "capabilities-osat-package-finder.html?q=" + encodeURIComponent(m.raw || "");
+    return `<div class="cap-find-pkg">
+      <div class="cap-find-h">Package sizes${read ? " &middot; " + read : ""}</div>
+      <div class="cap-find-pkgs">${shown.map(r => `<a class="cap-find-pkgr" href="${esc(finder)}">
+        <b>${esc(r.pkg)}</b><span>${esc(r.bs || "—")}</span>
+        <small>${r.leads.length ? esc(r.leads.slice(0, 3).join(", ")) + (r.leads.length > 3 ? "+" : "") + "L" : ""}${r.grade ? (r.leads.length ? " &middot; " : "") + esc(r.grade) : ""}</small></a>`).join("")}</div>
+      <a class="cap-find-all" href="${esc(finder)}">${m.rows.length > 4 ? `All ${m.rows.length} matching packages` : "Open"} in the package finder &rarr;</a></div>`;
+  }
+
   function initScoped() {
     const wrap = document.getElementById("cap-find");
     if (!wrap || !window.HS) return;
@@ -288,19 +361,22 @@
       const q = input.value.trim();
       if (!q) { out.hidden = true; meta.textContent = rest; return; }
       const res = query(q, { section: "Capabilities", noCert: true });
+      const pkg = res.pkg;
       const items = res.groups.flatMap(g => g.items).slice(0, 8);
       const groups = new Set(items.map(r => (parentOf(r.p.u) || r.p).n));
+      const pkgLine = pkg ? `<b>${pkg.rows.length}</b> package${pkg.rows.length === 1 ? "" : "s"} match` : "";
       meta.innerHTML = items.length
-        ? `<b>${items.length}</b> of ${total} processes match, across <b>${groups.size}</b> ${groups.size === 1 ? "group" : "groups"}`
-        : `Nothing in capabilities matches “${esc(q)}”`;
-      out.innerHTML = items.length
+        ? `${pkg ? pkgLine + " &middot; " : ""}<b>${items.length}</b> of ${total} processes match, across <b>${groups.size}</b> ${groups.size === 1 ? "group" : "groups"}`
+        : (pkg ? pkgLine + ` in the package reference` : `Nothing in capabilities matches “${esc(q)}”`);
+      out.innerHTML = capPkg(pkg) + (items.length
         ? `<div class="cap-find-g">${items.map(r => {
               const f = href(r.p.u), par = parentOf(r.p.u);
               return `<a class="cap-find-r${f ? "" : " dead"}" ${f ? `href="${esc(f)}"` : `href="search.html?q=${encodeURIComponent(q)}"`}>
                 <b>${esc(r.p.n)}</b><small>${esc(par ? par.n : "Capability group")}${f ? "" : " · not yet written"}</small></a>`;
             }).join("")}</div>
            <a class="cap-find-all" href="search.html?q=${encodeURIComponent(q)}">Search the whole site for “${esc(q)}” &rarr;</a>`
-        : `<p class="cap-find-none">No capability page carries that term. <a href="search.html?q=${encodeURIComponent(q)}">Search the whole site</a> or <a href="contact.html">contact us</a>.</p>`;
+        : (pkg ? `<a class="cap-find-all" href="search.html?q=${encodeURIComponent(q)}">Search the whole site for “${esc(q)}” &rarr;</a>`
+          : `<p class="cap-find-none">No capability page carries that term. <a href="search.html?q=${encodeURIComponent(q)}">Search the whole site</a> or <a href="contact.html">contact us</a>.</p>`));
       out.hidden = false;
     });
     input.addEventListener("keydown", e => {

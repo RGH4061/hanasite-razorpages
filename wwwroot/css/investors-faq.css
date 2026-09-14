@@ -609,15 +609,7 @@
     padding: var(--s-7) var(--s-6);
   }
 
-  /* SET Earnings Call poster image on all video frames */
-  .frame.has-poster {
-    background-image:
-      url('../images/set-oppday-q1-2026.webp'),
-      radial-gradient(120% 120% at 50% 40%, #16324A 0%, #0B2236 70%, #08192A 100%);
-    background-size: cover, cover;
-    background-position: center center, center center;
-    background-repeat: no-repeat, no-repeat;
-  }
+  /* Each video frame carries its own YouTube thumbnail as an <img> */
   .frame.has-poster::after {
     background-image: linear-gradient(180deg, rgba(6,18,30,0) 40%, rgba(6,18,30,0.45) 100%);
     background-size: auto;
@@ -635,9 +627,18 @@
   .yt-facade:focus-visible { outline: 2px solid var(--hana-blue); outline-offset: 2px; }
   .yt-facade .play { transition: transform 0.15s ease; }
   .yt-facade:hover .play { transform: scale(1.06); }
-  .frame .yt-iframe {
-    position: absolute; inset: 0; z-index: 3;
-    width: 100%; height: 100%; border: 0;
+  .yt-facade { width: 100%; padding: 0; border: 0; cursor: pointer; }
+  .yt-facade img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0;
+  }
+  .frame.is-playing::after { display: none; }
+  .frame.is-playing iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border: 0; z-index: 3;
+  }
+  .detail.linkonly { padding: var(--s-4) var(--s-5); }
+
   }
 
   /* Responsive */

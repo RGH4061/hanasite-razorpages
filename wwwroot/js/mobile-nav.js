@@ -86,9 +86,10 @@
 
       var row = document.createElement('div');
       row.className = 'hana-macc-row';
-      var a = document.createElement('a');
+      var isLink = hub && hub !== '#';
+      var a = document.createElement(isLink ? 'a' : 'span');
       a.className = 'hana-macc-name';
-      a.href = hub;
+      if (isLink) a.href = hub;
       a.textContent = name;
       row.appendChild(a);
 
@@ -136,7 +137,7 @@
       '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>' +
       '<div class="hana-mnav-utrow">' +
         '<a href="' + findUtilHref(header, 'careers') + '">Careers</a>' +
-        '<a href="' + findUtilHref(header, 'insights') + '">Insights</a>' +
+        (findUtilHref(header, 'insights') !== '#' ? '<a href="' + findUtilHref(header, 'insights') + '">Insights</a>' : '') +
         (langA ? '<a href="' + langA.getAttribute('href') + '" class="hana-mnav-lang" lang="' + (langLabel === 'EN' ? 'en' : 'th') + '">' + svg(I.globe) + ' ' + langLabel + '</a>' : '') +
       '</div>';
     panel.appendChild(foot);
