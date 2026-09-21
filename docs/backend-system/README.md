@@ -93,10 +93,26 @@ Stock ASP.NET Core Identity: a users table, a roles table with one row per tool,
 and a join table saying who holds what. That join table *is* the permissions —
 there is nothing custom to design.
 
-No screen for managing users at launch. Across all four sections this is roughly
-eight to twelve people changing a couple of times a year, so accounts are added
-by the developer; a management screen is worth building only if that becomes
-frequent. **Deactivate accounts, never delete them** — the audit trail names who
+Roughly fifteen accounts across the four sections: about 6 in tickets (sales),
+5 in careers (HR, across plants), 3 in investor relations, and 1 in insights.
+Some people hold more than one. **SuperAdmin is Rupert, Sanjay and Wichet (IT).**
+
+**Decision (21 Sep 2026): build a user management screen** at `/admin/users`,
+SuperAdmin only, after Identity is in place and the first section has shipped.
+It supersedes the earlier decision to leave accounts to the developer. Turnover
+is low and the developer is internal, so the screen is not urgent and blocks
+nothing; it exists to keep routine access requests off IT's queue and to record
+who granted which access. Scope is five actions — list, invite, set roles,
+deactivate/reactivate, resend invitation — with no profile editing and no
+per-record permissions. Full spec in `5. Website Redesign/Backend Systems/User
+Management/Plan.md` in the workspace.
+
+Wire **self-service password reset** through Identity at the same time, using
+the mail sending the ticketing system already needs. Resets are the most frequent
+account event at this headcount, and handling them without an administrator is
+what keeps the screen small.
+
+**Deactivate accounts, never delete them** — the audit trail names who
 published each item, and deleting the user orphans that history.
 
 ## Suggested build order
