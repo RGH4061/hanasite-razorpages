@@ -273,12 +273,12 @@
     border-top: 1px solid var(--line-soft);
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px;
     color: var(--ink-3); letter-spacing: -0.005em;
+    line-height: 1.7; overflow-wrap: anywhere;
   }
   .sectionnav .footer-link a {
-    color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line);
+    display: block; margin-top: 6px; color: var(--ink-2); text-decoration: none;
+    border-bottom: none; grid-template-columns: none;
   }
-  .sectionnav .footer-link a { display: inline; grid-template-columns: none; }
-  .sectionnav .footer-link a:not(:last-of-type)::after { content: ", "; color: var(--ink-3); }
   .sectionnav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); }
 
   /* ── Content sections ── */

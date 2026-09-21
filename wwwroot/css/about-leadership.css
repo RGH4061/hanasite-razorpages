@@ -38,9 +38,9 @@
   /* ── Hero ── */
   .hero { position: relative; z-index: 2; background: transparent; }
   .hero-inner { max-width: var(--max); margin: 0 auto; padding: var(--s-7) var(--s-6) var(--s-6); }
-  .hero h1 { font-family: 'Geist', sans-serif; font-weight: 600; font-size: 38px; line-height: 1.15; letter-spacing: -0.022em; color: #15171C; margin: 0 0 var(--s-4); max-width: 22ch; }
+  .hero h1 { font-family: 'Geist', sans-serif; font-weight: 600; font-size: clamp(34px, 4.6vw, 50px); line-height: 1.12; letter-spacing: -0.022em; color: #15171C; margin: 0 0 var(--s-4); max-width: 22ch; }
   .hero .lede { font-size: 16px; font-weight: 400; line-height: 1.55; color: rgba(74,79,88,0.80); max-width: 70ch; margin: 0; }
-  @media (max-width: 720px) { .hero h1 { font-size: 30px; } .subbar-inner { flex-wrap: wrap; gap: var(--s-3); } }
+  @media (max-width: 720px) { .hero h1 { font-size: 32px; } .subbar-inner { flex-wrap: wrap; gap: var(--s-3); } }
 
   /* ── Anchor subnav (sticky) ── */
   #ir-header { display: contents; }
@@ -51,6 +51,10 @@
   .anchor-chip { flex: 0 0 auto; background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--ink-3); cursor: pointer; text-decoration: none; transition: background 0.15s, color 0.15s, border-color 0.15s; }
   .anchor-chip:hover { color: var(--hana-blue); border-color: var(--hana-blue-soft); }
 
+
+  /* Anchor chips inline in the hero */
+  .hero-inner .anchor-chip { display: inline-flex; margin: var(--s-7) var(--s-3) 0 0; }
+
   /* ── Section scaffold ── */
   .section { max-width: var(--max); margin: 0 auto; padding: var(--s-7) var(--s-6); scroll-margin-top: 72px; }
   .section-head { max-width: 720px; margin: 0 0 var(--s-6); }
@@ -58,10 +62,27 @@
   .section-head h2 { font-family: 'Geist', sans-serif; font-weight: 700; font-size: clamp(26px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 var(--s-4); }
   .section-head p { font-size: 17px; line-height: 1.6; color: var(--ink-2); margin: 0; }
 
+
+  /* Light band behind the people sections */
+  .people-band { background: var(--hana-blue-tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
   /* ── People grid ── */
   .people-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--s-5); }
   @media (max-width: 860px) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 540px) { .people-grid { grid-template-columns: 1fr; } }
+
+  /* Board grid: first two on a row of two, remaining in rows of three */
+  .people-grid.board { grid-template-columns: repeat(6, minmax(0,1fr)); }
+  .people-grid.board > .person { grid-column: span 2; }
+  .people-grid.board > .person:nth-child(-n+2) { grid-column: span 3; }
+  @media (max-width: 860px) {
+    .people-grid.board { grid-template-columns: repeat(2, 1fr); }
+    .people-grid.board > .person, .people-grid.board > .person:nth-child(-n+2) { grid-column: auto; }
+  }
+  @media (max-width: 540px) {
+    .people-grid.board { grid-template-columns: 1fr; }
+  }
+
   .person {
     background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 32px 24px 28px;
     text-align: center; transition: border-color 0.2s, box-shadow 0.25s, transform 0.25s;
@@ -69,7 +90,7 @@
   .person:hover { border-color: var(--hana-blue-soft); box-shadow: var(--shadow-soft); transform: translateY(-2px); }
   /* Photo — corporate headshot (replace src with re-hosted image for prod). */
   .person .photo {
-    width: 144px; height: 144px; border-radius: 50%; margin: 0 auto var(--s-4);
+    width: 234px; height: 234px; border-radius: 50%; margin: 0 auto var(--s-4);
     background: var(--surface); border: 1px dashed var(--line-soft);
     display: flex; align-items: center; justify-content: center; color: var(--ink-3); overflow: hidden;
   }

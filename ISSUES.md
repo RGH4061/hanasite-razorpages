@@ -53,9 +53,12 @@ A screenshot or the prototype filename it should match is ideal but not required
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
   which still live only as repo-side retrofit stylesheets loaded per page via `@section
-  Head`. Each export overwrites the 23 link tags (the CSS files themselves survive as
+  Head`. Each export overwrites the link tags (the CSS files themselves survive as
   untracked extras), so they must be re-applied after every export — or, better, built
-  into the Design source so they export everywhere:
+  into the Design source so they export everywhere. **21 Sep: 23 tags re-applied again**
+  (6 Locations + 16 Investors + 1 Capabilities; Cheongju keeps its own, being excluded
+  from the sync), and the export still ships `locations-mobile.css` unlinked and still
+  shorter than the repo-merged copy — re-diffed, no new matching rules to fold in:
   - `wwwroot/css/locations-mobile.css` (7 pages) — **⚠️ REPO-MERGED FILE, EXCLUDE FROM SYNC.**
     From 14 Sep the Design export ships its OWN `locations-mobile.css` (unlinked). Most of it
     targets `.lc-certs` / `.lc-caps` / `.lc-split` / `.lc-photos`, class hooks that exist in the
@@ -107,6 +110,34 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 21 Sep 2026 (3rd) — export sync ("razor pages 21-9-3 Hana Site.zip")
+
+- **The IR document work landed at source.** Every document row on the IR pages now links
+  `/File/ViewDoc/{id}` with a `data-doc-id` on the title anchor, generated from the mapping
+  workbook rather than the old placeholder rows. 694 title anchors across the 8 English and
+  8 Thai IR pages; the second anchor per row is the "Download ↓" action and carries no
+  `data-doc-id` by design.
+  - **These links 404 on this prototype and that is expected.** There is no `/File/ViewDoc`
+    handler in this repo — the route is served by the existing production application and its
+    database. 682 distinct document IDs are referenced. Do not report them as broken links;
+    filter them out of the internal-link pass.
+- **Five IR page items from the 21 Sep mapping decisions are now resolved in the export**, all
+  verified on the running site: Annual is one `#annual-report` list of 15 (was two sections plus
+  20 placeholder cards); Governance has lost the `#cg-archive` expander and runs as one policies
+  list; Structure no longer shows "As at" in either language, which also clears the Thai twin's
+  English header; Sustainability has lost its Effective/Period columns in both languages; and the
+  News financial rows no longer read a bare "Financial Statements".
+- **New:** `Pages/ThaiPages/Careers.cshtml` + `wwwroot/css/careers-th.css` — a Thai careers page,
+  taking the route count from 113 to 114.
+- **Razor `@` escaping — 10 breakers re-fixed** (see the standing item above). `@supports` and
+  `@container` in `Capabilities/PackageDesign.cshtml`; `@media` in `Capabilities/RfidTireTags.cshtml`,
+  `Careers/Stories.cshtml`, `Locations/Index.cshtml` and the Ayutthaya / Jiaxing / KohKong / Lamphun
+  plant pages; and the prose `@page` in `Sitemap.cshtml`. HEAD did not compile before these.
+- **Verification passes:** 114 routes all 200; 227 rendered assets all 200; 105 non-document
+  internal links all 200; the three retrofit stylesheets link and serve on their pages.
+- **No assets retired** — `rsync --delete` with the standing exclusion list proposed zero deletions.
+
 
 ### 14 Sep 2026 (2nd) — export sync ("14-9-2 razor Hana Site.zip")
 

@@ -1,0 +1,14 @@
+/* Thai overrides for careers.css — IBM Plex Mono, Inter and Geist carry no Thai glyphs,
+   so every label/body rule that hardcodes them is re-pointed to Sarabun inside :lang(th).
+   Mono micro-labels also drop uppercase tracking (Thai does not case) and step up 2px:
+   Thai stacks vowel and tone marks, so 10px labels are unreadable. */
+:lang(th) body,:lang(th) .subbar .crumbs,:lang(th) .hero h1,:lang(th) .hero-actions a,:lang(th) .stat-lbl,:lang(th) .ceo-from,:lang(th) .ceo-attrib span,:lang(th) .life-header-text .section-label-mono,:lang(th) .life-header-text h2,:lang(th) .life-tab,:lang(th) .life-img-slide span,:lang(th) .cap-title,:lang(th) .cap-desc,:lang(th) .stories-header-text .section-label-mono,:lang(th) .stories-header-text h2,:lang(th) .stories-header-link,:lang(th) .story-card .role,:lang(th) .story-chip,:lang(th) .story-year,:lang(th) .read-more,:lang(th) .filter-sidebar .label,:lang(th) .filter-group-label,:lang(th) .filter-country,:lang(th) .filter-sidebar .footer-link,:lang(th) .filter-sidebar .footer-link a,:lang(th) .jobs-head .section-label,:lang(th) .jobs-head h2,:lang(th) .job-apply,:lang(th) .page-end .pe-label,:lang(th) .page-end .pe-title,:lang(th) .page-end a.btn{font-family:var(--font-thai)}
+:lang(th) .stat-lbl,:lang(th) .ceo-from,:lang(th) .life-header-text .section-label-mono,:lang(th) .life-img-slide span,:lang(th) .stories-header-text .section-label-mono,:lang(th) .filter-sidebar .label,:lang(th) .filter-group-label,:lang(th) .filter-country,:lang(th) .jobs-head .section-label,:lang(th) .page-end .pe-label,:lang(th) .story-chip{text-transform:none;letter-spacing:0;font-size:12px}
+:lang(th) .filter-country{font-size:11px;font-weight:600}
+:lang(th) .stat-lbl{line-height:1.5}
+:lang(th) .life-tab,:lang(th) .story-year,:lang(th) .read-more,:lang(th) .job-apply,:lang(th) .stories-header-link,:lang(th) .hero-actions a,:lang(th) .page-end a.btn,:lang(th) .story-card .role{letter-spacing:0}
+:lang(th) .story-year{font-size:12px}
+:lang(th) .life-tab{font-size:14px;white-space:normal;line-height:1.5}
+:lang(th) .hero h1{letter-spacing:0;line-height:1.35}
+:lang(th) .life-header-text h2,:lang(th) .stories-header-text h2,:lang(th) .jobs-head h2,:lang(th) .page-end .pe-title{letter-spacing:0;line-height:1.45}
+:lang(th) .hero .lede,:lang(th) .ceo-para,:lang(th) .ceo-italic,:lang(th) .cap-desc,:lang(th) .jobs-head .intro,:lang(th) .page-end .pe-desc,:lang(th) .life-header-text p,:lang(th) .stories-header-text p{line-height:1.8}
