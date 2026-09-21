@@ -94,8 +94,14 @@ and a join table saying who holds what. That join table *is* the permissions —
 there is nothing custom to design.
 
 Roughly fifteen accounts across the four sections: about 6 in tickets (sales),
-5 in careers (HR, across plants), 3 in investor relations, and 1 in insights.
-Some people hold more than one. **SuperAdmin is Rupert, Sanjay and Wichet (IT).**
+5 in careers (HR, across plants), 3 in investor relations, and 2 in insights.
+Some people hold more than one. **SuperAdmin is Rupert, Sanjay and Wichet (IT);**
+Thang holds `Tickets` only.
+
+The two insights accounts are one internal account holding `Insights` and
+`InsightsApprover`, and **one shared login for the SEO agency** holding
+`Insights` alone. The agency writes and sends for review; publishing is internal.
+That makes the approver tick load-bearing from day one rather than a placeholder.
 
 **Decision (21 Sep 2026): build a user management screen** at `/admin/users`,
 SuperAdmin only, after Identity is in place and the first section has shipped.
