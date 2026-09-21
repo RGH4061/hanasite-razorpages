@@ -23,6 +23,9 @@ namespace HanaSite.Pages.Admin
         public List<string> Missing { get; private set; } = new();
         public string UserLine { get; private set; } = "";
 
+        /// <summary>Users is not a section; the button is shown to SuperAdmin only.</summary>
+        public bool IsSuperAdmin => User.IsInRole(AdminSections.SuperAdmin);
+
         public record Stat(string Value, string Label, string Color);
 
         public IActionResult OnGet()

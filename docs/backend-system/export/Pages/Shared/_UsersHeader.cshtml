@@ -1,0 +1,19 @@
+@*
+   _UsersHeader.cshtml — user management topbar. Same structure and classes as
+   _IrAdminHeader / _InsightsHeader, own title. Users is not a section, so the
+   switcher is passed a key that matches none of them and nothing is current.
+   Model: signed-in user string.
+*@
+@model string
+<header class="ir-topbar">
+    <div class="ir-brand">
+        <img class="ir-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+        <span class="ir-divider"></span>
+        <h1 class="ir-title">User management</h1>
+        <partial name="_AdminSectionNav" model="@("users")" />
+    </div>
+    <div class="ir-user">
+        <span class="ir-user-dot"></span>
+        <span>@Model</span>
+    </div>
+</header>

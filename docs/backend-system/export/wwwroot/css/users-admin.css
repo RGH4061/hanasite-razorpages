@@ -1,0 +1,98 @@
+/* ============================================================
+   users-admin.css — user management (/admin/users/).
+   Loaded AFTER _tokens.css and ir-admin.css: the page reuses the
+   admin shell (topbar, cards, fields, buttons, lists) and this
+   file carries only the list grid, the status pills and the
+   role tick block. Plain CSS, no inline <style>.
+   ============================================================ */
+
+/* ── Stats strip + intro ──────────────────────────────────── */
+.user-stats { background: var(--white); border-bottom: 1px solid var(--line); padding: 0 28px; display: flex; flex-wrap: wrap; }
+.user-stat { padding: 14px 24px 12px 0; margin-right: 24px; border-right: 1px solid #E3E7EC; min-width: 110px; text-align: center; }
+.user-stat:last-child { border-right: 0; }
+.user-stat__value { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+.user-stat__value--go { color: var(--success); }
+.user-stat__value--warn { color: #7A4F01; }
+.user-stat__value--muted { color: var(--ink-3); }
+.user-stat__label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); margin-top: 5px; }
+
+.user-intro { margin: 0 0 20px; max-width: 680px; color: var(--ink-2); line-height: 1.6; }
+.user-foot { margin-top: 14px; max-width: 680px; }
+
+.user-flash { display: flex; align-items: center; gap: 12px; border: 1px solid var(--success); border-left: 3px solid var(--success); background: #E6F4EC; border-radius: 6px; padding: 11px 14px; font-size: 13px; color: var(--success); margin-bottom: 18px; }
+
+/* ── Invite card ──────────────────────────────────────────── */
+.user-invite__closed { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.user-invite__closed .ir-btn { white-space: nowrap; }
+.user-invite__form { display: none; }
+.user-invite.is-open .user-invite__closed { display: none; }
+.user-invite.is-open .user-invite__form { display: block; }
+.user-invite__grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; }
+.user-invite__fields { display: grid; gap: 14px; align-content: start; }
+
+/* ── Role ticks (shared by invite + row expand) ───────────── */
+.user-ticks { border: 0; margin: 0; padding: 0; }
+.user-ticks__legend { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); padding: 0; margin-bottom: 10px; }
+.user-tick { display: flex; align-items: flex-start; gap: 9px; padding: 6px 0; }
+.user-tick input { margin: 2px 0 0; width: 15px; height: 15px; accent-color: var(--hana-blue); flex: none; }
+.user-tick input:disabled { opacity: 0.55; }
+.user-tick input:disabled + label { opacity: 0.7; }
+.user-tick label { min-width: 0; }
+.user-tick--indent { padding-left: 25px; }
+.user-tick--divided { border-top: 1px solid #E3E7EC; margin-top: 8px; padding-top: 12px; }
+.user-tick__name { display: block; font-size: 13.5px; font-weight: 500; color: var(--ink); }
+.user-tick--divided .user-tick__name { font-weight: 600; }
+.user-tick__help { display: block; font-size: 11.5px; color: var(--ink-3); line-height: 1.45; margin-top: 2px; }
+.user-tick__help--warn { color: #7A4F01; }
+
+/* ── List ─────────────────────────────────────────────────── */
+.ir-grid--users { min-width: 860px; }
+.ir-grid--users .ir-headrow,
+.ir-grid--users .ir-row { grid-template-columns: minmax(0,1.1fr) minmax(0,1.5fr) 126px 160px; }
+.user-item { border-top: 1px solid #E3E7EC; }
+.user-item--deactivated .user-row { opacity: 0.62; background: #FBFBFA; }
+.user-row { cursor: pointer; }
+.user-you { font-weight: 400; color: var(--ink-3); }
+
+.user-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.user-chip { display: inline-block; padding: 3px 8px; border-radius: var(--radius-button); font-size: 11px; font-weight: 500; background: var(--surface); color: var(--ink-2); border: 1px solid var(--line); white-space: nowrap; }
+.user-chip--super { background: var(--hana-blue-deep); color: var(--white); border-color: var(--hana-blue-deep); }
+.user-chip--approver { background: var(--hana-blue-tint); color: var(--hana-blue-deep); border-color: var(--hana-blue-soft); }
+
+/* ── Status pills ─────────────────────────────────────────── */
+.user-pill { display: inline-block; padding: 3px 8px; border-radius: var(--radius-button); font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid transparent; }
+.user-pill--active { background: #E6F4EC; color: #0A7C3F; border-color: #0A7C3F; }
+.user-pill--invited { background: #FFF8E6; color: #7A4F01; border-color: #E6A817; }
+.user-pill--deactivated { background: #EBEEF2; color: #6B7280; border-color: #9BA3AF; }
+
+/* ── Row expand ───────────────────────────────────────────── */
+.user-panel { display: none; padding: 18px 20px 20px; border-top: 1px solid #E3E7EC; background: #FBFBFA; }
+.user-panel.is-open { display: block; }
+.user-panel__grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; align-items: start; }
+.user-panel__save { margin-top: 16px; }
+.user-panel__label { margin: 0 0 10px; font-family: var(--font-text); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); }
+.user-added { margin: 0; font-size: 12.5px; color: var(--ink-2); line-height: 1.6; }
+.user-history { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.user-history li { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+.user-history .ir-cell-mono { flex: none; width: 80px; font-size: 10.5px; color: #9BA3AF; }
+.user-panel__actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; padding-top: 16px; border-top: 1px solid #E3E7EC; }
+.user-panel__actions form { margin: 0; }
+.user-danger-note { font-size: 11.5px; color: #7A4F01; margin: 8px 0 0; line-height: 1.5; }
+.ir-btn--go { border-color: var(--success); color: var(--success); }
+.ir-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .user-invite__grid { grid-template-columns: 1fr; }
+  .user-panel__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .user-stats { padding: 0 16px; }
+  .ir-grid--users { min-width: 0; }
+  .ir-grid--users .ir-headrow { display: none; }
+  .ir-grid--users .ir-row { display: block; padding: 14px 16px; }
+  .ir-grid--users .ir-row > div { margin: 0 0 8px; }
+  .ir-grid--users .ir-cell-actions { margin: 10px 0 0; justify-content: flex-start; }
+  .user-row .ir-btn { min-height: 44px; }
+  .user-panel { padding: 16px; }
+}

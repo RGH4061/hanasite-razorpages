@@ -36,7 +36,7 @@
 
     <main class="hub-page">
         <p class="hub-kicker">Signed in</p>
-        <h2 class="hub-heading">Choose a section</h2>
+        <h2 class="hub-heading">Admin selector</h2>
         <p class="hub-intro">Each section is a separate role. You see only the sections your account holds, and can move between them from the header without signing in again.</p>
 
         <div class="hub-grid">
@@ -72,7 +72,13 @@
 
         <div class="hub-foot">
             <p>This page is only shown to users with more than one section. Anyone with a single section goes straight there from sign-in.</p>
-            <form method="post" asp-page-handler="SignOut"><button type="submit" class="ir-btn">Sign out</button></form>
+            <div class="hub-foot__actions">
+                @if (Model.IsSuperAdmin)
+                {
+                    <a class="ir-btn hub-users-btn" href="@Url.Page("/Admin/Users/Index")">User management</a>
+                }
+                <form method="post" asp-page-handler="SignOut"><button type="submit" class="ir-btn">Sign out</button></form>
+            </div>
         </div>
     </main>
 </body>

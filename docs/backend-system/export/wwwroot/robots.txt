@@ -4,4 +4,5 @@ Disallow: /admin/tickets/
 Disallow: /admin/investor-relations/
 Disallow: /admin/careers/
 Disallow: /admin/insights/
+Disallow: /admin/users/
 Disallow: /account/login

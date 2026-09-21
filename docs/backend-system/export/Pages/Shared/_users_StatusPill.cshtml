@@ -1,0 +1,12 @@
+@*
+   _users_StatusPill.cshtml — Active / Invited / Deactivated badge.
+   Model: the account's status key.
+*@
+@model string
+<span class="user-pill user-pill--@Model">@(Model switch
+{
+    "active" => "Active",
+    "invited" => "Invited",
+    "deactivated" => "Deactivated",
+    _ => Model
+})</span>

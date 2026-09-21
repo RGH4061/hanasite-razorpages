@@ -1,0 +1,67 @@
+@page "/admin/users"
+@model HanaSite.Pages.Admin.Users.UserListModel
+@using HanaSite.Models.Admin
+@{
+    // Self-contained for standalone export rendering. On merge, lift the
+    // <main> block onto the site's admin layout and drop this shell.
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana — User management (Admin)</title>
+    <link rel="icon" href="~/images/hana-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/section-nav.css" />
+    <link rel="stylesheet" href="~/css/users-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_UsersHeader" model="@Model.CurrentUser" />
+
+    <div class="user-stats">
+        <div class="user-stat"><div class="user-stat__value">@Model.Accounts.Count</div><div class="user-stat__label">Accounts</div></div>
+        <div class="user-stat"><div class="user-stat__value user-stat__value--go">@AdminUserStore.ActiveCount</div><div class="user-stat__label">Active</div></div>
+        <div class="user-stat"><div class="user-stat__value user-stat__value--warn">@AdminUserStore.InvitedCount</div><div class="user-stat__label">Invited</div></div>
+        <div class="user-stat"><div class="user-stat__value user-stat__value--muted">@AdminUserStore.DeactivatedCount</div><div class="user-stat__label">Deactivated</div></div>
+    </div>
+
+    <main class="ir-wrap">
+        <p class="user-intro">Accounts for the Hana admin area. A person sees only the sections they hold, and can move between them from the header.</p>
+
+        @if (!string.IsNullOrEmpty(Model.Toast))
+        {
+            <div class="user-flash" role="status">@Model.Toast</div>
+        }
+
+        <partial name="_users_InviteCard" model="@Model.BlankTicks" />
+
+        <div class="ir-listhead">
+            <h2>Accounts</h2>
+            <div class="count">@Model.Accounts.Count accounts · @AdminUserStore.DeactivatedCount deactivated</div>
+        </div>
+
+        <div class="ir-listwrap">
+            <div class="ir-grid ir-grid--users">
+                <div class="ir-headrow">
+                    <div>Name</div><div>Sections</div><div>Status</div><div></div>
+                </div>
+                @foreach (var u in Model.Accounts)
+                {
+                    <partial name="_users_UserRow" model="u" view-data="@ViewData" />
+                }
+            </div>
+        </div>
+
+        <p class="ir-help user-foot">Deactivating never deletes an account. Records in investor relations, job listings and insights keep the name of whoever published or approved them.</p>
+    </main>
+
+    <script src="~/js/users-admin.js" asp-append-version="true"></script>
+</body>
+</html>

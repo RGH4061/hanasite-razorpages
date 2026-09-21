@@ -1,0 +1,98 @@
+@*
+   _users_UserRow.cshtml — one account as a list row plus its expand panel.
+   The expand interaction is the one tickets.js already implements
+   (data-expand / #expand-<id>), driven here by users-admin.js.
+   Model: AdminUser.
+*@
+@using HanaSite.Models.Admin
+@model AdminUser
+@{
+    var me = (string?)ViewData["CurrentUserEmail"] ?? "";
+    var isMe = string.Equals(me, Model.Email, StringComparison.OrdinalIgnoreCase);
+    var last = AdminUserStore.IsLastSuperAdmin(Model);
+    var superReason = isMe
+        ? "You cannot change your own access. Ask another SuperAdmin."
+        : last
+            ? "The only active SuperAdmin. Give SuperAdmin to someone else first."
+            : "Reaches every section, and is the only role that can open this page.";
+    var dangerBlocked = isMe || last;
+    var dangerReason = isMe
+        ? "You cannot deactivate your own account. Ask another SuperAdmin."
+        : "The only active SuperAdmin cannot be deactivated. Give SuperAdmin to someone else first.";
+    var ticks = new RoleTicks
+    {
+        Scope = Model.Id,
+        Sections = Model.Sections,
+        InsightsApprover = Model.InsightsApprover,
+        SuperAdmin = Model.SuperAdmin,
+        SectionsLocked = true,
+        SuperDisabled = isMe || last,
+        SuperReason = superReason
+    };
+}
+<article class="user-item user-item--@Model.StatusKey">
+    <div class="ir-row user-row" data-expand="@Model.Id" role="button" tabindex="0" aria-controls="expand-@Model.Id">
+        <div class="ir-cell-title">
+            <div class="t">@Model.Name @if (isMe) { <span class="user-you">· you</span> }</div>
+            <div class="sub ir-cell-mono">@Model.Email</div>
+        </div>
+        <div class="user-chips">
+            @foreach (var chip in Model.ChipLabels())
+            {
+                <span class="user-chip @(chip == "SuperAdmin" ? "user-chip--super" : chip == "Insights approver" ? "user-chip--approver" : "")">@chip</span>
+            }
+        </div>
+        <div><partial name="_users_StatusPill" model="@Model.StatusKey" /></div>
+        <div class="ir-cell-actions">
+            <button type="button" class="ir-btn" id="exp-@Model.Id" data-expand="@Model.Id">Expand</button>
+        </div>
+    </div>
+
+    <div class="user-panel" id="expand-@Model.Id">
+        <div class="user-panel__grid">
+            <form method="post" asp-page-handler="SaveRoles" class="user-panel__roles">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <partial name="_users_RoleTicks" model="ticks" />
+                <div class="user-panel__save">
+                    <button type="submit" class="ir-btn ir-btn--primary">Save changes</button>
+                </div>
+            </form>
+
+            <div class="user-panel__meta">
+                <h3 class="user-panel__label">Account</h3>
+                <p class="user-added">Added by @Model.AddedBy on @Model.AddedOn</p>
+                <ul class="user-history">
+                    @foreach (var h in Model.History.Take(4))
+                    {
+                        <li><span class="ir-cell-mono">@h.When</span><span>@h.What</span></li>
+                    }
+                </ul>
+                <div class="user-panel__actions">
+                    @if (Model.Status == AdminUserStatus.Invited)
+                    {
+                        <form method="post" asp-page-handler="Resend"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="ir-btn">Resend invitation</button></form>
+                    }
+                    @if (Model.Status == AdminUserStatus.Active)
+                    {
+                        <form method="post" asp-page-handler="ResetPassword"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="ir-btn">Send password reset</button></form>
+                    }
+                    @if (Model.Status == AdminUserStatus.Deactivated)
+                    {
+                        <form method="post" asp-page-handler="Reactivate"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="ir-btn ir-btn--go">Reactivate</button></form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-page-handler="Deactivate" data-confirm="Deactivate @Model.Name? They lose access to every section immediately. Anything they published stays on the website, and their name stays on it.">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button type="submit" class="ir-btn ir-btn--danger" disabled="@dangerBlocked" title="@(dangerBlocked ? dangerReason : null)">Deactivate</button>
+                        </form>
+                    }
+                </div>
+                @if (dangerBlocked && Model.Status != AdminUserStatus.Deactivated)
+                {
+                    <p class="user-danger-note">@dangerReason</p>
+                }
+            </div>
+        </div>
+    </div>
+</article>

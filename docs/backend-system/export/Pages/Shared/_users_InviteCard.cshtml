@@ -1,0 +1,40 @@
+@*
+   _users_InviteCard.cshtml — collapsed to a single button, expands to the
+   invite form. The invitation asks the person to set their own password, so
+   there is no password field on this screen.
+   Model: RoleTicks for a fresh account.
+*@
+@using HanaSite.Models.Admin
+@model RoleTicks
+<section class="ir-card user-invite" id="invite-card">
+    <div class="ir-card-head user-invite__closed" id="invite-closed">
+        <div>
+            <h2>Add an account</h2>
+            <p class="ir-help">The invitation asks the person to set their own password.</p>
+        </div>
+        <button type="button" class="ir-btn ir-btn--primary" data-invite-open>Invite someone</button>
+    </div>
+
+    <form method="post" asp-page-handler="Invite" class="user-invite__form" id="invite-form">
+        <div class="ir-card-head"><h2>Invite someone</h2></div>
+        <div class="ir-card-body user-invite__grid">
+            <div class="user-invite__fields">
+                <div class="ir-field">
+                    <label for="invite-name">Name</label>
+                    <input class="ir-input" id="invite-name" name="name" required placeholder="Display name" />
+                    <p class="ir-help">Shown in the list and in audit entries.</p>
+                </div>
+                <div class="ir-field">
+                    <label for="invite-email">Email address</label>
+                    <input class="ir-input ir-input--mono" id="invite-email" name="email" type="email" required placeholder="name@hanabk.th.com" />
+                    <p class="ir-help">This is the username.</p>
+                </div>
+            </div>
+            <partial name="_users_RoleTicks" model="Model" />
+        </div>
+        <div class="ir-card-foot">
+            <button type="button" class="ir-btn" data-invite-close>Cancel</button>
+            <button type="submit" class="ir-btn ir-btn--primary">Send invitation</button>
+        </div>
+    </form>
+</section>

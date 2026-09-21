@@ -1,0 +1,45 @@
+@*
+   _users_RoleTicks.cshtml — the section tick block, shared by the invite card
+   and by every expanded row. Sections are read from AdminSections.All, so a
+   future section appears here with no edit. InsightsApprover and SuperAdmin are
+   not sections and are the two extra ticks below.
+   Model: RoleTicks.
+*@
+@using HanaSite.Models.Admin
+@model RoleTicks
+<fieldset class="user-ticks" data-ticks="@Model.Scope">
+    <legend class="user-ticks__legend">Sections</legend>
+    @foreach (var s in AdminSections.All)
+    {
+        var id = "tick-" + Model.Scope + "-" + s.Key;
+        <div class="user-tick">
+            <input type="checkbox" id="@id" name="sections" value="@s.Key"
+                   data-tick="section"
+                   checked="@(Model.SuperAdmin || Model.Sections.Contains(s.Key))"
+                   disabled="@(Model.SectionsLocked && Model.SuperAdmin)" />
+            <label for="@id"><span class="user-tick__name">@s.Title</span></label>
+        </div>
+    }
+
+    <div class="user-tick user-tick--indent">
+        <input type="checkbox" id="tick-@Model.Scope-approver" name="insightsApprover" value="true"
+               data-tick="approver"
+               checked="@Model.InsightsApprover"
+               disabled="@(Model.SectionsLocked && Model.SuperAdmin)" />
+        <label for="tick-@Model.Scope-approver">
+            <span class="user-tick__name">Insights approver</span>
+            <span class="user-tick__help">Can publish articles. Without this, they write and send for review.</span>
+        </label>
+    </div>
+
+    <div class="user-tick user-tick--divided">
+        <input type="checkbox" id="tick-@Model.Scope-super" name="superAdmin" value="true"
+               data-tick="super"
+               checked="@Model.SuperAdmin"
+               disabled="@Model.SuperDisabled" />
+        <label for="tick-@Model.Scope-super">
+            <span class="user-tick__name">SuperAdmin</span>
+            <span class="user-tick__help @(Model.SuperDisabled ? "user-tick__help--warn" : "")">@Model.SuperReason</span>
+        </label>
+    </div>
+</fieldset>
