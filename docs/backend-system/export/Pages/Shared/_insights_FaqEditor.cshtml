@@ -1,0 +1,24 @@
+@*
+   _insights_FaqEditor.cshtml — repeatable FAQ rows, bound as Input.Faq[i].
+   insights-admin.js renumbers the indices so model binding stays contiguous.
+   Model: the form's InputModel.
+*@
+@using HanaSite.Models.Insights
+@model HanaSite.Pages.Admin.Insights.ArticleFormModel.InputModel
+<div class="ins-faq-rows" id="ins-faq-rows">
+    @for (var i = 0; i < Model.Faq.Count; i++)
+    {
+        <div class="ins-faq-row" data-row>
+            <div class="ins-faq-top">
+                <span class="ir-cell-mono ins-faq-n">@(i + 1)</span>
+                <input type="text" name="Input.Faq[@i].Question" value="@Model.Faq[i].Question"
+                       placeholder="Question" aria-label="FAQ question" />
+                <button type="button" class="ins-row-remove" data-remove aria-label="Remove question">Remove</button>
+            </div>
+            <textarea name="Input.Faq[@i].Answer" rows="3" data-wordcount="50"
+                      placeholder="Answer — 50 words at most" aria-label="FAQ answer">@Model.Faq[i].Answer</textarea>
+            <div class="ins-hint" data-wordcount-out>@Model.Faq[i].AnswerWords of 50 words</div>
+        </div>
+    }
+</div>
+<button type="button" class="ir-btn" data-add="#ins-faq-rows">+ Add a question</button>

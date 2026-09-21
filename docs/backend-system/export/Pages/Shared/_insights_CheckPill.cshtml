@@ -1,0 +1,10 @@
+@*
+   _insights_CheckPill.cshtml — publish-checklist state as a list-column badge.
+   Model: CheckResult for one article.
+*@
+@using HanaSite.Models.Insights
+@model CheckResult
+@{
+    var state = Model.Blocking > 0 ? "block" : (Model.Warnings > 0 ? "warn" : "pass");
+}
+<span class="ins-check-pill ins-check-pill--@state">@Model.Summary</span>

@@ -1,0 +1,46 @@
+@*
+   _insights_FilterBar.cshtml — client-side filters over the rendered rows
+   (insights-admin.js reads the data-* attributes on each row).
+*@
+@using HanaSite.Models.Insights
+<div class="ir-filters" id="ins-filters">
+    <label for="ins-f-status">Status</label>
+    <select id="ins-f-status" data-filter="status">
+        <option value="">Any status</option>
+        <option value="draft">Draft</option>
+        <option value="review">In review</option>
+        <option value="scheduled">Scheduled</option>
+        <option value="published">Published</option>
+        <option value="archived">Archived</option>
+    </select>
+
+    <label for="ins-f-category">Category</label>
+    <select id="ins-f-category" data-filter="category">
+        <option value="">All</option>
+        <optgroup label="Markets">
+            @foreach (var c in ArticleStore.Markets)
+            {
+                <option value="@c">@c</option>
+            }
+        </optgroup>
+        <optgroup label="Capabilities">
+            @foreach (var c in ArticleStore.Capabilities)
+            {
+                <option value="@c">@c</option>
+            }
+        </optgroup>
+    </select>
+
+    <label for="ins-f-author">Author</label>
+    <select id="ins-f-author" data-filter="author">
+        <option value="">Anyone</option>
+        @foreach (var a in ArticleStore.Bylines)
+        {
+            <option value="@a">@a</option>
+        }
+    </select>
+
+    <input class="ir-search" id="ins-f-q" type="search" data-filter="q"
+           placeholder="Search title, address, key phrase…" aria-label="Search articles" />
+    <button type="button" class="ir-btn" id="ins-f-clear" hidden>Clear filters</button>
+</div>

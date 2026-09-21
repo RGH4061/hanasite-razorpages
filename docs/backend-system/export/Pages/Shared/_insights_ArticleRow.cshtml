@@ -1,0 +1,45 @@
+@*
+   _insights_ArticleRow.cshtml — one article as a list row. The row links to the
+   editor; the action buttons are real POSTs so the workflow survives no-JS.
+   Model: (Article, CheckResult, bool IsApprover) tuple.
+*@
+@using HanaSite.Models.Insights
+@model (Article Article, CheckResult Checks, bool IsApprover)
+@{
+    var a = Model.Article;
+    var editHref = Url.Page("/Admin/Insights/ArticleForm", new { id = a.Id });
+}
+<div class="ir-row ins-row ins-row--@a.Status"
+     data-status="@a.Status" data-category="@a.Category" data-author="@a.Author"
+     data-haystack="@a.HaystackLower">
+    <a class="ir-cell-title ins-rowlink" href="@editHref">
+        <span class="t">@a.Title</span>
+        <span class="sub ir-cell-mono">/insights/@a.Slug</span>
+    </a>
+    <div class="ir-cell-muted">@a.Category</div>
+    <div class="ir-cell-muted">@a.ContentType</div>
+    <div><partial name="_insights_CheckPill" model="@Model.Checks" /></div>
+    <div class="ir-cell-mono">@a.ModifiedAt</div>
+    <div>
+        <partial name="_insights_StatusPill" model="@a.Status" />
+        @if (a.Status == "scheduled" && !string.IsNullOrEmpty(a.ScheduledFor))
+        {
+            <span class="ins-golive">@a.ScheduledDisplay</span>
+        }
+    </div>
+    <div class="ir-cell-actions">
+        @if (a.Status == "review" && Model.IsApprover && Model.Checks.CanPublish)
+        {
+            <form method="post" asp-page-handler="Approve" asp-route-id="@a.Id">
+                <button type="submit" class="ir-btn ir-btn--go">Approve</button>
+            </form>
+        }
+        @if (a.Status == "draft")
+        {
+            <form method="post" asp-page-handler="SendForReview" asp-route-id="@a.Id">
+                <button type="submit" class="ir-btn">Send for review</button>
+            </form>
+        }
+        <a class="ir-btn" href="@editHref">Edit</a>
+    </div>
+</div>

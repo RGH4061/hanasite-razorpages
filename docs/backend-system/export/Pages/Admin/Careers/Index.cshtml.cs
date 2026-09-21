@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HanaSite.Models.Careers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -10,6 +11,7 @@ namespace HanaSite.Pages.Admin.Careers
     /// Job listings hub (/admin/careers/). Filtering runs client-side in
     /// careers-admin.js over the rendered rows; row actions POST here (PRG).
     /// </summary>
+    [Authorize(Roles = "Careers,SuperAdmin")]
     public class JobListModel : PageModel
     {
         public IReadOnlyList<Job> Jobs { get; private set; } = new List<Job>();

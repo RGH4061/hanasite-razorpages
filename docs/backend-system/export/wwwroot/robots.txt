@@ -3,4 +3,5 @@ User-agent: *
 Disallow: /admin/tickets/
 Disallow: /admin/investor-relations/
 Disallow: /admin/careers/
+Disallow: /admin/insights/
 Disallow: /account/login

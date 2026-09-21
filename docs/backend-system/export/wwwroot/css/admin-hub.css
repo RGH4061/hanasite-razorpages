@@ -1,0 +1,123 @@
+/* admin-hub.css — section hub at /admin. Loads after ir-admin.css, which
+   supplies the topbar, buttons and note styles. */
+
+.hub-page { max-width: 1080px; margin: 32px auto 72px; padding: 0 28px; }
+
+.hub-kicker {
+    margin: 0 0 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3, #6B7280);
+}
+
+.hub-heading {
+    margin: 0 0 6px;
+    font-family: 'Geist', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink, #0E1116);
+}
+
+.hub-intro { margin: 0 0 26px; max-width: 620px; color: var(--ink-2, #444B54); }
+
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(288px, 1fr)); gap: 16px; }
+
+.hub-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--line, #D2D7DE);
+    border-radius: 8px;
+    padding: 24px;
+    color: var(--ink, #0E1116);
+    text-decoration: none;
+    transition: border-color 160ms ease-out;
+}
+
+.hub-card:hover { border-color: #4E9BDA; }
+
+.hub-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+
+.hub-card__head h3 {
+    margin: 0;
+    font-family: 'Geist', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.hub-card__role { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: var(--ink-3, #6B7280); }
+
+.hub-card__desc { margin: 0; font-size: 13px; line-height: 1.55; color: var(--ink-2, #444B54); }
+
+.hub-card__cta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hana-blue, #1283DD);
+}
+
+.hub-stats {
+    display: flex;
+    align-items: stretch;
+    gap: 1px;
+    margin-top: 2px;
+    background: #D9DDE2;
+    border: 1px solid var(--line, #D2D7DE);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.hub-stat { flex: 1; padding: 8px 12px; background: var(--surface, #EBEEF2); }
+
+.hub-stat__value { font-family: 'Geist', sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+
+.hub-stat__label {
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3, #6B7280);
+    white-space: nowrap;
+}
+
+.hub-note {
+    margin-top: 26px;
+    border: 1px solid var(--line, #D2D7DE);
+    border-left: 3px solid #9BA3AF;
+    background: var(--surface, #EBEEF2);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-2, #444B54);
+}
+
+.hub-note strong { color: var(--ink, #0E1116); font-weight: 600; }
+
+.hub-foot {
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line, #D2D7DE);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hub-foot p { margin: 0; max-width: 560px; font-size: 12px; color: var(--ink-3, #6B7280); }
+
+@media (max-width: 760px) {
+    .hub-page { padding: 0 16px; }
+    .hub-grid { grid-template-columns: 1fr; }
+}

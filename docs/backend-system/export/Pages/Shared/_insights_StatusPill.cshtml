@@ -1,0 +1,14 @@
+@*
+   _insights_StatusPill.cshtml — Draft / In review / Scheduled / Published / Archived.
+   Model: the article's status key.
+*@
+@model string
+<span class="ins-pill ins-pill--@Model">@(Model switch
+{
+    "draft" => "Draft",
+    "review" => "In review",
+    "scheduled" => "Scheduled",
+    "published" => "Published",
+    "archived" => "Archived",
+    _ => Model
+})</span>

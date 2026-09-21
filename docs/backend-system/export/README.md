@@ -1,8 +1,9 @@
-# Hana Ticketing System — Razor Pages export
+# Hana backend system — Razor Pages export
 
-Handoff package for the internal inquiry ticketing tool. Converted from the
-Design Component prototypes (`Hana CRM - Inquiry Tickets.dc.html`,
-`Hana CRM - Login.dc.html`) into ASP.NET Core Razor Pages, following the project
+Handoff package for the whole password-protected admin area: one sign-in page,
+a section hub at `/admin`, and four sections — inquiry tickets, investor
+relations, job listings and insights. Converted from the Design Component
+prototypes into ASP.NET Core Razor Pages, following the project
 build constraints: `.cshtml` + plain CSS + vanilla JS, no React/JSX/bundler, no
 inline `<style>`, semantic HTML, one named file per UI block, `~/` static paths.
 
@@ -12,6 +13,9 @@ inline `<style>`, semantic HTML, one named file per UI block, `~/` static paths.
 export/
 ├── Pages/
 │   ├── _ViewImports.cshtml                     @using / @addTagHelper
+│   ├── Admin/
+│   │   ├── Index.cshtml                        section hub (/admin)
+│   │   └── Index.cshtml.cs                     AdminHubModel — cards + live stats
 │   ├── Admin/Tickets/
 │   │   ├── Index.cshtml                        ticket list page (/admin/tickets/)
 │   │   └── Index.cshtml.cs                     TicketListModel + action handlers
@@ -19,15 +23,19 @@ export/
 │   │   ├── Index.cshtml(.cs)                   tabbed lists: news/events/reports/presentations
 │   │   ├── NewsForm.cshtml(.cs)                new/edit news item (also events via ?kind=event)
 │   │   ├── ReportForm.cshtml(.cs)              new/edit report + cover
-│   │   └── PresentationForm.cshtml(.cs)        new/edit Earnings Call presentation
+│   │   └── PresentationForm.cshtml(.cs)        new/edit Opportunity Day presentation
 │   ├── Admin/Careers/                      job listings (/admin/careers/)
 │   │   ├── Index.cshtml(.cs)                filterable listing table
 │   │   └── JobForm.cshtml(.cs)              new/edit a role
+│   ├── Admin/Insights/                     insight articles (/admin/insights/)
+│   │   ├── Index.cshtml(.cs)                article list + checklist state
+│   │   └── ArticleForm.cshtml(.cs)          write, run the checks, approve
 │   ├── Account/
 │   │   ├── Login.cshtml                        sign-in page
 │   │   └── Login.cshtml.cs                     LoginModel (Identity stub)
 │   └── Shared/
 │       ├── _AdminHeader.cshtml                 CRM topbar
+│       ├── _AdminSectionNav.cshtml             header section switcher (all topbars)
 │       ├── _tickets_FilterBar.cshtml
 │       ├── _tickets_StatusPill.cshtml
 │       ├── _tickets_TicketRow.cshtml
@@ -38,13 +46,25 @@ export/
 │       ├── _ir_StatusPill.cshtml               shared publishing-status badge
 │       ├── _ir_NewsRow / _ir_EventRow / _ir_ReportRow / _ir_PresRow.cshtml
 │       ├── _ir_AttachmentEditor.cshtml         repeatable attachment rows
-│       └── _ir_PublishBlock.cshtml             publish now / at a set time
+│       ├── _ir_PublishBlock.cshtml             publish now / at a set time
+│       ├── _InsightsHeader.cshtml              insights topbar (same style, own title)
+│       ├── _insights_FilterBar.cshtml
+│       ├── _insights_ArticleRow.cshtml
+│       ├── _insights_StatusPill.cshtml
+│       ├── _insights_Checklist.cshtml          grouped publish checklist
+│       ├── _insights_CheckPill.cshtml          one check result
+│       └── _insights_SourceEditor / _insights_EntityEditor / _insights_FaqEditor.cshtml
 ├── Models/Admin/
+│   ├── AdminSections.cs                        the four sections, their roles and routing
 │   ├── Ticket.cs                               inquiry model + view helpers
 │   └── TicketStore.cs                          in-memory seed (replace on merge)
 ├── Models/Careers/
 │   ├── Job.cs                                  listing model; status derived from the closing date
 │   └── JobStore.cs                             in-memory seed (replace on merge)
+├── Models/Insights/
+│   ├── Article.cs                              article model + view helpers
+│   ├── ArticleChecks.cs                        the publish checklist (block / warn / auto)
+│   └── ArticleStore.cs                         in-memory seed (replace on merge)
 ├── Models/Ir/
 │   ├── Attachment.cs                           attachment + IrStatus enum/helpers
 │   ├── IrRecords.cs                            NewsItem / IrEvent / Report / Presentation / FaqCategory
@@ -54,13 +74,17 @@ export/
     ├── css/admin.css                           ticket list styles
     ├── css/ir-admin.css                        IR hub styles (also the careers shell)
     ├── css/careers-admin.css                   job-listing specifics
+    ├── css/insights-admin.css                  article list, editor and checklist
+    ├── css/admin-hub.css                       section hub cards
+    ├── css/section-nav.css                     header section switcher
     ├── css/login.css                           sign-in styles
     ├── js/tickets.js                           expand / menu / collapse / filter
     ├── js/ir-admin.js                          publish toggle / repeatable rows / period field
     ├── js/careers-admin.js                     listing filters / repeatable job-board links
+    ├── js/insights-admin.js                    editor toolbar / filters / repeatable rows
     ├── js/hana-backgrounds.js                  login-only decorative background
     ├── images/hana-logo-full.svg, hana-mark.svg
-    └── robots.txt                              blocks /admin/tickets/, /admin/investor-relations/, /admin/careers/
+    └── robots.txt                              blocks every /admin/ section and /account/login
 ```
 
 ## Merge notes
@@ -77,8 +101,10 @@ export/
   with the real repository / EF Core context; the page handlers only touch
   `Find` and the list, so the swap is localized.
 - **Auth.** `LoginModel.OnPost` is a stub that accepts any input and redirects.
-  Wire `SignInManager.PasswordSignInAsync` during merge. All four users
-  (Sanjay, Mark, Thang, Rupert) have full access.
+  Wire `SignInManager.PasswordSignInAsync` during merge. Access is by role, not
+  by section — see *Section hub* below. Note that the `[Authorize]` attributes
+  on the admin page models need an authentication scheme registered in
+  `Program.cs`; without one every admin page throws at request time.
 - **Assignment emails.** Claim / Assign send the inquiry summary to the owner's
   mailbox via `Services/AssignmentMailer.cs` (`IAssignmentMailer`), which also
   stamps `NotifiedName / NotifiedEmail / NotifiedAt / NotifiedSubject` on the
@@ -112,6 +138,28 @@ export/
   the CRM only routes tickets to the correct owner, so the expand panel is the
   full view. A dedicated record/audit page is deferred as possible future work.
   (Honeypot spam rows keep a "View raw data" action that opens the expand panel.)
+
+## Section hub (`/admin`)
+
+- **One section = one Identity role.** `Models/Admin/AdminSections.cs` holds the
+  four sections (Tickets, InvestorRelations, Careers, Insights), each with its
+  role name, title, route and description. `SuperAdmin` reaches all four. The
+  page attributes read `[Authorize(Roles = "<Section>,SuperAdmin")]`, so a role
+  assignment is the only thing that grants access.
+- **Where sign-in lands you.** `AdminSections.LandingPage(User)` sends a user who
+  holds one section straight into it and a user who holds several to the hub. An
+  explicit local `returnUrl` wins over both, so a deep link survives sign-in.
+- **The hub is skipped when it has nothing to offer.** `AdminHubModel.OnGet`
+  forwards a single-section user into their section and returns `Forbid()` for a
+  user with no sections. It lists the sections the user cannot reach by title
+  only, so they can see what exists without a route to it.
+- **Card figures come from the same stores the sections use** (`StatsFor`) —
+  open and unclaimed tickets, scheduled and draft IR news, articles in review
+  and in draft, live and closing job listings. They move to the real repositories
+  with everything else on merge.
+- **The header switcher** (`_AdminSectionNav`) renders in all four topbars and
+  outputs nothing for a user with one section, so single-section users see no
+  extra UI. Styles are in `section-nav.css`; the hub itself uses `admin-hub.css`.
 
 ## Investor Relations hub (`/admin/investor-relations/`)
 
@@ -192,4 +240,31 @@ export/
   pills and form specifics. If the two dashboards ever diverge, split the shared
   block out of `ir-admin.css` rather than duplicating it.
 - **Same in-memory-store caveat.** `JobStore` is a seed; swap for the real
+  repository on merge.
+
+## Insights (`/admin/insights/`)
+
+- **Two pages.** `Index.cshtml` is the article list with the checklist state per
+  row; `ArticleForm.cshtml` is the editor — body, metadata, sources, entities and
+  FAQs, with the publish checklist alongside.
+- **The publish checklist is the control.** `Models/Insights/ArticleChecks.cs`
+  runs grouped checks at three levels: `Block` refuses publication, `Warn` is
+  shown to whoever publishes and left to their judgement, `Auto` is informational.
+  `CheckResult.CanPublish` is simply "no blocking failures". The percentage score
+  (1 per pass, 0.5 per warning) is guidance and never blocks. Banned terms and
+  customer-name checks are deliberately not in this file — that review happens on
+  the writing side.
+- **Writing and approving are separate.** An agency or staff account writes and
+  uses *Send for review*; only an account in `InsightsApprover` can publish.
+  `OnPostApprove` re-runs the checks before it writes, so a stale page cannot
+  publish an article that has since failed one.
+- **Approve with a scheduled date sets `scheduled` rather than `published`** —
+  the record is approved and waits. Taking an article down sets `archived`
+  rather than deleting it.
+- **Every state change appends to `Article.Audit`** with who did it, which is what
+  the editor shows as history.
+- **Shares the IR shell**, the same way careers does: `ir-admin.css` for the
+  topbar, tabs, cards and fields, then `insights-admin.css` for the list, editor
+  toolbar and checklist.
+- **Same in-memory-store caveat.** `ArticleStore` is a seed; swap for the real
   repository on merge.

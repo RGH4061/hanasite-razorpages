@@ -255,10 +255,11 @@ the public query.
 
 ---
 
-## One login, three tools — not three logins
+## One login, four tools — not four logins
 
-There are now three admin tools in the same website: tickets (`/admin/tickets/`),
-careers (`/admin/jobs/`) and this one (`/admin/ir/`). They serve different
+There are now four admin tools in the same website: tickets (`/admin/tickets/`),
+careers (`/admin/careers/`), insights (`/admin/insights/`) and this one
+(`/admin/investor-relations/`). They serve different
 people, and the separation matters — HR have no business in SET filings, and
 the IR team should not be able to open candidate applications.
 

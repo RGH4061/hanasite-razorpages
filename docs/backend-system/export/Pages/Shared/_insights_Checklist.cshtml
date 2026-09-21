@@ -1,0 +1,46 @@
+@*
+   _insights_Checklist.cshtml — the publish checklist. Collapsible groups, one
+   row per check. Block rows are red and stop publication; warnings are amber
+   and left to whoever publishes. Score is guidance only.
+   Model: CheckResult.
+*@
+@using HanaSite.Models.Insights
+@model CheckResult
+<section class="ir-card ins-checklist" aria-labelledby="ins-checks-h">
+    <div class="ins-checklist-head">
+        <div class="ins-checklist-toprow">
+            <h3 id="ins-checks-h">Publish checks</h3>
+            <span class="ins-check-pill ins-check-pill--@(Model.Blocking > 0 ? "block" : Model.Warnings > 0 ? "warn" : "pass")">@Model.Summary</span>
+        </div>
+        <div class="ins-score">
+            <div class="ins-score-track"><div class="ins-score-fill ins-score-fill--@(Model.Blocking > 0 ? "block" : Model.Warnings > 4 ? "warn" : "pass")" style="width:@(Model.ScorePercent)%"></div></div>
+            <span class="ir-cell-mono">@Model.Score.ToString("0.0") / @Model.Total</span>
+        </div>
+        <p class="ins-checklist-note">Score is guidance only. Blocking issues stop publication; warnings are your call.</p>
+    </div>
+
+    @foreach (var g in Model.Groups)
+    {
+        <details class="ins-group" open="@(g.State != "pass")">
+            <summary class="ins-group-summary">
+                <span class="ins-group-left">
+                    <span class="ins-group-dot ins-group-dot--@g.State"></span>
+                    <span class="ins-group-label">@g.Label</span>
+                </span>
+                <span class="ins-group-count ins-group-count--@g.State">@g.CountLabel</span>
+            </summary>
+            <ul class="ins-check-list">
+                @foreach (var c in g.Items)
+                {
+                    <li class="ins-check ins-check--@c.State">
+                        <span class="ins-check-mark" aria-hidden="true">@c.Mark</span>
+                        <span class="ins-check-body">
+                            <span class="ins-check-label">@c.Label</span>
+                            <span class="ins-check-detail">@c.Detail</span>
+                        </span>
+                    </li>
+                }
+            </ul>
+        </details>
+    }
+</section>

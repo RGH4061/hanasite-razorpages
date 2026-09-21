@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/_tokens.css" />
     <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/section-nav.css" />
 </head>
 <body class="ir-body">
     <partial name="_IrAdminHeader" model="@Model.CurrentUser" />
@@ -58,7 +59,7 @@
         {
             <div class="ir-filters" data-filters>
                 <label for="f-kind">Event kind</label>
-                <select id="f-kind" data-f="kind"><option>All kinds</option><option>SET Earnings Call</option><option>Analyst Meeting</option></select>
+                <select id="f-kind" data-f="kind"><option>All kinds</option><option>SET Opportunity Day</option><option>Analyst Meeting</option></select>
                 <label for="f-show">Showing</label>
                 <select id="f-show" data-f="show"><option>Upcoming &amp; past</option><option>Upcoming only</option><option>Past only</option></select>
                 <input class="ir-search" data-f="q" type="search" placeholder="Search event…" aria-label="Search events" />
@@ -106,7 +107,7 @@
         {
             <div class="ir-sec-head">
                 <h2>Presentations</h2>
-                <div class="count">Updated each quarter after the Earnings Call</div>
+                <div class="count">Updated each quarter after the Opportunity Day</div>
             </div>
             <div class="ir-listwrap">
                 <div class="ir-grid ir-grid--pres">

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using HanaSite.Models.Careers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,6 +13,7 @@ namespace HanaSite.Pages.Admin.Careers
     /// validation attributes; persists to the in-memory store on a valid POST,
     /// then redirects (PRG). The footer buttons post an "action" value.
     /// </summary>
+    [Authorize(Roles = "Careers,SuperAdmin")]
     public class JobFormModel : PageModel
     {
         [BindProperty(SupportsGet = true)] public string? Id { get; set; }

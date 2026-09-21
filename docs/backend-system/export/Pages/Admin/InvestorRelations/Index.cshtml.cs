@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HanaSite.Models.Ir;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -13,6 +14,7 @@ namespace HanaSite.Pages.Admin.InvestorRelations
     /// the rendered rows in the real build; the seed set is small enough to
     /// render whole here.
     /// </summary>
+    [Authorize(Roles = "InvestorRelations,SuperAdmin")]
     public class IndexModel : PageModel
     {
         [BindProperty(SupportsGet = true)] public string Tab { get; set; } = "news";

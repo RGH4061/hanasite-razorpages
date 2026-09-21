@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using HanaSite.Models.Ir;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -11,6 +12,7 @@ namespace HanaSite.Pages.Admin.InvestorRelations
     /// Model-binds the Input object with validation attributes; persists to the
     /// in-memory store on a valid POST, then redirects (PRG).
     /// </summary>
+    [Authorize(Roles = "InvestorRelations,SuperAdmin")]
     public class NewsFormModel : PageModel
     {
         [BindProperty(SupportsGet = true)] public string? Id { get; set; }

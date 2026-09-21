@@ -29,14 +29,14 @@ namespace HanaSite.Models.Ir
         public int FileCount => Attachments.Count;
     }
 
-    /// <summary>An investor event — Earnings Call or analyst meeting.
+    /// <summary>An investor event — Opportunity Day or analyst meeting.
     /// Flips Scheduled → Archived on its own once the date passes.</summary>
     public class IrEvent
     {
         public string Id { get; set; } = "";
         public string Title { get; set; } = "";
         public string? Subtitle { get; set; }
-        public string Kind { get; set; } = "SET Earnings Call";
+        public string Kind { get; set; } = "SET Opportunity Day";
         public string Date { get; set; } = "";            // "26 Aug 2026" or "TBC"
         public string? Time { get; set; }
         public string Format { get; set; } = "Online";
@@ -62,7 +62,7 @@ namespace HanaSite.Models.Ir
         public int FileCount => Attachments.Count;
     }
 
-    /// <summary>An Earnings Call presentation — YouTube video + bilingual
+    /// <summary>An Opportunity Day presentation — YouTube video + bilingual
     /// summary/transcript. Newest is featured automatically.</summary>
     public class Presentation
     {

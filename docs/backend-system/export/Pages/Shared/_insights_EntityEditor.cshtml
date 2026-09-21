@@ -1,0 +1,21 @@
+@*
+   _insights_EntityEditor.cshtml — repeatable entity rows (name + Wikipedia URL),
+   bound as Input.Entities[i]. Three to four per article; each name should also
+   appear in the body.
+   Model: the form's InputModel.
+*@
+@using HanaSite.Models.Insights
+@model HanaSite.Pages.Admin.Insights.ArticleFormModel.InputModel
+<div class="ins-entity-rows" id="ins-entity-rows">
+    @for (var i = 0; i < Model.Entities.Count; i++)
+    {
+        <div class="ins-entity-row" data-row>
+            <input type="text" name="Input.Entities[@i].Name" value="@Model.Entities[i].Name"
+                   placeholder="Entity name" aria-label="Entity name" />
+            <input type="url" name="Input.Entities[@i].Url" value="@Model.Entities[i].Url"
+                   placeholder="https://en.wikipedia.org/wiki/…" aria-label="Wikipedia URL" />
+            <button type="button" class="ins-row-remove" data-remove aria-label="Remove entity">Remove</button>
+        </div>
+    }
+</div>
+<button type="button" class="ir-btn" data-add="#ins-entity-rows">+ Add an entity</button>

@@ -1,0 +1,21 @@
+@*
+   _insights_SourceEditor.cshtml — repeatable source URLs, bound as Input.Sources[i].
+   Needed only when the article cites outside figures or research.
+   Model: the form's InputModel.
+*@
+@model HanaSite.Pages.Admin.Insights.ArticleFormModel.InputModel
+<div class="ins-source-rows" id="ins-source-rows">
+    @for (var i = 0; i < Model.Sources.Count; i++)
+    {
+        <div class="ins-source-row" data-row>
+            <input type="url" name="Input.Sources[@i]" value="@Model.Sources[i]"
+                   placeholder="https://" aria-label="Source URL" />
+            <button type="button" class="ins-row-remove" data-remove aria-label="Remove source">Remove</button>
+        </div>
+    }
+    @if (Model.Sources.Count == 0)
+    {
+        <p class="ins-hint">None yet. Needed only if the article cites outside figures or research.</p>
+    }
+</div>
+<button type="button" class="ir-btn" data-add="#ins-source-rows">+ Add a source</button>

@@ -1,0 +1,79 @@
+@page "/admin"
+@model HanaSite.Pages.Admin.AdminHubModel
+@using HanaSite.Models.Admin
+@{
+    Layout = null;
+    ViewData["Title"] = "Hana Admin";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana Admin</title>
+    <link rel="icon" href="~/images/hana-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&family=Inter:wght@@400;500;600;800&family=IBM+Plex+Mono:wght@@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/section-nav.css" />
+    <link rel="stylesheet" href="~/css/admin-hub.css" />
+</head>
+<body>
+    <header class="ir-topbar">
+        <div class="ir-brand">
+            <img class="ir-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+            <span class="ir-divider"></span>
+            <h1 class="ir-title">Hana Admin</h1>
+        </div>
+        <div class="ir-user">
+            <span class="ir-user-dot"></span>
+            <span>@Model.UserLine</span>
+        </div>
+    </header>
+
+    <main class="hub-page">
+        <p class="hub-kicker">Signed in</p>
+        <h2 class="hub-heading">Choose a section</h2>
+        <p class="hub-intro">Each section is a separate role. You see only the sections your account holds, and can move between them from the header without signing in again.</p>
+
+        <div class="hub-grid">
+            @foreach (var s in Model.Sections)
+            {
+                <a class="hub-card" href="@Url.Page(s.Page)">
+                    <div class="hub-card__head">
+                        <h3>@s.Title</h3>
+                        <span class="hub-card__role">@s.Role</span>
+                    </div>
+                    <p class="hub-card__desc">@s.Description</p>
+                    <div class="hub-stats">
+                        @foreach (var st in Model.StatsFor(s))
+                        {
+                            <div class="hub-stat">
+                                <div class="hub-stat__value" style="color:@st.Color">@st.Value</div>
+                                <div class="hub-stat__label">@st.Label</div>
+                            </div>
+                        }
+                    </div>
+                    <span class="hub-card__cta">Open @s.Title.ToLowerInvariant()</span>
+                </a>
+            }
+        </div>
+
+        @if (Model.Missing.Count > 0)
+        {
+            <div class="hub-note">
+                <strong>Not on this account: @string.Join(", ", Model.Missing).</strong>
+                A super admin grants the role in Identity; until then the section is hidden here and blocked at the page.
+            </div>
+        }
+
+        <div class="hub-foot">
+            <p>This page is only shown to users with more than one section. Anyone with a single section goes straight there from sign-in.</p>
+            <form method="post" asp-page-handler="SignOut"><button type="submit" class="ir-btn">Sign out</button></form>
+        </div>
+    </main>
+</body>
+</html>

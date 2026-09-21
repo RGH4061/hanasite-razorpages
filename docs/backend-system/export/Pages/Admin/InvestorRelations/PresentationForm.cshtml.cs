@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using HanaSite.Models.Ir;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HanaSite.Pages.Admin.InvestorRelations
 {
-    /// <summary>Create / edit an Earnings Call presentation.</summary>
+    /// <summary>Create / edit an Opportunity Day presentation.</summary>
+    [Authorize(Roles = "InvestorRelations,SuperAdmin")]
     public class PresentationFormModel : PageModel
     {
         [BindProperty(SupportsGet = true)] public string? Id { get; set; }
@@ -19,7 +21,7 @@ namespace HanaSite.Pages.Admin.InvestorRelations
 
         public class InputModel
         {
-            [Required] public string Kind { get; set; } = "SET Earnings Call";
+            [Required] public string Kind { get; set; } = "SET Opportunity Day";
             [Required(ErrorMessage = "Enter the period, e.g. Q2 2026.")]
             public string Period { get; set; } = "";
             [Required] public string Date { get; set; } = "";

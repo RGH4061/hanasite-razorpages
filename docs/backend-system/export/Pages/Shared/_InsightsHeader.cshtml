@@ -1,0 +1,18 @@
+@*
+   _InsightsHeader.cshtml — insights admin topbar. Same visual language as
+   _AdminHeader / _IrAdminHeader / _CareersHeader, own title.
+   Model: signed-in user string.
+*@
+@model string
+<header class="ir-topbar" data-hana-bg="flow">
+    <div class="ir-brand">
+        <img class="ir-logo" src="~/images/hana-logo-full.svg" alt="Hana Microelectronics Group" />
+        <span class="ir-divider"></span>
+        <h1 class="ir-title">Insights</h1>
+        <partial name="_AdminSectionNav" model="@("insights")" />
+    </div>
+    <div class="ir-user">
+        <span class="ir-user-dot"></span>
+        <span>@Model</span>
+    </div>
+</header>

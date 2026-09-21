@@ -14,16 +14,23 @@ before any of this runs.
 
 ## The tools
 
-| Tool | Route | Who uses it | Status |
-|---|---|---|---|
-| **Inquiry tickets** | `/admin/tickets/` | Sales — Sanjay, Mark, Thang, Rupert | Design complete |
-| **Investor Relations** | `/admin/investor-relations/` | Corporate Affairs / finance, Bangkok | Design complete |
-| Careers (job listings) | `/admin/jobs/` | HR — Lamphun, Ayutthaya, Koh Kong | Planned, not yet built |
+| Tool | Route | Role | Who uses it | Status |
+|---|---|---|---|---|
+| **Inquiry tickets** | `/admin/tickets/` | `Tickets` | Sales — Sanjay, Mark, Thang, Rupert | Design complete |
+| **Investor Relations** | `/admin/investor-relations/` | `InvestorRelations` | Corporate Affairs / finance, Bangkok | Design complete |
+| **Careers (job listings)** | `/admin/careers/` | `Careers` | HR — Lamphun, Ayutthaya, Koh Kong | Design complete |
+| **Insights** | `/admin/insights/` | `Insights` | Corporate Affairs, plus agency writers | Design complete |
 
-All three are sections of **one admin area behind one login**, not separate
+All four are sections of **one admin area behind one login**, not separate
 applications. A person's account decides which tools they can reach: sign in
 once, see only what you have a role for, and a direct link to a tool you don't
 hold returns not-found rather than a password prompt.
+
+A **section hub at `/admin`** sits behind the login. Someone holding one section
+is sent straight into it and never sees the hub; someone holding several lands
+there, and can move between sections from the header afterwards without signing
+in again. The `SuperAdmin` role reaches all four. The sections, their roles and
+their routes are defined in one place, `export/Models/Admin/AdminSections.cs`.
 
 Why one login rather than three: several people (Rupert, Thang) need more than
 one tool, so separate logins would mean separate passwords for the same person
@@ -36,7 +43,7 @@ between tools is a permissions question, and it is answered by roles.
 
 ```
 docs/backend-system/
-├── export/                     Razor Pages source — BOTH tools, one package
+├── export/                     Razor Pages source — ALL four sections, one package
 ├── ticketing/                  spec, mockups and email templates for tickets
 │   ├── Plan.md                 data model, statuses, spam handling, GDPR, phases
 │   ├── Claude Design — Project Instructions.md
@@ -48,12 +55,9 @@ docs/backend-system/
 ```
 
 `export/` has its own README with the file-by-file layout and merge notes. It is
-a single package covering both tools because they share the login page, the
-header treatment, the design tokens and the `Pages/Shared/` partials — merge it
-once, not twice.
-
-*Note:* `export/README.md` is still titled "Hana Ticketing System" from when the
-package covered only that tool. The contents are current; the heading is not.
+a single package covering all four sections because they share the login page,
+the section hub, the header treatment, the design tokens and the
+`Pages/Shared/` partials — merge it once, not four times.
 
 ---
 
@@ -67,8 +71,11 @@ and the others inherit it.
    no `appsettings.json` and no connection string.
 2. **Authentication.** `Program.cs` is `AddRazorPages()` and nothing else.
    `Login.cshtml.cs` is an honest stub — it accepts any email and password and
-   redirects. Needs ASP.NET Core Identity, and `[Authorize]` per admin folder
-   with a role for each tool (`Tickets`, `Careers`, `IR`).
+   redirects. Needs ASP.NET Core Identity with one role per section (`Tickets`,
+   `InvestorRelations`, `Careers`, `Insights`, plus `SuperAdmin` and the
+   `InsightsApprover` role that gates publishing). The `[Authorize]` attributes
+   are already on the page models; until an authentication scheme is registered
+   in `Program.cs` they throw rather than redirect to the login page.
 3. **Email sending.** The ticketing tool sends two emails (internal notification,
    customer confirmation). No SMTP configuration exists.
 4. **The public form handler.** `Pages/Contact/Index.cshtml` has a
@@ -86,7 +93,7 @@ Stock ASP.NET Core Identity: a users table, a roles table with one row per tool,
 and a join table saying who holds what. That join table *is* the permissions —
 there is nothing custom to design.
 
-No screen for managing users at launch. Across all three tools this is roughly
+No screen for managing users at launch. Across all four sections this is roughly
 eight to twelve people changing a couple of times a year, so accounts are added
 by the developer; a management screen is worth building only if that becomes
 frequent. **Deactivate accounts, never delete them** — the audit trail names who
@@ -95,5 +102,6 @@ published each item, and deleting the user orphans that history.
 ## Suggested build order
 
 Tickets first, on its own. It is the tool whose spec has been settled longest,
-and building it forces the groundwork above into place. Investor Relations then
-becomes a much smaller job: same database, same login, one more section.
+and building it forces the groundwork above into place. Each section after it is
+a much smaller job: same database, same login, one more role and one more set of
+pages.

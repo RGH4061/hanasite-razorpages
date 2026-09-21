@@ -1,0 +1,81 @@
+@page "/admin/insights"
+@model HanaSite.Pages.Admin.Insights.ArticleListModel
+@using HanaSite.Models.Insights
+@{
+    // Self-contained for standalone export rendering. On merge, lift the
+    // <main> block onto the site's admin layout and drop this shell.
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana — Insights (Admin)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/section-nav.css" />
+    <link rel="stylesheet" href="~/css/insights-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_InsightsHeader" model="@Model.CurrentUser" />
+
+    <div class="ins-statsbar">
+        <div class="ins-statsbar-inner">
+            <div class="ins-stat"><div class="v ins-stat--published">@Model.PublishedCount</div><div class="l">Published</div></div>
+            <div class="ins-stat"><div class="v ins-stat--review">@Model.ReviewCount</div><div class="l">In review</div></div>
+            <div class="ins-stat"><div class="v ins-stat--draft">@Model.DraftCount</div><div class="l">Drafts</div></div>
+            <div class="ins-stat"><div class="v ins-stat--scheduled">@Model.ScheduledCount</div><div class="l">Scheduled</div></div>
+        </div>
+    </div>
+
+    <main class="ir-wrap">
+        <partial name="_insights_FilterBar" />
+
+        <div class="ir-listhead">
+            <h2>Insight articles</h2>
+            <div class="count" id="ins-count">@Model.Articles.Count articles</div>
+            <a class="ir-btn ir-btn--primary ins-newbtn" href="@Url.Page("/Admin/Insights/ArticleForm")">+ New insight</a>
+        </div>
+
+        <div class="ir-listwrap">
+            <div class="ir-grid ir-grid--insights" id="ins-list">
+                <div class="ir-headrow">
+                    <div>Article</div><div>Category</div><div>Type</div>
+                    <div>Checks</div><div>Updated</div><div>Status</div><div></div>
+                </div>
+                @foreach (var a in Model.Articles)
+                {
+                    <partial name="_insights_ArticleRow" model="@((a, Model.Checks[a.Id], Model.IsApprover))" />
+                }
+                @if (Model.Articles.Count == 0)
+                {
+                    <div class="ir-empty">No insight articles yet.</div>
+                }
+                <div class="ir-empty" id="ins-noresults" hidden>No articles match these filters.</div>
+            </div>
+        </div>
+
+        <div class="job-legend">
+            <div class="job-legend-item"><span class="job-swatch" style="background:#9BA3AF"></span>Draft — nobody has sent it for approval</div>
+            <div class="job-legend-item"><span class="job-swatch" style="background:#E6A817"></span>In review — waiting on approval</div>
+            <div class="job-legend-item"><span class="job-swatch" style="background:#4E9BDA"></span>Scheduled — publishes by itself</div>
+            <div class="job-legend-item"><span class="job-swatch" style="background:#0A7C3F"></span>Published — live on hanagroup.com</div>
+        </div>
+
+        <div class="ir-note"><strong>Nothing goes live without approval.</strong> Agency accounts write, edit and send an article for review. Only an approver can publish or schedule it, and publication is refused while a blocking check fails — the Checks column shows that state before you open anything.</div>
+    </main>
+
+    @if (!string.IsNullOrEmpty(Model.Toast))
+    {
+        <div class="ir-toast" role="status">@Model.Toast</div>
+    }
+
+    <script src="~/js/hana-backgrounds.js" asp-append-version="true"></script>
+    <script src="~/js/insights-admin.js" asp-append-version="true"></script>
+</body>
+</html>

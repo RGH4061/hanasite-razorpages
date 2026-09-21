@@ -1,0 +1,27 @@
+@*
+   _AdminSectionNav.cshtml — header section switcher. Shared by the CRM, IR and
+   careers topbars. Renders nothing for a user who reaches a single section, so
+   single-section users see no new UI.
+   Model: the current section key ("tickets" / "ir" / "careers").
+*@
+@using HanaSite.Models.Admin
+@model string
+@{
+    var reachable = AdminSections.For(User);
+}
+@if (reachable.Count > 1)
+{
+    <nav class="section-nav" aria-label="Admin sections">
+        @foreach (var s in reachable)
+        {
+            if (s.Key == Model)
+            {
+                <span class="section-nav__item section-nav__item--current" aria-current="page">@s.Title</span>
+            }
+            else
+            {
+                <a class="section-nav__item" href="@Url.Page(s.Page)">@s.Title</a>
+            }
+        }
+    </nav>
+}

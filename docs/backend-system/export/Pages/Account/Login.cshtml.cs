@@ -1,3 +1,4 @@
+using HanaSite.Models.Admin;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -11,6 +12,7 @@ namespace HanaSite.Pages.Account
     public class LoginModel : PageModel
     {
         [BindProperty] public InputModel Input { get; set; } = new();
+        [BindProperty(SupportsGet = true)] public string? ReturnUrl { get; set; }
         public string? ErrorMessage { get; set; }
 
         public class InputModel
@@ -25,13 +27,19 @@ namespace HanaSite.Pages.Account
         public IActionResult OnPost()
         {
             // Replace with SignInManager.PasswordSignInAsync during merge.
-            // Prototype: accept any input and route to the ticket list.
+            // Prototype: accept any input, then route by section role.
             if (string.IsNullOrWhiteSpace(Input.Email) || string.IsNullOrWhiteSpace(Input.Password))
             {
                 ErrorMessage = "Enter your email and password.";
                 return Page();
             }
-            return RedirectToPage("/Admin/Tickets/Index");
+
+            // 1. An explicit returnUrl wins, so deep links survive sign-in.
+            if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl)) return LocalRedirect(ReturnUrl);
+
+            // 2. One section role -> straight into that section.
+            // 3. Several (or SuperAdmin) -> the section hub at /admin.
+            return RedirectToPage(AdminSections.LandingPage(User));
         }
     }
 }

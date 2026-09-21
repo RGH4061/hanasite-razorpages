@@ -1,0 +1,360 @@
+@page "/admin/insights/article"
+@model HanaSite.Pages.Admin.Insights.ArticleFormModel
+@using HanaSite.Models.Insights
+@{
+    Layout = null;
+    var blocked = !Model.Checks.CanPublish;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hana — @(Model.Editing ? "Edit insight" : "New insight") (Admin)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@@400;600;700&amp;family=Inter:wght@@400;500;600;800&amp;family=IBM+Plex+Mono:wght@@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/_tokens.css" />
+    <link rel="stylesheet" href="~/css/ir-admin.css" />
+    <link rel="stylesheet" href="~/css/section-nav.css" />
+    <link rel="stylesheet" href="~/css/insights-admin.css" />
+</head>
+<body class="ir-body">
+    <partial name="_InsightsHeader" model="@Model.CurrentUser" />
+
+    <form method="post" class="ins-form" id="ins-form">
+        <input type="hidden" name="Id" value="@Model.Id" />
+
+        <div class="ins-editbar">
+            <div class="ins-editbar-inner">
+                <div class="ins-editbar-left">
+                    <a class="ir-btn" href="@Url.Page("/Admin/Insights/Index")">← All insights</a>
+                    <div class="ins-editbar-title">
+                        <span class="eyebrow">@(Model.Editing ? "Editing insight" : "New insight")</span>
+                        <span class="t" id="ins-title-echo">@(string.IsNullOrEmpty(Model.Input.Title) ? "Untitled insight" : Model.Input.Title)</span>
+                    </div>
+                    @if (Model.Existing != null)
+                    {
+                        <partial name="_insights_StatusPill" model="@Model.Existing.Status" />
+                    }
+                </div>
+                <div class="ins-editbar-actions">
+                    <button type="submit" name="action" value="draft" class="ir-btn">@(Model.IsApprover ? "Save" : "Save draft")</button>
+                    <button type="submit" name="action" value="preview" class="ir-btn">Preview</button>
+                    @if (Model.IsApprover)
+                    {
+                        <button type="submit" name="action" value="publish" class="ir-btn ir-btn--primary"
+                                disabled="@blocked"
+                                title="@(blocked ? Model.Checks.Blocking + " blocking issue(s) must be fixed first" : "")">
+                            @(Model.Input.Timing == "date" ? "Approve & schedule" : "Approve & publish")
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" name="action" value="review" class="ir-btn ir-btn--primary">Send for review</button>
+                    }
+                </div>
+            </div>
+            @if (blocked)
+            {
+                <div class="ins-blockbar" role="alert">
+                    @Model.Checks.Blocking blocking issue@(Model.Checks.Blocking == 1 ? "" : "s"):
+                    @string.Join(" · ", Model.Checks.BlockingItems.Select(i => i.Label)). Save as draft still works.
+                </div>
+            }
+        </div>
+
+        <main class="ir-wrap ins-editgrid">
+            <div class="ins-col-main">
+
+                <section class="ir-card">
+                    <div class="ir-field">
+                        <label asp-for="Input.Title">Headline</label>
+                        <input asp-for="Input.Title" class="ins-headline" placeholder="Working title" />
+                        <span asp-validation-for="Input.Title" class="ir-val"></span>
+                    </div>
+                    <div class="ir-field ins-slugrow">
+                        <span class="ins-slugprefix">hanagroup.com/insights/</span>
+                        <input asp-for="Input.Slug" class="ir-cell-mono" aria-label="Page address" />
+                        <button type="button" class="ir-btn" id="ins-slug-from-title">From headline</button>
+                        <span asp-validation-for="Input.Slug" class="ir-val"></span>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.Summary">Key takeaways — one or two sentences, used on the hub card</label>
+                        <textarea asp-for="Input.Summary" rows="3" placeholder="What the reader gets out of this."></textarea>
+                        <span asp-validation-for="Input.Summary" class="ir-val"></span>
+                    </div>
+                </section>
+
+                <section class="ir-card">
+                    <h3 class="ins-cardhead">Article body</h3>
+                    <p class="ins-hint">Paste the whole article here, FAQ and Sources included. Body headings start at H2.</p>
+
+                    @if (Model.HasLift)
+                    {
+                        <div class="ins-liftbar">
+                            <span>
+                                @if (Model.FaqInBody > 0)
+                                {
+                                    <text>@Model.FaqInBody questions under an FAQ heading. </text>
+                                }
+                                @if (Model.SourcesInBody > 0)
+                                {
+                                    <text>@Model.SourcesInBody source link(s) under a Sources heading. </text>
+                                }
+                                Lift them out so they validate and generate structured data.
+                            </span>
+                            @if (Model.FaqInBody > 0)
+                            {
+                                <button type="submit" name="action" value="liftfaq" class="ir-btn">Move @Model.FaqInBody question(s) into the FAQ block</button>
+                            }
+                            @if (Model.SourcesInBody > 0)
+                            {
+                                <button type="submit" name="action" value="liftsources" class="ir-btn">Move @Model.SourcesInBody link(s) into Sources</button>
+                            }
+                        </div>
+                    }
+
+                    <div class="ins-toolbar" id="ins-toolbar" role="toolbar" aria-label="Formatting" hidden>
+                        <button type="button" class="ins-tool" data-cmd="bold"><strong>B</strong></button>
+                        <button type="button" class="ins-tool" data-cmd="italic"><em>I</em></button>
+                        <button type="button" class="ins-tool" data-cmd="formatBlock" data-arg="h2">H2</button>
+                        <button type="button" class="ins-tool" data-cmd="formatBlock" data-arg="h3">H3</button>
+                        <button type="button" class="ins-tool" data-cmd="formatBlock" data-arg="p">¶</button>
+                        <button type="button" class="ins-tool" data-cmd="insertUnorderedList">• List</button>
+                        <button type="button" class="ins-tool" data-cmd="insertOrderedList">1. List</button>
+                        <button type="button" class="ins-tool" data-cmd="formatBlock" data-arg="blockquote">Quote</button>
+                        <button type="button" class="ins-tool" data-cmd="createLink">Link</button>
+                        <button type="button" class="ins-tool" data-cmd="removeFormat">Clear</button>
+                        <span class="ins-wordmeter @(Model.WordsInBand ? "is-ok" : "is-warn")" id="ins-wordmeter"
+                              data-min="@Model.Band.Min" data-max="@Model.Band.Max" data-type="@Model.Input.ContentType">
+                            @Model.Parsed.Words words · @Model.Band.Min.ToString("N0")–@Model.Band.Max.ToString("N0") for @Model.Input.ContentType
+                        </span>
+                    </div>
+
+                    @* The textarea is the bound field and the no-JS editor. With JS on,
+                       insights-admin.js mounts the contenteditable surface above it and
+                       writes back on input, so the POST body is identical either way. *@
+                    <div class="ins-bodysurface" id="ins-body-surface" contenteditable="true" hidden></div>
+                    <textarea asp-for="Input.BodyHtml" class="ins-bodyarea" id="ins-body-source" rows="22"></textarea>
+                    <span asp-validation-for="Input.BodyHtml" class="ir-val"></span>
+                </section>
+
+                <section class="ir-card">
+                    <div class="ins-cardhead-row">
+                        <h3 class="ins-cardhead">Section lengths</h3>
+                        <span class="ins-hint">120–450 words per H2 · the closing section is exempt</span>
+                    </div>
+                    <div class="ins-sections">
+                        @foreach (var s in Model.Parsed.Sections)
+                        {
+                            var closing = s == Model.Parsed.Closing;
+                            var ok = closing ? (s.Words >= 50 && s.Words <= 100) : (s.Words >= 120 && s.Words <= 450);
+                            <div class="ins-section ins-section--@(ok ? "ok" : "off")">
+                                <span class="h">@s.Heading</span>
+                                <span class="w ir-cell-mono">@s.Words words</span>
+                            </div>
+                        }
+                        @if (Model.Parsed.Sections.Count == 0)
+                        {
+                            <p class="ins-hint">No H2 headings in the body yet.</p>
+                        }
+                    </div>
+                </section>
+
+                <section class="ir-card">
+                    <div class="ins-cardhead-row">
+                        <h3 class="ins-cardhead">FAQ</h3>
+                        <span class="ins-hint">@Model.Input.Faq.Count pairs · 0, or 3 to 5</span>
+                    </div>
+                    <partial name="_insights_FaqEditor" model="@Model.Input" />
+                </section>
+
+                <section class="ir-card">
+                    <div class="ins-cardhead-row">
+                        <h3 class="ins-cardhead">Entities</h3>
+                        <span class="ins-hint">3 to 4, each a name and a Wikipedia URL, each named in the body</span>
+                    </div>
+                    <partial name="_insights_EntityEditor" model="@Model.Input" />
+                </section>
+
+                <section class="ir-card">
+                    <h3 class="ins-cardhead">Sources</h3>
+                    <partial name="_insights_SourceEditor" model="@Model.Input" />
+                </section>
+
+                <section class="ir-card">
+                    <h3 class="ins-cardhead">Hero image</h3>
+                    <div class="ins-hero">
+                        <div class="ins-hero-thumb">@(string.IsNullOrEmpty(Model.Input.HeroImage) ? "No image" : Model.Input.HeroImage)</div>
+                        <div class="ins-hero-fields">
+                            <div class="ir-field">
+                                <label asp-for="Input.HeroImage">Image file</label>
+                                <input asp-for="Input.HeroImage" placeholder="filename.jpg" />
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.HeroAlt">Image description (alt text)</label>
+                                <input asp-for="Input.HeroAlt" placeholder="Describe the image for screen readers" />
+                            </div>
+                            <div class="ir-field">
+                                <label asp-for="Input.ShareImage">Share image — leave empty to use the hero image</label>
+                                <input asp-for="Input.ShareImage" placeholder="share-card.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="ins-col-side">
+                <partial name="_insights_Checklist" model="@Model.Checks" />
+
+                <section class="ir-card">
+                    <h3 class="ins-cardhead">Article details</h3>
+                    <div class="ir-field">
+                        <label asp-for="Input.ContentType">Content type — sets the word-count band</label>
+                        <select asp-for="Input.ContentType" id="ins-contenttype">
+                            @foreach (var t in ArticleStore.ContentTypes)
+                            {
+                                var b = ArticleChecks.Bands[t];
+                                <option value="@t" data-min="@b.Min" data-max="@b.Max">@t — @b.Min.ToString("N0") to @b.Max.ToString("N0") words</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.Category">Category</label>
+                        <select asp-for="Input.Category">
+                            <option value="">Not set</option>
+                            <optgroup label="Markets">
+                                @foreach (var c in ArticleStore.Markets)
+                                {
+                                    <option value="@c">@c</option>
+                                }
+                            </optgroup>
+                            <optgroup label="Capabilities">
+                                @foreach (var c in ArticleStore.Capabilities)
+                                {
+                                    <option value="@c">@c</option>
+                                }
+                            </optgroup>
+                        </select>
+                        <span class="ins-hint">The market or capability page this article supports.</span>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.BuyerType">Buyer type</label>
+                        <select asp-for="Input.BuyerType">
+                            @foreach (var b in ArticleStore.BuyerTypes)
+                            {
+                                <option value="@b">@b</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.CapabilityLink">Internal link target</label>
+                        <select asp-for="Input.CapabilityLink">
+                            <option value="">Not set</option>
+                            @foreach (var t in ArticleStore.LinkTargets)
+                            {
+                                <option value="@t.Url">@t.Label</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Input.CapabilityLink" class="ir-val"></span>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.Author">Byline</label>
+                        <select asp-for="Input.Author">
+                            @foreach (var b in ArticleStore.Bylines)
+                            {
+                                <option value="@b">@b</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.Tags">Tags — comma separated</label>
+                        <input asp-for="Input.Tags" placeholder="flip chip, packaging" />
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.Timing">Publish</label>
+                        <select asp-for="Input.Timing" id="ins-timing">
+                            <option value="now">As soon as it is approved</option>
+                            <option value="date">On a set date and time</option>
+                        </select>
+                    </div>
+                    <div class="ir-field" id="ins-schedule-field">
+                        <label asp-for="Input.ScheduledFor">Date and time — Indochina Time (UTC+7)</label>
+                        <input asp-for="Input.ScheduledFor" type="datetime-local" />
+                    </div>
+                </section>
+
+                <section class="ir-card">
+                    <h3 class="ins-cardhead">Search listing and key phrase</h3>
+                    <div class="ir-field">
+                        <label asp-for="Input.PrimaryKeyphrase">Focus key phrase</label>
+                        <input asp-for="Input.PrimaryKeyphrase" placeholder="e.g. flip chip assembly" />
+                        <span asp-validation-for="Input.PrimaryKeyphrase" class="ir-val"></span>
+                        <span class="ins-hint">A phrase counts as present when it appears exactly, or when one sentence carries all of its content words.</span>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.SecondaryKeyphrases">Secondary phrases — one per line</label>
+                        <textarea asp-for="Input.SecondaryKeyphrases" rows="3"></textarea>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.MetaTitle">Search title</label>
+                        <input asp-for="Input.MetaTitle" data-counter="60" />
+                        <span asp-validation-for="Input.MetaTitle" class="ir-val"></span>
+                        <div class="ins-counter" data-counter-out>@Model.Input.MetaTitle.Length/60</div>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.MetaDescription">Search description</label>
+                        <textarea asp-for="Input.MetaDescription" rows="4" data-counter="155"></textarea>
+                        <span asp-validation-for="Input.MetaDescription" class="ir-val"></span>
+                        <div class="ins-counter" data-counter-out>@Model.Input.MetaDescription.Length/155</div>
+                    </div>
+                    <div class="ins-serp">
+                        <div class="ins-serp-url ir-cell-mono">hanagroup.com › insights › @Model.Input.Slug</div>
+                        <div class="ins-serp-title">@(string.IsNullOrEmpty(Model.Input.MetaTitle) ? Model.Input.Title : Model.Input.MetaTitle)</div>
+                        <div class="ins-serp-desc">@(string.IsNullOrEmpty(Model.Input.MetaDescription) ? Model.Input.Summary : Model.Input.MetaDescription)</div>
+                    </div>
+                    <div class="ir-field">
+                        <label asp-for="Input.Canonical">Canonical — set automatically, editable</label>
+                        <input asp-for="Input.Canonical" class="ir-cell-mono" placeholder="@Model.CanonicalPreview" />
+                    </div>
+                </section>
+
+                <section class="ir-card">
+                    <h3 class="ins-cardhead">Set by the system</h3>
+                    <dl class="ins-auto">
+                        <dt>Read time</dt><dd class="ir-cell-mono">@Model.ReadTime</dd>
+                        <dt>Word count</dt><dd class="ir-cell-mono">@Model.Parsed.Words.ToString("N0")</dd>
+                        <dt>Publish date</dt><dd class="ir-cell-mono">@(Model.Input.Timing == "date" ? (Model.Input.ScheduledFor ?? "—")!.Replace("T", " ") : "On approval")</dd>
+                        <dt>Last modified</dt><dd class="ir-cell-mono">@(Model.Existing?.ModifiedAt ?? "—")</dd>
+                        <dt>Index setting</dt><dd class="ir-cell-mono">Index when published</dd>
+                        <dt>Structured data</dt><dd class="ir-cell-mono">@(Model.Input.Faq.Count(f => !string.IsNullOrWhiteSpace(f.Question)) > 0 ? "Article · Breadcrumb · FAQPage" : "Article · Breadcrumb")</dd>
+                    </dl>
+                </section>
+
+                @if (Model.Existing != null && Model.Existing.Audit.Count > 0)
+                {
+                    <section class="ir-card">
+                        <h3 class="ins-cardhead">History</h3>
+                        <ul class="ins-history">
+                            @foreach (var h in Model.Existing.Audit)
+                            {
+                                <li><span class="ir-cell-mono">@h.When</span><span>@h.What</span></li>
+                            }
+                        </ul>
+                    </section>
+                }
+            </aside>
+        </main>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Toast))
+    {
+        <div class="ir-toast" role="status">@Model.Toast</div>
+    }
+
+    <script src="~/js/hana-backgrounds.js" asp-append-version="true"></script>
+    <script src="~/js/insights-admin.js" asp-append-version="true"></script>
+</body>
+</html>

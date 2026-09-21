@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HanaSite.Models.Admin;
 using HanaSite.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,6 +13,7 @@ namespace HanaSite.Pages.Admin.Tickets
     /// Action handlers mutate the store then redirect (PRG). Filtering is done
     /// client-side in tickets.js over the rendered rows.
     /// </summary>
+    [Authorize(Roles = "Tickets,SuperAdmin")]
     public class TicketListModel : PageModel
     {
         public IReadOnlyList<Ticket> Open { get; private set; } = new List<Ticket>();
