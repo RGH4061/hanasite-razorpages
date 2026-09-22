@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace HanaSite.Pages.Admin.Tickets
 {
     /// <summary>
-    /// Ticket list page (/admin/tickets/). Default view is open + unclaimed.
+    /// Ticket list page (/admin/tickets/). Default view is the open queue.
     /// Action handlers mutate the store then redirect (PRG). Filtering is done
     /// client-side in tickets.js over the rendered rows.
     /// </summary>
@@ -45,24 +45,11 @@ namespace HanaSite.Pages.Admin.Tickets
             Spam = TicketStore.Spam.ToList();
         }
 
-        public IActionResult OnPostClaim(string id)
-        {
-            var t = TicketStore.Find(id);
-            if (t != null)
-            {
-                t.Status = "claimed"; t.Owner = CurrentUser;
-                var to = _mailer.SendAssignmentSummary(t, CurrentUser, CurrentUser);
-                Toast = $"Claimed — summary emailed to {to}";
-            }
-            return RedirectToPage();
-        }
-
         public IActionResult OnPostAssign(string id, string owner)
         {
             var t = TicketStore.Find(id);
             if (t != null)
             {
-                if (t.Status == "new") t.Status = "claimed";
                 t.Owner = owner;
                 var to = _mailer.SendAssignmentSummary(t, owner, CurrentUser);
                 Toast = $"Assigned to {owner} — summary emailed to {to}";
@@ -75,8 +62,18 @@ namespace HanaSite.Pages.Admin.Tickets
             var t = TicketStore.Find(id);
             if (t != null)
             {
+                // A ticket marked straight from new takes the owner and the
+                // assignment summary the Claim action used to handle.
+                bool wasNew = t.Status == "new";
                 t.Status = status;
-                if (status == "responded") Toast = "Marked as responded — waiting on customer";
+                if (status == "responded" && wasNew)
+                {
+                    var owner = t.Owner ?? CurrentUser;
+                    t.Owner = owner;
+                    var to = _mailer.SendAssignmentSummary(t, owner, CurrentUser);
+                    Toast = $"Marked as responded — summary emailed to {to}";
+                }
+                else if (status == "responded") Toast = "Marked as responded — waiting on customer";
                 else if (status == "closed")
                 {
                     t.ClosedDate = "2026-05-10"; t.ClosedBy = CurrentUser;
@@ -101,7 +98,7 @@ namespace HanaSite.Pages.Admin.Tickets
         public IActionResult OnPostReopen(string id)
         {
             var t = TicketStore.Find(id);
-            if (t != null) { t.Status = "claimed"; t.Owner ??= CurrentUser; Toast = "Reopened — back in the open queue"; }
+            if (t != null) { t.Status = "responded"; t.Owner ??= CurrentUser; Toast = "Reopened — back in the open queue"; }
             return RedirectToPage();
         }
 

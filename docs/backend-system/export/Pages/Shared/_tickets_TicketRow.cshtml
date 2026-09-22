@@ -49,9 +49,10 @@
         <div class="cell-actions" onclick="event.stopPropagation()">
             @if (Model.Status == "new")
             {
-                <form method="post" asp-page-handler="Claim">
+                <form method="post" asp-page-handler="Status">
                     <input type="hidden" name="id" value="@Model.Id" />
-                    <button type="submit" class="btn btn--primary">Claim</button>
+                    <input type="hidden" name="status" value="responded" />
+                    <button type="submit" class="btn btn--primary">Responded</button>
                 </form>
             }
             <button type="button" class="btn-icon" id="exp-@Model.Id" data-expand="@Model.Id" title="Expand" aria-label="Expand inquiry">
@@ -65,7 +66,7 @@
                     @switch (Model.Status)
                     {
                         case "new":
-                            <form method="post" asp-page-handler="Claim"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="dropdown-item">Claim</button></form>
+                            <form method="post" asp-page-handler="Status"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="status" value="responded" /><button type="submit" class="dropdown-item">Responded</button></form>
                             foreach (var o in TicketStore.Owners)
                             {
                                 <form method="post" asp-page-handler="Assign"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="owner" value="@o" /><button type="submit" class="dropdown-item dropdown-item--sub">Assign to @o</button></form>
@@ -126,7 +127,7 @@
             {
                 <div class="expand-notified">
                     <div class="expand-label">Assignment email</div>
-                    Sent to <strong>@Model.NotifiedName</strong> · <a href="mailto:@Model.NotifiedEmail">@Model.NotifiedEmail</a>
+                    Sent to <strong>@Model.NotifiedName</strong> · @Model.NotifiedEmail
                     <div class="expand-source">@Model.NotifiedAt · @Model.NotifiedSubject</div>
                 </div>
             }
@@ -135,7 +136,7 @@
             @if (!string.IsNullOrEmpty(Model.Email))
             {
                 <div class="expand-contact">
-                    <a href="mailto:@Model.Email">@Model.Email</a>
+                    @Model.Email
                     @if (!string.IsNullOrEmpty(Model.Phone)) { <br />@Model.Phone }
                     @if (!string.IsNullOrEmpty(Model.Address)) { <br />@Model.Address }
                 </div>
@@ -143,7 +144,7 @@
             <div class="expand-actions">
                 @if (Model.Status == "new")
                 {
-                    <form method="post" asp-page-handler="Claim"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn btn--primary">Claim</button></form>
+                    <form method="post" asp-page-handler="Status"><input type="hidden" name="id" value="@Model.Id" /><input type="hidden" name="status" value="responded" /><button type="submit" class="btn btn--primary">Responded</button></form>
                     <form method="post" asp-page-handler="Spam"><input type="hidden" name="id" value="@Model.Id" /><button type="submit" class="btn btn--danger">Mark as spam</button></form>
                 }
                 else if (Model.Status == "claimed" || Model.Status == "responded")

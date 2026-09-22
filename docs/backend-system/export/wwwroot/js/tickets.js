@@ -3,7 +3,7 @@
    No framework, no bundler. Handles: row expand/collapse, the
    "more actions" dropdowns, the Closed/Spam section collapses,
    and client-side filtering of the rendered rows.
-   Server-side actions (Claim, Mark responded, etc.) POST to
+   Server-side actions (Responded, Mark as spam, etc.) POST to
    page handlers via their own <form> elements.
    ============================================================ */
 (function () {

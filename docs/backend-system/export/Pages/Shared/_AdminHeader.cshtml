@@ -10,7 +10,7 @@
     var all = HanaSite.Models.Admin.TicketStore.All;
     int last30 = all.Count(t => t.Status != "spam");
     int newCount = all.Count(t => t.Status == "new");
-    int inProgress = all.Count(t => t.Status is "claimed" or "responded");
+    int inProgress = all.Count(t => t.Status == "responded");
     int closed = all.Count(t => t.Status == "closed");
 }
 <header id="hero-topbar" class="admin-topbar" data-hana-bg="flow" data-variant="light" data-fade="none">

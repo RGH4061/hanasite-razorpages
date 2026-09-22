@@ -45,8 +45,8 @@ namespace HanaSite.Pages.Admin
             if (s.Key == AdminSections.Tickets.Key)
             {
                 var open = TicketStore.Open.Count();
-                var unclaimed = TicketStore.Open.Count(t => string.IsNullOrEmpty(t.Owner));
-                return new[] { new Stat(open.ToString(), "Open", "#B42318"), new Stat(unclaimed.ToString(), "Unclaimed", "#7A4F01") };
+                var unanswered = TicketStore.Open.Count(t => t.Status == "new");
+                return new[] { new Stat(open.ToString(), "Open", "#B42318"), new Stat(unanswered.ToString(), "Unanswered", "#7A4F01") };
             }
             if (s.Key == AdminSections.InvestorRelations.Key)
             {
