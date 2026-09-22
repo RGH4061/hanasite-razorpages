@@ -21,7 +21,7 @@ namespace HanaSite.Pages.Admin.Users
 
         // Signed-in user — supplied by ASP.NET Core Identity in the real site.
         public string CurrentUser => User?.Identity?.Name ?? "Rupert Han · SuperAdmin";
-        public string CurrentUserEmail => User?.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value ?? "rupert@hanabk.th.com";
+        public string CurrentUserEmail => User?.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value ?? "rupert.h@hanagroup.com";
         private string Actor => CurrentUser.Split('·')[0].Trim();
 
         public RoleTicks BlankTicks => new() { Scope = "invite" };
