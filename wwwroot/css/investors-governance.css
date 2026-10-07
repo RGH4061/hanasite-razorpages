@@ -331,20 +331,23 @@
   .doctable .c-doc { color: var(--ink); padding-left: var(--s-4); }
   .doctable .c-doc a {
     color: var(--ink); font-weight: 500; text-decoration: none; letter-spacing: -0.005em;
-    background-image: linear-gradient(to right, var(--ink) 50%, transparent 50%);
-    background-size: 4px 1px; background-repeat: repeat-x;
-    background-position: 0 100%; padding-bottom: 1px;
   }
   .doctable .c-doc a:hover {
     color: var(--hana-blue-deep);
-    background-image: linear-gradient(to right, var(--hana-blue) 50%, transparent 50%);
+    text-decoration: underline;
   }
   .doctable .filetype {
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px;
     font-weight: 500; color: var(--ink-3); letter-spacing: 0.06em;
-    text-transform: uppercase; margin-right: var(--s-3);
-    display: inline-block; min-width: 26px;
+    text-transform: uppercase; margin-right: var(--s-2);
+    display: inline-block; min-width: 22px;
   }
+  /* Long file names: wrapped lines align with the first line, clear of the PDF tag */
+  .doctable td.c-doc { padding-left: var(--s-4); }
+  /* Title is its own block beside the tag, so every wrapped line shares one left edge */
+  .doctable .c-doc a { display: inline-block; width: calc(100% - 30px); vertical-align: top; }
+
+
   .doctable .c-date {
     font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px;
     font-weight: 400; color: var(--ink-2); font-variant-numeric: tabular-nums;

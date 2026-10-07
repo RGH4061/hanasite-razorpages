@@ -1,0 +1,6 @@
+/* Thai overrides for careers-stories.css — re-points Latin-only fonts to Sarabun and drops caps tracking. */
+:lang(th) .hero .eyebrow,:lang(th) .hero .lead,:lang(th) .filter-row .label,:lang(th) .filter-btn,:lang(th) .stories-empty,:lang(th) .cta-band h3,:lang(th) .cta-band p,:lang(th) .cta-band .btn,:lang(th) .story-card .name{font-family:var(--font-thai);letter-spacing:0;text-transform:none}
+:lang(th) .hero .eyebrow,:lang(th) .filter-row .label{font-size:13px}
+:lang(th) .hero .lead,:lang(th) .cta-band p{line-height:1.8}
+:lang(th) .cta-band h3{line-height:1.45}
+:lang(th) .subbar .crumbs{white-space:nowrap;flex-shrink:0}

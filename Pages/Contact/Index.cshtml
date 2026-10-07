@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Contact — talk to the Hana team";
     ViewData["Description"] = "A question about our capabilities, a partnership, or a quote — tell us what you need.";
+    ViewData["AltLang"] = "th";
+    ViewData["AltLangUrl"] = "/th/contact";
 }
 @section Head {
     <link rel="stylesheet" href="~/css/contact-forms.css" />
@@ -22,18 +24,26 @@
   <section class="cf-section">
     <div class="cf-wrap" style="position:relative;z-index:1;">
       <div class="cf-grid">
-        <div class="cf-intro">
+        <div class="cf-intro" style="width:500px;height:707px;">
           <p class="cf-eyebrow">How can we help?</p>
-          <div class="cf-rfq-cta">
-            <div class="cf-rfq-label">Start a project</div>
-            <h3>Have a product to manufacture?</h3>
-            <p>Send a quote request and we&rsquo;ll route you to our sales and technical teams to start the conversation on your needs.</p>
-            <a href="/contact/rfq" class="cf-rfq-btn">Request a quote</a>
+          <div class="cf-hq-card">
+            <figure class="cf-hq-photo"><img src="~/images/Hana_bkk.webp" alt="Hana Microelectronics head office — Bangkok, Thailand"></figure>
+            <div class="cf-hq-label">Head office</div>
+            <div class="cf-hq-name">Hana Microelectronics Public Company Limited</div>
+            <address class="cf-hq-addr">65/98 Soi Vibhavadi-Rangsit 64 Junction 2, Kwang Talad Bangkhen, Khet Laksi, Bangkok 10210, Thailand</address>
+            <div class="cf-hq-lines"><a href="tel:+6625511297">+66-2-551-1297-8</a><a href="tel:+6625214935">+66-2-521-4935-9</a></div>
           </div>
-          <div class="cf-offices-label">Sales offices</div><div class="cf-accordion"><details class="cf-acc-item" open><summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Philippines</div><div class="cf-office-person">Henry Lubrico<div class="cf-office-contacts"><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div><div class="cf-office"><div class="cf-office-name">Singapore</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Europe <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">France</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Germany</div><div class="cf-office-person">Frank Böhme — Ingenieur Büro Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+4930756576690">+49 30 75657690</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details></div>
+          <div class="cf-offices-label">Global Sales offices</div><div class="cf-accordion"><details class="cf-acc-item" open><summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Philippines</div><div class="cf-office-person">Henry Lubrico<div class="cf-office-contacts"><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div><div class="cf-office"><div class="cf-office-name">Singapore</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Europe <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">France</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Germany</div><div class="cf-office-person">Frank Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+4930756576690">+49 30 75657690</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details></div>
           <p class="cf-anon-link" style="font-size:13px;color:var(--ink-2);margin:20px 0 0;"><b>Anonymous Communication Form<br></br></b>If you would like to report / share your concerns anonymously, <a href="/contact/anonymous" style="color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--hana-blue-deep)'">click here</a>.</p>
         </div>
-        <div class="cf-card" id="general-enquiry">
+        <div style="display:grid;gap:24px;">
+        <div class="cf-rfq-cta" style="width:495px;height:212px;">
+          <div class="cf-rfq-label">Start a project</div>
+          <h3>Have a product to manufacture?</h3>
+          <p>Send a quote request and we&rsquo;ll route you to our sales and technical teams to start the conversation on your needs.</p>
+          <a href="/contact/rfq" class="cf-rfq-btn">Request a quote</a>
+        </div>
+        <div class="cf-card" id="general-enquiry" style="width:500px;height:818px;">
   <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Enquiry received</h3><p>Thanks — we&rsquo;ve routed your message to the right team and will reply within one business day.</p></div>
   
   <form class="cf-form" method="post" novalidate>
@@ -50,8 +60,8 @@
     <div class="cf-divider"></div>
     <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field"><label for="ge-message"><span class="req">*</span>Message</label><textarea id="ge-message" name="ge-message" placeholder="Tell us what you&rsquo;re looking for — what you make, where you are in your project, and how we can help." required></textarea></div></div>
     <div class="cf-divider"></div>
-    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field" style="margin-bottom:0;"><label>Attachments <span class="hint">(optional)</span></label>
-      <div class="cf-upload"><input type="file" name="ge-files" accept=".pdf,.xlsx,.xls,.zip,.gbr,.doc,.docx,.png,.jpg" multiple><span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-8.5 8.5a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9 16.4a1.7 1.7 0 0 1-2.3-2.3l7.8-7.8"></path></svg></span><div class="cf-upload-text"><strong>Click to upload</strong> or drag and drop</div><div class="cf-upload-meta">PDF, Excel, ZIP or Gerber &middot; Max 10 MB</div></div>
+    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field" style="margin-bottom:0;"><label>Attachments <span class="hint">(optional &mdash; PDF or ZIP, 10&nbsp;MB max)</span></label>
+      <div class="cf-upload"><input type="file" name="ge-files" accept=".pdf,.zip" multiple placeholder="PDF, ZIP"><span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-8.5 8.5a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9 16.4a1.7 1.7 0 0 1-2.3-2.3l7.8-7.8"></path></svg></span><div class="cf-upload-text"><strong>Click to upload</strong> or drag and drop</div><div class="cf-upload-meta">PDF or ZIP &middot; Max 10 MB</div></div>
       <div class="cf-filelist"></div>
     </div></div>
     <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ge"><label for="cf-rc-ge" class="rc-label">I'm not a robot</label>
@@ -59,6 +69,7 @@
     <div class="cf-privacy">We use your details to respond to your enquiry which is never shared with third parties.</div>
   </form>
 </div>
+        </div>
       </div>
     </div>
   </section>

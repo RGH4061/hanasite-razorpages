@@ -31,7 +31,7 @@ const TERMS = {
 "/markets/medical/":"iso 13485 medical device hearing aid drug delivery",
 "/locations/china/jiaxing/":"jiaxing zhejiang china",
 "/locations/cambodia/koh-kong/":"koh kong cambodia",
-"/locations/thailand/ayutthaya/":"ayutthaya thailand osat ic assembly",
+"/locations/thailand/ayutthaya/":"ayutthaya thailand osat ic assembly ems pcba",
 "/locations/thailand/lamphun/":"lamphun thailand ems pcba",
 "/locations/usa/ohio/":"solon ohio usa rfid"
 };
@@ -95,7 +95,7 @@ const CAPTERMS = {
 "/locations/":"locations, factories, plants, sites, facilities, where, where do you manufacture, manufacturing footprint, countries, addresses, map, thailand, china, cambodia, usa, dual source, second source, supply chain resilience",
 "/locations/cambodia/koh-kong/":"koh kong, cambodia, special economic zone, sez, pcba, smt, box build, final assembly, cable assembly, wire harness, crystal assembly, remote control, access control reader, security reader, usb token, iso 13485, tl9000",
 "/locations/china/jiaxing/":"jiaxing, china, zhejiang, ems, pcba, smt, cob, cof, rfid inlay, inlay lines, ic packaging, flip chip, power discrete, power modules, led packaging, hybrid modules, jdm, medical line, automotive line, iso 13485, iatf 16949, iecq qc 080000, iso 27001",
-"/locations/thailand/ayutthaya/":"ayutthaya, ayt, thailand, hana semiconductor, osat, ic assembly, ic packaging, semiconductor packaging, test, final test, wafer probe, burn-in, opto coupler, solid state relay, proximity sensor, high voltage isolation, mixed signal, logic, memory, rf, ultra-small packages, iso 13485, iatf 16949, iso 27001, ansi/esd",
+"/locations/thailand/ayutthaya/":"ayutthaya, ayt, thailand, hana semiconductor, osat, ems, electronics manufacturing services, pcba, ic assembly, ic packaging, semiconductor packaging, test, final test, wafer probe, burn-in, opto coupler, solid state relay, proximity sensor, high voltage isolation, mixed signal, logic, memory, rf, ultra-small packages, iso 13485, iatf 16949, iso 27001, ansi/esd",
 "/locations/thailand/lamphun/":"lamphun, lpn, thailand, northern thailand, chiang mai, ems, pcba, smt, cob, chip on board, cof, hybrid assembly, flip chip, led packaging, clear qfn, micromechanical, automotive sensors, millimetre wave, industrial meters, medical devices, iso 13485, iatf 16949",
 "/locations/usa/ohio/":"ohio, solon, twinsburg, usa, united states, america, north america, hana technologies, rfid inlay, uhf inlay, hf inlay, strap, arc certified, itar, defence, defense"
 };
@@ -171,7 +171,7 @@ const HUBPRODUCTS = {
    Treat every row as unverified until a plant confirms it.
    --------------------------------------------------------------------------- */
 const SITES = {
- ayt:{n:"Ayutthaya",c:"Thailand",r:"OSAT",u:"/locations/thailand/ayutthaya/"},
+ ayt:{n:"Ayutthaya",c:"Thailand",r:"OSAT · EMS",u:"/locations/thailand/ayutthaya/"},
  lpn:{n:"Lamphun",  c:"Thailand",r:"EMS", u:"/locations/thailand/lamphun/"},
  jx: {n:"Jiaxing",  c:"China",   r:"EMS", u:"/locations/china/jiaxing/"},
  kk: {n:"Koh Kong", c:"Cambodia",r:"EMS", u:"/locations/cambodia/koh-kong/"},

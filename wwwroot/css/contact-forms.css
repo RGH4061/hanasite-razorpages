@@ -81,6 +81,17 @@
   margin: 0;
 }
 
+/* ---- Head office card (intro column) ---------------------- */
+.cf-hq-card{border:1px solid var(--line);border-radius:var(--radius-card);background:var(--white);padding:20px;margin:28px 0 0}
+.cf-hq-photo{margin:0 0 18px;border-radius:6px;overflow:hidden;background:var(--surface)}
+.cf-hq-photo img{display:block;width:100%;height:180px;object-fit:cover}
+.cf-hq-label{font-family:var(--font-text);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:8px}
+.cf-hq-name{font-family:var(--font-display);font-size:18px;font-weight:600;letter-spacing:-0.02em;color:var(--ink);margin-bottom:6px}
+.cf-hq-addr{font-style:normal;font-size:13px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
+.cf-hq-lines{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:12px;font-family:var(--font-mono);font-size:12px}
+.cf-hq-lines a{color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line)}
+.cf-hq-lines a:hover{color:var(--hana-blue)}
+
 /* ---- Two-column section ----------------------------------- */
 .cf-section {
   position: relative;
@@ -598,3 +609,10 @@ details.cf-ms[open] > summary .chevron { transform: rotate(180deg); }
 .cf-chip:has(input:checked) { background: var(--hana-blue); border-color: var(--hana-blue); color: #fff; font-weight: 600; }
 .cf-chip:has(input:checked):hover { background: var(--hana-blue-deep); border-color: var(--hana-blue-deep); }
 .cf-success[hidden] { display: none; }
+
+/* phones: one field per row */
+@media (max-width: 560px){
+  .cf-row.two, .cf-row.three { grid-template-columns: 1fr !important; }
+}
+
+.cf-acc-count{white-space:nowrap}

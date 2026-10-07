@@ -1,0 +1,14 @@
+/* Thai overrides for contact-forms.css — Inter/Geist carry no Thai glyphs, so text rules are
+   re-pointed to Sarabun inside :lang(th). Labels drop uppercase tracking and step up in size
+   (Thai stacks vowel and tone marks). Fixed card heights are released so taller Thai lines don't overflow. */
+:lang(th) .cf-page,:lang(th) .cf-hero h1,:lang(th) .cf-eyebrow,:lang(th) .cf-hq-label,:lang(th) .cf-intro h2,:lang(th) .cf-rfq-cta .cf-rfq-label,:lang(th) .cf-rfq-cta h3,:lang(th) .cf-rfq-btn,:lang(th) .cf-card-title,:lang(th) .cf-section-label,:lang(th) .cf-field label,:lang(th) .cf-field input,:lang(th) .cf-field textarea,:lang(th) .cf-field select,:lang(th) .cf-chip-toggle,:lang(th) .cf-chip,:lang(th) .cf-chip-note,:lang(th) .cf-upload .cf-upload-meta,:lang(th) .cf-recaptcha .rc-label,:lang(th) .cf-recaptcha .rc-logo .rc-text,:lang(th) .cf-btn-submit,:lang(th) .cf-success h3,:lang(th) .cf-offices-label,:lang(th) .cf-acc-header,:lang(th) .cf-privacy{font-family:var(--font-thai)}
+:lang(th) .cf-eyebrow,:lang(th) .cf-hq-label,:lang(th) .cf-rfq-cta .cf-rfq-label,:lang(th) .cf-section-label,:lang(th) .cf-offices-label{text-transform:none;letter-spacing:0;font-size:13px}
+:lang(th) .cf-rfq-btn,:lang(th) .cf-btn-submit{text-transform:none;letter-spacing:0;font-size:14px}
+:lang(th) .cf-hero h1{letter-spacing:0;line-height:1.3}
+:lang(th) .cf-rfq-cta h3,:lang(th) .cf-success h3,:lang(th) .cf-intro h2,:lang(th) .cf-card-title{letter-spacing:0;line-height:1.4}
+:lang(th) .cf-hero-sub,:lang(th) .cf-rfq-cta p,:lang(th) .cf-success p,:lang(th) .cf-privacy{line-height:1.75}
+:lang(th) .cf-recaptcha .rc-label{white-space:normal}
+:lang(th) .cf-recaptcha .rc-logo .rc-text{text-transform:none;letter-spacing:0;font-size:8px}
+:lang(th) .cf-intro,:lang(th) .cf-rfq-cta,:lang(th) .cf-card{height:auto!important}
+:lang(th) .cf-rfq-btn,:lang(th) .cf-btn-submit{white-space:nowrap}
+:lang(th) .cf-hq-lines a,:lang(th) .cf-office-contacts a{white-space:nowrap;font-family:var(--font-mono)}

@@ -1,13 +1,16 @@
-@page "/careers/stories"
+@page "/th/careers/stories"
 @{
-    ViewData["Title"] = "Stories — Careers at Hana";
-    ViewData["Description"] = "Stories from the people who build microelectronics at Hana.";
-    ViewData["Canonical"] = "https://www.hanagroup.com/careers/stories";
-    ViewData["AltLang"] = "th";
-    ViewData["AltLangUrl"] = "/th/careers/stories";
+    ViewData["Title"] = "ชีวิตการทำงานที่ Hana — Hana Microelectronics";
+    ViewData["Description"] = "เรื่องราวจากบุคลากรผู้สร้างสรรค์งานด้านไมโครอิเล็กทรอนิกส์ที่ Hana";
+    ViewData["Canonical"] = "https://www.hanagroup.com/th/careers/stories";
+    ViewData["Lang"] = "th";
+    ViewData["AltLang"] = "en";
+    ViewData["AltLangUrl"] = "/careers/stories";
 }
 @section Head {
     <link rel="stylesheet" href="~/css/careers-stories.css" />
+    <link rel="stylesheet" href="~/css/careers-th.css" />
+    <link rel="stylesheet" href="~/css/careers-stories-th.css" />
     <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/careers/stories" />
     <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/careers/stories" />
     <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/careers/stories" />
@@ -19,7 +22,7 @@
     </style>
 }
 
-@* Stories — Careers at Hana. Static content + vanilla interactions in ~/js/careers-stories.js. *@
+@* Thai — Stories — Careers at Hana. Static content + vanilla interactions in ~/js/careers-stories.js. *@
 
 <!-- ── Hero band: subbar + hero over dark PCB grid ── -->
 <div class="hero-band">
@@ -61,10 +64,10 @@
 
   <div class="subbar">
     <div class="subbar-inner">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs" aria-label="เส้นทางการเข้าชม (Breadcrumb)">
         <a href="#">Home</a><span class="sep">/</span>
-        <a href="/careers">Careers</a><span class="sep">/</span>
-        <span>Hana Stories</span>
+        <a href="/th/careers">ร่วมงานกับเรา</a><span class="sep">/</span>
+        <span>เรื่องราวจาก Hana</span>
       </nav>
     </div>
   </div>
@@ -72,9 +75,9 @@
   <section class="hero">
     <div class="hero-inner">
       <div>
-        <div class="eyebrow">HEAR IT FROM US</div>
-        <h1>Hana Stories</h1>
-        <p class="lead">Hear from engineers, technicians, and operators across all our sites. In their own words — their professional and personal experiences of life at Hana.</p>
+        <div class="eyebrow">เสียงจากทีมงานของเรา</div>
+        <h1>เรื่องราวจาก Hana</h1>
+        <p class="lead">เรื่องราวจากวิศวกร ช่างเทคนิค และพนักงานฝ่ายปฏิบัติการจากทุกสาขาของเรา ถ่ายทอดในมุมมองของพวกเขาเองถึงประสบการณ์การทำงานและชีวิตส่วนตัวที่ Hana</p>
       </div>
       <figure class="hero-card">
         <img src="~/images/hana-team-heart.webp" alt="Hana team on the production floor holding a hand-made HANA heart" />
@@ -86,14 +89,14 @@
 <!-- ── Filter row ── -->
 <div class="filter-row">
   <div class="filter-row-inner">
-    <span class="label">Filter</span>
-    <button class="filter-btn active" data-loc="all">All locations</button>
-    <button class="filter-btn" data-loc="ayutthaya">Ayutthaya</button>
-    <button class="filter-btn" data-loc="lamphun">Lamphun</button>
-    <button class="filter-btn" data-loc="bangkok">Bangkok HQ</button>
-    <button class="filter-btn" data-loc="kohkong">Koh Kong</button>
-    <button class="filter-btn" data-loc="jiaxing">Jiaxing</button>
-    <button class="filter-btn" data-loc="ohio">Ohio</button>
+    <span class="label">ตัวกรอง</span>
+    <button class="filter-btn active" data-loc="all">สถานที่ตั้งทั้งหมด</button>
+    <button class="filter-btn" data-loc="ayutthaya">อยุธยา</button>
+    <button class="filter-btn" data-loc="lamphun">ลำพูน</button>
+    <button class="filter-btn" data-loc="bangkok">สำนักงานใหญ่กรุงเทพฯ</button>
+    <button class="filter-btn" data-loc="kohkong">เกาะกง</button>
+    <button class="filter-btn" data-loc="jiaxing">เจียซิง</button>
+    <button class="filter-btn" data-loc="ohio">โอไฮโอ</button>
   </div>
 </div>
 
@@ -105,12 +108,12 @@
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/pim-suwannakij.webp" alt="Story from Monthana Banyen, Ayutthaya" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
-            <div class="story-person"><div class="name">Monthana Banyen</div><div class="role">Sr. NPI Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2012</span></div>
+            <div class="story-person"><div class="name">Monthana Banyen</div><div class="role">วิศวกรอาวุโสฝ่าย NPI</div></div>
+            <div class="story-place"><span class="story-chip">อยุธยา</span><span class="story-year">เริ่มงานปี 2555</span></div>
           </div>
         </div>
       </article>
@@ -118,12 +121,12 @@
       <article class="story-card" data-loc="lamphun">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/nattaporn-saetang.webp" alt="Story from Hanson Zhou, Jiaxing" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Hanson Zhou</div><div class="role">QM Section Manager</div></div>
-            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2017</span></div>
+            <div class="story-place"><span class="story-chip">เจียซิง</span><span class="story-year">เริ่มงานปี 2560</span></div>
           </div>
         </div>
       </article>
@@ -131,12 +134,12 @@
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/somchai-ratchada.webp" alt="Story from Rhodora F. Ceballo, Ayutthaya" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Rhodora F. Ceballo</div><div class="role">Director, Assembly Engineering</div></div>
-            <div class="story-place"><span class="story-chip">Ayutthaya</span><span class="story-year">Joined 2005</span></div>
+            <div class="story-place"><span class="story-chip">อยุธยา</span><span class="story-year">เริ่มงานปี 2548</span></div>
           </div>
         </div>
       </article>
@@ -144,12 +147,12 @@
       <article class="story-card" data-loc="bangkok">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/apinya-boonmee.webp" alt="Story from Sarun Chantaraniyom, Bangkok HQ" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Sarun Chantaraniyom</div><div class="role">Sr. System Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2007</span></div>
+            <div class="story-place"><span class="story-chip">สำนักงานใหญ่กรุงเทพฯ</span><span class="story-year">เริ่มงานปี 2550</span></div>
           </div>
         </div>
       </article>
@@ -157,12 +160,12 @@
       <article class="story-card" data-loc="kohkong">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/sokha-phon.webp" alt="Story from Thol Channy, Koh Kong" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Thol Channy</div><div class="role">Test Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2017</span></div>
+            <div class="story-place"><span class="story-chip">เกาะกง</span><span class="story-year">เริ่มงานปี 2560</span></div>
           </div>
         </div>
       </article>
@@ -170,12 +173,12 @@
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/thanawat-phromchai.webp" alt="Story from Veasna Thyda, Koh Kong" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Veasna Thyda</div><div class="role">QA Leader</div></div>
-            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2015</span></div>
+            <div class="story-place"><span class="story-chip">เกาะกง</span><span class="story-year">เริ่มงานปี 2558</span></div>
           </div>
         </div>
       </article>
@@ -183,12 +186,12 @@
       <article class="story-card" data-loc="lamphun">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/wirat-khampan.webp" alt="Story from Patsawan T., Lamphun" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Patsawan T.</div><div class="role">Traffic Officer</div></div>
-            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2017</span></div>
+            <div class="story-place"><span class="story-chip">ลำพูน</span><span class="story-year">เริ่มงานปี 2560</span></div>
           </div>
         </div>
       </article>
@@ -196,12 +199,12 @@
       <article class="story-card" data-loc="bangkok">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/kanyarat-chaiyaphum.webp" alt="Story from Nutthanun Phataranutmeatikul, Bangkok HQ" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
-            <div class="story-person"><div class="name">Nutthanun Phataranutmeatikul</div><div class="role">Secretary to President &amp; COO</div></div>
-            <div class="story-place"><span class="story-chip">Bangkok HQ</span><span class="story-year">Joined 2006</span></div>
+            <div class="story-person"><div class="name">Nutthanun Phataranutmeatikul</div><div class="role">เลขานุการประธานเจ้าหน้าที่บริหาร และประธานเจ้าหน้าที่ฝ่ายปฏิบัติการ</div></div>
+            <div class="story-place"><span class="story-chip">สำนักงานใหญ่กรุงเทพฯ</span><span class="story-year">เริ่มงานปี 2549</span></div>
           </div>
         </div>
       </article>
@@ -209,12 +212,12 @@
       <article class="story-card" data-loc="ayutthaya">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/patcharin-sukhum.webp" alt="Story from Pattarapol K., Lamphun" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Pattarapol K.</div><div class="role">Senior Customer Service Manager</div></div>
-            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2008</span></div>
+            <div class="story-place"><span class="story-chip">ลำพูน</span><span class="story-year">เริ่มงานปี 2551</span></div>
           </div>
         </div>
       </article>
@@ -222,12 +225,12 @@
       <article class="story-card" data-loc="jiaxing">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/liu-wei.webp" alt="Story from Ryan Wang, Jiaxing" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Ryan Wang</div><div class="role">Sr. Accountant</div></div>
-            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2009</span></div>
+            <div class="story-place"><span class="story-chip">เจียซิง</span><span class="story-year">เริ่มงานปี 2552</span></div>
           </div>
         </div>
       </article>
@@ -235,12 +238,12 @@
       <article class="story-card" data-loc="ohio">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/mike-reynolds.webp" alt="Story from Michelle Urban, Ohio" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Michelle Urban</div><div class="role">Accounting Specialist</div></div>
-            <div class="story-place"><span class="story-chip">Ohio</span><span class="story-year">Joined 2017</span></div>
+            <div class="story-place"><span class="story-chip">โอไฮโอ</span><span class="story-year">เริ่มงานปี 2560</span></div>
           </div>
         </div>
       </article>
@@ -248,12 +251,12 @@
       <article class="story-card" data-loc="ohio">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/ohio-2.webp" alt="Story from Mike Hanna, Ohio" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Mike Hanna</div><div class="role">Engineering Manager</div></div>
-            <div class="story-place"><span class="story-chip">Ohio</span><span class="story-year">Joined 2000</span></div>
+            <div class="story-place"><span class="story-chip">โอไฮโอ</span><span class="story-year">เริ่มงานปี 2543</span></div>
           </div>
         </div>
       </article>
@@ -261,12 +264,12 @@
       <article class="story-card" data-loc="kohkong">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/kohkong-2.webp" alt="Story from Sourng Rethysak, Koh Kong" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Sourng Rethysak</div><div class="role">Line Leader</div></div>
-            <div class="story-place"><span class="story-chip">Koh Kong</span><span class="story-year">Joined 2015</span></div>
+            <div class="story-place"><span class="story-chip">เกาะกง</span><span class="story-year">เริ่มงานปี 2558</span></div>
           </div>
         </div>
       </article>
@@ -274,12 +277,12 @@
       <article class="story-card" data-loc="lamphun">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/lamphun-3.webp" alt="Story from Wonnisa S., Lamphun" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Wonnisa S.</div><div class="role">Sr. Product Engineer</div></div>
-            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2011</span></div>
+            <div class="story-place"><span class="story-chip">ลำพูน</span><span class="story-year">เริ่มงานปี 2554</span></div>
           </div>
         </div>
       </article>
@@ -287,12 +290,12 @@
       <article class="story-card" data-loc="lamphun">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/lamphun-4.webp" alt="Story from Veasna Thyda, Lamphun" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Veasna Thyda</div><div class="role">QA Leader</div></div>
-            <div class="story-place"><span class="story-chip">Lamphun</span><span class="story-year">Joined 2015</span></div>
+            <div class="story-place"><span class="story-chip">ลำพูน</span><span class="story-year">เริ่มงานปี 2558</span></div>
           </div>
         </div>
       </article>
@@ -300,12 +303,12 @@
       <article class="story-card" data-loc="jiaxing">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/jiaxing-2.webp" alt="Story from April Xiang, Jiaxing" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">April Xiang</div><div class="role">Project Manager</div></div>
-            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2007</span></div>
+            <div class="story-place"><span class="story-chip">เจียซิง</span><span class="story-year">เริ่มงานปี 2550</span></div>
           </div>
         </div>
       </article>
@@ -313,12 +316,12 @@
       <article class="story-card" data-loc="jiaxing">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/jiaxing-3.webp" alt="Story from Sophie Yang, Jiaxing" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Sophie Yang</div><div class="role">Executive Secretary</div></div>
-            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2017</span></div>
+            <div class="story-place"><span class="story-chip">เจียซิง</span><span class="story-year">เริ่มงานปี 2560</span></div>
           </div>
         </div>
       </article>
@@ -326,17 +329,17 @@
       <article class="story-card" data-loc="jiaxing">
         <div class="story-photo">
           <img class="story-img" src="~/images/stories/jiaxing-4.webp" alt="Story from Toyma Wang, Jiaxing" />
-          <button class="zoom-btn" type="button" aria-label="Expand photo to read story"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
+          <button class="zoom-btn" type="button" aria-label="คลิกที่ภาพเพื่ออ่านเรื่องราวจากพนักงาน"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg></button>
         </div>
         <div class="story-body">
           <div class="story-meta">
             <div class="story-person"><div class="name">Toyma Wang</div><div class="role">Engineering Department Manager</div></div>
-            <div class="story-place"><span class="story-chip">Jiaxing</span><span class="story-year">Joined 2004</span></div>
+            <div class="story-place"><span class="story-chip">เจียซิง</span><span class="story-year">เริ่มงานปี 2547</span></div>
           </div>
         </div>
       </article>
 
-    <div class="stories-empty" id="stories-empty">No stories from this location yet — check back soon.</div>
+    <div class="stories-empty" id="stories-empty">ยังไม่มีเรื่องราวจากสาขานี้ โปรดกลับมาติดตามเร็ว ๆ นี้</div>
   </div>
 </div>
 
@@ -344,19 +347,19 @@
 <section class="cta-band">
   <div class="cta-band-inner">
     <div>
-      <h3>Ready to start your own story?</h3>
-      <p>Browse open roles across our Thailand and Cambodia sites.</p>
+      <h3>พร้อมที่จะเริ่มต้นเรื่องราวของคุณเองแล้วหรือยัง?</h3>
+      <p>ดูตำแหน่งงานที่เปิดรับในโรงงานของเราในประเทศไทยและกัมพูชา</p>
     </div>
-    <a href="careers.html#open-roles" class="btn">View open roles →</a>
+    <a href="/th/careers#open-roles" class="btn">ดูตำแหน่งงานที่เปิดรับ →</a>
   </div>
 </section>
 
 <!-- ── Story photo lightbox ── -->
-<div class="story-lightbox" id="story-lightbox" role="dialog" aria-modal="true" aria-label="Expanded story photo">
-  <button class="story-lightbox-close" type="button" aria-label="Close">
+<div class="story-lightbox" id="story-lightbox" role="dialog" aria-modal="true" aria-label="ขยายภาพเรื่องราว">
+  <button class="story-lightbox-close" type="button" aria-label="ปิด">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="M6 6l12 12"/></svg>
   </button>
-  <img alt="Story testimonial">
+  <img alt="เรื่องราวจากพนักงาน">
 </div>
 
 @section Scripts {

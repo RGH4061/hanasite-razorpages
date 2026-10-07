@@ -18,9 +18,28 @@
     }
     if (t.matches('.cf-upload input[type=file]')) {
       var field = t.closest('.cf-field'); var list = field && field.querySelector('.cf-filelist');
-      if (list) { list.innerHTML = ''; Array.prototype.forEach.call(t.files, function (f) {
-        var s = document.createElement('span'); s.className = 'cf-filechip'; s.textContent = '\u203a ' + f.name; list.appendChild(s);
-      }); }
+      var MAX_BYTES = 10 * 1024 * 1024, ALLOWED = ['.pdf', '.zip'];
+      var dt = new DataTransfer(); var rejected = [];
+      Array.prototype.forEach.call(t.files, function (f) {
+        var ext = '.' + f.name.split('.').pop().toLowerCase();
+        var okType = ALLOWED.indexOf(ext) !== -1;
+        var okSize = f.size <= MAX_BYTES;
+        if (okType && okSize) { dt.items.add(f); }
+        else { rejected.push(f.name + (!okType ? ' \u2014 only PDF or ZIP allowed' : ' \u2014 exceeds 10\u00a0MB')); }
+      });
+      t.files = dt.files;
+      if (list) {
+        list.innerHTML = '';
+        Array.prototype.forEach.call(t.files, function (f) {
+          var s = document.createElement('span'); s.className = 'cf-filechip'; s.textContent = '\u203a ' + f.name; list.appendChild(s);
+        });
+        if (rejected.length) {
+          var err = document.createElement('div'); err.className = 'cf-file-error';
+          err.style.cssText = 'font-size:12px;color:var(--danger,#B42318);margin-top:8px;';
+          err.textContent = 'Not attached: ' + rejected.join('; ');
+          list.appendChild(err);
+        }
+      }
     }
   });
   document.querySelectorAll('form.cf-form').forEach(function (form) {

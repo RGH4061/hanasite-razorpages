@@ -27,8 +27,7 @@ Full notes: `notes/IR document lists — real documents (21 Sep 2026).md`.
 - **Year-switching script restored** on the news pages — it had been lost in export, and the
   year buttons did nothing. Eleven years now depend on it.
 
-Known gaps: the 17 October 2023 private-placement announcement has no working link in either
-language (document 4590 is broken on the live site) and renders as plain text; six documents
+Known gaps: six documents
 are broken live and both languages point at the working file until they are restored; 62
 documents show the same link in both languages because only one was filed.
 

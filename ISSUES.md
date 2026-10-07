@@ -99,6 +99,15 @@ A screenshot or the prototype filename it should match is ideal but not required
   `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
   load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
   domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
+- [ ] **Thai copy hand edits are reverted by every export (source-side).** 5 Oct, commit
+  `39f220c`: Rupert changed the transliterated **ฮานา** to **Hana** in the two `.intro`
+  paragraphs of `Pages/ThaiPages/Investors/Sustainability.cshtml`. The 7 Oct export put ฮานา
+  back; re-applied repo-side. **Open question for Rupert:** ฮานา still stands in four other Thai
+  files — `Investors/Faq.cshtml` (13), `Legal/PrivacyPolicy.cshtml` (24),
+  `Investors/News.cshtml` (2), `Investors/EventsContact.cshtml` (1) — so either the company name
+  should be Latin **Hana** everywhere in Thai copy and those 40 need the same change at source,
+  or the Sustainability edit was specific to those two paragraphs. Fix at source either way; a
+  repo-side patch is reverted by the next export.
 - [ ] **Thai font — `Sarabun-*.woff2` 404s on every `/th/` page (source-side, non-breaking).**
   `wwwroot/css/_components.css` declares `@font-face` with `url(../fonts/Sarabun-Regular.woff2)
   format('woff2')` first and the `.ttf` as fallback, but the export ships **only** the two
@@ -110,6 +119,27 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 7 Oct 2026 — export sync ("razor - 07:10 - Hana Site.zip")
+
+- **Thai site expands to the public pages.** Three new routes — `/th` (Thai homepage),
+  `/th/contact`, `/th/careers/stories` — with `careers-stories-th.css` and
+  `contact-forms-th.css`. `_Header.cshtml` and `_Homepage_Locations.cshtml` changed with them.
+  Route count 114 → 117. All three render with Thai text.
+- **Contact and RFQ forms reworked** (`Contact/Index.cshtml`, `Contact/Rfq.cshtml`,
+  `contact-forms.css`, `contact-forms.js`) and the site-search index regenerated
+  (`js/search/data.js`).
+- **The eight IR stylesheets changed** alongside the Investors pages — document lists again.
+- **Razor `@` escaping — 11 breakers re-fixed**, the standing nine plus a new one: the new
+  `ThaiPages/CareersStories.cshtml` carries the same inline `@media` as its English twin.
+  HEAD did not compile without these.
+- **23 mobile-retrofit link tags re-applied** (6 Locations + 16 Investors + 1 Capabilities).
+  The export's `locations-mobile.css` is still unlinked and still shorter than the repo-merged
+  copy — re-diffed, nothing new to fold in.
+- **Verification passes:** 117 routes all 200; 229 rendered assets all 200; 108 non-document
+  internal links all 200 (684 `/File/ViewDoc/{id}` links excluded — no handler in this repo by
+  design). `rsync --delete` under the standing exclusion list proposed zero deletions.
+
 
 ### 21 Sep 2026 (3rd) — export sync ("razor pages 21-9-3 Hana Site.zip")
 
