@@ -115,15 +115,18 @@ A screenshot or the prototype filename it should match is ideal but not required
   - Reproduce: compare `src="~/images/stories/…"` against `alt="Story from <name>"` in
     `Pages/Careers/Stories.cshtml` and `Pages/ThaiPages/CareersStories.cshtml`, then md5 the
     two files per person.
-- [ ] **Thai copy hand edits are reverted by every export (source-side).** 5 Oct, commit
-  `39f220c`: Rupert changed the transliterated **ฮานา** to **Hana** in the two `.intro`
-  paragraphs of `Pages/ThaiPages/Investors/Sustainability.cshtml`. The 7 Oct export put ฮานา
-  back; re-applied repo-side. **Open question for Rupert:** ฮานา still stands in four other Thai
-  files — `Investors/Faq.cshtml` (13), `Legal/PrivacyPolicy.cshtml` (24),
-  `Investors/News.cshtml` (2), `Investors/EventsContact.cshtml` (1) — so either the company name
-  should be Latin **Hana** everywhere in Thai copy and those 40 need the same change at source,
-  or the Sustainability edit was specific to those two paragraphs. Fix at source either way; a
-  repo-side patch is reverted by the next export.
+- [ ] **The Thai Sustainability `Hana` edit is a standing repo-side retrofit (source-side fix
+  wanted).** 5 Oct, commit `39f220c`: Rupert changed the transliterated ฮานา to Latin **Hana** in
+  the two `.intro` paragraphs of `Pages/ThaiPages/Investors/Sustainability.cshtml`. Both 7 Oct
+  exports reverted it, so it is re-applied after every sync — add it to the mobile-link-tag and
+  `@`-escaping chores until it is fixed in Claude Design.
+  - **RESOLVED 7 Oct 2026 — ฮานา stays everywhere else.** Rupert confirmed the transliteration is
+    intentional in the sections that carry it: `Investors/Faq.cshtml` (13),
+    `Legal/PrivacyPolicy.cshtml` (24), `Investors/News.cshtml` (2),
+    `Investors/EventsContact.cshtml` (1). **Do not normalise these to Latin "Hana", and do not
+    reopen the question.** The company name is not a blanket stays-in-English term the way SET,
+    process names and job titles are; it is per-section. Only those two Sustainability paragraphs
+    use the Latin form.
 - [ ] **Thai font — `Sarabun-*.woff2` 404s on every `/th/` page (source-side, non-breaking).**
   `wwwroot/css/_components.css` declares `@font-face` with `url(../fonts/Sarabun-Regular.woff2)
   format('woff2')` first and the `.ttf` as fallback, but the export ships **only** the two
