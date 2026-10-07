@@ -99,6 +99,22 @@ A screenshot or the prototype filename it should match is ideal but not required
   `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
   load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
   domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
+- [ ] **⚠️ The English and Thai careers-stories pages show DIFFERENT PHOTOGRAPHS of the same
+  named employees (source-side, Rupert to decide).** Found on the 7 Oct resubmitted export, which
+  added 15 `wwwroot/images/stories/*-th.webp` files and pointed the Thai page at them. Compared
+  byte-for-byte by person: **15 of the 17 story cards serve a different image on `/th/careers/stories`
+  than on `/careers/stories`.** Examples — Monthana Banyen is `pim-suwannakij.webp` in English and
+  `monthana-banyen-th.webp` in Thai; Mike Hanna is `ohio-2.webp` vs `mike-hanna-th.webp`; April Xiang
+  is `jiaxing-2.webp` vs `april-xiang-th.webp`. Only two cards (Nutthanun Phataranutmeatikul,
+  Veasna Thyda) serve the same file on both.
+  The Thai filenames match the person named in the caption; the English ones are named after a
+  different person or after a plant and a number, which suggests the Thai set is the corrected one —
+  **but these are photographs of real employees, so which set is right is a content decision, not a
+  guess.** Decide, then fix at source so both language pages use the same image per person. A
+  repo-side patch would be reverted by the next export.
+  - Reproduce: compare `src="~/images/stories/…"` against `alt="Story from <name>"` in
+    `Pages/Careers/Stories.cshtml` and `Pages/ThaiPages/CareersStories.cshtml`, then md5 the
+    two files per person.
 - [ ] **Thai copy hand edits are reverted by every export (source-side).** 5 Oct, commit
   `39f220c`: Rupert changed the transliterated **ฮานา** to **Hana** in the two `.intro`
   paragraphs of `Pages/ThaiPages/Investors/Sustainability.cshtml`. The 7 Oct export put ฮานา
@@ -119,6 +135,26 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 7 Oct 2026 (2nd) — export sync ("07-10-Razor-Site.zip")
+
+- **Thai careers-stories photos wired.** 15 new `wwwroot/images/stories/*-th.webp`, named after
+  the person in each caption, now used by `ThaiPages/CareersStories.cshtml`. All 15 render and
+  serve. **This also surfaced the cross-language photo mismatch logged as an open item above.**
+- **Story-card location tags corrected** on both the English and Thai stories pages
+  (`data-loc` values reassigned), and `careers-stories.css` drops the sticky `.filter-row`
+  (confirmed a deliberate source change — the sticky rule came from the original V2 export
+  `a613186`, not a repo-side hand edit, so the export's version was taken).
+- **Everything else in the diff was this repo's own retrofits being stripped** — the 23 mobile
+  link tags, the `@@` escaping and the Thai `Hana` fix. Normalising those out left only the
+  files above, so the IR, Capabilities and Locations pages are substantively unchanged from the
+  first 7 Oct export.
+- **Re-applied for the second time today:** 11 `@`-escaping breakers, 23 mobile-retrofit link
+  tags, and the 5 Oct Thai `Hana` fix (`39f220c`) — the export reverted ฮานา again.
+- **Verification passes:** 117 routes all 200; 243 rendered assets all 200; 108 non-document
+  internal links all 200. `rsync --delete` under the standing exclusion list proposed zero
+  deletions.
+
 
 ### 7 Oct 2026 — export sync ("razor - 07:10 - Hana Site.zip")
 
