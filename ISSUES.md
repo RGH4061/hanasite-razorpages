@@ -134,6 +134,12 @@ A screenshot or the prototype filename it should match is ideal but not required
   text renders correctly, so this is a performance/console-noise issue, not a visual bug.
   **Still present in the 14 Sep (2nd) export.** **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
   `@font-face` rules. Deliberately NOT patched repo-side (the next export would overwrite it).
+- [ ] **Locations copy fixes are a repo-side patch until Claude Design has them (9 Oct 2026).**
+  `Pages/Locations/Jiaxing.cshtml`: "Over two decade of" → "Over two decades of" (hero and
+  meta description). `Pages/Locations/KohKong.cshtml`: Reference city "Bangkok · ~400 km SE"
+  → "~400 km southeast of Bangkok" (the plant is southeast of Bangkok, not the reverse). Source
+  fix note: `5. Website Redesign/Claude Design source fix - Jiaxing typo & Koh Kong distances
+  (9 Oct).txt`. Re-check after the next sync and re-apply if the export reverts it.
 
 ---
 
