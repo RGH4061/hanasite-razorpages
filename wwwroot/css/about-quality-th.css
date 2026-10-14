@@ -1,0 +1,9 @@
+/* Thai overrides for about-quality.css: Inter, Geist and IBM Plex Mono carry no Thai glyphs, so text rules re-point to Sarabun inside :lang(th). Cert cards stay English (lang="en") and keep the Latin stack. */
+:lang(th) body,:lang(th) .subbar .crumbs,:lang(th) .subbar .meta,:lang(th) .hero h1,:lang(th) .lede,:lang(th) .anchor-chip,:lang(th) .section-label,:lang(th) .section-head h2,:lang(th) .section-head p,:lang(th) .cert-cta,:lang(th) .award-body h3,:lang(th) .award-body p{font-family:var(--font-thai)}
+:lang(th) .subbar .meta,:lang(th) .anchor-chip,:lang(th) .section-label{letter-spacing:0;text-transform:none;font-size:13px}
+:lang(th) .hero h1,:lang(th) .section-head h2{letter-spacing:0;line-height:1.4}
+:lang(th) .award-body h3{letter-spacing:0;line-height:1.45}
+:lang(th) .lede,:lang(th) .section-head p,:lang(th) .award-body p{line-height:1.8}
+.cert-grid[lang="en"],.cert-note[lang="en"]{font-family:var(--font-text)}
+.cert-grid[lang="en"] .cert-name{font-family:var(--font-display)}
+.cert-grid[lang="en"] .cert-code{font-family:var(--font-mono)}

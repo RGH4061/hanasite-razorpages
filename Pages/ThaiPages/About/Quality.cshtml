@@ -1,0 +1,230 @@
+@page "/th/about/quality"
+@{
+    ViewData["Title"] = "คุณภาพ รางวัล และการรับรองมาตรฐาน — Hana Microelectronics";
+    ViewData["Description"] = "ผลิตตามมาตรฐานสากลระดับสูงในทุกฐานการผลิต";
+    ViewData["Canonical"] = "https://www.hanagroup.com/th/about/quality";
+    ViewData["Lang"] = "th";
+    ViewData["AltLang"] = "en";
+    ViewData["AltLangUrl"] = "/about/quality";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/about-quality.css" />
+    <link rel="stylesheet" href="~/css/about-quality-th.css" />
+    <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/about/quality" />
+    <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/about/quality" />
+    <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/about/quality" />
+    <style>
+      .hero-band { background: var(--bg, #F7F8FA) !important; }
+      .cert-band {
+        position: relative; scroll-margin-top: 72px;
+        border-top: 1px solid var(--line, #D2D7DE); border-bottom: 1px solid var(--line, #D2D7DE);
+        background-image:
+          linear-gradient(rgba(247,248,250,0.62), rgba(247,248,250,0.70)),
+          url('/images/DSC_5075.webp');
+        background-size: cover; background-position: center; background-repeat: no-repeat;
+      }
+      .cert-band .section { position: relative; z-index: 1; }
+      .anchor-nav--onphoto { position: relative; z-index: 2; background: transparent; border-bottom: none; }
+      .anchor-nav--onphoto .anchor-chip { background: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.9); }
+      .anchor-nav--onphoto .anchor-chip:hover { background: #fff; color: var(--hana-blue, #1283DD); border-color: var(--hana-blue, #1283DD); }
+    </style>
+}
+
+@* Thai — Awards, recognition & certifications. Thai from workbook 18, matched by meaning (the workbook TH lines are shifted against EN). Cert cards and note stay English. *@
+
+<!-- ── Hero band: breadcrumb + hero over flow background ── -->
+<div class="hero-band">
+
+  <div class="subbar">
+    <div class="subbar-inner">
+      <nav class="crumbs" aria-label="เส้นทางการเข้าชม (Breadcrumb)">
+        <a href="/">Home</a><span class="sep">/</span>
+        <span class="nolink">เกี่ยวกับเรา</span><span class="sep">/</span>
+        <span>รางวัลและการรับรองมาตรฐาน</span>
+      </nav>
+      <div class="meta">คุณภาพ · ได้รับการรับรองมาตรฐาน</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>รางวัลและการรับรองมาตรฐาน</h1>
+      <p class="lede">
+        ผลิตตามมาตรฐานสากลระดับสูงในทุกฐานการผลิต
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- ── Certifications ── -->
+<section class="cert-band" id="certifications">
+  <nav class="anchor-nav anchor-nav--onphoto">
+    <div class="anchor-nav-inner">
+      <a class="anchor-chip" href="#certifications">การรับรองมาตรฐาน</a>
+      <a class="anchor-chip" href="#recognition">รางวัล</a>
+    </div>
+  </nav>
+  <div class="section">
+  <div class="section-head">
+    <div class="section-label">การรับรองมาตรฐาน</div>
+    <h2>การรับรองมาตรฐานของเรา</h2>
+    <p>Hana ผลิตตามมาตรฐานสากลระดับสูง โดยให้ความสำคัญกับการรับรองมาตรฐานสำหรับตลาดอุปกรณ์การแพทย์และยานยนต์เป็นพิเศษ ใบรับรองของแต่ละฐานการผลิตแตกต่างกัน สามารถดูใบรับรองของแต่ละโรงงานได้ที่หน้าฐานการผลิต และขอสำเนาใบรับรองฉบับจริงได้ผ่านแบบฟอร์มติดต่อ</p>
+    <a class="cert-cta" href="/locations">
+      ดูฐานการผลิตของเรา
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+
+  <!-- Certifications compiled from the per-plant certification registers in
+       Page Specs & Templates/Locations/ (Ayutthaya, Lamphun, Jiaxing, Koh Kong, Solon).
+       Scope/validity varies by site — certificate numbers and dates are in the plant files. -->
+  <!-- Thai: workbook 18 has no usable Thai for the cert cards or the note below (TH lines are shifted against EN), so they stay in English per the "blank = keep English" rule. -->
+  <div class="cert-grid" lang="en">
+    <div class="cert-card">
+      <span class="cert-code">ISO 9001:2015</span>
+      <h3 class="cert-name">Quality Management</h3>
+      <p class="cert-scope">The baseline quality management system, held across all Hana manufacturing sites.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">IATF 16949:2016</span>
+      <h3 class="cert-name">Automotive Quality</h3>
+      <p class="cert-scope">Automotive-sector quality management for electronics supplied into vehicle programmes.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 13485:2016</span>
+      <h3 class="cert-name">Medical Devices</h3>
+      <p class="cert-scope">Quality management for the manufacture of medical-device electronics.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 14001:2015</span>
+      <h3 class="cert-name">Environmental</h3>
+      <p class="cert-scope">Environmental management system governing the operations&rsquo; environmental impact.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 45001:2018</span>
+      <h3 class="cert-name">Health &amp; Safety</h3>
+      <p class="cert-scope">Occupational health and safety management for the manufacturing workforce.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO/IEC 27001:2022</span>
+      <h3 class="cert-name">Information Security</h3>
+      <p class="cert-scope">Information-security management protecting customer designs, data, and IP.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">IECQ QC 080000:2017</span>
+      <h3 class="cert-name">Hazardous Substance Process</h3>
+      <p class="cert-scope">Hazardous-substance process management supporting RoHS / REACH compliance.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ANSI/ESD S20.20:2021</span>
+      <h3 class="cert-name">ESD Control</h3>
+      <p class="cert-scope">Formal electrostatic-discharge control program protecting sensitive components in assembly.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">TL9000</span>
+      <h3 class="cert-name">Telecom Quality</h3>
+      <p class="cert-scope">Telecommunications-sector quality management system for telecom product assembly.</p>
+    </div>
+    <div class="cert-card">
+      <span class="cert-code">ISO 14064-1</span>
+      <h3 class="cert-name">Greenhouse Gas</h3>
+      <p class="cert-scope">Verified greenhouse-gas (GHG) emissions statement supporting carbon reporting.</p>
+    </div>
+    <div class="cert-card">
+      <img class="cert-logo" src="~/images/partners/impinj-nxp.webp" alt="Impinj Gold Partner and NXP Gold Partner"/>
+      <h3 class="cert-name">Impinj &amp; NXP Gold Partner</h3>
+      <p class="cert-scope">Gold partner status held at our Ohio (Solon) facility.</p>
+    </div>
+    <div class="cert-card">
+      <img class="cert-logo" src="~/images/partners/arc-quality.webp" alt="ARC Quality — Auburn certified"/>
+      <h3 class="cert-name">Auburn Certified</h3>
+      <p class="cert-scope">Auburn certification held at our Ohio (Solon) facility.</p>
+    </div>
+  </div>
+
+  <p class="cert-note" lang="en">
+    Certifications and their scope vary by site and capability. Request the full
+    per-site certification matrix — with certificate numbers and validity dates —
+    for the sites relevant to your programme.
+  </p>
+  </div>
+</section>
+
+<!-- ── Recognition ── -->
+<section class="reco-section reco-dark" data-hana-bg="flow" data-variant="dark" data-accent="cyan">
+  <div class="section" id="recognition">
+    <div class="section-head">
+      <div class="section-label">รางวัล</div>
+      <h2>รางวัลและผลการประเมิน</h2>
+      <p>การยอมรับจากหน่วยงานอิสระด้านการกำกับดูแลกิจการ ผลการดำเนินงานด้าน ESG และการเปิดเผยข้อมูล จากตลาดหลักทรัพย์แห่งประเทศไทย สมาคมส่งเสริมสถาบันกรรมการบริษัทไทย สถาบันไทยพัฒน์ และหน่วยงานด้านธรรมาภิบาลในอาเซียน</p>
+    </div>
+
+    <!-- Content + images scraped from hanagroup.com/AboutUs/Awards — see awards-source-content.md.
+         Images hot-linked from the live site for preview; dev to re-host under wwwroot/images/. -->
+    <div class="award-grid">
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards1.jpg" alt="Corporate Governance Excellence" loading="lazy"></div>
+        <div class="award-body">
+          <h3>การประเมินผลการกำกับดูแลกิจการบริษัทจดทะเบียนไทย (CGR)</h3>
+          <p>Hana ได้รับผลการประเมินการกำกับดูแลกิจการบริษัทจดทะเบียน (CGR) ในระดับ 5 ดาว “ดีเลิศ” จากสมาคมส่งเสริมสถาบันกรรมการบริษัทไทย (IOD) อย่างต่อเนื่องตั้งแต่ปี 2556 จนถึงปัจจุบัน สะท้อนให้เห็นถึงความมุ่งมั่นขององค์กรในการยกระดับมาตรฐานการกำกับดูแลกิจการที่ดีอย่างยั่งยืน ตลอดจนเสริมสร้างความเชื่อมั่นให้แก่ผู้ลงทุน</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards2.jpg" alt="ASEAN Corporate Governance Excellence" loading="lazy"></div>
+        <div class="award-body">
+          <h3>การประเมินการกำกับดูแลกิจการของบริษัทจดทะเบียนในภูมิภาคอาเซียน (ASEAN Corporate Governance Scorecard - ACGS)</h3>
+          <p>Hana ได้รับรางวัล ASEAN Asset Class PLCs อย่างต่อเนื่องในปี 2562, 2564 และ 2567 ซึ่งมอบให้แก่บริษัทจดทะเบียนที่ได้รับคะแนนตั้งแต่ 97.5 คะแนนขึ้นไป โดยได้รับการสนับสนุนจาก ASEAN Capital Markets Forum (ACMF)</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards3.jpg" alt="SET ESG Ratings — Strong Performance" loading="lazy"></div>
+        <div class="award-body">
+          <h3>การประเมินหุ้นยั่งยืน (SET ESG Ratings)</h3>
+          <p>Hana ได้รับผลการประเมินหุ้นยั่งยืน (SET ESG Ratings) ระดับสูงสุด “AAA” ประจำปี 2568 ต่อเนื่องจากระดับ “AA” ในปี 2566 และ 2567 และได้รับคัดเลือกให้อยู่ในรายชื่อหุ้นยั่งยืน THSI (Thailand Sustainability Investment) ระหว่างปี 2563 ถึง 2565</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards4.jpg" alt="AGM Checklist Excellence" loading="lazy"></div>
+        <div class="award-body">
+          <h3>การประเมินคุณภาพการจัดประชุมผู้ถือหุ้น (AGM Checklist)</h3>
+          <p>Hana ได้รับคะแนนเต็ม 100 คะแนนจากการประเมินคุณภาพการจัดประชุมสามัญผู้ถือหุ้นบริษัทจดทะเบียน (AGM Checklist) ต่อเนื่องเป็นปีที่ 5 จากสมาคมส่งเสริมผู้ลงทุนไทยและสภาธุรกิจตลาดทุนไทย สะท้อนให้เห็นถึงการให้ความสำคัญของ Hanaในการปกป้องสิทธิของผู้ถือหุ้นและส่งเสริมธรรมาภิบาลของบริษัทจดทะเบียนอย่างต่อเนื่อง</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards5.jpg" alt="ESG100 Recognition" loading="lazy"></div>
+        <div class="award-body">
+          <h3>รางวัล ESG100</h3>
+          <p>Hana ได้รับการคัดเลือกให้เป็น 1 ใน 100 หลักทรัพย์จดทะเบียนที่มีผลการดำเนินงานโดดเด่นด้านสิ่งแวดล้อม สังคม และธรรมาภิบาล (Environmental, Social, and Governance) หรือกลุ่มหลักทรัพย์ ESG100 ตั้งแต่ปี 2558 (ยกเว้นปี 2562 และ 2568) จากสถาบันไทยพัฒน์ สะท้อนถึงความมุ่งมั่นของ Hanaในการบูรณาการหลัก ESG เข้ากับการดำเนินธุรกิจ</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards6.jpg" alt="Sustainability Disclosure Acknowledgement" loading="lazy"></div>
+        <div class="award-body">
+          <h3>รางวัล Sustainability Disclosure Acknowledgement</h3>
+          <p>Hana ได้รับรางวัลการเปิดเผยข้อมูลความยั่งยืน ประเภทกิตติกรรมประกาศ จากสถาบันไทยพัฒน์ต่อเนื่องเป็นปีที่ 5 สะท้อนถึงความมุ่งมั่นอย่างต่อเนื่องของ Hanaในการเปิดเผยข้อมูลด้าน ESG อย่างโปร่งใส รวมถึงการสนับสนุนเป้าหมายการพัฒนาที่ยั่งยืน (SDGs) โดยเฉพาะเป้าหมายที่ 12.6</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards7.jpg" alt="Thailand's Top Corporate Brands Values" loading="lazy"></div>
+        <div class="award-body">
+          <h3>รางวัล Thailand’s Top Corporate Brands Values</h3>
+          <p>Hana ได้รับรางวัลองค์กรที่มีมูลค่าแบรนด์องค์กรสูงสุดของประเทศไทยประจำปี 2566 และ 2567 ในหมวดธุรกิจชิ้นส่วนอิเล็กทรอนิกส์ ซึ่งสะท้อนถึงสถานะทางการตลาดที่แข็งแกร่ง การกำกับดูแลกิจการที่ดี และการเติบโตอย่างยั่งยืน</p>
+        </div>
+      </article>
+
+      <article class="award-card">
+        <div class="award-img"><img src="https://www.hanagroup.com/images/awards8.jpg" alt="SET Awards" loading="lazy"></div>
+        <div class="award-body">
+          <h3>รางวัล SET Awards</h3>
+          <p>Hana ได้รับรางวัลบริษัทจดทะเบียนด้านการรายงานบรรษัทภิบาลดีเยี่ยมประจำปี 2557 และรางวัลด้านผลการดำเนินงานดีเด่น รวมถึงรางวัล Outstanding CEO Award ประจำปี 2558 สะท้อนถึงความมุ่งมั่นของ Hanaในการกำกับดูแลกิจการ ผลการดำเนินงาน และความเป็นผู้นำ</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

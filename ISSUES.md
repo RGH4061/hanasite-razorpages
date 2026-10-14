@@ -46,6 +46,12 @@ A screenshot or the prototype filename it should match is ideal but not required
   four-keyword grep missed and which broke the build (CS0103 'container'). Current sweep:
   `grep -rnE '(^|[^@[:alnum:]_])@(media|supports|keyframes|font-face|container|layer|scope|property)\b' Pages/ | grep -vE '@@'`
   (ignore the legitimate Razor `@page` directives and `_ViewImports.cshtml`'s `@namespace`).
+  **14 Oct — a variant the at-rule grep cannot catch:** `Capabilities/PackageDesign.cshtml` line
+  236 carried a stray `@` before a plain class selector,
+  `@.lcs[data-impact="tint"] .lcs-impact{…}`. That is invalid CSS as well as a Razor breaker
+  (RZ1005 / CS1501), so the tint variant was dead on the live page too. Fixed by **deleting** the
+  `@` rather than escaping it — escaping would compile but leave the rule inert. Sweep for it with
+  `grep -rnoE '(^|[^@[:alnum:]_"])@[.#][a-zA-Z]' Pages/`.
   **Also escape `@` in prose.** 14 Sep: `Pages/Sitemap.cshtml` intro text mentions "the Razor
   `<span …>@page</span>` directive" — Razor parsed it as a second `@page` directive (RZ2001 /
   RZ2005 / RZ1011). Fixed as `@@page`. The at-rule grep can't see this; the build will.
@@ -99,22 +105,14 @@ A screenshot or the prototype filename it should match is ideal but not required
   `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
   load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
   domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
-- [ ] **⚠️ The English and Thai careers-stories pages show DIFFERENT PHOTOGRAPHS of the same
-  named employees (source-side, Rupert to decide).** Found on the 7 Oct resubmitted export, which
-  added 15 `wwwroot/images/stories/*-th.webp` files and pointed the Thai page at them. Compared
-  byte-for-byte by person: **15 of the 17 story cards serve a different image on `/th/careers/stories`
-  than on `/careers/stories`.** Examples — Monthana Banyen is `pim-suwannakij.webp` in English and
-  `monthana-banyen-th.webp` in Thai; Mike Hanna is `ohio-2.webp` vs `mike-hanna-th.webp`; April Xiang
-  is `jiaxing-2.webp` vs `april-xiang-th.webp`. Only two cards (Nutthanun Phataranutmeatikul,
-  Veasna Thyda) serve the same file on both.
-  The Thai filenames match the person named in the caption; the English ones are named after a
-  different person or after a plant and a number, which suggests the Thai set is the corrected one —
-  **but these are photographs of real employees, so which set is right is a content decision, not a
-  guess.** Decide, then fix at source so both language pages use the same image per person. A
-  repo-side patch would be reverted by the next export.
-  - Reproduce: compare `src="~/images/stories/…"` against `alt="Story from <name>"` in
-    `Pages/Careers/Stories.cshtml` and `Pages/ThaiPages/CareersStories.cshtml`, then md5 the
-    two files per person.
+- [ ] **Broken Insights cross-link — `/insights/mlcc-supply-shift-pcba` 404s (source-side,
+  Rupert to decide).** `Pages/Insights/Commentary/MemoryContractPricesPcba.cshtml` line 59 has an
+  inline prose link: "A <a class="inline" href="/insights/mlcc-supply-shift-pcba">separate shift in
+  MLCC supply</a> affects the same bills of material". No such page exists; the 14 Oct export
+  shipped six commentary pages and this is a seventh. Note the path also lacks the `/commentary/`
+  segment the six shipped pages use. Either write that commentary and give it
+  `/insights/commentary/mlcc-supply-shift-pcba`, or unlink the phrase — both are copy decisions.
+  Left as-is deliberately rather than guessing a target.
 - [ ] **The Thai Sustainability `Hana` edit is a standing repo-side retrofit (source-side fix
   wanted).** 5 Oct, commit `39f220c`: Rupert changed the transliterated ฮานา to Latin **Hana** in
   the two `.intro` paragraphs of `Pages/ThaiPages/Investors/Sustainability.cshtml`. Both 7 Oct
@@ -144,6 +142,31 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 14 Oct 2026 — export sync ("14-10-razor-Hana Site.zip")
+
+- **Six Insights commentary pages** under `Pages/Insights/Commentary/` plus `js/insights-hub.js`
+  and a reworked Insights hub — the Format/Topic taxonomy. **Three Thai About pages**
+  (History, Leadership, Quality) with their own `*-th.css`. Every Markets page changed alongside
+  `_Header.cshtml`. Route count 117 → 126.
+- **Two broken hero images fixed** (export path bug). Five commentary pages referenced
+  `~/images/cap-osat-optical-packaging-hero.webp` and `~/images/cap-osat-power-packages-hero.webp`
+  without the `photos/` segment; the files ship at `wwwroot/images/photos/`, which is what every
+  other reference uses. Corrected repo-side — **fix at source**, the next export will reintroduce it.
+- **Stray `@` build breaker removed** — see the `@` escaping item above for the new variant.
+- **C2PA manifests stripped from this repo for the first time.** The standing step was written for
+  the previews repo, but this repo is equally public and ships the same staff portraits, so the
+  same reasoning applies. `tools/strip-c2pa.py` cleaned **161 files / 906 KB**; a re-run reports 0,
+  and all 327 WebP files are now clean. **Add this to the sync order here too**, after the rsync
+  and before `git add`.
+- **Re-applied as usual:** 10 `@`-escaping fixes (KohKong no longer needs one — fixed at source),
+  23 mobile-retrofit link tags, and the Thai Sustainability `Hana` edit.
+- **`locations-mobile.css` re-diffed:** the export's copy carries `.lc-hero-veil` rules that the
+  repo-merged file already has, plus `.lc-photos` / `.lc-split` rules whose hooks do not exist in
+  the Razor markup. Nothing to fold in; repo copy kept.
+- **Verification passes:** 126 routes all 200; 267 rendered assets all 200; 116 of 117
+  non-document internal links 200 — the one failure is the MLCC link logged as open above.
+
 
 ### 7 Oct 2026 (2nd) — export sync ("07-10-Razor-Site.zip")
 

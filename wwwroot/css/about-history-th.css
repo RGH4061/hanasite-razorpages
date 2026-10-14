@@ -1,0 +1,9 @@
+/* Thai overrides for about-history.css: Inter, Geist and IBM Plex Mono carry no Thai glyphs, so text rules re-point to Sarabun inside :lang(th). Year figures stay in Geist (digits only). */
+:lang(th) body,:lang(th) .subbar .crumbs,:lang(th) .subbar .meta,:lang(th) .hero-summary,:lang(th) .hero-cta a,:lang(th) .decade-chip,:lang(th) .decade-marker span,:lang(th) .t-headline,:lang(th) .t-body,:lang(th) .progress-label{font-family:var(--font-thai)}
+:lang(th) .subbar .meta{font-size:12px;letter-spacing:0}
+:lang(th) .decade-chip,:lang(th) .decade-marker span{letter-spacing:0;text-transform:none;font-size:13px}
+:lang(th) .hero-cta a{letter-spacing:0}
+:lang(th) .hero-summary{line-height:1.75}
+:lang(th) .t-headline{letter-spacing:0;line-height:1.45;font-size:17px}
+:lang(th) .t-body{line-height:1.75;font-size:14px}
+:lang(th) .progress-label .current{font-family:var(--font-display)}

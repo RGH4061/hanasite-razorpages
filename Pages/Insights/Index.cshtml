@@ -1,7 +1,7 @@
 @page "/insights"
 @{
     ViewData["Title"] = "Insights";
-    ViewData["Description"] = "Technical and market insights from Hana Microelectronics — how EMS and OSAT manufacturing works across automotive, RFID, medical, industrial and more.";
+    ViewData["Description"] = "Guides, process explainers and industry updates from Hana Microelectronics on EMS and OSAT manufacturing for automotive, power, optical, RFID and data-center electronics.";
 }
 
 @section Head {
@@ -20,113 +20,46 @@
   </div>
 
   <!-- hero -->
-  <section class="ins-hero" style="background-image:url('images/photos/insights-hero-cleanroom.webp'); height: 320px">
+  <section class="ins-hero" style="background-image:url('/images/photos/insights-hero-cleanroom.webp'); height: 320px">
     <div class="hana-wrap ins-hero-inner">
       <h1>Insights</h1>
       <p class="lede">Technical and market perspectives from Hana Microelectronics — how EMS and OSAT manufacturing works across automotive, RFID, medical, industrial and more, and what it means when you are choosing a manufacturing partner.</p>
     </div>
   </section>
 
-  <!-- featured (latest article) -->
-  <div class="ins-featured-bg">
-    <div class="hana-wrap ins-featured">
-      <span class="ins-klabel">Featured</span>
-      <a class="ins-feat-card" href="/insights/automotive-pcba-assembly">
-        <div class="img"><img src="~/images/photos/hp-what-sets-apart.webp" alt="SMT inspection console on a Hana automotive PCBA line"/></div>
-        <div class="body">
-          <span class="ins-cpill">Technical &middot; Automotive</span>
-          <h2>PCB Assembly for Automotive Electronics</h2>
-          <p>Automotive boards are unforgiving. Here's how Hana assembles automotive PCBAs on fine-pitch SMT lines with inspection on every board — under an IATF 16949 automotive quality system across Thailand and China.</p>
-          <div class="ins-meta">18 Jun 2026 &middot; 5 min read</div>
-        </div>
-      </a>
+  <!-- lead band: featured evergreen + latest industry updates -->
+  <div class="ins-featured-bg" data-hana-bg="pcb" data-variant="light" data-accent="cyan" data-fade="none">
+    <div class="hana-wrap ins-lead">
+      <div class="ins-lead-feat">
+        <span class="ins-klabel">Featured</span>
+        <a class="ins-feat-card ins-feat-card--stack" id="insFeatured" href="#"></a>
+      </div>
+      <div class="ins-updates" data-upd="night" aria-label="Latest industry updates">
+        <div class="head"><h2>Latest industry updates</h2></div>
+        <div id="insUpdList"></div>
+        <button class="all" id="insAllUpdates" type="button">Show older updates &darr;</button>
+      </div>
     </div>
   </div>
 
   <!-- filter rail + card grid -->
   <div class="ins-layout-bg">
     <div class="hana-wrap ins-layout">
-
       <aside class="ins-sidenav" aria-label="Filter insights">
-        <div class="label">Category</div>
-        <ul class="ins-filternav" data-group="category">
-          <li><button class="active" data-filter="all">All <span class="count">6</span></button></li>
-          <li><button data-filter="technical">Technical <span class="count">3</span></button></li>
-          <li><button data-filter="market">Market <span class="count">2</span></button></li>
-          <li><button data-filter="news">News <span class="count">1</span></button></li>
-        </ul>
-
-        <div class="label seclabel">Buyer focus</div>
-        <ul class="ins-filternav" data-group="buyer">
-          <li><button class="active" data-filter="all">All <span class="count">6</span></button></li>
-          <li><button data-filter="ems">EMS / Procurement <span class="count">2</span></button></li>
-          <li><button data-filter="tech">Technical / NPI <span class="count">3</span></button></li>
-          <li><button data-filter="region">Regionality <span class="count">1</span></button></li>
-        </ul>
+        <div class="label">Format</div>
+        <ul class="ins-filternav" id="insFormatNav"></ul>
+        <div class="label">Topic</div>
+        <ul class="ins-filternav" id="insTopicNav"></ul>
       </aside>
-
       <div class="ins-content">
+        <div class="ins-topic-head" id="insTopicHead"></div>
         <div class="ins-result">
           <span class="ins-klabel">Showing</span>
-          <span class="ri-count" id="riCount">6 articles</span>
+          <span class="ri-count" id="riCount"></span>
+          <button class="ins-reset" id="insReset" type="button" hidden>Clear filters &times;</button>
         </div>
-
-        <div class="ins-grid" id="insGrid">
-          <a class="ins-card" href="/insights/automotive-pcba-assembly" data-cat="technical" data-buyer="tech">
-            <div class="thumb"><img src="~/images/photos/homepage-markets-automotive.webp" alt=""/></div>
-            <div class="body">
-              <span class="ins-cpill">Technical</span>
-              <h3>PCB Assembly for Automotive Electronics</h3>
-              <p>Fine-pitch SMT, inspection on every board, and IATF 16949 discipline across Thailand and China.</p>
-              <div class="ins-meta">18 Jun 2026 &middot; 5 min read</div>
-            </div>
-          </a>
-          <a class="ins-card" href="#" data-cat="technical" data-buyer="tech">
-            <div class="thumb"><img src="~/images/photo-cleanroom.webp" alt=""/></div>
-            <div class="body">
-              <span class="ins-cpill">Technical</span>
-              <h3>Flip chip assembly explained</h3>
-              <p>What flip chip is, where it beats wire bonding, and the tolerance range Hana can hold.</p>
-              <div class="ins-meta">11 Jun 2026 &middot; 6 min read</div>
-            </div>
-          </a>
-          <a class="ins-card" href="#" data-cat="market" data-buyer="ems">
-            <div class="thumb"><img src="~/images/photos/mk-medical-hero.webp" alt=""/></div>
-            <div class="body">
-              <span class="ins-cpill">Market</span>
-              <h3>Choosing an EMS partner for medical devices</h3>
-              <p>What procurement teams should check before qualifying a contract manufacturer for medical.</p>
-              <div class="ins-meta">4 Jun 2026 &middot; 7 min read</div>
-            </div>
-          </a>
-          <a class="ins-card" href="#" data-cat="technical" data-buyer="tech">
-            <div class="thumb"><img src="~/images/photos/mk-rfid-hero.webp" alt=""/></div>
-            <div class="body">
-              <span class="ins-cpill">Technical</span>
-              <h3>RFID inlay manufacturing, step by step</h3>
-              <p>From antenna to converted inlay — the process behind high-volume RFID and smart tags.</p>
-              <div class="ins-meta">28 May 2026 &middot; 6 min read</div>
-            </div>
-          </a>
-          <a class="ins-card" href="#" data-cat="market" data-buyer="ems">
-            <div class="thumb"><img src="~/images/circuit-board-blue.webp" alt=""/></div>
-            <div class="body">
-              <span class="ins-cpill">Market</span>
-              <h3>Box build vs PCBA: what to outsource</h3>
-              <p>Where board assembly ends and full product assembly begins — and how to scope it.</p>
-              <div class="ins-meta">21 May 2026 &middot; 5 min read</div>
-            </div>
-          </a>
-          <a class="ins-card" href="#" data-cat="news" data-buyer="region">
-            <div class="thumb"><img src="~/images/world-map.webp" alt=""/></div>
-            <div class="body">
-              <span class="ins-cpill">News</span>
-              <h3>Dual-sourcing across Thailand and China</h3>
-              <p>How one company across multiple countries gives programs supply-chain resilience.</p>
-              <div class="ins-meta">14 May 2026 &middot; 7 min read</div>
-            </div>
-          </a>
-        </div>
+        <div class="ins-grid" id="insGrid"></div>
+        <div class="ins-empty" id="insEmpty">No articles in this combination yet.</div>
       </div>
     </div>
   </div>
@@ -143,3 +76,7 @@
       </div>
     </div>
   </section>
+
+@section Scripts {
+    <script src="~/js/insights-hub.js"></script>
+}

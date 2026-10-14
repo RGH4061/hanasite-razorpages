@@ -14,6 +14,8 @@
 .mkt-orbit{position:absolute;z-index:1;top:96px;right:max(36px,calc(50% - 636px));width:390px;pointer-events:none}
 .mkt-orbit-img{position:relative;width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
 .mkt-orbit-img img{width:82%;height:82%;object-fit:contain;display:block;position:relative;z-index:1}
+.mkt-orbit-img .mkt-mk{width:82%;height:82%;display:block;position:relative;z-index:1;overflow:visible}
+.mkt-armed .mkt-mk,.mkt-armed .mkt-orbit-glow,.mkt-armed .mkt-orbit-ring{opacity:0}
 .mkt-orbit-glow{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(18,131,221,.22) 0%,transparent 70%)}
 .mkt-orbit-ring{position:absolute;border-radius:50%;pointer-events:none}
 .mkt-orbit-ring.r1{inset:14%;border:1px solid rgba(18,131,221,.35);animation:mkt-ring-pulse 3s ease-in-out infinite}
@@ -72,3 +74,13 @@
   .mkt-cta-btn{display:block;padding:15px 24px}
 }
 @media(max-width:380px){.mkt-hero h1{font-size:29px}}
+
+/* Hero entrance — line wipe as on homepage */
+.hha-line{display:block;position:relative}
+.hha-in{display:block;clip-path:inset(0 100% 0 0);animation:hhaWipe 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-edge{position:absolute;top:6%;bottom:12%;left:0;width:2px;background:#1283DD;opacity:0;box-shadow:0 0 18px rgba(18,131,221,0.9);animation:hhaEdge 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-fade{opacity:0;animation:hhaFade 700ms cubic-bezier(.16,.84,.3,1) forwards;animation-delay:var(--d)}
+@keyframes hhaWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes hhaEdge{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes hhaFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hha-in,.hha-edge,.hha-fade{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}.hha-edge{display:none}}

@@ -1,0 +1,7 @@
+/* Thai overrides for about-leadership.css: Inter, Geist and IBM Plex Mono carry no Thai glyphs, so text rules re-point to Sarabun inside :lang(th). */
+:lang(th) body,:lang(th) .subbar .crumbs,:lang(th) .subbar .meta,:lang(th) .hero h1,:lang(th) .lede,:lang(th) .anchor-chip,:lang(th) .section-label,:lang(th) .section-head h2,:lang(th) .section-head p,:lang(th) .person .p-tag,:lang(th) .person .p-name,:lang(th) .person .p-role,:lang(th) .gov-note h3,:lang(th) .gov-note p{font-family:var(--font-thai)}
+:lang(th) .subbar .meta,:lang(th) .anchor-chip,:lang(th) .section-label{letter-spacing:0;text-transform:none;font-size:13px}
+:lang(th) .person .p-tag{letter-spacing:0;text-transform:none;font-size:12px}
+:lang(th) .hero h1,:lang(th) .section-head h2{letter-spacing:0;line-height:1.4}
+:lang(th) .person .p-name,:lang(th) .gov-note h3{letter-spacing:0;line-height:1.45}
+:lang(th) .lede,:lang(th) .section-head p,:lang(th) .gov-note p,:lang(th) .person .p-role{line-height:1.75}
