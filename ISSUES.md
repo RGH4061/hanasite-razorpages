@@ -105,6 +105,36 @@ A screenshot or the prototype filename it should match is ideal but not required
   `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
   load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
   domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
+- [ ] **Metadata defects found in the 15 Oct review — all need fixing at source.** Two were
+  patched repo-side (and so join the re-apply list); the rest are content or convention decisions.
+  - **36 pages share one meta description** — the generic "Hana is the leading independent EMS and
+    OSAT company in Southeast Asia". Every Capabilities page, the homepage, `/search` and `/th`.
+    Each needs its own. This is the largest SEO defect on the site.
+  - **75 of 126 pages have no `<link rel="canonical">`**; 51 do (Markets, Careers, the Thai pages,
+    the IR hub). Decide the convention and apply it in `_Layout.cshtml` so every page gets one.
+  - **Duplicate `<title>`:** `/capabilities/microelectronic-assembly/flip-chip-micro` and
+    `/capabilities/osat/flip-chip` are both "Flip Chip — capabilities". They are different pages
+    and need different titles.
+  - **Four Thai pages serve English metadata:** `/th` (description), and
+    `/th/investor-relations/{annual,esg,structure}` (both title and description).
+  - **Three pages have no `<h1>`:** `/about/history` and `/th/about/history` use 30 `<h3>` and no
+    h1 or h2 — the hero line "From a workshop in Bangkok to operations across the globe" is not in
+    a heading at all. `/search` has no headings whatsoever.
+  - **PATCHED REPO-SIDE 15 Oct, fix at source:** 21 pages set `ViewData["Title"]` already ending
+    in "— Hana Microelectronics" while `_Layout.cshtml:26` appends it again, so the title read
+    "… — Hana Microelectronics — Hana Microelectronics" — the homepage included. Also the
+    decorative `circuit-board-blue.webp` on 20 Capabilities pages had `aria-hidden="true"` but no
+    `alt`; given `alt=""`.
+- [ ] **Placeholder copy visible on the live Investor Relations pages (go-live blocker).**
+  `/investor-relations/faq` and its Thai twin render three dividend answers beginning
+  "**[Placeholder]**" — "[Placeholder] Hana's policy is to pay dividends…". Real text needed, or
+  the questions removed until there is. Separately `/investor-relations/contact` and its Thai twin
+  show **TBC** date blocks; confirm whether that is intentional for unscheduled events.
+- [ ] **`<!-- VERIFY: … -->` comment shipped in a published page.**
+  `Pages/Insights/Commentary/MemoryContractPricesPcba.cshtml` carries
+  `<!-- VERIFY: DFM review scope covering memory… -->` in the rendered HTML. A VERIFY comment is a
+  Block in the Insights editor checklist, so this should not have published — and it flags a claim
+  nobody has confirmed. Resolve the claim, then remove the comment at source.
 - [ ] **Broken Insights cross-link — `/insights/mlcc-supply-shift-pcba` 404s (source-side,
   Rupert to decide).** `Pages/Insights/Commentary/MemoryContractPricesPcba.cshtml` line 59 has an
   inline prose link: "A <a class="inline" href="/insights/mlcc-supply-shift-pcba">separate shift in
