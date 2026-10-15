@@ -125,11 +125,6 @@ A screenshot or the prototype filename it should match is ideal but not required
     "… — Hana Microelectronics — Hana Microelectronics" — the homepage included. Also the
     decorative `circuit-board-blue.webp` on 20 Capabilities pages had `aria-hidden="true"` but no
     `alt`; given `alt=""`.
-- [ ] **IR contact `TBC` date blocks — confirm intentional.** `/investor-relations/contact` and
-  its Thai twin render two **TBC** date blocks each. Likely deliberate for events with no date
-  set; confirm and close this if so. (The `[Placeholder]` dividend answers that sat here were
-  **corrected in Claude Design on 15 Oct** and the item is closed — the repo's own copy still
-  carries them until the next export sync lands.)
 - [ ] **`<!-- VERIFY: … -->` comment shipped in a published page.**
   `Pages/Insights/Commentary/MemoryContractPricesPcba.cshtml` carries
   `<!-- VERIFY: DFM review scope covering memory… -->` in the rendered HTML. A VERIFY comment is a
