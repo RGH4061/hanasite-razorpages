@@ -17,25 +17,25 @@
     { id: 'packaging', name: 'Packaging & assembly', desc: 'OSAT and PCBA processes, test and traceability, and how to choose between them.', links: [['OSAT capabilities', '/capabilities/osat'], ['PCBA & box build', '/capabilities/pcba-box-build']] },
     { id: 'sourcing', name: 'Sourcing & supply chain', desc: 'Component supply, Asian manufacturing policy, dual-sourcing and Hana sites.', links: [['Locations', '/locations']] }
   ];
-  var P = '/images/photos/';
+  var P = 'images/photos/';
   var ARTICLES = [
     { t: 'MLCC supply shift: what it means for PCBA programs', f: 'update', tp: 'sourcing', d: '2026-10-07', r: 3 },
-    { t: 'Thailand\u2019s semiconductor strategy: real foundations, open questions', f: 'update', tp: 'sourcing', d: '2026-10-06', r: 4, href: '/insights/commentary/thailand-semiconductor-strategy' },
-    { t: 'External laser source modules for co-packaged optics: what to watch', f: 'update', tp: 'datacenter', d: '2026-10-08', r: 3, href: '/insights/commentary/external-laser-source-co-packaged-optics' },
-    { t: 'Global vehicle sales forecast: what a hybrid-weighted mix means for electronics', f: 'update', tp: 'automotive', d: '2026-10-08', r: 3, href: '/insights/commentary/global-vehicle-sales-forecast' },
-    { t: 'Memory contract prices in 4Q26: what rising DRAM and NAND costs mean for PCBA', f: 'update', tp: 'sourcing', d: '2026-10-08', r: 3, href: '/insights/commentary/memory-contract-prices-pcba' },
-    { t: 'Power GaN market forecast: what the 2031 outlook means for packaging', f: 'update', tp: 'power', d: '2026-10-08', r: 3, href: '/insights/commentary/power-gan-market-forecast' },
-    { t: 'SiC substrate market recovery: what it means for power packaging', f: 'update', tp: 'power', d: '2026-10-08', r: 3, href: '/insights/commentary/sic-substrate-market-recovery' },
+    { t: 'Thailand\u2019s semiconductor strategy: real foundations, open questions', f: 'update', tp: 'sourcing', d: '2026-10-06', r: 4, href: 'insights/commentary/thailand-semiconductor-strategy.html' },
+    { t: 'External laser source modules for co-packaged optics: what to watch', f: 'update', tp: 'datacenter', d: '2026-10-08', r: 3, href: 'insights/commentary/external-laser-source-co-packaged-optics.html' },
+    { t: 'Global vehicle sales forecast: what a hybrid-weighted mix means for electronics', f: 'update', tp: 'automotive', d: '2026-10-08', r: 3, href: 'insights/commentary/global-vehicle-sales-forecast.html' },
+    { t: 'Memory contract prices in 4Q26: what rising DRAM and NAND costs mean for PCBA', f: 'update', tp: 'sourcing', d: '2026-10-08', r: 3, href: 'insights/commentary/memory-contract-prices-pcba.html' },
+    { t: 'Power GaN market forecast: what the 2031 outlook means for packaging', f: 'update', tp: 'power', d: '2026-10-08', r: 3, href: 'insights/commentary/power-gan-market-forecast.html' },
+    { t: 'SiC substrate market recovery: what it means for power packaging', f: 'update', tp: 'power', d: '2026-10-08', r: 3, href: 'insights/commentary/sic-substrate-market-recovery.html' },
                 { t: 'How RFID inlays are manufactured and tested', f: 'explainer', tp: 'rfid', s: 'From antenna and chip attach to conversion and testing, the process behind high-volume RFID inlays.', r: 6, featured: true, img: P + 'mk-rfid-hero.webp' },
-    { t: 'PCB Assembly for Automotive Electronics', f: 'explainer', tp: 'automotive', s: 'Fine-pitch SMT, inspection on every board, and IATF 16949 discipline across Thailand and China.', r: 5, href: '/insights/automotive-pcba-assembly', img: P + 'homepage-markets-automotive.webp' },
+    { t: 'PCB Assembly for Automotive Electronics', f: 'explainer', tp: 'automotive', s: 'Fine-pitch SMT, inspection on every board, and IATF 16949 discipline across Thailand and China.', r: 5, href: 'insights/automotive-pcba-assembly.html', img: P + 'homepage-markets-automotive.webp' },
     { t: 'Sourcing access control electronics: what to check in a manufacturing partner', f: 'guide', tp: 'rfid', s: 'Credentials, readers and lock electronics in one program: the checks procurement teams can make before qualifying a supplier.', r: 6, img: P + 'mk-access-control-hero.webp' },
     { t: 'Choosing a package for an optical sensor', f: 'guide', tp: 'optical', s: 'Clear, ceramic or leadless: how light path, size and reliability requirements narrow the package choice.', r: 7, img: P + 'mk-optical-sensors-sot-packages.webp' },
-    { t: 'Dual-sourcing electronics across countries within one supplier', f: 'guide', tp: 'sourcing', s: 'How qualifying more than one Hana site works, and what each site is qualified against.', r: 6, img: '/images/world-map.webp' },
+    { t: 'Dual-sourcing electronics across countries within one supplier', f: 'guide', tp: 'sourcing', s: 'How qualifying more than one Hana site works, and what each site is qualified against.', r: 6, img: 'images/world-map.webp' },
     { t: 'Assembling SiC and GaN power packages: what changes', f: 'explainer', tp: 'power', s: 'Die attach, interconnect and test considerations when power devices move to wide-bandgap materials.', r: 7, img: P + 'mk-power-module-family.webp' },
     { t: 'How RFID tire tags are built for the tire environment', f: 'explainer', tp: 'automotive', s: 'Encapsulation, antenna design and testing for tags that are embedded in or attached to tires.', r: 5, img: P + 'mk-rfid-card-tire-tags.webp' },
     { t: 'Thermoelectric coolers in AI data centers: assembly requirements', f: 'explainer', tp: 'datacenter', s: 'Where thermoelectric coolers sit in optical transceivers and what their assembly and test involve.', r: 6, img: P + 'mk-data-centers-hero.webp' },
     { t: 'Inside Ayutthaya: Hana\u2019s OSAT and assembly site in Thailand', f: 'site', tp: 'sourcing', s: 'Processes, certifications and the products built at Hana\u2019s semiconductor assembly and test site.', r: 5, img: P + 'hp-hq-building.webp' },
-    { t: 'Wafer probe and final test: what is tested, and when', f: 'explainer', tp: 'packaging', s: 'The difference between wafer-level and final test, and how results are traced to each unit.', r: 6, img: '/images/photo-cleanroom.webp' },
+    { t: 'Wafer probe and final test: what is tested, and when', f: 'explainer', tp: 'packaging', s: 'The difference between wafer-level and final test, and how results are traced to each unit.', r: 6, img: 'images/photo-cleanroom.webp' },
     { t: 'PCBA and box build for industrial controllers: what buyers should check', f: 'guide', tp: 'industrial', s: 'Board assembly, enclosure build and test for industrial control electronics.', r: 6, img: P + 'mk-industrial-iot-card-pcba-box-build.webp' }
   ];
 

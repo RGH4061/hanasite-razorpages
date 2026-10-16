@@ -201,3 +201,9 @@
   .closing h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; letter-spacing: -0.02em; color: #fff; margin: 0 0 var(--s-4); }
   .closing p { color: rgba(255,255,255,0.8); font-size: 18px; line-height: 1.6; margin: 0 auto var(--s-7); max-width: 560px; }
   .closing .btn-row { justify-content: center; }
+
+  /* mobile: flow scrolls from step 01 rather than centring mid-sequence */
+  @media (max-width: 900px){
+    .vi-flow { justify-content: flex-start; }
+    .vi-flow-wrap { -webkit-overflow-scrolling: touch; }
+  }

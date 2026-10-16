@@ -49,6 +49,11 @@
 .auto-btn--ondark-secondary { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
 .auto-btn--ondark-secondary:hover { border-color: #fff; }
 
+/* prose links */
+.auto-page p a { color: var(--hana-blue); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.auto-page p a:hover { color: var(--hana-blue-deep); }
+.auto-page .on-dark p a, .auto-page p a.on-dark { color: #7EC8FF; }
+
 /* spec strip */
 .auto-spec { display: flex; background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius-spec); overflow: hidden; }
@@ -120,7 +125,7 @@
 
 /* dark advantage grid */
 .auto-advantage { background: var(--panel); margin-top: 8px; position: relative; overflow: hidden; }
-.auto-advcard { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 20px;
+.auto-advcard { display: block; padding: 20px;
   border: 1px solid var(--line); border-radius: var(--radius-card); background: #fff; }
 .auto-advcard .ic { width: 34px; height: 34px; border-radius: 8px; background: var(--accent);
   display: flex; align-items: center; justify-content: center; }
@@ -171,6 +176,11 @@
 .auto-spoke-grid.is-collapsed .auto-side .s .abbr { display: inline; }
 .auto-spoke-grid.is-collapsed .auto-side .s .soon { display: none; }
 .auto-spoke-grid.is-collapsed .auto-side .helper { display: none; }
+/* collapsed rail → let the content take back the freed width */
+.auto-spoke-grid main [style*="max-width:976px"] { transition: max-width 200ms ease; }
+.auto-spoke-grid.is-collapsed main [style*="max-width:976px"] { max-width: 1184px !important; }
+.auto-spoke-grid.is-collapsed main .auto-sechead p,
+.auto-spoke-grid.is-collapsed main [style*="max-width:560px"] { max-width: 760px !important; }
 .auto-side .s { display: flex; align-items: center; gap: 10px; padding: 10px 24px; font-size: 13px; font-weight: 500;
   color: var(--ink-2); text-decoration: none; border-left: 2px solid transparent; }
 .auto-side .s.active { font-weight: 700; color: var(--accent); background: #fff; border-left-color: var(--accent); }

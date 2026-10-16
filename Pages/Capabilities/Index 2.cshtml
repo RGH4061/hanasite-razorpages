@@ -1,0 +1,166 @@
+@page "/capabilities"
+@{
+    ViewData["Title"] = "Capabilities Hub — EMS, OSAT & microelectronics";
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/css/capabilities-mobile.css" />
+}
+
+<style>
+.radial-section{background:var(--bg);padding:0 0 72px;overflow:hidden;position:relative;}
+.radial-hero{max-width:1080px;margin:0 auto;padding:72px 40px 32px;position:relative;z-index:1;}
+.radial-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7EC8FF;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.radial-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:#7EC8FF;opacity:.6;}
+.radial-hero h1{font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.02;letter-spacing:-.032em;color:#fff;margin:0 0 22px;max-width:13ch;}
+.radial-hero .lede{font-size:17px;line-height:1.6;color:rgba(255,255,255,.62);max-width:66ch;margin:0;}
+.radial-scale-wrap{overflow:hidden;width:100%;}
+.radial-wrap{position:relative;width:960px;height:800px;margin:0 auto;transform-origin:top center;}
+.radial-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+.radial-center{position:absolute;width:252px;height:252px;left:480px;top:400px;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;}
+.radial-center-ring{position:absolute;inset:-22px;border-radius:50%;border:1px solid rgba(18,131,221,.35);animation:ring-pulse 3s ease-in-out infinite;}
+.radial-center-ring-2{position:absolute;inset:-48px;border-radius:50%;border:1px solid rgba(18,131,221,.18);animation:ring-pulse 3s ease-in-out infinite 1s;}
+.radial-center-ring-3{position:absolute;inset:-76px;border-radius:50%;border:1px solid rgba(18,131,221,.08);}
+.radial-center-glow{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(18,131,221,0.22) 0%,transparent 70%);pointer-events:none;}
+@@keyframes ring-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.04);}}
+@@media (prefers-reduced-motion: reduce){.radial-center-ring,.radial-center-ring-2{animation:none;}}
+.radial-center img,.radial-center .radial-mk{width:100%;height:100%;object-fit:contain;position:relative;z-index:1;display:block;}
+.cap-node{position:absolute;width:224px;background:rgba(255,255,255,0.97);border:1px solid rgba(255,255,255,0.25);border-top:2px solid transparent;border-radius:12px;padding:18px 16px 14px;text-decoration:none;color:inherit;transition:border-color 150ms,box-shadow 150ms,transform 150ms;display:flex;flex-direction:column;gap:6px;box-shadow:0 2px 12px rgba(0,0,0,0.22),0 1px 3px rgba(0,0,0,0.14);}
+.cap-node:hover{border-color:rgba(18,131,221,0.3);border-top-color:#1283DD;box-shadow:0 8px 28px rgba(0,0,0,0.32),0 2px 6px rgba(18,131,221,0.25);transform:translateY(-3px);}
+.cap-node{border-top-width:4px;border-top-color:rgba(18,131,221,.5);overflow:hidden;}
+.cap-node::before{content:'';position:absolute;top:-46px;right:-46px;width:150px;height:150px;border-radius:50%;background:repeating-radial-gradient(circle at center,rgba(18,131,221,.13) 0 1px,transparent 1px 13px);pointer-events:none;}
+.hero-orbit{position:absolute;z-index:1;top:64px;right:max(36px,calc(50% - 636px));width:440px;pointer-events:none;}
+.hero-orbit-img{position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:1px solid rgba(126,200,255,.38);}
+.hero-orbit-img img{width:100%;height:100%;object-fit:cover;object-position:30% 42%;display:block;filter:saturate(.85) contrast(1.05);}
+.hero-orbit-tint{position:absolute;inset:0;background:linear-gradient(160deg,rgba(7,44,77,.55) 0%,rgba(7,44,77,.12) 50%,rgba(18,131,221,.28) 100%);mix-blend-mode:multiply;}
+.hero-orbit-ring{position:absolute;border-radius:50%;pointer-events:none;}
+.hero-orbit-ring.r1{inset:-16px;border:1px solid rgba(126,200,255,.30);}
+.hero-orbit-ring.r2{inset:-38px;border:1px dashed rgba(126,200,255,.20);}
+.hero-orbit-ring.r3{inset:-62px;border:1px solid rgba(126,200,255,.09);}
+.hero-orbit-ring.r2::after{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:#7EC8FF;opacity:.75;left:14%;top:7%;}
+.hero-orbit-cap{margin-top:16px;text-align:center;font-family:var(--font-mono);font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(126,200,255,.75);}
+@@media (max-width:1140px){.hero-orbit{display:none;}}
+@@media (max-width:979px){
+.radial-hero{padding:56px 24px 28px;}
+.radial-scale-wrap{overflow:visible;}
+.radial-wrap{width:auto;height:auto;transform:none !important;margin:0 !important;padding:0 24px;}
+.radial-svg{display:none;}
+.radial-center{position:relative;left:auto;top:auto;transform:none;width:132px;height:132px;margin:12px auto 40px;}
+.radial-center-ring{inset:-14px;}.radial-center-ring-2{inset:-28px;}.radial-center-ring-3{inset:-42px;}
+#cap-nodes{display:flex !important;flex-direction:column;gap:14px;max-width:480px;margin:0 auto;}
+.cap-node{position:static;width:100%;left:auto !important;top:auto !important;}
+}
+.cap-node-count{display:none;}
+.radial-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.radial-hero-bg > div{position:absolute;width:1200px;height:100%;left:50%;transform:translateX(-50%);}
+.cap-node-name{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.010em;color:var(--ink);line-height:1.2;}
+.cap-node-desc{font-size:11.5px;color:var(--ink-3);line-height:1.5;margin:2px 0 4px;}
+.cap-node-cta{font-family:var(--font-mono);font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hana-blue);display:inline-flex;align-items:center;gap:4px;margin-top:2px;}
+@@media (max-width:640px){.radial-hero h1{font-size:36px;}}
+/* Hero line wipe + capabilities emerging from the mark */
+.hha-line{display:block;position:relative}
+.hha-in{display:block;clip-path:inset(0 100% 0 0);animation:hhaWipe 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-edge{position:absolute;top:6%;bottom:12%;left:0;width:2px;background:#1283DD;opacity:0;box-shadow:0 0 18px rgba(18,131,221,0.9);animation:hhaEdge 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-fade{opacity:0;animation:hhaFade 700ms cubic-bezier(.16,.84,.3,1) forwards;animation-delay:var(--d)}
+@@keyframes hhaWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@@keyframes hhaEdge{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@@keyframes hhaFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cap-armed:not(.cap-emerge) .cap-node,.cap-armed:not(.cap-emerge) .radial-mk,.cap-armed:not(.cap-emerge) .radial-center>div,.cap-armed:not(.cap-emerge) .radial-svg{opacity:0}
+@@media (prefers-reduced-motion:reduce){.hha-in,.hha-edge,.hha-fade,.cap-emerge .cap-node,.cap-emerge .radial-center,.cap-emerge .radial-svg line,.cap-emerge .radial-svg circle{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}.hha-edge{display:none}}
+</style>
+<section class="radial-section" id="radial-hero">
+<div class="radial-hero-bg" id="radial-hero-bg"></div>
+<div class="radial-hero"><div class="radial-eyebrow hha-fade" style="--d:0ms">Capabilities</div><h1><span class="hha-line" style="--d:160ms"><span class="hha-in">End to End Capabilities</span><span class="hha-edge" aria-hidden="true"></span></span><span class="hha-line" style="--d:940ms"><span class="hha-in">With Hana</span><span class="hha-edge" aria-hidden="true"></span></span></h1><p class="lede hha-fade" style="--d:1720ms">From a fine-pitch surface-mount line through die-level packaging and test to the finished, tested unit &mdash; the same qualified processes run across our plants in China, Thailand, Cambodia and the USA.</p>
+<div class="cap-find hha-fade" id="cap-find" style="--d:1860ms">
+  <div class="cap-find-lb">Find a packaging type / size or process</div>
+  <div class="cap-find-box" style="width:442px;height:45px;">
+    <i data-lucide="search" style="width:19px;height:19px;flex:none"></i>
+    <input id="cap-find-q" type="search" spellcheck="false" placeholder="e.g. QFN · ceramic packaging · Flip Chip · back grind" aria-label="Find a process">
+  </div>
+  <div class="cap-find-meta" id="cap-find-meta">Searches the 27 processes below. Type the shorthand — the index carries it or search by our categories below.</div>
+  <div class="cap-find-out" id="cap-find-out" hidden></div>
+</div></div>
+<div class="hero-orbit" aria-hidden="true"><div class="hero-orbit-ring r3"></div><div class="hero-orbit-ring r2"></div><div class="hero-orbit-ring r1"></div><div class="hero-orbit-img"><img src="/images/cap-hero.webp" alt="" /><div class="hero-orbit-tint"></div></div><div class="hero-orbit-cap">Bare-die assembly · Micron-level placement</div></div>
+<div class="radial-scale-wrap"><div class="radial-wrap" id="radial-wrap">
+<svg class="radial-svg" id="radial-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="radial-center" id="radial-center"><div class="radial-center-ring-3"></div><div class="radial-center-ring-2"></div><div class="radial-center-ring"></div><div class="radial-center-glow"></div><svg class="radial-mk" role="img" aria-label="Hana Microelectronics" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify" viewBox="0 0 1500 1499.999933" preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="f2d74e568e"><path d="M 447 0.761719 L 498 0.761719 L 498 454 L 447 454 Z M 447 0.761719 " clip-rule="nonzero"></path></clipPath><clipPath id="e45e408070"><path d="M 313 352 L 880 352 L 880 1069.238281 L 313 1069.238281 Z M 313 352 " clip-rule="nonzero"></path></clipPath><clipPath id="0c568dd15f"><rect x="0" width="1004" y="0" height="1070"></rect></clipPath></defs><g transform="matrix(1, 0, 0, 1, 248, 215)"><g clip-path="url(#0c568dd15f)"><path pathLength="1" stroke-linecap="round" transform="matrix(0.00000000323258, -1.85213, 1.85213, 0.00000000323258, 379.058338, 851.375904)" fill="none" stroke-linejoin="miter" d="M 13.500572 13.500222 L 118.978806 13.500222 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(0, 1.85213, -1.85213, 0, 621.65659, 208.208537)" fill="none" stroke-linejoin="miter" d="M 13.499271 13.500267 L 118.977505 13.500267 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(-1.85213, 0, 0, -1.85213, 807.464502, 659.737673)" fill="none" stroke-linejoin="miter" d="M 13.499899 13.499755 L 110.845604 13.499755 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(1.85213, 0, 0, 1.85213, 197.261373, 404.140407)" fill="none" stroke-linejoin="miter" d="M 13.50027 13.500201 L 110.845976 13.500201 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(0, -1.85213, 1.85213, 0, 442.768478, 851.375904)" fill="none" stroke-linejoin="miter" d="M 13.500572 13.500652 L 118.978806 13.500652 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(0, 1.85213, -1.85213, 0, 561.503092, 208.208537)" fill="none" stroke-linejoin="miter" d="M 13.499271 13.499644 L 118.977505 13.499644 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(-1.85213, -0.00000000323258, 0.00000000323258, -1.85213, 808.328766, 588.619991)" fill="none" stroke-linejoin="miter" d="M 13.50043 13.499488 L 110.846135 13.499488 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(1.85213, -0.000000000000001608, 0.000000000000001608, 1.85213, 197.261373, 471.178137)" fill="none" stroke-linejoin="miter" d="M 13.50027 13.500921 L 110.379874 13.500921 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(0.00000000323258, -1.85213, 1.85213, 0.00000000323258, 507.020744, 1062.780486)" fill="none" stroke-linejoin="miter" d="M 13.499671 13.499429 L 230.918296 13.499428 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><g clip-path="url(#f2d74e568e)"><path pathLength="1" stroke-linecap="round" transform="matrix(0, 1.85213, -1.85213, 0, 497.349489, 0.883829)" fill="none" stroke-linejoin="miter" d="M 13.499535 13.498964 L 230.91816 13.498964 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path></g><path pathLength="1" stroke-linecap="round" transform="matrix(-1.85213, -0.00000000323258, 0.00000000323258, -1.85213, 1002.918134, 521.185613)" fill="none" stroke-linejoin="miter" d="M 13.500173 13.499065 L 215.914955 13.499064 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(1.85213, 0.000000000000001836, -0.000000000000001836, 1.85213, 1.066311, 538.612515)" fill="none" stroke-linejoin="miter" d="M 13.500135 13.500497 L 215.914918 13.500497 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><g clip-path="url(#e45e408070)"><path pathLength="1" stroke-linecap="round" transform="matrix(0.00150229, -1.852129, 1.852129, 0.00150229, 571.282491, 1069.082837)" fill="none" stroke-linejoin="miter" d="M 13.500928 13.499013 L 234.31522 13.499177 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path></g><path pathLength="1" stroke-linecap="round" transform="matrix(0, 1.85213, -1.85213, 0, 433.095375, 1.097432)" fill="none" stroke-linejoin="miter" d="M 13.500205 13.500961 L 230.91672 13.500961 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(-1.85213, 0, 0, -1.85213, 1002.05387, 454.31569)" fill="none" stroke-linejoin="miter" d="M 13.499642 13.499697 L 215.914424 13.499697 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path><path pathLength="1" stroke-linecap="round" transform="matrix(1.85213, 0, 0, 1.85213, 1.796623, 606.046893)" fill="none" stroke-linejoin="miter" d="M 13.50022 13.500074 L 215.915002 13.500074 " stroke="#1283dd" stroke-width="27" stroke-opacity="1" stroke-miterlimit="4"></path></g></g></svg></div>
+<div id="cap-nodes" style="display:contents"><a class="cap-node" href="/capabilities/pcba-box-build" data-cap-index="0"><div class="cap-node-count">3 Processes</div><div class="cap-node-name">PCBA &amp; Box Build</div><p class="cap-node-desc">Board and full product assembly in one group, from fine-pitch surface mount and chip on board through to enclosure, box build and the finished, tested unit.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/osat" data-cap-index="1"><div class="cap-node-count">11 Processes</div><div class="cap-node-name">OSAT</div><p class="cap-node-desc">Semiconductor packaging from package design to finished device: power SiC and GaN, QFN and leadless, clear optical, hermetic ceramic, and ultra-small molded bodies.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/microelectronic-assembly" data-cap-index="2"><div class="cap-node-count">4 Processes</div><div class="cap-node-name">Microelectronic Assembly</div><p class="cap-node-desc">The precision end of the group: flip chip, MEMS and sensor assembly, fine interconnect and micro-assembly, where placement is measured in microns.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/rfid-smart-tags" data-cap-index="3"><div class="cap-node-count">2 Processes</div><div class="cap-node-name">RFID &amp; Smart Tags</div><p class="cap-node-desc">High-volume RFID inlays and ruggedized tags, with coil and antenna assembly, chip attach and lamination.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/automation" data-cap-index="4"><div class="cap-node-count">2 Processes</div><div class="cap-node-name">Automation &amp; Smart Manufacturing</div><p class="cap-node-desc">The inspection, handling and data layer that runs underneath every line: in-line optical inspection, robotic handling and unit-level traceability.</p><span class="cap-node-cta">Explore &rarr;</span></a><a class="cap-node" href="/capabilities/dfx-jdm" data-cap-index="5"><div class="cap-node-count">3 Processes</div><div class="cap-node-name">DFx &amp; JDM Collaboration</div><p class="cap-node-desc">How we work with your engineering team before volume: design-for-excellence review, joint development and new product introduction.</p><span class="cap-node-cta">Explore &rarr;</span></a></div>
+</div></div>
+<script>(function(){var w=document.getElementById('radial-wrap');if(w&&!matchMedia('(prefers-reduced-motion:reduce)').matches)w.classList.add('cap-armed')})();</script>
+</section>
+<script>
+(function(){
+  var CX=480,CY=400,R=300,CARD_W=224,START=-90;
+  function rad(d){return d*Math.PI/180;}
+  function positionNodes(){
+    var wrap=document.getElementById('radial-wrap'); if(!wrap) return;
+    if(window.innerWidth<980) return;
+    var nodes=wrap.querySelectorAll('.cap-node'); var svg=document.getElementById('radial-svg'); svg.innerHTML='';
+    nodes.forEach(function(node,i){
+      var a=rad(START+i*60); var cx=CX+R*Math.cos(a), cy=CY+R*Math.sin(a); var h=node.offsetHeight||170;
+      node.style.left=(cx-CARD_W/2)+'px'; node.style.top=(cy-h/2)+'px';
+      node.style.setProperty('--ox',(CX-cx)+'px'); node.style.setProperty('--oy',(CY-cy)+'px');
+      node.style.setProperty('--d',(1500+i*110)+'ms');
+      var dx=cx-CX,dy=cy-CY,dist=Math.sqrt(dx*dx+dy*dy),ux=dx/dist,uy=dy/dist;
+      var x1=CX+ux*93,y1=CY+uy*62,hw=CARD_W/2,hh=h/2;
+      var ex=Math.max(-hw,Math.min(hw,-ux*hw/Math.max(Math.abs(ux),Math.abs(uy)*hw/hh)));
+      var ey=Math.max(-hh,Math.min(hh,-uy*hh/Math.max(Math.abs(uy),Math.abs(ux)*hh/hw)));
+      var x2=cx+ex,y2=cy+ey;
+      var line=document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',x1);line.setAttribute('y1',y1);line.setAttribute('x2',x2);line.setAttribute('y2',y2);
+      line.setAttribute('stroke','#7EC8FF');line.setAttribute('stroke-width','1');line.setAttribute('stroke-opacity','0.35');line.setAttribute('stroke-dasharray','4 4');
+      line.style.setProperty('--d',(1500+i*110+320)+'ms');
+      svg.appendChild(line);
+      var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      dot.setAttribute('cx',x2);dot.setAttribute('cy',y2);dot.setAttribute('r','3');dot.setAttribute('fill','#7EC8FF');dot.setAttribute('fill-opacity','0.6');
+      dot.style.setProperty('--d',(1500+i*110+420)+'ms');
+      svg.appendChild(dot);
+    });
+  }
+  function applyGlobe(){
+    var outer=document.getElementById('radial-hero-bg'); if(!outer||!window.HanaBG) return;
+    var inner=outer.querySelector('div'); if(!inner){inner=document.createElement('div');outer.appendChild(inner);}
+    HanaBG.apply(inner,{pattern:'globe',variant:'dark',accent:'cyan',fade:'none'});
+    document.getElementById('radial-hero').style.background='radial-gradient(ellipse 80% 100% at 80% 50%, #072c4d 0%, #030a17 65%)';
+  }
+  function scaleRadial(){
+    var wrap=document.getElementById('radial-wrap'); if(!wrap) return;
+    if(window.innerWidth<980){wrap.style.transform='';wrap.style.marginBottom='';return;}
+    var avail=wrap.parentElement.clientWidth, scale=Math.min(1,avail/960);
+    wrap.style.transform='scale('+scale+')'; wrap.style.marginBottom=((scale-1)*800)+'px';
+  }
+  /* Variation B: mark strokes draw, cards sweep clockwise into place, connectors draw back */
+  function emerge(){
+    var wrap=document.getElementById('radial-wrap'); if(!wrap||wrap.dataset.emerged) return;
+    wrap.dataset.emerged='1';
+    var armed=wrap.classList.contains('cap-armed'); wrap.classList.add('cap-emerge');
+    if(!armed||!wrap.animate) return;
+    var T0=900,OUT='cubic-bezier(.16,.84,.26,1)',IO='cubic-bezier(.65,0,.35,1)';
+    function A(el,kf,o){return el.animate(kf,Object.assign({fill:'backwards',easing:OUT},o));}
+    wrap.querySelectorAll('.radial-mk path').forEach(function(p,i){p.style.strokeDasharray='1 2';A(p,[{strokeDashoffset:1},{strokeDashoffset:0}],{duration:560,delay:T0+150+i*45});});
+    wrap.querySelectorAll('.radial-center>div').forEach(function(r,i){A(r,[{opacity:0,transform:'scale(.7)'},{opacity:1,transform:'scale(1)'}],{duration:700,delay:T0+700+i*90});});
+    var nodes=wrap.querySelectorAll('.cap-node');
+    if(window.innerWidth<980){nodes.forEach(function(n,i){A(n,[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:600,delay:T0+600+i*80});});return;}
+    var lines=wrap.querySelectorAll('.radial-svg line'),dots=wrap.querySelectorAll('.radial-svg circle'),N=16,SW=rad(80);
+    nodes.forEach(function(n,i){
+      var d=T0+850+i*85,a=rad(START+i*60),gx=CX+R*Math.cos(a),gy=CY+R*Math.sin(a),kf=[];
+      for(var k=0;k<=N;k++){var t=k/N,e=1-Math.pow(1-t,3),r=R*(.15+.85*e),b=a-SW*(1-e);
+        kf.push({transform:'translate('+(CX+r*Math.cos(b)-gx).toFixed(1)+'px,'+(CY+r*Math.sin(b)-gy).toFixed(1)+'px) scale('+(.4+.6*e).toFixed(3)+')',opacity:Math.min(1,t*3.2)});}
+      A(n,kf,{duration:1050,delay:d,easing:'linear'});
+      var ln=lines[i],dt=dots[i]; if(!ln) return;
+      drawLine(ln,d+820,380);
+      if(dt)A(dt,[{opacity:0},{opacity:1}],{duration:260,delay:d+1080});
+    });
+  }
+  function drawLine(ln,delay,dur){
+    var x1=+ln.getAttribute('x1'),y1=+ln.getAttribute('y1'),x2=+ln.getAttribute('x2'),y2=+ln.getAttribute('y2'),t0=null;
+    ln.setAttribute('x2',x1);ln.setAttribute('y2',y1);
+    function f(ts){if(t0===null)t0=ts+delay;var t=Math.max(0,Math.min(1,(ts-t0)/dur)),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+      if(!ln.isConnected)return;ln.setAttribute('x2',x1+(x2-x1)*e);ln.setAttribute('y2',y1+(y2-y1)*e);if(t<1)requestAnimationFrame(f);}
+    requestAnimationFrame(f);
+  }
+  function run(){applyGlobe();scaleRadial();positionNodes();emerge();}
+  window.addEventListener('load',function(){setTimeout(run,100);});
+  window.addEventListener('resize',function(){scaleRadial();positionNodes();});
+})();
+</script>

@@ -54,7 +54,7 @@ function findPackages(raw){
   const q = (raw||"").toLowerCase();
   const d = q.match(/(\d+(?:\.\d+)?)\s*[x×]\s*(\d+(?:\.\d+)?)/);
   const grade = (q.match(/grade\s*([012])/)||[])[1];
-  const fam = PKFAMS.find(f=>new RegExp("\\b"+f).test(q));
+  const fam = PKFAMS.find(f=>new RegExp("\\b"+f.replace(/([a-z])(?=\d)/g,"$1[\\s-]*")).test(q));
   /* Lead counts only for families whose digits ARE the lead count. SOT/SOD digits are body
      codes (SOT23 is a size, not 23 leads), so they stay out of this list. */
   const lm = q.match(/(?:qfn|dfn|lga|soic|msop)\s*-?(\d{1,3})\b/) || q.match(/\b(\d{1,3})\s*l\b/);

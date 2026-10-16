@@ -4,10 +4,6 @@
     ViewData["Description"] = "A TAA-compliant EMS base in the Koh Kong SEZ";
 }
 
-@section Head {
-    <link rel="stylesheet" href="~/css/locations-mobile.css" />
-}
-
 @* ============================================================
    Koh Kong plant page (Cambodia).
    Static content — no JS framework. Section backgrounds render
@@ -39,7 +35,7 @@
 </div>
 
 <div class="lc-hero-veil" style="position:relative;height:440px;overflow:hidden;background:#030a17;">
-  <img src="~/images/koh-kong-facility.webp" alt="Koh Kong · Cambodia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
+  <img src="/images/koh-kong-facility.webp" alt="Koh Kong · Cambodia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
   <div class="lc-hero-tex" data-hana-bg="wafer" data-variant="dark" data-accent="cyan" data-fade="none" style="position:absolute;top:0;bottom:0;left:0;width:54%;-webkit-mask-image:linear-gradient(to right,#000 35%,transparent 100%);mask-image:linear-gradient(to right,#000 35%,transparent 100%);opacity:.85;"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(3,10,23,0.94) 0%,rgba(3,10,23,0.78) 30%,rgba(3,10,23,0.32) 52%,rgba(3,10,23,0) 72%);"></div>
   <div style="position:absolute;inset:0;">
@@ -94,10 +90,10 @@
       <a href="/locations" class="hana-btn hana-btn-secondary" style="margin-top:8px;display:inline-flex;align-items:center;gap:8px;">Explore locations hub <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
     </div>
     <div class="lc-photos" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/factory-floor-1.webp" alt="Production floor, Koh Kong" loading="lazy" /></figure>
-      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/factory-floor-2.webp" alt="Inspection, Koh Kong" loading="lazy" /></figure>
-      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/micro-assembly-bench.webp" alt="Micro-assembly benches, Koh Kong" loading="lazy" /></figure>
-      <figure class="kk-ph" style="margin:0;"><img src="~/images/koh-kong/ict-test-station.webp" alt="In-circuit test station, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="/images/koh-kong/factory-floor-1.webp" alt="Production floor, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="/images/koh-kong/factory-floor-2.webp" alt="Inspection, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="/images/koh-kong/micro-assembly-bench.webp" alt="Micro-assembly benches, Koh Kong" loading="lazy" /></figure>
+      <figure class="kk-ph" style="margin:0;"><img src="/images/koh-kong/ict-test-station.webp" alt="In-circuit test station, Koh Kong" loading="lazy" /></figure>
     </div>
   </div>
 </div>
@@ -116,7 +112,7 @@
     </div>
     <div class="cg-scroll" data-scroller style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;">
       <div class="cg-card" style="flex:0 0 300px;scroll-snap-align:start;background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
-        <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="~/images/capabilities/cap-pcba-box-build-hero.webp" alt="PCBA and SMT assembly" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/cap-pcba-box-build-hero.webp" alt="PCBA and SMT assembly" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div style="padding:18px;display:flex;flex-direction:column;flex:1;">
           <a href="/capabilities/pcba-box-build" class="cg-title" style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:7px;text-decoration:none;">PCBA &amp; SMT Assembly</a>
           <p style="font-size:12.5px;color:var(--ink-2);line-height:1.5;margin:0 0 16px;">Surface-mount, through-hole and mixed-technology assembly, down to 01005 components and 0.3 mm-pitch flip-chip, with inline SPI and AOI.</p>
@@ -130,7 +126,7 @@
         </div>
       </div>
       <div class="cg-card" style="flex:0 0 300px;scroll-snap-align:start;background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
-        <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="~/images/capabilities/microelectronic-assembly.webp" alt="Micro-assembly module" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/microelectronic-assembly.webp" alt="Micro-assembly module" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div style="padding:18px;display:flex;flex-direction:column;flex:1;">
           <a href="/capabilities/pcba-box-build/box-build" class="cg-title" style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:7px;text-decoration:none;">Final Assembly &amp; Micro-Assembly Box Build</a>
           <p style="font-size:12.5px;color:var(--ink-2);line-height:1.5;margin:0 0 16px;">Full box build and mechanical final assembly (including micro-assembly of miniature electronics such as hearing aids), with automated conformal coating and potting.</p>
@@ -161,35 +157,35 @@
     </div>
     <div class="lc-prod-scroll" data-scroller style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;">
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="~/images/products/boarding-gate-reader.webp" alt="Boarding gate reader" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="/images/products/boarding-gate-reader.webp" alt="Boarding gate reader" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Security &amp; access</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Boarding gate reader</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="~/images/products/security-tokens.webp" alt="USB security tokens" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="/images/products/security-tokens.webp" alt="USB security tokens" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Security</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">USB security tokens</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="~/images/products/remote-controls.webp" alt="Remote controls" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="/images/products/remote-controls.webp" alt="Remote controls" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Consumer electronics</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Remote controls</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="~/images/products/hearing-aid-charger.webp" alt="Hearing aid charger" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="/images/products/hearing-aid-charger.webp" alt="Hearing aid charger" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Medical</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Hearing aid charger</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="~/images/products/entry-exit-controller.webp" alt="Entry and Exit Controller" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:#030a17;width:100%;aspect-ratio:4 / 3;"><img src="/images/products/entry-exit-controller.webp" alt="Entry and Exit Controller" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Consumer electronics</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Entry and Exit Controller</div>
@@ -247,4 +243,8 @@
 
 @section Scripts {
     <script src="~/js/locations.js"></script>
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/css/locations-mobile.css" />
 }

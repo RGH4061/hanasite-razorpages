@@ -328,3 +328,9 @@
     .ir-grid { grid-template-columns: 1fr; }
     .subbar-inner { flex-wrap: wrap; gap: var(--s-3); }
   }
+
+  /* phones: decorative glows must not widen the page */
+  @media (max-width: 900px){
+    .layout-bg, .feature-banner { overflow: hidden; }
+    .sp-footer { grid-template-columns: 1fr 1fr !important; }
+  }

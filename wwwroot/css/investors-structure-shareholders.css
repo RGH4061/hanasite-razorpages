@@ -755,3 +755,11 @@
     color: rgba(255,255,255,0.55);
     letter-spacing: -0.005em;
   }
+
+  /* mobile: chart scrolls sideways below the readable scale floor */
+  @media (max-width: 760px){
+    .gs{max-width:100%!important}
+    .gs-fit{-webkit-overflow-scrolling:touch}
+    .gs-head{flex-wrap:wrap;gap:10px}
+    .gs-legend-note{margin-left:0!important;text-align:left}
+  }

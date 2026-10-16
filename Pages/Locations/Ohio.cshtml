@@ -4,10 +4,6 @@
     ViewData["Description"] = "Hana’s US manufacturing and design base";
 }
 
-@section Head {
-    <link rel="stylesheet" href="~/css/locations-mobile.css" />
-}
-
 @* ============================================================
    Ohio plant page (USA).
    Static content — no JS framework. Section backgrounds render
@@ -39,15 +35,14 @@
 </div>
 
 <div class="lc-hero-veil" style="position:relative;height:440px;overflow:hidden;background:#030a17;">
-  <img src="~/images/ohio-facility.webp" alt="Solon · Ohio, USA" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
+  <img src="/images/ohio-facility.webp" alt="Solon · Ohio, USA" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
   <div class="lc-hero-tex" data-hana-bg="wafer" data-variant="dark" data-accent="cyan" data-fade="none" style="position:absolute;top:0;bottom:0;left:0;width:54%;-webkit-mask-image:linear-gradient(to right,#000 35%,transparent 100%);mask-image:linear-gradient(to right,#000 35%,transparent 100%);opacity:.85;"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(3,10,23,0.94) 0%,rgba(3,10,23,0.78) 30%,rgba(3,10,23,0.32) 52%,rgba(3,10,23,0) 72%);"></div>
   <div style="position:absolute;inset:0;">
     <div style="max-width:1240px;margin:0 auto;padding:0 32px;height:100%;display:flex;flex-direction:column;justify-content:center;">
       <div style="max-width:460px;">
-        <div style="color:#7EC8FF;font-family:var(--font-text);font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:14px;">USA · Solon, Ohio</div>
         <h1 style="font-family:var(--font-display);font-size:60px;font-weight:700;letter-spacing:-0.03em;line-height:0.98;color:#fff;margin:0 0 18px;">Ohio</h1>
-        <p style="font-size:18px;line-height:1.55;color:rgba(255,255,255,0.85);margin:0;">Hana’s US manufacturing and design base — UHF/HF RFID inlays and tire tags, and camera modules — and a domestic-US, ITAR-certified option for customers who need one.</p>
+        <p style="font-size:18px;line-height:1.55;color:rgba(255,255,255,0.85);margin:0;">Hana’s US manufacturing and design base (UHF/HF RFID inlays and tire tags, and camera modules) and a domestic-US, ITAR-certified option for customers who need one.</p>
         <a href="https://hana.family/" target="_blank" rel="noopener noreferrer" class="hana-btn hana-btn-on-dark" style="margin-top:26px;padding:15px 30px;font-size:13px;">Visit Hana Technologies<span style="margin-left:8px;">↗</span></a>
       </div>
     </div>
@@ -58,11 +53,10 @@
 <section style="background:linear-gradient(to right,rgba(14,74,124,0.11) 0%,rgba(14,74,124,0.04) 30%,rgba(245,247,250,0) 62%),var(--bg);border-bottom:1px solid var(--line);">
   <div style="max-width:1240px;margin:0 auto;padding:24px 32px;">
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;">
-      <div class="hana-spec-label" style="color:#0E4A7C;">Certifications held at this site</div>
       <div style="flex:1;height:1px;background:var(--line);min-width:40px;"></div>
       <p style="font-size:11.5px;color:var(--ink-3);margin:0;">Current 2026 &middot; full certificates on request</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+    <div class="lc-certs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
         <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:13px 16px;">
       <div style="width:34px;height:34px;border-radius:50%;border:1.5px solid #0E4A7C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0E4A7C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
       <div><div style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.15;">ISO 9001:2015</div>
@@ -73,19 +67,18 @@
       <div><div style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.15;">ITAR</div>
       <div style="font-size:11.5px;color:var(--ink-3);margin-top:2px;">ITAR certified</div></div>
     </div>
-        <div style="display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;min-height:62px;"><img src="~/images/partners/impinj-nxp.webp" alt="Impinj &amp; NXP Gold Partner" style="max-height:54px;max-width:100%;object-fit:contain;" /></div>
-        <div style="display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;min-height:62px;"><img src="~/images/partners/arc-quality.webp" alt="ARC Quality 2025" style="max-height:54px;max-width:100%;object-fit:contain;" /></div>
+        <div style="display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;min-height:62px;"><img src="/images/partners/impinj-nxp.webp" alt="Impinj &amp; NXP Gold Partner" style="max-height:54px;max-width:100%;object-fit:contain;" /></div>
+        <div style="display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;min-height:62px;"><img src="/images/partners/arc-quality.webp" alt="ARC Quality 2025" style="max-height:54px;max-width:100%;object-fit:contain;" /></div>
     </div>
   </div>
 </section>
 
 <div style="max-width:1240px;margin:0 auto;padding:52px 32px;">
-  <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:start;">
+  <div class="lc-split" style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:start;">
     <div>
-      <div class="hana-spec-label" style="color:#0E4A7C;margin-bottom:12px;">About Hana Ohio</div>
       <h2 class="hana-h3" style="margin-bottom:18px;">RFID and optical manufacturing in the USA</h2>
-      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Operating as Hana Technologies Inc — we are leaders in the identification/IoT industry, offering an array of RFID products to the unique demands of our customers as well as lean EMS and contract manufacturing services.</p>
-      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">A domestic-US manufacturing option — ITAR certified for defense-related work and ARC-certified for RFID inlay design and manufacturing.</p>
+      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Operating as Hana Technologies Inc, we are leaders in the identification/IoT industry, offering an array of RFID products to the unique demands of our customers as well as lean EMS and contract manufacturing services.</p>
+      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">A domestic-US manufacturing option, ITAR certified for defense-related work and ARC-certified for RFID inlay design and manufacturing.</p>
       <a href="/locations" class="hana-btn hana-btn-secondary" style="margin-top:8px;display:inline-flex;align-items:center;gap:8px;">Explore locations hub <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
       <div style="margin-top:22px;display:flex;flex-direction:column;gap:9px;"><a href="https://hanarfid.com/" target="_blank" rel="noopener noreferrer" class="hana-link" style="font-size:13.5px;font-weight:600;">Visit Hana Technologies Inc — RFID <span style="font-size:11px;">↗</span></a><a href="https://hana-micro.com/" target="_blank" rel="noopener noreferrer" class="hana-link" style="font-size:13.5px;font-weight:600;">Visit Hana Technologies Inc — EMS <span style="font-size:11px;">↗</span></a></div>
     </div>
@@ -197,21 +190,21 @@
     </div>
     <div class="lc-prod-scroll" data-scroller style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;">
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="~/images/mk-rfid-card-inlays.webp" alt="RFID inlays and straps" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/mk-rfid-card-inlays.webp" alt="RFID inlays and straps" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">RFID</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">RFID inlays &amp; straps</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="~/images/photos/mk-rfid-card-tire-tags.webp" alt="RFID tire tag" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/photos/mk-rfid-card-tire-tags.webp" alt="RFID tire tag" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Automotive</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">RFID tire tags</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="~/images/plate-camera-modules.webp" alt="Camera module" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/plate-camera-modules.webp" alt="Camera module" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Optical &amp; Sensors</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Camera modules</div>
@@ -225,7 +218,7 @@
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="~/images/photos/mk-consumer-electronics-card-wireless-charging.webp" alt="Wireless charging module" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/photos/mk-consumer-electronics-card-wireless-charging.webp" alt="Wireless charging module" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Consumer electronics</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Wireless chargers</div>
@@ -280,4 +273,8 @@
 
 @section Scripts {
     <script src="~/js/locations.js"></script>
+}
+
+@section Head {
+    <link rel="stylesheet" href="~/css/locations-mobile.css" />
 }

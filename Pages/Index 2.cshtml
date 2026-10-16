@@ -1,0 +1,839 @@
+@* Index.cshtml — Homepage
+   Composes all homepage partial views.
+   Code-behind: Index.cshtml.cs
+
+   Partial views used:
+     _Header.cshtml
+     _Homepage_Hero.cshtml
+     _Homepage_WhySetsApart.cshtml
+     _Homepage_Markets.cshtml
+     _Homepage_Capabilities.cshtml
+     _Homepage_Locations.cshtml
+     _Homepage_Cta.cshtml
+     _Footer.cshtml
+
+   JS loaded at bottom:
+     /js/circuit-hero.js         — canvas animation (auto-inits via [data-circuit-hero])
+     /js/mega-menu.js            — header mega-menu (auto-inits on DOMContentLoaded)
+     /js/capability-carousel.js  — capability card carousel (auto-inits on DOMContentLoaded)
+     /js/reveal.js               — scroll-triggered section reveals ([data-reveal-root] / [data-stagger])
+
+   External:
+     Lucide UMD — loaded in _Layout.cshtml, called via lucide.createIcons() below
+*@
+
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Electronics Manufacturing Services (EMS) & OSAT";
+    ViewData["AltLang"] = "th";
+    ViewData["AltLangUrl"] = "/th";
+}
+
+@* ── Organization JSON-LD (§7.3 schema rules) ─────────────── *@
+@section Head {
+<link rel="stylesheet" href="~/css/homepage-mobile.css" />
+<link rel="alternate" hreflang="en" href="https://www.hanagroup.com/" />
+<link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th" />
+<link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/" />
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "Organization",
+  "name": "Hana Microelectronics Public Company Limited",
+  "url": "https://www.hanagroup.com",
+  "logo": "https://www.hanagroup.com/images/hana-logo-full.svg",
+  "description": "The leading independent EMS and OSAT company in Southeast Asia, specializing in microelectronics.",
+  "foundingDate": "1978",
+  "contactPoint": {
+    "@@type": "ContactPoint",
+    "contactType": "sales",
+    "url": "https://www.hanagroup.com/contact"
+  },
+  "location": [
+    { "@@type": "Place", "name": "Bangkok, Thailand (HQ)" },
+    { "@@type": "Place", "name": "Lamphun, Thailand" },
+    { "@@type": "Place", "name": "Ayutthaya, Thailand" },
+    { "@@type": "Place", "name": "Koh Kong, Cambodia" },
+    { "@@type": "Place", "name": "Jiaxing, China" },
+    { "@@type": "Place", "name": "Ohio, USA" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/hana-microelectronics/"
+  ]
+}
+</script>
+}
+
+@* ── Circuit hero ───────────────────────────────────────── *@
+<style>
+/* Homepage hero — sequential line wipe entrance */
+.hha-line{display:block;position:relative}
+.hha-in{display:block;clip-path:inset(0 100% 0 0);animation:hhaWipe 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-edge{position:absolute;top:6%;bottom:12%;left:0;width:2px;background:#1283DD;opacity:0;box-shadow:0 0 18px rgba(18,131,221,0.9);animation:hhaEdge 900ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d)}
+.hha-badge,.hha-sub,.hha-acts{opacity:0;animation:hhaFade 700ms cubic-bezier(.16,.84,.3,1) forwards}
+.hha-badge{animation-delay:0ms}.hha-sub{animation-delay:1720ms}.hha-acts{animation-delay:1860ms}
+@@keyframes hhaWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@@keyframes hhaEdge{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@@keyframes hhaFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@@media (prefers-reduced-motion:reduce){.hha-in,.hha-edge,.hha-badge,.hha-sub,.hha-acts{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}.hha-edge{display:none}}
+/* Scroll-triggered reveals */
+.hrv{opacity:0;transform:translateY(14px);transition:opacity 640ms cubic-bezier(.16,.84,.3,1),transform 640ms cubic-bezier(.16,.84,.3,1);transition-delay:var(--d,0ms)}
+.rv-on .hrv{opacity:1;transform:none}
+.hrw-line{display:block;position:relative}
+.hrw-in{display:block;clip-path:inset(0 100% 0 0)}
+.rv-on .hrw-in{animation:hhaWipe 820ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d,0ms)}
+.hrw-edge{position:absolute;top:10%;bottom:16%;left:0;width:2px;background:#1283DD;opacity:0;box-shadow:0 0 18px rgba(18,131,221,0.9)}
+.rv-on .hrw-edge{animation:hhaEdge 820ms cubic-bezier(.22,.7,.2,1) forwards;animation-delay:var(--d,0ms)}
+@@media (prefers-reduced-motion:reduce){.hrv,.hrw-in{opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important;transition:none!important}.hrw-edge{display:none}}
+</style>
+<section class="hana-hero-section"
+         style="position:relative; background:#030a17; overflow:hidden; cursor:crosshair; height:550px;"
+         aria-label="Homepage hero">
+
+    
+    <canvas data-circuit-hero
+            style="position:absolute; top:0; left:0; display:block; width:100%; height:100%;"></canvas>
+
+    
+    
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none; z-index:2;
+                background:linear-gradient(100deg, rgba(3,10,23,0.55) 0%, rgba(3,10,23,0.28) 44%, transparent 70%);"></div>
+    
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none; z-index:3;
+                background:radial-gradient(ellipse 95% 85% at 50% 50%, transparent 28%, rgba(3,10,23,0.70) 100%);"></div>
+    
+    <div aria-hidden="true"
+         style="position:absolute; bottom:0; left:0; right:0; height:80px; z-index:10; pointer-events:none;
+                background:linear-gradient(to bottom, transparent, rgba(3,10,23,0.60));"></div>
+
+    
+    <div style="position:absolute; z-index:15; top:50%; left:52px;
+                transform:translateY(-50%); max-width:520px; pointer-events:none;">
+
+        
+        <div class="hha-badge" style="display:inline-flex; align-items:center; gap:9px;
+                    padding:6px 14px 6px 10px;
+                    border:1px solid rgba(18,131,221,0.28); border-radius:999px;
+                    background:rgba(18,131,221,0.07);
+                    font-family:var(--font-mono); font-size:11px; font-weight:500;
+                    color:rgba(78,155,218,0.85); letter-spacing:0.04em;
+                    margin-bottom:28px;">
+            <span class="hana-blink"
+                  style="width:6px; height:6px; border-radius:50%; background:#1283DD; flex-shrink:0;
+                         display:inline-block;"></span>
+            EMS &middot; OSAT &middot; Microelectronics
+        </div>
+
+        
+        <h1 style="font-family:var(--font-display); font-size:58px; font-weight:700;
+                   letter-spacing:-0.032em; line-height:1.04; color:#ffffff;
+                   margin:0 0 20px; text-wrap:pretty;">
+            <span class="hha-line" style="--d:160ms"><span class="hha-in">Electronics Manufacturing</span><span class="hha-edge" aria-hidden="true"></span></span><span class="hha-line" style="--d:940ms"><span class="hha-in">That Goes Further.</span><span class="hha-edge" aria-hidden="true"></span></span>
+        </h1>
+
+        
+        <p class="hha-sub" style="font-family:var(--font-text); font-size:17px; font-weight:400;
+                  line-height:1.6; color:rgba(229,238,245,0.55);
+                  margin:0 0 36px; max-width:470px; text-wrap:pretty;">
+            A world-class independent electronics manufacturing services (EMS) and
+            outsourced semiconductor assembly and test (OSAT) company &mdash; rooted in
+            Southeast Asia, operating worldwide.
+        </p>
+
+        
+        <div class="hha-acts" style="display:flex; gap:12px; pointer-events:auto;">
+            <a href="/contact" class="hana-btn hana-btn-primary">
+                Let's talk
+                <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+            </a>
+            <a href="/capabilities"
+               class="hana-btn"
+               style="background:transparent; color:rgba(255,255,255,0.72);
+                      border:1px solid rgba(255,255,255,0.22); border-radius:4px;">
+                Our capabilities
+            </a>
+        </div>
+
+    </div>
+
+    
+    <aside style="position:absolute; z-index:15; top:50%; right:40px;
+                  transform:translateY(-50%); width:660px; pointer-events:auto;"
+           aria-label="Company overview">
+
+        <div style="position:relative; width:100%; aspect-ratio:16/9;
+                    background:#030a17;
+                    border:1px solid rgba(18,131,221,0.22);
+                    border-radius:10px; overflow:hidden;">
+
+            <video src="videos/hp-hero-loop.mp4"
+                   poster="/images/photos/hp-hero-poster.webp"
+                   autoplay muted loop playsinline preload="metadata"
+                   aria-label="Hana manufacturing facility"
+                   style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video>
+
+        </div>
+
+    </aside>
+
+</section>
+
+
+    
+    
+
+<section class="hana-why-section"
+         style="background:var(--surface); color:var(--ink); position:relative; overflow:hidden;
+                border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none; z-index:0;
+                background-image:radial-gradient(rgba(18,131,221,0.16) 1px, transparent 1.4px);
+                background-size:22px 22px;
+                -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+                mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);"></div>
+
+    <div aria-hidden="true"
+         style="position:absolute; inset:0; pointer-events:none; z-index:0;
+                background-image:radial-gradient(rgba(18,131,221,0.22) 1.4px, transparent 2px);
+                background-size:132px 132px; background-position:11px 11px;
+                -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+                mask-image:linear-gradient(to bottom, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);"></div>
+
+    <div aria-hidden="true"
+         style="position:absolute; top:0; bottom:0; left:32px; width:1px; z-index:0; pointer-events:none;
+                background:linear-gradient(to bottom, transparent 0, rgba(18,131,221,0.28) 14%, rgba(18,131,221,0.28) 86%, transparent 100%);"></div>
+
+    <style>
+      @@media (max-width: 900px) {
+        .hana-why-grid { grid-template-columns: minmax(0,1fr) !important; }
+      }
+    </style>
+
+    <div class="hana-wrap" id="rv-why" data-reveal-root data-reveal-hold="2500" style="padding-top:72px; padding-bottom:72px; position:relative; z-index:2;">
+
+        <div class="hana-spec-label hrv" style="--d:0ms; color:var(--hana-blue); margin-bottom:20px;">What sets us apart</div>
+
+        <div class="hana-why-grid"
+             style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.45fr); gap:48px; align-items:stretch;">
+
+            <div style="display:flex; flex-direction:column;">
+                <h2 style="font-family:var(--font-display); font-weight:700; font-size:44px;
+                            line-height:1.12; letter-spacing:-0.022em; color:var(--ink);
+                            max-width:460px; margin:0 0 22px; text-wrap:balance;">
+<span class="hrw-line" style="--d:120ms"><span class="hrw-in">From wafer to finished product.</span></span><span class="hrw-line" style="--d:720ms"><span class="hrw-in">EMS &amp; OSAT under one group.</span></span><span class="hrw-line" style="--d:1320ms"><span class="hrw-in">One Partner.</span></span>
+                </h2>
+                <p class="hrv" style="--d:1560ms; font-family:var(--font-text); font-size:16px; font-weight:400;
+                           line-height:1.65; color:var(--ink-2); max-width:520px; margin:0; text-wrap:pretty;">
+                    Programs that span PCB assembly and semiconductor packaging within one group —
+                    single-source accountability, from die to box build. We hold that work to the
+                    most stringent quality standards — ISO&nbsp;9001, IATF&nbsp;16949,
+                    ISO&nbsp;13485, ISO&nbsp;14001, ISO&nbsp;45001, and ISO&nbsp;27001 — earning
+                    recognition from some of the world's most demanding customers.
+                </p>
+            </div>
+
+            <div class="hana-why-photo hrv"
+                 style="--d:260ms; position:relative; min-height:440px; overflow:hidden; border-radius:8px;
+                        border:1px solid var(--line); box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+                <img src="/images/photos/hp-what-sets-apart.webp"
+                     alt="SMT inspection console on the Hana production floor"
+                     style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:38% center; display:block;" />
+                <div style="position:absolute; left:12px; bottom:10px; z-index:1;">
+                    <span style="font-family:var(--font-mono); font-size:10px; color:rgba(255,255,255,0.85); letter-spacing:0.04em; text-shadow:0 1px 4px rgba(0,0,0,0.55);">
+                        SMT LINE &middot; INSPECTION CONSOLE
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hrv" style="--d:1700ms; margin-top:36px;">
+            <a href="/about" class="hana-btn hana-btn-primary">
+                Why Hana
+                <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+    
+    <div style="position:relative; overflow:hidden; background:var(--bg);">
+
+        
+        <div aria-hidden="true"
+             style="position:absolute; inset:0; pointer-events:none; z-index:0;
+                    background-image:
+                      radial-gradient(rgba(18,131,221,0.10) 1px, transparent 1.4px),
+                      radial-gradient(rgba(18,131,221,0.18) 1.4px, transparent 2px);
+                    background-size:22px 22px, 132px 132px;
+                    background-position:0 0, 11px 11px;
+                    -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
+                    mask-image:linear-gradient(to bottom, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);"></div>
+
+        
+        <div aria-hidden="true"
+             style="position:absolute; top:0; bottom:0; left:32px; width:1px; z-index:0; pointer-events:none;
+                    background:linear-gradient(to bottom, transparent 0, rgba(18,131,221,0.28) 14%, rgba(18,131,221,0.28) 86%, transparent 100%);"></div>
+
+        
+
+<section class="hana-markets-section"
+         style="position:relative; z-index:1; padding:64px 0 48px;">
+    <div class="hana-wrap" data-reveal-root>
+
+        
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; gap:32px;">
+            <div>
+                <h2 style="font-family:var(--font-display); font-size:36px; font-weight:700;
+                            letter-spacing:-0.025em; line-height:1.1; color:var(--ink); margin:0;">
+<span class="hrw-line" style="--d:120ms"><span class="hrw-in">Markets we serve.</span><span class="hrw-edge" aria-hidden="true"></span></span><span class="hrw-line" style="--d:680ms"><span class="hrw-in">Driven by decades of experience.</span><span class="hrw-edge" aria-hidden="true"></span></span>
+                </h2>
+            </div>
+        </div>
+
+        
+        
+        <div data-stagger="700,45" style="display:grid;
+                    grid-template-columns:repeat(5, 1fr);
+                    grid-template-rows:repeat(3, 200px);
+                    grid-template-areas:
+                      'hero hero ind  tel  rfid'
+                      'hero hero ind  opt  cons'
+                      'med  acc  pwr  data data';
+                    gap:10px;">
+
+            
+            <a href="/markets/automotive"
+               class="hana-market-tile"
+               data-chamfer="br"
+               style="grid-area:hero;"
+               aria-label="Automotive">
+                <img src="/images/photos/homepage-markets-automotive.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text hana-tile-text--hero">
+                    <p class="hana-tile-name hana-tile-name--hero">Automotive</p>
+                    <p class="hana-tile-body hana-tile-body--hero">Power modules, ADAS, sensors, EV charging, LED lighting.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:16px; height:16px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/industrial-iot"
+               class="hana-market-tile"
+               data-chamfer="tr"
+               style="grid-area:ind;"
+               aria-label="Industrial and IoT">
+                <img src="/images/photos/mk-industrial-iot-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Industrial &amp; IoT</p>
+                    <p class="hana-tile-body">Environmental sensors, controllers, meters</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/telecom"
+               class="hana-market-tile"
+               style="grid-area:tel;"
+               aria-label="Telecommunications">
+                <img src="/images/photos/mk-telecommunications-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Telecommunications</p>
+                    <p class="hana-tile-body">Network infrastructure and gateways, console servers</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/rfid"
+               class="hana-market-tile"
+               data-chamfer="tr"
+               style="grid-area:rfid;"
+               aria-label="RFID">
+                <img src="/images/photos/mk-rfid-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">RFID</p>
+                    <p class="hana-tile-body">Inlays, tire tags, retail smart labels.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/optical-sensors"
+               class="hana-market-tile"
+               style="grid-area:opt;"
+               aria-label="Optical and sensors">
+                <img src="/images/photos/mk-optical-sensors-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Optical &amp; sensors</p>
+                    <p class="hana-tile-body">Camera modules and image &amp; light sensors.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/consumer"
+               class="hana-market-tile"
+               data-chamfer="tr"
+               style="grid-area:cons;"
+               aria-label="Consumer electronics">
+                <img src="/images/photos/mk-consumer-electronics-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Consumer electronics</p>
+                    <p class="hana-tile-body">Smart phone sensors, IOT products &amp; peripherals</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/medical"
+               class="hana-market-tile"
+               data-chamfer="bl"
+               style="grid-area:med;"
+               aria-label="Medical">
+                <img src="/images/photos/mk-medical-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Medical</p>
+                    <p class="hana-tile-body">Hearing aids, patient monitoring and diagnostics.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/access-control"
+               class="hana-market-tile"
+               style="grid-area:acc;"
+               aria-label="Access control">
+                <img src="/images/photos/mk-access-control-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Access control</p>
+                    <p class="hana-tile-body">Smart cards, readers, security tokens.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/power-management"
+               class="hana-market-tile"
+               style="grid-area:pwr;"
+               aria-label="Power management">
+                <img src="/images/photos/mk-power-management-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text">
+                    <p class="hana-tile-name">Power management</p>
+                    <p class="hana-tile-body">Power modules, packages, discretes and conversion.</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:14px; height:14px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+            
+            <a href="/markets/data-centers"
+               class="hana-market-tile"
+               data-chamfer="br"
+               style="grid-area:data;"
+               aria-label="Data Centers">
+                <img src="/images/photos/mk-data-centers-hero.webp"
+                     alt="" class="hana-tile-img" />
+                <div class="hana-tile-overlay"></div>
+                <div class="hana-tile-text hana-tile-text--hero">
+                    <p class="hana-tile-name hana-tile-name--hero">Data Centers</p>
+                    <p class="hana-tile-body hana-tile-body--hero">AI data centres cooling infrastructure</p>
+                    <span class="hana-arrow-reveal" aria-hidden="true">
+                        <i data-lucide="arrow-right" style="width:16px; height:16px; color:#7EC8FF;"></i>
+                    </span>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+        
+
+<section class="hana-capabilities-section"
+         style="position:relative; z-index:1; padding:30px 0 96px;">
+    <div class="hana-wrap" data-carousel data-reveal-root>
+
+        
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:28px; flex-wrap:wrap;">
+            <div>
+                <h2 class="hana-h2" style="margin-bottom:8px;">Browse our capabilities</h2>
+                <p class="hana-body" style="color:var(--ink-2); margin:0; max-width:776px;">
+                    Hana's range of diversified capabilities has been built to provide our customer's with end to end solutions in a vertically integrated operating structure.
+                </p>
+                <div class="cap-find" id="cap-find" data-rest="Or search by category below.">
+                    <div class="cap-find-lb" style="text-decoration-line:none;font-weight:700;">QUICK SEARCH FOR OUR CAPABILITIES &amp; PACKAGING SIZES</div>
+                    <div class="cap-find-box" style="max-width:442px;height:42px;">
+                        <i data-lucide="search" style="width:19px;height:19px;flex:none"></i>
+                        <input id="cap-find-q" type="search" spellcheck="false" placeholder="e.g. QFN &middot; 3x3mm &middot; Flip Chip &middot; SMT, GAN" aria-label="Search our capabilities"/>
+                    </div>
+                    <div class="cap-find-meta" id="cap-find-meta">Or search by category below.</div>
+                    <div class="cap-find-out" id="cap-find-out" hidden></div>
+                </div>
+            </div>
+            <div class="hana-carousel__controls" style="display:flex; gap:8px; flex-shrink:0;">
+                <button class="hana-carousel-btn" data-carousel-prev
+                        aria-label="Scroll capabilities left">
+                    <svg width="14" height="14" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M19 12H5" /><path d="M12 5l-7 7 7 7" />
+                    </svg>
+                </button>
+                <button class="hana-carousel-btn is-active" data-carousel-next
+                        aria-label="Scroll capabilities right">
+                    <svg width="14" height="14" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14" /><path d="M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        
+        <div class="hana-carousel">
+
+            
+            <div class="hana-carousel__track" data-carousel-track data-stagger="80,70"
+                 style="display:grid;
+                        grid-template-columns:repeat(6, calc(20% - 9.6px));
+                        gap:12px;
+                        overflow-x:auto;
+                        scrollbar-width:none;
+                        -ms-overflow-style:none;">
+
+                
+                                <a href="/capabilities/pcba-box-build" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="/images/icons/svc-pcba-box-build.webp" alt="PCBA / Box build" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">PCBA / Box Build</h3>
+                        <p class="hana-cap-card__desc">
+                            Populated boards through to fully assembled, tested products — one line from prototype to volume.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="/capabilities/osat" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="/images/icons/svc-osat.webp" alt="OSAT" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">OSAT</h3>
+                        <p class="hana-cap-card__desc">
+                            Advanced semiconductor assembly and test at the die level, from bare wafer to packaged, qualified parts.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="/capabilities/microelectronic-assembly" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="/images/icons/svc-microelectronic-assembly.webp" alt="Microelectronic assembly" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">Microelectronic Assembly</h3>
+                        <p class="hana-cap-card__desc">
+                            Precision joining of chips, sensors, MEMS and micro-assembly with micron level tolerance
+                        </p>
+                    </div>
+                </a>
+
+                <a href="/capabilities/automation" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="/images/icons/svc-automation.webp" alt="Automation" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">Automation</h3>
+                        <p class="hana-cap-card__desc">
+                            Full Inspection, handling, and traceability built into the line for consistent yield at scale.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="/capabilities/dfx-jdm" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="/images/icons/svc-dfx-npi-collaboration.webp" alt="DFx and NPI collaboration" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">DFx &amp; NPI Collaborations</h3>
+                        <p class="hana-cap-card__desc">
+                            Work along us from design and DFM through first builds to production and on-going improvement.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="/capabilities/rfid-smart-tags" class="hana-cap-card">
+                    <div class="hana-cap-card__top">
+                        <span class="hana-arrow-reveal" aria-hidden="true">
+                            <i data-lucide="arrow-right"
+                               style="width:13px; height:13px; color:var(--hana-blue);"></i>
+                        </span>
+                    </div>
+                    <div class="hana-cap-card__icon-area">
+                        <img class="hana-cap-icon" src="/images/icons/svc-rfid-inlay.webp" alt="RFID inlay" width="88" height="88" />
+                    </div>
+                    <div class="hana-cap-card__body">
+                        <h3 class="hana-cap-card__title">RFID Inlay</h3>
+                        <p class="hana-cap-card__desc">
+                            High-volume smart tags and inlays for tire ID, logistics, and retail.
+                        </p>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<style>
+    .hana-carousel__track::-webkit-scrollbar { display: none; }
+</style>
+
+
+    </div>
+
+    
+    
+
+<section class="hana-locations-section"
+         style="background:#ffffff; padding:96px 0;">
+    <div class="hana-wrap" data-reveal-root
+         style="display:grid;
+                grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);
+                gap:64px; align-items:flex-start;">
+
+        
+        <div>
+            
+            <h2 class="hana-h2" style="margin-bottom:16px;"><span class="hrw-line" style="--d:120ms"><span class="hrw-in">Our global footprint.</span><span class="hrw-edge" aria-hidden="true"></span></span></h2>
+
+            <div class="hrv" style="--d:300ms; border-radius:8px; overflow:hidden; aspect-ratio:16/9; margin-bottom:32px;">
+                <img src="/images/photos/hp-hq-building.webp"
+                     alt="Hana Microelectronics headquarters, Bangkok"
+                     style="width:100%; height:100%; object-fit:cover; display:block;" />
+            </div>
+
+            <p class="hana-body hrv" style="--d:440ms; color:var(--ink-2); margin-bottom:24px;">
+                From our headquarters in Bangkok, Hana's manufacturing reach spans across
+                Thailand, Cambodia, China and the USA giving your supply chain real
+                geographic resilience and diversification.
+            </p>
+
+            <a href="/locations" class="hana-link hrv"
+               style="--d:560ms; font-size:12px; font-weight:600;
+                      text-transform:uppercase; letter-spacing:0.1em;">
+                View all locations
+                <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+            </a>
+        </div>
+
+        
+        <div class="hana-loc-grid" data-stagger="240,70">
+
+            
+            <div class="hana-loc-card hana-loc-card--hq">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Thailand</span>
+                    <span class="hana-loc-card__hq-badge">HQ</span>
+                </div>
+                <p class="hana-loc-card__city">Bangkok</p>
+                <p class="hana-loc-card__role">Headquarters</p>
+            </div>
+
+            
+            <a href="/locations/lamphun" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Thailand</span>
+                </div>
+                <p class="hana-loc-card__city">Lamphun</p>
+                <p class="hana-loc-card__role">PCBA &middot; EMS</p>
+                <span class="hana-loc-card__cta" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </span>
+            </a>
+
+            
+            <a href="/locations/ayutthaya" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Thailand</span>
+                </div>
+                <p class="hana-loc-card__city">Ayutthaya</p>
+                <p class="hana-loc-card__role">OSAT &middot; PCBA &middot; EMS</p>
+                <span class="hana-loc-card__cta" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </span>
+            </a>
+
+            
+            <a href="/locations/koh-kong" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">Cambodia</span>
+                </div>
+                <p class="hana-loc-card__city">Koh Kong</p>
+                <p class="hana-loc-card__role">PCBA &middot; Box Build &middot; EMS</p>
+                <span class="hana-loc-card__cta" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </span>
+            </a>
+
+            
+            <a href="/locations/jiaxing" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">China</span>
+                </div>
+                <p class="hana-loc-card__city">Jiaxing</p>
+                <p class="hana-loc-card__role">EMS &middot; OSAT &middot; RFID</p>
+                <span class="hana-loc-card__cta" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </span>
+            </a>
+
+            
+            <a href="/locations/ohio" class="hana-loc-card">
+                <div class="hana-loc-card__country">
+                    <i data-lucide="map-pin"
+                       style="width:14px; height:14px; color:var(--hana-blue); flex-shrink:0;"></i>
+                    <span class="hana-spec-label">USA</span>
+                </div>
+                <p class="hana-loc-card__city">Ohio</p>
+                <p class="hana-loc-card__role">RFID &amp; Optical</p>
+                <span class="hana-loc-card__cta" aria-hidden="true">
+                    Explore
+                    <i data-lucide="arrow-right" style="width:11px; height:11px;"></i>
+                </span>
+            </a>
+
+            
+            </div>
+
+    </div>
+</section>
+
+
+    
+
+
+<section class="hana-cta-section"
+         data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none"
+         style="background:var(--hana-blue-deep); border-top:1px solid var(--line);
+                position:relative; overflow:hidden; padding:96px 0;">
+
+    <div class="hana-wrap" style="position:relative; z-index:1;">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:32px;">
+
+            <h2 style="font-family:var(--font-display); font-size:30px; font-weight:600;
+                        letter-spacing:-0.02em; line-height:1.2; color:#ffffff;
+                        max-width:560px; margin:0; text-wrap:pretty;">
+                Tell us about your program. We'll route it to the right facility.
+            </h2>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap; flex-shrink:0;">
+                <a href="/contact" class="hana-btn hana-btn-primary">
+                    Talk to engineering
+                    <i data-lucide="arrow-right" style="width:14px; height:14px;"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    <script>(function(){var st=document.querySelectorAll('[data-stagger]');Array.prototype.forEach.call(st,function(c){var p=(c.getAttribute('data-stagger')||'0,60').split(','),b=parseInt(p[0],10)||0,s=parseInt(p[1],10)||60;Array.prototype.forEach.call(c.children,function(el,i){el.classList.add('hrv');el.style.setProperty('--d',(b+i*s)+'ms')})});var rs=document.querySelectorAll('[data-reveal-root]');if(!rs.length)return;if(!('IntersectionObserver'in window)){Array.prototype.forEach.call(rs,function(r){r.classList.add('rv-on')});return;}function fire(t,tries){tries=tries||0;var hold=parseInt(t.getAttribute('data-reveal-hold'),10)||0,sel=t.getAttribute('data-reveal-after'),dep=sel&&document.querySelector(sel);if(dep&&dep.getBoundingClientRect().bottom<0){dep.classList.add('rv-on');return t.classList.add('rv-on')}if(dep&&!dep.classList.contains('rv-on')){if(tries<9){return setTimeout(function(){fire(t,tries+1)},140)}return t.classList.add('rv-on')}var wait=dep?(parseInt(t.getAttribute('data-reveal-gap'),10)||0):((hold&&window.scrollY<60)?Math.max(0,hold-(performance.now()||0)):0);wait>0?setTimeout(function(){t.classList.add('rv-on')},wait):t.classList.add('rv-on')}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;io.unobserve(t);fire(t)}})},{threshold:0,rootMargin:'0px 0px -12% 0px'});Array.prototype.forEach.call(rs,function(r){if(r.getBoundingClientRect().bottom<0){r.classList.add('rv-on')}else{io.observe(r)}});})();</script>
+    <script src="~/js/circuit-hero.js"></script>
+    <script src="~/js/capability-carousel.js"></script>
+    <script src="~/js/reveal.js"></script>
+}

@@ -86,12 +86,6 @@ A screenshot or the prototype filename it should match is ideal but not required
     below `innerWidth < 980`, piling all six capability cards on one spot; below 980px the
     wheel retires and the six cards stack as a full-width list.
   - About pages needed no section file — clean once the chrome reflows.
-- [ ] **Images the Razor export references but does not ship (source-side, since 14 Sep).**
-  Still missing in the 14 Sep (2nd) export — `WaferProcessing` and `WaferProbeFinalTest` reference
-  `images/cap-osat-wafer-probe-final-test-aoi-review.webp` and
-  `images/cap-osat-wafer-processing-{wafersaw,wire-bond}.webp`. The repo copies (taken from the
-  static-preview repo) are now in the **sync exclusion list** so `rsync --delete` keeps them.
-  (`photos/mk-consumer-electronics-card-smt-sensors.webp` now ships at source — no longer excluded.)
 - [ ] **Die Attach & Wire Bond page is back — conflicts with the 6 Aug merge decision (Rupert to
   decide).** The 14 Sep (2nd) export adds `Capabilities/DieAttachWireBond.cshtml`
   (`/capabilities/osat/die-attach-wire-bond`) because the capability sidebar and 8 other pages
@@ -105,6 +99,15 @@ A screenshot or the prototype filename it should match is ideal but not required
   `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
   load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
   domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
+- [ ] **41 titles contain "Hana" twice in a softer form (Rupert to decide).** Separate from the
+  doubled-site-name bug fixed on 15 Oct. Many Markets, Capabilities and IR pages set a title that
+  already ends in "| Hana" or "— Hana", and `_Layout.cshtml` then appends "— Hana
+  Microelectronics", so the tab reads e.g. "Automotive Power Module Assembly | Hana — Hana
+  Microelectronics". It is not a defect in the way the full doubling was, and the short "| Hana"
+  suffix may be a deliberate SEO choice, so it was **left alone**. Decide whether the page-level
+  "| Hana" / "— Hana" comes off; if it should, fix at source for all of them.
+  (One case is legitimate and should stay: "Why Hana — … — Hana Microelectronics", where "Why
+  Hana" is the page name.)
 - [ ] **Metadata defects found in the 15 Oct review — all need fixing at source.** Two were
   patched repo-side (and so join the re-apply list); the rest are content or convention decisions.
   - **36 pages share one meta description** — the generic "Hana is the leading independent EMS and
@@ -157,16 +160,42 @@ A screenshot or the prototype filename it should match is ideal but not required
   text renders correctly, so this is a performance/console-noise issue, not a visual bug.
   **Still present in the 14 Sep (2nd) export.** **Fix at source** — either ship the `.woff2` pair or drop the `woff2` entries from the two
   `@font-face` rules. Deliberately NOT patched repo-side (the next export would overwrite it).
-- [ ] **Locations copy fixes are a repo-side patch until Claude Design has them (9 Oct 2026).**
-  `Pages/Locations/Jiaxing.cshtml`: "Over two decade of" → "Over two decades of" (hero and
-  meta description). `Pages/Locations/KohKong.cshtml`: Reference city "Bangkok · ~400 km SE"
-  → "~400 km southeast of Bangkok" (the plant is southeast of Bangkok, not the reverse). Source
-  fix note: `5. Website Redesign/Claude Design source fix - Jiaxing typo & Koh Kong distances
-  (9 Oct).txt`. Re-check after the next sync and re-apply if the export reverts it.
-
 ---
 
 ## Fixed
+
+### 16 Oct 2026 — export sync ("16-10 razor pages - Hana Site.zip")
+
+- **New market page** `Pages/Markets/IndustrialIotPowerModules.cshtml`
+  (`/markets/industrial-iot/power-modules`), plus 34 new images and a large asset refresh across
+  Markets, Capabilities and Locations. Route count 126 → 127.
+- **⚠️ The export shipped that new page malformed and HEAD would not compile.** Its
+  `@section Head {` opened a `<style>` at line 9, wrote one CSS rule, then dropped straight into
+  the page body with no `</style>` and no closing `}` (RZ1006 + RZ2002). Repaired by inserting
+  `</style>` and `}`, matching its sibling market pages. **Fix at source** — a page emitted this
+  way is a generator fault, not a one-off.
+- **Two standing items are now fixed at source and have been closed:** the Jiaxing "two decade"
+  typo and the Koh Kong distance wording (the source now reads "~400 km SE of Bangkok", which is
+  correct), and the three OSAT wafer images the export used to reference without shipping — they
+  now ship, so they came off the sync exclusion list.
+- **Two orphans deleted** by `rsync --delete`: `images/stories/thanawat-phromchai.webp` and
+  `images/photos/loc-lamphun-compact-sensor-assembly.jpg` (the export moved that one to `.webp`
+  and repointed Lamphun at it). Both verified unreferenced first.
+- **C2PA stripped again** — 181 files / 1019 KB. The export re-adds the manifests every time, so
+  this stays a per-sync step.
+- **Re-applied:** 1 `@`-escaping fix (down from 10 — the generator has fixed most at source),
+  23 mobile-retrofit link tags, the Thai Sustainability `Hana` edit, the doubled-site-name title
+  fix (22 pages this time) and `alt=""` on the decorative circuit image (19 pages).
+- **Two retrofits had to be generalised**, having been written too narrowly on 15 Oct: the title
+  fix only matched an em-dash separator and the export now also uses `|`; the `alt` fix only
+  matched `~/images/…` and 19 pages now use `/images/…`. Both now match either form.
+- **Verification passes:** 127 routes all 200; 306 rendered assets all 200; 117 of 118
+  non-document internal links 200 (the outstanding one is the MLCC link already logged).
+- **Process fix:** the dry-run deletion check used `rsync --delete --dry-run | grep '^deleting'`
+  **without `-v`**, so rsync printed nothing and the check always reported zero deletions. It has
+  reported "zero deletions" vacuously since 21 Sep. Git confirms no sync actually deleted
+  anything in that period, so nothing was lost. **Always pass `-v`.**
+
 
 ### 14 Oct 2026 — export sync ("14-10-razor-Hana Site.zip")
 

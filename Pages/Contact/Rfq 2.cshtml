@@ -1,0 +1,41 @@
+@page "/contact/rfq"
+@{
+    ViewData["Title"] = "Request a quote — Plant RFQ";
+    ViewData["Description"] = "Send a project request and our engineering team will reply within two business days.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/contact-forms.css" />
+    <style>@@media (min-width:901px){.cf-grid.wide{grid-template-columns:minmax(0,1fr) minmax(0,var(--form-col,520px))}}.cf-grid.wide>.cf-intro{min-width:0}#plant-rfq{margin-top:48px}.rfq-form-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px}.rfq-form-col{min-width:0}@@media (max-width:900px){.rfq-form-cols{grid-template-columns:1fr}}</style>
+}
+
+@* Request a quote — Plant RFQ. Static form markup; chip multiselect via <details>+:has,
+   helper JS in ~/js/contact-forms.js (demo submit — wire OnPost for the
+   backend). Hero background via ~/js/hana-backgrounds.js. *@
+
+<div class="cf-page" style="--form-col:520px;">
+  <section class="cf-hero" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner">
+      <h1 style="color:#fff;">Start a project with Hana.</h1>
+      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">Email us and our team will review your request and be in touch within two business days route it to the right facility and team.</p>
+      <div class="cf-hero-meta"><span style="color:rgba(255,255,255,0.82);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7EC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Two-business-day review</span></div>
+    </div>
+  </section>
+  <section class="cf-section">
+    <div class="cf-wrap" style="position:relative;z-index:1;">
+      <div class="cf-grid wide">
+        <div class="cf-intro" style="position:relative;">
+          <h2>Tell us what you&rsquo;re building or start with a idea.</h2>
+          <p class="lead">Your request goes straight to our technical sales team. We assess fit, identify the best Hana fit for you in terms of facilities and team and reply with next steps — typically within two business days.</p>
+                    <div class="cf-callout"><div class="cf-callout-label">Helpful to attach</div><ul><li>Bill of Materials (BOM)</li><li>Annual volumes</li><li>PCB design files or Gerbers</li><li>Drawings or mechanical specs</li><li>Existing test specifications</li></ul></div>
+          <a href="/contact" class="cf-crosslink" style="width:377px;max-width:100%;height:41px;position:relative;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg> General question? Use the contact form</a>
+        </div>
+        <div style="display:grid;gap:32px;align-content:start;min-width:0;"><div class="rfq-email-offices"><div class="cf-offices-label">EMAIL ONE OF OUR GLOBAL SALES OFFICES</div><div class="cf-accordion"><details class="cf-acc-item" open><summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Philippines</div><div class="cf-office-person">Henry Lubrico<div class="cf-office-contacts"><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div><div class="cf-office"><div class="cf-office-name">Singapore</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Europe <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">France</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Germany</div><div class="cf-office-person">Frank Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+4930756576690">+49 30 75657690</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details></div></div>
+</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/contact-forms.js"></script>
+}

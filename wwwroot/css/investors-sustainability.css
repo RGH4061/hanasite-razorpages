@@ -657,3 +657,11 @@
     .doctable .c-act a .arrow { display: none; }
     .topnav { display: none; }
   }
+
+
+/* In-section initiatives pair — the two images that sit inside #sustainable-future.
+   Fluid two-up; overrides the standalone band's 3-up grid and its media collapse. */
+.content .initiatives-inner { width: 100%; max-width: 875px; }
+.content .initiatives-grid { grid-template-columns: repeat(2, 1fr); }
+.content .initiative img { width: 100%; height: auto; aspect-ratio: 5 / 3; object-fit: cover; }
+@media (max-width: 640px) { .content .initiatives-grid { grid-template-columns: 1fr; } }

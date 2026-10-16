@@ -117,11 +117,7 @@ const LIFE_PHOTOS = new Set([
   "life-lamphun-student-scholarship-1","life-lamphun-student-scholarship-2","life-lamphun-student-scholarship-3",
   "life-kohkong-annual-company-days-1","life-kohkong-celebrations-1",
   "life-kohkong-community-outreach-1","life-kohkong-technical-training-programme-1",
-  "life-kohkong-health-and-wellbeing-1","life-kohkong-student-scholarship-1"
-]);
-
-// Jiaxing photos are supplied as .jpeg.
-const LIFE_PHOTOS_JPEG = new Set([
+  "life-kohkong-health-and-wellbeing-1","life-kohkong-student-scholarship-1",
   "life-jiaxing-annual-company-days-1","life-jiaxing-annual-company-days-2",
   "life-jiaxing-annual-company-days-3","life-jiaxing-annual-company-days-4",
   "life-jiaxing-celebrations-1","life-jiaxing-celebrations-2","life-jiaxing-celebrations-3",
@@ -137,8 +133,8 @@ function lifeCard(card, loc) {
   let slides = '';
   for (let n = 1; n <= 6; n++) {
     const id = base + n;
-    const ext = LIFE_PHOTOS.has(id) ? '.webp' : (LIFE_PHOTOS_JPEG.has(id) ? '.jpeg' : null);
-    if (!ext) continue;
+    if (!LIFE_PHOTOS.has(id)) continue;
+    const ext = '.webp';
     slides += '<div class="life-img-slide"><img class="life-photo" loading="lazy" ' +
               'src="' + ASSET_BASE + 'images/life/' + id + ext + '" alt="' + card.title + ' at Hana ' + loc + '" /></div>';
   }

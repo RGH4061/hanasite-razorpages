@@ -133,7 +133,7 @@
     var langA = header.querySelector('.hana-util-bar a.hana-lang');
     var langLabel = langA ? (langA.textContent || '').trim() : '';
     foot.innerHTML =
-      '<div class="hana-mnav-slabel">Search capabilities, markets</div>' +
+      '<div class="hana-mnav-slabel">' + (document.documentElement.lang === 'th' ? 'ค้นหาขนาดแพ็กเกจ ความสามารถ และอื่น ๆ…' : 'Search package sizes, capabilities and more..') + '</div>' +
       '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>' +
       '<div class="hana-mnav-utrow">' +
         '<a href="' + findUtilHref(header, 'careers') + '">Careers</a>' +

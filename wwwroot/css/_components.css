@@ -394,7 +394,6 @@ body {
   display: block;
 }
 .hana-loc-card:hover { background-color: var(--bg); }
-.hana-loc-card--hq  { grid-column: 1 / -1; }
 
 .hana-loc-card__country {
   display: flex;
@@ -612,9 +611,17 @@ body {
 @media (max-width: 900px) {
 
   /* ── Compact sticky bar ─────────────────────────────── */
-  .hana-header { position: sticky; top: 0; z-index: 200; }
-  /* utility bar → slim ticker only (right cluster moves into the menu) */
+  /* !important: search.css sets .hana-header{position:relative} after this file */
+  .hana-header { position: sticky !important; top: 0; z-index: 200; }
+  /* utility bar → search only: the ticker and the util links come off, and the
+     header search field takes the full dark-blue row */
+  .hana-util-bar .hana-wrap > div:first-child { display: none !important; }
   .hana-util-bar .hana-wrap > div:last-child { display: none !important; }
+  .hana-util-bar .hana-wrap { height: 42px !important; }
+  .hana-util-bar .hs-hdr-box { flex: 1 1 auto !important; min-width: 0 !important; padding: 6px 12px !important; }
+  /* 16px stops iOS zooming the page when the field takes focus */
+  .hana-util-bar .hs-hdr-input { font-size: 16px !important; }
+  .hana-util-bar .hs-hdr-input::placeholder { font-size: 13px !important; }
   /* hide the desktop hover nav + its mega panels on touch */
   .hana-header nav[aria-label="Primary navigation"] { display: none !important; }
   .hana-header .hana-mega { display: none !important; }
@@ -623,6 +630,12 @@ body {
     padding-top: 11px !important; padding-bottom: 11px !important; gap: 14px !important;
   }
   .hana-header #hana-nav-wrap img[alt="Hana"] { width: 150px !important; height: 48px !important; }
+  /* narrow phones: slim the sticky bar */
+  @media (max-width: 480px){
+    .hana-header #hana-nav-wrap img[alt="Hana"] { width: 128px !important; height: 41px !important; }
+    .hana-header #hana-nav-wrap > div > .hana-wrap { padding-top: 8px !important; padding-bottom: 8px !important; }
+    .hana-header #hana-nav-wrap .hana-btn { padding: 10px 13px !important; }
+  }
   .hana-header #hana-nav-wrap .hana-btn { padding: 11px 16px !important; font-size: 11px !important; }
 
   .hana-mnav-burger {
@@ -645,13 +658,15 @@ body {
   /* ── Slide-in panel (dark, half width) ──────────────── */
   .hana-mnav-panel {
     display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
-    height: 100%; height: 100dvh; width: 50%;
+    height: 100%; height: 100dvh; width: 50%; min-width: 300px; max-width: 420px;
     background: var(--hana-blue-deep); border-left: 1px solid rgba(255,255,255,0.12);
     box-shadow: -24px 0 48px rgba(3,10,23,0.32);
     transform: translateX(100%); transition: transform 300ms cubic-bezier(0.2,0.6,0.2,1);
     z-index: 301; font-family: var(--font-text);
   }
   .hana-mnav-panel.is-open { transform: translateX(0); }
+  /* very narrow phones: the panel takes nearly the full width */
+  @media (max-width: 380px) { .hana-mnav-panel { min-width: 0; width: 90%; } }
   .hana-mnav-panel[hidden] { display: none; }
 
   .hana-mnav-head {
@@ -680,7 +695,7 @@ body {
   }
   .hana-macc-item.is-open .hana-macc-name { color: #7EC8FF; }
   .hana-macc-tog {
-    flex: 0 0 auto; width: 56px; min-height: 56px; align-self: stretch;
+    flex: 0 0 auto; width: 52px; min-height: 56px; align-self: stretch;
     display: inline-flex; align-items: center; justify-content: center;
     background: none; border: none; border-left: 1px solid rgba(255,255,255,0.10);
     color: rgba(255,255,255,0.55); cursor: pointer;
@@ -771,3 +786,12 @@ body {
 
 .hana-mega[data-panel="Investor Relations"] .hana-mega-card .hana-mega-name{display:flex;align-items:baseline;gap:7px}
 .hana-mega[data-panel="Investor Relations"] .hana-mega-card .hana-mega-name::before{content:"\203A";flex-shrink:0;color:var(--hana-blue);font-weight:700;font-size:13px;line-height:1}
+
+/* mobile menu: comfortable rows for the cloned mega-menu links */
+@media (max-width:900px){
+  .hana-macc-body .mm-list{gap:0 !important}
+  .hana-macc-body .mm-list>li>a,
+  .hana-macc-body .hana-mega-sub-link{display:flex !important;align-items:center;min-height:38px;font-size:14px !important;line-height:1.35 !important}
+  .hana-macc-body .hana-mega-card{display:block !important;padding:9px 0 !important}
+  .hana-macc-body .hana-mega-name{font-size:14px !important}
+}

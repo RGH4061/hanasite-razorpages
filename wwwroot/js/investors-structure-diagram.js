@@ -116,7 +116,12 @@
     function resize() {
       var avail = fit.clientWidth - 32;            // minus gs-fit horizontal padding
       var s = Math.min(avail / CW, 1.5);           // scale up to fill the full width
+      // Below a readable floor the chart scrolls sideways instead of shrinking further.
+      var MIN = 0.62;
+      if (s < MIN) { s = MIN; fit.style.overflowX = 'auto'; }
+      else { fit.style.overflowX = 'hidden'; }
       scale.style.transform = 'scale(' + s + ')';
+      scale.style.width = (CW * s) + 'px';
       scale.style.height = (CH * s) + 'px';
     }
     if (window.ResizeObserver) { new ResizeObserver(resize).observe(fit); }

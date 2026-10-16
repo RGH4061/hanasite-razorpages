@@ -113,7 +113,7 @@
             <!-- data-yt accepts a YouTube video ID or a full YouTube URL -->
             <button type="button" class="frame has-poster yt-facade" data-yt="qypZsmot9Z8"
                     aria-label="Play the Q2/2026 results presentation on YouTube">
-              <img src="~/images/ir/oppday-q2-2026.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+              <img src="/images/ir/oppday-q2-2026.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
               <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="22" height="24" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
@@ -364,7 +364,7 @@
           <div class="videocard">
             <button type="button" class="frame has-poster yt-facade" data-yt="dpO3qOWC51Q"
                     aria-label="Play the Q1/2026 results presentation on YouTube">
-              <img src="~/images/ir/oppday-q1-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
+              <img src="/images/ir/oppday-q1-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
               <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
@@ -388,7 +388,7 @@
           <div class="videocard">
             <button type="button" class="frame has-poster yt-facade" data-yt="kre-X63WrWE"
                     aria-label="Play the FY2025 and Q4/2025 results presentation on YouTube">
-              <img src="~/images/ir/oppday-fy2025-q4-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
+              <img src="/images/ir/oppday-fy2025-q4-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
               <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
@@ -412,7 +412,7 @@
           <div class="videocard">
             <button type="button" class="frame has-poster yt-facade" data-yt="Pgnee4KAqQo"
                     aria-label="Play the Q3/2025 results presentation on YouTube">
-              <img src="~/images/ir/oppday-q3-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
+              <img src="/images/ir/oppday-q3-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
               <span class="embed-tag">YouTube</span>
               <span class="play" aria-hidden="true">
                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
@@ -555,7 +555,7 @@
           <details class="faq">
             <summary><span class="q">When was Hana listed on the SET?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>[Placeholder] Hana Microelectronics has been listed on the Stock Exchange of Thailand for over two decades. Listing details and the company's history are summarised in the Annual Report.</p>
+              <p>Hana Microelectronics has been listed on the Stock Exchange of Thailand since 01 Feb 1993. Listing details and the company's history are summarised in the Annual Report.</p>
             </div>
           </details>
           <details class="faq">
@@ -599,6 +599,18 @@
   </section>
 
 @section Scripts {
+    <script>
+document.querySelectorAll('.detail .tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    var detail = tab.closest('.detail');
+    detail.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    detail.querySelectorAll('.detail-panel').forEach(function(p){ p.classList.remove('active'); });
+    tab.classList.add('active');
+    var panel = detail.querySelector('#' + tab.dataset.panel);
+    if (panel) panel.classList.add('active');
+  });
+});
+</script>
     <script src="~/js/investors-bg.js"></script>
     <script src="~/js/yt-facade.js" defer></script>
     <script src="~/js/oppday-tabs.js" defer></script>

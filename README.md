@@ -1,4 +1,15 @@
-## Latest changes (21 Sep 2026 — real IR documents replace the placeholder rows)
+## Latest changes (16 Oct 2026 — full sync from the HTML site)
+
+The HTML site (`exports/site-html/`) is now the source of truth. Every English page was re-synced from it.
+
+- **Page content** — the content of all 102 paired pages comes from the HTML `<main>` content. Links point to Razor routes, image paths to `/images/…`, and `@` is escaped as `@@`. Each page keeps its `@page` line, ViewData values, `@section Head` and the `_CapabilitySidebar` partial. The homepage and the market pages are now static markup: they no longer use the `_Homepage_*` partials or C# arrays (those arrays are still declared but unused).
+- **New page** — `Markets/IndustrialIotPowerModules.cshtml` (`/markets/industrial-iot/power-modules`).
+- **Assets** — 22 images were missing from `wwwroot/images/` and have been copied in. CSS re-synced: `site.css`, `about.css`, `investors*.css`, `homepage-mobile.css`, `locations-mobile.css`, plus `_components.css` (the Razor woff2 font chain is kept). JS re-synced: `mobile-nav.js`, `careers.js`, `insights-hub.js`, `investors-structure-diagram.js`, `market-sidebar.js`, `automotive.css`/`automotive.js` (the Automotive pages now use the HTML markup, so they take the HTML scripts and styles). Page-specific scripts and stylesheets were added to each page's `Scripts`/`Head` section.
+- **Header** — search placeholder, mega-menu blurbs, and the Package Finder link under OSAT.
+- **Left out on purpose** — the React/Babel tweak panels on Package Design, Optical Sensors and Jiaxing (design tools only), the static-site `lang-pref.js` and `search-shell.js` shell, and the Razor-specific route maps in `site-search.js`, `package-finder.js` and `search/data.js`. Thai pages and the Insights articles are Razor-only and unchanged.
+- **Not yet built** — this sync has not been run through `dotnet build`. Run it once before deploying.
+
+## Earlier changes (21 Sep 2026 — real IR documents replace the placeholder rows)
 
 The five IR document pages listed invented placeholder rows from the wireframe. They now
 carry the 349 documents that actually exist, from *IR document mapping (21 Sep 2026) v6.xlsx*,
