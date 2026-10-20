@@ -55,7 +55,12 @@ A screenshot or the prototype filename it should match is ideal but not required
   **Also escape `@` in prose.** 14 Sep: `Pages/Sitemap.cshtml` intro text mentions "the Razor
   `<span …>@page</span>` directive" — Razor parsed it as a second `@page` directive (RZ2001 /
   RZ2005 / RZ1011). Fixed as `@@page`. The at-rule grep can't see this; the build will.
-- [ ] **Section-body mobile optimisation — Locations / Investors / About / Capabilities
+- [x] **CLOSED 20 Oct 2026 — `investors-mobile.css` and `capabilities-mobile.css` deleted;
+  `locations-mobile.css` replaced with the HTML site's copy and linked only on the five plant pages,
+  as in the HTML site. The page CSS now handles all of this itself: every IR (EN/TH), Locations and
+  Capabilities page measures 0px overflow at 375px, the IR navy end band is contained on all seven
+  sub-pages, and the Capabilities hub cards stack. The notes below are kept for history.**
+  ~~Section-body mobile optimisation — Locations / Investors / About / Capabilities
   (done in this repo, NOT yet in Design source).** The mobile *header/footer* is now
   handled at source (see Fixed, 2 Jul). These are the remaining PAGE-BODY mobile fixes,
   which still live only as repo-side retrofit stylesheets loaded per page via `@section

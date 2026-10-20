@@ -10,7 +10,9 @@ The HTML site is the source of truth. A page-by-page comparison of all 125 paire
 - **Missing scripts and styles** — story photo lightbox (Careers, Stories, Thai Stories), JSON-LD on the Insights hub and the Automotive PCBA article, the TOC scroll script on the seven articles, Privacy Policy heading/table styles and the Thai tab switcher.
 - **Assets** — Lucide is self-hosted (`js/vendor/lucide.min.js`, v0.460.0) in place of `unpkg.com/lucide@latest`; the Sarabun `@font-face` rules no longer point at WOFF2 files that do not exist.
 
-Kept on purpose: the meta descriptions (71 HTML pages have none), the `*-mobile.css` retrofits, the Thai ESG "Hana" spelling, and the Thai Leadership link to the Thai governance page.
+Kept on purpose: the meta descriptions (71 HTML pages have none), the Thai ESG "Hana" spelling, and the Thai Leadership link to the Thai governance page.
+
+Later the same day: `investors-mobile.css` and `capabilities-mobile.css` were removed, and `locations-mobile.css` now matches the HTML site and loads only on the five plant pages. The page CSS covers what they did; every affected page fits a 375px screen.
 
 ## Latest changes (16 Oct 2026 — full sync from the HTML site)
 
