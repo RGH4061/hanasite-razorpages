@@ -1,6 +1,7 @@
 @page "/insights/commentary/external-laser-source-co-packaged-optics"
 @{
-    ViewData["Title"] = "External laser source modules for co-packaged optics";
+    ViewData["Title"] = "External laser source for co-packaged optics | Hana";
+    ViewData["FullTitle"] = "External laser source for co-packaged optics | Hana";
     ViewData["Description"] = "A trade roundup describes an external laser source in a pluggable module for co-packaged optics. What it means for the optical engine, and what to watch.";
 }
 
@@ -89,3 +90,21 @@
       <div style="display:flex; gap:12px;"><a href="/contact" class="hana-btn hana-btn-primary">Contact us <i data-lucide="arrow-right" style="width:13px; height:13px;"></i></a></div>
     </div>
   </section>
+
+@section Scripts {
+<script>
+  // TOC active-state on scroll
+  (function () {
+    var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#insToc a'));
+    var headings = tocLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (!visible.length) return;
+      var id = visible[0].target.id;
+      tocLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+    }, { rootMargin: '-40px 0px -70% 0px', threshold: 0 });
+    headings.forEach(function (h) { observer.observe(h); });
+  })();
+</script>
+}

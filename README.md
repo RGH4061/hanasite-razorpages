@@ -1,3 +1,17 @@
+## Latest changes (20 Oct 2026 — Razor brought in line with the HTML site)
+
+The HTML site is the source of truth. A page-by-page comparison of all 125 paired pages found the gaps below; each is now fixed here.
+
+- **Retired page removed** — `Capabilities/DieAttachWireBond.cshtml` (retired from the HTML site on 21 Sep) and its sidebar link.
+- **Page titles** — every `<title>` now matches the HTML wording and uses the `|` separator. The layout appends ` | Hana Microelectronics`; six Insights articles set `ViewData["FullTitle"]` because their HTML titles end differently. This also fixes 36 titles that said "Hana" twice and 9 that showed `&amp;`.
+- **Thai header** — Thai pages now use `Shared/_HeaderTh.cshtml`, the translated header from the HTML Thai pages (selected when `ViewData["Lang"] == "th"`).
+- **Language switch** — the seven English IR pages and the Privacy Policy now link to their Thai versions.
+- **Copy** — capability sidebar CTA and the "Power Packages (SiC & GaN)" label; search page heading "Six plants. Four countries."; Thai Careers figures (7,500 staff, 45+ years), a Thai spelling fix and the section labels the HTML removed on six Thai pages.
+- **Missing scripts and styles** — story photo lightbox (Careers, Stories, Thai Stories), JSON-LD on the Insights hub and the Automotive PCBA article, the TOC scroll script on the seven articles, Privacy Policy heading/table styles and the Thai tab switcher.
+- **Assets** — Lucide is self-hosted (`js/vendor/lucide.min.js`, v0.460.0) in place of `unpkg.com/lucide@latest`; the Sarabun `@font-face` rules no longer point at WOFF2 files that do not exist.
+
+Kept on purpose: the meta descriptions (71 HTML pages have none), the `*-mobile.css` retrofits, the Thai ESG "Hana" spelling, and the Thai Leadership link to the Thai governance page.
+
 ## Latest changes (16 Oct 2026 — full sync from the HTML site)
 
 The HTML site (`exports/site-html/`) is now the source of truth. Every English page was re-synced from it.

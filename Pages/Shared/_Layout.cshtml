@@ -4,6 +4,7 @@
 
     Per-page overrides via ViewData:
       ViewData["Title"]        page <title> (required-ish)
+      ViewData["FullTitle"]    optional: the whole <title>, when it should not end in "| Hana Microelectronics"
       ViewData["Description"]  meta description
       ViewData["Canonical"]    canonical URL
 
@@ -24,7 +25,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ViewData["Title"] — Hana Microelectronics</title>
+    <title>@(ViewData["FullTitle"] ?? ViewData["Title"] + " | Hana Microelectronics")</title>
 
     <meta name="description" content="@(ViewData["Description"] ?? "Hana is the leading independent EMS and OSAT company in Southeast Asia, specializing in microelectronics.")" />
     @if (ViewData["Canonical"] != null)
@@ -38,13 +39,20 @@
     <link rel="stylesheet" href="~/css/search.css" />
 
     @* Lucide line-icon set (matches brand iconography spec). *@
-    <script src="https://unpkg.com/lucide@@latest/dist/umd/lucide.min.js"></script>
+    <script src="~/js/vendor/lucide.min.js"></script>
 
     @await RenderSectionAsync("Head", required: false)
 </head>
 <body style="margin:0; background:#fff; font-family:var(--font-text); -webkit-font-smoothing:antialiased;">
 
-    <partial name="_Header" />
+    @if ((string?)ViewData["Lang"] == "th")
+    {
+        <partial name="_HeaderTh" />
+    }
+    else
+    {
+        <partial name="_Header" />
+    }
 
     <main id="main-content">
         @RenderBody()

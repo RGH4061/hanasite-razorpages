@@ -182,7 +182,7 @@ function LocationsHub({ q, setQ, strip, mobile }) {
     <div className={"hs-page" + (mobile ? " hs-page--m" : "")}>
       <div className="hs-hero">
         <div className="hs-eyebrow">Locations</div>
-        <h1 className="hana-h1 hs-h1">Five plants. Three countries.</h1>
+        <h1 className="hana-h1 hs-h1">Six plants. Four countries.</h1>
         <p className="hana-subhead">Dual-sourcing from multiple countries inside one company — Thailand, China and Cambodia, with RFID and optical in Ohio.</p>
       </div>
 

@@ -5,6 +5,63 @@
 }
 
 @section Head {
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "Article",
+  "headline": "PCB Assembly for Automotive Electronics",
+  "description": "How Hana assembles automotive PCBAs with fine-pitch SMT and inspection on every board across Thailand and China.",
+  "author": { "@@type": "Organization", "name": "Hana Engineering Team" },
+  "publisher": {
+    "@@type": "Organization",
+    "name": "Hana Microelectronics",
+    "logo": { "@@type": "ImageObject", "url": "https://www.hanagroup.com/assets/logo.png" }
+  },
+  "datePublished": "2026-06-18",
+  "dateModified": "2026-06-28",
+  "mainEntityOfPage": "https://www.hanagroup.com/insights/automotive-pcba-assembly",
+  "about": [
+    { "@@type": "Thing", "name": "Printed circuit board assembly", "sameAs": "https://en.wikipedia.org/wiki/Printed_circuit_board" },
+    { "@@type": "Thing", "name": "Surface-mount technology", "sameAs": "https://en.wikipedia.org/wiki/Surface-mount_technology" },
+    { "@@type": "Thing", "name": "Automated optical inspection", "sameAs": "https://en.wikipedia.org/wiki/Automated_optical_inspection" },
+    { "@@type": "Thing", "name": "IATF 16949", "sameAs": "https://en.wikipedia.org/wiki/IATF_16949" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@@type": "Question",
+      "name": "What automotive boards can Hana assemble?",
+      "acceptedAnswer": { "@@type": "Answer", "text": "Control units, infotainment and connectivity boards, charging and power electronics, and safety-system boards — fine-pitch, double-sided and mixed-technology, with through-hole and selective soldering where needed." }
+    },
+    {
+      "@@type": "Question",
+      "name": "How does Hana check board quality?",
+      "acceptedAnswer": { "@@type": "Answer", "text": "Every board passes automated optical inspection, with X-ray for hidden and BGA joints and in-circuit or functional test as the program requires — so faults are caught before the board leaves the line." }
+    },
+    {
+      "@@type": "Question",
+      "name": "Can Hana support automotive quality requirements?",
+      "acceptedAnswer": { "@@type": "Answer", "text": "Hana runs an IATF 16949 automotive quality management system with board-level traceability and change control. Confirm the PPAP scope and any device-level qualification for your program with our team." }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hanagroup.com/" },
+    { "@@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.hanagroup.com/insights/" },
+    { "@@type": "ListItem", "position": 3, "name": "PCB Assembly for Automotive Electronics" }
+  ]
+}
+</script>
     <link rel="stylesheet" href="~/css/insights.css" />
 }
 
@@ -178,3 +235,21 @@
       </div>
     </div>
   </section>
+
+@section Scripts {
+<script>
+  // TOC active-state on scroll
+  (function () {
+    var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#insToc a'));
+    var headings = tocLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = entries.filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (!visible.length) return;
+      var id = visible[0].target.id;
+      tocLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+    }, { rootMargin: '-40px 0px -70% 0px', threshold: 0 });
+    headings.forEach(function (h) { observer.observe(h); });
+  })();
+</script>
+}

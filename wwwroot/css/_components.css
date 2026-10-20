@@ -15,10 +15,10 @@
 @font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/IBMPlexMono-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
 
 /* ── Thai — Sarabun (Thai National Font project, OFL — OFL.txt ships beside the files).
-   TODO: replace each src's TTF with the Thai+Latin-subset WOFF2 (fontTools command in the
-   20 Aug Thai-layer note); woff2 is already first in the src chain, so no CSS edit needed. */
-@font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-Regular.woff2') format('woff2'), url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-SemiBold.woff2') format('woff2'), url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+   TODO: subset to Thai+Latin WOFF2 (fontTools command in the 20 Aug Thai-layer note) and
+   add the woff2 back as the first src once the files ship. */
+@font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
 
 /* Thai text — fires on <html lang="th"> (part B) and any inline lang="th" block.
    The display/text TOKENS are re-pointed inside the Thai scope, so every page rule that
