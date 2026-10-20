@@ -555,7 +555,7 @@ body {
 @media (max-width: 1040px) {
   /* tighten the three large gaps in the main nav row */
   .hana-header [style*="gap:32px"] { gap: 22px !important; }
-  .hana-header nav[aria-label="Primary navigation"] { gap: 18px !important; margin-left: 0 !important; }
+  .hana-header :is(nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]) { gap: 18px !important; margin-left: 0 !important; }
   .hana-header .hana-btn { padding-left: 13px !important; padding-right: 13px !important; }
 }
 
@@ -565,7 +565,7 @@ body {
   .hana-util-bar a[href="/news"] { display: none !important; }
   /* Contact is now the sole CTA — keep it visible at all widths */
   /* compact the nav so five no-wrap items + CTA fit the row */
-  .hana-header nav[aria-label="Primary navigation"] { gap: 14px !important; }
+  .hana-header :is(nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]) { gap: 14px !important; }
   .hana-header .hana-nav-link { letter-spacing: 0.04em !important; }
   .hana-header .hana-nav-chevron { display: none !important; }
 }
@@ -616,7 +616,7 @@ body {
   .hana-util-bar .hs-hdr-input { font-size: 16px !important; }
   .hana-util-bar .hs-hdr-input::placeholder { font-size: 13px !important; }
   /* hide the desktop hover nav + its mega panels on touch */
-  .hana-header nav[aria-label="Primary navigation"] { display: none !important; }
+  .hana-header :is(nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]) { display: none !important; }
   .hana-header .hana-mega { display: none !important; }
   /* tighten the nav row: logo left · Contact + burger right */
   .hana-header #hana-nav-wrap > div > .hana-wrap {

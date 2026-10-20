@@ -30,19 +30,26 @@
     globe:  '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/>'
   };
   function cssEsc(s) { return s.replace(/"/g, '\\"'); }
+  /* Util-bar link text in each language: [lookup keys], Thai label */
+  var UTIL = {
+    careers:  { keys: ['careers', 'ร่วมงานกับเรา'], th: 'ร่วมงานกับเรา', en: 'Careers' },
+    insights: { keys: ['insights', 'บทความและมุมมอง'], th: 'บทความและมุมมอง', en: 'Insights' }
+  };
   function findUtilHref(header, kw) {
     var as = header.querySelectorAll('.hana-util-bar a');
     for (var i = 0; i < as.length; i++) {
-      if ((as[i].textContent || '').trim().toLowerCase() === kw) return as[i].getAttribute('href');
+      if (UTIL[kw].keys.indexOf((as[i].textContent || '').trim().toLowerCase()) !== -1) return as[i].getAttribute('href');
     }
     return '#';
   }
+  function utilLabel(kw) { return document.documentElement.lang === 'th' ? UTIL[kw].th : UTIL[kw].en; }
 
   function init() {
     var header = document.querySelector('.hana-header');
     if (!header || header.querySelector('.hana-mnav-burger')) return;
     var navWrap = document.getElementById('hana-nav-wrap');
-    var nav = header.querySelector('nav[aria-label="Primary navigation"]');
+    /* The Thai header labels the same nav "เมนูหลัก". */
+    var nav = header.querySelector('nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]');
     if (!navWrap || !nav) return;
     var cta = nav.parentElement.querySelector('[style*="margin-left:auto"]') || nav.parentElement.lastElementChild;
 
@@ -136,8 +143,8 @@
       '<div class="hana-mnav-slabel">' + (document.documentElement.lang === 'th' ? 'ค้นหาขนาดแพ็กเกจ ความสามารถ และอื่น ๆ…' : 'Search package sizes, capabilities and more..') + '</div>' +
       '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>' +
       '<div class="hana-mnav-utrow">' +
-        '<a href="' + findUtilHref(header, 'careers') + '">Careers</a>' +
-        (findUtilHref(header, 'insights') !== '#' ? '<a href="' + findUtilHref(header, 'insights') + '">Insights</a>' : '') +
+        '<a href="' + findUtilHref(header, 'careers') + '">' + utilLabel('careers') + '</a>' +
+        (findUtilHref(header, 'insights') !== '#' ? '<a href="' + findUtilHref(header, 'insights') + '">' + utilLabel('insights') + '</a>' : '') +
         (langA ? '<a href="' + langA.getAttribute('href') + '" class="hana-mnav-lang" lang="' + (langLabel === 'EN' ? 'en' : 'th') + '">' + svg(I.globe) + ' ' + langLabel + '</a>' : '') +
       '</div>';
     panel.appendChild(foot);
