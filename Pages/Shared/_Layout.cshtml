@@ -15,6 +15,7 @@
       ~/css/site.css              tokens → base → layout → components
       Lucide UMD                  line-icon set (data-lucide attributes)
       ~/js/hana-backgrounds.js    auto-renders [data-hana-bg] section art
+      ~/css/hana-geo-motion.css + ~/js/hana-geo-motion.js   [data-hana-geo] Midnight strips (util bar, footer)
       ~/js/mega-menu.js           header hover mega-menus
       ~/js/mobile-nav.js          ≤900px compact bar + slide-in accordion
 *@
@@ -33,6 +34,7 @@
 
     <link rel="icon" type="image/svg+xml" href="~/images/hana-mark.svg" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/hana-geo-motion.css" />
     <link rel="stylesheet" href="~/css/search.css" />
 
     @* Lucide line-icon set (matches brand iconography spec). *@
@@ -52,6 +54,8 @@
 
     @* ── Global scripts ─────────────────────────────────────── *@
     <script src="~/js/hana-backgrounds.js"></script>
+    @* Ambient geometric motion on [data-hana-geo]. Remove this line to switch motion off site-wide (CSS keeps the Midnight fill). *@
+    <script src="~/js/hana-geo-motion.js"></script>
     <script src="~/js/mega-menu.js"></script>
     <script src="~/js/mobile-nav.js"></script>
     <script src="~/js/search/data.js"></script>

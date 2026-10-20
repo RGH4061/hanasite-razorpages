@@ -3,7 +3,7 @@
    sheet. 119 searchable rows; the 5 Optical development-milestone rows are excluded because
    the sheet says that table belongs on the Optical & Sensors hub and "not in search".
 
-   No status column (Rupert, Aug 2026) — the finder shows what a package IS, not whether it
+   No status column (site owner, Aug 2026) — the finder shows what a package IS, not whether it
    is available. Availability is a conversation with the customer.
    Consequence: the two SiP rows the sheet marks "On Going Qualify" have no column left to
    carry that caveat, so they are held out of the searchable set — 117 rows, not 119. */

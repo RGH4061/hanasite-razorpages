@@ -337,7 +337,7 @@ const isNoise = w => (DF[w]||0)/N >= 0.15;
 const TYPEW = {Home:1.3,Hub:1.3,Pillar:1.3,"Cap Parent":1.3,"Sub-pillar":1.15,"Sub-page":1.15,Location:1.15,
  "Brand Page":1.05,Corporate:1,AEO:1,"Blog/AEO":.75,Legal:.5,Utility:.5,Template:0};
 
-/* Section priority — Rupert, Aug 2026: "most important are the capabilities that are
+/* Section priority — site owner, Aug 2026: "most important are the capabilities that are
    being looked for". Capabilities lead on an even match. This is a tie-breaker, not an
    override: a page matching a specific phrase still beats a capability page that only
    matches a general one, which is why "fiber-optic components" still returns the

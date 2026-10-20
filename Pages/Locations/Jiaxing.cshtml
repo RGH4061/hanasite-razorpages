@@ -108,20 +108,16 @@
   </div>
 </div>
 
-<section class="cg-section" data-carousel data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none" style="background:var(--hana-blue-deep);position:relative;overflow:hidden;">
+<section class="cg-section" data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none" style="background:var(--hana-blue-deep);position:relative;overflow:hidden;">
   <div style="max-width:1240px;margin:0 auto;padding:52px 32px;position:relative;z-index:1;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap;">
       <div>
         <h2 class="hana-h3" style="color:#fff;margin-bottom:12px;">Key services and capabilities</h2>
         <a href="/capabilities" style="display:inline-flex;align-items:center;gap:7px;color:#7EC8FF;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">See full capabilities <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7EC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
       </div>
-      <div style="display:flex;gap:10px;flex-shrink:0;">
-        <button class="cg-nav" data-scroll-prev aria-label="Previous" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.30);background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span style="display:flex;transform:scaleX(-1);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></button>
-        <button class="cg-nav" data-scroll-next aria-label="Next" style="width:44px;height:44px;border-radius:50%;border:1px solid transparent;background:var(--hana-blue);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
-      </div>
     </div>
-    <div class="cg-scroll" data-scroller style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;">
-      <div class="cg-card" style="flex:0 0 300px;scroll-snap-align:start;background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
+    <div class="lc-caps" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <div class="cg-card" style="background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
         <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/ic-assembly-test.webp" alt="IC assembly and test" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div style="padding:18px;display:flex;flex-direction:column;flex:1;">
           <a href="/capabilities/osat" class="cg-title" style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:7px;text-decoration:none;">IC Assembly &amp; Test</a>
@@ -139,7 +135,7 @@
           </div>
         </div>
       </div>
-      <div class="cg-card" style="flex:0 0 300px;scroll-snap-align:start;background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
+      <div class="cg-card" style="background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
         <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/cap-pcba-box-build-hero.webp" alt="PCBA and box build" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div style="padding:18px;display:flex;flex-direction:column;flex:1;">
           <a href="/capabilities/pcba-box-build" class="cg-title" style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:7px;text-decoration:none;">PCBA &amp; Box Build</a>
@@ -154,7 +150,7 @@
           </div>
         </div>
       </div>
-      <div class="cg-card" style="flex:0 0 300px;scroll-snap-align:start;background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
+      <div class="cg-card" style="background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
         <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/rfid-smart-tags.webp" alt="RFID and smart tags" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div style="padding:18px;display:flex;flex-direction:column;flex:1;">
           <a href="/capabilities/rfid-smart-tags" class="cg-title" style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:7px;text-decoration:none;">RFID &amp; Smart Tags</a>
@@ -168,7 +164,7 @@
           </div>
         </div>
       </div>
-      <div class="cg-card" style="flex:0 0 300px;scroll-snap-align:start;background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
+      <div class="cg-card" style="background:var(--surface);border:1px solid rgba(255,255,255,0.10);border-radius:var(--radius-card);overflow:hidden;display:flex;flex-direction:column;">
         <div style="position:relative;overflow:hidden;border-radius:0px;border:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/joint-development.webp" alt="Joint development engineering" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div style="padding:18px;display:flex;flex-direction:column;flex:1;">
           <a href="/capabilities/dfx-jdm" class="cg-title" style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.2;margin-bottom:7px;text-decoration:none;">DFx &amp; JDM Collaboration</a>
@@ -279,7 +275,7 @@ Hangzhou Xiaoshan Intl · ~80 km</span>
   </div>
 </section>
 
-<section data-hana-bg="pcb" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);color:#fff;font-family:var(--font-text);position:relative;overflow:hidden;">
+<section class="loc-cta" data-hana-bg="pcb" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);color:#fff;font-family:var(--font-text);position:relative;overflow:hidden;">
   <div style="max-width:1080px;margin:0 auto;padding:72px 32px;text-align:center;position:relative;z-index:1;">
     <h2 class="hana-h2" style="color:#fff;margin:0 auto 16px;max-width:640px;">Work with our Jiaxing team</h2>
     <p style="font-size:17px;line-height:1.6;color:rgba(255,255,255,0.8);max-width:560px;margin:0 auto 32px;">Tell us about your market, volumes, and certifications. Our team in Jiaxing will route you to the right people and respond within two business days.</p>

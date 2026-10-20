@@ -140,3 +140,9 @@
   }
   .hana-cta-section h2 { font-size: 26px !important; }
 }
+
+/* ── Floating CTA card (source fix 20 Oct, item 6) ───────── */
+@media (max-width: 768px) {
+  .hana-cta-section.mm-cta-float { padding: 8px 0 40px !important; }
+  .mm-cta-card { padding: 40px 24px !important; }
+}

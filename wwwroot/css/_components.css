@@ -258,21 +258,12 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--ink);
-  background-image: radial-gradient(rgba(18,131,221,0.12) 1px, transparent 1.2px);
-  background-size: 14px 14px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, #000 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 70% at center, #000 50%, transparent 100%);
   transition: color 150ms ease;
 }
 .hana-cap-card:hover .hana-cap-card__icon-area { color: var(--hana-blue); }
 
 /* Illustrated capability icons (raster line illustrations) */
-.hana-cap-icon { display: block; width: 88px; height: 88px; object-fit: contain; }
-/* Widen the vignette so the fuller illustrations aren't clipped */
-.hana-cap-card__icon-area {
-  -webkit-mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
-  mask-image: radial-gradient(ellipse 88% 88% at center, #000 62%, transparent 100%);
-}
+.hana-cap-icon { display: block; width: 97px; height: 97px; object-fit: contain; }
 
 .hana-cap-card__body { padding: 0 20px 22px; }
 .hana-cap-card__title {
@@ -350,9 +341,9 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px;
+  padding: 16px 16px 12px;
 }
-.hana-tile-text--hero { padding: 24px; }
+.hana-tile-text--hero { padding: 24px 24px 12px; }
 
 .hana-tile-name {
   font-family: var(--font-display);
@@ -367,12 +358,14 @@ body {
 
 .hana-tile-body {
   font-family: var(--font-text);
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.45;
-  color: rgba(255,255,255,0.62);
+  color: rgba(255,255,255,0.86);
   margin: 0;
 }
-.hana-tile-body--hero { font-size: 13px; color: rgba(255,255,255,0.78); }
+.hana-tile-body .hana-arrow-reveal { display: inline-block; width: 0; white-space: nowrap; overflow: visible; }
+.hana-tile-body .hana-arrow-reveal svg { margin-left: 4px; vertical-align: -2px; }
+.hana-tile-body--hero { font-size: 13px; color: rgba(255,255,255,0.86); min-height: calc(2em * 1.45); }
 
 /* ── Location cards ───────────────────────────────────────── */
 .hana-loc-grid {
@@ -795,3 +788,30 @@ body {
   .hana-macc-body .hana-mega-card{display:block !important;padding:9px 0 !important}
   .hana-macc-body .hana-mega-name{font-size:14px !important}
 }
+
+/* Header utility bar on the Midnight geo strip: light grey search box (source fix 20 Oct, item 2) */
+.hana-util-bar .hs-hdr-box { background:#EBEEF2; border:1px solid #EBEEF2; }
+.hana-util-bar .hs-hdr-box.on { background:#fff; border-color:#9CC1E9; }
+.hana-util-bar .hs-hdr-box svg,
+.hana-util-bar .hs-hdr-box i { stroke:#444B54; }
+.hana-util-bar .hs-hdr-input { color:#0E1116; }
+.hana-util-bar .hs-hdr-input::placeholder { color:#444B54; }
+
+/* Footer legal row: 1px line as its own flex row, so it matches the content width at every breakpoint (item 8b) */
+.mm-legal::before { content:""; flex:0 0 100%; height:1px; background:var(--line); }
+
+/* Capability pages: footer strip starts at the content column, the side nav continues beside it (20 Oct) */
+body:has(.cap-page-grid) .hana-footer>.mm-strip{margin-left:272px;box-shadow:-1px 0 0 var(--line),-272px 0 0 var(--bg)}
+body:has(.cap-page-grid.cpsb-col) .hana-footer>.mm-strip{margin-left:56px;box-shadow:-1px 0 0 var(--line),-56px 0 0 var(--bg)}
+@media(max-width:900px){body:has(.cap-page-grid) .hana-footer>.mm-strip{margin-left:0;box-shadow:none}}
+
+/* Floating closing CTAs (20 Oct) — gap between the last CTA and the footer strip */
+.ins-page-end[data-hana-bg],.page-end,.gov-note.gov-dark,.cta-band,.loc-cta{width:calc(100% - 64px);max-width:1176px;margin-left:auto;margin-right:auto;margin-bottom:64px;border-radius:14px;overflow:hidden}
+.page-end,.gov-note.gov-dark,.cta-band,.loc-cta{margin-top:16px}
+.ins-page-end[data-hana-bg]{margin-top:48px}
+.cta-band{border:1px solid var(--hana-band-line)}
+@media(max-width:768px){.ins-page-end[data-hana-bg],.page-end,.gov-note.gov-dark,.cta-band,.loc-cta{width:auto;margin-left:24px;margin-right:24px;margin-bottom:40px}}
+
+/* Carry the last section's grey behind the location CTA bubble */
+.loc-cta{box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(-16px -100vmax -64px)}
+@media(max-width:768px){.loc-cta{clip-path:inset(-16px -100vmax -40px)}}

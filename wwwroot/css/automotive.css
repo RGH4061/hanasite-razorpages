@@ -265,3 +265,23 @@
 .auto-marker.is-active { z-index: 20; }
 .auto-marker.is-active .dot { transform: scale(1.18); }
 .auto-marker.is-active .tip { opacity: 1; visibility: visible; }
+
+/* Floating CTA card (20 Oct) — a break between the CTA and the footer strip */
+.auto-cta{width:calc(100% - 64px);max-width:1176px;margin:16px auto 64px;border-radius:14px}
+@media(max-width:768px){.auto-cta{width:auto;margin:8px 24px 40px}.auto-cta .inner{padding:40px 24px}}
+
+/* Spoke pages: CTA bubble sits in the content column, not under the sidebar */
+.auto-cta.auto-cta--spoke{width:auto;max-width:924px;margin:16px 48px 64px}
+@media(max-width:1100px){.auto-cta--spoke .inner{grid-template-columns:1fr;gap:24px}}
+@media(max-width:680px){.auto-cta.auto-cta--spoke{margin:8px 24px 40px}}
+.auto-cta--spoke .auto-btn{white-space:nowrap}
+
+/* Footer strip starts at the content edge on spoke pages, clear of the side nav */
+body:has(.auto-spoke-grid) .hana-footer{background:var(--bg)}
+body:has(.auto-spoke-grid) .hana-footer .mm-strip{margin-left:264px}
+body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
+@media(max-width:680px){body:has(.auto-spoke-grid) .hana-footer .mm-strip,body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:0}}
+
+/* Carry the FAQ band colour behind the spoke CTA bubble (fills the margin around it) */
+.auto-cta.auto-cta--spoke{box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(-16px -100vmax -64px)}
+@media(max-width:680px){.auto-cta.auto-cta--spoke{clip-path:inset(-8px -100vmax -40px)}}

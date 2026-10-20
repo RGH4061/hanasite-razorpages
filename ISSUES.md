@@ -128,19 +128,21 @@ A screenshot or the prototype filename it should match is ideal but not required
     "… — Hana Microelectronics — Hana Microelectronics" — the homepage included. Also the
     decorative `circuit-board-blue.webp` on 20 Capabilities pages had `aria-hidden="true"` but no
     `alt`; given `alt=""`.
+- [ ] **IR FAQ `[Placeholder]` dividend answers — corrected in Design on 15 Oct but STILL in the
+  20 Oct export.** `/investor-relations/faq` and its Thai twin each render three answers beginning
+  "[Placeholder]". The fix has not reached an export; check it lands next time rather than
+  assuming. Go-live blocker while it stands.
+- [ ] **The geo-motion package ships but nothing references it.** The 20 Oct export added 18
+  files under `wwwroot/images/backgrounds/geo/` (blue / midnight / navy × band / section / strip,
+  each as `.svg` and `.webp`) plus `css/hana-geo-motion.css` and `js/hana-geo-motion.js`. The CSS
+  and JS load on all 127 pages, but **neither references any of the 18 images**, and no page
+  references them either — so they are dead weight until something uses them. Confirm whether the
+  images are meant to be wired up or whether only the CSS/JS treatment is in use.
 - [ ] **`<!-- VERIFY: … -->` comment shipped in a published page.**
   `Pages/Insights/Commentary/MemoryContractPricesPcba.cshtml` carries
   `<!-- VERIFY: DFM review scope covering memory… -->` in the rendered HTML. A VERIFY comment is a
   Block in the Insights editor checklist, so this should not have published — and it flags a claim
   nobody has confirmed. Resolve the claim, then remove the comment at source.
-- [ ] **Broken Insights cross-link — `/insights/mlcc-supply-shift-pcba` 404s (source-side,
-  Rupert to decide).** `Pages/Insights/Commentary/MemoryContractPricesPcba.cshtml` line 59 has an
-  inline prose link: "A <a class="inline" href="/insights/mlcc-supply-shift-pcba">separate shift in
-  MLCC supply</a> affects the same bills of material". No such page exists; the 14 Oct export
-  shipped six commentary pages and this is a seventh. Note the path also lacks the `/commentary/`
-  segment the six shipped pages use. Either write that commentary and give it
-  `/insights/commentary/mlcc-supply-shift-pcba`, or unlink the phrase — both are copy decisions.
-  Left as-is deliberately rather than guessing a target.
 - [ ] **The Thai Sustainability `Hana` edit is a standing repo-side retrofit (source-side fix
   wanted).** 5 Oct, commit `39f220c`: Rupert changed the transliterated ฮานา to Latin **Hana** in
   the two `.intro` paragraphs of `Pages/ThaiPages/Investors/Sustainability.cshtml`. Both 7 Oct
@@ -163,6 +165,35 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 20 Oct 2026 — export sync ("20-10 razor pages Hana Site.zip")
+
+- **⚠️ Removed 84 duplicate `<Name> 2.cshtml` files that this repo's own 16 Oct sync introduced
+  and committed (`8320bd9`).** They were byte-identical copies carrying the same `@page` route as
+  their originals, so **every one of those 84 routes returned HTTP 500** — `/`, `/about`,
+  `/markets`, `/capabilities`, `/investor-relations`, `/careers` among them. They were almost
+  certainly created by iCloud/Finder conflict-copying the Desktop while the rsync rewrote the
+  tree (timestamps 16:14–16:19 on 16 Oct, inside the sync window). This sync's `rsync --delete`
+  removed all 84; routes verified back to 127/127.
+  - **Why the 16 Oct verification missed it:** the route-extraction script collects `@page`
+    templates into a `set()`, so two files claiming one route collapse to a single entry and the
+    check still reported 127/127. **A duplicate-route-template guard is now part of the sync**
+    — group `@page` templates by value and fail on any with more than one file. It also needs a
+    plain `find Pages -name '* 2.cshtml'` check, since the conflict copies can reappear.
+- **The malformed `Markets/IndustrialIotPowerModules.cshtml` is back** — the same unterminated
+  `@section Head` + `<style>` as 16 Oct, so the source fix has not landed. The repair is now a
+  **general** one: scan every page for a `<style>` opened inside `@section Head {` that never
+  closes before body markup starts, and insert `</style>` + `}`. Still needs fixing at source.
+- **Resolved at source and closed:** the broken `/insights/mlcc-supply-shift-pcba` link is gone
+  from the rendered output.
+- **Re-applied:** 23 mobile-retrofit link tags, the doubled-site-name title fix (22 pages),
+  `alt=""` on the decorative circuit image (20 pages), and the Thai Sustainability `Hana` edit.
+  No `@`-escaping fixes were needed this time — the generator now emits them correctly.
+- **C2PA:** 0 to strip; all 371 WebP files were already clean, so the export has stopped
+  embedding manifests. Keep running it, but it may now be a no-op.
+- **Verification passes:** 127 routes all 200; 308 rendered assets all 200; **123 of 123**
+  non-document internal links 200 (no broken links at all for the first time).
+
 
 ### 16 Oct 2026 — export sync ("16-10 razor pages - Hana Site.zip")
 

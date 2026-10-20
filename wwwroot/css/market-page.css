@@ -140,17 +140,15 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 .mk-sheet .desc{padding:26px 34px;display:flex;align-items:center;font-family:var(--font-text);font-size:15px;color:var(--ink);line-height:1.65;border-top:1px solid var(--line);background:var(--surface)}
 .mk-sheet .row:first-child .desc{border-top:0}
 .mk-sheet .desc strong{font-weight:600;color:var(--ink)}
-/* stepped blue label column + even row rhythm */
-.mk-spoke-main .mk-sheet .row:nth-child(1) .lab{background:var(--hana-blue)}
-.mk-spoke-main .mk-sheet .row:nth-child(2) .lab{background:var(--hana-blue-deep)}
-.mk-spoke-main .mk-sheet .row:nth-child(3) .lab{background:var(--hana-blue-soft)}
-.mk-spoke-main .mk-sheet .row:nth-child(3) .lab .n{color:#fff}
-.mk-spoke-main .mk-sheet .row:nth-child(n+4) .lab{background:color-mix(in oklch,var(--hana-blue-soft) 42%,#fff);color:var(--hana-blue-deep)}
-.mk-spoke-main .mk-sheet .row:nth-child(n+4) .lab .n{color:color-mix(in oklch,var(--hana-blue-deep) 72%,#fff)}
-.mk-spoke-main .mk-sheet .row:nth-child(n+4) .lab{border-top:1px solid var(--line)}
-.mk-spoke-main .mk-sheet .row:nth-child(n+5) .lab{background:var(--hana-blue-deep);color:#fff}
-.mk-spoke-main .mk-sheet .row:nth-child(n+5) .lab .n{color:rgba(255,255,255,.72)}
-.mk-spoke-main .mk-sheet .row:nth-child(n+5) .lab{border-top:1px solid rgba(255,255,255,.16)}
+/* Midnight label column + open description cells (20 Oct 2026) */
+.mk-spoke-main .mk-sheet{background:transparent;border:0}
+.mk-spoke-main .mk-sheet .row{border-bottom:1px solid var(--line)}
+.mk-spoke-main .mk-sheet .row:last-child{border-bottom:0}
+.mk-spoke-main .mk-sheet .lab{background:radial-gradient(ellipse 90% 140% at 100% 50%,#072c4d 0%,#030a17 70%);color:#fff;border-top:1px solid rgba(255,255,255,.10)}
+.mk-spoke-main .mk-sheet .row:first-child .lab{border-top:0;border-top-left-radius:var(--radius-spec)}
+.mk-spoke-main .mk-sheet .row:last-child .lab{border-bottom-left-radius:var(--radius-spec)}
+.mk-spoke-main .mk-sheet .lab .n{color:#7EC8FF}
+.mk-spoke-main .mk-sheet .desc{background:rgba(255,255,255,.72);border-top:0}
 .mk-spoke-main .mk-sheet .lab,.mk-spoke-main .mk-sheet .desc{min-height:127px}
 /* capability links folded into the specialize section */
 .mk-caplinks{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
@@ -265,3 +263,30 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 .mk-plate.pl-wedge .art::after{background:linear-gradient(90deg,rgba(var(--plate-rgb),.96) 0,rgba(var(--plate-rgb),.5) 34%,rgba(var(--plate-rgb),0) 78%)}
 }
 @media(max-width:760px){.mk-plate .art,.mk-plate .art.pending{display:none}.mk-plate .in>div{max-width:none}}
+
+/* Floating CTA card (20 Oct) — a break between the CTA and the footer strip */
+.mk-cta{width:calc(100% - 64px);max-width:1176px;margin:16px auto 64px;border-radius:14px}
+.mk-cta .mk-wrap{max-width:none;padding-left:56px;padding-right:56px}
+.mk-spoke-main .mk-cta{width:auto;max-width:924px;margin:16px 48px 64px}
+.mk-spoke-main .mk-cta .mk-wrap{padding-left:56px;padding-right:56px}
+@media(max-width:768px){.mk-cta,.mk-spoke-main .mk-cta{width:auto;margin:8px 24px 40px}.mk-cta .mk-wrap,.mk-spoke-main .mk-cta .mk-wrap{padding-left:24px;padding-right:24px}.mk-cta .in{padding-top:40px;padding-bottom:40px}}
+
+/* Stacked point rows: title left, text right */
+.mk-points--rows{grid-template-columns:1fr;gap:0;margin-top:8px;border-bottom:1px solid rgba(255,255,255,.14)}
+.mk-points--rows .pt{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:12px 48px;align-items:baseline;padding:22px 0;border-top:1px solid rgba(255,255,255,.14)}
+.mk-points--rows .pt:first-child{border-top:2px solid #7EC8FF}
+.mk-points--rows .t{margin:0;text-wrap:balance}
+.mk-points--rows p{font-size:15px;color:rgba(255,255,255,.74);max-width:68ch;text-wrap:pretty}
+@media(max-width:760px){.mk-points--rows .pt{grid-template-columns:1fr;gap:6px}}
+
+.mk-points--rows .pt>p+.mk-pt-links{grid-column:2}
+.mk-pt-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.mk-pt-links a{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#7EC8FF;border:1px solid rgba(126,200,255,.5);border-radius:4px;padding:9px 14px;text-decoration:none;transition:background-color 150ms ease,color 150ms ease,border-color 150ms ease}
+.mk-pt-links a:hover{background:var(--hana-blue);border-color:var(--hana-blue);color:#fff}
+@media(max-width:760px){.mk-points--rows .pt>p+.mk-pt-links{grid-column:auto}}
+
+/* Footer strip starts at the content edge on spoke pages, clear of the side nav */
+body:has(.mk-spoke-grid) .hana-footer{background:var(--bg)}
+body:has(.mk-spoke-grid) .hana-footer .mm-strip{margin-left:264px}
+body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
+@media(max-width:980px){body:has(.mk-spoke-grid) .hana-footer .mm-strip,body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:0}}

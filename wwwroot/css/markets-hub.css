@@ -2,7 +2,8 @@
    tile grid and the closing CTA, so the whole section reads as one band. */
 .mkt-hero-section{position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 100% at 80% 50%,#072c4d 0%,#030a17 65%)}
 .mkt-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.mkt-hero-bg>div{position:absolute;width:1200px;height:100%;left:50%;transform:translate(-50%,-120px)}
+.mkt-hero-bg .hana-bg-layer{background:none!important}
+.mkt-hero-bg>div{position:absolute;width:1200px;height:100%;left:50%;transform:translate(-50%,-120px);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 82%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 82%,transparent 100%)}
 .mkt-hero{max-width:1080px;margin:0 auto;padding:80px 40px 52px;position:relative;z-index:1}
 .mkt-hero-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7EC8FF;margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .mkt-hero-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:#7EC8FF;opacity:.6}
@@ -35,16 +36,19 @@
 .mkt-tile{position:relative;overflow:hidden;text-decoration:none;border:1px solid rgba(255,255,255,.10);background:#0a0a0a;display:block;height:128px;border-radius:2px;transition:border-color 150ms ease}
 .mkt-tile:hover{border-color:rgba(18,131,221,.55)}
 .mkt-tile:hover .mkt-tile-name{color:#7EC8FF}
-.mkt-tile:hover .mkt-tile-arrow{opacity:1;transform:translateX(3px)}
+.mkt-tile:hover .mkt-tile-arrow{transform:translateX(3px)}
 .mkt-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .mkt-tile::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.72) 48%,rgba(0,0,0,.18) 100%)}
 .mkt-tile-body{position:absolute;inset:0;padding:20px 22px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .mkt-tile-name{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.018em;line-height:1.15;color:#fff;margin:0 0 6px;transition:color 150ms ease}
-.mkt-tile-desc{font-size:11.5px;line-height:1.45;color:rgba(255,255,255,.72);margin:0;max-width:34ch}
-.mkt-tile-arrow{flex-shrink:0;opacity:0;transition:opacity 150ms ease,transform 150ms ease;color:rgba(255,255,255,.8);display:flex}
+.mkt-tile-desc{font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.8);margin:0;max-width:36ch;text-wrap:pretty}
+.mkt-tile-arrow{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid rgba(126,200,255,.7);background:rgba(3,10,23,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);color:#7EC8FF;display:flex;align-items:center;justify-content:center;transition:background-color 150ms ease,border-color 150ms ease,color 150ms ease,transform 150ms ease}
+.mkt-tile-arrow svg{width:16px;height:16px;stroke-width:2}
+.mkt-tile:hover .mkt-tile-arrow{background:var(--hana-blue);border-color:var(--hana-blue);color:#fff}
 
 /* Closing CTA */
-.mkt-cta{padding:0 40px 56px;text-align:center;position:relative;z-index:1}
+.mkt-cta{max-width:1080px;margin:0 auto;padding:0 40px 72px;text-align:center;position:relative;z-index:1}
+.mkt-cta::before{content:'';display:block;height:1px;margin:0 0 56px;background:linear-gradient(90deg,transparent,rgba(126,200,255,.28) 50%,transparent)}
 .mkt-cta h2{font-family:var(--font-display);font-weight:600;font-size:28px;color:#fff;letter-spacing:-.018em;margin:0 0 10px}
 .mkt-cta p{font-size:15px;color:rgba(255,255,255,.72);margin:0 auto 22px;max-width:54ch;text-wrap:pretty}
 .mkt-cta-btn{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hana-blue-deep);background:#fff;padding:14px 28px;border-radius:4px;text-decoration:none;transition:background 150ms ease}
@@ -67,7 +71,7 @@
   .mkt-tile{height:150px}
   .mkt-tile-body{padding:16px}
   .mkt-tile-name{font-size:16px}
-  .mkt-tile-arrow{opacity:.75}
+  .mkt-tile-arrow{width:32px;height:32px}
   .mkt-cta{padding:0 18px 44px}
   .mkt-cta h2{font-size:24px}
   .mkt-cta p{font-size:14px}
@@ -84,3 +88,9 @@
 @keyframes hhaEdge{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
 @keyframes hhaFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hha-in,.hha-edge,.hha-fade{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}.hha-edge{display:none}}
+
+/* Floating CTA card (20 Oct) — moved out of the hero, a break before the footer strip */
+.mkt-cta-float{background:#fff;padding:16px 0 64px}
+.mkt-cta-float .mkt-cta{width:calc(100% - 64px);max-width:1176px;margin:0 auto;padding:56px 40px;border-radius:14px;background:var(--hana-blue-deep);overflow:hidden;z-index:auto}
+.mkt-cta-float .mkt-cta>*{position:relative;z-index:1}
+@media(max-width:768px){.mkt-cta-float{padding:8px 0 40px}.mkt-cta-float .mkt-cta{width:auto;margin:0 24px;padding:40px 24px}}

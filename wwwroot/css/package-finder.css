@@ -1,6 +1,6 @@
 /* Package finder — the filter block, the results table and the dark customize band.
    Tokens and chrome come from css/site.css. 1px borders, no shadows, 4px buttons. */
-.pf{--pf-radius:var(--radius-card,8px)}
+.pf{--pf-radius:var(--radius-card,8px);--pf-midnight:#051a30}
 .pf-controls{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius)}
 .pf-paste{display:flex;align-items:center;gap:12px;padding:15px 18px;border-bottom:1px solid var(--line)}
 .pf-ico{color:var(--ink-3);display:grid;place-items:center;flex:none}
@@ -28,20 +28,37 @@
 .pf-count{margin:26px 0 8px;font-size:15px;color:var(--ink-2)}
 .pf-count b{font-weight:600;color:var(--ink)}
 .pf-count span{color:var(--ink-3)}
+.pf-aside{display:inline-block;margin-left:10px;padding-left:10px;border-left:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.pf-count .pf-aside:first-child{margin-left:0;padding-left:0;border-left:0}
 /* The dark band sits under the count on every state — the leak isn't only the empty
    search, it's the near miss. */
-.pf-ask{display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:var(--hana-blue-deep);border-radius:var(--pf-radius);padding:22px 26px;margin:0 0 16px;color:#fff}
+/* package-finder.css loads after hana-geo-motion.css, so a plain .pf-ask background
+   would win the tie and hide the Midnight theme. The flat fallback is scoped out of its way. */
+.pf-ask{display:flex;align-items:center;gap:24px;flex-wrap:wrap;border-radius:var(--pf-radius);padding:22px 26px;margin:0 0 16px;color:#fff}
+.pf-ask:not([data-hana-geo]){background:var(--hana-blue-deep)}
 .pf-ask-t{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .pf-ask-s{font-size:14px;line-height:1.5;color:rgba(255,255,255,.78);margin-top:5px;max-width:62ch}
 .pf-btn{margin-left:auto;flex:none;background:#fff;color:var(--hana-blue-deep);border-radius:var(--radius-button,4px);padding:11px 22px;font-family:var(--font-text);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background var(--dur-base,.18s) var(--ease,ease-out)}
 .pf-btn:hover{background:var(--hana-blue-tint)}
 .pf-tablewrap{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);overflow-x:auto}
 .pf-table{border-collapse:collapse;width:100%;min-width:860px}
-.pf-table th{background:var(--hana-blue-deep);color:#fff;text-align:left;font-family:var(--font-text);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;padding:11px 16px;white-space:nowrap}
+/* Column labels share their bar's Midnight gradient — package-finder.js sizes one gradient
+   to the bar + label block and gives each cell its slice. The navy here is only the
+   fallback. The rule also reaches the category bars and outranks the geo theme, so its
+   background is held back from any cell that carries one. */
+.pf-table th:not([data-geo-theme]){background:var(--pf-midnight);color:rgba(255,255,255,.94)}
+.pf-cols th{border-top:1px solid rgba(255,255,255,.1)}
+.pf-cols--solo th{border-top:0}
+.pf-table th{color:#fff;text-align:left;font-family:var(--font-text);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:11px 16px;white-space:nowrap}
 .pf-table th[data-k]{cursor:pointer}
-.pf-arr{opacity:.5;font-size:9px;margin-left:5px}
+.pf-table th[data-k]:hover{color:#fff}
+.pf-arr{opacity:.5;font-size:10px;margin-left:5px}
 .pf-table td{padding:11px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2);vertical-align:top}
 .pf-table tbody tr:hover{background:var(--bg)}
+/* Category bars — one per <tbody>, Midnight fill from hana-geo-motion, no shapes. */
+.pf-grp th{color:#fff;text-align:left;font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:-.01em;text-transform:none;padding:10px 16px;line-height:20px}
+.pf-grp th span{margin-left:10px;font-family:var(--font-mono);font-size:11px;font-weight:400;color:rgba(255,255,255,.62)}
+.pf-table tbody tr.pf-grp:hover{background:none}
 .pf-pk{font-weight:600;color:var(--ink)}
 .pf-det{display:block;font-size:12px;font-weight:400;color:var(--ink-3);margin-top:2px}
 .pf-num{font-family:var(--font-mono);font-size:13px;white-space:nowrap;color:var(--ink)}
@@ -61,12 +78,12 @@
 .pf--embed .pf-count{margin-top:20px;font-size:14px}
 .pf--embed .pf-ask{padding:18px 22px}
 .pf--embed .pf-ask-t{font-size:17px}
-/* Embedded on the page that owns the rows: category repeats the page and the "Page" link
-   points at itself, so both columns come off and the table fits the content column. */
+/* Embedded on the page that owns the rows: the "Page" link points at itself, so it comes
+   off and the table fits the content column. Five columns now that Category has gone. */
 .pf--embed .pf-table{min-width:420px}
 .pf--embed .pf-table th,.pf--embed .pf-table td{padding-left:12px;padding-right:12px}
-.pf--embed .pf-table th:nth-child(5),.pf--embed .pf-table td:nth-child(5),
-.pf--embed .pf-table th:nth-child(6),.pf--embed .pf-table td:nth-child(6){display:none}
+.pf--embed .pf-table th:nth-child(5),.pf--embed .pf-table td:nth-child(5){display:none}
+.pf--embed .pf-grp th:nth-child(1){display:table-cell}
 /* Thickness ladder — shown under the results when leadless DFN/QFN rows are in view.
    Two columns only, so it opts out of the 860px min-width the main table needs. */
 .pf-thk{margin:26px 0 0;padding-top:24px;border-top:1px solid var(--line)}
@@ -75,6 +92,18 @@
 .pf-thk-n{font-size:12.5px;line-height:1.55;color:var(--ink-3);margin:12px 0 0;max-width:62ch}
 .pf-table--thk{min-width:0}
 .pf-table--thk th{width:50%}
+/* Sticky bars. .pf-tablewrap's overflow-x makes it a scroll container, which a sticky cell
+   cannot escape. The 1080px column less 32px gutters leaves 1016px against the table's
+   860px, so only under 924px does it need to scroll sideways — and there the bars stay
+   static. Bars stack rather than push each other off (sticky cells aren't scoped to their
+   row group); that is invisible only while every bar is identical. */
+@media(min-width:924px){
+  .pf-tablewrap{overflow:visible}
+  .pf-grp th{position:sticky;top:0;z-index:2}
+  /* labels pin directly under the 40px bar; with no bar (one category) they pin to the top */
+  .pf-cols th{position:sticky;top:40px;z-index:2}
+  .pf-cols--solo th{top:0}
+}
 
 @media(max-width:860px){
   .pf-filters{gap:16px}
@@ -83,6 +112,7 @@
   .pf-clear{margin-left:0}
   .pf-ask{padding:18px 20px}
   .pf-btn{margin-left:0}
+  .pf-aside{display:block;margin:4px 0 0;padding:0;border-left:0}
   /* The table reflows to stacked rows rather than scrolling away from the package name —
      the package → size → leads relationship has to survive. */
   .pf-tablewrap{border:0;background:none;overflow:visible}
@@ -92,6 +122,10 @@
   .pf-table tr{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);padding:14px 16px;margin-bottom:10px}
   .pf-table td{border:0;padding:2px 0}
   .pf-table td:before{content:attr(data-l);display:inline-block;min-width:96px;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+  .pf-table tr.pf-grp{background:none;border:0;padding:0;margin:20px 0 10px}
+  .pf-table tr.pf-grp:first-child{margin-top:0}
+  .pf-table tr.pf-cols{display:none}
+  .pf-grp th{display:block;border-radius:var(--pf-radius)}
   .pf-pk{font-size:17px;margin-bottom:4px}
   .pf-table td.pf-pk:before{content:none}
 }

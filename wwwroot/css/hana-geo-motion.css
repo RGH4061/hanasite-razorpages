@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Hana geometric motion backgrounds
+   --------------------------------------------------------------------------
+   Large flat shapes (two triangles, an inverted triangle, a parallelogram and
+   a wedge) in the Hana blue palette, drifting slowly behind a dark band.
+   Shapes blend with "screen", so they read lighter where they overlap.
+
+   Markup (the shapes are added by js/hana-geo-motion.js):
+     <section data-hana-geo="band" data-geo-theme="midnight"> ... </section>
+     <div data-hana-geo="strip" data-geo-theme="midnight" style="height:40px"></div>
+
+   data-hana-geo     band  | strip | side
+                     band:  shapes sized for a CTA / section band (~300-500px tall)
+                     strip: shapes centred on a thin divider (5-150px tall)
+                     side:  for left-aligned text blocks; darker on the left, shapes
+                            grouped on the right and faded out before the text.
+                            Still by default; add data-geo-motion to animate it.
+   data-geo-theme    midnight (default) | blue | navy | ir | markets
+                     Sets the background. Use data-geo-theme="none" to keep the
+                     element's own background.
+   data-geo-scale    optional number, e.g. 1.3 = shapes 30% larger
+   data-geo-static   optional; shapes are drawn but do not move
+   data-geo-variant  optional, side only: 1 (default) | 2 | 3 | 4
+                     Four arrangements of the shapes, so neighbouring pages
+                     do not repeat the same composition.
+   data-geo-style    optional surface: flat | fold
+                     fold: each shape split into two facets, like folded card.
+                     Default is fold for side, flat for band and strip.
+
+   Motion stops for visitors with prefers-reduced-motion set.
+   ========================================================================== */
+
+[data-hana-geo] {
+  --geo-k: .75;          /* overall shape brightness */
+  --geo-s: 1;            /* shape scale */
+  --geo-d: -9s;          /* start point in the loop */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Themes: the dark backgrounds already used on the site */
+[data-hana-geo]:not([data-geo-theme]),
+[data-geo-theme="midnight"] { background: radial-gradient(ellipse 80% 100% at 80% 50%, #072c4d 0%, #030a17 65%); --geo-k: .75; }
+[data-geo-theme="blue"]     { background: #0E4A7C; --geo-k: 1; }
+[data-geo-theme="navy"]     { background: radial-gradient(120% 120% at 50% 40%, #16324A 0%, #0B2236 70%, #08192A 100%); --geo-k: .85; }
+[data-geo-theme="ir"]       { background: #0D3560; --geo-k: .95; }
+[data-geo-theme="markets"]  { background: #071f35; --geo-k: .8; }
+
+.hana-geo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.hana-geo .geo-s {
+  position: absolute;
+  width: calc(var(--w) * var(--geo-s));
+  height: calc(var(--h) * var(--geo-s));
+  mix-blend-mode: screen;
+  opacity: calc(var(--o) * var(--geo-k));
+  transform-origin: center;
+  animation-delay: var(--geo-d) !important;
+}
+
+/* Shape set — size, position, colour, opacity, drift */
+.hana-geo .geo-1 { --w:620px; --h:540px; left:50%;  top:-55%; color:#1283DD; --o:.50; animation: hana-geo-a 30s cubic-bezier(.2,.6,.2,1) infinite alternate; }
+.hana-geo .geo-2 { --w:520px; --h:600px; left:66%;  top:-30%; color:#4E9BDA; --o:.38; animation: hana-geo-b 36s cubic-bezier(.2,.6,.2,1) infinite alternate; }
+.hana-geo .geo-3 { --w:900px; --h:200px; left:-12%; top:66%;  color:#1283DD; --o:.30; animation: hana-geo-c 28s cubic-bezier(.2,.6,.2,1) infinite alternate; }
+.hana-geo .geo-4 { --w:440px; --h:420px; left:-8%;  top:-45%; color:#9CC1E9; --o:.16; animation: hana-geo-d 40s cubic-bezier(.2,.6,.2,1) infinite alternate; }
+.hana-geo .geo-6 { --w:300px; --h:300px; left:60%; top:50%; color:#071f35; --o:.75; mix-blend-mode:normal; }
+.hana-geo .geo-5 { --w:360px; --h:380px; left:84%;  top:35%;  color:#4E9BDA; --o:.30; animation: hana-geo-a 34s cubic-bezier(.2,.6,.2,1) infinite alternate-reverse; }
+
+/* Strip: centre every shape on the strip; offsets make different edges cross it */
+[data-hana-geo="strip"] .geo-s { top: calc(50% - var(--h) * var(--geo-s) / 2 + var(--ty)); }
+[data-hana-geo="strip"] .geo-1 { --ty: 60px; }
+[data-hana-geo="strip"] .geo-2 { --ty: -80px; }
+[data-hana-geo="strip"] .geo-3 { --ty: 0px; }
+[data-hana-geo="strip"] .geo-4 { --ty: 40px; }
+[data-hana-geo="strip"] .geo-5 { --ty: -30px; }
+
+/* Side: darker wash on the left for the text, shapes grouped on the right */
+[data-hana-geo="side"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(90deg, rgba(3,10,23,.55) 0%, rgba(3,10,23,.32) 38%, rgba(3,10,23,0) 68%);
+}
+/* Shapes confined to the top-right corner: they fade out before the text column
+   on the left and before any small text along the bottom */
+[data-hana-geo="side"] .hana-geo {
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 100% 0%, #000 40%, transparent 100%);
+          mask-image: radial-gradient(ellipse 60% 70% at 100% 0%, #000 40%, transparent 100%);
+}
+/* Side compositions: smaller shapes with space between them. Light shapes
+   (screen blend) lift the surface; dark shapes (.geo-dark / .geo-darker, set
+   per variant in the JS) sit below the background tone for depth. */
+[data-hana-geo="side"] .geo-dark   { color:#0D3560; mix-blend-mode:normal; --o:.75; }
+[data-hana-geo="side"] .geo-darker { color:#071f35; mix-blend-mode:normal; --o:.7; }
+[data-hana-geo="side"] .geo-3 { --o:.42; }
+[data-hana-geo="side"] .geo-5 { --o:.4; }
+
+/* Variant 1 (default) — the owner's Affinity layout, 20 Oct 2026: six shapes
+   reaching across the right half, no corner fade on desktop */
+[data-hana-geo="side"] .geo-4 { --w:406px; --h:250px; left:44.4%; top:-22%; }  /* shortened 20 Oct so its tip stays above the intro text */
+[data-hana-geo="side"] .geo-3 { --w:444px; --h:124px; left:44.1%; top:80.5%; rotate:-6deg; }
+[data-hana-geo="side"] .geo-1 { --w:626px; --h:590px; left:calc(44.4% + 181.4px); top:calc(-22% - 208.7px); rotate:-74.4deg; }  /* 20 Oct: offset from .geo-4 in px, so its edge meets the dark triangle at every section width and height (was left:57%; top:-64%) */
+[data-hana-geo="side"] .geo-2 { --w:466px; --h:544px; left:78.7%; top:-52.5%; rotate:-33.9deg; }
+[data-hana-geo="side"] .geo-6 { --w:712px; --h:581px; left:58.1%; top:55.5%;  rotate:180deg; --o:.75; }
+[data-hana-geo="side"] .geo-5 { --w:296px; --h:327px; left:87.1%; top:49.3%;  rotate:-11deg; }
+@media (min-width: 861px) {
+  [data-hana-geo="side"]:not([data-geo-variant]) .hana-geo,
+  [data-hana-geo="side"][data-geo-variant="1"] .hana-geo {
+    /* no corner fade; shapes softened along the bottom band so small text stays at 4.5:1 or more */
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 56%, rgba(0,0,0,.3) 74%, rgba(0,0,0,.3) 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 56%, rgba(0,0,0,.3) 74%, rgba(0,0,0,.3) 100%);
+  }
+}
+
+/* Variant 2 */
+[data-hana-geo="side"][data-geo-variant="2"] .geo-4 { --w:460px; --h:100px; left:48%; top:20%; rotate:-18deg; }
+[data-hana-geo="side"][data-geo-variant="2"] .geo-1 { --w:250px; --h:230px; left:59%; top:-36%; rotate:0deg; }
+[data-hana-geo="side"][data-geo-variant="2"] .geo-3 { --w:330px; --h:300px; left:75%; top:-6%; }
+[data-hana-geo="side"][data-geo-variant="2"] .geo-2 { --w:220px; --h:260px; left:90%; top:-40%; rotate:180deg; }
+[data-hana-geo="side"][data-geo-variant="2"] .geo-5 { --w:180px; --h:190px; left:63%; top:48%; rotate:0deg; }
+
+/* Variant 3 */
+[data-hana-geo="side"][data-geo-variant="3"] .geo-4 { --w:280px; --h:270px; left:71%; top:-14%; rotate:180deg; }
+[data-hana-geo="side"][data-geo-variant="3"] .geo-3 { --w:440px; --h:100px; left:49%; top:44%; rotate:180deg; }
+[data-hana-geo="side"][data-geo-variant="3"] .geo-1 { --w:300px; --h:270px; left:87%; top:-34%; }
+[data-hana-geo="side"][data-geo-variant="3"] .geo-2 { --w:220px; --h:300px; left:55%; top:-56%; rotate:18deg; }
+[data-hana-geo="side"][data-geo-variant="3"] .geo-5 { --w:180px; --h:190px; left:91%; top:40%; rotate:0deg; }
+
+/* Variant 4 */
+[data-hana-geo="side"][data-geo-variant="4"] .geo-4 { --w:560px; --h:96px;  left:50%; top:4%;   rotate:14deg; }
+[data-hana-geo="side"][data-geo-variant="4"] .geo-3 { --w:520px; --h:92px;  left:56%; top:46%;  rotate:-8deg; }
+[data-hana-geo="side"][data-geo-variant="4"] .geo-1 { --w:460px; --h:86px;  left:70%; top:-14%; rotate:34deg; }
+[data-hana-geo="side"][data-geo-variant="4"] .geo-2 { --w:240px; --h:280px; left:89%; top:-22%; rotate:8deg; }
+[data-hana-geo="side"][data-geo-variant="4"] .geo-5 { --w:170px; --h:180px; left:80%; top:22%; rotate:180deg; }
+
+@keyframes hana-geo-a { from { transform: translate(0,0) rotate(0deg); }  to { transform: translate(160px,-40px) rotate(14deg); } }
+@keyframes hana-geo-b { from { transform: translate(0,0) rotate(0deg); }  to { transform: translate(-200px,50px) rotate(-18deg); } }
+@keyframes hana-geo-c { from { transform: translate(0,0) rotate(-6deg); } to { transform: translate(120px,60px) rotate(10deg); } }
+@keyframes hana-geo-d { from { transform: translate(0,0) rotate(0deg); }  to { transform: translate(-140px,-30px) rotate(22deg); } }
+
+[data-geo-static] .geo-s { animation-play-state: paused; }
+[data-hana-geo="side"]:not([data-geo-motion]) .geo-s { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hana-geo .geo-s { animation: none; }
+}
+
+/* Band on narrow screens: smaller shapes, repositioned for a taller stacked band */
+@media (max-width: 860px) {
+  [data-hana-geo="band"] { --geo-s: .6; }
+  [data-hana-geo="band"] .geo-1 { left:30%;  top:-12%; }
+  [data-hana-geo="band"] .geo-2 { left:55%;  top:-4%; }
+  [data-hana-geo="band"] .geo-3 { left:-30%; top:78%; }
+  [data-hana-geo="band"] .geo-4 { left:-20%; top:-8%; }
+  [data-hana-geo="band"] .geo-5 { left:60%;  top:60%; }
+  /* Side on narrow screens: three larger shapes anchored to the top and right
+     edges (they run off the section), so they read as part of the block rather
+     than floating. The two smallest shapes are hidden. */
+  [data-hana-geo="side"] { --geo-s: .8; }
+  [data-hana-geo="side"] .hana-geo {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 16%, transparent 34%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 16%, transparent 34%);
+  }
+  [data-hana-geo="side"] .geo-3,
+  [data-hana-geo="side"] .geo-5,
+  [data-hana-geo="side"] .geo-6 { display: none; }
+  [data-hana-geo="side"] .geo-4,
+  [data-hana-geo="side"][data-geo-variant] .geo-4 { left:4%;  top:-9%; }
+  [data-hana-geo="side"] .geo-1,
+  [data-hana-geo="side"][data-geo-variant] .geo-1 { left:50%; top:-5%; }
+  [data-hana-geo="side"] .geo-2,
+  [data-hana-geo="side"][data-geo-variant] .geo-2 { left:76%; top:7%; }
+  /* Variant 2 keeps its light triangle (geo-3) on phones instead of the dark band */
+  [data-hana-geo="side"][data-geo-variant="2"] .geo-3 { display:block; left:44%; top:-4%; }
+  [data-hana-geo="side"][data-geo-variant="2"] .geo-4 { display:none; }
+  [data-hana-geo="side"][data-geo-variant="2"] .geo-1 { left:4%;  top:-6%; }
+  [data-hana-geo="side"][data-geo-variant="2"] .geo-2 { left:80%; top:5%; }
+  /* Variant 4: bands brought down into view, crossing from the top edge */
+  [data-hana-geo="side"][data-geo-variant="4"] .geo-3 { display:block; left:34%; top:12%; }
+  [data-hana-geo="side"][data-geo-variant="4"] .geo-4 { display:none; }
+  [data-hana-geo="side"][data-geo-variant="4"] .geo-1 { left:28%; top:3%; }
+  [data-hana-geo="side"][data-geo-variant="4"] .geo-2 { left:78%; top:1%; }
+}

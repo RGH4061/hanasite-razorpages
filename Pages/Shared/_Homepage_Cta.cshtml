@@ -1,14 +1,15 @@
-@* _Homepage_Cta.cshtml — Closing CTA band
+@* _Homepage_Cta.cshtml — Closing CTA — free-floating rounded card on white
    Dark blue panel with PCB grid texture and two CTA buttons.
    Spec ref: design_handoff_homepage/README.md §8
 *@
 
-<section class="hana-cta-section"
-         data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none"
-         style="background:var(--hana-blue-deep); border-top:1px solid var(--line);
-                position:relative; overflow:hidden; padding:96px 0;">
-
-    <div class="hana-wrap" style="position:relative; z-index:1;">
+<section class="hana-cta-section mm-cta-float" style="background:#fff; padding:16px 0 64px;">
+    <div class="hana-wrap">
+      <div class="mm-cta-card"
+           data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none"
+           style="background:var(--hana-blue-deep); position:relative; overflow:hidden;
+                  border-radius:14px; padding:64px 56px;">
+        <div style="position:relative; z-index:1;">
         <div style="display:grid;
                     grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
                     gap:48px; align-items:center;">
@@ -28,5 +29,6 @@
 
         </div>
     </div>
-
+      </div>
+    </div>
 </section>

@@ -119,7 +119,7 @@ function score(p, toks, hint, raw){
     /* Type weight favours hubs and parents, which is right for a vague query and wrong on
        an exact phrase — there, specificity decides. */
     s *= phrase ? 1 : (TYPEW[p.t] ?? 1);
-    s *= (SECTIONW[p.s] ?? 1);      // Capabilities lead — Rupert, Aug 2026
+    s *= (SECTIONW[p.s] ?? 1);      // Capabilities lead — site owner, Aug 2026
     if(p.p === "HIGH") s += 6;
     if(hint) s *= (p.s === hint ? 1.6 : 0.7);
     /* Phrase bonus lands after the multipliers, so a parent's type weight can't amplify it

@@ -15,7 +15,7 @@
     "/about/awards": "/about/quality",
     "/capabilities/pcba-box-build/chip-on-board": "/capabilities/pcba-box-build/cob-assembly",
     /* Renamed in the Aug 2026 restructure — the index address is /clear-mold-packaging,
-       the Razor page is /optical-packaging (Rupert, 14 Aug 2026). */
+       the Razor page is /optical-packaging (site owner, 14 Aug 2026). */
     "/capabilities/osat/clear-mold-packaging": "/capabilities/osat/optical-packaging",
     "/capabilities/microelectronic-assembly/flip-chip": "/capabilities/microelectronic-assembly/flip-chip-micro",
     "/capabilities/microelectronic-assembly/interconnect-solutions": "/capabilities/microelectronic-assembly/precision-interconnect",

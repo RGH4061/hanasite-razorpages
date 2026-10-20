@@ -1,8 +1,8 @@
 <header class="hana-header" style="background:#fff; font-family:var(--font-text);">
 
     
-    <div class="hana-util-bar"
-         style="background:var(--hana-blue-deep); color:rgba(255,255,255,0.78); font-size:12px;">
+    <div class="hana-util-bar" data-hana-geo="strip" data-geo-theme="midnight"
+         style="color:rgba(255,255,255,0.78); font-size:12px;">
         <div class="hana-wrap"
              style="height:36px; display:flex; align-items:center; justify-content:space-between; padding-top:0; padding-bottom:0;">
 
@@ -16,12 +16,11 @@
             </div>
 
             
-            <div style="display:flex; align-items:center; gap:8px;
-                            background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+            <div class="hs-hdr-box" style="display:flex; align-items:center; gap:8px;
                             border-radius:4px; padding:4px 10px; min-width:220px;">
                     <i data-lucide="search"
-                       style="width:12px; height:12px; stroke:rgba(255,255,255,0.6); flex-shrink:0;"></i>
-                    <span style="color:rgba(255,255,255,0.55); font-size:12px;">
+                       style="width:12px; height:12px; flex-shrink:0;"></i>
+                    <span style="color:#444B54; font-size:12px;">
                         Search capabilities, package sizes, certs and more&hellip;
                     </span>
                 </div>
@@ -270,21 +269,16 @@
                     box-shadow:0 24px 48px rgba(3,10,23,0.12);">
             <div class="hana-wrap"
                  style="padding-top:36px; padding-bottom:40px;
-                        display:grid; grid-template-columns:270px 1fr; gap:56px; align-items:start;">
+                        display:grid; grid-template-columns:190px 1fr; gap:40px; align-items:start;">
                 <div style="border-right:1px solid var(--line); padding-right:40px;">
                     <div style="font-family:var(--font-display); font-size:21px; font-weight:700;
-                                letter-spacing:-0.02em; margin-bottom:12px;">Global footprint</div>
-                    <p style="font-family:var(--font-text); font-size:13px; line-height:1.6;
-                               color:var(--ink-2); margin:0 0 20px; text-wrap:pretty;">
-                        Manufacturing across Thailand, Cambodia, China and the USA,
-                        with geographic resilience built in.
-                    </p>
+                                letter-spacing:-0.02em; margin-bottom:12px;">Global footprint</div><p style="font-size:13px; line-height:1.55; color:var(--ink-2); margin:0 0 18px; text-wrap:pretty;">Diversified manufacturing across four countries</p>
                     <a href="/locations" class="hana-link" style="font-size:11px; letter-spacing:0.1em;">
                         All locations
                         <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
                     </a>
                 </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; column-gap:40px; row-gap:26px;">
+                <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); column-gap:40px; row-gap:26px;">
                     
                     <div>
                         <div style="font-size:13px; font-weight:700; color:var(--ink);
@@ -308,7 +302,7 @@
                                     <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
                                     <span style="display:flex; flex-direction:column; gap:2px;">
                                         <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Lamphun</span>
-                                        <span style="font-size:11px; color:var(--ink-3);">PCBA &middot; EMS</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">PCBA &middot; OSAT &middot; Box Build &middot; EMS</span>
                                     </span>
                                 </a>
                             </li>
@@ -320,18 +314,20 @@
                                     padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
                             China
                         </div>
-                        <ul style="list-style:none; margin:0; padding:0 0 16px;">
+                        <ul style="list-style:none; margin:0; padding:0;">
                             <li>
                                 <a href="/locations/jiaxing" class="hana-mega-card"
                                    style="display:flex; align-items:baseline; gap:8px; padding:7px 8px;">
                                     <span style="color:var(--hana-blue); font-weight:700; font-size:13px; flex-shrink:0;">&rsaquo;</span>
                                     <span style="display:flex; flex-direction:column; gap:2px;">
                                         <span class="hana-mega-name" style="font-size:13px; font-weight:600;">Jiaxing</span>
-                                        <span style="font-size:11px; color:var(--ink-3);">EMS &middot; OSAT &middot; RFID</span>
+                                        <span style="font-size:11px; color:var(--ink-3);">EMS &middot; OSAT &middot; RFID &middot; Box Build</span>
                                     </span>
                                 </a>
                             </li>
                         </ul>
+                        </div>
+                        <div>
                         <div style="font-size:13px; font-weight:700; color:var(--ink);
                                     padding-bottom:9px; margin-bottom:4px; border-bottom:1px solid var(--line);">
                             Cambodia
