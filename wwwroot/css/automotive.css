@@ -329,10 +329,8 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-cta--hub .actions{justify-content:flex-end}
 @media(max-width:900px){.auto-cta--hub .actions{justify-content:flex-start}}
 
-/* Advantage band motion demo (js/automotive-adv-motion.js). Runs only while the band is on screen. */
+/* Advantage band crosshair pulse (js/automotive-adv-motion.js). Runs only while the band is on screen. */
 @keyframes advPulse{0%,100%{stroke-opacity:.2}50%{stroke-opacity:1}}
-@keyframes advScan{from{transform:translateX(-220px)}to{transform:translateX(var(--adv-w,1400px))}}
 .adv-pulse .adv-hot{animation:advPulse 5.5s ease-in-out infinite;animation-play-state:paused}
-.adv-scan .adv-beam{animation:advScan 9s linear infinite;animation-play-state:paused}
-.auto-advantage.is-live .adv-hot,.auto-advantage.is-live .adv-beam{animation-play-state:running}
-@media(prefers-reduced-motion:reduce){.adv-hot,.adv-beam{animation:none!important}}
+.auto-advantage.is-live .adv-hot{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.adv-hot{animation:none!important}}
