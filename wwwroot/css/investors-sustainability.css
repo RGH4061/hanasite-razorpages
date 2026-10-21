@@ -665,3 +665,13 @@
 .content .initiatives-grid { grid-template-columns: repeat(2, 1fr); }
 .content .initiative img { width: 100%; height: auto; aspect-ratio: 5 / 3; object-fit: cover; }
 @media (max-width: 640px) { .content .initiatives-grid { grid-template-columns: 1fr; } }
+
+/* "See also" links in the section menu: plain inline links with a light underline.
+   They otherwise inherit the menu-link padding, borders and grid, which broke the spacing. */
+.sectionnav .footer-link a,
+.sidenav .footer-link a {
+  display: inline; padding: 0; margin: 0; border: 0; background: none;
+  border-bottom: 1px solid var(--line); grid-template-columns: none; color: var(--ink-2);
+}
+.sectionnav .footer-link a:hover,
+.sidenav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); background: none; }

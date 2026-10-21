@@ -763,3 +763,15 @@
     .gs-head{flex-wrap:wrap;gap:10px}
     .gs-legend-note{margin-left:0!important;text-align:left}
   }
+
+/* "See also" links in the section menu: plain inline links with a light underline.
+   They otherwise inherit the menu-link padding, borders and grid, which broke the spacing. */
+.sectionnav .footer-link a,
+.sidenav .footer-link a {
+  display: inline; padding: 0; margin: 0; border: 0; background: none;
+  border-bottom: 1px solid var(--line); grid-template-columns: none; color: var(--ink-2);
+}
+.sectionnav .footer-link a:hover,
+.sidenav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); background: none; }
+/* The section menu runs across the top here: keep "See also" as one line of text */
+.sectionnav .footer-link { display: block; align-self: center; white-space: nowrap; }
