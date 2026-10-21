@@ -95,10 +95,15 @@
   // Heading groups rise; card grids are found from the layout itself (a grid or a row of
   // flex items with at least two card-sized children) and stagger, innermost first;
   // large in-flow photos settle. Reading text, tools and interactive parts stay still.
-  var PAGE_SKIP = 'table, form, nav, details, .ins-article, .ins-toc, .ins-subbar, .subbar, ' +
+  var PAGE_SKIP = 'table, form, nav, aside, details, .ins-article, .ins-toc, .ins-subbar, .subbar, ' +
     '.anchor-nav, .decade-nav, .timeline-h-section, .progress, .filter-row, .story-lightbox, ' +
     '.life-section, .lc-map-block, [class*="carousel"], [class*="slide"]';
-  function gtag(el, delay, kind) { if (!el.closest(PAGE_SKIP) && !el.querySelector('[data-m], .m-words')) tag(el, delay, kind); }
+  // Anything holding form fields, a table or a canvas stays still (forms, IR document lists,
+  // topography backgrounds), as does anything already tagged.
+  function gtag(el, delay, kind) {
+    if (!el.closest(PAGE_SKIP) && !el.querySelector('[data-m], .m-words, input, select, textarea, table, canvas'))
+      tag(el, delay, kind);
+  }
   function cardGrid(el) {
     var cs = getComputedStyle(el);
     var grid = cs.display === 'grid' || cs.display === 'inline-grid' ||
@@ -117,6 +122,8 @@
   var PROFILES = {
     page: function (main) {
       hero(main.querySelector('h1'));
+      // IR group structure: the org chart fades in as one piece (its own script scales it)
+      each(main, 'figure.gs', function (fig) { tag(fig); });
       each(main, 'h2', function (h2) {
         if (h2.closest(PAGE_SKIP)) return;
         var head = h2.parentElement;
