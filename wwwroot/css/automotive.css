@@ -285,3 +285,51 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 /* Carry the FAQ band colour behind the spoke CTA bubble (fills the margin around it) */
 .auto-cta.auto-cta--spoke{box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(-16px -100vmax -64px)}
 @media(max-width:680px){.auto-cta.auto-cta--spoke{clip-path:inset(-8px -100vmax -40px)}}
+
+/* ── Hub polish, Oct 2026 ───────────────────────────────────────────── */
+/* Proof stats: four comparable facts at a readable size */
+.auto-spec.is-hero .cell{padding:18px 22px}
+.auto-spec.is-hero .l{margin-bottom:6px}
+.auto-spec.is-hero .v{font-size:22px;line-height:1.2}
+
+/* Advantage band: text on the dark field with dividers; pattern kept to the right */
+.auto-advantage{background:rgb(3,10,23)}
+.auto-advantage .hana-bg-layer>svg{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 38%,#000 85%);mask-image:linear-gradient(90deg,transparent 0,transparent 38%,#000 85%)}
+.auto-advlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;margin-top:8px}
+.auto-advitem{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:22px 0;border-top:1px solid rgba(255,255,255,.16)}
+.auto-advitem .ic{width:36px;height:36px;border-radius:8px;border:1px solid rgba(126,200,255,.35);display:flex;align-items:center;justify-content:center;color:#7EC8FF}
+.auto-advitem .t{font-family:var(--font-display);font-size:17px;font-weight:600;color:#fff;margin-bottom:6px}
+.auto-advitem p{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.72);margin:0}
+
+/* Product cards: 4:3 image on top, link pinned to the bottom. Two layouts (mockup):
+   .is-centred = 3 + 2 with the second row centred; .is-row5 = five across */
+.auto-pgrid.is-centred{grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+.auto-pgrid.is-centred>*{grid-column:span 2}
+.auto-pgrid.is-centred>:nth-child(4){grid-column:2/span 2}
+.auto-pgrid.is-row5{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.auto-pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;text-decoration:none;color:inherit;transition:border-color .3s,box-shadow .3s,transform .3s}
+.auto-pcard:hover{border-color:#B8D2EC;box-shadow:0 10px 28px -18px rgba(14,40,70,.35);transform:translateY(-2px)}
+.auto-pcard .img{display:block;aspect-ratio:4/3;overflow:hidden;background:#F2F5F8;border-bottom:1px solid var(--line)}
+.auto-pcard .img img{display:block;width:100%;height:100%;object-fit:cover}
+.auto-pcard .body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
+.auto-pcard .nm{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink)}
+.auto-pcard p{font-size:13px;line-height:1.55;color:var(--ink-2);margin:6px 0 14px}
+.auto-pcard .cta{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.auto-pgrid.is-row5 .auto-pcard .body{padding:14px 16px 16px}
+.auto-pgrid.is-row5 .auto-pcard .nm{font-size:15.5px}
+.auto-pgrid.is-row5 .auto-pcard p{font-size:12.5px}
+
+/* Closing CTA on the hub: text starts at the card padding, heading matches section headings */
+.auto-cta--hub .inner{max-width:none;padding:52px 48px}
+.auto-cta--hub h2{font-size:27px}
+
+@media(max-width:1100px){.auto-pgrid.is-row5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){
+  .auto-pgrid.is-centred,.auto-pgrid.is-row5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .auto-pgrid.is-centred>*,.auto-pgrid.is-centred>:nth-child(4){grid-column:auto}
+  .auto-advlist{grid-template-columns:1fr}
+  .auto-advantage .hana-bg-layer>svg{-webkit-mask-image:none;mask-image:none;opacity:.5}
+}
+@media(max-width:560px){.auto-pgrid.is-centred,.auto-pgrid.is-row5{grid-template-columns:1fr}}
+.auto-cta--hub .actions{justify-content:flex-end}
+@media(max-width:900px){.auto-cta--hub .actions{justify-content:flex-start}}
