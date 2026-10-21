@@ -15,7 +15,9 @@
 /* Page-to-page cross-fade (Chrome, Edge, Safari 18+; other browsers change pages as before).
    The header is its own layer, so it stays still while the page content fades. */
 @view-transition { navigation: auto; }
-.hana-header { view-transition-name: site-header; }
+/* A view-transition-name makes the header its own stacking context, which would trap the
+   mega-menu panels inside it; lifting the header keeps them above the page content. */
+.hana-header { view-transition-name: site-header; z-index: 200; }
 ::view-transition-old(root),
 ::view-transition-new(root) { animation-duration: 260ms; animation-timing-function: var(--m-ease); }
 
