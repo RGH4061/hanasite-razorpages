@@ -290,7 +290,7 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 /* Proof stats: four comparable facts at a readable size */
 .auto-spec.is-hero .cell{padding:18px 22px}
 .auto-spec.is-hero .l{margin-bottom:6px}
-.auto-spec.is-hero .v{font-size:22px;line-height:1.2}
+.auto-spec.is-hero .v{font-size:clamp(17px,1.6vw,22px);line-height:1.2;white-space:nowrap}
 
 /* Advantage band: text on the dark field with dividers; pattern kept to the right */
 .auto-advantage{background:rgb(3,10,23)}
@@ -434,3 +434,13 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 [data-band="c"] .auto-advantage .hana-bg-layer{background:linear-gradient(135deg,#0E4A7C 0%,#0B3B66 60%,#082E52 100%)!important}
 [data-band="c"] .auto-advitem{border-top-color:rgba(255,255,255,.2)}
 [data-band="c"] .auto-advitem .ic{color:#9FD8FF;border-color:rgba(159,216,255,.45)}
+
+/* A · three-tone rhythm below the dark hero: pale blue = credentials (advantage, plants),
+   white = browse and read (products, FAQ), dark navy = hero, CTA and footer */
+[data-band="a"] .auto-advantage .hana-bg-layer{background:#EAF2FB!important}
+[data-band="a"] #products{background:#fff!important;border-top:0!important}
+[data-band="a"] .auto-pcard{box-shadow:0 1px 2px rgba(14,40,70,.05),0 10px 26px -20px rgba(14,40,70,.35)}
+[data-band="a"] .auto-plantsband{background:#EAF2FB!important;border:0!important}
+[data-band="a"] .auto-plantcard{background:#fff}
+[data-band="a"] .auto-cta .hana-bg-layer{background:radial-gradient(70% 120% at 85% 50%,#111d31 0%,#08111f 55%,#040a16 100%)!important}
+[data-band="a"] .auto-cta{background:#040a16}
