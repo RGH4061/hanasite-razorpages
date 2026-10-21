@@ -7,3 +7,11 @@
 :lang(th) .t-headline{letter-spacing:0;line-height:1.45;font-size:17px}
 :lang(th) .t-body{line-height:1.75;font-size:14px}
 :lang(th) .progress-label .current{font-family:var(--font-display)}
+
+/* Vertical timeline and hero title (21 Oct 2026) */
+:lang(th) .hero-title,:lang(th) .tl-headline,:lang(th) .tl-body,:lang(th) .tl-decade-sum,:lang(th) .tl-photo figcaption{font-family:var(--font-thai)}
+:lang(th) .hero-title{letter-spacing:0;line-height:1.25}
+:lang(th) .tl-headline{letter-spacing:0;line-height:1.4}
+:lang(th) .tl-body{line-height:1.75}
+:lang(th) .tl-photo figcaption{text-transform:none;letter-spacing:0;font-size:12px}
+:lang(th) .tl-decade-name{font-size:clamp(28px,2.8vw,36px);letter-spacing:-0.02em}
