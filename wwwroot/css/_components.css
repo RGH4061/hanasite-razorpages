@@ -606,15 +606,11 @@ body {
   /* ── Compact sticky bar ─────────────────────────────── */
   /* !important: search.css sets .hana-header{position:relative} after this file */
   .hana-header { position: sticky !important; top: 0; z-index: 200; }
-  /* utility bar → search only: the ticker and the util links come off, and the
-     header search field takes the full dark-blue row */
-  .hana-util-bar .hana-wrap > div:first-child { display: none !important; }
+  /* utility bar → SET ticker only: the search field and the util links come off
+     (search, Careers and Insights are in the mobile menu's footer) */
+  .hana-util-bar .hs-hdr-box { display: none !important; }
   .hana-util-bar .hana-wrap > div:last-child { display: none !important; }
-  .hana-util-bar .hana-wrap { height: 42px !important; }
-  .hana-util-bar .hs-hdr-box { flex: 1 1 auto !important; min-width: 0 !important; padding: 6px 12px !important; }
-  /* 16px stops iOS zooming the page when the field takes focus */
-  .hana-util-bar .hs-hdr-input { font-size: 16px !important; }
-  .hana-util-bar .hs-hdr-input::placeholder { font-size: 13px !important; }
+  .hana-util-bar .hana-wrap { height: 32px !important; }
   /* hide the desktop hover nav + its mega panels on touch */
   .hana-header :is(nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]) { display: none !important; }
   .hana-header .hana-mega { display: none !important; }
