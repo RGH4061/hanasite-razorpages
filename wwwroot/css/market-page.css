@@ -293,13 +293,8 @@ body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 
 /* Turnkey plate (Medical PCBA): the stage list inside a .pl-fade plate */
 @media(min-width:1081px){.mk-plate.mk-turnkey .in>div{max-width:490px}}
-/* Smaller photo than a full-height plate: inset top and bottom, faded on all edges */
-.mk-turnkey .art{top:14%;bottom:14%;width:46%}
-.mk-plate.pl-fade.mk-turnkey .art img{
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.5) 34%,#000 72%),linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.5) 34%,#000 72%),linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);
-  mask-composite:intersect}
+/* Full-height photo sized to its own proportions, so the whole frame shows instead of a crop */
+.mk-turnkey .art{width:auto;aspect-ratio:1271/1237;max-width:62%}
 .mk-turnkey .tk-list{list-style:none;margin:0 0 18px;padding:0;border-top:1px solid rgba(255,255,255,.18)}
 .mk-turnkey .tk-list li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:14px;line-height:1.55;color:rgba(255,255,255,.82)}
 .mk-turnkey .tk-list .t{display:block;margin-bottom:2px;font-weight:600;color:#fff}
