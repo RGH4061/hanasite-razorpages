@@ -65,7 +65,7 @@
       // Filter chips
       var bar = document.createElement('div');
       bar.className = 'auto-chips';
-      bar.innerHTML = '<span class="lbl">Show on vehicle</span>';
+      bar.setAttribute('aria-label', 'Show on vehicle');
       var chips = [];
       function chip(label, n, color) {
         var b = document.createElement('button');
