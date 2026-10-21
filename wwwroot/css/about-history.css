@@ -52,7 +52,6 @@
     border-radius: 3px;
   }
   .decade-chip:focus-visible,
-  .nav-btn:focus-visible,
   .btn:focus-visible { outline-offset: 4px; }
 
   /* ── Hero band (breadcrumb + hero over flow background) ── */
@@ -99,21 +98,6 @@
     background: var(--hana-blue);
     box-shadow: 0 0 0 4px var(--hana-blue-tint);
   }
-
-  /* The bold move: paired-year figure as the hero anchor */
-  .hero-figure {
-    display: flex;
-    align-items: center;
-    gap: clamp(18px, 3vw, 36px);
-    margin: 0 0 var(--s-6);
-    font-family: 'Geist', sans-serif;
-    font-weight: 700;
-    font-size: clamp(64px, 11vw, 128px);
-    line-height: 0.92;
-    letter-spacing: -0.045em;
-    color: var(--ink);
-  }
-  .hero-figure .year-now { color: var(--hana-blue); }
   /* Hero title: "Our journey." then "From 1978 → 2026" (same face and arrow as the old figure) */
   .hero-title {
     margin: 0 0 var(--s-6);
@@ -139,21 +123,6 @@
     position: relative;
   }
   .hero-title .arrow::after {
-    content: "";
-    position: absolute;
-    right: -1px; top: 50%;
-    width: 9px; height: 9px;
-    border-top: 1px solid var(--ink-3);
-    border-right: 1px solid var(--ink-3);
-    transform: translateY(-50%) rotate(45deg);
-  }
-  .hero-figure .arrow {
-    flex: 0 0 clamp(56px, 8vw, 104px);
-    height: 1px;
-    background: var(--ink-3);
-    position: relative;
-  }
-  .hero-figure .arrow::after {
     content: "";
     position: absolute;
     right: -1px; top: 50%;
@@ -217,13 +186,6 @@
     .hero-spec { grid-template-columns: 1fr; }
     .hero-spec .spec-item { border-right: none; border-bottom: 1px solid var(--line); }
     .hero-spec .spec-item:last-child { border-bottom: none; }
-    .hero-figure {
-      font-size: 48px;
-      gap: 12px;
-      letter-spacing: -0.04em;
-    }
-    .hero-figure .arrow { flex-basis: 32px; }
-    .hero-figure .arrow::after { width: 7px; height: 7px; }
   }
 
   /* ── Decade nav (sticky over the timeline) ── */
@@ -269,266 +231,9 @@
     border-color: var(--hana-blue-deep);
   }
 
-  /* ── Horizontal timeline ── */
   /* ── Heritage flow wrapper: one continuous flow field behind
      hero → decade bar → timeline (no overflow — keeps the bar sticky) ── */
   .heritage-flow { position: relative; }
-
-  .timeline-h-section {
-    position: relative;
-    background: var(--bg);
-    padding: 0;
-  }
-
-  .timeline-h {
-    position: relative;
-    /* Sized so the tallest cards (~330px each side of the rail) sit
-       above/below the rail with the connector gap + breathing room. */
-    height: clamp(660px, 72vh, 720px);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    /* mask for soft edges */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
-            mask-image: linear-gradient(90deg, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
-  }
-  /* Custom scrollbar — thin, subtle */
-  .timeline-h::-webkit-scrollbar { height: 6px; }
-  .timeline-h::-webkit-scrollbar-track { background: transparent; }
-  .timeline-h::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-  .timeline-h::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
-
-  .timeline-track {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: max-content;
-    /* generous padding so first/last cards can sit at center */
-    padding-inline: max(calc(50vw - 180px), 80px);
-  }
-
-  /* The horizontal rail */
-  .timeline-track::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-      transparent 0,
-      var(--line) 5%,
-      var(--line) 95%,
-      transparent 100%);
-    pointer-events: none;
-  }
-
-  /* Each event slot */
-  .t-slot {
-    flex: 0 0 320px;
-    position: relative;
-    height: 100%;
-    scroll-snap-align: center;
-  }
-
-  /* Node on the rail */
-  .t-slot::after {
-    content: "";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--surface-2);
-    border: 2px solid var(--hana-blue);
-    box-shadow: 0 0 0 5px var(--bg);
-    z-index: 3;
-    transition: background 0.25s ease, transform 0.25s ease;
-  }
-  .t-slot.is-active::after {
-    background: var(--hana-blue);
-    transform: translate(-50%, -50%) scale(1.25);
-  }
-
-  /* Connector line */
-  .t-slot::before {
-    content: "";
-    position: absolute;
-    left: 50%; width: 1px;
-    background: var(--line);
-    z-index: 1;
-    transition: background 0.25s ease;
-  }
-  .t-slot:nth-of-type(odd)::before  { bottom: 50%; height: 30px; }
-  .t-slot:nth-of-type(even)::before { top: 50%; height: 30px; }
-  .t-slot.is-active::before { background: var(--hana-blue-soft); }
-
-  /* Card */
-  .t-card {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 290px;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 18px 20px;
-    text-align: left;
-    transition: border-color 0.25s ease, box-shadow 0.3s ease, transform 0.4s ease;
-  }
-  .t-slot:nth-of-type(odd) .t-card { bottom: calc(50% + 40px); }
-  .t-slot:nth-of-type(even) .t-card { top: calc(50% + 40px); }
-  .t-slot.is-active .t-card {
-    border-color: var(--hana-blue-soft);
-    box-shadow: var(--shadow-soft);
-  }
-  .t-slot:nth-of-type(odd).is-active .t-card { transform: translateX(-50%) translateY(-3px); }
-  .t-slot:nth-of-type(even).is-active .t-card { transform: translateX(-50%) translateY(3px); }
-
-  .t-year {
-    font-family: 'Geist', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--hana-blue-deep);
-    margin: 0 0 var(--s-2);
-    display: block;
-  }
-  .t-headline {
-    font-family: 'Geist', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin: 0 0 var(--s-2);
-  }
-  .t-body {
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: var(--ink-2);
-    margin: 0;
-  }
-  .t-body + .t-body { margin-top: var(--s-2); }
-
-  /* Decade marker — sits on the rail between groups */
-  .decade-marker {
-    flex: 0 0 110px;
-    position: relative;
-    height: 100%;
-    scroll-snap-align: none;
-  }
-  .decade-marker span {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--bg);
-    padding: 6px 14px;
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--ink-3);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    z-index: 2;
-    white-space: nowrap;
-  }
-
-  /* Prev / next buttons */
-  .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    color: var(--hana-blue-deep);
-    cursor: pointer;
-    z-index: 10;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.2s;
-    box-shadow: var(--shadow-soft);
-  }
-  .nav-btn:hover {
-    background: var(--hana-blue-deep);
-    color: #fff;
-    border-color: var(--hana-blue-deep);
-  }
-  .nav-btn:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
-  .nav-btn:disabled:hover {
-    background: var(--surface-2);
-    color: var(--hana-blue-deep);
-    border-color: var(--line);
-  }
-  .nav-btn svg { width: 20px; height: 20px; }
-  .nav-prev { left: 24px; }
-  .nav-next { right: 24px; }
-  @media (max-width: 600px) {
-    .nav-prev { left: 12px; }
-    .nav-next { right: 12px; }
-    .nav-btn { width: 40px; height: 40px; }
-  }
-
-  /* Progress bar — calm instrument panel, not chrome */
-  .progress {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: var(--s-6) var(--s-6) var(--s-9);
-  }
-  .progress-bar {
-    position: relative;
-    height: 2px;
-    background: var(--line);
-    border-radius: 1px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 0%;
-    background: var(--hana-blue);
-    transition: width 0.25s ease;
-  }
-  .progress-label {
-    margin-top: var(--s-3);
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--s-4);
-    font-family: 'IBM Plex Mono', ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--ink-3);
-    letter-spacing: 0.05em;
-  }
-  .progress-label .current {
-    color: var(--hana-blue-deep);
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.005em;
-  }
-  .progress-label .count { font-variant-numeric: tabular-nums; }
-
-  /* ── Mobile ── */
-  @media (max-width: 720px) {
-    .timeline-h { height: clamp(720px, 95vh, 840px); }
-    .timeline-track { padding-inline: calc(50vw - 160px); }
-    .t-slot { flex: 0 0 320px; }
-    .t-card { width: 290px; padding: 22px 22px; }
-    .t-year { font-size: 32px; }
-    .decade-marker { flex: 0 0 80px; }
-    .t-slot:nth-of-type(odd)::before,
-    .t-slot:nth-of-type(even)::before { height: 36px; }
-    .t-slot:nth-of-type(odd) .t-card { bottom: calc(50% + 44px); }
-    .t-slot:nth-of-type(even) .t-card { top: calc(50% + 44px); }
-  }
 
   /* ── Closing ── */
   .closing {
@@ -578,13 +283,7 @@
 
   /* ── Footer chrome handled by SubCapFooter (chrome.jsx) ── */
 
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .timeline-h { scroll-behavior: auto; }
-    .t-card, .t-slot::after, .progress-fill { transition: none !important; }
-  }
-
-/* ── Vertical timeline (preview, 21 Oct 2026) ─────────────────────────────
+/* ── Vertical timeline (21 Oct 2026) ─────────────────────────────
    Years read top to bottom. Each decade has a large label pinned beside it while
    you scroll through it; a rail on the left draws in Hana blue with your scroll
    position, and each milestone's dot lights as it reaches the middle of the screen.

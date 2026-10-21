@@ -96,7 +96,7 @@
   // flex items with at least two card-sized children) and stagger, innermost first;
   // large in-flow photos settle. Reading text, tools and interactive parts stay still.
   var PAGE_SKIP = 'table, form, nav, aside, details, .ins-article, .ins-toc, .ins-subbar, .subbar, ' +
-    '.anchor-nav, .decade-nav, .timeline-h-section, .tl-v, .progress, .filter-row, .story-lightbox, ' +
+    '.anchor-nav, .decade-nav, .tl-v, .progress, .filter-row, .story-lightbox, ' +
     '.life-section, .lc-map-block, [class*="carousel"], [class*="slide"]';
   // Anything holding form fields, a table or a canvas stays still (forms, IR document lists,
   // topography backgrounds), as does anything already tagged.
