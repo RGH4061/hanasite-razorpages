@@ -1,3 +1,7 @@
+@{
+    // The Markets item is underlined on every /markets page, as in the HTML site.
+    var marketsActive = (Context.Request.Path.Value ?? "").StartsWith("/markets", StringComparison.OrdinalIgnoreCase);
+}
 <header class="hana-header" style="background:#fff; font-family:var(--font-text);">
 
     
@@ -70,7 +74,7 @@
                     </a>
 
                     <a data-menu="Markets" role="button" tabindex="0" aria-haspopup="true"
-                       class="hana-nav-link">
+                       class="hana-nav-link@(marketsActive ? " hana-nav-link--active" : "")">
                         Markets
                         <span class="hana-nav-chevron">
                             <i data-lucide="chevron-down" style="width:13px; height:13px;"></i>
