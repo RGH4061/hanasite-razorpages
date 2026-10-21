@@ -428,3 +428,19 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-page--hub .auto-legitem .nm{font-size:15px}
 .auto-page--hub .auto-legitem .ds{font-size:13px;line-height:1.5;margin-top:4px}
 .auto-page--hub .auto-legnote{font-size:12px!important}
+
+/* Hub hero on tablets and phones: car above the parts panel, smaller markers, detail card below the car */
+@media(max-width:900px){
+  .auto-hero .auto-cutaway{grid-template-columns:1fr;gap:20px}
+  .auto-hero .auto-stage img{-webkit-mask-image:radial-gradient(ellipse 62% 60% at 50% 52%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 62% 60% at 50% 52%,#000 60%,transparent 100%)}
+  .auto-hero .auto-card{display:none;position:relative;top:auto;left:auto;width:auto;margin-top:-8px;transform:none}
+  .auto-hero .auto-card.is-show{display:block}
+}
+@media(max-width:600px){
+  .auto-marker{width:20px;height:20px}
+  .auto-marker .dot{width:20px;height:20px;font-size:9.5px}
+  .auto-marker--loc,.auto-marker--loc .dot{width:10px;height:10px}
+  .auto-marker .tip{width:190px}
+  .auto-page--hub .auto-legend{padding:18px}
+}
+.auto-cutaway{position:relative}

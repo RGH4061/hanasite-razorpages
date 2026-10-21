@@ -60,7 +60,7 @@
       var card = document.createElement('div');
       card.className = 'auto-card';
       card.setAttribute('aria-live', 'polite');
-      stage.appendChild(card);
+      root.insertBefore(card, stage.nextSibling);   // overlays the photo on desktop; sits below it on phones
 
       // Clicking a legend item selects its family (dims the rest, opens the detail card);
       // clicking it again returns to all parts
