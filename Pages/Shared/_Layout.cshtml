@@ -5,6 +5,7 @@
     Per-page overrides via ViewData:
       ViewData["Title"]        page <title> (required-ish)
       ViewData["FullTitle"]    optional: the whole <title>, when it should not end in "| Hana Microelectronics"
+      ViewData["Motion"]       optional: entrance-motion profile in js/motion.js (e.g. "capability")
       ViewData["Description"]  meta description
       ViewData["Canonical"]    canonical URL
 
@@ -21,7 +22,8 @@
       ~/js/mobile-nav.js          ≤900px compact bar + slide-in accordion
 *@
 <!DOCTYPE html>
-<html lang="@(ViewData["Lang"] ?? "en")">
+@{ var motionProfile = ViewData["Motion"] as string; }
+<html lang="@(ViewData["Lang"] ?? "en")" @if (motionProfile != null) { <text>data-motion="@motionProfile"</text> }>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,6 +39,13 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/hana-geo-motion.css" />
     <link rel="stylesheet" href="~/css/search.css" />
+    <link rel="stylesheet" href="~/css/motion.css" />
+    @if (motionProfile != null)
+    {
+        @* Hide the main content until motion.js has tagged it (never longer than 1.5 s). *@
+        <script>(function(h){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;h.classList.add('m-pre');setTimeout(function(){h.classList.remove('m-pre')},1500)})(document.documentElement)</script>
+        <script src="~/js/motion.js" defer></script>
+    }
 
     @* Lucide line-icon set (matches brand iconography spec). *@
     <script src="~/js/vendor/lucide.min.js"></script>

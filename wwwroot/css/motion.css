@@ -1,0 +1,69 @@
+/* motion.css — site-wide entrance motion and page transitions.
+   Pairs with js/motion.js. Timing matches the homepage reveal (reveal.js / .hrv):
+   640ms, cubic-bezier(.16,.84,.3,1), a short rise, items staggered 70ms apart.
+
+   A page opts in with ViewData["Motion"] (sets <html data-motion="...">). motion.js
+   tags the elements; nothing is hidden unless the script runs, and visitors who
+   turn off motion in their device settings see none. */
+
+:root {
+  --m-ease: cubic-bezier(.16, .84, .3, 1);
+  --m-dur: 640ms;
+  --m-rise: 14px;
+}
+
+/* Page-to-page cross-fade (Chrome, Edge, Safari 18+; other browsers change pages as before).
+   The header is its own layer, so it stays still while the page content fades. */
+@view-transition { navigation: auto; }
+.hana-header { view-transition-name: site-header; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 260ms; animation-timing-function: var(--m-ease); }
+
+/* Until motion.js has tagged the page, keep the main content out of sight so nothing
+   flashes in and then hides again. A 1.5 s fallback in the <head> script lifts this. */
+html.m-pre #main-content { opacity: 0; }
+
+/* Rise: fades in while moving up by --m-rise */
+html.m-on [data-m] {
+  opacity: 0;
+  transform: translate3d(0, var(--m-rise), 0);
+  transition: opacity var(--m-dur) var(--m-ease), transform var(--m-dur) var(--m-ease);
+  transition-delay: var(--m-d, 0ms);
+}
+/* Image settle: fades in while easing down from 103% to full size */
+html.m-on [data-m="img"] {
+  transform: scale(1.03);
+  transition-duration: 900ms;
+}
+html.m-on [data-m].m-in { opacity: 1; transform: none; }
+
+/* Page title, revealed word by word */
+html.m-on .m-w {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, .35em, 0);
+  transition: opacity 560ms var(--m-ease), transform 560ms var(--m-ease);
+  transition-delay: var(--m-d, 0ms);
+}
+html.m-on .m-words.m-in .m-w { opacity: 1; transform: none; }
+
+/* One hover timing for cards and photos on pages that use motion */
+html[data-motion] .sc-pillar,
+html[data-motion] .cap-grid-4 > * {
+  transition: transform 400ms var(--m-ease), box-shadow 400ms var(--m-ease), border-color 400ms var(--m-ease);
+}
+html[data-motion] .sc-pillar:hover,
+html[data-motion] .cap-grid-4 > a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -18px rgba(14, 40, 70, .35);
+}
+html[data-motion] .why-grid img { transition: transform 800ms var(--m-ease); }
+html[data-motion] .why-grid > *:hover img { transform: scale(1.04); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.m-pre #main-content { opacity: 1; }
+  html.m-on [data-m], html.m-on .m-w { opacity: 1 !important; transform: none !important; transition: none !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  html[data-motion] .sc-pillar:hover, html[data-motion] .cap-grid-4 > a:hover,
+  html[data-motion] .why-grid > *:hover img { transform: none; }
+}
