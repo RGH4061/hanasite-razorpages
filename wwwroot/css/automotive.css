@@ -379,3 +379,29 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 
 /* Tooltip sideways shift, set per marker by js/automotive-cutaway.js so tips stay inside the photo */
 .auto-marker .tip{transform:translateX(calc(-50% + var(--tx,0px)))}
+
+/* Marker positions come from --x/--y (current photo) or --dx/--dy (studio photo, dark hero) */
+.auto-marker{left:var(--x);top:var(--y)}
+.auto-hero--dark .auto-marker{left:var(--dx);top:var(--dy)}
+
+/* ── Dark hero PREVIEW (?hero=dark): studio cutaway on a night stage ───────────── */
+.auto-hero--dark{background:radial-gradient(55% 60% at 36% 62%,#111d31 0%,#08111f 55%,#040a16 100%)}
+.auto-hero--dark .auto-hero-h1{color:#fff!important}
+.auto-hero--dark .auto-hero-lede{color:rgba(255,255,255,.72)!important}
+.auto-hero--dark .auto-btn--secondary{color:#fff;border-color:rgba(255,255,255,.4)}
+.auto-hero--dark .auto-btn--secondary:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.auto-hero--dark .auto-chips .lbl{color:rgba(255,255,255,.5)}
+.auto-hero--dark .auto-chip{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.82)}
+.auto-hero--dark .auto-chip:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.auto-hero--dark .auto-chip[aria-pressed="true"]{background:#fff;border-color:#fff;color:var(--ink)}
+.auto-hero--dark .auto-cutaway{grid-template-columns:minmax(0,2.1fr) minmax(280px,1fr);align-items:center}
+.auto-hero--dark .auto-stage{border:0;border-radius:0;background:transparent;overflow:visible}
+.auto-hero--dark .auto-stage img{-webkit-mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%)}
+.auto-hero--dark .auto-marker .dot{border-color:rgba(255,255,255,.92);box-shadow:0 0 0 4px rgba(255,255,255,.07),0 0 16px var(--mc,#19C6E6)}
+.auto-hero--dark .auto-marker--loc .dot{box-shadow:0 0 10px rgba(255,136,62,.85)}
+.auto-hero--dark .auto-legend{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);box-shadow:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.auto-hero--dark .auto-legend .head{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.12)}
+.auto-hero--dark .auto-legitem .nm{color:#fff}
+.auto-hero--dark .auto-legitem .ds{color:rgba(255,255,255,.6)}
+.auto-hero--dark .auto-legitem:hover,.auto-hero--dark .auto-legitem.is-active,.auto-hero--dark .auto-legitem.is-sel{background:rgba(255,255,255,.07)}
+.auto-hero--dark .auto-card{top:8px;left:8px}
