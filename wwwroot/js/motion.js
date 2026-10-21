@@ -91,7 +91,60 @@
     });
   }
 
+  // General pages (About, Locations, Careers, Insights): no page-specific class list.
+  // Heading groups rise; card grids are found from the layout itself (a grid or a row of
+  // flex items with at least two card-sized children) and stagger, innermost first;
+  // large in-flow photos settle. Reading text, tools and interactive parts stay still.
+  var PAGE_SKIP = 'table, form, nav, details, .ins-article, .ins-toc, .ins-subbar, .subbar, ' +
+    '.anchor-nav, .decade-nav, .timeline-h-section, .progress, .filter-row, .story-lightbox, ' +
+    '.life-section, .lc-map-block, [class*="carousel"], [class*="slide"]';
+  function gtag(el, delay, kind) { if (!el.closest(PAGE_SKIP) && !el.querySelector('[data-m], .m-words')) tag(el, delay, kind); }
+  function cardGrid(el) {
+    var cs = getComputedStyle(el);
+    var grid = cs.display === 'grid' || cs.display === 'inline-grid' ||
+               (cs.display === 'flex' && cs.flexDirection.indexOf('column') !== 0);
+    if (!grid || el.getBoundingClientRect().width < 300) return null;
+    var kids = Array.prototype.filter.call(el.children, function (c) {
+      if (c.tagName === 'STYLE' || c.tagName === 'SCRIPT') return false;
+      var r = c.getBoundingClientRect();
+      return r.height >= 56 && r.width >= 120;
+    });
+    if (kids.length >= 3) return kids;
+    if (kids.length === 2 && kids.every(function (c) { return c.getBoundingClientRect().height >= 140; })) return kids;
+    return null;
+  }
+
   var PROFILES = {
+    page: function (main) {
+      hero(main.querySelector('h1'));
+      each(main, 'h2', function (h2) {
+        if (h2.closest(PAGE_SKIP)) return;
+        var head = h2.parentElement;
+        if (head && head !== main && head.children.length <= 4 && head.querySelectorAll('h2').length === 1 &&
+            !head.querySelector('img, ul, ol, table, form, a.card'))
+          Array.prototype.forEach.call(head.children, function (c, i) { gtag(c, i * 60); });
+        else gtag(h2);
+      });
+      var grids = [];
+      each(main, '*', function (el) {
+        if (el.closest(PAGE_SKIP) || el.closest('[data-m]')) return;
+        // horizontal scrollers (plant-page carousels) rise as one block: cards off to the
+        // side would otherwise fade in mid-swipe
+        if (/auto|scroll/.test(getComputedStyle(el).overflowX) && el.scrollWidth > el.clientWidth + 8) { gtag(el); return; }
+        var kids = cardGrid(el);
+        if (kids) { var d = 0, p = el; while ((p = p.parentElement)) d++; grids.push({ kids: kids, depth: d }); }
+      });
+      grids.sort(function (a, b) { return b.depth - a.depth; }).forEach(function (g) {
+        g.kids.forEach(function (c, i) { gtag(c, Math.min(i, MAX_STEPS) * STEP); });
+      });
+      each(main, 'img', function (img) {
+        if (img.getBoundingClientRect().width < 260 || getComputedStyle(img).position !== 'static' ||
+            parseFloat(getComputedStyle(img).opacity) < 1) return;
+        gtag(img, 0, 'img');
+      });
+    },
+
+
     // Capabilities (Pages/Capabilities/*): hero, then each .cap-section in turn
     capability: function (main) {
       var hero1 = main.querySelector('.cap-section--hero h1');
