@@ -17,9 +17,12 @@
 
   var STEP = 70, MAX_STEPS = 5;   // stagger gap, and the cap so long grids do not drag
 
+  // Never animated: side menus, breadcrumbs, the Automotive cutaway, heroes that already
+  // animate (Markets hub), and canvases
+  var SKIP = 'aside, .mk-crumbbar, .auto-crumb, .auto-cutaway, .mkt-hero, .mkt-orbit, .mkt-hero-bg, canvas';
   function tagged(el) { return el.closest('[data-m], .m-words'); }
   function tag(el, delay, kind) {
-    if (!el || el.tagName === 'STYLE' || el.tagName === 'SCRIPT' || tagged(el)) return;
+    if (!el || el.tagName === 'STYLE' || el.tagName === 'SCRIPT' || tagged(el) || el.closest(SKIP)) return;
     el.setAttribute('data-m', kind || '');
     if (delay) el.style.setProperty('--m-d', delay + 'ms');
   }
@@ -56,34 +59,61 @@
     h.classList.add('m-words');
   }
 
+  function each(root, sel, fn) { Array.prototype.forEach.call(root.querySelectorAll(sel), fn); }
+
+  // Page title word by word, then the elements beside it in turn. A title that already
+  // animates (the Markets hub's .hha wipe) is left alone, and so is its hero.
+  function hero(h1) {
+    if (!h1 || h1.querySelector('.hha-line, .hha-in')) return;
+    words(h1);
+    Array.prototype.forEach.call(h1.parentElement.children, function (c, i) {
+      if (c !== h1) tag(c, 120 + i * 80);
+    });
+  }
+
+  // A content section: its heading block (label, h2, intro) rises in steps, then its grids
+  // stagger, then anything left (FAQ lists stagger, other blocks rise whole).
+  function section(sec, grids, imgs) {
+    if (sec.querySelector('h1') || sec.querySelector(SKIP) || sec.closest(SKIP)) return;
+    var h2 = sec.querySelector('h2');
+    var head = h2 && h2.parentElement;
+    if (head && head !== sec && head.children.length <= 4) stagger(head, 60);
+    else tag(h2);
+    if (imgs) each(sec, imgs, function (img) { tag(img, 0, 'img'); });
+    each(sec, '.sc-stack', function (g) { stagger(g, 110); });
+    each(sec, '.auto-faq', function (g) { stagger(g, 50); });
+    each(sec, grids, function (g) { stagger(g); });
+    var body = head && head !== sec ? head.parentElement : sec;
+    Array.prototype.forEach.call(body.children, function (c) {
+      if (c === head || c.hasAttribute('data-m') || c.querySelector('[data-m]')) return;
+      if (c.children.length > 2 && c.querySelector('details, .sc-faq-q, .sc-faq-a')) stagger(c, 50);
+      else tag(c);
+    });
+  }
+
   var PROFILES = {
-    // Capability sub-pages (Pages/Capabilities/*): hero, then each .cap-section in turn
+    // Capabilities (Pages/Capabilities/*): hero, then each .cap-section in turn
     capability: function (main) {
-      var hero = main.querySelector('.cap-section--hero');
-      if (hero) {
-        var inner = hero.firstElementChild;
-        words(inner && inner.querySelector('h1'));
-        if (inner) Array.prototype.forEach.call(inner.children, function (c, i) {
-          if (c.tagName !== 'H1') tag(c, 120 + i * 80);
-        });
-      }
-      Array.prototype.forEach.call(main.querySelectorAll('.cap-section:not(.cap-section--hero)'), function (sec) {
-        var h2 = sec.querySelector('h2');
-        var head = h2 && h2.parentElement;
-        if (head && head !== sec && head.children.length <= 4) stagger(head, 60);
-        else tag(h2);
-        Array.prototype.forEach.call(sec.querySelectorAll('.why-grid img'), function (img) { tag(img, 0, 'img'); });
-        Array.prototype.forEach.call(sec.querySelectorAll('.sc-stack'), function (g) { stagger(g, 110); });
-        Array.prototype.forEach.call(sec.querySelectorAll('.why-grid, .cap-grid-4, .cap-grid-3, .cap-grid-2s, .cap-row-2'), function (g) { stagger(g); });
-        // FAQ list and anything else left in the section rise as blocks
-        var body = head && head.parentElement;
-        if (body) Array.prototype.forEach.call(body.children, function (c) {
-          if (c !== head && !c.querySelector('[data-m]') && !c.hasAttribute('data-m')) {
-            if (c.children.length > 2 && c.querySelector('details, .sc-faq-q, .sc-faq-a')) stagger(c, 50);
-            else tag(c);
-          }
-        });
+      var hero1 = main.querySelector('.cap-section--hero h1');
+      hero(hero1);
+      each(main, '.cap-section:not(.cap-section--hero)', function (sec) {
+        section(sec, '.why-grid, .cap-grid-4, .cap-grid-3, .cap-grid-2s, .cap-row-2', '.why-grid img');
       });
+    },
+
+    // Markets (Pages/Markets/*): three page families share these rules —
+    //   hub (.mkt-*: its hero already animates), market hubs and sub-pages (.mk-*),
+    //   and the Automotive pages (.auto-*: the interactive cutaway is left alone)
+    market: function (main) {
+      hero(main.querySelector('h1'));
+      each(main, '.mk-hero-media img', function (img) { tag(img, 200, 'img'); });
+      each(main, '.mk-strip, .auto-spec.is-hero', function (g) { stagger(g, 70, 300); });
+      each(main, '.mkt-grid-section, .mkt-cta, main > section:not(.mk-hero), ' +
+                 '.mk-spoke-main > section:not(.mk-hero), .auto-page > div, .auto-spoke-grid main > *',
+        function (sec) {
+          section(sec, '.mk-points, .mk-cards, .mk-locs, .mkt-bento, .auto-subgrid, .auto-plants, ' +
+                       '.auto-spec, .wr-stats, .mma-grid', '.mk-plate .art img');
+        });
     }
   };
 
