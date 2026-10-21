@@ -40,6 +40,19 @@
       fitTips();
       window.addEventListener('resize', fitTips);
 
+      // Tapping a marker keeps its tooltip open until another marker or anywhere else is tapped
+      // (on touch screens a hover tooltip closes again straight away)
+      function closeTips(except) { markers.forEach(function (m) { if (m !== except) m.classList.remove('is-open'); }); }
+      markers.forEach(function (m) {
+        m.setAttribute('tabindex', '0');
+        m.setAttribute('role', 'button');
+        m.setAttribute('aria-label', txt(m, '.nm') || txt(m, '.tag'));
+        function toggle(e) { e.stopPropagation(); closeTips(m); m.classList.toggle('is-open'); }
+        m.addEventListener('click', toggle);
+        m.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); } });
+      });
+      document.addEventListener('click', function () { closeTips(null); });
+
       // Pulse rings take each marker's own colour
       markers.forEach(function (m, i) {
         var d = m.querySelector('.dot');

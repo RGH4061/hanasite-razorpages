@@ -444,3 +444,8 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
   .auto-page--hub .auto-legend{padding:18px}
 }
 .auto-cutaway{position:relative}
+
+/* A tapped (or clicked) marker keeps its tooltip open */
+.auto-marker.is-open{z-index:25}
+.auto-marker.is-open .tip{opacity:1;visibility:visible}
+.auto-marker.is-open .dot{transform:scale(1.18)}
