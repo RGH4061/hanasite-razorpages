@@ -1,5 +1,7 @@
 @page "/about/history"
 @{
+    // Current year in Thai time (UTC+7, no daylight saving): the hero reads "From 1978 → <this year>"
+    var yearNow = DateTime.UtcNow.AddHours(7).Year;
     ViewData["Title"] = "Our heritage";
     ViewData["Motion"] = "page";
     ViewData["Description"] = "Building microelectronics since 1978 — the history of Hana Microelectronics across four countries.";
@@ -35,7 +37,7 @@
   <section class="hero">
     <div class="hero-inner">
       <h1 class="hero-title">Our Journey.
-        <span class="hero-title-line"><span>From <span class="yr">1978</span></span><span class="arrow" aria-hidden="true"></span><span class="sr-only"> to </span><span class="yr yr-now">2026</span></span>
+        <span class="hero-title-line"><span>From <span class="yr">1978</span></span><span class="arrow" aria-hidden="true"></span><span class="sr-only"> to </span><span class="yr yr-now" data-year-now>@yearNow</span></span>
       </h1>
       <p class="hero-summary">From a workshop in Bangkok to operations across the globe. Follow our story and growth from humble beginnings assembling watch modules to a leading electronics manufacturing operation. </p>
       <div class="hero-cta">
@@ -61,7 +63,7 @@
 
 <!-- ── Horizontal timeline ── -->
 <!-- ── Vertical timeline (preview 21 Oct 2026; replaces the horizontal track) ── -->
-<section class="tl-v" id="timeline" aria-label="Hana timeline, 1978 to 2026">
+<section class="tl-v" id="timeline" aria-label="Hana timeline, 1978 to @yearNow" data-year-now-label>
   <div class="tl-v-inner">
     <section class="tl-decade" id="decade-1970s" data-decade="1970s">
       <div class="tl-decade-side"><div class="tl-decade-label"><span class="tl-decade-name">1970s</span><p class="tl-decade-sum">Founded in Bangkok, assembling LED and then LCD watch modules.</p></div></div>

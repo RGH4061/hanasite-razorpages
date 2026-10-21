@@ -1,5 +1,7 @@
 @page "/th/about/history"
 @{
+    // Current year in Thai time (UTC+7), shown in the Buddhist era (CE + 543)
+    var yearNow = DateTime.UtcNow.AddHours(7).Year + 543;
     ViewData["Title"] = "ประวัติความเป็นมา";
     ViewData["Motion"] = "page";
     ViewData["Description"] = "จากโรงงานขนาดเล็กในกรุงเทพฯ สู่การดำเนินงานทั่วโลก ติดตามเรื่องราวและการเติบโตของ Hana ตั้งแต่จุดเริ่มต้นในการประกอบโมดูลนาฬิกา สู่การเป็นผู้ผลิตอุปกรณ์อิเล็กทรอนิกส์ชั้นนำ";
@@ -37,7 +39,7 @@
   <section class="hero">
     <div class="hero-inner">
       <h1 class="hero-title">เส้นทางของเรา
-        <span class="hero-title-line"><span>จาก <span class="yr">2521</span></span><span class="arrow" aria-hidden="true"></span><span class="sr-only"> ถึง </span><span class="yr yr-now">2569</span></span>
+        <span class="hero-title-line"><span>จาก <span class="yr">2521</span></span><span class="arrow" aria-hidden="true"></span><span class="sr-only"> ถึง </span><span class="yr yr-now" data-year-now data-era="be">@yearNow</span></span>
       </h1>
       <p class="hero-summary">จากโรงงานขนาดเล็กในกรุงเทพฯ สู่การดำเนินงานทั่วโลก ติดตามเรื่องราวและการเติบโตของ Hana ตั้งแต่จุดเริ่มต้นในการประกอบโมดูลนาฬิกา สู่การเป็นผู้ผลิตอุปกรณ์อิเล็กทรอนิกส์ชั้นนำ</p>
       <div class="hero-cta">
@@ -63,7 +65,7 @@
 
 <!-- ── Horizontal timeline ── -->
 <!-- ── Vertical timeline (replaces the horizontal track, 21 Oct 2026) ── -->
-<section class="tl-v" id="timeline" aria-label="ลำดับเหตุการณ์ของ Hana พ.ศ. 2521 ถึง 2569">
+<section class="tl-v" id="timeline" aria-label="ลำดับเหตุการณ์ของ Hana พ.ศ. 2521 ถึง @yearNow" data-year-now-label data-era="be">
   <div class="tl-v-inner">
     <section class="tl-decade" id="decade-1970s" data-decade="1970s">
       <div class="tl-decade-side"><div class="tl-decade-label"><span class="tl-decade-name">2513–2522</span><p class="tl-decade-sum">ก่อตั้งในกรุงเทพฯ ประกอบโมดูลนาฬิกา LED และ LCD</p></div></div>

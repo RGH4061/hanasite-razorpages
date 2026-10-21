@@ -1,6 +1,20 @@
 /* about-heritage.js — decade timeline + sticky decade bar (vanilla, extracted) */
 document.documentElement.style.setProperty('--topbar-h','0px');
 
+// Current year in the hero ("From 1978 → 2026") and the timeline label. The Razor page
+// writes it on the server; this keeps the static HTML preview current too, since that
+// page is a fixed file. Thai time (UTC+7); the Thai page shows the Buddhist era (+543).
+(function () {
+  var y = new Date(Date.now() + 7 * 3600 * 1000).getUTCFullYear();
+  function val(el) { return String(el.getAttribute('data-era') === 'be' ? y + 543 : y); }
+  document.querySelectorAll('[data-year-now]').forEach(function (el) {
+    if (el.textContent !== val(el)) el.textContent = val(el);
+  });
+  document.querySelectorAll('[data-year-now-label]').forEach(function (el) {
+    el.setAttribute('aria-label', el.getAttribute('aria-label').replace(/\d{4}$/, val(el)));
+  });
+})();
+
 // Decade bar shares the hero flow at rest; goes solid once it pins over the timeline.
   (function () {
     var nav = document.querySelector('.decade-nav');
