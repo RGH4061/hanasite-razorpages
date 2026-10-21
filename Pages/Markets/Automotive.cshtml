@@ -11,6 +11,8 @@
 @{
     // PREVIEW: ?hero=dark shows the studio-car hero on a dark stage. Remove the flag once a version is chosen.
     var darkHero = HttpContext.Request.Query["hero"] == "dark";
+    // PREVIEW: with the dark hero, ?band=a|b|c picks how the stats strip and advantage band follow it
+    var band = darkHero ? (new[] { "a", "b", "c" }.Contains((string)HttpContext.Request.Query["band"]) ? (string)HttpContext.Request.Query["band"] : "a") : "";
     var subs = new[] {
         new { slug = "power-modules",   name = "Power Modules",   icon = "zap",        blurb = "Die attach, silver sintering and clip or wire bonding for IGBT and SiC power modules used in electrified powertrains." },
         new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio",      blurb = "MEMS and optical sensor assembly for ADAS, radar and in-cabin sensing, including stress-managed attachment and controlled-environment packaging." },
@@ -77,7 +79,7 @@
     };
 }
 
-<div class="auto-page">
+<div class="auto-page" data-hero="@(darkHero ? "dark" : "light")" data-band="@band">
 
   <!-- breadcrumb -->
   <div class="auto-crumb">
@@ -137,7 +139,7 @@
   </div>
 
   <!-- proof stat bar -->
-  <div style="background:#EAF2FB; border-bottom:1px solid #DCE8F5;">
+  <div class="auto-statbar" style="background:#EAF2FB; border-bottom:1px solid #DCE8F5;">
     <div class="auto-wrap" style="padding-top:28px; padding-bottom:28px;">
       <div class="auto-spec is-hero">
           <div class="cell"><div class="l">Automotive QMS</div><div class="v">IATF 16949</div></div>
@@ -149,7 +151,7 @@
   </div>
 
   <!-- the Hana automotive advantage — dark grid band -->
-  <div class="auto-advantage" data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="none">
+  <div class="auto-advantage" data-hana-bg="grid" data-variant="@(band == "a" ? "light" : "dark")" data-accent="cyan" data-fade="none">
     <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:56px 32px;">
       <div class="auto-sechead on-dark">
         <h2>The Hana automotive advantage</h2>

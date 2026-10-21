@@ -405,3 +405,32 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-hero--dark .auto-legitem .ds{color:rgba(255,255,255,.6)}
 .auto-hero--dark .auto-legitem:hover,.auto-hero--dark .auto-legitem.is-active,.auto-hero--dark .auto-legitem.is-sel{background:rgba(255,255,255,.07)}
 .auto-hero--dark .auto-card{top:8px;left:8px}
+
+/* ── Dark hero PREVIEW: stats strip joins the dark stage; ?band= sets the advantage band ── */
+[data-hero="dark"] .auto-statbar{background:#040a16!important;border-bottom:0!important}
+[data-hero="dark"] .auto-statbar .auto-wrap{padding-top:4px!important;padding-bottom:40px!important}
+[data-hero="dark"] .auto-spec.is-hero{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+[data-hero="dark"] .auto-spec.is-hero .cell{border-right-color:rgba(255,255,255,.1)}
+[data-hero="dark"] .auto-spec.is-hero .l{color:rgba(255,255,255,.5)}
+[data-hero="dark"] .auto-spec.is-hero .v{color:#fff}
+[data-hero="dark"] .auto-advantage{margin-top:0}
+
+/* A · separate: advantage on a pale blue field with the light grid */
+[data-band="a"] .auto-advantage{background:#EAF2FB}
+[data-band="a"] .auto-advantage .auto-sechead h2{color:var(--ink)}
+[data-band="a"] .auto-advantage .auto-sechead p{color:var(--ink-2)}
+[data-band="a"] .auto-advitem{border-top-color:rgba(14,74,124,.16)}
+[data-band="a"] .auto-advitem .t{color:var(--ink)}
+[data-band="a"] .auto-advitem p{color:var(--ink-2)}
+[data-band="a"] .auto-advitem .ic{color:var(--accent);border-color:rgba(18,131,221,.35);background:#fff}
+[data-band="a"] #products{border-top:0}
+
+/* B · blend: hero, stats and advantage read as one continuous dark block */
+[data-band="b"] .auto-advantage .hana-bg-layer{background:linear-gradient(180deg,#040a16 0%,#030a17 100%)!important}
+[data-band="b"] .auto-advantage>div:not(.hana-bg-layer){padding-top:24px!important}
+[data-band="b"] .auto-statbar .auto-wrap{padding-bottom:24px!important}
+
+/* C · Hana blue: advantage on a deep brand-blue field */
+[data-band="c"] .auto-advantage .hana-bg-layer{background:linear-gradient(135deg,#0E4A7C 0%,#0B3B66 60%,#082E52 100%)!important}
+[data-band="c"] .auto-advitem{border-top-color:rgba(255,255,255,.2)}
+[data-band="c"] .auto-advitem .ic{color:#9FD8FF;border-color:rgba(159,216,255,.45)}
