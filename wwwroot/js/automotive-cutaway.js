@@ -27,6 +27,19 @@
                  ds: txt(item, '.ds'), ms: markers.filter(function (m) { return fam(m) === n; }) };
       });
 
+      // Keep each tooltip inside the photo: shift it sideways when its marker sits near an edge
+      function fitTips() {
+        var W = stage.clientWidth;
+        markers.forEach(function (m) {
+          var tip = m.querySelector('.tip'); if (!tip) return;
+          var half = tip.offsetWidth / 2, cx = m.offsetLeft, pad = 10;
+          var tx = Math.max(pad + half - cx, Math.min(0, W - pad - half - cx));
+          m.style.setProperty('--tx', Math.round(tx) + 'px');
+        });
+      }
+      fitTips();
+      window.addEventListener('resize', fitTips);
+
       // Pulse rings take each marker's own colour
       markers.forEach(function (m, i) {
         var d = m.querySelector('.dot');

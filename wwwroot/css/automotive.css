@@ -376,3 +376,6 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-marker:not(.auto-marker--loc) .dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--mc,#1283DD);opacity:0;animation:markerRing 5.5s ease-out infinite;animation-delay:var(--md,0s);pointer-events:none}
 @keyframes markerRing{0%{transform:scale(1);opacity:.65}55%{transform:scale(2.3);opacity:0}100%{transform:scale(2.3);opacity:0}}
 @media(prefers-reduced-motion:reduce){.auto-marker .dot::after{animation:none!important}}
+
+/* Tooltip sideways shift, set per marker by js/automotive-cutaway.js so tips stay inside the photo */
+.auto-marker .tip{transform:translateX(calc(-50% + var(--tx,0px)))}
