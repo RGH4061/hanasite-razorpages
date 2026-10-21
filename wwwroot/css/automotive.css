@@ -335,8 +335,7 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-advantage.is-live .adv-hot{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){.adv-hot{animation:none!important}}
 
-/* Hero, Oct 2026: soft wash in place of the globe and watermark; sensor locations as small dots */
-.auto-hero{background:radial-gradient(120% 90% at 50% 0%,#F7FAFD 0%,#EDF3FA 60%,#EAF2FB 100%)}
+/* Hero, Oct 2026: sensor locations as small dots */
 .auto-marker--loc{width:14px;height:14px}
 .auto-marker--loc .dot{width:14px;height:14px;border-width:2px;font-size:0;box-shadow:0 1px 4px rgba(0,0,0,.35)}
 .auto-marker--loc.is-active .tip{opacity:0;visibility:hidden}
@@ -374,71 +373,58 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 /* Tooltip sideways shift, set per marker by js/automotive-cutaway.js so tips stay inside the photo */
 .auto-marker .tip{transform:translateX(calc(-50% + var(--tx,0px)))}
 
-/* Marker positions come from --x/--y (current photo) or --dx/--dy (studio photo, dark hero) */
-.auto-marker{left:var(--x);top:var(--y)}
-.auto-hero--dark .auto-marker{left:var(--dx);top:var(--dy)}
 
-/* ── Dark hero PREVIEW (?hero=dark): studio cutaway on a night stage ───────────── */
-.auto-hero--dark{background:radial-gradient(55% 60% at 36% 62%,#111d31 0%,#08111f 55%,#040a16 100%)}
-.auto-hero--dark .auto-hero-h1{color:#fff!important}
-.auto-hero--dark .auto-hero-lede{color:rgba(255,255,255,.72)!important}
-.auto-hero--dark .auto-btn--secondary{color:#fff;border-color:rgba(255,255,255,.4)}
-.auto-hero--dark .auto-btn--secondary:hover{background:rgba(255,255,255,.08);border-color:#fff}
-.auto-hero--dark .auto-cutaway{grid-template-columns:minmax(0,2.1fr) minmax(280px,1fr);align-items:center}
-.auto-hero--dark .auto-stage{border:0;border-radius:0;background:transparent;overflow:visible}
-.auto-hero--dark .auto-stage img{-webkit-mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%)}
-.auto-hero--dark .auto-marker .dot{border-color:rgba(255,255,255,.92);box-shadow:0 0 0 4px rgba(255,255,255,.07),0 0 16px var(--mc,#19C6E6)}
-.auto-hero--dark .auto-marker--loc .dot{box-shadow:0 0 10px rgba(255,136,62,.85)}
-.auto-hero--dark .auto-legend{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);box-shadow:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.auto-hero--dark .auto-legend .head{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.12)}
-.auto-hero--dark .auto-legitem .nm{color:#fff}
-.auto-hero--dark .auto-legitem .ds{color:rgba(255,255,255,.6)}
-.auto-hero--dark .auto-legitem:hover,.auto-hero--dark .auto-legitem.is-active,.auto-hero--dark .auto-legitem.is-sel{background:rgba(255,255,255,.07)}
-.auto-hero--dark .auto-card{top:8px;left:8px}
+/* ── Hub hero: studio cutaway on a dark stage ───────────── */
+.auto-hero{background:radial-gradient(55% 60% at 36% 62%,#111d31 0%,#08111f 55%,#040a16 100%)}
+.auto-hero .auto-hero-h1{color:#fff!important}
+.auto-hero .auto-hero-lede{color:rgba(255,255,255,.72)!important}
+.auto-hero .auto-btn--secondary{color:#fff;border-color:rgba(255,255,255,.4)}
+.auto-hero .auto-btn--secondary:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.auto-hero .auto-cutaway{grid-template-columns:minmax(0,2.1fr) minmax(280px,1fr);align-items:center}
+.auto-hero .auto-stage{border:0;border-radius:0;background:transparent;overflow:visible}
+.auto-hero .auto-stage img{-webkit-mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%)}
+.auto-hero .auto-marker .dot{border-color:rgba(255,255,255,.92);box-shadow:0 0 0 4px rgba(255,255,255,.07),0 0 16px var(--mc,#19C6E6)}
+.auto-hero .auto-marker--loc .dot{box-shadow:0 0 10px rgba(255,136,62,.85)}
+.auto-hero .auto-legend{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);box-shadow:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.auto-hero .auto-legend .head{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.12)}
+.auto-hero .auto-legitem .nm{color:#fff}
+.auto-hero .auto-legitem .ds{color:rgba(255,255,255,.6)}
+.auto-hero .auto-legitem:hover,.auto-hero .auto-legitem.is-active,.auto-hero .auto-legitem.is-sel{background:rgba(255,255,255,.07)}
+.auto-hero .auto-card{top:8px;left:8px}
 
-/* ── Dark hero PREVIEW: stats strip joins the dark stage; ?band= sets the advantage band ── */
-[data-hero="dark"] .auto-statbar{background:#040a16!important;border-bottom:0!important}
-[data-hero="dark"] .auto-statbar .auto-wrap{padding-top:4px!important;padding-bottom:40px!important}
-[data-hero="dark"] .auto-spec.is-hero{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
-[data-hero="dark"] .auto-spec.is-hero .cell{border-right-color:rgba(255,255,255,.1)}
-[data-hero="dark"] .auto-spec.is-hero .l{color:rgba(255,255,255,.5)}
-[data-hero="dark"] .auto-spec.is-hero .v{color:#fff}
-[data-hero="dark"] .auto-advantage{margin-top:0}
+/* ── Hub: stats strip joins the dark stage ── */
+.auto-page--hub .auto-statbar{background:#040a16!important;border-bottom:0!important}
+.auto-page--hub .auto-statbar .auto-wrap{padding-top:4px!important;padding-bottom:40px!important}
+.auto-page--hub .auto-spec.is-hero{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+.auto-page--hub .auto-spec.is-hero .cell{border-right-color:rgba(255,255,255,.1)}
+.auto-page--hub .auto-spec.is-hero .l{color:rgba(255,255,255,.5)}
+.auto-page--hub .auto-spec.is-hero .v{color:#fff}
+.auto-page--hub .auto-advantage{margin-top:0}
 
-/* A · separate: advantage on a pale blue field with the light grid */
-[data-band="a"] .auto-advantage{background:#EAF2FB}
-[data-band="a"] .auto-advantage .auto-sechead h2{color:var(--ink)}
-[data-band="a"] .auto-advantage .auto-sechead p{color:var(--ink-2)}
-[data-band="a"] .auto-advitem{border-top-color:rgba(14,74,124,.16)}
-[data-band="a"] .auto-advitem .t{color:var(--ink)}
-[data-band="a"] .auto-advitem p{color:var(--ink-2)}
-[data-band="a"] .auto-advitem .ic{color:var(--accent);border-color:rgba(18,131,221,.35);background:#fff}
-[data-band="a"] #products{border-top:0}
+/* Hub: advantage on a pale blue field with the light grid */
+.auto-page--hub .auto-advantage{background:#EAF2FB}
+.auto-page--hub .auto-advantage .auto-sechead h2{color:var(--ink)}
+.auto-page--hub .auto-advantage .auto-sechead p{color:var(--ink-2)}
+.auto-page--hub .auto-advitem{border-top-color:rgba(14,74,124,.16)}
+.auto-page--hub .auto-advitem .t{color:var(--ink)}
+.auto-page--hub .auto-advitem p{color:var(--ink-2)}
+.auto-page--hub .auto-advitem .ic{color:var(--accent);border-color:rgba(18,131,221,.35);background:#fff}
+.auto-page--hub #products{border-top:0}
 
-/* B · blend: hero, stats and advantage read as one continuous dark block */
-[data-band="b"] .auto-advantage .hana-bg-layer{background:linear-gradient(180deg,#040a16 0%,#030a17 100%)!important}
-[data-band="b"] .auto-advantage>div:not(.hana-bg-layer){padding-top:24px!important}
-[data-band="b"] .auto-statbar .auto-wrap{padding-bottom:24px!important}
-
-/* C · Hana blue: advantage on a deep brand-blue field */
-[data-band="c"] .auto-advantage .hana-bg-layer{background:linear-gradient(135deg,#0E4A7C 0%,#0B3B66 60%,#082E52 100%)!important}
-[data-band="c"] .auto-advitem{border-top-color:rgba(255,255,255,.2)}
-[data-band="c"] .auto-advitem .ic{color:#9FD8FF;border-color:rgba(159,216,255,.45)}
-
-/* A · three-tone rhythm below the dark hero: pale blue = credentials (advantage, plants),
+/* Hub three-tone rhythm below the dark hero: pale blue = credentials (advantage, plants),
    white = browse and read (products, FAQ), dark navy = hero, CTA and footer */
-[data-band="a"] .auto-advantage .hana-bg-layer{background:#EAF2FB!important}
-[data-band="a"] #products{background:#fff!important;border-top:0!important}
-[data-band="a"] .auto-pcard{box-shadow:0 1px 2px rgba(14,40,70,.05),0 10px 26px -20px rgba(14,40,70,.35)}
-[data-band="a"] .auto-plantsband{background:#EAF2FB!important;border:0!important}
-[data-band="a"] .auto-plantcard{background:#fff}
-[data-band="a"] .auto-cta .hana-bg-layer{background:radial-gradient(70% 120% at 85% 50%,#111d31 0%,#08111f 55%,#040a16 100%)!important}
-[data-band="a"] .auto-cta{background:#040a16}
+.auto-page--hub .auto-advantage .hana-bg-layer{background:#EAF2FB!important}
+.auto-page--hub #products{background:#fff!important;border-top:0!important}
+.auto-page--hub .auto-pcard{box-shadow:0 1px 2px rgba(14,40,70,.05),0 10px 26px -20px rgba(14,40,70,.35)}
+.auto-page--hub .auto-plantsband{background:#EAF2FB!important;border:0!important}
+.auto-page--hub .auto-plantcard{background:#fff}
+.auto-page--hub .auto-cta .hana-bg-layer{background:radial-gradient(70% 120% at 85% 50%,#111d31 0%,#08111f 55%,#040a16 100%)!important}
+.auto-page--hub .auto-cta{background:#040a16}
 
 /* Dark hero: wider parts panel and larger legend text (short blurbs; the full text shows in the detail card) */
-[data-hero="dark"] .auto-hero--dark .auto-cutaway{grid-template-columns:minmax(0,1.8fr) minmax(320px,1fr)}
-[data-hero="dark"] .auto-legitem{grid-template-columns:24px 1fr;gap:12px}
-[data-hero="dark"] .auto-legitem .n{width:24px;height:24px;font-size:11.5px}
-[data-hero="dark"] .auto-legitem .nm{font-size:15px}
-[data-hero="dark"] .auto-legitem .ds{font-size:13px;line-height:1.5;margin-top:4px}
-[data-hero="dark"] .auto-legnote{font-size:12px!important}
+.auto-hero .auto-cutaway{grid-template-columns:minmax(0,1.8fr) minmax(320px,1fr)}
+.auto-page--hub .auto-legitem{grid-template-columns:24px 1fr;gap:12px}
+.auto-page--hub .auto-legitem .n{width:24px;height:24px;font-size:11.5px}
+.auto-page--hub .auto-legitem .nm{font-size:15px}
+.auto-page--hub .auto-legitem .ds{font-size:13px;line-height:1.5;margin-top:4px}
+.auto-page--hub .auto-legnote{font-size:12px!important}
