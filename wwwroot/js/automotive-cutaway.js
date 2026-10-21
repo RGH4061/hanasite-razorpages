@@ -1,11 +1,11 @@
 /* automotive-cutaway.js — the interactive vehicle cutaway on the Automotive hub.
    - Hovering or focusing a "Parts we produce" item highlights its markers (data-fam="n"
      ties the small sensor-location dots to item n).
-   - Filter chips above the vehicle (built here, so nothing shows without the script) dim the
-     other families and open a detail card with a link to the product page.
+   - Clicking a legend item dims the other families and opens a detail card with a link to the
+     product page; clicking it again returns to all parts.
    - Guided tour: on first view the markers appear in turn, then the cutaway steps through each
      family once and returns to "All". Any hover, click or key press in the hero ends it.
-   Visitors who turn off motion in their device settings get the chips and hover, with no tour. */
+   Visitors who turn off motion in their device settings get the hover and click selection, with no tour. */
 (function () {
   var LINKS = { '1': '/markets/automotive/power-modules', '2': '/markets/automotive/automotive-pcba',
                 '3': '/markets/automotive/led-lighting', '4': '/markets/automotive/rfid-tire-tags',
@@ -62,28 +62,23 @@
       card.setAttribute('aria-live', 'polite');
       stage.appendChild(card);
 
-      // Filter chips
-      var bar = document.createElement('div');
-      bar.className = 'auto-chips';
-      bar.setAttribute('aria-label', 'Show on vehicle');
-      var chips = [];
-      function chip(label, n, color) {
-        var b = document.createElement('button');
-        b.type = 'button'; b.className = 'auto-chip'; b.setAttribute('data-f', n);
-        b.innerHTML = (color ? '<i style="background:' + color + '"></i>' : '') + label;
-        b.addEventListener('click', function () { stopTour(); select(n === 'all' ? null : n); });
-        bar.appendChild(b); chips.push(b);
-      }
-      chip('All parts', 'all');
-      fams.forEach(function (f) { chip(f.tag, f.n, f.color); });
-      root.parentNode.insertBefore(bar, root);
+      // Clicking a legend item selects its family (dims the rest, opens the detail card);
+      // clicking it again returns to all parts
+      var current = null;
+      fams.forEach(function (f) {
+        function pick() { stopTour(); select(current === f.n ? null : f.n); }
+        f.item.addEventListener('click', pick);
+        f.item.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+        f.item.setAttribute('role', 'button');
+      });
 
       function select(n) {
         var f = fams.filter(function (x) { return x.n === n; })[0];
         root.classList.toggle('is-filtered', !!f);
         markers.forEach(function (m) { m.classList.toggle('is-sel', !!f && fam(m) === n); });
         items.forEach(function (it) { it.classList.toggle('is-sel', !!f && it === f.item); });
-        chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-f') === (n || 'all'))); });
+        current = f ? n : null;
+        fams.forEach(function (x) { x.item.setAttribute('aria-pressed', String(!!f && x === f)); });
         if (!f) { card.classList.remove('is-show'); return; }
         var extra = f.ms.length > 1 ? '<span class="cnt">' + f.ms.length + ' locations shown on the vehicle</span>' : '';
         card.innerHTML = '<span class="tag" style="color:' + f.color + '">' + f.tag + '</span>' +
@@ -118,7 +113,6 @@
       }
       ['pointerdown', 'keydown', 'wheel'].forEach(function (ev) {
         root.addEventListener(ev, stopTour, { passive: true });
-        bar.addEventListener(ev, stopTour, { passive: true });
       });
       stage.addEventListener('mouseenter', stopTour);
       root.querySelector('.auto-legend').addEventListener('mouseenter', stopTour);

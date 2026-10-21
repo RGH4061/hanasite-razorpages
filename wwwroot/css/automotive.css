@@ -344,13 +344,7 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-legnote{display:flex!important;align-items:center;gap:6px;margin-top:6px!important;font-style:italic}
 .auto-legnote .locdot{flex:none;width:9px;height:9px;border-radius:50%;background:#FF883E;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(255,136,62,.5)}
 
-/* Cutaway interaction (js/automotive-cutaway.js): filter chips, detail card, guided tour, pulse rings */
-.auto-chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}
-.auto-chips .lbl{margin-right:4px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.auto-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border:1px solid var(--line);border-radius:999px;background:#fff;font-family:var(--font-text);font-size:12.5px;font-weight:600;line-height:1;color:var(--ink-2);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
-.auto-chip i{width:8px;height:8px;border-radius:50%}
-.auto-chip:hover{border-color:#B8D2EC;color:var(--ink)}
-.auto-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+/* Cutaway interaction (js/automotive-cutaway.js): legend selection, detail card, guided tour, pulse rings */
 .auto-marker{transition:opacity .35s ease}
 .auto-marker .dot{transition:transform .45s cubic-bezier(.16,.84,.3,1)}
 .auto-cutaway.is-filtered .auto-marker:not(.is-sel){opacity:.22}
@@ -390,10 +384,6 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-hero--dark .auto-hero-lede{color:rgba(255,255,255,.72)!important}
 .auto-hero--dark .auto-btn--secondary{color:#fff;border-color:rgba(255,255,255,.4)}
 .auto-hero--dark .auto-btn--secondary:hover{background:rgba(255,255,255,.08);border-color:#fff}
-.auto-hero--dark .auto-chips .lbl{color:rgba(255,255,255,.5)}
-.auto-hero--dark .auto-chip{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.82)}
-.auto-hero--dark .auto-chip:hover{border-color:rgba(255,255,255,.4);color:#fff}
-.auto-hero--dark .auto-chip[aria-pressed="true"]{background:#fff;border-color:#fff;color:var(--ink)}
 .auto-hero--dark .auto-cutaway{grid-template-columns:minmax(0,2.1fr) minmax(280px,1fr);align-items:center}
 .auto-hero--dark .auto-stage{border:0;border-radius:0;background:transparent;overflow:visible}
 .auto-hero--dark .auto-stage img{-webkit-mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 58% 56% at 50% 52%,#000 55%,transparent 100%)}
