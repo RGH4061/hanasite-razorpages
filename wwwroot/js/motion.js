@@ -17,13 +17,9 @@
 
   var STEP = 70, MAX_STEPS = 5;   // stagger gap, and the cap so long grids do not drag
 
-  // Pilot only: ?rise=24 compares a larger rise distance with the default 14px.
-  var rise = /[?&]rise=(\d+)/.exec(location.search);
-  if (rise) html.style.setProperty('--m-rise', rise[1] + 'px');
-
   function tagged(el) { return el.closest('[data-m], .m-words'); }
   function tag(el, delay, kind) {
-    if (!el || tagged(el)) return;
+    if (!el || el.tagName === 'STYLE' || el.tagName === 'SCRIPT' || tagged(el)) return;
     el.setAttribute('data-m', kind || '');
     if (delay) el.style.setProperty('--m-d', delay + 'ms');
   }
