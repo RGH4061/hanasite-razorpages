@@ -334,3 +334,12 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .adv-pulse .adv-hot{animation:advPulse 5.5s ease-in-out infinite;animation-play-state:paused}
 .auto-advantage.is-live .adv-hot{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){.adv-hot{animation:none!important}}
+
+/* Hero, Oct 2026: soft wash in place of the globe and watermark; sensor locations as small dots */
+.auto-hero{background:radial-gradient(120% 90% at 50% 0%,#F7FAFD 0%,#EDF3FA 60%,#EAF2FB 100%)}
+.auto-marker--loc{width:14px;height:14px}
+.auto-marker--loc .dot{width:14px;height:14px;border-width:2px;font-size:0;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.auto-marker--loc.is-active .tip{opacity:0;visibility:hidden}
+.auto-marker--loc.is-active:hover .tip{opacity:1;visibility:visible}
+.auto-legnote{display:flex!important;align-items:center;gap:6px;margin-top:6px!important;font-style:italic}
+.auto-legnote .locdot{flex:none;width:9px;height:9px;border-radius:50%;background:#FF883E;border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(255,136,62,.5)}
