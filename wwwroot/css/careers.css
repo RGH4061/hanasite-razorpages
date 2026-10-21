@@ -762,3 +762,22 @@
     .job-apply { align-self: flex-start; }
     .life-grid { grid-template-columns: 1fr; }
   }
+
+/* ── Layout fixes (21 Oct 2026) ── */
+/* Hero stats two by two, so no stat sits alone on a second row */
+.hero .stats-inner { display: grid; grid-template-columns: repeat(2, max-content); justify-content: start; column-gap: var(--s-6); row-gap: var(--s-4); }
+.hero .stat:not(:last-child) { padding-right: 0; border-right: none; }
+.hero .stat:nth-child(odd) { padding-right: var(--s-6); border-right: 1px solid rgba(255,255,255,0.16); }
+/* Story photos are 708 × 496; a 4:3 frame cropped the quote text at both sides */
+.story-photo { aspect-ratio: 10 / 7; }
+@media (max-width: 960px) {
+  /* Five "Life at" tabs do not fit one row below 960px: two per row, labels may wrap */
+  .life-tabs { flex-wrap: wrap; }
+  .life-tab { flex: 1 1 calc(50% - var(--s-2)); white-space: normal; }
+}
+@media (max-width: 640px) {
+  .hero .stats-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); }
+  .hero .stat:nth-child(odd) { padding-right: var(--s-4); }
+  .stories-header { flex-direction: column; align-items: flex-start; }
+  .jobs-head .section-label { flex-wrap: wrap; row-gap: 4px; }
+}

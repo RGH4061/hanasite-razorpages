@@ -97,7 +97,8 @@
       var a = document.createElement(isLink ? 'a' : 'span');
       a.className = 'hana-macc-name';
       if (isLink) a.href = hub;
-      a.textContent = name;
+      /* Visible label from the link itself (the Thai header has Thai labels); data-menu is only the key */
+      a.textContent = (link.textContent || '').replace(/\s+/g, ' ').trim() || name;
       row.appendChild(a);
 
       if (mega && mega.querySelector('.hana-wrap')) {

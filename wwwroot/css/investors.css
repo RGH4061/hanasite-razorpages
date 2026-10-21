@@ -330,7 +330,10 @@
   }
 
   /* phones: decorative glows must not widen the page */
-  @media (max-width: 900px){
+  @media (max-width: 1300px){
     .layout-bg, .feature-banner { overflow: hidden; }
     .sp-footer { grid-template-columns: 1fr 1fr !important; }
   }
+
+/* Phones: the cards cover most of the watermark, leaving stray blue bars in the gaps */
+@media (max-width: 680px) { .layout-bg::after { display: none; } }

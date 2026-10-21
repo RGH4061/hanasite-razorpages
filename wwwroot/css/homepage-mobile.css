@@ -81,7 +81,8 @@
 }
 
 /* ── Markets bento mosaic → simple flowing grid ───────────── */
-@media (max-width: 760px) {
+/* (from 999px: below 1000px the desktop mosaic's tiles are too narrow for their titles) */
+@media (max-width: 999px) {
   .hana-markets-section { padding: 48px 0 40px !important; }
   /* stack the section header (title / "all markets") */
   .hana-markets-section [style*="justify-content:space-between"] {
@@ -111,6 +112,15 @@
 }
 
 /* ── Capabilities carousel: widen cards so they swipe nicely ─ */
+/* 761–999px: three cards across (five were too narrow for titles such as
+   "Microelectronic Assembly") */
+@media (min-width: 761px) and (max-width: 999px) {
+  .hana-capabilities-section [data-carousel-track] {
+    grid-template-columns: none !important;
+    grid-auto-flow: column !important;
+    grid-auto-columns: calc((100% - 24px) / 3) !important;
+  }
+}
 @media (max-width: 760px) {
   .hana-capabilities-section [data-carousel-track] {
     grid-template-columns: none !important;
@@ -145,4 +155,10 @@
 @media (max-width: 768px) {
   .hana-cta-section.mm-cta-float { padding: 8px 0 40px !important; }
   .mm-cta-card { padding: 40px 24px !important; }
+}
+
+/* ── Decorative 1px left hairlines (Why band, Markets/Capabilities band) ──
+   Below the 1144px content width they sit on, or cross, the content column. */
+@media (max-width: 1180px) {
+  main [aria-hidden="true"][style*="left:32px"][style*="width:1px"] { display: none !important; }
 }

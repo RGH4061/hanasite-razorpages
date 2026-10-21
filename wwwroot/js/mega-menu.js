@@ -83,6 +83,38 @@
     navWrap.addEventListener('mouseleave', function () {
       closeAll();
     });
+
+    /* Keyboard: a focused nav item opens its panel. Arrow Down (or Enter/Space on Markets, which
+       has no hub page) moves into the panel; Escape closes it and returns to the nav item. Focus
+       moving anywhere outside the nav items and panels closes it. */
+    var quietFocus = false;   // set while Escape hands focus back, so the panel stays closed
+    navLinks.forEach(function (link) {
+      var menuName = link.getAttribute('data-menu');
+      link.addEventListener('focus', function () { if (!quietFocus) openPanel(menuName); });
+      link.addEventListener('keydown', function (e) {
+        var enter = (e.key === 'Enter' || e.key === ' ') && !link.getAttribute('href');
+        if (!enter && e.key !== 'ArrowDown') return;
+        e.preventDefault();
+        openPanel(menuName);
+        var panel = navWrap.querySelector('[data-panel="' + menuName + '"]');
+        var first = panel && panel.querySelector('a[href]');
+        if (first) first.focus();
+      });
+    });
+    navWrap.addEventListener('focusin', function (e) {
+      if (!e.target.closest('[data-menu], [data-panel]')) closeAll();
+    });
+    navWrap.addEventListener('focusout', function (e) {
+      if (!navWrap.contains(e.relatedTarget)) closeAll();
+    });
+    navWrap.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var open = navWrap.querySelector('[data-menu].is-open');
+      clearTimeout(closeTimer);
+      panels.forEach(function (p) { p.setAttribute('hidden', ''); p.classList.remove('hana-mega'); });
+      navLinks.forEach(function (l) { l.classList.remove('is-open'); });
+      if (open) { quietFocus = true; open.focus({ preventScroll: true }); quietFocus = false; }
+    });
   }
 
   if (document.readyState === 'loading') {

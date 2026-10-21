@@ -449,3 +449,21 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-marker.is-open{z-index:25}
 .auto-marker.is-open .tip{opacity:1;visibility:visible}
 .auto-marker.is-open .dot{transform:scale(1.18)}
+
+/* ── Phone layout for the Automotive sub-pages and hub stats (21 Oct 2026) ──
+   The sub-page sections are built with inline grids that had no phone rule. */
+@media (max-width: 680px) {
+  .auto-spoke-grid main [style*="max-width:976px"] { padding-left: 20px !important; padding-right: 20px !important; }
+  .auto-spoke-grid main [style*="grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)"],
+  .auto-spoke-grid main [style*="grid-template-columns:minmax(0,1fr) minmax(0,1fr)"],
+  .auto-spoke-grid main [style*="grid-template-columns:repeat(3, minmax(0,1fr))"] { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+  .auto-spoke-grid main [style*="grid-template-columns:repeat(4, 1fr)"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .auto-spoke-grid main [style*="border-left:1px solid var(--line)"] { border-left: 0 !important; border-top: 1px solid var(--line); }
+  .auto-spoke-grid main a[style*="white-space:nowrap"] { white-space: normal !important; }
+  /* Hub stat strip: values do not wrap, so stack the four cells instead of two by two */
+  .auto-spec.is-hero .cell { flex: 1 0 100%; border-right: none; border-bottom: 1px solid #B8D2EC; }
+  .auto-spec.is-hero .cell:last-child { border-bottom: none; }
+  .auto-page--hub .auto-spec.is-hero .cell { border-bottom-color: rgba(255,255,255,.1); }
+}
+/* A hovered legend item's tooltip shows above the detail card instead of behind it */
+.auto-cutaway .auto-marker.is-active { z-index: 31; }

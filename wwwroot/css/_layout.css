@@ -107,3 +107,7 @@
 .sc-stack .sc-pillar>div>ul{grid-column:1;grid-row:auto;columns:1;margin-top:14px!important}}
 .sc-stack .sc-pillar>div{grid-template-columns:minmax(0,1fr)!important}
 .sc-stack .sc-pillar>div>ul{grid-column:1!important;grid-row:auto!important;margin-top:16px!important;columns:2;column-gap:40px}
+
+/* Capability heroes: the circuit-board corner graphic sits behind the heading and intro once
+   the hero is a single phone-width column (21 Oct 2026) */
+@media (max-width:640px){.cap-page-main img[src$="circuit-board-blue.webp"][aria-hidden="true"]{display:none}}

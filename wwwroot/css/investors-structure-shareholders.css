@@ -783,3 +783,7 @@
 .sidenav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); background: none; }
 /* The section menu runs across the top here: label and links sit in one aligned row */
 .sectionnav .footer-link { flex-direction: row; align-items: baseline; gap: 18px; align-self: center; white-space: nowrap; }
+
+/* <figure> keeps the browser's 40px side margins unless reset: the chart sat 80px narrower
+   than its column and the legend note was clipped on phones */
+.gs { margin-left: 0; margin-right: 0; }

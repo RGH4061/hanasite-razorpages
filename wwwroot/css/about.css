@@ -207,3 +207,9 @@
     .vi-flow { justify-content: flex-start; }
     .vi-flow-wrap { -webkit-overflow-scrolling: touch; }
   }
+
+/* DFx & JDM feedback loop: drawn inside .vi-flow so it stays under the cards when the flow
+   scrolls sideways on narrower screens. The flow's bottom padding holds the loop and label;
+   the negative margin keeps the points row where it was. */
+.vi-flow { position: relative; padding-bottom: 126px; }
+.vi-points, [data-density="compact"] .vi-points { margin-top: -22px; }

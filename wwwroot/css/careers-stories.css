@@ -164,3 +164,10 @@
   .story-lightbox-close { position: absolute; top: 20px; right: 24px; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; transition: background 0.15s; }
   .story-lightbox-close:hover { background: rgba(255, 255, 255, 0.24); }
   .story-lightbox-close svg { width: 20px; height: 20px; }
+
+/* ── Layout fixes (21 Oct 2026) ── */
+/* <figure> keeps the browser's 40px side margins unless reset; on phones that pushed the
+   hero photo off the right edge */
+.hero-card { margin: 0; }
+/* Story photos are 708 × 496; a 4:3 frame cropped the quote text at both sides */
+.story-photo { aspect-ratio: 10 / 7; }

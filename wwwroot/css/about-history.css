@@ -435,3 +435,9 @@
   .tl-v.tl-anim .tl-item { opacity: 1; transform: none; transition: none; }
   .tl-decade-name, .tl-dot, .tl-card { transition: none; }
 }
+
+/* Decade chips: centred while they fit; when the row scrolls, start from the first chip
+   (justify-content:center pushed 1970s off the left edge, out of reach). */
+.decade-nav-inner { justify-content: flex-start; }
+.decade-chip:first-child { margin-left: auto; }
+.decade-chip:last-child { margin-right: auto; }

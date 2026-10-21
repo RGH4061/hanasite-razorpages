@@ -89,7 +89,7 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 .mk-cta .in{position:relative;z-index:1;padding-top:60px;padding-bottom:60px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:center}
 .mk-cta .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
 @media(max-width:980px){
-.mk-hero-in{grid-template-columns:1fr;gap:32px;padding-top:44px}
+.mk-hero-in{grid-template-columns:minmax(0,1fr);gap:32px;padding-top:44px}
 .mk-hero-media img{height:300px}
 .mk-h1{font-size:34px}
 .mk-h2{font-size:26px}
@@ -302,3 +302,14 @@ body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .mk-turnkey .tk-list li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:14px;line-height:1.55;color:rgba(255,255,255,.82)}
 .mk-turnkey .tk-list .t{display:block;margin-bottom:2px;font-weight:600;color:#fff}
 .mk-turnkey .tk-note{margin:0;font-size:13px;line-height:1.55;color:rgba(255,255,255,.66)}
+
+/* Inline text links in body copy (were browser-default blue) */
+.mk-body a:not([class]){color:var(--hana-blue);text-decoration:underline;text-underline-offset:2px}
+.mk-body.on-dark a:not([class]),.mk-plate .mk-body a:not([class]){color:#7EC8FF}
+
+/* Turnkey plate: below about 1540px the full-frame photo is wider than the space beside the
+   text, so the copy ran onto it (65px at 1440, more on smaller screens). There the photo takes
+   the space from 32px after the text column, at full plate height, cropped from the right
+   (the hand and device sit on the left of the frame). */
+@media(min-width:1081px) and (max-width:1539px){.mk-turnkey .art{aspect-ratio:auto;width:calc(100% - 570px);max-width:none}}
+@media(min-width:761px) and (max-width:1080px){.mk-turnkey .art{aspect-ratio:auto;width:calc(54% - 36px);max-width:none}}

@@ -177,7 +177,7 @@
     /* The bar is the only search entry on phones, so it names the package finder there. */
     const TH = document.documentElement.lang === "th";
     const DESKTOP_PH = TH ? "ค้นหาความสามารถ ขนาดแพ็กเกจ ใบรับรอง และอื่น ๆ…" : (box.dataset.placeholder || "Search capabilities, package sizes, certs and more…");
-    const MOBILE_PH = TH ? "ค้นหาขนาดแพ็กเกจ ความสามารถ และอื่น ๆ…" : "Search package sizes, capabilities and more..";
+    const MOBILE_PH = TH ? "ค้นหาแพ็กเกจ ความสามารถ…" : "Search packages, capabilities…";
     const narrow = window.matchMedia("(max-width: 900px)");
     const setPh = () => { input.placeholder = narrow.matches ? MOBILE_PH : DESKTOP_PH; };
     setPh();
@@ -283,7 +283,7 @@
     input.type = "search";
     input.className = "hs-mnav-input";
     const TH = document.documentElement.lang === "th";
-    input.placeholder = TH ? "ค้นหาขนาดแพ็กเกจ ความสามารถ และอื่น ๆ…" : "Search package sizes, capabilities and more..";
+    input.placeholder = TH ? "ค้นหาแพ็กเกจ ความสามารถ…" : "Search packages, capabilities…";
     input.setAttribute("aria-label", TH ? "ค้นหาในเว็บไซต์" : "Search this site");
     box.appendChild(input);
     old.replaceWith(box);

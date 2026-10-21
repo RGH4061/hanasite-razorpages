@@ -99,7 +99,7 @@
 }
 .cf-grid {
   display: grid;
-  grid-template-columns: 1fr var(--form-col, 440px);
+  grid-template-columns: minmax(0, 1fr) var(--form-col, 440px);
   gap: 64px;
   align-items: start;
 }

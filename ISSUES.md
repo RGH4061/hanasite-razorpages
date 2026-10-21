@@ -15,6 +15,30 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
+- [ ] **Visual QA sweep 21 Oct 2026 — items that need a decision, new assets or copy.**
+  Found in the full sweep (126 routes at 1440, 1280, 1024, 768, 390 and 360 px; fixes are logged
+  under Fixed, 21 Oct). Not changed repo-side:
+  - **Low-resolution images, shown up to 2.6× their pixel size:** `photos/mk-rfid-tire-warehouse.webp`
+    (600 × 400; RFID tire tag pages), `automotive.webp` (427 × 640; Global vehicle sales commentary),
+    `cap-rfid-smart-tags-hero.webp` (640 × 568), `photos/mk-automotive-power-modules-placement.webp`
+    (520 × 293; Industrial IoT power modules), and two Careers "Life at Koh Kong" photos
+    (`life-kohkong-celebrations-1` 331 × 202, `life-kohkong-community-outreach-1` 293 × 165).
+    Need larger source files.
+  - **`/investor-relations/annual`:** the 2025, 2024, 2023 and Form 56-1 2020 tiles are still
+    wireframe placeholders reading "[ Report cover image ]".
+  - **Optical & sensors hub, "Always at the forefront" timeline (phones):** the 238 px label column
+    leaves about one year of the timeline visible inside a sideways scroller with no scroll cue.
+    Needs a phone layout (design call).
+  - **Careers "Life at" photo cards:** each card shows an 8 % sliver of the next photo plus an
+    arrow; in a three-column grid this reads as a cropping fault. Design call.
+  - **Insights hub:** topic counts ignore the active format filter, so a topic showing "2" can
+    return "0 articles". Counts should follow the format filter, or the format should reset.
+  - **Copy:** RFQ hero sentence is garbled ("…be in touch within two business days route it to the
+    right facility and team"); Ayutthaya location table reads "Don Mueang Airport International
+    (Bangkok)~40km" (missing separator); Thai contact page still has the English RFQ box text and
+    "Anonymous Communication Form" paragraph; IR FAQ says "Page updated 12 Jun 2026" above an
+    Aug 2026 presentation.
+  - **Cheongju (dormant):** overflows 104 px at 390 px. Left alone while the page is dormant.
 - [ ] **Dead-asset re-cleanup — ✅ LARGELY RESOLVED BY THE 8 SEP SYNC; keep watching.**
   The 8 Sep export renamed almost every legacy asset to a `-hero`/`mk-`/`svc-`/`hp-` name and
   shipped WebP versions, so the sync was run with `rsync --delete` and removed **46 superseded
@@ -160,7 +184,8 @@ A screenshot or the prototype filename it should match is ideal but not required
     reopen the question.** The company name is not a blanket stays-in-English term the way SET,
     process names and job titles are; it is per-section. Only those two Sustainability paragraphs
     use the Latin form.
-- [ ] **Thai font — `Sarabun-*.woff2` 404s on every `/th/` page (source-side, non-breaking).**
+- [x] **CLOSED 21 Oct 2026 — no longer reproduces: `_components.css` now loads only the two `.ttf` files, and the 21 Oct sweep found no failed requests on any `/th/` page. Notes kept for history.**
+  ~~Thai font — `Sarabun-*.woff2` 404s on every `/th/` page (source-side, non-breaking).~~
   `wwwroot/css/_components.css` declares `@font-face` with `url(../fonts/Sarabun-Regular.woff2)
   format('woff2')` first and the `.ttf` as fallback, but the export ships **only** the two
   `.ttf` files. Every Thai page therefore fires 2 failed requests before falling back; the
@@ -170,6 +195,69 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 21 Oct 2026 — visual QA sweep (126 routes × 6 widths, interactions)
+
+Every route rendered at 1440, 1280, 1024, 768, 390 and 360 px, scrolled through so lazy images and
+entrance motion fire, then checked for horizontal overflow, clipped, overlapping or spilling text,
+broken, distorted or upscaled images, console errors and failed requests (none of the last two in
+756 page loads). Menus, search, carousels, tabs, filters, accordions, the Automotive cutaway, the
+Locations map, form gating and success states were exercised on desktop and phone.
+- **Automotive sub-pages (all 5), phones:** the inline two-column hero never collapsed, so the
+  headline and intro sat in a ~140 px column beside a thumbnail. `automotive.css` now collapses the
+  inline grids, gives the sensor list two columns and 20 px side padding at ≤680 px. The hub's stat
+  strip stacks cleanly (it left stray dividers), the back link arrow points left, and a hovered
+  legend item's tooltip shows above the detail card. FAQ buttons expose `aria-expanded`.
+- **Industrial IoT › PCBA & Box Build, phones:** hero was 680 px wide (text and second button cut
+  off). `.mk-hero-in` phone column is now `minmax(0,1fr)`.
+- **Capability pages, phones:** the circuit-board corner graphic sat behind the H1 and intro on
+  19 pages; hidden at ≤640 px. **Package Design:** the before / development / after case-study
+  stages stack on phones (three ~90 px columns broke the text one word per line and the
+  "Constraints" label ran into the next column).
+- **About, phones/tablets:** the "DFx & JDM feedback loop" line and label were fixed at desktop
+  coordinates, so they crossed the step cards and did not scroll with them. Both now sit inside
+  `.vi-flow` (desktop position unchanged to the pixel).
+- **History (EN + TH):** the decade chip row was centred inside a scroller, so 1970s was cut off and
+  unreachable on phones (and on the Thai page at 768 px).
+- **Contact (EN + TH):** the intro, RFQ and form panels carried fixed inline sizes from the design
+  tool (500 × 707, 495 × 212, 500 × 818), so the right column overran the grid by ~55 px on desktop
+  and the page scrolled sideways at 1024 px. Inline sizes removed.
+- **Careers:** hero stats now two by two (one stat sat alone on a second row); "Life at" tabs wrap
+  two per row below 960 px (labels were clipped and overlapping); stories header and vacancy meta
+  wrap on phones. **Stories:** the hero `<figure>` kept the browser's 40 px margins (photo pushed off
+  the right edge on phones); story photos use a 10:7 frame so the quote text burned into the images
+  is no longer cropped (also on /careers).
+- **Investor Relations:** page-end CTA buttons and their labels wrap inside the card on phones
+  (they overran it, worst in Thai); "On this page" lists are one column on phones; Group Structure chart no longer
+  80 px narrower than its column (`<figure>` margins); Governance hero uses `min-height` so the
+  intro is not clipped; the hub's watermark no longer shows as stray bars between cards on phones
+  or widens the page at 1024 px.
+- **Site-wide:** footer is the same light grey on every page (IR and Careers stylesheets redefine
+  `--bg` as white); the cyan accent dots in the light "flow" backgrounds no longer land on hero
+  text (sampled further right, none on phone-width bands); inline body links on market pages use
+  brand colours (one on a dark band was default blue and almost invisible); `/sitemap` no longer
+  scrolls sideways at 768 px.
+- **Phone menu:** Thai pages showed English top-level labels (the script used the `data-menu` key);
+  it now uses the link text, without letter-spacing for Thai. The OSAT "Wafer, assembly & test" label
+  has its group spacing, and the search placeholder fits (was cut off and ended "..").
+- **Desktop menu:** keyboard support (it was hover-only). A focused nav item opens its panel; Arrow
+  Down, or Enter on Markets (no hub page), moves into the panel; Escape closes it and returns to the
+  nav item; moving focus past the nav items closes it.
+- **Homepage:** decorative 1 px left hairlines hidden below 1180 px, where they crossed the content.
+  The market mosaic switches to its two-column layout below 1000 px (was 760 px; at 761–999 px
+  tile titles such as "Telecommunications" were clipped), and the capability carousel shows three
+  cards across at 761–999 px (five were too narrow for "Microelectronic Assembly").
+- **Medical PCBA turnkey plate:** the full-frame photo is wider than the space beside the text below
+  about 1540 px, so the copy ran onto it (65 px at 1440 px, 220 px at 1100 px) and the photo caption
+  sat on the closing note. Below that width the photo now starts 32 px after the text column at
+  full plate height, cropped from the right; above it nothing changes.
+- **Image:** `ayutthaya-facility.webp` had a white "›" carousel arrow from the old site burned into
+  the photo (Ayutthaya hero, Locations hub, History); retouched out.
+- **Typos:** "Kok Kong" → "Koh Kong" (Flip Chip, COB Assembly); homepage "our customer's with end to
+  end solutions" → "our customers with end-to-end solutions", "Work along us" → "Work alongside
+  us", "Full Inspection, handling, and" → "Full inspection, handling and"; RFQ "a idea" → "an idea".
+- **Closed:** the Thai `Sarabun-*.woff2` 404 entry under Open no longer reproduces (no failed
+  requests on any `/th/` page).
 
 ### 20 Oct 2026 — export sync ("20-10 razor pages Hana Site.zip")
 

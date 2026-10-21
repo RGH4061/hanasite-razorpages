@@ -13,6 +13,14 @@
       });
     });
     document.querySelectorAll('.auto-faq').forEach(function (faq) {
+      /* aria-expanded mirrors .is-open so screen readers announce the state */
+      function sync() {
+        faq.querySelectorAll('.item').forEach(function (it) {
+          var q = it.querySelector('button.q');
+          if (q) q.setAttribute('aria-expanded', it.classList.contains('is-open') ? 'true' : 'false');
+        });
+      }
+      sync();
       faq.addEventListener('click', function (e) {
         var btn = e.target.closest('button.q');
         if (!btn) return;
@@ -20,6 +28,7 @@
         var open = item.classList.contains('is-open');
         faq.querySelectorAll('.item').forEach(function (it) { it.classList.remove('is-open'); });
         if (!open) item.classList.add('is-open');
+        sync();
       });
     });
   }

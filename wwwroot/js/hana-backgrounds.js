@@ -103,7 +103,7 @@
         x += Math.cos(a) * 12 + 12;
         y += Math.sin(a) * 12;
         d += ' L ' + x.toFixed(1) + ' ' + y.toFixed(1);
-        if (!sampled && x > W * 0.52) { sampled = true; sx = x; sy = y; }
+        if (!sampled && x > W * 0.7) { sampled = true; sx = x; sy = y; }
       }
       var hot = ac && (i % 4 === 2);
       var col = hot ? ac : stroke;
@@ -111,7 +111,8 @@
       var op = hot ? (0.20 + (i % 3) * 0.05) : (0.05 + (i % 5) * 0.028);
       var sw = hot ? 1.1 : (0.8 + (i % 3) * 0.5);
       m += '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="' + sw + '" stroke-opacity="' + op.toFixed(3) + '" stroke-linecap="round"/>';
-      if (hot && sampled) dots += '<circle cx="' + sx.toFixed(1) + '" cy="' + sy.toFixed(1) + '" r="2.1" fill="' + ac + '" fill-opacity="0.85"/>';
+      // Accent dots sit right of the text column; on phone-width hosts every position is over text
+      if (hot && sampled && W >= 720) dots += '<circle cx="' + sx.toFixed(1) + '" cy="' + sy.toFixed(1) + '" r="2.1" fill="' + ac + '" fill-opacity="0.85"/>';
     }
     m += dots + '</g>';
     var bg = dark
