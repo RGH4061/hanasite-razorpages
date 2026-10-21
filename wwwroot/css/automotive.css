@@ -444,3 +444,11 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 [data-band="a"] .auto-plantcard{background:#fff}
 [data-band="a"] .auto-cta .hana-bg-layer{background:radial-gradient(70% 120% at 85% 50%,#111d31 0%,#08111f 55%,#040a16 100%)!important}
 [data-band="a"] .auto-cta{background:#040a16}
+
+/* Dark hero: wider parts panel and larger legend text (short blurbs; the full text shows in the detail card) */
+[data-hero="dark"] .auto-hero--dark .auto-cutaway{grid-template-columns:minmax(0,1.8fr) minmax(320px,1fr)}
+[data-hero="dark"] .auto-legitem{grid-template-columns:24px 1fr;gap:12px}
+[data-hero="dark"] .auto-legitem .n{width:24px;height:24px;font-size:11.5px}
+[data-hero="dark"] .auto-legitem .nm{font-size:15px}
+[data-hero="dark"] .auto-legitem .ds{font-size:13px;line-height:1.5;margin-top:4px}
+[data-hero="dark"] .auto-legnote{font-size:12px!important}

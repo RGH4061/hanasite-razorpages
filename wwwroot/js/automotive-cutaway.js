@@ -24,7 +24,7 @@
         var n = txt(item, '.n'), lead = markers.filter(function (m) { return txt(m, '.dot') === n; })[0];
         return { n: n, item: item, lead: lead, color: item.querySelector('.n').style.background,
                  tag: lead ? txt(lead, '.tag') : txt(item, '.nm'), nm: txt(item, '.nm'),
-                 ds: txt(item, '.ds'), ms: markers.filter(function (m) { return fam(m) === n; }) };
+                 ds: item.getAttribute('data-long') || txt(item, '.ds'), ms: markers.filter(function (m) { return fam(m) === n; }) };
       });
 
       // Keep each tooltip inside the photo: shift it sideways when its marker sits near an edge
