@@ -6,17 +6,11 @@
     ViewData["Canonical"] = "https://www.hanagroup.com/investor-relations";
     ViewData["AltLang"] = "th";
     ViewData["AltLangUrl"] = "/th/investor-relations";
-    // PREVIEW: ?irv=a|b|c|d|e|f|g|h|i|j shows the hub mock-ups in _IrHubPreview.cshtml. Remove once a direction is chosen.
-    var irv = (string?)HttpContext.Request.Query["irv"];
-    var irPreview = irv is "a" or "b" or "c" or "d" or "e" or "f" or "g" or "h" or "i" or "j" ? irv : null;
 }
 @section Head {
     <link rel="stylesheet" href="~/css/investors.css" />
-    @if (irPreview != null)
-    {
-        <link rel="stylesheet" href="~/css/market-page.css" />
-        <link rel="stylesheet" href="~/css/investors-preview.css" asp-append-version="true" />
-    }
+    <link rel="stylesheet" href="~/css/market-page.css" />
+    <link rel="stylesheet" href="~/css/investors-hub.css" />
     <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/investor-relations" />
     <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/investor-relations" />
     <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/investor-relations" />
@@ -24,160 +18,97 @@
 
 @* Investor Relations — Hana Microelectronics. Static content. *@
 
-@if (irPreview != null)
-{
-    <partial name="_IrHubPreview" model="irPreview" />
-}
-else
-{
-<text>
-<div class="hero-band">
-  <canvas id="hero-topo"></canvas>
-  <div class="hero-overlay"></div>
-  <div class="subbar">
-    <div class="subbar-inner">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span class="sep">/</span>
-        <span>Investor Relations</span>
-      </nav>
-      <div class="meta">Updated <strong>14 May 2026</strong></div>
-    </div>
-  </div>
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Investor Relations Hub</h1>
-      <p class="lede">Financial information, governance, and corporate disclosure for Hana Microelectronics — listed on the Stock Exchange of Thailand under SET: HANA.</p>
+<div class="ir-hub">
+
+  <div class="mk-crumbbar"><div class="mk-wrap in"><a href="/">Home</a><span class="sep">&rsaquo;</span><span class="here">Investor Relations</span><span class="ir-hub-updated">Updated <strong>14 May 2026</strong></span></div></div>
+
+  <div class="ir-hub-stage">
+  <section class="mk-hero">
+    <div class="mk-wrap mk-hero-in">
+      <div>
+        <span class="hero-accent" aria-hidden="true"></span>
+        <h1 class="mk-h1">Investor Relations Hub</h1>
+        <p class="mk-lede">Financial information, governance, and corporate disclosure for Hana Microelectronics — listed on the Stock Exchange of Thailand under SET: HANA.</p>
+      </div>
     </div>
   </section>
-</div>
 
-<div class="layout-bg">
-<div class="layout">
-
-  <!-- Feature banner: Investor News + Stock panel -->
-  <div class="feature-banner">
-    <a class="feature-body" href="/investor-relations/news">
-      <h2 class="fb-title">Investor news</h2>
-      <p class="fb-desc">SET announcements, quarterly financial statements, AGM notices, and dividend disclosures — organised by year.</p>
-      <div class="fb-meta">
-        <div class="m">
-          <div class="m-val">14 May 2026</div>
-          <div class="m-lbl">Latest filing</div>
-        </div>
-        <div class="m">
-          <div class="m-val">Q1 2026</div>
-          <div class="m-lbl">Latest result</div>
+  <section class="ir-hub-body" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="none">
+    <div class="mk-wrap ir-hub-in">
+      <div class="feature-banner">
+        <a class="feature-body" href="/investor-relations/news">
+          <h2 class="fb-title">Investor news</h2>
+          <p class="fb-desc">SET announcements, quarterly financial statements, AGM notices, and dividend disclosures — organised by year.</p>
+          <div class="fb-meta">
+            <div class="m"><div class="m-val">14 May 2026</div><div class="m-lbl">Latest filing</div></div>
+            <div class="m"><div class="m-val">Q1 2026</div><div class="m-lbl">Latest result</div></div>
+          </div>
+          <span class="fb-cta">View all News &amp; filings  →</span>
+        </a>
+        <div class="stock-panel">
+          <div class="sp-label">HANA &nbsp;·&nbsp; SET price</div>
+          <div>
+            <div class="sp-price-row">
+              <div class="sp-price">39.20</div>
+              <div class="sp-change">↑ +83.2%</div>
+            </div>
+            <div class="sp-period" style="margin-top:6px">YTD Jan – Jun 2026</div>
+          </div>
+          <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
+          <div class="sp-footer">
+            <div><div class="sf-val">21.40</div><div class="sf-lbl">YTD low</div></div>
+            <div><div class="sf-val">39.20</div><div class="sf-lbl">Current</div></div>
+            <div><div class="sf-val">Q2 2026</div><div class="sf-lbl">Next result</div></div>
+          </div>
+          <a href="https://www.set.or.th/en/market/product/stock/quote/hana/price" target="_blank" rel="noopener noreferrer" class="sp-set-link">View HANA on SET &nbsp;↗</a>
         </div>
       </div>
-      <span class="fb-cta">View all News &amp; filings  →</span>
-    </a>
 
-    <!-- Stock panel -->
-    <div class="stock-panel">
-      <div class="sp-label">HANA &nbsp;·&nbsp; SET price</div>
-      <div>
-        <div class="sp-price-row">
-          <div class="sp-price">39.20</div>
-          <div class="sp-change">↑ +83.2%</div>
-        </div>
-        <div class="sp-period" style="margin-top:6px">YTD Jan – Jun 2026</div>
+      <h2 class="mk-h2 sm ir-hub-sechead">Investor information</h2>
+      <div class="ir-grid ir-hub-cards">
+        <a class="ir-card" href="/investor-relations/annual"><span class="ir-hub-ic"><i data-lucide="file-text"></i></span>
+          <h3 class="ic-title">Annual Reports &amp; 56-1 One Report</h3>
+          <p class="ic-desc">Audited financials and 56-1 One Report submitted to the SET — business overview and sustainability disclosures for each financial year.</p>
+          <span class="ic-cta">View →</span></a>
+        <a class="ir-card" href="/investor-relations/governance"><span class="ir-hub-ic"><i data-lucide="landmark"></i></span>
+          <h3 class="ic-title">Governance Documents</h3>
+          <p class="ic-desc">Articles of Association, committee charters, CG policies, anti-corruption commitment, and CAC membership.</p>
+          <span class="ic-cta">View →</span></a>
+        <a class="ir-card" href="/investor-relations/structure"><span class="ir-hub-ic"><i data-lucide="network"></i></span>
+          <h3 class="ic-title">Group Structure &amp; Shareholders</h3>
+          <p class="ic-desc">Principal subsidiaries, associates, and major shareholders as disclosed to the Stock Exchange of Thailand.</p>
+          <span class="ic-cta">View →</span></a>
+        <a class="ir-card" href="/investor-relations/faq"><span class="ir-hub-ic"><i data-lucide="presentation"></i></span>
+          <h3 class="ic-title">FAQ &amp; Presentations</h3>
+          <p class="ic-desc">SET Earnings Call recordings with summaries and transcripts, and answers to common investor questions on shares, dividends, and reporting.</p>
+          <span class="ic-cta">View →</span></a>
+        <a class="ir-card" href="/investor-relations/contact"><span class="ir-hub-ic"><i data-lucide="calendar-days"></i></span>
+          <h3 class="ic-title">Investor Events &amp; Contact</h3>
+          <p class="ic-desc">Upcoming and past analyst meetings and SET Earnings Calls, and direct contact for the Investor Relations team.</p>
+          <span class="ic-cta">View →</span></a>
+        <a class="ir-card" href="/investor-relations/esg"><span class="ir-hub-ic"><i data-lucide="leaf"></i></span>
+          <h3 class="ic-title">Sustainability</h3>
+          <p class="ic-desc">Our approach to environmental, social, and governance responsibility — the Board's ESG statement, sustainability policy, and ESG Data Platform disclosures.</p>
+          <span class="ic-cta">View →</span></a>
       </div>
-      <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
-      <div class="sp-footer">
-        <div>
-          <div class="sf-val">21.40</div>
-          <div class="sf-lbl">YTD low</div>
-        </div>
-        <div>
-          <div class="sf-val">39.20</div>
-          <div class="sf-lbl">Current</div>
-        </div>
-        <div>
-          <div class="sf-val">Q2 2026</div>
-          <div class="sf-lbl">Next result</div>
-        </div>
-      </div>
-      <a href="https://www.set.or.th/en/market/product/stock/quote/hana/price" target="_blank" rel="noopener noreferrer" class="sp-set-link">View HANA on SET &nbsp;↗</a>
     </div>
-  </div>
 
-  <!-- Remaining 6 sections — 3-col grid -->
-  <div class="ir-grid">
-
-    <!-- 02 Annual Report — live -->
-    <a class="ir-card" href="/investor-relations/annual">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">Annual Reports &amp; 56-1 One Report</h3>
-      <p class="ic-desc">Audited financials and 56-1 One Report submitted to the SET — business overview and sustainability disclosures for each financial year.</p>
-
-      <span class="ic-cta">View section →</span>
-    </a>
-
-    <!-- 03 Governance — live -->
-    <a class="ir-card" href="/investor-relations/governance">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">Governance Documents</h3>
-      <p class="ic-desc">Articles of Association, committee charters, CG policies, anti-corruption commitment, and CAC membership.</p>
-
-      <span class="ic-cta">View section →</span>
-    </a>
-
-    <!-- 04 Group Structure — live -->
-    <a class="ir-card" href="/investor-relations/structure">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">Group Structure &amp; Shareholders</h3>
-      <p class="ic-desc">Principal subsidiaries, associates, and major shareholders as disclosed to the Stock Exchange of Thailand.</p>
-
-      <span class="ic-cta">View section →</span>
-    </a>
-
-    <!-- 05 FAQ — live -->
-    <a class="ir-card" href="/investor-relations/faq">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">FAQ &amp; Presentations</h3>
-      <p class="ic-desc">SET Earnings Call recordings with summaries and transcripts, and answers to common investor questions on shares, dividends, and reporting.</p>
-
-      <span class="ic-cta">View section →</span>
-    </a>
-
-    <!-- 06 Events & Contact — live -->
-    <a class="ir-card" href="/investor-relations/contact">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">Investor Events &amp; Contact</h3>
-      <p class="ic-desc">Upcoming and past analyst meetings and SET Earnings Calls, and direct contact for the Investor Relations team.</p>
-
-      <span class="ic-cta">View section →</span>
-    </a>
-
-    <!-- 07 Sustainability — live -->
-    <a class="ir-card" href="/investor-relations/esg">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">Sustainability</h3>
-      <p class="ic-desc">Our approach to environmental, social, and governance responsibility — the Board's ESG statement, sustainability policy, and ESG Data Platform disclosures.</p>
-
-      <span class="ic-cta">View section →</span>
-    </a>
-
+    <section class="mk-cta ir-hub-cta" data-hana-bg="flow" data-variant="dark" data-fade="none" aria-label="Investor relations contact">
+      <div class="mk-wrap in">
+        <div>
+          <h2 class="mk-h2 on-dark">Investor enquiries</h2>
+          <p class="mk-body on-dark">For questions on financial results, governance, or to join the investor mailing list, please contact the Investor Relations team.</p>
+        </div>
+        <div class="acts">
+          <a href="/investor-relations/contact" class="hana-btn hana-btn-ghost-on-dark" style="padding:12px 22px;font-size:12px;">Investor events</a>
+          <a href="/investor-relations/contact#ir-contact" class="hana-btn hana-btn-on-dark" style="padding:12px 22px;font-size:12px;">Contact IR <i data-lucide="arrow-right" style="width:14px;height:14px;margin-left:6px;"></i></a>
+        </div>
+      </div>
+    </section>
+  </section>
   </div>
 
 </div>
-</div>
-
-<section class="page-end" aria-label="Investor relations contact">
-  <canvas id="enquiries-topo"></canvas>
-  <div class="page-end-inner">
-    <div>
-      <p class="ttl">Investor enquiries</p>
-      <p class="desc">For questions on financial results, governance, or to join the investor mailing list, please contact the Investor Relations team.</p>
-    </div>
-    <div class="actions">
-      <a href="/investor-relations/contact" class="btn">Investor Events</a>
-      <a href="/investor-relations/contact#ir-contact" class="btn primary">Contact IR &nbsp;→</a>
-    </div>
-  </div>
-</section>
-</text>
-}
 
 @section Scripts {
     <script src="~/js/investors-bg.js"></script>

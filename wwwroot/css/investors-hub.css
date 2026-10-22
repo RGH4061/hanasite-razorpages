@@ -1,0 +1,59 @@
+/* investors-hub.css — Investor Relations hub (/investor-relations), Oct 2026.
+   Loads after investors.css and market-page.css. The hub uses the market pages' crumb bar,
+   hero type and closing card (mk-*), on a calm blue background:
+     hero   soft blue gradient, no lines
+     body   blue gradient with the light Flow pattern (data-hana-bg="flow"), its lines rising
+            20% into the lower hero behind the text
+     cards  Investor news + SET price panel, then six section cards with icons
+     CTA    the site's Hana-blue Flow card at the foot of the same background */
+
+/* crumb bar, with the update date on the right */
+.ir-hub .mk-crumbbar { background: #F7FAFD; }
+.ir-hub-updated { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+.ir-hub-updated strong { font-weight: 600; color: var(--ink-2); }
+
+/* hero + body share one clipped stage, so the body's Flow lines can rise into the hero */
+.ir-hub-stage { position: relative; overflow: hidden; }
+
+/* hero: calm blue gradient, text only */
+.ir-hub .mk-hero { background: linear-gradient(180deg, #EEF3F9 0%, #E8EFF8 100%); border-bottom: 0; }
+.ir-hub .mk-hero-in { grid-template-columns: minmax(0, 1fr); padding-bottom: 24px; }
+.ir-hub .mk-lede { max-width: 640px; margin-bottom: 0; }
+
+/* body: blue gradient with the Flow lines (drawn by hana-backgrounds.js) */
+.ir-hub-body { position: relative; overflow: visible; padding-bottom: 64px; }
+.ir-hub-body > .hana-bg-layer { background: linear-gradient(180deg, #E8EFF8 0%, #E1EBF7 40%, #D9E6F4 100%) !important; overflow: visible !important; }
+.ir-hub-body > .hana-bg-layer > svg { opacity: .8; transform: translateY(-20%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 100%); mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 100%); }
+.ir-hub-in { position: relative; z-index: 1; padding-top: 8px; padding-bottom: 8px; }
+
+/* Investor news + SET price panel (no Hana-mark watermark) */
+.ir-hub .feature-banner { margin-bottom: 0; border-top-color: #CFDCEA; border-right-color: #CFDCEA; border-bottom-color: #CFDCEA;
+  box-shadow: 0 14px 34px -26px rgba(14, 40, 70, .35); }
+.ir-hub .feature-banner::before { display: none; }
+.ir-hub .fb-desc { font-size: 15px; color: var(--ink-2); }
+
+/* section cards: icon, full border, hover lift */
+.ir-hub-sechead { margin: 48px 0 22px; }
+.ir-hub-cards { gap: 18px; }
+.ir-hub-cards .ir-card { border: 1px solid #CFDCEA; background: #fff; gap: 10px; padding: 22px;
+  transition: transform .3s cubic-bezier(.16, .84, .3, 1), box-shadow .3s, border-color .3s; }
+.ir-hub-cards .ir-card:hover { transform: translateY(-2px); border-color: #B8D2EC; background: #fff; box-shadow: 0 12px 28px -18px rgba(14, 40, 70, .35); }
+.ir-hub-ic { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 9px;
+  background: var(--hana-blue-tint); color: var(--hana-blue); margin-bottom: 4px; }
+.ir-hub-ic svg { width: 19px; height: 19px; }
+.ir-hub-cards .ic-title { font-size: 16.5px; }
+.ir-hub-cards .ic-desc { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+
+/* card links in the site's Inter capitals */
+.ir-hub .ic-cta, .ir-hub .fb-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: auto;
+  font-family: var(--font-text); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--hana-blue); }
+.ir-hub .ir-card:hover .ic-cta, .ir-hub .feature-body:hover .fb-cta { color: var(--hana-blue-deep); }
+
+/* closing card at the foot of the blue background */
+.ir-hub .ir-hub-cta { position: relative; z-index: 1; margin-top: 56px; margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .ir-hub-body { padding-bottom: 40px; }
+  .ir-hub .ir-hub-cta { margin-top: 40px; }
+}
