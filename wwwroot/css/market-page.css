@@ -126,7 +126,7 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 @media(max-width:980px){
 .mk-spoke-grid,.mk-spoke-grid.is-collapsed{grid-template-columns:1fr}
 .mk-side{border-right:none;border-bottom:1px solid var(--line)}
-.mk-spoke-main .mk-wrap{padding-left:24px;padding-right:24px}
+.mk-spoke-main .mk-wrap{padding-left:32px;padding-right:32px}
 }
 @media(max-width:640px){.mk-cards.c4,.mk-cards.c3{grid-template-columns:1fr}}
 
@@ -313,3 +313,15 @@ body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
    (the hand and device sit on the left of the frame). */
 @media(min-width:1081px) and (max-width:1539px){.mk-turnkey .art{aspect-ratio:auto;width:calc(100% - 570px);max-width:none}}
 @media(min-width:761px) and (max-width:1080px){.mk-turnkey .art{aspect-ratio:auto;width:calc(54% - 36px);max-width:none}}
+
+/* Stacked product menu (≤980px): its heading, items and helper box start on the page edge
+   (they sat 8px left of it) */
+@media(max-width:980px){
+.mk-side{--side-g:32px}
+.mk-side .side-head{padding-left:var(--side-g);padding-right:var(--side-g)}
+.mk-spoke-grid:not(.is-collapsed) .mk-side .s{padding-left:calc(var(--side-g) - 2px);padding-right:var(--side-g)}
+.mk-side .helper{margin-left:var(--side-g);margin-right:var(--side-g)}
+}
+@media(max-width:640px){.mk-side{--side-g:20px}}
+/* CTA card in the content column follows the 32px content edge once the menu stacks */
+@media(max-width:980px){.mk-spoke-main .mk-cta{margin-left:32px;margin-right:32px}}

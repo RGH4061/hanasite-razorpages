@@ -827,5 +827,40 @@ body:has(.cap-page-grid.cpsb-col) .hana-footer>.mm-strip{margin-left:56px;box-sh
   .page-end .actions{flex-wrap:wrap}
   .page-end .actions a.btn{white-space:normal;max-width:100%}
   /* "On this page" lists: one column, so an item's count no longer sits beside the next number */
-  aside.sectionnav ol{grid-template-columns:minmax(0,1fr) !important}
+  aside.sectionnav ol,aside ol.sectionnav{grid-template-columns:minmax(0,1fr) !important}
 }
+
+/* ── Page gutters (22 Oct 2026) ──────────────────────────────────────────────
+   Header, breadcrumb, page content and footer share one left/right edge: 20px on phones
+   (≤640px) and 32px on tablets (641–900px). The edges were 16, 18, 20, 24 or 32px depending
+   on the section, so the logo, breadcrumb and headings did not line up. Section stylesheets
+   size their own wrappers, so each wrapper is listed; !important wins over the inline styles
+   and over section CSS that loads after this file. The homepage keeps its own 20px from 900px. */
+@media (max-width:640px){
+  .hana-wrap,
+  .subbar-inner,.hero-inner,.band-inner,.life-inner,.stories-inner,.layout,.page-wrap,
+  .cf-hero-inner,.cf-wrap,.ins-art-head-inner,.wrap,.section,.anchor-nav-inner,.hs-page,.ceo-text,
+  .mk-wrap,.mkt-hero,.mkt-grid-wrap,.radial-hero,
+  .auto-crumb .inner,.auto-wrap,.auto-page div[style*="padding:40px 32px"],.auto-page div[style*="padding:56px 32px"],
+  .cap-page-main div[style*="padding:11px 32px"]{padding-left:20px!important;padding-right:20px!important}
+  .cap-section{--sec-px:20px}
+  .ins-page-end[data-hana-bg],.page-end,.gov-note.gov-dark,.cta-band,.loc-cta,
+  .mk-cta,.mk-spoke-main .mk-cta,.auto-cta,.auto-cta.auto-cta--spoke,.mkt-cta{margin-left:20px!important;margin-right:20px!important;width:auto!important}
+}
+@media (min-width:641px) and (max-width:900px){
+  .layout,.page-wrap,.mk-wrap,.mkt-hero,.mkt-grid-wrap,.radial-hero,.ceo-text{padding-left:32px!important;padding-right:32px!important}
+  .cap-section{--sec-px:32px}
+  main .lc-intro,main .lc-adv-inner,main .lc-plants-inner{padding-left:32px!important;padding-right:32px!important}
+  .ins-page-end[data-hana-bg],.page-end,.gov-note.gov-dark,.cta-band,.loc-cta,
+  .mk-cta,.mk-spoke-main .mk-cta,.auto-cta,.auto-cta.auto-cta--spoke,.mkt-cta{margin-left:32px!important;margin-right:32px!important;width:auto!important}
+}
+/* IR and Careers pages with a 960px layout breakpoint: keep the 32px edge up to 960px */
+@media (min-width:901px) and (max-width:960px){
+  .layout{padding-left:32px!important;padding-right:32px!important}
+}
+
+/* Plain text links inside page copy had no colour of their own and showed the browser's
+   default blue (FAQ answers, the Lamphun intro). Links with a class or an inline colour keep
+   their own styling. */
+main a:not([class]){color:var(--hana-blue);text-underline-offset:2px}
+main a:not([class]):hover{color:var(--hana-blue-deep)}

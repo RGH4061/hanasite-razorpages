@@ -616,6 +616,8 @@ details.cf-ms[open] > summary .chevron { transform: rotate(180deg); }
 /* phones: one field per row */
 @media (max-width: 560px){
   .cf-row.two, .cf-row.three { grid-template-columns: 1fr !important; }
+  .cf-submit-area { justify-content: center; }
+  .cf-btn-submit { margin-left: 0; }
   .cf-recaptcha { flex-shrink: 1; min-width: 0; max-width: 100%; }
   #cf-guideline-btn { white-space: normal; max-width: 100%; }
 }

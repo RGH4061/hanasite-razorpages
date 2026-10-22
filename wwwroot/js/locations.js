@@ -27,3 +27,12 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* Hero layout preview (22 Oct 2026): add ?hero=split or ?hero=photo to a plant page URL to try
+   an alternative hero for tablets and phones, where the dark veil covers most of the photo.
+   Styles are in locations-mobile.css; without the parameter nothing changes. */
+(function () {
+  var m = /[?&]hero=(split|photo)\b/.exec(location.search);
+  if (!m) return;
+  document.querySelectorAll('.lc-hero-veil').forEach(function (h) { h.classList.add('lc-hero--' + m[1]); });
+})();

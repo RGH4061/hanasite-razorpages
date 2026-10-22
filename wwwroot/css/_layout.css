@@ -107,6 +107,13 @@
 .sc-stack .sc-pillar>div>ul{grid-column:1;grid-row:auto;columns:1;margin-top:14px!important}}
 .sc-stack .sc-pillar>div{grid-template-columns:minmax(0,1fr)!important}
 .sc-stack .sc-pillar>div>ul{grid-column:1!important;grid-row:auto!important;margin-top:16px!important;columns:2;column-gap:40px}
+/* Narrow cards (phones): one column; two left each item about 100px wide */
+@container (max-width:560px){.sc-stack .sc-pillar>div>ul{columns:1}}
+/* "Key capability" tag after an item title: keep its two words together when it wraps */
+.sc-pillar li strong + span{white-space:nowrap}
+/* Wafer process steps (Wafer Processing, Wafer Level Packaging, Precision Interconnect): seven
+   cards share a sideways scroller; on phones give each card about 150px instead of 93px */
+@container (max-width:560px){.wpr-wrap .wpr-grid{min-width:1100px}}
 
 /* Capability heroes: the circuit-board corner graphic sits behind the heading and intro once
    the hero is a single phone-width column (21 Oct 2026) */

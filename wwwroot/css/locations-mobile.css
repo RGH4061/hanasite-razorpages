@@ -26,7 +26,7 @@
 
 /* ── Layout: tablets and below ────────────────────────────── */
 @media (max-width: 900px){
-  [style*="max-width:1240px"]{padding-left:20px!important;padding-right:20px!important}
+  [style*="max-width:1240px"]{padding-left:32px!important;padding-right:32px!important}
   .lc-hero-veil{height:400px!important}
   .lc-hero-veil h1{font-size:46px!important}
   .lc-hero-veil p{font-size:16.5px!important;max-width:34ch}
@@ -35,10 +35,66 @@
 }
 
 /* ── Layout: phones ──────────────────────────────────────── */
+@media (max-width: 640px){
+  [style*="max-width:1240px"]{padding-left:20px!important;padding-right:20px!important}
+}
 @media (max-width: 620px){
   .lc-hero-veil{height:360px!important}
   .lc-hero-veil h1{font-size:36px!important}
   .lc-hero-veil p{font-size:15.5px!important;max-width:32ch}
   .lc-certs,.lc-caps{grid-template-columns:1fr!important}
   .lc-photos{gap:10px!important}
+}
+
+/* ── Hero layout previews (22 Oct 2026) ──────────────────────────────────────
+   Below ~1270px the veil darkens most of the plant photo, and all of it on phones.
+   Two alternatives, switched on with ?hero=split or ?hero=photo (js/locations.js).
+   Desktop above 1270px is unchanged in both.
+   Children of .lc-hero-veil: img, .lc-hero-tex (wafer texture), veil, text block, caption. */
+
+/* Split: navy text panel on the left, photo clear on the right (641–1270px) */
+@media (min-width:641px) and (max-width:1270px){
+  .lc-hero-veil.lc-hero--split > img,
+  .lc-hero-veil.lc-hero--photo > img{left:auto!important;right:0!important;width:54%!important}
+  .lc-hero-veil.lc-hero--split > div[style*="linear-gradient(to right"]:not(.lc-hero-tex),
+  .lc-hero-veil.lc-hero--photo > div[style*="linear-gradient(to right"]:not(.lc-hero-tex){width:100%!important;background:linear-gradient(to right,#030a17 0,#030a17 46%,rgba(3,10,23,.6) 52%,rgba(3,10,23,0) 62%)!important}
+  .lc-hero-veil.lc-hero--split > .lc-hero-tex,
+  .lc-hero-veil.lc-hero--photo > .lc-hero-tex{width:48%!important}
+  .lc-hero-veil.lc-hero--split > div:has(h1) > div > div,
+  .lc-hero-veil.lc-hero--photo > div:has(h1) > div > div{max-width:40%!important}
+  .lc-hero-veil.lc-hero--split > div:has(h1) h1,
+  .lc-hero-veil.lc-hero--photo > div:has(h1) h1{font-size:42px!important}
+  .lc-hero-veil.lc-hero--split > div:has(h1) p,
+  .lc-hero-veil.lc-hero--photo > div:has(h1) p{font-size:15.5px!important;max-width:none!important}
+}
+
+/* Split on phones: title and intro first on the navy panel, then the photo, clear,
+   with a short fade from the panel into it */
+@media (max-width:640px){
+  .lc-hero-veil.lc-hero--split{height:auto!important;display:flex;flex-direction:column}
+  .lc-hero-veil.lc-hero--split > div:has(h1){position:relative!important;inset:auto!important;order:1}
+  .lc-hero-veil.lc-hero--split > div:has(h1) > div{height:auto!important;padding-top:34px!important;padding-bottom:26px!important}
+  .lc-hero-veil.lc-hero--split > img{position:relative!important;inset:auto!important;order:2;width:100%!important;height:auto!important;aspect-ratio:16 / 10;display:block}
+  .lc-hero-veil.lc-hero--split > div[style*="linear-gradient(to right"]:not(.lc-hero-tex){top:auto!important;bottom:0!important;height:62.5vw!important;width:100%!important;background:linear-gradient(to bottom,#030a17 0,rgba(3,10,23,.55) 12%,rgba(3,10,23,0) 34%)!important}
+  .lc-hero-veil.lc-hero--split > .lc-hero-tex{bottom:62.5vw!important}
+}
+
+/* Photo first (phones and tablet portrait): the photo on top and clear, fading into the navy
+   panel only along its lower edge; the plant name and intro follow on the panel */
+@media (max-width:900px){
+  .lc-hero-veil.lc-hero--photo{height:auto!important;display:flex;flex-direction:column}
+  .lc-hero-veil.lc-hero--photo > img{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;order:1;width:100%!important;height:auto!important;aspect-ratio:4 / 3;display:block}
+  .lc-hero-veil.lc-hero--photo > div[style*="linear-gradient(to right"]:not(.lc-hero-tex){top:0!important;bottom:auto!important;height:75vw!important;width:100%!important;background:linear-gradient(to bottom,rgba(3,10,23,0) 72%,rgba(3,10,23,.7) 90%,#030a17 100%)!important}
+  .lc-hero-veil.lc-hero--photo > div:has(h1){position:relative!important;inset:auto!important;order:2;margin-top:-14px}
+  .lc-hero-veil.lc-hero--photo > div:has(h1) > div{height:auto!important;padding-top:0!important;padding-bottom:30px!important}
+  .lc-hero-veil.lc-hero--photo > div:has(h1) > div > div{max-width:none!important}
+  .lc-hero-veil.lc-hero--photo > .lc-hero-tex{top:75vw!important;bottom:0!important;width:100%!important}
+  .lc-hero-veil.lc-hero--photo > div:last-child{top:12px!important;bottom:auto!important}
+}
+@media (min-width:641px) and (max-width:900px){
+  .lc-hero-veil.lc-hero--photo > img{aspect-ratio:16 / 9}
+  .lc-hero-veil.lc-hero--photo > div[style*="linear-gradient(to right"]:not(.lc-hero-tex){height:56.25vw!important}
+  .lc-hero-veil.lc-hero--photo > .lc-hero-tex{top:56.25vw!important}
+  .lc-hero-veil.lc-hero--photo > div:has(h1) h1{font-size:46px!important}
+  .lc-hero-veil.lc-hero--photo > div:has(h1){margin-top:-18px}
 }

@@ -770,10 +770,15 @@
 .hero .stat:nth-child(odd) { padding-right: var(--s-6); border-right: 1px solid rgba(255,255,255,0.16); }
 /* Story photos are 708 × 496; a 4:3 frame cropped the quote text at both sides */
 .story-photo { aspect-ratio: 10 / 7; }
-@media (max-width: 960px) {
-  /* Five "Life at" tabs do not fit one row below 960px: two per row, labels may wrap */
-  .life-tabs { flex-wrap: wrap; }
-  .life-tab { flex: 1 1 calc(50% - var(--s-2)); white-space: normal; }
+/* "Life at" location tabs: five equal boxes in one row from 768px (a long label wraps and
+   every box in the row takes the same height); on phones they stack, one full-width box per
+   row with the label on the left edge. Two per row left Jiaxing alone on the last row and
+   gave the first row a different height. */
+.life-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.life-tab { display: flex; align-items: center; justify-content: center; white-space: normal; line-height: 1.35; }
+@media (max-width: 767px) {
+  .life-tabs { grid-template-columns: minmax(0, 1fr); }
+  .life-tab { justify-content: flex-start; text-align: left; padding: 12px 16px; }
 }
 @media (max-width: 640px) {
   .hero .stats-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); }

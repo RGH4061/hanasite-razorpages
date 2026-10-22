@@ -157,8 +157,3 @@
   .mm-cta-card { padding: 40px 24px !important; }
 }
 
-/* ── Decorative 1px left hairlines (Why band, Markets/Capabilities band) ──
-   Below the 1144px content width they sit on, or cross, the content column. */
-@media (max-width: 1180px) {
-  main [aria-hidden="true"][style*="left:32px"][style*="width:1px"] { display: none !important; }
-}

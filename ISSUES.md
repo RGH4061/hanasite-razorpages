@@ -15,6 +15,49 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
+- [ ] **Plant pages, 21 Oct 2026 — waiting on a decision or photos.**
+  - **Hero layout:** choose between the current veil, `?hero=split` and `?hero=photo` (see Fixed,
+    21 Oct (2nd)). The veil currently covers most of the photo below ~1270 px and all of it on phones.
+  - **Ohio intro photo** is a stand-in (an RFID converting line from the Industrial IoT RFID page,
+    not confirmed to be Ohio). Needs a real Solon production-floor photo.
+  - **Product placeholders still showing:** Ohio "Infrared lens housings" and Koh Kong
+    "Cable & wire harnesses" product cards have no photo.
+- [ ] **Link and button audit, 21 Oct 2026 — needs a destination, an address or a decision.**
+  See Fixed, 21 Oct (3rd) for what was checked and changed.
+  - **Links still `href="#"`:** Insights hub cards for the 11 articles not yet written (including
+    the featured "How RFID inlays are manufactured and tested" and the "MLCC supply shift" update;
+    the memory-prices article links its MLCC mention to the hub); Koh Kong "In-line AOI & SPI" (no
+    capability page); Careers "Recruiting FAQ" (no page); on the job post, "recruit@hanabk.th.com"
+    (text in a `#` link, not a `mailto:`) and the Indeed, LinkedIn, JobsDB, JobStreet and
+    Glassdoor buttons; the Thai IR Events "ลงทะเบียนเข้าร่วม" (register) link, which the English
+    page does not have.
+  - **Thai navigation:** on the Thai pages the header menu, logo, breadcrumbs and footer open the
+    English pages, including the 16 that have a Thai version.
+  - **Destinations to confirm:** all seven vacancies open the same sample job post; Insights
+    related-article cards open the hub; "Manufacturing in Thailand" (Thailand semiconductor
+    strategy article) opens Ayutthaya only; Jiaxing "Ultra-small Packages & SiP" opens Ultra-small
+    packages only (a System-in-Package page exists); "Work with us" opens `/contact` on nine market
+    sub-pages and `/contact/rfq` on Koh Kong; footer "About" and "Why Hana" both open `/about`; the
+    Industrial & IoT hub has no card for RFID asset tracking (reachable from the side menus and
+    the sitemap only); the "Sensors & Optical" card opens MEMS sensor assembly on Lamphun and
+    Ayutthaya but the Optical & sensors market hub on Ohio.
+  - **Contact details that differ from hanagroup.com:** the two IR contact addresses here follow
+    the `name.initial@hanagroup.com` placeholder pattern (introduced by an export sync) and do not
+    match the live IR contact page; the live Contact page also lists a German sales mobile number
+    that this site does not.
+  - **Ohio external links:** three Hana Technologies sites (hana.family, hanarfid.com, and
+    hana-micro.com, which forwards to hanarfid.com/micro) and kewlabstech.com on the wireless
+    charging card. All load; confirm which should be linked.
+  - **Cheongju (dormant):** the Powermaster product links do not respond. No action while the
+    page is off the site.
+  - **IR documents:** `/File/ViewDoc/3145` (Thai Financial Statements 2021, NEWS-041) returns
+    HTTP 500 on hanagroup.com; the other 683 linked documents open. On the GitHub Pages preview
+    every document link returns 404 because the files exist only on hanagroup.com; the preview
+    build could point them at hanagroup.com.
+- [ ] **Desktop page widths differ by section (decision).** Header, About, IR, Careers, Insights
+  and Contact use a 1080 px column; Markets and Locations use 1240 px. At 1440 px the header logo
+  starts at x = 212 and Markets/Locations content at x = 132. Consistent within each section, so
+  left as designed; aligning them would reflow every market and plant page.
 - [ ] **Visual QA sweep 21 Oct 2026 — items that need a decision, new assets or copy.**
   Found in the full sweep (126 routes at 1440, 1280, 1024, 768, 390 and 360 px; fixes are logged
   under Fixed, 21 Oct). Not changed repo-side:
@@ -195,6 +238,84 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 21 Oct 2026 (3rd) — link and button audit + Careers "Life at" tabs
+
+Every link on the 126 routes was collected (header, mega menu, phone menu, footer, page body and
+side menus), every internal path and `#fragment` requested, external links fetched, IR document
+IDs checked against hanagroup.com, and every button, tab, accordion, carousel arrow and
+`href="#"` link clicked at 1440 px and 390 px (2,306 controls on 252 page loads). After the fixes
+below, all 126 page paths linked anywhere on the site return 200, all 132 in-page fragment links
+land on an existing id, the language switch is correct on all 32 paired pages, site search
+returns the right page for every index entry, and the four IR YouTube videos match their labels.
+Items that need a decision are under Open.
+
+- **Capability pages (Flip chip, Box build, COB assembly, SMT assembly):** the 13 plant cards
+  opened the Locations hub; each now opens its own plant page.
+- **Industrial & IoT hub:** the "Power modules" card opened RFID asset tracking; it now opens
+  Power modules.
+- **About:** the ten market rows were `href="#"`; each now opens its market hub.
+- **Careers (EN/TH):** the breadcrumb "Home" was `href="#"` on seven pages; it now opens the
+  homepage.
+- **Careers "Life at" tabs:** five equal boxes in one row from 768 px (when a label wraps, every
+  box in the row takes the same height) and one full-width box per row on phones. Before, they
+  wrapped unevenly into rows of different widths. "Bangkok (HQ)" and "Koh Kong" no longer split
+  across lines. `careers.css`, `Pages/Careers/Index.cshtml`.
+- **Ayutthaya:** the "Sensors & Optical" card title and the MEMS Sensors, Joint Development (JDM),
+  NPI and Design for Excellence links were `href="#"`; they now open their capability pages (the
+  card title opens MEMS sensor assembly, as on Lamphun). **Koh Kong:** "Micro-assembly" now opens
+  its capability page.
+- **Insights hub:** the cards for the seven published articles linked to `insights/….html` (the
+  preview's file names) and returned 404 here; `wwwroot/js/insights-hub.js` now uses routes. The
+  preview keeps its own copy of this file, which already uses the `.html` names.
+- **Insights articles (7):** the LinkedIn, Email and Copy link share links were `href="#"`. New
+  `wwwroot/js/share.js` (loaded in `_Layout.cshtml`; does nothing on pages without a share row)
+  opens LinkedIn's share dialog in a new tab, builds a `mailto:` with the article title and
+  address, and copies the address with a "Link copied" confirmation. It shares the address the
+  page was opened at.
+- **Investors (EN/TH):** "View HANA on SET" opened SET's not-found page (the
+  `…/HANA/price.html` address is retired). Now `…/en/…/hana/price`; the Thai page uses SET's
+  Thai version.
+- **Contact, RFQ and Thai Contact:** the German sales office dial link had an extra digit
+  (`tel:+4930756576690`); it now matches the number shown, +49 30 75657690.
+- **Footer:** LinkedIn now points directly at `linkedin.com/company/hana-microelectronics-group/`
+  (the old address redirected there).
+
+### 21 Oct 2026 (2nd) — alignment pass (phones and tablets) + plant pages
+
+- **One page edge on phones and tablets.** Header, breadcrumb, headings, body copy and footer now
+  share one left/right edge: 20 px on phones (≤640 px) and 32 px on tablets (641–900 px). Before,
+  the edge was 16, 18, 20, 24 or 32 px depending on the section (capability breadcrumbs sat at
+  32 px over content at 20 px; plant pages put content at 20 px under a 32 px header; Markets and
+  IR sub-pages used 24 px; the Automotive pages moved the header itself to 20 px). Rule block in
+  `_components.css` ("Page gutters"); `locations-mobile.css` and `automotive.css` follow it.
+  Floating CTA cards use the same edge. Desktop hubs (Markets, Capabilities) moved from 40 to
+  32 px side padding so their content starts under the header logo.
+- **Contact (EN/TH) and Anonymous form, phones:** "Send enquiry" was pushed to the right edge
+  under the reCAPTCHA box; both are now centred.
+- **Homepage (EN/TH):** the decorative 1 px blue line down the left of the Why, Markets and
+  Capabilities bands is removed at all widths (it read as a crack in the screen).
+- **Ohio:** the five "Key services and capabilities" cards and the intro photo were wireframe
+  placeholders; they now use the capability images the other plant pages use. The intro photo
+  is a stand-in RFID production-line photo already on the site (see Open). The location section
+  was missing its `lc-split` hook, so the map sat beside the address table on phones and ran off
+  the right edge; it now stacks like the other plant pages.
+- **Capability pages, phones:** pillar bullet lists are one column (two left each item ~100 px
+  wide, one or two words per line); the wafer process step cards get ~150 px each in their
+  sideways scroller (were 93 px); the "Key capability" tag no longer splits across lines.
+- **Careers:** the CEO message block now follows the page edge (it was 20 px further in).
+- **Automotive sub-pages, tablets:** the 264 px component menu stayed beside the content down to
+  681 px, so at 768 px the headline wrapped one word per line and the stats read "AEC- Q". The menu
+  now moves above the content below 980 px and the hero stacks, as on the other market sub-pages.
+  On both page types the stacked menu, CTA card and footer strip follow the page edge (the menu
+  sat 8 px left of it; market sub-page content was 24 px under a 32 px header at 901–980 px).
+- **Links:** plain links inside page copy use the brand blue (FAQ answers and the Lamphun intro
+  showed the browser's default blue).
+- **Plant page hero options (preview only, nothing changes by default):** add `?hero=split` or
+  `?hero=photo` to any plant page URL. Split keeps a navy text panel and shows the photo clear
+  beside it (tablets) or under it (phones); Photo first puts the clear photo on top with the
+  title and intro on navy below. Rules at the end of `locations-mobile.css`, switch in
+  `js/locations.js`. Once one is chosen it becomes the default and the switch is removed.
 
 ### 21 Oct 2026 — visual QA sweep (126 routes × 6 widths, interactions)
 

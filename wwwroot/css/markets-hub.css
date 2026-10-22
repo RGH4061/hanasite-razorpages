@@ -4,7 +4,7 @@
 .mkt-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .mkt-hero-bg .hana-bg-layer{background:none!important}
 .mkt-hero-bg>div{position:absolute;width:1200px;height:100%;left:50%;transform:translate(-50%,-120px);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 82%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 82%,transparent 100%)}
-.mkt-hero{max-width:1080px;margin:0 auto;padding:80px 40px 52px;position:relative;z-index:1}
+.mkt-hero{max-width:1080px;margin:0 auto;padding:80px 32px 52px;position:relative;z-index:1}
 .mkt-hero-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7EC8FF;margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .mkt-hero-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:#7EC8FF;opacity:.6}
 .mkt-hero h1{font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.02;letter-spacing:-.032em;color:#fff;margin:0 0 22px;max-width:16ch;text-wrap:balance}
@@ -28,7 +28,7 @@
 
 /* Tile grid */
 .mkt-grid-section{position:relative;z-index:1;padding:28px 0 56px}
-.mkt-grid-wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+.mkt-grid-wrap{max-width:1080px;margin:0 auto;padding:0 32px}
 .mkt-sec-eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7EC8FF}
 .mkt-sec-title{font-family:var(--font-display);font-weight:600;font-size:32px;letter-spacing:-.024em;margin:10px 0 12px;color:#fff}
 .mkt-sec-note{font-size:15px;line-height:1.6;color:rgba(255,255,255,.62);max-width:62ch;margin:0 0 40px;text-wrap:pretty}

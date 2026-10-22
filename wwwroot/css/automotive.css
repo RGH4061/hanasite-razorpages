@@ -224,8 +224,8 @@
 }
 
 @media (max-width: 900px) {
-  /* shared header / footer chrome — wrap the nav, drop hover mega-menus, stack footer */
-  .hana-wrap { padding-left: 20px; padding-right: 20px; }
+  /* shared header / footer chrome — wrap the nav, drop hover mega-menus, stack footer
+     (side padding comes from the site gutters in _components.css) */
   .hana-util-bar .hana-wrap { height: auto !important; flex-wrap: wrap; gap: 8px 16px;
     padding-top: 8px; padding-bottom: 8px; }
   .hana-util-bar .hana-wrap > div { flex-wrap: wrap; }
@@ -251,8 +251,6 @@
   .auto-spec .cell:nth-child(2) { border-right: none; }
   .auto-plants { grid-template-columns: 1fr !important; }
   .auto-caplink { grid-template-columns: 1fr; }
-  .auto-spoke-grid { grid-template-columns: 1fr; }
-  .auto-side { border-right: none; border-bottom: 1px solid var(--line); }
   .hana-footer .hana-wrap[style*="grid-template-columns:1.4fr"] { grid-template-columns: 1fr !important;
     gap: 28px !important; }
 }
@@ -273,6 +271,7 @@
 /* Spoke pages: CTA bubble sits in the content column, not under the sidebar */
 .auto-cta.auto-cta--spoke{width:auto;max-width:924px;margin:16px 48px 64px}
 @media(max-width:1100px){.auto-cta--spoke .inner{grid-template-columns:1fr;gap:24px}}
+@media(max-width:980px){.auto-cta.auto-cta--spoke{margin-left:32px;margin-right:32px}}
 @media(max-width:680px){.auto-cta.auto-cta--spoke{margin:8px 24px 40px}}
 .auto-cta--spoke .auto-btn{white-space:nowrap}
 
@@ -280,7 +279,7 @@
 body:has(.auto-spoke-grid) .hana-footer{background:var(--bg)}
 body:has(.auto-spoke-grid) .hana-footer .mm-strip{margin-left:264px}
 body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
-@media(max-width:680px){body:has(.auto-spoke-grid) .hana-footer .mm-strip,body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:0}}
+@media(max-width:980px){body:has(.auto-spoke-grid) .hana-footer .mm-strip,body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:0}}
 
 /* Carry the FAQ band colour behind the spoke CTA bubble (fills the margin around it) */
 .auto-cta.auto-cta--spoke{box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(-16px -100vmax -64px)}
@@ -452,9 +451,22 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 
 /* ── Phone layout for the Automotive sub-pages and hub stats (21 Oct 2026) ──
    The sub-page sections are built with inline grids that had no phone rule. */
-@media (max-width: 680px) {
+@media (max-width: 980px) {
+  /* menu above the content and a one-column hero below 980px, as on the other market sub-pages
+     (at 768px the 264px menu left the headline a 190px column) */
+  .auto-spoke-grid, .auto-spoke-grid.is-collapsed { grid-template-columns: minmax(0, 1fr); }
+  .auto-side { border-right: none; border-bottom: 1px solid var(--line); --side-g: 32px; }
+  .auto-side .side-head { padding-left: var(--side-g); padding-right: var(--side-g); }
+  .auto-spoke-grid:not(.is-collapsed) .auto-side .s { padding-left: calc(var(--side-g) - 2px); padding-right: var(--side-g); }
+  .auto-side .helper { margin-left: var(--side-g); margin-right: var(--side-g); }
+  .auto-spoke-grid main [style*="max-width:976px"] { padding-left: 32px !important; padding-right: 32px !important; }
+  .auto-spoke-grid main [style*="grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)"] { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+}
+@media (max-width: 640px) {
+  .auto-side { --side-g: 20px; }
   .auto-spoke-grid main [style*="max-width:976px"] { padding-left: 20px !important; padding-right: 20px !important; }
-  .auto-spoke-grid main [style*="grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)"],
+}
+@media (max-width: 680px) {
   .auto-spoke-grid main [style*="grid-template-columns:minmax(0,1fr) minmax(0,1fr)"],
   .auto-spoke-grid main [style*="grid-template-columns:repeat(3, minmax(0,1fr))"] { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
   .auto-spoke-grid main [style*="grid-template-columns:repeat(4, 1fr)"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
