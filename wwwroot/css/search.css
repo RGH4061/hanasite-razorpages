@@ -299,6 +299,10 @@
 .radial-hero .cap-find-lb{color:rgba(255,255,255,.55)}
 .radial-hero .cap-find-meta{color:rgba(255,255,255,.7)}
 .radial-hero .cap-find-meta b{color:#fff}
+/* Capabilities hub: while the finder's results are open, lift the hero above the radial diagram.
+   Both sit at z-index 1 and the diagram comes later, so its centre Hana mark was drawn over the
+   results panel (phones, 22 Oct 2026). */
+.radial-hero:has(.cap-find-out:not([hidden])){z-index:50}
 
 /* ── package card (the parametric handoff) ──
    Same card pattern as the certification answer. No status column — the card says what a

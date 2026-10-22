@@ -43,3 +43,12 @@
   .scroll-arrow{ min-width: 40px !important; }
   .mk-side-toggle, .side-toggle{ display: flex !important; align-items: center; }
 }
+
+/* ── Form fields: no iPhone zoom on tap (22 Oct 2026) ─────────
+   iOS Safari zooms the page in when a field under 16px gets focus and leaves it zoomed,
+   so the header and the right-hand side of the page end up cut off (seen on the
+   Capabilities hub finder, 15px). 16px is the smallest size that does not trigger it. */
+@media (max-width: 900px){
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="file"]):not([type="color"]),
+  select, textarea { font-size: 16px !important; }
+}
