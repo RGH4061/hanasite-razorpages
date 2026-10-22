@@ -1,6 +1,6 @@
 @page "/capabilities/osat"
 @{
-    ViewData["Title"] = "OSAT | Capabilities";
+    ViewData["Title"] = "OSAT & IC Packaging | Capabilities";
     ViewData["Motion"] = "capability";
     ViewData["CapSlug"]  = "";
     ViewData["CapGroup"] = "osat";
@@ -30,6 +30,14 @@
     .cap-subsel a.hub-card{ flex-direction:column !important; }
     .cap-subsel a.hub-card > div:first-child{ width:100% !important; aspect-ratio:16 / 9 !important; border-right:0 !important; border-bottom:1px solid var(--line) !important; border-radius:var(--radius-card) var(--radius-card) 0 0 !important; }
   }
+  details.sc-faq{ border-top:1px solid var(--line); }
+  details.sc-faq:first-child{ border-top:none; }
+  details.sc-faq > summary{ list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-family:var(--font-text); font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
+  details.sc-faq > summary::-webkit-details-marker{ display:none; }
+  details.sc-faq[open] > summary{ background:var(--bg); }
+  .sc-faq-mk{ color:var(--hana-blue); font-size:22px; line-height:1; flex-shrink:0; transition:transform 150ms ease; }
+  details.sc-faq[open] .sc-faq-mk{ transform:rotate(45deg); }
+  .sc-faq-a{ padding:0 22px 20px; font-family:var(--font-text); font-size:14px; color:var(--ink-2); line-height:1.65; max-width:720px; }
 </style>
 
 <div style="border-bottom:1px solid var(--line);background:var(--bg);">
@@ -46,7 +54,7 @@
     <div style="margin-bottom:52px;">
       <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Capabilities · OSAT</div>
       <h1 style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin:0 0 18px;max-width:760px;text-wrap:balance;">Outsourced semiconductor assembly and test</h1>
-      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">Semiconductor packaging and test from wafer preparation through die attach, wire bond, flip chip and final electrical test. Hana's OSAT capability sits alongside its EMS operations, allowing packaged devices to move into board and product assembly within the same manufacturing group.</p>
+      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">IC packaging and semiconductor test, from wafer preparation through die attach, wire bond, flip chip and final electrical test. Hana's OSAT capability sits alongside its EMS operations, allowing packaged devices to move into board and product assembly within the same manufacturing group.</p>
       <div class="cap-find" id="cap-find" data-rest="Searches every OSAT process and the package reference. Type the shorthand — QFN, SOT, ceramic, back grind." style="margin:0 0 34px;">
         <div class="cap-find-lb">Find a packaging type / size or process</div>
         <div class="cap-find-box" style="width:442px;height:45px;">
@@ -62,7 +70,7 @@
       <div class="cap-section cap-section--band">
         <div style="margin-bottom:26px;">
           <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:#fff;line-height:1.2;letter-spacing:-0.02em;margin:0 0 10px;">Explore OSAT</h2>
-          <p style="font-family:var(--font-text);font-size:15.5px;color:rgba(255,255,255,0.72);line-height:1.6;max-width:660px;margin:0;">Eleven capabilities cover package design, package assembly, wafer processing, interconnect and electrical test.</p>
+          <p style="font-family:var(--font-text);font-size:15.5px;color:rgba(255,255,255,0.72);line-height:1.6;max-width:660px;margin:0;">Eleven capabilities cover package design, IC package assembly, wafer processing, interconnect and electrical test.</p>
         </div>
         <div style="margin-top:0;"><div style="font-family:var(--font-text);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#7EC8FF;margin-bottom:14px;">Design</div>
         <div class="cap-grid-3"><a href="/capabilities/osat/package-design" class="hub-card" style="border:1px solid var(--line);border-radius:var(--radius-card);background:#fff;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;"><div style="position:relative;overflow:hidden;border-top-left-radius:var(--radius-card);border-top-right-radius:var(--radius-card);border-bottom:1px solid var(--line);background:var(--surface);width:100%;aspect-ratio:16 / 9;"><img src="/images/capabilities/cap-osat-package-design-thermal-simulation.webp" alt="Thermal simulation map on a package model" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div style="padding:24px;display:flex;flex-direction:column;flex:1;">
@@ -121,7 +129,7 @@
     </div>
   </div>
 </div>
-
+<div style="background:#fff;"><div class="cap-section"><div style="margin-bottom:8px;"><div style="margin-bottom:26px;"><h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.02em;margin:0;">Frequently asked questions</h2></div><div style="border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:#fff;"><details class="sc-faq" open><summary>Does Hana build standard IC packages?<span class="sc-faq-mk">+</span></summary><div class="sc-faq-a">Yes. Hana builds a range of standard IC packages, covering leadframe-based and laminate-based formats for semiconductor and microelectronics applications. This includes mainstream package families used for power, analog, mixed-signal and discrete devices, with assembly and test carried out in-house.</div></details><details class="sc-faq"><summary>What sectors does Hana’s IC packaging business support?<span class="sc-faq-mk">+</span></summary><div class="sc-faq-a">Hana’s IC packaging business supports the industrial, telecom, automotive, medical and consumer electronics sectors. Its certified assembly and test processes can be adapted to the quality and reliability requirements of each market.</div></details></div></div></div></div>
 
 </div></div>
 </div><!-- /.cap-page-grid -->
