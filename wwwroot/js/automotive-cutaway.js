@@ -11,6 +11,7 @@
                 '3': '/markets/automotive/led-lighting', '4': '/markets/rfid/rfid-tire-tags',
                 '5': '/markets/automotive/sensor-assembly' };
   var STEP = 3200;
+  var narrow = window.matchMedia('(max-width: 900px)');   // phones and tablets: card below the car, no tooltips
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function init() {
@@ -47,7 +48,12 @@
         m.setAttribute('tabindex', '0');
         m.setAttribute('role', 'button');
         m.setAttribute('aria-label', txt(m, '.nm') || txt(m, '.tag'));
-        function toggle(e) { e.stopPropagation(); closeTips(m); m.classList.toggle('is-open'); }
+        function toggle(e) {
+          e.stopPropagation();
+          // On phones and tablets a tap opens the product card below the car instead of a tooltip
+          if (narrow.matches) { stopTour(); select(current === fam(m) && linkFrom === m ? null : fam(m), m); return; }
+          closeTips(m); m.classList.toggle('is-open');
+        }
         m.addEventListener('click', toggle);
         m.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); } });
       });
@@ -85,20 +91,42 @@
         f.item.setAttribute('role', 'button');
       });
 
-      function select(n) {
+      // Phones and tablets: a line from the selected marker on the car down to the card below it
+      var link = document.createElement('span');
+      link.className = 'auto-link';
+      link.setAttribute('aria-hidden', 'true');
+      root.appendChild(link);
+      var linkFrom = null;
+      function drawLink() {
+        var f = fams.filter(function (x) { return x.n === current; })[0];
+        if (!narrow.matches || !f || !linkFrom) { link.classList.remove('is-show'); return; }
+        var R = root.getBoundingClientRect(), m = linkFrom.getBoundingClientRect(), c = card.getBoundingClientRect();
+        var x = m.left + m.width / 2 - R.left, y = m.bottom - R.top, h = c.top - R.top - y;
+        if (h <= 0) { link.classList.remove('is-show'); return; }
+        link.style.left = x + 'px'; link.style.top = y + 'px'; link.style.height = h + 'px';
+        link.style.setProperty('--lc', f.color);
+        card.style.setProperty('--lc', f.color);
+        link.classList.add('is-show');
+      }
+      window.addEventListener('resize', drawLink);
+
+      function select(n, from) {
         var f = fams.filter(function (x) { return x.n === n; })[0];
+        linkFrom = f ? (from || f.lead) : null;
         root.classList.toggle('is-filtered', !!f);
         markers.forEach(function (m) { m.classList.toggle('is-sel', !!f && fam(m) === n); });
         items.forEach(function (it) { it.classList.toggle('is-sel', !!f && it === f.item); });
         current = f ? n : null;
         fams.forEach(function (x) { x.item.setAttribute('aria-pressed', String(!!f && x === f)); });
-        if (!f) { card.classList.remove('is-show'); return; }
+        if (!f) { card.classList.remove('is-show'); drawLink(); return; }
         var extra = f.ms.length > 1 ? '<span class="cnt">' + f.ms.length + ' locations shown on the vehicle</span>' : '';
+        if (from && from.hasAttribute('data-fam')) extra = '<span class="loc">Selected: ' + txt(from, '.nm') + '</span>' + extra;
         card.innerHTML = '<span class="tag" style="color:' + f.color + '">' + f.tag + '</span>' +
           '<span class="nm">' + f.nm + '</span><span class="ds">' + f.ds + '</span>' + extra +
           '<a class="cta" href="' + LINKS[n] + '">Explore product <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>';
         if (window.lucide && lucide.createIcons) lucide.createIcons();
         card.classList.add('is-show');
+        drawLink();
       }
       select(null);
 

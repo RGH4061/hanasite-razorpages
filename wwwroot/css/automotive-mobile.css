@@ -1,0 +1,20 @@
+/* automotive-mobile.css — Automotive hub cutaway on phones and tablets (pairs with js/automotive-cutaway.js).
+   A tapped marker opens the product card below the car; a line in the product's colour runs from
+   the marker on the car down to the card. Tooltips over the car are switched off at these widths.
+   Kept separate from automotive.css while that file has other work in progress; fold in later. */
+@media (max-width: 900px) {
+  .auto-hero .auto-marker:hover .tip,
+  .auto-hero .auto-marker.is-active .tip,
+  .auto-hero .auto-marker.is-open .tip { opacity: 0 !important; visibility: hidden !important; }
+
+  .auto-link { position: absolute; z-index: 6; width: 2px; margin-left: -1px; border-radius: 2px;
+    background: var(--lc, #19C6E6); box-shadow: 0 0 8px var(--lc, #19C6E6);
+    opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+  .auto-link.is-show { opacity: .95; }
+  .auto-link::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--lc, #19C6E6); transform: translateX(-50%); }
+
+  .auto-hero .auto-card.is-show { border-top: 3px solid var(--lc, #19C6E6); }
+  .auto-card .loc { display: block; margin-top: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+}
+@media (min-width: 901px) { .auto-link { display: none; } }
