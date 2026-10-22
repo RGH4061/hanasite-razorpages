@@ -1,0 +1,85 @@
+/* investors-subpreview.css — PREVIEW ONLY. Loaded by _Layout on /investor-relations/* subpages
+   when ?irs=a|b|c is set (with js/investors-subpreview.js). Restyles the existing subpage markup
+   to match the hub mock-up (?irv=i): calm blue hero, site typography and buttons, the site's
+   closing call-to-action card. Remove once a direction is chosen.
+     a  white reading body
+     b  hub's blue Flow background behind the body; sidebar + documents on a white panel
+     c  as b, with only the document column on white (sidebar on the blue) */
+
+/* ── hero: calm blue gradient, no topography lines ── */
+html.irs .hero-band { background: linear-gradient(180deg, #EEF3F9 0%, #E8EFF8 100%); border-bottom: 0; }
+html.irs #hero-topo, html.irs .hero-band .hero-overlay { display: none; }
+html.irs .subbar { background: #F7FAFD; border-bottom: 1px solid var(--line); }
+html.irs .subbar-inner { max-width: 1240px; padding: 11px 32px; font-size: 12.5px; }
+html.irs .subbar .crumbs { color: var(--ink-3); }
+html.irs .subbar .crumbs a { color: var(--hana-blue); font-weight: 600; }
+html.irs .subbar .crumbs a:hover { color: var(--hana-blue-deep); text-decoration: underline; }
+html.irs .subbar .crumbs .sep { color: var(--line); }
+html.irs .subbar .crumbs span:last-child { color: var(--ink); font-weight: 600; }
+html.irs .subbar .meta { margin-left: auto; font-family: var(--font-text); font-size: 12px; color: var(--ink-3); }
+html.irs .hero { min-height: 0 !important; }
+html.irs .hero-inner { max-width: 1240px; padding: 52px 32px 40px; }
+html.irs .hero-inner::before { content: ""; display: block; width: 40px; height: 3px; border-radius: 2px; background: var(--hana-blue); margin: 0 0 18px; }
+html.irs .hero h1 { font-family: var(--font-display); font-size: 44px; font-weight: 700; line-height: 1.06; letter-spacing: -.03em; max-width: 24ch; margin: 0 0 18px; }
+html.irs .hero .lede { font-size: 17.5px; line-height: 1.6; color: var(--ink-2); max-width: 640px; }
+
+/* ── body: same column width as the hub ── */
+html.irs .layout { max-width: 1240px; padding-left: 32px; padding-right: 32px; }
+html.irs .section-head h2 { font-family: var(--font-display); font-size: 28px; font-weight: 600; letter-spacing: -.02em; }
+html.irs .section-head .intro { font-size: 15.5px; color: var(--ink-2); }
+
+/* sidebar and labels: the site's Inter capitals instead of monospace */
+html.irs .sectionnav .label, html.irs .sidenav .label, html.irs .sectionnav .footer-link-label, html.irs .sidenav .footer-link-label,
+html.irs .section-head .section-label, html.irs .doctable thead th {
+  font-family: var(--font-text); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+html.irs .sectionnav a, html.irs .sidenav a { font-family: var(--font-text); font-size: 14px; }
+html.irs .sectionnav .num, html.irs .sectionnav .count, html.irs .sidenav .num, html.irs .sidenav .count { font-family: var(--font-text); font-size: 12px; }
+html.irs .sectionnav .footer-link a, html.irs .sidenav .footer-link a { font-family: var(--font-text); font-size: 13.5px; font-weight: 600; color: var(--hana-blue); border-bottom: 0; }
+
+/* document rows: larger title text, site-style download button */
+html.irs .doctable { font-size: 15px; }
+html.irs .doctable .c-act a { font-family: var(--font-text); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--hana-blue); border-color: #CFDCEA; border-radius: 4px; padding: 6px 12px; background: #fff; }
+html.irs .doctable .c-act a:hover { color: #fff; background: var(--hana-blue); border-color: var(--hana-blue); }
+
+/* Contact page: the warm beige address card becomes the site's cool grey */
+html.irs .addr-card { background: var(--surface); }
+
+/* ── closing call-to-action: the site's Hana-blue Flow card (Flow lines added by the script) ── */
+html.irs #enquiries-topo, html.irs .enquiries-topo-overlay { display: none; }
+html.irs .page-end { width: calc(100% - 64px); max-width: 1176px; margin: 40px auto 64px; border-radius: 14px; background: var(--hana-blue-deep); }
+html.irs .page-end-inner { max-width: none; padding: 48px 48px; }
+html.irs .page-end .ttl { font-size: 28px; letter-spacing: -.02em; margin-bottom: 8px; }
+html.irs .page-end .desc { font-size: 15.5px; color: rgba(255, 255, 255, .78); }
+html.irs .page-end a.btn { font-family: var(--font-text); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 12px 22px; border-radius: 4px; color: #fff; border-color: rgba(255, 255, 255, .4); background: transparent; }
+html.irs .page-end a.btn.primary { background: #fff; color: var(--hana-blue); border-color: #fff; }
+
+/* ── a: white reading body ── */
+html.irs-a .layout-bg { background: #fff; border-bottom: 0; }
+
+/* ── b / c: hub's blue Flow background behind the body; documents on white ── */
+/* the layout sets the body background inline, so the band colour needs !important */
+html.irs-b body, html.irs-c body { background: #D9E6F4 !important; }
+html.irs-b .layout-bg, html.irs-c .layout-bg { position: relative; overflow: hidden; border-bottom: 0; }
+html.irs-b .layout-bg > .hana-bg-layer, html.irs-c .layout-bg > .hana-bg-layer {
+  background: linear-gradient(180deg, #E8EFF8 0%, #E1EBF7 40%, #D9E6F4 100%) !important; }
+html.irs-b .layout-bg > .hana-bg-layer > svg, html.irs-c .layout-bg > .hana-bg-layer > svg { opacity: .8; }
+html.irs-b .layout, html.irs-c .layout { position: relative; z-index: 1; }
+html.irs-b .page-end, html.irs-c .page-end { margin-top: 0; }
+/* b: sidebar and documents together on one white panel */
+html.irs-b .layout { background: #fff; border: 1px solid #CFDCEA; border-radius: 12px; margin-top: 32px; margin-bottom: 48px;
+  max-width: 1176px; padding: 48px; box-shadow: 0 16px 40px -30px rgba(14, 40, 70, .4); }
+/* c: only the document column on white; the sidebar sits on the blue */
+html.irs-c .layout { padding-top: 40px; padding-bottom: 48px; }
+html.irs-c .layout > main, html.irs-c .layout > .content { background: #fff; border: 1px solid #CFDCEA; border-radius: 12px; padding: 40px 44px;
+  box-shadow: 0 16px 40px -30px rgba(14, 40, 70, .4); }
+
+@media (max-width: 900px) {
+  html.irs .hero h1 { font-size: 34px; }
+  html.irs .hero-inner, html.irs .subbar-inner { padding-left: 20px; padding-right: 20px; }
+  html.irs .page-end { width: auto; margin: 24px 16px 40px; }
+  html.irs .page-end-inner { padding: 32px 24px; }
+  html.irs-b .layout { margin: 16px; padding: 24px 20px; }
+  html.irs-c .layout > main, html.irs-c .layout > .content { padding: 24px 20px; }
+}
