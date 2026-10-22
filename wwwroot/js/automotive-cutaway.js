@@ -118,11 +118,13 @@
         items.forEach(function (it) { it.classList.toggle('is-sel', !!f && it === f.item); });
         current = f ? n : null;
         fams.forEach(function (x) { x.item.setAttribute('aria-pressed', String(!!f && x === f)); });
-        if (!f) { card.classList.remove('is-show'); drawLink(); return; }
+        if (!f) { markers.forEach(function (m) { m.classList.remove('is-picked'); }); card.classList.remove('is-show'); drawLink(); return; }
         var extra = f.ms.length > 1 ? '<span class="cnt">' + f.ms.length + ' sensor types shown on the vehicle</span>' : '';
-        if (from && from.hasAttribute('data-fam')) extra = '<span class="loc">Selected: ' + txt(from, '.nm') + '</span>' + extra;
+        // A tapped sensor-location dot leads the card with its own name; the family stays in the label
+        var picked = from && from.hasAttribute('data-fam') ? from : null;
+        markers.forEach(function (m) { m.classList.toggle('is-picked', m === picked); });
         card.innerHTML = '<span class="tag" style="color:' + f.color + '">' + f.tag + '</span>' +
-          '<span class="nm">' + f.nm + '</span><span class="ds">' + f.ds + '</span>' + extra +
+          '<span class="nm">' + (picked ? txt(picked, '.nm') : f.nm) + '</span><span class="ds">' + f.ds + '</span>' + extra +
           '<a class="cta" href="' + LINKS[n] + '">Explore product <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>';
         if (window.lucide && lucide.createIcons) lucide.createIcons();
         card.classList.add('is-show');
