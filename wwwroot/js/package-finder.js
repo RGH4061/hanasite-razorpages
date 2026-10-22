@@ -154,7 +154,7 @@
     const askBar = `<div class="pf-ask" data-hana-geo="band" data-geo-theme="midnight">
       <div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <div class="pf-ask-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</div></div>
-      <a class="pf-btn" href="/contact">Tell us what you&rsquo;re building</a></div>`;
+      <a class="pf-btn" href="/contact">Tell us your target package specification</a></div>`;
 
     function nearest(dims) {
       if (!dims) return "";
