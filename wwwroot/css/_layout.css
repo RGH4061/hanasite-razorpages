@@ -61,6 +61,8 @@
 .cap-section--band{position:relative;z-index:1}
 .cap-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sec-gap-sm)}
 .cap-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sec-gap-sm)}
+/* plant cards: keep "Explore <plant> →" on one line in the narrow four-up cards */
+.cap-grid-4 > a > span:last-child{white-space:nowrap}
 .cap-row-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sec-gap);align-items:center}
 @media(max-width:900px){.cap-grid-3,.cap-grid-4,.cap-row-2{grid-template-columns:1fr}.cap-row-2 > *{order:0 !important}}
 /* spec block: wrap to 2-up rather than clipping items on narrow viewports */
