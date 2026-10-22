@@ -13,6 +13,8 @@
     f  as e, with the Flow lines continuing faintly into the body instead of the grid
     g  as f, with one continuous Flow background behind the hero and the body together
     h  as f, with a calm hero (soft gradient, no lines); the Flow lines start below the key facts
+    i  as h, slightly darker and bluer throughout, with stronger Flow lines
+    j  as i, a step deeper again
   Without ?irv the hub renders exactly as before. Remove this partial and investors-preview.css
   once a direction is chosen.
 *@
@@ -23,13 +25,13 @@
     var cardsBand = v == "d" ? "irp-band--white" : "irp-band--tint";
 }
 
-@if (v is "e" or "f" or "g" or "h")
+@if (v is "e" or "f" or "g" or "h" or "i" or "j")
 {
     // which element carries the background pattern; the attribute is written only where one is set
     string? heroBg = v is "e" or "f" ? "flow" : null;
-    string? bodyBg = v == "e" ? "grid" : v is "f" or "h" ? "flow" : null;
+    string? bodyBg = v == "e" ? "grid" : v is "f" or "h" or "i" or "j" ? "flow" : null;
     string? canvasBg = v == "g" ? "flow" : null;
-<div class="irp irp--@v irp--rich">
+<div class="irp irp--@v irp--rich@(v is "h" or "i" or "j" ? " irp--calm" : "")">
 
   <div class="mk-crumbbar irp-crumb"><div class="mk-wrap in"><a href="/">Home</a><span class="sep">&rsaquo;</span><span class="here">Investor Relations</span><span class="irp-updated">Updated <strong>14 May 2026</strong></span></div></div>
 

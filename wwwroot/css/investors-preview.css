@@ -70,11 +70,24 @@ body { background: #fff; }
 /* g: one Flow layer behind hero + body; the hero and body themselves stay transparent */
 .irp-canvas { position: relative; overflow: hidden; }
 .irp-canvas > .hana-bg-layer { background: linear-gradient(180deg, #F7F8FA 0%, #F1F5FA 30%, #EAF2FB 100%) !important; }
-.irp--g .mk-hero, .irp--h .mk-hero { background: transparent; }
+.irp--g .mk-hero { background: transparent; }
 .irp--g .irp-body > .hana-bg-layer { display: none; }
-/* h: calm hero — soft gradient only, no lines; the body's Flow lines fade in below the key facts */
-.irp--h .mk-hero { background: linear-gradient(180deg, #F7F8FA 0%, #F3F6FA 100%); }
-.irp--h .irp-body > .hana-bg-layer { background: linear-gradient(180deg, #F3F6FA 0%, #EEF4FB 35%, #EAF2FB 100%) !important; }
+/* h / i / j: calm hero — soft gradient only, no lines; the body's Flow lines fade in below the key facts */
+.irp--calm .mk-hero { background: linear-gradient(180deg, #F7F8FA 0%, #F3F6FA 100%); }
+.irp--calm .irp-body > .hana-bg-layer { background: linear-gradient(180deg, #F3F6FA 0%, #EEF4FB 35%, #EAF2FB 100%) !important; }
+/* i: slightly darker and bluer, stronger lines */
+.irp--i .mk-hero { background: linear-gradient(180deg, #EEF3F9 0%, #E8EFF8 100%); }
+.irp--i .irp-body > .hana-bg-layer { background: linear-gradient(180deg, #E8EFF8 0%, #E1EBF7 40%, #D9E6F4 100%) !important; }
+.irp--i .irp-body > .hana-bg-layer > svg { opacity: .8; }
+.irp--i .irp-crumb { background: #F7FAFD; }
+/* j: a step deeper */
+.irp--j .mk-hero { background: linear-gradient(180deg, #E6EEF8 0%, #DEE8F5 100%); }
+.irp--j .irp-body > .hana-bg-layer { background: linear-gradient(180deg, #DEE8F5 0%, #D5E3F3 40%, #CBDCEF 100%) !important; }
+.irp--j .irp-body > .hana-bg-layer > svg { opacity: 1; }
+.irp--j .irp-crumb { background: #F4F8FC; }
+.irp--i .irp-facts, .irp--j .irp-facts, .irp--i .irp-cards .ir-card, .irp--j .irp-cards .ir-card { border-color: #CFDCEA; }
+.irp--i .feature-banner, .irp--j .feature-banner { border-top-color: #CFDCEA; border-right-color: #CFDCEA; border-bottom-color: #CFDCEA; }
+.irp--j .irp-cards .ir-card, .irp--j .feature-banner { box-shadow: 0 12px 30px -22px rgba(14, 40, 70, .4); }
 
 /* CTA card at the foot of the same background */
 .irp--rich .irp-cta-in { position: relative; z-index: 1; margin-top: 56px; }
