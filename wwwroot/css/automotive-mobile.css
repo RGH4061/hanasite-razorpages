@@ -4,11 +4,5 @@
    Kept separate from automotive.css while that file has other work in progress; fold in later. */
 @media (max-width: 900px) {
   .auto-hero .auto-marker:hover .tip,
-  .auto-hero .auto-marker.is-active .tip,
-  .auto-hero .auto-marker.is-open .tip { opacity: 0 !important; visibility: hidden !important; }
-
-  /* the tapped sensor-location dot: ringed in its colour and slightly larger */
-  .auto-marker.is-picked { z-index: 22; }
-  .auto-marker.is-picked .dot { transform: scale(1.6) !important;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--mc, #FF883E), 0 0 14px var(--mc, #FF883E) !important; }
+  .auto-hero .auto-marker.is-active .tip { opacity: 0 !important; visibility: hidden !important; }
 }

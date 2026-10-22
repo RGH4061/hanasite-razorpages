@@ -444,10 +444,6 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 }
 .auto-cutaway{position:relative}
 
-/* A tapped (or clicked) marker keeps its tooltip open */
-.auto-marker.is-open{z-index:25}
-.auto-marker.is-open .tip{opacity:1;visibility:visible}
-.auto-marker.is-open .dot{transform:scale(1.18)}
 
 /* ── Phone layout for the Automotive sub-pages and hub stats (21 Oct 2026) ──
    The sub-page sections are built with inline grids that had no phone rule. */
@@ -519,3 +515,7 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 .auto-hero .auto-card.is-show[data-edge="bottom"]{border-bottom:3px solid var(--lc,#19C6E6)}
 .auto-hero .auto-card.is-show[data-edge="left"]{border-left:3px solid var(--lc,#19C6E6)}
 .auto-hero .auto-card.is-show[data-edge="right"]{border-right:3px solid var(--lc,#19C6E6)}
+
+/* The clicked or tapped sensor-location dot: ringed in its colour and slightly larger */
+.auto-marker.is-picked{z-index:22}
+.auto-marker.is-picked .dot{transform:scale(1.6)!important;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--mc,#FF883E),0 0 14px var(--mc,#FF883E)!important}

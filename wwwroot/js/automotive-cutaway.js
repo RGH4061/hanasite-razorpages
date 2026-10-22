@@ -41,23 +41,20 @@
       fitTips();
       window.addEventListener('resize', fitTips);
 
-      // Tapping a marker keeps its tooltip open until another marker or anywhere else is tapped
-      // (on touch screens a hover tooltip closes again straight away)
-      function closeTips(except) { markers.forEach(function (m) { if (m !== except) m.classList.remove('is-open'); }); }
+      // Clicking or tapping a marker selects it: the product card opens with the connector line, and
+      // a sensor-location dot leads the card with its own name. Clicking it again clears the selection.
       markers.forEach(function (m) {
         m.setAttribute('tabindex', '0');
         m.setAttribute('role', 'button');
         m.setAttribute('aria-label', txt(m, '.nm') || txt(m, '.tag'));
-        function toggle(e) {
+        function pick(e) {
           e.stopPropagation();
-          // On phones and tablets a tap opens the product card below the car instead of a tooltip
-          if (narrow.matches) { stopTour(); select(current === fam(m) && linkFrom === m ? null : fam(m), m); return; }
-          closeTips(m); m.classList.toggle('is-open');
+          stopTour();
+          select(current === fam(m) && linkFrom === m ? null : fam(m), m);
         }
-        m.addEventListener('click', toggle);
-        m.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); } });
+        m.addEventListener('click', pick);
+        m.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(e); } });
       });
-      document.addEventListener('click', function () { closeTips(null); });
 
       // Pulse rings take each marker's own colour
       markers.forEach(function (m, i) {
