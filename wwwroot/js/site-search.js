@@ -261,12 +261,13 @@
     field.focus();
   }
 
-  /* ── mobile: the burger panel's search foot ───────────────────
+  /* ── mobile: the burger panel's search field ──────────────────
      At ≤900px the util bar's right cluster (and so the desktop field) is hidden
      by the site's own CSS, and mobile-nav.js ships the panel's search box as a
      dead placeholder. Wire it: suggestions inline, full answers on /search. */
   function initMobile() {
-    const foot = document.querySelector(".hana-mnav-foot");
+    /* the field sits at the top of the panel (.hana-mnav-top); older builds had it in the foot */
+    const foot = document.querySelector(".hana-mnav-top") || document.querySelector(".hana-mnav-foot");
     if (!foot || foot.querySelector(".hs-mnav-input") || !window.HS) return false;
     const old = foot.querySelector(".hana-mnav-search");
     if (!old) return false;
@@ -281,10 +282,16 @@
     input.type = "search";
     input.className = "hs-mnav-input";
     const TH = document.documentElement.lang === "th";
-    input.placeholder = TH ? "ค้นหาแพ็กเกจ ความสามารถ…" : "Search packages, capabilities…";
+    /* no placeholder: a short hint under the field says what can be searched */
     input.setAttribute("aria-label", TH ? "ค้นหาในเว็บไซต์" : "Search this site");
+    input.setAttribute("aria-describedby", "hs-mnav-hint");
     box.appendChild(input);
     old.replaceWith(box);
+    const hint = document.createElement("div");
+    hint.className = "hana-mnav-hint";
+    hint.id = "hs-mnav-hint";
+    hint.textContent = TH ? "ค้นหาขนาดและประเภทแพ็กเกจ ความสามารถ และอื่น ๆ" : "Search for package sizes and types, capabilities and more.";
+    box.after(hint);
 
     /* The foot is flex:0 0 auto — a list inside it steals height from the nav.
        Suggestions live at the top of the scroll region instead. */

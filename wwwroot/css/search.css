@@ -246,6 +246,7 @@
 .hs-mnav-input::placeholder{color:rgba(255,255,255,.5)}
 .hs-mnav-input::-webkit-search-cancel-button{display:none}
 .hs-mnav-sugg{display:flex;flex-direction:column;margin:0 20px 18px;border:1px solid rgba(255,255,255,.18);border-radius:6px;overflow:hidden;background:rgba(255,255,255,.04)}
+.hs-mnav-sugg[hidden]{display:none}
 .hs-mnav-s{display:flex;flex-direction:column;gap:2px;padding:11px 12px;border-top:1px solid rgba(255,255,255,.12);text-decoration:none}
 .hs-mnav-s:first-child{border-top:0}
 .hs-mnav-s b{font-family:var(--font-text);font-size:14px;font-weight:600;color:#fff}

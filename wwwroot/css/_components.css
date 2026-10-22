@@ -598,6 +598,7 @@ body {
    ============================================================ */
 
 .hana-mnav-burger,
+.hana-mnav-searchbtn,
 .hana-mnav-panel,
 .hana-mnav-backdrop { display: none; }
 
@@ -607,7 +608,7 @@ body {
   /* !important: search.css sets .hana-header{position:relative} after this file */
   .hana-header { position: sticky !important; top: 0; z-index: 200; }
   /* utility bar → SET ticker only: the search field and the util links come off
-     (search, Careers and Insights are in the mobile menu's footer) */
+     (search is at the top of the mobile menu and has a header button; Careers and Insights are in its footer) */
   .hana-util-bar .hs-hdr-box { display: none !important; }
   .hana-util-bar .hana-wrap > div:last-child { display: none !important; }
   .hana-util-bar .hana-wrap { height: 32px !important; }
@@ -627,14 +628,21 @@ body {
   }
   .hana-header #hana-nav-wrap .hana-btn { padding: 11px 16px !important; font-size: 11px !important; }
 
-  .hana-mnav-burger {
+  .hana-mnav-burger, .hana-mnav-searchbtn {
     display: inline-flex; align-items: center; justify-content: center;
     width: 44px; height: 44px; padding: 0; background: #fff; color: var(--ink);
     border: 1px solid var(--line); border-radius: var(--radius-button);
     cursor: pointer; transition: color 150ms ease, border-color 150ms ease;
   }
-  .hana-mnav-burger:hover { color: var(--hana-blue); border-color: var(--hana-blue); }
-  .hana-mnav-burger svg { width: 20px; height: 20px; }
+  .hana-mnav-burger:hover, .hana-mnav-searchbtn:hover { color: var(--hana-blue); border-color: var(--hana-blue); }
+  .hana-mnav-burger svg, .hana-mnav-searchbtn svg { width: 20px; height: 20px; }
+  /* search strip at the top of the panel, above About */
+  .hana-mnav-top { flex: 0 0 auto; padding: 4px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+  /* close button and search read as one block: no rule between them */
+  .hana-mnav-panel .hana-mnav-head { border-bottom: 0; }
+  .hana-mnav-top .hana-mnav-search { margin-bottom: 0; }
+  .hana-mnav-hint { margin-top: 8px; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.55); }
+  .hs-mnav-sugg:not([hidden]) { margin-top: 16px; }
 
   /* ── Backdrop ───────────────────────────────────────── */
   .hana-mnav-backdrop {

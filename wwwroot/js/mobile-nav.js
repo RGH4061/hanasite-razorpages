@@ -3,13 +3,13 @@
  * ---------------------------------------------------------------------------
  * Progressive enhancement over the shared desktop header. Above 900px this is
  * inert (all injected chrome is display:none via _components.css). At ≤900px it:
- *   • injects a hamburger into the header CTA cluster (Contact stays visible)
+ *   • injects a search button and a hamburger into the header CTA cluster (Contact stays visible)
  *   • builds a half-width, right-docked DARK accordion panel from the EXISTING
  *     markup — each <a.hana-nav-link[data-menu]> becomes a row whose name links
  *     to its hub and whose chevron expands a clone of the matching
  *     <div.hana-mega[data-panel]> content (markets / capability pillars / IR
  *     groups / locations). Content is cloned, so it never drifts from desktop.
- *   • relocates Search / Careers / Insights / EN to the panel foot
+ *   • puts Search at the top of the panel (above About); Careers / Insights / EN in the foot
  *   • single section open at a time; closes on link tap, ×, backdrop, Escape
  *
  * No dependencies. Auto-inits on DOMContentLoaded.
@@ -62,6 +62,14 @@
     burger.innerHTML = svg(I.burger);
     cta.appendChild(burger);
 
+    /* search button beside Contact: opens the panel with the search field focused */
+    var sbtn = document.createElement('button');
+    sbtn.type = 'button';
+    sbtn.className = 'hana-mnav-searchbtn';
+    sbtn.setAttribute('aria-label', document.documentElement.lang === 'th' ? 'ค้นหา' : 'Search');
+    sbtn.innerHTML = svg(I.search);
+    cta.insertBefore(sbtn, burger);
+
     /* backdrop + panel */
     var backdrop = document.createElement('div');
     backdrop.className = 'hana-mnav-backdrop';
@@ -77,6 +85,15 @@
     head.className = 'hana-mnav-head';
     head.innerHTML = '<button type="button" class="hana-mnav-close" aria-label="Close menu">' + svg(I.close) + '</button>';
     panel.appendChild(head);
+
+    /* search — first thing in the panel: package and capability search is the main tool here.
+       site-search.js turns the placeholder into the live field. */
+    var top = document.createElement('div');
+    top.className = 'hana-mnav-top';
+    top.innerHTML =
+      '<div class="hana-mnav-slabel">' + (document.documentElement.lang === 'th' ? 'ค้นหาขนาดแพ็กเกจ ความสามารถ และอื่น ๆ…' : 'Search package sizes, capabilities and more..') + '</div>' +
+      '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>';
+    panel.appendChild(top);
 
     var scroll = document.createElement('div');
     scroll.className = 'hana-mnav-scroll';
@@ -140,15 +157,13 @@
     scroll.appendChild(acc);
     panel.appendChild(scroll);
 
-    /* foot — search label + icon field + util links */
+    /* foot — util links */
     var foot = document.createElement('div');
     foot.className = 'hana-mnav-foot';
     /* language control mirrors the desktop util-bar one — absent when the page has no twin */
     var langA = header.querySelector('.hana-util-bar a.hana-lang');
     var langLabel = langA ? (langA.textContent || '').trim() : '';
     foot.innerHTML =
-      '<div class="hana-mnav-slabel">' + (document.documentElement.lang === 'th' ? 'ค้นหาขนาดแพ็กเกจ ความสามารถ และอื่น ๆ…' : 'Search package sizes, capabilities and more..') + '</div>' +
-      '<a class="hana-mnav-search" href="#" aria-label="Search">' + svg(I.search) + '</a>' +
       '<div class="hana-mnav-utrow">' +
         '<a href="' + findUtilHref(header, 'careers') + '">' + utilLabel('careers') + '</a>' +
         (findUtilHref(header, 'insights') !== '#' ? '<a href="' + findUtilHref(header, 'insights') + '">' + utilLabel('insights') + '</a>' : '') +
@@ -176,6 +191,12 @@
       panel.addEventListener('transitionend', onEnd);
     }
     burger.addEventListener('click', function () { isOpen() ? close() : open(); });
+    sbtn.addEventListener('click', function () {
+      if (!isOpen()) open();
+      /* focus inside the tap so phones raise the keyboard */
+      var field = panel.querySelector('.hs-mnav-input');
+      if (field) field.focus();
+    });
     head.querySelector('.hana-mnav-close').addEventListener('click', close);
     backdrop.addEventListener('click', close);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) close(); });
