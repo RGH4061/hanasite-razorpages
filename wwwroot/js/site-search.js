@@ -119,6 +119,32 @@
      family, an automotive grade — is answered with rows rather than pages, and hands off
      to the finder pre-filtered. No status column: the card says what a package is, not
      whether it is available. */
+  /* Thickness, worked out the way the package finder does it: a row's own figure where the
+     reference gives one (sometimes inside a note, e.g. "Clear transfer mold 0.60 mm"); an LGA's
+     third body dimension; and for DFN and QFN bodies the thickness ladder, since those are built
+     to set classes (uDFN = 0.50 mm and so on). Everything else has no published thickness. */
+  const THK_NUM = s => { const n = /(\d+(?:\.\d+)?)\s*mm/.exec(String(s || "")); return n ? parseFloat(n[1]) : null; };
+  let ladder = null;
+  function thkSteps() {
+    if (!ladder) ladder = [...new Set((window.HS_PACKAGES || []).filter(r => r.t === "Package thickness")
+      .map(r => THK_NUM(r.thk)).filter(v => v !== null))].sort((a, b) => a - b);
+    return ladder;
+  }
+  const fmt = v => v.toFixed(2);
+  function thkCell(r) {
+    const own = THK_NUM(r.thk);
+    if (own !== null) return (/minimum/i.test(r.thk) ? "min " : "") + fmt(own) + " mm";
+    if (r.z) return fmt(parseFloat(r.z)) + " mm";
+    const s = thkSteps();
+    if (s.length && /DFN|QFN/i.test(r.pkg)) return fmt(s[0]) + "&ndash;" + fmt(s[s.length - 1]) + " mm";
+    return "—";
+  }
+  function thkOptions(rows) {
+    const s = thkSteps();
+    if (!s.length || !rows.some(r => /DFN|QFN/i.test(r.pkg))) return "";
+    return `<p class="hs-pkg-thk"><b>Leadless thickness options</b>${s.map(v => `<span>${fmt(v)}</span>`).join("")}<em>mm</em></p>`;
+  }
+
   function pkgCard(m, mobile) {
     const shown = m.rows.slice(0, 6);
     const read = [m.fam ? `family <b>${esc(m.fam.toUpperCase())}</b>` : null,
@@ -133,19 +159,21 @@
         <p class="hs-cert-s">${read}</p>
       </div>
       <table class="hs-pkg-t">
-        <thead><tr><th>Package</th><th>Body size</th><th>Leads</th><th>Auto grade</th></tr></thead>
+        <thead><tr><th>Package</th><th>Body size</th><th>Leads</th><th>Thickness</th></tr></thead>
         <tbody>${shown.map(r => `<tr>
           <td class="hs-pkg-n">${esc(r.pkg)}</td>
           <td class="hs-pkg-num">${esc(r.bs || "—")}</td>
           <td class="hs-pkg-num">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>
-          <td>${r.grade ? `<span class="hs-grade">${esc(r.grade)}</span>` : "—"}</td></tr>`).join("")}</tbody>
+          <td class="hs-pkg-num">${thkCell(r)}</td></tr>`).join("")}</tbody>
       </table>
+      ${thkOptions(m.rows)}
       <div class="hs-cert-f">
         <p>${m.rows.length > 6 ? `Showing 6 of ${m.rows.length}. ` : ""}<a href="${esc(finder)}">Open in the package finder &rarr;</a></p>
-        <p class="hs-src">Filter the full reference by size, category and automotive grade.</p>
+        <p class="hs-src">Filter the full reference by size, category and thickness.</p>
       </div>
-      <div class="hs-pkg-band">
-        <b>Don&rsquo;t see the size you need? We can customize packaging sizes.</b>
+      <div class="hs-pkg-band" data-hana-geo="band" data-geo-theme="midnight">
+        <div><b>Don&rsquo;t see the size you need? We can customize packaging sizes.</b>
+        <span class="hs-pkg-band-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</span></div>
         <a class="hs-pkg-cta" href="/contact">Tell us what you&rsquo;re building</a>
       </div></section>`;
   }
@@ -207,6 +235,7 @@
             <div class="hs-group-b">${g.items.map(resultRow).join("")}</div></section>`).join("")}
         ${res.total > shown || res.pkg ? `<a class="hs-ac-all" href="/search?q=${encodeURIComponent(q)}">See all ${res.total} results<span>&rarr;</span></a>` : ""}
       </div>`;
+      if (window.HanaGeo) window.HanaGeo.init(panel);
       panel.hidden = false;
       box.classList.add("on");
     }
@@ -248,6 +277,7 @@
             <h2 class="hs-group-h">${esc(g.section)}<span>${g.items.length}</span></h2>
             <div class="hs-group-b">${g.items.map(resultRow).join("")}</div></section>`).join("")}
         ${shown ? `<p class="hs-noindex">This page is no-indexed. Searches are logged so we can see what buyers look for and which pages are missing.</p>` : ""}`;
+      if (window.HanaGeo) window.HanaGeo.init(root.querySelector("#hs-body"));
       root.querySelectorAll(".hs-fchip").forEach(b => b.addEventListener("click", () => { sec = b.dataset.sec || null; draw(); }));
       const url = q ? "?q=" + encodeURIComponent(q) : location.pathname;
       history.replaceState(null, "", url);

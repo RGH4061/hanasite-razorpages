@@ -313,8 +313,19 @@
 .hs-pkg-num{font-family:var(--font-mono);font-size:13px;color:var(--ink);white-space:nowrap}
 .hs-grade{display:inline-block;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.06em;padding:3px 7px;border-radius:3px;background:var(--hana-blue-tint);color:var(--hana-blue-deep);white-space:nowrap}
 .hs-pkg .hs-cert-f a{color:var(--hana-blue);font-weight:600}
-.hs-pkg-band{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--hana-blue-deep);color:#fff;padding:18px 24px}
-.hs-pkg-band b{font-size:15px;font-weight:600;line-height:1.35}
+/* The "Don't see the size" band uses the package finder's Midnight geometric background
+   (data-hana-geo, js/hana-geo-motion.js); the flat fill is only a fallback, scoped out of its way
+   because search.css loads after hana-geo-motion.css. */
+.hs-pkg-band{display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:#fff;padding:20px 24px}
+.hs-pkg-band:not([data-hana-geo]){background:var(--hana-blue-deep)}
+/* thickness classes for DFN / QFN matches, under the package table */
+.hs-pkg-thk{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0;padding:12px 24px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.hs-pkg-thk b{margin-right:6px;font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.hs-pkg-thk span{font-family:var(--font-mono);font-size:12px;padding:2px 7px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink)}
+.hs-pkg-thk em{font-style:normal;color:var(--ink-3)}
+.hs-pkg--m .hs-pkg-thk{padding:10px 18px}
+.hs-pkg-band b{display:block;font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.hs-pkg-band-s{display:block;margin-top:4px;max-width:58ch;font-size:13px;line-height:1.5;color:rgba(255,255,255,.78)}
 .hs-pkg-cta{margin-left:auto;flex:none;background:#fff;color:var(--hana-blue-deep);border-radius:var(--radius-button);padding:10px 18px;font-family:var(--font-text);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 .hs-pkg-cta:hover{background:var(--hana-blue-tint)}
 .hs-pkg--m .hs-pkg-h{padding:18px}
