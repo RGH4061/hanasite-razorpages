@@ -53,6 +53,12 @@
 /* closing card at the foot of the blue background */
 .ir-hub .ir-hub-cta { position: relative; z-index: 1; margin-top: 56px; margin-bottom: 0; }
 
+/* Thai hub: no section heading above the cards (no approved Thai wording), so the gap is kept here;
+   Thai has no capitals, so the link and button letter-spacing is removed */
+.ir-hub-cards--nohead { margin-top: 48px; }
+html[lang="th"] .ir-hub .ic-cta, html[lang="th"] .ir-hub .fb-cta { letter-spacing: 0; font-size: 13px; }
+html[lang="th"] .ir-hub .hana-btn { letter-spacing: .02em; }
+
 @media (max-width: 900px) {
   .ir-hub-body { padding-bottom: 40px; }
   .ir-hub .ir-hub-cta { margin-top: 40px; }

@@ -10,158 +10,107 @@
 }
 @section Head {
     <link rel="stylesheet" href="~/css/investors.css" />
+    <link rel="stylesheet" href="~/css/market-page.css" />
+    <link rel="stylesheet" href="~/css/investors-hub.css" />
     <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/investor-relations" />
     <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/investor-relations" />
     <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/investor-relations" />
 }
 
-@* Investor Relations (Thai) — Thai copy approved by Corporate Affairs, 30 Aug 2026. Static content. *@
+@* Investor Relations (Thai) — Thai copy approved by Corporate Affairs, 30 Aug 2026. Static content.
+   Same layout as the English hub (css/investors-hub.css); the approved Thai wording is unchanged. *@
 
-<div class="hero-band">
-  <canvas id="hero-topo"></canvas>
-  <div class="hero-overlay"></div>
-  <div class="subbar">
-    <div class="subbar-inner">
-      <nav class="crumbs" aria-label="เส้นทางการเข้าชม (Breadcrumb)">
-        <a href="/th">Home</a><span class="sep">/</span>
-        <span>นักลงทุนสัมพันธ์</span>
-      </nav>
-      <div class="meta">ข้อมูลล่าสุด <strong>14 พฤษภาคม 2569</strong></div>
-    </div>
-  </div>
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>ข้อมูลสำหรับนักลงทุน</h1>
-      <p class="lede">ข้อมูลทางการเงิน การกำกับดูแลกิจการ และข้อมูลสำคัญสำหรับนักลงทุน</p>
+<div class="ir-hub">
+
+  <div class="mk-crumbbar"><div class="mk-wrap in"><a href="/th">Home</a><span class="sep">&rsaquo;</span><span class="here">นักลงทุนสัมพันธ์</span><span class="ir-hub-updated">ข้อมูลล่าสุด <strong>14 พฤษภาคม 2569</strong></span></div></div>
+
+  <div class="ir-hub-stage">
+  <section class="mk-hero">
+    <div class="mk-wrap mk-hero-in">
+      <div>
+        <span class="hero-accent" aria-hidden="true"></span>
+        <h1 class="mk-h1">ข้อมูลสำหรับนักลงทุน</h1>
+        <p class="mk-lede">ข้อมูลทางการเงิน การกำกับดูแลกิจการ และข้อมูลสำคัญสำหรับนักลงทุน</p>
+      </div>
     </div>
   </section>
-</div>
 
-<div class="layout-bg">
-<div class="layout">
-
-  <!-- Feature banner: Investor News + Stock panel -->
-  <div class="feature-banner">
-    <a class="feature-body" href="/th/investor-relations/news">
-      <h2 class="fb-title">ข่าวสารสำหรับนักลงทุน</h2>
-      <p class="fb-desc">ข่าวแจ้ง SET ข้อมูลงบการเงิน ข้อมูลการประชุมผู้ถือหุ้น และการจ่ายเงินปันผล</p>
-      <div class="fb-meta">
-        <div class="m">
-          <div class="m-val">14 พ.ค. 2569</div>
-          <div class="m-lbl">ข้อมูลที่เผยแพร่ล่าสุด</div>
-        </div>
-        <div class="m">
-          <div class="m-val">ไตรมาส 1/2569</div>
-          <div class="m-lbl">ผลประกอบการล่าสุด</div>
+  <section class="ir-hub-body" data-hana-bg="flow" data-variant="light" data-accent="cyan" data-fade="none">
+    <div class="mk-wrap ir-hub-in">
+      <div class="feature-banner">
+        <a class="feature-body" href="/th/investor-relations/news">
+          <h2 class="fb-title">ข่าวสารสำหรับนักลงทุน</h2>
+          <p class="fb-desc">ข่าวแจ้ง SET ข้อมูลงบการเงิน ข้อมูลการประชุมผู้ถือหุ้น และการจ่ายเงินปันผล</p>
+          <div class="fb-meta">
+            <div class="m"><div class="m-val">14 พ.ค. 2569</div><div class="m-lbl">ข้อมูลที่เผยแพร่ล่าสุด</div></div>
+            <div class="m"><div class="m-val">ไตรมาส 1/2569</div><div class="m-lbl">ผลประกอบการล่าสุด</div></div>
+          </div>
+          <span class="fb-cta">ดูข่าวสารและข้อมูลที่เผยแพร่ทั้งหมด →</span>
+        </a>
+        <div class="stock-panel">
+          <div class="sp-label">ราคาหุ้น HANA ใน SET</div>
+          <div>
+            <div class="sp-price-row">
+              <div class="sp-price">39.20</div>
+              <div class="sp-change">↑ +83.2%</div>
+            </div>
+            <div class="sp-period" style="margin-top:6px">ม.ค. – มิ.ย. 2569</div>
+          </div>
+          <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
+          <div class="sp-footer">
+            <div><div class="sf-val">21.40</div><div class="sf-lbl">ราคาต่ำสุดตั้งแต่ต้นปี</div></div>
+            <div><div class="sf-val">39.20</div><div class="sf-lbl">ราคาปัจจุบัน</div></div>
+            <div><div class="sf-val">ไตรมาส 2/2569</div><div class="sf-lbl">ผลประกอบการครั้งถัดไป</div></div>
+          </div>
+          <a href="https://www.set.or.th/th/market/product/stock/quote/hana/price" target="_blank" rel="noopener noreferrer" class="sp-set-link">ดูข้อมูล HANA ใน SET ↗</a>
         </div>
       </div>
-      <span class="fb-cta">ดูข่าวสารและข้อมูลที่เผยแพร่ทั้งหมด →</span>
-    </a>
 
-    <!-- Stock panel -->
-    <div class="stock-panel">
-      <div class="sp-label">ราคาหุ้น HANA ใน SET</div>
-      <div>
-        <div class="sp-price-row">
-          <div class="sp-price">39.20</div>
-          <div class="sp-change">↑ +83.2%</div>
-        </div>
-        <div class="sp-period" style="margin-top:6px">ม.ค. – มิ.ย. 2569</div>
+      @* no section heading here: the English "Investor information" has no approved Thai wording *@
+      <div class="ir-grid ir-hub-cards ir-hub-cards--nohead">
+        <a class="ir-card" href="/th/investor-relations/annual"><span class="ir-hub-ic"><i data-lucide="file-text"></i></span>
+          <h3 class="ic-title">รายงานประจำปีและแบบ 56-1 One Report</h3>
+          <p class="ic-desc">งบการเงินและแบบ 56-1 One Report รวมถึงข้อมูลการดำเนินธุรกิจและความยั่งยืน</p>
+          <span class="ic-cta">ข้อมูลเพิ่มเติม →</span></a>
+        <a class="ir-card" href="/th/investor-relations/governance"><span class="ir-hub-ic"><i data-lucide="landmark"></i></span>
+          <h3 class="ic-title">ข้อมูลด้านการกำกับดูแลกิจการ</h3>
+          <p class="ic-desc">ข้อบังคับบริษัท กฎบัตรคณะกรรมการ นโยบายและแนวปฏิบัติด้านการกำกับดูแลกิจการ การต่อต้านการทุจริตคอร์รัปชัน และการเข้าร่วมเป็นสมาชิกแนวร่วมปฏิบัติของภาคเอกชนไทยในการต่อต้านทุจริต (CAC)</p>
+          <span class="ic-cta">ข้อมูลเพิ่มเติม →</span></a>
+        <a class="ir-card" href="/th/investor-relations/structure"><span class="ir-hub-ic"><i data-lucide="network"></i></span>
+          <h3 class="ic-title">โครงสร้างกลุ่มบริษัทและผู้ถือหุ้น</h3>
+          <p class="ic-desc">ข้อมูลบริษัทย่อย บริษัทร่วม และผู้ถือหุ้นรายใหญ่</p>
+          <span class="ic-cta">ข้อมูลเพิ่มเติม →</span></a>
+        <a class="ir-card" href="/th/investor-relations/faq"><span class="ir-hub-ic"><i data-lucide="presentation"></i></span>
+          <h3 class="ic-title">คำถามที่พบบ่อยและข้อมูลการนำเสนอผลประกอบการ</h3>
+          <p class="ic-desc">บันทึกการประชุมนำเสนอผลประกอบการ (SET Earnings Call) และคำถามที่พบบ่อย</p>
+          <span class="ic-cta">ข้อมูลเพิ่มเติม →</span></a>
+        <a class="ir-card" href="/th/investor-relations/contact"><span class="ir-hub-ic"><i data-lucide="calendar-days"></i></span>
+          <h3 class="ic-title">กิจกรรมนักลงทุนและข้อมูลติดต่อ</h3>
+          <p class="ic-desc">กำหนดการประชุมนักวิเคราะห์ &amp; SET Earnings Call บันทึก SET Earnings Call และข้อมูลติดต่องานนักลงทุนสัมพันธ์</p>
+          <span class="ic-cta">ข้อมูลเพิ่มเติม →</span></a>
+        <a class="ir-card" href="/th/investor-relations/esg"><span class="ir-hub-ic"><i data-lucide="leaf"></i></span>
+          <h3 class="ic-title">การดำเนินธุรกิจอย่างยั่งยืน</h3>
+          <p class="ic-desc">แนวทางการดำเนินงาน นโยบาย และการเปิดเผยข้อมูลด้านความยั่งยืน (ESG)</p>
+          <span class="ic-cta">ข้อมูลเพิ่มเติม →</span></a>
       </div>
-      <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
-      <div class="sp-footer">
-        <div>
-          <div class="sf-val">21.40</div>
-          <div class="sf-lbl">ราคาต่ำสุดตั้งแต่ต้นปี</div>
-        </div>
-        <div>
-          <div class="sf-val">39.20</div>
-          <div class="sf-lbl">ราคาปัจจุบัน</div>
-        </div>
-        <div>
-          <div class="sf-val">ไตรมาส 2/2569</div>
-          <div class="sf-lbl">ผลประกอบการครั้งถัดไป</div>
-        </div>
-      </div>
-      <a href="https://www.set.or.th/th/market/product/stock/quote/hana/price" target="_blank" rel="noopener noreferrer" class="sp-set-link">ดูข้อมูล HANA ใน SET ↗</a>
     </div>
-  </div>
 
-  <!-- Remaining 6 sections — 3-col grid -->
-  <div class="ir-grid">
-
-    <!-- 02 Annual Report — live -->
-    <a class="ir-card" href="/th/investor-relations/annual">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">รายงานประจำปีและแบบ 56-1 One Report</h3>
-      <p class="ic-desc">งบการเงินและแบบ 56-1 One Report รวมถึงข้อมูลการดำเนินธุรกิจและความยั่งยืน</p>
-
-      <span class="ic-cta">ข้อมูลเพิ่มเติม →</span>
-    </a>
-
-    <!-- 03 Governance — live -->
-    <a class="ir-card" href="/th/investor-relations/governance">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">ข้อมูลด้านการกำกับดูแลกิจการ</h3>
-      <p class="ic-desc">ข้อบังคับบริษัท กฎบัตรคณะกรรมการ นโยบายและแนวปฏิบัติด้านการกำกับดูแลกิจการ การต่อต้านการทุจริตคอร์รัปชัน และการเข้าร่วมเป็นสมาชิกแนวร่วมปฏิบัติของภาคเอกชนไทยในการต่อต้านทุจริต (CAC)</p>
-
-      <span class="ic-cta">ข้อมูลเพิ่มเติม →</span>
-    </a>
-
-    <!-- 04 Group Structure — live -->
-    <a class="ir-card" href="/th/investor-relations/structure">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">โครงสร้างกลุ่มบริษัทและผู้ถือหุ้น</h3>
-      <p class="ic-desc">ข้อมูลบริษัทย่อย บริษัทร่วม และผู้ถือหุ้นรายใหญ่</p>
-
-      <span class="ic-cta">ข้อมูลเพิ่มเติม →</span>
-    </a>
-
-    <!-- 05 FAQ — live -->
-    <a class="ir-card" href="/th/investor-relations/faq">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">คำถามที่พบบ่อยและข้อมูลการนำเสนอผลประกอบการ</h3>
-      <p class="ic-desc">บันทึกการประชุมนำเสนอผลประกอบการ (SET Earnings Call) และคำถามที่พบบ่อย</p>
-
-      <span class="ic-cta">ข้อมูลเพิ่มเติม →</span>
-    </a>
-
-    <!-- 06 Events & Contact — live -->
-    <a class="ir-card" href="/th/investor-relations/contact">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">กิจกรรมนักลงทุนและข้อมูลติดต่อ</h3>
-      <p class="ic-desc">กำหนดการประชุมนักวิเคราะห์ &amp; SET Earnings Call บันทึก SET Earnings Call และข้อมูลติดต่องานนักลงทุนสัมพันธ์</p>
-
-      <span class="ic-cta">ข้อมูลเพิ่มเติม →</span>
-    </a>
-
-    <!-- 07 Sustainability — live -->
-    <a class="ir-card" href="/th/investor-relations/esg">
-      <div class="ic-top"></div>
-      <h3 class="ic-title">การดำเนินธุรกิจอย่างยั่งยืน</h3>
-      <p class="ic-desc">แนวทางการดำเนินงาน นโยบาย และการเปิดเผยข้อมูลด้านความยั่งยืน (ESG)</p>
-
-      <span class="ic-cta">ข้อมูลเพิ่มเติม →</span>
-    </a>
-
+    <section class="mk-cta ir-hub-cta" data-hana-bg="flow" data-variant="dark" data-fade="none" aria-label="ข้อมูลติดต่อนักลงทุนสัมพันธ์">
+      <div class="mk-wrap in">
+        <div>
+          <h2 class="mk-h2 on-dark">สอบถามข้อมูลสำหรับนักลงทุน</h2>
+          <p class="mk-body on-dark">หากมีข้อสอบถามเกี่ยวกับผลประกอบการ การกำกับดูแลกิจการ หรือต้องการสมัครรับข่าวสารสำหรับนักลงทุน กรุณาติดต่องานนักลงทุนสัมพันธ์</p>
+        </div>
+        <div class="acts">
+          <a href="/th/investor-relations/contact" class="hana-btn hana-btn-ghost-on-dark" style="padding:12px 22px;font-size:12px;">กิจกรรมนักลงทุน</a>
+          <a href="/th/investor-relations/contact#ir-contact" class="hana-btn hana-btn-on-dark" style="padding:12px 22px;font-size:12px;">ติดต่อนักลงทุนสัมพันธ์ <i data-lucide="arrow-right" style="width:14px;height:14px;margin-left:6px;"></i></a>
+        </div>
+      </div>
+    </section>
+  </section>
   </div>
 
 </div>
-</div>
-
-<section class="page-end" aria-label="ข้อมูลติดต่อนักลงทุนสัมพันธ์">
-  <canvas id="enquiries-topo"></canvas>
-  <div class="page-end-inner">
-    <div>
-      <p class="ttl">สอบถามข้อมูลสำหรับนักลงทุน</p>
-      <p class="desc">หากมีข้อสอบถามเกี่ยวกับผลประกอบการ การกำกับดูแลกิจการ หรือต้องการสมัครรับข่าวสารสำหรับนักลงทุน กรุณาติดต่องานนักลงทุนสัมพันธ์</p>
-    </div>
-    <div class="actions">
-      <a href="/th/investor-relations/contact" class="btn">กิจกรรมนักลงทุน</a>
-      <a href="/th/investor-relations/contact#ir-contact" class="btn primary">ติดต่อนักลงทุนสัมพันธ์ →</a>
-    </div>
-  </div>
-</section>
 
 @section Scripts {
     <script src="~/js/investors-bg.js"></script>
