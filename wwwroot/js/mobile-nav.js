@@ -3,7 +3,7 @@
  * ---------------------------------------------------------------------------
  * Progressive enhancement over the shared desktop header. Above 900px this is
  * inert (all injected chrome is display:none via _components.css). At ≤900px it:
- *   • injects a search button and a hamburger into the header CTA cluster (Contact stays visible)
+ *   • injects a search button (left of Contact) and a hamburger into the header CTA cluster
  *   • builds a half-width, right-docked DARK accordion panel from the EXISTING
  *     markup — each <a.hana-nav-link[data-menu]> becomes a row whose name links
  *     to its hub and whose chevron expands a clone of the matching
@@ -62,13 +62,14 @@
     burger.innerHTML = svg(I.burger);
     cta.appendChild(burger);
 
-    /* search button beside Contact: opens the panel with the search field focused */
+    /* search button to the left of Contact: opens the panel with the search field focused */
     var sbtn = document.createElement('button');
     sbtn.type = 'button';
     sbtn.className = 'hana-mnav-searchbtn';
     sbtn.setAttribute('aria-label', document.documentElement.lang === 'th' ? 'ค้นหา' : 'Search');
     sbtn.innerHTML = svg(I.search);
-    cta.insertBefore(sbtn, burger);
+    var contactBtn = cta.querySelector('a.hana-btn');
+    cta.insertBefore(sbtn, contactBtn && contactBtn.parentElement === cta ? contactBtn : burger);
 
     /* backdrop + panel */
     var backdrop = document.createElement('div');
