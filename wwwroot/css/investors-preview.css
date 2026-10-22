@@ -42,8 +42,6 @@ body { background: #fff; }
 
 /* ── e / f: refined A — one continuous background, richer hero, icon cards ── */
 .irp--rich .mk-hero { border-bottom: 0; }
-.irp--rich .irp-hero--text .mk-hero-in { padding-bottom: 48px; }
-.irp--rich .irp-hero--text .mk-lede { margin-bottom: 26px; }
 .irp-facts-wrap { position: relative; z-index: 1; padding-bottom: 8px; }
 .irp-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #fff; border: 1px solid var(--line);
   border-radius: 10px; overflow: hidden; }
@@ -93,6 +91,17 @@ body { background: #fff; }
 .irp--i .irp-facts, .irp--j .irp-facts, .irp--i .irp-cards .ir-card, .irp--j .irp-cards .ir-card { border-color: #CFDCEA; }
 .irp--i .feature-banner, .irp--j .feature-banner { border-top-color: #CFDCEA; border-right-color: #CFDCEA; border-bottom-color: #CFDCEA; }
 .irp--j .irp-cards .ir-card, .irp--j .feature-banner { box-shadow: 0 12px 30px -22px rgba(14, 40, 70, .4); }
+
+/* links in the cards: larger, in the site's Inter capitals instead of small monospace */
+.irp--rich .ic-cta, .irp--rich .fb-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: auto;
+  font-family: var(--font-text); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--hana-blue); }
+.irp--rich .ir-card:hover .ic-cta, .irp--rich .feature-body:hover .fb-cta { color: var(--hana-blue-deep); }
+.irp-cards .ir-card { padding-bottom: 22px; }
+/* tighter gap between the hero text and the Investor news card */
+.irp--rich .irp-hero--text .mk-hero-in { padding-bottom: 24px; }
+.irp--rich .irp-hero--text .mk-lede { margin-bottom: 0; }
+.irp--rich .irp-body-in { padding-top: 8px; }
 
 /* CTA card at the foot of the same background */
 .irp--rich .irp-cta-in { position: relative; z-index: 1; margin-top: 56px; }
