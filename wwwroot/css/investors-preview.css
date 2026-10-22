@@ -104,7 +104,9 @@ body { background: #fff; }
 .irp--rich .irp-body-in { padding-top: 8px; }
 
 /* CTA card at the foot of the same background */
-.irp--rich .irp-cta-in { position: relative; z-index: 1; margin-top: 56px; }
+.irp--rich .irp-cta-in { position: relative; z-index: 1; margin-top: 56px; margin-bottom: 0; }
+/* the space under the CTA card belongs to the blue background, not a white gap above the footer */
+.irp--rich .irp-body { padding-bottom: 64px; }
 
 @media (max-width: 900px) {
   .irp-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
