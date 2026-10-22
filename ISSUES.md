@@ -217,6 +217,24 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Fixed
 
+### 22 Oct 2026 (2nd) — RFID pages merged (Markets = product, Capabilities = process)
+
+- **One RFID capability page.** `/capabilities/rfid-smart-tags` now covers the shared process
+  (antenna and chip attach, reel-to-reel and encapsulation, encode and test) and links to the
+  Markets product pages. The two capability sub-pages are gone.
+- **One tire-tag page.** `/markets/rfid/rfid-tire-tags` is the only tire-tag page. It absorbed
+  the Automotive page's specifics (cure above 150°C, ISO 18000-63, antenna co-design FAQ) and the
+  capability page's quality FAQ. Tire tags are built in Lamphun and Ohio only (Rupert, 22 Oct).
+- **Permanent (301) redirects, new in `Program.cs`** — the developer must keep this block:
+  - `/capabilities/rfid-smart-tags/rfid-tire-tags` → `/markets/rfid/rfid-tire-tags`
+  - `/capabilities/rfid-smart-tags/rfid-inlays` → `/markets/rfid/rfid-tags-inlays`
+  - `/markets/automotive/rfid-tire-tags` → `/markets/rfid/rfid-tire-tags`
+- **Links updated:** header menu (EN/TH), Capabilities sidebar (RFID group now has one link,
+  "RFID Inlays & Tags"), Ohio/Jiaxing/Lamphun capability cards (Jiaxing's tire-tag link removed),
+  the process notes on four Markets RFID pages, the Automotive hub card, cutaway hotspot and
+  sub-page nav, the RFID hub FAQ, the site map and the search index.
+- **Thai menu label** "อินเลย์และแท็ก RFID" is new and has not been checked by a Thai reader.
+
 ### 22 Oct 2026 — Rupert's answers to the link audit
 
 - **Insights hub:** the ten cards for unwritten articles (and the MLCC update) are removed from

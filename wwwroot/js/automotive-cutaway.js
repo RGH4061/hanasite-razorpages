@@ -8,7 +8,7 @@
    Visitors who turn off motion in their device settings get the hover and click selection, with no tour. */
 (function () {
   var LINKS = { '1': '/markets/automotive/power-modules', '2': '/markets/automotive/automotive-pcba',
-                '3': '/markets/automotive/led-lighting', '4': '/markets/automotive/rfid-tire-tags',
+                '3': '/markets/automotive/led-lighting', '4': '/markets/rfid/rfid-tire-tags',
                 '5': '/markets/automotive/sensor-assembly' };
   var STEP = 3200;
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
