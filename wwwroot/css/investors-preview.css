@@ -65,6 +65,9 @@ body { background: #fff; }
   background: var(--hana-blue-tint); color: var(--hana-blue); margin-bottom: 4px; }
 .irp-ic svg { width: 19px; height: 19px; }
 .irp-cards .ic-title { font-size: 16.5px; }
+/* card descriptions: darker and larger for easier reading */
+.irp-cards .ic-desc { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+.irp--rich .fb-desc { font-size: 15px; color: var(--ink-2); }
 /* g: one Flow layer behind hero + body; the hero and body themselves stay transparent */
 .irp-canvas { position: relative; overflow: hidden; }
 .irp-canvas > .hana-bg-layer { background: linear-gradient(180deg, #F7F8FA 0%, #F1F5FA 30%, #EAF2FB 100%) !important; }
