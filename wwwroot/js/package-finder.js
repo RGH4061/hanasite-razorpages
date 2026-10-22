@@ -126,6 +126,7 @@
         <div class="pf-parse"></div>
         <div class="pf-filters">
           ${CATS.length > 1 ? `<div class="pf-fgroup pf-fgroup--wide"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>` : ""}
+          <div class="pf-fside">
           ${GRADES.length ? `<div class="pf-fgroup"><span class="pf-label">Automotive grade</span><div class="pf-chips pf-grades"></div></div>` : ""}
           <div class="pf-fgroup"><span class="pf-label">Largest body edge</span>
             <div class="pf-range"><input class="pf-size" type="range" min="1" max="${MAX_EDGE}" step="0.5" value="${MAX_EDGE}" aria-label="Largest body edge">
@@ -134,6 +135,7 @@
             <div class="pf-range"><input class="pf-thkr" type="range" min="0" max="${THK_STEPS.length}" step="1" value="${THK_STEPS.length}" aria-label="Maximum thickness">
             <span class="pf-rv pf-thkv">any</span></div></div>` : ""}
           <button class="pf-clear" type="button">Clear all</button>
+          </div>
         </div>
       </div>
       <div class="pf-count"></div>
