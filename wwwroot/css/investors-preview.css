@@ -67,6 +67,15 @@ body { background: #fff; }
   background: var(--hana-blue-tint); color: var(--hana-blue); margin-bottom: 4px; }
 .irp-ic svg { width: 19px; height: 19px; }
 .irp-cards .ic-title { font-size: 16.5px; }
+/* g: one Flow layer behind hero + body; the hero and body themselves stay transparent */
+.irp-canvas { position: relative; overflow: hidden; }
+.irp-canvas > .hana-bg-layer { background: linear-gradient(180deg, #F7F8FA 0%, #F1F5FA 30%, #EAF2FB 100%) !important; }
+.irp--g .mk-hero, .irp--h .mk-hero { background: transparent; }
+.irp--g .irp-body > .hana-bg-layer { display: none; }
+/* h: calm hero — soft gradient only, no lines; the body's Flow lines fade in below the key facts */
+.irp--h .mk-hero { background: linear-gradient(180deg, #F7F8FA 0%, #F3F6FA 100%); }
+.irp--h .irp-body > .hana-bg-layer { background: linear-gradient(180deg, #F3F6FA 0%, #EEF4FB 35%, #EAF2FB 100%) !important; }
+
 /* CTA card at the foot of the same background */
 .irp--rich .irp-cta-in { position: relative; z-index: 1; margin-top: 56px; }
 

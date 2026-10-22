@@ -11,6 +11,8 @@
        continuous background (hero grey fading to pale blue) with a faint grid texture; cards with
        icons and a hover lift; the CTA card sits at the foot of the same background
     f  as e, with the Flow lines continuing faintly into the body instead of the grid
+    g  as f, with one continuous Flow background behind the hero and the body together
+    h  as f, with a calm hero (soft gradient, no lines); the Flow lines start below the key facts
   Without ?irv the hub renders exactly as before. Remove this partial and investors-preview.css
   once a direction is chosen.
 *@
@@ -21,13 +23,18 @@
     var cardsBand = v == "d" ? "irp-band--white" : "irp-band--tint";
 }
 
-@if (v is "e" or "f")
+@if (v is "e" or "f" or "g" or "h")
 {
+    // which element carries the background pattern; the attribute is written only where one is set
+    string? heroBg = v is "e" or "f" ? "flow" : null;
+    string? bodyBg = v == "e" ? "grid" : v is "f" or "h" ? "flow" : null;
+    string? canvasBg = v == "g" ? "flow" : null;
 <div class="irp irp--@v irp--rich">
 
   <div class="mk-crumbbar irp-crumb"><div class="mk-wrap in"><a href="/">Home</a><span class="sep">&rsaquo;</span><span class="here">Investor Relations</span><span class="irp-updated">Updated <strong>14 May 2026</strong></span></div></div>
 
-  <section class="mk-hero irp-hero--text" data-hana-bg="flow" data-variant="light" data-fade="none">
+  <div class="irp-canvas" @Html.Raw(canvasBg != null ? "data-hana-bg=\"" + canvasBg + "\"" : "") data-variant="light" data-accent="cyan" data-fade="none">
+  <section class="mk-hero irp-hero--text" @Html.Raw(heroBg != null ? "data-hana-bg=\"" + heroBg + "\"" : "") data-variant="light" data-fade="none">
     <div class="mk-wrap mk-hero-in">
       <div>
         <span class="hero-accent" aria-hidden="true"></span>
@@ -49,7 +56,7 @@
     </div>
   </section>
 
-  <section class="irp-body" data-hana-bg="@(v == "e" ? "grid" : "flow")" data-variant="light" data-accent="cyan" data-fade="none">
+  <section class="irp-body" @Html.Raw(bodyBg != null ? "data-hana-bg=\"" + bodyBg + "\"" : "") data-variant="light" data-accent="cyan" data-fade="none">
     <div class="mk-wrap irp-body-in">
       <div class="feature-banner">
         <a class="feature-body" href="/investor-relations/news">
@@ -118,6 +125,7 @@
       </div>
     </section>
   </section>
+  </div>
 
 </div>
 }
