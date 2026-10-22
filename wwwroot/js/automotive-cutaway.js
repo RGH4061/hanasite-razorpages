@@ -119,7 +119,7 @@
         current = f ? n : null;
         fams.forEach(function (x) { x.item.setAttribute('aria-pressed', String(!!f && x === f)); });
         if (!f) { card.classList.remove('is-show'); drawLink(); return; }
-        var extra = f.ms.length > 1 ? '<span class="cnt">' + f.ms.length + ' locations shown on the vehicle</span>' : '';
+        var extra = f.ms.length > 1 ? '<span class="cnt">' + f.ms.length + ' sensor types shown on the vehicle</span>' : '';
         if (from && from.hasAttribute('data-fam')) extra = '<span class="loc">Selected: ' + txt(from, '.nm') + '</span>' + extra;
         card.innerHTML = '<span class="tag" style="color:' + f.color + '">' + f.tag + '</span>' +
           '<span class="nm">' + f.nm + '</span><span class="ds">' + f.ds + '</span>' + extra +
