@@ -21,11 +21,6 @@
       ~/js/mega-menu.js           header hover mega-menus
       ~/js/mobile-nav.js          ≤900px compact bar + slide-in accordion
 *@
-@{
-    // PREVIEW ONLY: Investor Relations subpage mock-ups (?irs=a|b|c), see below
-    var irsVariant = (string?)Context.Request.Query["irs"];
-    var irsOn = irsVariant is "a" or "b" or "c" && (Context.Request.Path.Value ?? "").StartsWith("/investor-relations/");
-}
 <!DOCTYPE html>
 @{ var motionProfile = ViewData["Motion"] as string; }
 <html lang="@(ViewData["Lang"] ?? "en")" @if (motionProfile != null) { <text>data-motion="@motionProfile"</text> }>
@@ -56,13 +51,6 @@
     <script src="~/js/vendor/lucide.min.js"></script>
 
     @await RenderSectionAsync("Head", required: false)
-    @* PREVIEW ONLY: ?irs=a|b|c on an Investor Relations subpage loads the subpage mock-ups
-       (css/investors-subpreview.css + js/investors-subpreview.js). Remove once a direction is chosen. *@
-    @if (irsOn)
-    {
-        <link rel="stylesheet" href="~/css/investors-subpreview.css" asp-append-version="true" />
-        <script>document.documentElement.classList.add('irs', 'irs-@irsVariant');</script>
-    }
 </head>
 <body style="margin:0; background:#fff; font-family:var(--font-text); -webkit-font-smoothing:antialiased;">
 
@@ -101,9 +89,5 @@
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
-    @if (irsOn)
-    {
-        <script src="~/js/investors-subpreview.js" asp-append-version="true"></script>
-    }
 </body>
 </html>
