@@ -1,0 +1,46 @@
+/* investors-preview.css — PREVIEW ONLY. Loaded on /investor-relations when ?irv=a|b|c|d is set
+   (Pages/Investors/_IrHubPreview.cshtml). Brings the IR hub in line with the rest of the site:
+   the market pages' light Flow hero, white / pale-blue section bands, no cropped Hana-mark
+   watermarks, and the site's closing call-to-action. Remove with the partial once a direction
+   is chosen. Loads after investors.css and market-page.css. */
+
+/* investors.css paints a fixed grey-blue gradient behind the whole page; the mock-ups use
+   white, with colour carried by the section bands */
+body { background: #fff; }
+
+/* crumb bar: white strip above the hero, as on the market pages, with the update date on the right */
+.irp-crumb { background: #fff; }
+.irp-updated { margin-left: auto; font-size: 12px; color: var(--ink-3); }
+.irp-updated strong { font-weight: 600; color: var(--ink-2); }
+
+/* Flow hero — same background as the market pages */
+.irp .mk-hero { background: #F7F8FA; border-bottom: 1px solid var(--line); }
+.irp .irp-hero--text .mk-hero-in { grid-template-columns: minmax(0, 1fr); padding-bottom: 56px; }
+.irp .irp-hero--text .mk-lede { max-width: 640px; margin-bottom: 0; }
+.irp .irp-hero--split .mk-hero-in { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); padding-bottom: 56px; }
+.irp .irp-hero--split .mk-lede { margin-bottom: 0; }
+/* SET price panel in the hero (variant b): a white card in place of the market pages' photo */
+.irp .irp-hero-panel { background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 18px 40px -28px rgba(14, 40, 70, .35); min-height: 300px; }
+
+/* section bands */
+.irp-band { position: relative; }
+.irp-band--white { background: #fff; }
+.irp-band--tint { background: #EAF2FB; }
+.irp-band > .mk-wrap { padding-top: 56px; padding-bottom: 56px; }
+.irp-sechead { margin-bottom: 22px; }
+
+/* hub components without the decorative Hana-mark watermarks */
+.irp .feature-banner { margin-bottom: 0; }
+.irp .feature-banner::before { display: none; }
+.irp .irp-feature-solo { grid-template-columns: 1fr; }
+.irp .ir-grid { gap: 16px; }
+
+/* closing call-to-action: market-page.css makes .mk-cta an inset rounded card (the site standard,
+   variants a, b, d); variant c shows it as a full-width band instead */
+.irp .irp-cta-full { width: 100%; max-width: none; margin: 0; border-radius: 0; }
+
+@media (max-width: 900px) {
+  .irp .irp-hero--split .mk-hero-in { grid-template-columns: minmax(0, 1fr); }
+  .irp-band > .mk-wrap { padding-top: 40px; padding-bottom: 40px; }
+}

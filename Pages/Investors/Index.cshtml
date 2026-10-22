@@ -6,9 +6,17 @@
     ViewData["Canonical"] = "https://www.hanagroup.com/investor-relations";
     ViewData["AltLang"] = "th";
     ViewData["AltLangUrl"] = "/th/investor-relations";
+    // PREVIEW: ?irv=a|b|c|d shows the hub mock-ups in _IrHubPreview.cshtml. Remove once a direction is chosen.
+    var irv = (string?)HttpContext.Request.Query["irv"];
+    var irPreview = irv is "a" or "b" or "c" or "d" ? irv : null;
 }
 @section Head {
     <link rel="stylesheet" href="~/css/investors.css" />
+    @if (irPreview != null)
+    {
+        <link rel="stylesheet" href="~/css/market-page.css" />
+        <link rel="stylesheet" href="~/css/investors-preview.css" />
+    }
     <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/investor-relations" />
     <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/investor-relations" />
     <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/investor-relations" />
@@ -16,6 +24,13 @@
 
 @* Investor Relations — Hana Microelectronics. Static content. *@
 
+@if (irPreview != null)
+{
+    <partial name="_IrHubPreview" model="irPreview" />
+}
+else
+{
+<text>
 <div class="hero-band">
   <canvas id="hero-topo"></canvas>
   <div class="hero-overlay"></div>
@@ -161,6 +176,8 @@
     </div>
   </div>
 </section>
+</text>
+}
 
 @section Scripts {
     <script src="~/js/investors-bg.js"></script>
