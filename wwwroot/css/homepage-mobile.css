@@ -98,17 +98,11 @@
     grid-template-areas: none !important;
     grid-auto-rows: 150px !important;
   }
+  /* ten equal tiles: five rows of two */
   .hana-markets-section .hana-market-tile { grid-area: auto !important; }
-  /* keep the two flagship tiles full-width for emphasis */
-  .hana-markets-section .hana-market-tile[aria-label="Automotive"],
-  .hana-markets-section .hana-market-tile[aria-label="Data Centers"] {
-    grid-column: span 2 !important;
-  }
 }
 @media (max-width: 460px) {
   .hana-markets-section [style*="grid-template-areas"] { grid-template-columns: 1fr !important; }
-  .hana-markets-section .hana-market-tile[aria-label="Automotive"],
-  .hana-markets-section .hana-market-tile[aria-label="Data Centers"] { grid-column: auto !important; }
 }
 
 /* ── Capabilities carousel: widen cards so they swipe nicely ─ */
