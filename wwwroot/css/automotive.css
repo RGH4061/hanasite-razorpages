@@ -503,3 +503,7 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
   .auto-spoke-grid.is-collapsed .auto-side .helper{display:block}
   .auto-side .s{box-sizing:border-box;min-height:44px;padding-top:12px;padding-bottom:12px}
 }
+
+/* While a product card is open (a family is selected), no marker tooltips: the card already
+   describes the selection, so hover would show the same text twice */
+.auto-cutaway.is-filtered .auto-marker .tip{opacity:0!important;visibility:hidden!important}
