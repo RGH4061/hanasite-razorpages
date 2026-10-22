@@ -42,7 +42,7 @@ body { background: #fff; }
 
 /* ── e / f: refined A — one continuous background, richer hero, icon cards ── */
 .irp--rich .mk-hero { border-bottom: 0; }
-.irp--rich .irp-hero--text .mk-hero-in { padding-bottom: 28px; }
+.irp--rich .irp-hero--text .mk-hero-in { padding-bottom: 48px; }
 .irp--rich .irp-hero--text .mk-lede { margin-bottom: 26px; }
 .irp-facts-wrap { position: relative; z-index: 1; padding-bottom: 8px; }
 .irp-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #fff; border: 1px solid var(--line);
