@@ -109,6 +109,9 @@
         var ax = Math.max(cl, Math.min(mx, cr)), ay = Math.max(ct, Math.min(my, cb));
         var dx = ax - mx, dy = ay - my, len = Math.sqrt(dx * dx + dy * dy), gap = m.width / 2 + 3;
         if (len <= gap + 6) { link.classList.remove('is-show'); return; }
+        // colour accent on the card edge the line arrives at
+        var edge = Math.abs(dy) >= Math.abs(dx) ? (ay <= ct ? 'top' : 'bottom') : (ax <= cl ? 'left' : 'right');
+        card.setAttribute('data-edge', edge);
         var ang = Math.atan2(dy, dx);
         link.style.left = (mx + Math.cos(ang) * gap) + 'px';
         link.style.top = (my + Math.sin(ang) * gap) + 'px';
