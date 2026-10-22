@@ -719,6 +719,8 @@ body {
   .hana-macc-body .hana-mega-group-heading { color: #7EC8FF !important; }
   .hana-macc-body .hana-spec-label[style] { color: rgba(126,200,255,0.85) !important; }
   .hana-macc-body .hana-link { color: #7EC8FF !important; }
+  /* group headings and "all …" links are links too: give them a usable tap height (were 15–17px) */
+  .hana-macc-body a.hana-mega-group-heading, .hana-macc-body a.hana-link { display: inline-flex !important; align-items: center; min-height: 36px; }
 
   /* ── Foot — search label + icon field + util links ──── */
   .hana-mnav-foot { flex: 0 0 auto; padding: 14px 20px 22px; border-top: 1px solid rgba(255,255,255,0.14); background: rgba(3,10,23,0.20); }

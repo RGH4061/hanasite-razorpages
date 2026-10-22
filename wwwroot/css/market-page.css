@@ -326,15 +326,26 @@ body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 /* CTA card in the content column follows the 32px content edge once the menu stacks */
 @media(max-width:980px){.mk-spoke-main .mk-cta{margin-left:32px;margin-right:32px}}
 
-/* Stacked side menu (tablet and phone, ≤980px): collapse folds the list up under its heading
-   instead of shrinking to the desktop rail of centred abbreviations (22 Oct 2026). */
+
+/* ── Stacked side menu: tablets and phones (≤980px), 22 Oct 2026 ─────────────────────────
+   Matches the Capabilities selector: a 48px bar (section name + 30px blue chevron) that is
+   the whole tap target, folded by default; section-menu.js adds .is-expanded and slides the
+   list. The bar stays put when the list opens or closes. The desktop rail and its
+   .is-collapsed state are unchanged. */
 @media(max-width:980px){
-  .mk-spoke-grid.is-collapsed .mk-side{padding-top:10px;padding-bottom:10px}
-  .mk-spoke-grid.is-collapsed .side-head{justify-content:space-between;padding-left:var(--side-g);padding-right:var(--side-g);padding-bottom:0;border-bottom:0;margin-bottom:0}
+  .mk-side{padding:0}
+  .mk-side .side-head{box-sizing:border-box;min-height:48px;margin:0;padding:9px var(--side-g);justify-content:space-between;border-bottom:0;cursor:pointer;font-size:11px;letter-spacing:.08em}
+  .mk-spoke-grid.is-expanded .mk-side .side-head{box-shadow:inset 0 -1px 0 var(--line)}
+  .mk-spoke-grid.is-collapsed .side-head{justify-content:space-between;padding:9px var(--side-g)}
   .mk-spoke-grid.is-collapsed .side-head-label{display:block}
-  .mk-spoke-grid .mk-side-toggle .chev{transform:rotate(-90deg)}
-  .mk-spoke-grid.is-collapsed .mk-side-toggle .chev{transform:rotate(90deg)}
-  .mk-spoke-grid.is-collapsed .mk-side .s,.mk-spoke-grid.is-collapsed .mk-side .helper{display:none}
+  .mk-side .mk-side-toggle{width:30px;height:30px;min-height:30px!important;border:0;border-radius:4px;background:var(--hana-blue);color:#fff}
+  .mk-side .mk-side-toggle .chev{transform:rotate(90deg)!important}
+  .mk-spoke-grid.is-expanded .mk-side .mk-side-toggle .chev{transform:rotate(-90deg)!important}
+  .mk-spoke-grid:not(.is-expanded) .mk-side > :not(.side-head){display:none}
+  .mk-side .side-body{padding:8px 0 24px}
+  .mk-spoke-grid.is-collapsed .mk-side .s{justify-content:flex-start;gap:10px;padding:12px var(--side-g) 12px calc(var(--side-g) - 2px)}
+  .mk-spoke-grid.is-collapsed .mk-side .s .label{display:inline}
+  .mk-spoke-grid.is-collapsed .mk-side .s .abbr{display:none}
+  .mk-spoke-grid.is-collapsed .mk-side .helper{display:block}
+  .mk-side .s{box-sizing:border-box;min-height:44px;padding-top:12px;padding-bottom:12px}
 }
-/* phones: the toggle is a 40px tap target, so the folded bar needs less padding */
-@media(max-width:640px){ .mk-spoke-grid.is-collapsed .mk-side{padding-top:4px;padding-bottom:4px} }

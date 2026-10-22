@@ -120,11 +120,17 @@
         tog.addEventListener('click', function () {
           var open = !li.classList.contains('is-open');
           acc.querySelectorAll('.hana-macc-item.is-open').forEach(function (o) {
+            var ob = o.querySelector('.hana-macc-body');
             o.classList.remove('is-open');
-            o.querySelector('.hana-macc-body').hidden = true;
             o.querySelector('.hana-macc-tog').setAttribute('aria-expanded', 'false');
+            /* the section being closed slides shut (section-menu.js); others close at once */
+            if (o === li && window.hanaFold) window.hanaFold(ob, false, function () { if (!o.classList.contains('is-open')) ob.hidden = true; });
+            else ob.hidden = true;
           });
-          if (open) { li.classList.add('is-open'); body.hidden = false; tog.setAttribute('aria-expanded', 'true'); }
+          if (open) {
+            li.classList.add('is-open'); body.hidden = false; tog.setAttribute('aria-expanded', 'true');
+            if (window.hanaFold) window.hanaFold(body, true);
+          }
         });
       } else {
         li.appendChild(row);
