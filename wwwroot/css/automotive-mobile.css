@@ -1,23 +1,14 @@
 /* automotive-mobile.css — Automotive hub cutaway on phones and tablets (pairs with js/automotive-cutaway.js).
-   A tapped marker opens the product card below the car; a line in the product's colour runs from
-   the marker on the car down to the card. Tooltips over the car are switched off at these widths.
+   A tapped marker opens the product card below the car (the connector line is styled in
+   automotive.css). Tooltips over the car are switched off at these widths.
    Kept separate from automotive.css while that file has other work in progress; fold in later. */
 @media (max-width: 900px) {
   .auto-hero .auto-marker:hover .tip,
   .auto-hero .auto-marker.is-active .tip,
   .auto-hero .auto-marker.is-open .tip { opacity: 0 !important; visibility: hidden !important; }
 
-  .auto-link { position: absolute; z-index: 6; width: 2px; margin-left: -1px; border-radius: 2px;
-    background: var(--lc, #19C6E6); box-shadow: 0 0 8px var(--lc, #19C6E6);
-    opacity: 0; transition: opacity .3s ease; pointer-events: none; }
-  .auto-link.is-show { opacity: .95; }
-  .auto-link::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 8px;
-    border-radius: 50%; background: var(--lc, #19C6E6); transform: translateX(-50%); }
-
-  .auto-hero .auto-card.is-show { border-top: 3px solid var(--lc, #19C6E6); }
   /* the tapped sensor-location dot: ringed in its colour and slightly larger */
   .auto-marker.is-picked { z-index: 22; }
   .auto-marker.is-picked .dot { transform: scale(1.6) !important;
     box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--mc, #FF883E), 0 0 14px var(--mc, #FF883E) !important; }
 }
-@media (min-width: 901px) { .auto-link { display: none; } }
