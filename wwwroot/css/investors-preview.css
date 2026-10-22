@@ -40,7 +40,40 @@ body { background: #fff; }
    variants a, b, d); variant c shows it as a full-width band instead */
 .irp .irp-cta-full { width: 100%; max-width: none; margin: 0; border-radius: 0; }
 
+/* ── e / f: refined A — one continuous background, richer hero, icon cards ── */
+.irp--rich .mk-hero { border-bottom: 0; }
+.irp--rich .irp-hero--text .mk-hero-in { padding-bottom: 28px; }
+.irp--rich .irp-hero--text .mk-lede { margin-bottom: 26px; }
+.irp-facts-wrap { position: relative; z-index: 1; padding-bottom: 8px; }
+.irp-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #fff; border: 1px solid var(--line);
+  border-radius: 10px; overflow: hidden; }
+.irp-facts > div { padding: 16px 22px; border-right: 1px solid var(--line); }
+.irp-facts > div:last-child { border-right: 0; }
+.irp-facts .l { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.irp-facts b { font-family: var(--font-display); font-size: 19px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
+/* body: hero grey fading to pale blue, with a faint texture */
+.irp-body { position: relative; overflow: hidden; }
+.irp-body > .hana-bg-layer { background: linear-gradient(180deg, #F7F8FA 0%, #EEF4FB 40%, #EAF2FB 100%) !important; }
+.irp-body > .hana-bg-layer > svg { opacity: .55; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 100%); mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 100%); }
+.irp-body-in { position: relative; z-index: 1; padding-top: 32px; padding-bottom: 8px; }
+.irp--rich .feature-banner { box-shadow: 0 14px 34px -26px rgba(14, 40, 70, .35); }
+.irp--rich .irp-sechead { margin-top: 48px; }
+/* section cards: icon, full border, hover lift */
+.irp-cards { gap: 18px; }
+.irp-cards .ir-card { border-left: 1px solid var(--line); background: #fff; gap: 10px; padding: 22px 22px 20px;
+  transition: transform .3s cubic-bezier(.16,.84,.3,1), box-shadow .3s, border-color .3s; }
+.irp-cards .ir-card:hover { transform: translateY(-2px); border-color: #B8D2EC; background: #fff; box-shadow: 0 12px 28px -18px rgba(14, 40, 70, .35); }
+.irp-ic { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 9px;
+  background: var(--hana-blue-tint); color: var(--hana-blue); margin-bottom: 4px; }
+.irp-ic svg { width: 19px; height: 19px; }
+.irp-cards .ic-title { font-size: 16.5px; }
+/* CTA card at the foot of the same background */
+.irp--rich .irp-cta-in { position: relative; z-index: 1; margin-top: 56px; }
+
 @media (max-width: 900px) {
+  .irp-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .irp-facts > div:nth-child(2) { border-right: 0; }
+  .irp-facts > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .irp .irp-hero--split .mk-hero-in { grid-template-columns: minmax(0, 1fr); }
   .irp-band > .mk-wrap { padding-top: 40px; padding-bottom: 40px; }
 }
