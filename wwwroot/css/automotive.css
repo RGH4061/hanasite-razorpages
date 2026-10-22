@@ -479,3 +479,16 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
 }
 /* A hovered legend item's tooltip shows above the detail card instead of behind it */
 .auto-cutaway .auto-marker.is-active { z-index: 31; }
+
+/* Stacked side menu (tablet and phone, ≤980px): collapse folds the list up under its heading
+   instead of shrinking to the desktop rail of centred abbreviations (22 Oct 2026). */
+@media(max-width:980px){
+  .auto-spoke-grid.is-collapsed .auto-side{padding-top:10px;padding-bottom:10px}
+  .auto-spoke-grid.is-collapsed .side-head{justify-content:space-between;padding-left:var(--side-g);padding-right:var(--side-g);padding-bottom:0;border-bottom:0;margin-bottom:0}
+  .auto-spoke-grid.is-collapsed .side-head-label{display:block}
+  .auto-spoke-grid .side-toggle .chev{transform:rotate(-90deg)}
+  .auto-spoke-grid.is-collapsed .side-toggle .chev{transform:rotate(90deg)}
+  .auto-spoke-grid.is-collapsed .auto-side .s,.auto-spoke-grid.is-collapsed .auto-side .helper{display:none}
+}
+/* phones: the toggle is a 40px tap target, so the folded bar needs less padding */
+@media(max-width:640px){ .auto-spoke-grid.is-collapsed .auto-side{padding-top:4px;padding-bottom:4px} }

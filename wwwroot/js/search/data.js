@@ -31,7 +31,7 @@ const TERMS = {
 "/locations/cambodia/koh-kong/":"koh kong cambodia",
 "/locations/thailand/ayutthaya/":"ayutthaya thailand osat ic assembly ems pcba",
 "/locations/thailand/lamphun/":"lamphun thailand ems pcba",
-"/locations/usa/ohio/":"solon ohio usa rfid"
+"/locations/usa/ohio/":"solon ohio usa rfid iatf 16949 automotive"
 };
 
 
@@ -93,7 +93,7 @@ const CAPTERMS = {
 "/locations/china/jiaxing/":"jiaxing, china, zhejiang, ems, pcba, smt, cob, cof, rfid inlay, inlay lines, ic packaging, flip chip, power discrete, power modules, led packaging, hybrid modules, jdm, medical line, automotive line, iso 13485, iatf 16949, iecq qc 080000, iso 27001",
 "/locations/thailand/ayutthaya/":"ayutthaya, ayt, thailand, hana semiconductor, osat, ems, electronics manufacturing services, pcba, ic assembly, ic packaging, semiconductor packaging, test, final test, wafer probe, burn-in, opto coupler, solid state relay, proximity sensor, high voltage isolation, mixed signal, logic, memory, rf, ultra-small packages, iso 13485, iatf 16949, iso 27001, ansi/esd",
 "/locations/thailand/lamphun/":"lamphun, lpn, thailand, northern thailand, chiang mai, ems, pcba, smt, cob, chip on board, cof, hybrid assembly, flip chip, led packaging, clear qfn, micromechanical, automotive sensors, millimetre wave, industrial meters, medical devices, iso 13485, iatf 16949",
-"/locations/usa/ohio/":"ohio, solon, twinsburg, usa, united states, america, north america, hana technologies, rfid inlay, uhf inlay, hf inlay, strap, arc certified, itar, defence, defense"
+"/locations/usa/ohio/":"ohio, solon, twinsburg, usa, united states, america, north america, hana technologies, iatf 16949, automotive, rfid inlay, uhf inlay, hf inlay, strap, arc certified, itar, defence, defense"
 };
 Object.assign(TERMS, CAPTERMS);
 const NOROW_TERMS = {};
@@ -188,7 +188,8 @@ const CERTS = [
    {s:"ayt",num:"TH06/3318 IATF0534357",body:"SGS",date:"renewed Jul 2024"},
    {s:"lpn",num:"TH10/5266.01",body:"SGS",date:"renewed Aug 2024"},
    {s:"jx", num:"CN038585-IATF/430177",body:"BV",date:"renewed Sep 2024"},
-   {s:"kk", num:"—",body:"—",date:"",unconfirmed:1,note:"listed in the 2026 deck but not on the plant's cert table — confirm"}]},
+   {s:"kk", num:"—",body:"—",date:"",unconfirmed:1,note:"listed in the 2026 deck but not on the plant's cert table — confirm"},
+   {s:"oh", num:"—",body:"—",date:"",unconfirmed:1,note:"IATF 16949 confirmed by Rupert 22 Oct 2026 — certificate number and dates not yet supplied"}]},
 
  {id:"ISO 9001", full:"ISO 9001:2015", scope:"Quality management",
   alias:"9001 quality management",
