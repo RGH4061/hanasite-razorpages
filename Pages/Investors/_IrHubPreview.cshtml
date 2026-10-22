@@ -27,7 +27,7 @@
 
 @if (v is "e" or "f" or "g" or "h" or "i" or "j")
 {
-    // which element carries the background pattern; the attribute is written only where one is set
+    // which element carries the background pattern ("off" = none; hana-backgrounds.js skips unknown names)
     string? heroBg = v is "e" or "f" ? "flow" : null;
     string? bodyBg = v == "e" ? "grid" : v is "f" or "h" or "i" or "j" ? "flow" : null;
     string? canvasBg = v == "g" ? "flow" : null;
@@ -35,8 +35,8 @@
 
   <div class="mk-crumbbar irp-crumb"><div class="mk-wrap in"><a href="/">Home</a><span class="sep">&rsaquo;</span><span class="here">Investor Relations</span><span class="irp-updated">Updated <strong>14 May 2026</strong></span></div></div>
 
-  <div class="irp-canvas" @Html.Raw(canvasBg != null ? "data-hana-bg=\"" + canvasBg + "\"" : "") data-variant="light" data-accent="cyan" data-fade="none">
-  <section class="mk-hero irp-hero--text" @Html.Raw(heroBg != null ? "data-hana-bg=\"" + heroBg + "\"" : "") data-variant="light" data-fade="none">
+  <div class="irp-canvas" data-hana-bg="@(canvasBg ?? "off")" data-variant="light" data-accent="cyan" data-fade="none">
+  <section class="mk-hero irp-hero--text" data-hana-bg="@(heroBg ?? "off")" data-variant="light" data-fade="none">
     <div class="mk-wrap mk-hero-in">
       <div>
         <span class="hero-accent" aria-hidden="true"></span>
@@ -48,10 +48,9 @@
         </div>
       </div>
     </div>
-    </div>
   </section>
 
-  <section class="irp-body" @Html.Raw(bodyBg != null ? "data-hana-bg=\"" + bodyBg + "\"" : "") data-variant="light" data-accent="cyan" data-fade="none">
+  <section class="irp-body" data-hana-bg="@(bodyBg ?? "off")" data-variant="light" data-accent="cyan" data-fade="none">
     <div class="mk-wrap irp-body-in">
       <div class="feature-banner">
         <a class="feature-body" href="/investor-relations/news">

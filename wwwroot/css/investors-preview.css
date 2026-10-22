@@ -79,6 +79,11 @@ body { background: #fff; }
 .irp--i .mk-hero { background: linear-gradient(180deg, #EEF3F9 0%, #E8EFF8 100%); }
 .irp--i .irp-body > .hana-bg-layer { background: linear-gradient(180deg, #E8EFF8 0%, #E1EBF7 40%, #D9E6F4 100%) !important; }
 .irp--i .irp-body > .hana-bg-layer > svg { opacity: .8; }
+/* i: the Flow lines start 20% higher, rising into the lower part of the hero (behind its text) */
+.irp--i .irp-body { overflow: visible; }
+.irp--i .irp-body > .hana-bg-layer { overflow: visible !important; }
+.irp--i .irp-body > .hana-bg-layer > svg { transform: translateY(-20%); }
+.irp--i { overflow: hidden; }
 .irp--i .irp-crumb { background: #F7FAFD; }
 /* j: a step deeper */
 .irp--j .mk-hero { background: linear-gradient(180deg, #E6EEF8 0%, #DEE8F5 100%); }
