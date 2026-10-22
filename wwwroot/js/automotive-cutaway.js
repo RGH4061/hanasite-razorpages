@@ -7,9 +7,18 @@
      family once and returns to "All". Any hover, click or key press in the hero ends it.
    Visitors who turn off motion in their device settings get the hover and click selection, with no tour. */
 (function () {
-  var LINKS = { '1': '/markets/automotive/power-modules', '2': '/markets/automotive/automotive-pcba',
-                '3': '/markets/automotive/led-lighting', '4': '/markets/rfid/rfid-tire-tags',
-                '5': '/markets/automotive/sensor-assembly' };
+  // Each family's product page. The address is taken from the matching product card on the page,
+  // so it stays correct after publishing to the static preview (where links are rewritten to
+  // flat .html files); the Razor route is the fallback.
+  var SLUGS = { '1': 'power-modules', '2': 'automotive-pcba', '3': 'led-lighting',
+                '4': 'rfid-tire-tags', '5': 'sensor-assembly' };
+  var ROUTES = { '1': '/markets/automotive/power-modules', '2': '/markets/automotive/automotive-pcba',
+                 '3': '/markets/automotive/led-lighting', '4': '/markets/rfid/rfid-tire-tags',
+                 '5': '/markets/automotive/sensor-assembly' };
+  function productHref(n) {
+    var a = document.querySelector('.auto-pcard[href*="' + SLUGS[n] + '"]');
+    return a ? a.getAttribute('href') : ROUTES[n];
+  }
   var STEP = 3200;
   var narrow = window.matchMedia('(max-width: 900px)');   // phones and tablets: card below the car, no tooltips
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -136,7 +145,7 @@
         markers.forEach(function (m) { m.classList.toggle('is-picked', m === picked); });
         card.innerHTML = '<span class="tag" style="color:' + f.color + '">' + f.tag + '</span>' +
           '<span class="nm">' + (picked ? txt(picked, '.nm') : f.nm) + '</span><span class="ds">' + f.ds + '</span>' + extra +
-          '<a class="cta" href="' + LINKS[n] + '">Explore product <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>';
+          '<a class="cta" href="' + productHref(n) + '">Explore product <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>';
         if (window.lucide && lucide.createIcons) lucide.createIcons();
         card.classList.add('is-show');
         drawLink();
@@ -146,13 +155,14 @@
       // Guided tour
       var timers = [], touring = false;
       function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-      function stopTour() {
+      function stopTour(e) {
         if (!touring) return;
         touring = false;
         timers.forEach(clearTimeout); timers = [];
         stage.classList.remove('is-intro');
         markers.forEach(function (m) { m.classList.add('is-in'); });
-        select(null);
+        // a touch or click inside the open card keeps it, so its "Explore product" link can be used
+        if (!(e && e.target && card.contains(e.target))) select(null);
       }
       function startTour() {
         touring = true;
@@ -169,6 +179,7 @@
         root.addEventListener(ev, stopTour, { passive: true });
       });
       stage.addEventListener('mouseenter', stopTour);
+      card.addEventListener('mouseenter', stopTour);   // pointing at the card ends the tour and keeps the card
       root.querySelector('.auto-legend').addEventListener('mouseenter', stopTour);
 
       if (still || !('IntersectionObserver' in window)) return;
