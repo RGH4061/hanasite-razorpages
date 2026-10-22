@@ -1,3 +1,8 @@
+@{
+    // On Thai pages, footer links open the Thai version where one exists.
+    var thai = (string?)ViewData["Lang"] == "th";
+    string L(string path) => thai ? (path == "/" ? "/th" : "/th" + path) : path;
+}
 <footer class="hana-footer" style="font-family:var(--font-text);">
     <div class="mm-strip" data-hana-geo="strip" data-geo-theme="midnight" aria-hidden="true" style="height:40px;"></div>
 
@@ -11,7 +16,7 @@
 
             
             <div>
-                <a href="/" aria-label="Hana Microelectronics — home">
+                <a href="@L("/")" aria-label="Hana Microelectronics — home">
                     <img src="~/images/hana-logo-full-trimmed.webp" alt="Hana"
                          width="200" height="65"
                          style="display:block; object-fit:contain; object-position:left center;" />
@@ -96,8 +101,8 @@
                     <li><a href="/about"          style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">About</a></li>
                     <li><a href="/about" style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Why Hana</a></li>
                     <li><a href="/locations"      style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Locations</a></li>
-                    <li><a href="/investor-relations/esg" style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Sustainability</a></li>
-                    <li><a href="/careers"        style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Careers</a></li>
+                    <li><a href="@L("/investor-relations/esg")" style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Sustainability</a></li>
+                    <li><a href="@L("/careers")"        style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Careers</a></li>
                 </ul>
             </div>
 
@@ -108,12 +113,12 @@
                              color:var(--ink); margin-bottom:12px;">Investors</div>
                 <ul style="list-style:none; margin:0; padding:0;
                             display:flex; flex-direction:column; gap:5px;">
-                    <li><a href="/investor-relations"             style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">SET: HANA</a></li>
-                    <li><a href="/investor-relations/news"  style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Investor news</a></li>
-                    <li><a href="/investor-relations/annual"      style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Annual reports</a></li>
-                    <li><a href="/investor-relations/governance"  style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Governance</a></li>
-                    <li><a href="/investor-relations/faq"         style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">FAQ &amp; Knowledge Hub</a></li>
-                    <li><a href="/investor-relations/contact"     style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">IR contact</a></li>
+                    <li><a href="@L("/investor-relations")"             style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">SET: HANA</a></li>
+                    <li><a href="@L("/investor-relations/news")"  style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Investor news</a></li>
+                    <li><a href="@L("/investor-relations/annual")"      style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Annual reports</a></li>
+                    <li><a href="@L("/investor-relations/governance")"  style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">Governance</a></li>
+                    <li><a href="@L("/investor-relations/faq")"         style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">FAQ &amp; Knowledge Hub</a></li>
+                    <li><a href="@L("/investor-relations/contact")"     style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">IR contact</a></li>
                 </ul>
             </div>
 
@@ -132,7 +137,7 @@
 
             <nav aria-label="Legal links"
                  style="display:flex; gap:22px; list-style:none; margin:0; padding:0;">
-                <a href="/privacy-policy"  style="color:inherit; text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color=''">Privacy</a>
+                <a href="@L("/privacy-policy")"  style="color:inherit; text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color=''">Privacy</a>
                 <a href="/terms-of-use"    style="color:inherit; text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color=''">Terms</a>
                 <a href="/cookie-policy"  style="color:inherit; text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color=''">Cookies</a>
                 <a href="/sitemap"  style="color:inherit; text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color=''">Sitemap</a>

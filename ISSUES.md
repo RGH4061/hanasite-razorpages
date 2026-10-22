@@ -22,38 +22,16 @@ A screenshot or the prototype filename it should match is ideal but not required
     not confirmed to be Ohio). Needs a real Solon production-floor photo.
   - **Product placeholders still showing:** Ohio "Infrared lens housings" and Koh Kong
     "Cable & wire harnesses" product cards have no photo.
-- [ ] **Link and button audit, 21 Oct 2026 — needs a destination, an address or a decision.**
-  See Fixed, 21 Oct (3rd) for what was checked and changed.
-  - **Links still `href="#"`:** Insights hub cards for the 11 articles not yet written (including
-    the featured "How RFID inlays are manufactured and tested" and the "MLCC supply shift" update;
-    the memory-prices article links its MLCC mention to the hub); Koh Kong "In-line AOI & SPI" (no
-    capability page); Careers "Recruiting FAQ" (no page); on the job post, "recruit@hanabk.th.com"
-    (text in a `#` link, not a `mailto:`) and the Indeed, LinkedIn, JobsDB, JobStreet and
-    Glassdoor buttons; the Thai IR Events "ลงทะเบียนเข้าร่วม" (register) link, which the English
-    page does not have.
-  - **Thai navigation:** on the Thai pages the header menu, logo, breadcrumbs and footer open the
-    English pages, including the 16 that have a Thai version.
-  - **Destinations to confirm:** all seven vacancies open the same sample job post; Insights
-    related-article cards open the hub; "Manufacturing in Thailand" (Thailand semiconductor
-    strategy article) opens Ayutthaya only; Jiaxing "Ultra-small Packages & SiP" opens Ultra-small
-    packages only (a System-in-Package page exists); "Work with us" opens `/contact` on nine market
-    sub-pages and `/contact/rfq` on Koh Kong; footer "About" and "Why Hana" both open `/about`; the
-    Industrial & IoT hub has no card for RFID asset tracking (reachable from the side menus and
-    the sitemap only); the "Sensors & Optical" card opens MEMS sensor assembly on Lamphun and
-    Ayutthaya but the Optical & sensors market hub on Ohio.
-  - **Contact details that differ from hanagroup.com:** the two IR contact addresses here follow
-    the `name.initial@hanagroup.com` placeholder pattern (introduced by an export sync) and do not
-    match the live IR contact page; the live Contact page also lists a German sales mobile number
-    that this site does not.
-  - **Ohio external links:** three Hana Technologies sites (hana.family, hanarfid.com, and
-    hana-micro.com, which forwards to hanarfid.com/micro) and kewlabstech.com on the wireless
-    charging card. All load; confirm which should be linked.
-  - **Cheongju (dormant):** the Powermaster product links do not respond. No action while the
-    page is off the site.
-  - **IR documents:** `/File/ViewDoc/3145` (Thai Financial Statements 2021, NEWS-041) returns
-    HTTP 500 on hanagroup.com; the other 683 linked documents open. On the GitHub Pages preview
-    every document link returns 404 because the files exist only on hanagroup.com; the preview
-    build could point them at hanagroup.com.
+- [ ] **Link and button audit, 21 Oct 2026 — still open after Rupert's answers (22 Oct).**
+  See Fixed, 22 Oct for what his answers changed.
+  - **Job post:** "recruit@hanabk.th.com" and the five job-board buttons stay `href="#"` until the
+    real vacancies exist; Rupert will supply the recruitment address.
+  - **Insights:** the "How RFID inlays are manufactured and tested" card (featured) is kept as the
+    template for SEO work and still has no article page.
+  - **Ohio placeholder photo:** "Infrared lens housings" uses the Ayutthaya lens-housing product
+    photo (also the Sensors & Optical card image) until an Ohio photo is available.
+  - Prototype-only by decision: all vacancies open one sample job post; related-article cards open
+    the hub. IR document links stay pointed at hanagroup.com (correct at go-live).
 - [ ] **Desktop page widths differ by section (decision).** Header, About, IR, Careers, Insights
   and Contact use a 1080 px column; Markets and Locations use 1240 px. At 1440 px the header logo
   starts at x = 212 and Markets/Locations content at x = 132. Consistent within each section, so
@@ -238,6 +216,32 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 22 Oct 2026 — Rupert's answers to the link audit
+
+- **Insights hub:** the ten cards for unwritten articles (and the MLCC update) are removed from
+  `insights-hub.js` (Razor and the preview's own copy); the featured RFID inlays card stays as the
+  SEO template.
+- **Koh Kong:** the two capability cards (one with a dead "In-line AOI & SPI" link) are replaced by
+  one wide card, "PCBA, Box Build & Micro-Assembly", linking SMT, COB, Box build, Micro-assembly
+  and NPI, with the green PCB photo; photo above the text on phones. "Work with us" opens
+  `/contact` like the market pages.
+- **Thai IR Events:** the "ลงทะเบียนเข้าร่วม" (register) link is removed; registrations are by
+  invitation.
+- **Jiaxing:** "Ultra-small Packages & SiP" is split into two links, Ultra-small Packages and
+  System-in-Package (SiP).
+- **Ohio:** hero button replaced by two labelled buttons, "Hana Technologies — RFID"
+  (hanarfid.com) and "Hana Technologies — EMS" (hana-micro.com); the Sensors & Optical card opens
+  Camera modules; "Infrared lens housings" has a photo (see Open).
+- **IR contact (EN/TH):** addresses now `jirapak@hanabk.th.com` and `penpimol_k@hanabk.th.com`,
+  as on the live site.
+- **Contact, RFQ, Thai Contact:** the Germany office now shows Frank's number, +49 172 3830507.
+- **Thai pages stay in Thai (Rupert, 22 Oct):** on Thai pages the header menu, logo, phone menu,
+  breadcrumbs, in-page links and footer open the Thai version wherever one exists (16 pages);
+  only the "EN" switch opens English. Footer uses a small `L()` helper keyed on
+  `ViewData["Lang"]`; `_HeaderTh` and `Pages/ThaiPages` links are written as `/th/…`.
+- **Thailand semiconductor strategy article:** "Manufacturing in Thailand" opens `/locations`
+  (was Ayutthaya only).
 
 ### 21 Oct 2026 (3rd) — link and button audit + Careers "Life at" tabs
 
