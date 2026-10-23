@@ -99,7 +99,7 @@
   .ms-geo-main > p{font-family:var(--font-text);font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.78);margin:0 0 20px;max-width:520px;}
   .ms-geo-acts{display:flex;flex-wrap:wrap;gap:10px;}
   .ms-geo-find{background:#fff;border-radius:var(--radius-card);padding:20px 22px 22px;margin-top:26px;max-width:480px;box-shadow:0 10px 30px rgba(3,10,23,.25);}
-  .ms-geo-find label{display:block;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink);margin:0 0 4px;}
+  .ms-geo-find label{display:block;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink);margin:0 0 12px;}
   .ms-geo-find p{font-family:var(--font-text);font-size:13px;line-height:1.5;color:var(--ink-2);margin:0 0 14px;}
   .ms-geo-field{display:flex;gap:8px;}
   .ms-geo-field input{flex:1;min-width:0;font-family:var(--font-mono);font-size:14px;padding:11px 12px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:#fff;}
@@ -159,8 +159,7 @@
     <p>The same assembly processes are used for different end uses. These pages cover each application.</p>
     <div class="ms-geo-acts"><a href="/markets/automotive/sensor-assembly" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Automotive sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/medical/mems-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Medical MEMS &amp; sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/consumer/smt-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Consumer sensor assembly <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/optical-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Optical &amp; sensors market <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
     <form class="ms-geo-find" action="/capabilities/osat/package-finder" method="get" role="search">
-      <label for="ms-find-q">Find a package by size</label>
-      <p>Search the full package reference by body size, family or lead count.</p>
+      <label for="ms-find-q">Find a package by size or type</label>
       <div class="ms-geo-field"><input id="ms-find-q" name="q" type="search" placeholder="5x5, DFN" autocomplete="off" /><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
     </form>
   </div>
