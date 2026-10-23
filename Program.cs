@@ -27,6 +27,9 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     // the Power Management hub stays as the market page.
     ["/markets/power-management/igbt-sic-modules"]   = "/capabilities/osat/power-packages#power-modules",
     ["/markets/power-management/power-discrete"]     = "/capabilities/osat/power-packages#power-discretes",
+    // Sensor merge, 23 Oct 2026: MEMS & Optical Sensor Packages folds into the MEMS & Sensor
+    // Assembly capability page; the Optical & Sensors hub stays as the market page.
+    ["/markets/optical-sensors/mems-sensors"]        = "/capabilities/microelectronic-assembly/mems-sensor-assembly#sensor-packages",
 };
 app.Use(async (context, next) =>
 {

@@ -1,8 +1,8 @@
 @page "/markets/automotive/sensor-assembly"
 @{
-    ViewData["Title"] = "Automotive Sensor Assembly";
+    ViewData["Title"] = "Automotive Sensor Assembly: LiDAR & Pressure Packages";
     ViewData["Motion"] = "market";
-    ViewData["Description"] = "Hana assembles MEMS and optical automotive sensors for ADAS, LiDAR and in-cabin sensing — stress-managed, cavity-packaged and automotive-qualified, in controlled environments in Thailand and China.";
+    ViewData["Description"] = "Automotive sensor assembly at Hana for ADAS, LiDAR, pressure and in-cabin sensing: open-cavity LiDAR packages and oil pressure and cavity pressure sensor packages, automotive-qualified and built in Thailand and China.";
     ViewData["Canonical"] = "https://www.hanagroup.com/markets/automotive/sensor-assembly";
 
     var finderUrl = "/capabilities/osat/package-finder?cat=Sensor%20packages";
@@ -19,13 +19,9 @@
         new { img = "oil-pressure-dfn",    name = "Oil pressure sensor package", pkg = "W32 DFN, 4 leads",   size = "7 × 8.4 mm",  build = "Pre-molded package using film-assisted molding (FAM)" },
         new { img = "pressure-cavity-qfn", name = "Pressure sensor package",     pkg = "Cavity QFN",         size = "5 × 5 mm",    build = "Lid attach, with a port hole in the lid" }
     };
-    var relatedSensors = new[] {
-        new { img = "humidity-temp-soic", name = "Humidity and temperature sensor package", pkg = "SOIC, 8 leads", size = "",             build = "Open cavity packaging" },
-        new { img = "humidity-dfn",       name = "Humidity sensor package",                 pkg = "DFN",           size = "2.5 × 2.5 mm", build = "Open cavity packaging" }
-    };
     var faq = new[] {
-        new { q = "What sensor types can Hana assemble?", a = "Hana supports MEMS-based pressure, inertial and acoustic sensors, optical proximity and ambient-light detectors, and LiDAR sensor packages in cavity, LCC and custom package formats." },
-        new { q = "Which automotive sensor packages has Hana built?", a = "Examples include open-cavity W185QFN LiDAR packages with a glass lid at 10 × 5.2 mm and 27 × 16 mm, a pre-molded W32 DFN oil pressure sensor package made with film-assisted molding, and a 5 × 5 mm cavity QFN pressure sensor package with a port hole in the lid. Humidity and temperature sensors can also be packaged in open-cavity SOIC and DFN formats." }
+        new { q = "Which automotive sensor packages has Hana built?", a = "Examples include open-cavity W185QFN LiDAR packages with a glass lid at 10 × 5.2 mm and 27 × 16 mm, a pre-molded W32 DFN oil pressure sensor package made with film-assisted molding, and a 5 × 5 mm cavity QFN pressure sensor package with a port hole in the lid. Humidity and temperature sensor packages built on the same open-cavity process are listed on the MEMS & Sensor Assembly page." },
+        new { q = "Where are automotive sensors assembled?", a = "Ayutthaya and Lamphun in Thailand are the principal sites for sensor assembly, with further support in Jiaxing, China. Lines run with temperature, humidity and particulate controls appropriate to the device." }
     };
     var faqLd = string.Join(",\n        ", faq.Select(f =>
         "{ \"@type\": \"Question\", \"name\": " + System.Text.Json.JsonSerializer.Serialize(f.q) +
@@ -77,18 +73,11 @@
     <div class="auto-sens-card"><div class="img"><img src="/images/photos/mk-auto-sensor-@(s.img).webp" alt="@s.name, @s.pkg" loading="lazy" width="480" height="360" /></div><div class="body"><h3>@s.name</h3><dl><div><dt>Package</dt><dd>@s.pkg</dd></div><div><dt>Body size</dt><dd>@s.size</dd></div><div><dt>Construction</dt><dd>@s.build</dd></div></dl></div></div>
     }
   </div>
-  <div class="auto-sens-group">Related open-cavity sensor packages</div>
-  <p class="auto-sens-note">Humidity and temperature sensor packages built on the same open-cavity process. Automotive requirements are reviewed per program.</p>
-  <div class="auto-sens-grid">
-    @foreach (var s in relatedSensors) {
-    <div class="auto-sens-card"><div class="img"><img src="/images/photos/mk-auto-sensor-@(s.img).webp" alt="@s.name, @s.pkg" loading="lazy" width="480" height="360" /></div><div class="body"><h3>@s.name</h3><dl><div><dt>Package</dt><dd>@s.pkg</dd></div>@if (s.size != "") {<div><dt>Body size</dt><dd>@s.size</dd></div>}<div><dt>Construction</dt><dd>@s.build</dd></div></dl></div></div>
-    }
-  </div>
-  <p style="margin:18px 0 0;"><a href="@finderUrl" class="auto-sens-link">Compare these in the package finder <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a></p>
+  <p style="margin:18px 0 0;"><a href="/capabilities/microelectronic-assembly/mems-sensor-assembly#sensor-packages" class="auto-sens-link">All sensor packages, including humidity and temperature, on MEMS &amp; Sensor Assembly <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a></p>
 </div>
 
 <!-- capabilities -->
-<div style="position:relative; z-index:1; padding:20px 48px 40px; max-width:976px;"><div class="auto-moreinfo" data-hana-geo="side" data-geo-theme="midnight"><div><h2>More information</h2><p>Explore the capabilities behind automotive sensor assembly.</p></div><div class="acts"><a href="/capabilities/microelectronic-assembly/mems-sensor-assembly" class="auto-btn auto-btn--ondark-primary">MEMS &amp; Sensor Assembly <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a><a href="/capabilities/microelectronic-assembly" class="auto-btn auto-btn--ondark-primary">Microelectronic Assembly <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a><a href="/markets/optical-sensors" class="auto-btn auto-btn--ondark-primary">Optical sensor packaging <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a></div></div></div>
+<div style="position:relative; z-index:1; padding:20px 48px 40px; max-width:976px;"><div class="auto-moreinfo" data-hana-geo="side" data-geo-theme="midnight"><div><h2>More information</h2><p>Explore the capabilities behind automotive sensor assembly.</p></div><div class="acts"><a href="/capabilities/microelectronic-assembly/mems-sensor-assembly" class="auto-btn auto-btn--ondark-primary">MEMS &amp; Sensor Assembly <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a><a href="/capabilities/microelectronic-assembly" class="auto-btn auto-btn--ondark-primary">Microelectronic Assembly <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a><a href="/capabilities/osat/optical-packaging" class="auto-btn auto-btn--ondark-primary">Clear &amp; Optical Packaging <i data-lucide="arrow-right" style="width:13px;height:13px;"></i></a></div></div></div>
 
 <!-- where it's made -->
 <div style="background:#EAF2FB; border-top:1px solid var(--line); padding:40px 0;"><div style="max-width:976px; padding:0 48px;"><div class="auto-sechead"><h2>Where it&#39;s made</h2><p>Ayutthaya and Lamphun in Thailand are the principal sites for sensor assembly, with further support in Jiaxing, China. Lines run with temperature, humidity and particulate controls appropriate to the device.</p></div><div class="auto-plants" style="grid-template-columns:repeat(3, 1fr);"><a class="auto-plantcard" href="/locations/ayutthaya" style="text-decoration:none; color:inherit;"><div><span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> Thailand</span><div class="nm">Ayutthaya</div></div><span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span></a><a class="auto-plantcard" href="/locations/lamphun" style="text-decoration:none; color:inherit;"><div><span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> Thailand</span><div class="nm">Lamphun</div></div><span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span></a><a class="auto-plantcard" href="/locations/jiaxing" style="text-decoration:none; color:inherit;"><div><span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> China</span><div class="nm">Jiaxing</div></div><span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span></a></div><p style="font-size:13px; line-height:1.5; margin:18px 0 0;"><a href="/locations" style="color:var(--hana-blue); text-decoration:none; font-weight:600;">View all locations &rarr;</a></p></div></div>

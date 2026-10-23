@@ -167,6 +167,7 @@
        ("Sensor page") carries the context. Unlisted owners fall back to the index name. */
     const PAGE_SHORT = {
       "/markets/automotive/sensor-assembly": "Automotive Sensors",
+      "/capabilities/microelectronic-assembly/mems-sensor-assembly": "MEMS &amp; Sensor",
       "/capabilities/osat/ultra-small-packages": "Ultra-small",
       "/capabilities/osat/hermetic-ceramic": "Hermetic &amp; Ceramic",
       "/capabilities/osat/clear-mold-packaging": "Clear &amp; Optical"

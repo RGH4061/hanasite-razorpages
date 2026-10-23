@@ -25,7 +25,8 @@
     "/capabilities/osat/clear-mold-packaging": "/capabilities/osat/optical-packaging",
     "/capabilities/osat/hermetic-ceramic": "/capabilities/osat/hermetic-ceramic",
     "/capabilities/osat/system-in-package": "/capabilities/osat/system-in-package",
-    "/markets/automotive/sensor-assembly": "/markets/automotive/sensor-assembly"
+    "/markets/automotive/sensor-assembly": "/markets/automotive/sensor-assembly",
+    "/capabilities/microelectronic-assembly/mems-sensor-assembly": "/capabilities/microelectronic-assembly/mems-sensor-assembly"
   };
   const MAX_EDGE = 41;
   /* Body-size pair. The leading delimiter group keeps the digits from being read out of a

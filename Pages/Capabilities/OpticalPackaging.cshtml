@@ -4,6 +4,68 @@
     ViewData["Motion"] = "capability";
     ViewData["CapSlug"]  = "optical-packaging";
     ViewData["CapGroup"] = "osat";
+    ViewData["Canonical"] = "https://www.hanagroup.com/capabilities/osat/optical-packaging";
+    ViewData["Description"] = "Clear and optical sensor packaging: clear transfer mold, caps and filters for proximity, ambient-light, color and time-of-flight sensors, optical LGA to 0.30 mm, MSL1 and operation to 125 °C.";
+}
+
+@section Head {
+    @* FAQPage data mirrors the visible FAQ below; edit both together. *@
+    <script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@@type": "Question",
+      "name": "Can you mold a clear package over an optical sensor?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Yes: clear transfer mold, with a cap or filter designed to control the optical path and reject the wavelengths the device does not want. The cap can be metal or plastic, or replaced by an ink mask where the body has to stay thin."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "How thin can an optical package be?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "0.30 mm in production, as an optical LGA built on die ground to 3 mils. That is the thinnest package Hana builds in any family, optical or not."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Do you design the cap and filter, or do we supply the design?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "We design them. The cap or filter is drawn to the device and to the wavelengths it needs to reject. See Package design & simulation for how that runs before tooling is cut."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Do you thin the wafer, or do we supply thinned die?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Either. Backgrind and singulation run in-house on the same OSAT operation, so a full-thickness wafer can come straight in. See Wafer processing."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "What limits how thin an optical package can go?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "The die must be ground thin enough to fit while remaining suitable for handling, and the clear compound above it must maintain the optical path. Each reduction in package thickness requires qualification of the revised construction."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "What happens if no standard optical body fits?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "We can design one: leadframe, outline and footprint, with thermal and warpage simulation before tooling is cut. If a standard footprint already fits, we build to that instead."
+      }
+    }
+  ]
+}
+    </script>
 }
 
 <div class="cap-page-grid">
@@ -36,7 +98,7 @@
 <div class="sc-hero-band" data-hana-bg="flow" data-variant="light" data-fade="none" style="background:#fff;position:relative;z-index:1;overflow:hidden;"><div class="cap-section cap-section--band cap-section--hero"><div style="margin-bottom:0;">
     <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">OSAT · Clear &amp; Optical Packaging</div>
     <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 18px;max-width:740px;text-wrap:balance;">Clear &amp; Optical Packaging</h1>
-    <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0 0 32px;text-wrap:pretty;">Optical packaging has a direct role in controlling the light path, filtering unwanted wavelengths, and achieving the required package dimensions.</p>
+    <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0 0 32px;text-wrap:pretty;">Optical packaging has a direct role in controlling the light path, filtering unwanted wavelengths, and achieving the required package dimensions. Hana packages proximity, ambient-light, color and time-of-flight sensors and opto-couplers; MEMS, pressure and other sensor packages are covered on <a href="/capabilities/microelectronic-assembly/mems-sensor-assembly" style="color:var(--hana-blue);font-weight:600;">MEMS &amp; Sensor Assembly</a>.</p>
     <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:407px;"><img src="/images/photos/cap-osat-optical-packaging-hero.webp" alt="Clear-molded optical sensor packages with visible windows, dies and wire bonds" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center;" /></div>
     <div class="hana-spec-block" style="margin-top:18px;"><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Ultrathin optical LGA, in production</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">0.30 mm</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Optical QFN working temperature</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">125 °C</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Footprint, one package generation</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">−25%</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Moisture sensitivity level reached</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">MSL1</div></div></div>
   </div></div></div>
