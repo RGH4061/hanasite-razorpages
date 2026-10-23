@@ -160,7 +160,7 @@
     <div class="ms-geo-acts"><a href="/markets/automotive/sensor-assembly" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Automotive sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/medical/mems-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Medical MEMS &amp; sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/consumer/smt-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Consumer sensor assembly <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/optical-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Optical &amp; sensors market <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
     <form class="ms-geo-find" action="/capabilities/osat/package-finder" method="get" role="search">
       <label for="ms-find-q">Find a package by size or type</label>
-      <div class="ms-geo-field"><input id="ms-find-q" name="q" type="search" placeholder="5x5, DFN" autocomplete="off" /><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
+      <div class="ms-geo-field"><input id="ms-find-q" name="q" type="search" placeholder="e.g. 5x5" autocomplete="off" /><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
     </form>
   </div>
   <figure class="ms-geo-photo"><img src="/images/capabilities/cap-microelectronic-assembly-mems-sensor-assembly-wearable.webp" alt="Smartwatch on a wrist showing a weather forecast" width="960" height="640" loading="lazy" /><figcaption>Wearables use MEMS accelerometers, gyroscopes and pressure sensors.</figcaption></figure>
@@ -227,3 +227,20 @@
 
 </div></div>
 </div><!-- /.cap-page-grid -->
+
+@section Scripts {
+    @* Cycles example queries through the size search placeholder; stops once the visitor focuses or types. *@
+    <script>
+    (function () {
+      var input = document.getElementById("ms-find-q");
+      if (!input) return;
+      var examples = ["e.g. 5x5", "e.g. DFN", "e.g. LiDAR", "e.g. QFN32", "e.g. pressure", "e.g. 3x3", "e.g. humidity", "e.g. SOIC"];
+      var i = 0, timer = setInterval(function () {
+        if (document.activeElement === input || input.value) return;
+        i = (i + 1) % examples.length;
+        input.placeholder = examples[i];
+      }, 2200);
+      window.addEventListener("pagehide", function () { clearInterval(timer); });
+    })();
+    </script>
+}
