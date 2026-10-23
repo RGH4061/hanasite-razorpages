@@ -151,3 +151,9 @@
 .pf-static td{font-size:13px;color:var(--ink-2);padding:9px 14px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
 .pf-static td:first-child{color:var(--ink);font-weight:600}
 @media(max-width:680px){.pf-static .pf-table{display:block;overflow-x:auto}}
+/* Long categories in an embedded table fold after three rows (23 Oct 2026). */
+.pf-table tr.pf-more td{padding:8px 16px 12px;border-bottom:0}
+.pf-table tbody tr.pf-more:hover{background:none}
+.pf-more-b{background:none;border:0;padding:0;cursor:pointer;color:var(--hana-blue);font-family:var(--font-text);font-size:13px;font-weight:600}
+.pf-more-b:hover{color:var(--hana-blue-deep)}
+@media (max-width:860px){.pf-table tr.pf-more{background:none;border:0;padding:0 0 6px}.pf-table tr.pf-more td:before{content:none}}

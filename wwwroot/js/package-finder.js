@@ -116,6 +116,9 @@
     const GRADES = [...new Set(scope.map(r => r.grade).filter(Boolean))].sort();
     const pickCat = new Set(), pickGrade = new Set();
     let maxEdge = MAX_EDGE, maxThk = null, sortKey = "area", sortDir = 1;
+    /* Embedded tables open long categories on request (Rupert, 23 Oct 2026): a category
+       with more than SHOW_ROWS rows shows its first SHOW_ROWS and a toggle for the rest. */
+    const SHOW_ROWS = 3, opened = new Set();
 
     root.className = "pf" + (embed ? " pf--embed" : "");
     root.innerHTML = `
@@ -333,20 +336,39 @@
         <th scope="col" data-k="area">Body size ${arr("area")}</th>
         ${hasLeads ? `<th scope="col">Leads</th>` : ""}
         <th scope="col" data-k="grade">Auto grade ${arr("grade")}</th>
-        <th scope="col"></th></tr>`;
+        ${hasGo ? `<th scope="col"></th>` : ""}</tr>`;
+      /* A row links to the page that owns it, except on that page itself, where the
+         link would only reload it. With no links left, the column goes too. */
+      const goHref = r => OWN[r.own] && r.own !== own ? OWN[r.own] : "";
+      const hasGo = rows.some(goHref);
+      const span = 3 + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
+      /* Typed filters show every match, so nothing is folded while a query is active. */
+      const folding = embed && !raw && !pickCat.size && !pickGrade.size && maxEdge >= MAX_EDGE && maxThk === null;
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
+      /* Only tables split into category bars fold (the power reference); a single-category
+         table such as QFN, DFN & LGA stays whole. */
+      const fold = folding && groups.length > 1;
       const row = r => `<tr>
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
           <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
           ${hasLeads ? `<td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>` : ""}
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
-          <td>${OWN[r.own] ? `<a class="pf-go" href="${esc(OWN[r.own])}">Page &rarr;</a>` : ""}</td>
+          ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r))}">Page &rarr;</a>` : ""}</td>` : ""}
         </tr>`;
+      const body = g => {
+        if (!fold || g.items.length <= SHOW_ROWS) return g.items.map(row).join("");
+        const open = opened.has(g.cat);
+        const shown = open ? g.items : g.items.slice(0, SHOW_ROWS);
+        return shown.map(row).join("") + `<tr class="pf-more"><td colspan="${span}">
+          <button type="button" class="pf-more-b" data-more="${esc(g.cat)}" aria-expanded="${open}">${open
+            ? "Show fewer"
+            : `Show all ${g.items.length} packages`} <span aria-hidden="true">${open ? "&uarr;" : "&darr;"}</span></button></td></tr>`;
+      };
       outEl.innerHTML = askBar + `<div class="pf-tablewrap"><table class="pf-table">
         ${groups.map(g => `<tbody>${groups.length > 1
-          ? `<tr class="pf-grp"><th colspan="${hasLeads ? 5 : 4}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
+          ? `<tr class="pf-grp"><th colspan="${span}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
-        ${g.items.map(row).join("")}</tbody>`).join("")}</table></div>`
+        ${body(g)}</tbody>`).join("")}</table></div>`
         /* Power rows carry a maximum die size (PM package capabilities deck, Oct 2026). */
         + (rows.some(r => r.die) ? `<p class="pf-die-n">Maximum die size can be adjusted after design and process evaluation.</p>` : "")
         + (showThk ? thkPanel(maxThk) : "");
@@ -354,6 +376,11 @@
       paintMidnight();
       watch();
 
+      outEl.querySelectorAll("[data-more]").forEach(b => b.onclick = () => {
+        const c = b.dataset.more;
+        opened.has(c) ? opened.delete(c) : opened.add(c);
+        render();
+      });
       outEl.querySelectorAll("th[data-k]").forEach(th => th.onclick = () => {
         const k = th.dataset.k;
         if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
