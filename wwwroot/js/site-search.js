@@ -146,7 +146,71 @@
     return `<p class="hs-pkg-thk"><b>Leadless thickness options</b>${s.map(v => `<span>${fmt(v)}</span>`).join("")}<em>mm</em></p>`;
   }
 
+  /* A bare "sensor(s)" search: sensor packages as one category, broken down by sensor type,
+     each type linking to its filtered finder view. Types past three rows collapse behind a
+     "Show more" row (23 Oct 2026). */
+  const SENSOR_TYPES = [
+    { label: "LiDAR (ADAS)", qs: "q=lidar", test: r => /lidar/i.test(r.pkg + " " + r.st) },
+    { label: "Pressure", qs: "cat=Sensor%20packages&q=pressure", test: r => /pressure/i.test(r.pkg) },
+    { label: "Humidity &amp; temperature", qs: "cat=Sensor%20packages&q=humidity", test: r => /humidity/i.test(r.pkg) },
+    { label: "Optical", qs: "cat=Optical%20package%20dimensions", test: r => r.t === "Optical package dimensions" || /time-of-flight/i.test(r.pkg) }
+  ];
+  const SENSOR_SHOW = 3;
+  function sensorCard(m, mobile) {
+    const finder = qs => "/capabilities/osat/package-finder" + (qs ? "?" + qs : "");
+    /* "automotive sensors" narrows the rows in the engine; here it only renames the card and
+       points the Optical type at the one automotive optical part, the time-of-flight package. */
+    const auto = !!m.autoSensor;
+    const types = SENSOR_TYPES.map(g => ({ ...g, rows: m.rows.filter(g.test) })).filter(g => g.rows.length)
+      .map(g => auto && g.label === "Optical" ? { ...g, label: "Optical (time-of-flight)", qs: "q=time-of-flight" } : g);
+    /* Each row links to the page that owns it, under a short name — the column heading
+       ("Sensor page") carries the context. Unlisted owners fall back to the index name. */
+    const PAGE_SHORT = {
+      "/markets/automotive/sensor-assembly": "Automotive Sensors",
+      "/capabilities/osat/ultra-small-packages": "Ultra-small",
+      "/capabilities/osat/hermetic-ceramic": "Hermetic &amp; Ceramic",
+      "/capabilities/osat/clear-mold-packaging": "Clear &amp; Optical"
+    };
+    const pageCell = r => {
+      const name = PAGE_SHORT[r.own] || esc((window.HS.PAGES.find(pg => pg.u === r.own + "/") || {}).n || "");
+      const h = href(r.own + "/");
+      return h && name ? `<a class="hs-sens-pg" href="${esc(h)}">${name} &rarr;</a>` : "—";
+    };
+    const build = r => esc(r.grade ? "Automotive-qualified, " + r.grade : (r.detail || r.thk || "—"));
+    return `<section class="hs-pkg hs-pkg--sensor${mobile ? " hs-pkg--m" : ""}">
+      <div class="hs-pkg-h">
+        <div class="hs-cert-lb">Direct answer &middot; ${auto ? "automotive sensors" : "sensor packages"}</div>
+        <h2 class="hs-cert-n">${auto ? "Automotive sensor packages" : "Sensor packages"}</h2>
+        <p class="hs-cert-s">${m.rows.length} packages across ${types.length} sensor types</p>
+        <div class="hs-sens-types">${types.map(g => `<a href="${finder(g.qs)}">${g.label}<span>${g.rows.length}</span></a>`).join("")}</div>
+      </div>
+      <table class="hs-pkg-t">
+        <thead><tr><th>Package</th><th>Body size</th><th>Leads</th><th>Construction</th><th>Sensor page</th></tr></thead>
+        ${types.map(g => `<tbody><tr class="hs-sens-grp"><th colspan="5">${g.label}<span>${g.rows.length}</span></th></tr>${g.rows.map((r, i) => `<tr${i >= SENSOR_SHOW ? ' class="hs-sens-x"' : ""}>
+          <td class="hs-pkg-n">${esc(r.pkg)}</td>
+          <td class="hs-pkg-num">${esc(r.bs || "—")}</td>
+          <td class="hs-pkg-num">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>
+          <td>${build(r)}</td>
+          <td>${pageCell(r)}</td></tr>`).join("")}${g.rows.length > SENSOR_SHOW
+            ? `<tr class="hs-sens-more-r"><td colspan="5"><button type="button" class="hs-sens-more" data-more="${g.rows.length - SENSOR_SHOW}">Show ${g.rows.length - SENSOR_SHOW} more</button></td></tr>` : ""}</tbody>`).join("")}
+      </table>
+      <div class="hs-cert-f">
+        <p><a href="${finder("cat=Sensor%20packages")}">Open sensor packages in the package finder &rarr;</a></p>
+        <p class="hs-src">Packages from our OSAT reference. Tell us the sensor and package you are working to.</p>
+      </div></section>`;
+  }
+  /* One delegated listener: the card is redrawn on every keystroke. */
+  document.addEventListener("click", e => {
+    const b = e.target.closest && e.target.closest(".hs-sens-more");
+    if (!b) return;
+    e.preventDefault();
+    const body = b.closest("tbody");
+    const open = body.classList.toggle("is-open");
+    b.textContent = open ? "Show fewer" : `Show ${b.dataset.more} more`;
+  });
+
   function pkgCard(m, mobile) {
+    if (m.sensor === "sensor") return sensorCard(m, mobile);
     const shown = m.rows.slice(0, 6);
     const read = [m.fam ? `family <b>${esc(m.fam.toUpperCase())}</b>` : null,
       m.dims ? `body <b>${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm</b>` : null,

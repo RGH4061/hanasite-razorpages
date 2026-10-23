@@ -4,7 +4,7 @@
    to the package finder. Exposed as window.HS so every search surface shares it. */
 (function(){
 const D = window.HS_DATA;
-const {PAGES, TERMS, SECONDARY, SPECIALISE, HUBPRODUCTS, SITES, CERTS, ALL, N, blob, DF, isNoise, TYPEW, SECTIONW, SYN, INTENT} = D;
+const {PAGES, PINNED, TERMS, SECONDARY, SPECIALISE, HUBPRODUCTS, SITES, CERTS, ALL, N, blob, DF, isNoise, TYPEW, SECTIONW, SYN, INTENT} = D;
 const PACKAGES = window.HS_PACKAGES || [];
 
 let smart = true;
@@ -60,13 +60,23 @@ function findPackages(raw){
   const lm = q.match(/(?:qfn|dfn|lga|soic|msop)\s*-?(\d{1,3})\b/) || q.match(/\b(\d{1,3})\s*l\b/);
   /* Sensor packages carry no family code a buyer would type, so the sensing type is the
      handle ("lidar", "oil pressure", "humidity"). "AEC-Q100" or "automotive qualified"
-     without a grade means every graded row. Both added 23 Oct 2026. */
-  const sensor = (q.match(/\b(lidar|adas|humidity|pressure)\b/)||[])[1];
+     without a grade means every graded row. Both added 23 Oct 2026.
+     A bare "sensor(s)" — alone or with "automotive" / "optical" / "package(s)" — lists every
+     sensor package (sensor rows, optical packages, LiDAR and time-of-flight parts); with any
+     other word ("proximity sensor") it is not a package query. */
+  let sensor = ((q.match(/\b(lidar|adas|humidity|pressure|sensors?)\b/)||[])[1]||"").replace(/s$/,"") || undefined;
+  if(sensor === "sensor" && !q.split(/\s+/).filter(Boolean).every(w=>/^(automotive|optical|sensors?|packages?|packaging)$/.test(w))) sensor = undefined;
+  const autoSensor = sensor === "sensor" && /\bautomotive\b/.test(q);
   const aec = !grade && /\baec[\s-]*q\s*100\b|\bautomotive[\s-]+qualified\b/.test(q);
   if(!d && !fam && !grade && !sensor && !aec) return null;   // not a package query
   const leads = lm ? parseInt(lm[1]) : null;
   const rows = PACKAGES.filter(r=>{
-    if(sensor && !(r.pkg+" "+r.st+" "+r.detail).toLowerCase().includes(sensor)) return false;
+    if(sensor === "sensor"){
+      if(!(r.t === "Sensor packages" || r.t === "Optical package dimensions" || /lidar|time-of-flight/i.test(r.pkg+" "+r.st))) return false;
+      /* "automotive sensors": LiDAR, pressure and the automotive time-of-flight part only —
+         humidity and general optical packages make no automotive claim. */
+      if(autoSensor && !(/lidar|automotive/i.test(r.pkg+" "+r.st) || (r.t === "Sensor packages" && /pressure/i.test(r.pkg)))) return false;
+    } else if(sensor && !(r.pkg+" "+r.st+" "+r.detail).toLowerCase().includes(sensor)) return false;
     if(aec && !r.grade) return false;
     if(grade && r.grade !== "Grade "+grade) return false;
     if(fam && !(r.pkg||"").toLowerCase().includes(fam)) return false;
@@ -82,7 +92,7 @@ function findPackages(raw){
   /* qs: the finder handoff when the raw query would not filter the finder by itself. */
   const qs = aec && !d && !fam && !sensor ? "cat=" + encodeURIComponent("Automotive-qualified packages")
     : sensor && !d && !fam && !grade ? "q=" + sensor : null;
-  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, sensor, aec, qs, raw};
+  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, sensor, autoSensor, aec, qs, raw};
 }
 
 /* Punctuation-insensitive normalisation, so "fiber-optic" and "fiber optic" are the same
@@ -136,6 +146,8 @@ function score(p, toks, hint, raw){
        past its own child. Deeper URL = more specific = small edge. */
     if(phrase) s += 130 + 8 * (p.u.split("/").filter(Boolean).length);
     if(owns)   s += 70;
+    const pin = (PINNED[p.u]||{})[toks.map(t=>t.w).join(" ")];
+    if(pin) s += pin;
   }
   return {p, s, hits};
 }
@@ -153,6 +165,13 @@ function search(raw, opts){
   rows.forEach(r=>{ (bySection[r.p.s] = bySection[r.p.s] || []).push(r); });
   const groups = SECTION_ORDER.filter(s=>bySection[s]).map(s=>({section:s, items:bySection[s]}));
   Object.keys(bySection).forEach(s=>{ if(!SECTION_ORDER.includes(s)) groups.push({section:s, items:bySection[s]}); });
+  /* A pinned top result brings its section to the front, so the order the site owner set
+     is the order shown, not only the order within the section. */
+  const top = rows[0];
+  if(smart && top && (PINNED[top.p.u]||{})[toks.map(t=>t.w).join(" ")]){
+    const i = groups.findIndex(g=>g.section===top.p.s);
+    if(i > 0) groups.unshift(groups.splice(i,1)[0]);
+  }
   return {raw, toks, hint, groups, total:rows.length,
     cert: opts.noCert ? null : findCert(raw),
     pkg: opts.noPkg ? null : (smart ? findPackages(raw) : null)};

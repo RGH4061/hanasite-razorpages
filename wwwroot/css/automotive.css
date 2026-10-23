@@ -524,17 +524,16 @@ body:has(.auto-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
    cards (OSAT deck p60) and the capabilities card. Added 23 Oct 2026. ── */
 .auto-sens-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 40px; align-items: center; }
 .auto-sens-ctas { display: flex; flex-wrap: wrap; gap: 10px; }
-.auto-sens-hero-img { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #071f35; }
+.auto-sens-hero-img { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
 .auto-sens-hero-img img { display: block; width: 100%; height: auto; }
 .auto-sens-locs { margin-top: 24px; background: rgba(255,255,255,0.82); border: 1px solid var(--line);
   border-radius: var(--radius-card); padding: 16px 20px; }
 .auto-sens-locs .h { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--ink-3); margin-bottom: 10px; }
-.auto-sens-locs ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; }
-.auto-sens-locs li { font-size: 12px; color: var(--ink-2); line-height: 1.3; padding: 5px 10px 5px 22px;
-  border: 1px solid var(--line); border-radius: 999px; background: #fff; position: relative; }
-.auto-sens-locs li::before { content: ""; position: absolute; left: 9px; top: 50%; width: 7px; height: 7px;
-  margin-top: -3.5px; border-radius: 50%; background: #FF883E; }
+  color: var(--hana-blue); margin-bottom: 10px; }
+.auto-sens-locs ul { list-style: none; margin: 0; padding: 0; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); column-gap: 20px; }
+.auto-sens-locs li { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.35; padding: 8px 0;
+  border-bottom: 1px solid var(--line); }
 .auto-sens { scroll-margin-top: 90px; }
 .auto-sens-group { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--hana-blue); margin: 26px 0 12px; }

@@ -337,3 +337,21 @@
 .hs-pkg--m .hs-pkg-band{padding:16px 18px}
 .hs-pkg--m .hs-pkg-cta{margin-left:0}
 @media(max-width:700px){.hs-pkg-band{padding:16px 18px}.hs-pkg-cta{margin-left:0}.hs-pkg-t th:nth-child(4),.hs-pkg-t td:nth-child(4){display:none}}
+
+/* Sensor category card — bare "sensor(s)" search, packages broken down by sensor type (23 Oct 2026) */
+.hs-pkg--sensor .hs-cert-s a{color:var(--hana-blue);font-weight:600}
+.hs-sens-types{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hs-sens-types a{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--hana-blue);border-radius:999px;background:#fff;color:var(--hana-blue-deep);font-size:13px;font-weight:600}
+.hs-sens-types a:hover{background:var(--hana-blue-tint)}
+.hs-sens-types span{font-family:var(--font-mono);font-size:11px;color:var(--ink-3)}
+.hs-sens-grp th{padding:9px 24px 7px;background:var(--bg);font-family:var(--font-text);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hana-blue);text-align:left;border-bottom:1px solid var(--line)}
+.hs-pkg--m .hs-sens-grp th{padding:8px 18px 6px}
+.hs-sens-grp th span{margin-left:8px;font-family:var(--font-mono);font-weight:500;color:var(--ink-3)}
+.hs-sens-x{display:none}
+tbody.is-open .hs-sens-x{display:table-row}
+.hs-sens-more-r td{padding:0 24px!important;border-bottom:1px solid var(--line)}
+.hs-sens-more{appearance:none;border:0;background:none;padding:10px 0;font-family:var(--font-text);font-size:12.5px;font-weight:600;color:var(--hana-blue);cursor:pointer}
+.hs-sens-more:hover{text-decoration:underline}
+.hs-pkg--m .hs-sens-more-r td{padding:0 18px!important}
+.hs-sens-pg{color:var(--hana-blue);font-weight:600;font-size:13px;white-space:nowrap}
+.hs-sens-pg:hover{text-decoration:underline}
