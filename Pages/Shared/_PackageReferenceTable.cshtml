@@ -30,24 +30,26 @@
     var groups = rows.GroupBy(r => Field(r, "t"));
     var hasDie = rows.Any(r => Field(r, "die") != "");
     var hasLeads = rows.Any(r => r.TryGetProperty("leads", out var l) && l.ValueKind == JsonValueKind.Array && l.GetArrayLength() > 0);
+    // Sensor packages carry no qualification grade, so their last column shows the construction instead.
+    var hasGrade = rows.Any(r => Field(r, "grade") != "");
 }
 <div class="pf-static">
 @foreach (var g in groups)
 {
     <table class="pf-table">
         <caption>@g.Key</caption>
-        <thead><tr><th scope="col">Package</th><th scope="col">Body size</th>@if (hasDie) {<th scope="col">Max die size</th>}@if (hasLeads) {<th scope="col">Leads</th>}<th scope="col">Qualification</th></tr></thead>
+        <thead><tr><th scope="col">Package</th><th scope="col">Body size</th>@if (hasDie) {<th scope="col">Max die size</th>}@if (hasLeads) {<th scope="col">Leads</th>}<th scope="col">@(hasGrade ? "Qualification" : "Construction")</th></tr></thead>
         <tbody>
         @foreach (var r in g)
         {
             var leads = r.TryGetProperty("leads", out var l) && l.ValueKind == JsonValueKind.Array
                 ? string.Join(", ", l.EnumerateArray().Select(x => x.ToString())) : "";
             <tr>
-                <td>@Field(r, "pkg")@if (Field(r, "detail") != "") {<span class="pf-det">@Field(r, "detail")</span>}</td>
+                <td>@Field(r, "pkg")@if (hasGrade && Field(r, "detail") != "") {<span class="pf-det">@Field(r, "detail")</span>}</td>
                 <td>@(Field(r, "bs") == "" ? "—" : Field(r, "bs"))</td>
                 @if (hasDie) {<td>@(Field(r, "die") == "" ? "—" : Field(r, "die"))</td>}
                 @if (hasLeads) {<td>@(leads == "" ? "—" : leads)</td>}
-                <td>@(Field(r, "grade") == "" ? "—" : Field(r, "grade"))</td>
+                <td>@(hasGrade ? (Field(r, "grade") == "" ? "—" : Field(r, "grade")) : (Field(r, "st") == "" ? "—" : Field(r, "st")))</td>
             </tr>
         }
         </tbody>
