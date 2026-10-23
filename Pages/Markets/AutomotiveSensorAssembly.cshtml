@@ -20,7 +20,7 @@
         new { img = "pressure-cavity-qfn", name = "Pressure sensor package",     pkg = "Cavity QFN",         size = "5 × 5 mm",    build = "Lid attach, with a port hole in the lid" }
     };
     var faq = new[] {
-        new { q = "Which automotive sensor packages has Hana built?", a = "Examples include open-cavity W185QFN LiDAR packages with a glass lid at 10 × 5.2 mm and 27 × 16 mm, a pre-molded W32 DFN oil pressure sensor package made with film-assisted molding, and a 5 × 5 mm cavity QFN pressure sensor package with a port hole in the lid. Humidity and temperature sensor packages built on the same open-cavity process are listed on the MEMS & Sensor Assembly page." },
+        new { q = "Which automotive sensor packages has Hana built?", a = "Examples include open-cavity W185QFN LiDAR packages with a glass lid at 10 × 5.2 mm and 27 × 16 mm, a pre-molded W32 DFN oil pressure sensor package made with film-assisted molding, and a 5 × 5 mm cavity QFN pressure sensor package with a port hole in the lid. Humidity and temperature sensor packages built on the same open-cavity process are listed in the package finder." },
         new { q = "Where are automotive sensors assembled?", a = "Ayutthaya and Lamphun in Thailand are the principal sites for sensor assembly, with further support in Jiaxing, China. Lines run with temperature, humidity and particulate controls appropriate to the device." }
     };
     var faqLd = string.Join(",\n        ", faq.Select(f =>
@@ -73,7 +73,7 @@
     <div class="auto-sens-card"><div class="img"><img src="/images/photos/mk-auto-sensor-@(s.img).webp" alt="@s.name, @s.pkg" loading="lazy" width="480" height="360" /></div><div class="body"><h3>@s.name</h3><dl><div><dt>Package</dt><dd>@s.pkg</dd></div><div><dt>Body size</dt><dd>@s.size</dd></div><div><dt>Construction</dt><dd>@s.build</dd></div></dl></div></div>
     }
   </div>
-  <p style="margin:18px 0 0;"><a href="/capabilities/microelectronic-assembly/mems-sensor-assembly#sensor-packages" class="auto-sens-link">All sensor packages, including humidity and temperature, on MEMS &amp; Sensor Assembly <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a></p>
+  <p style="margin:18px 0 0;"><a href="@finderUrl" class="auto-sens-link">All sensor packages, including humidity and temperature, in the package finder <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a></p>
 </div>
 
 <!-- capabilities -->

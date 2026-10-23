@@ -29,7 +29,7 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     ["/markets/power-management/power-discrete"]     = "/capabilities/osat/power-packages#power-discretes",
     // Sensor merge, 23 Oct 2026: MEMS & Optical Sensor Packages folds into the MEMS & Sensor
     // Assembly capability page; the Optical & Sensors hub stays as the market page.
-    ["/markets/optical-sensors/mems-sensors"]        = "/capabilities/microelectronic-assembly/mems-sensor-assembly#sensor-packages",
+    ["/markets/optical-sensors/mems-sensors"]        = "/capabilities/microelectronic-assembly/mems-sensor-assembly",
 };
 app.Use(async (context, next) =>
 {
