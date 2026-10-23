@@ -92,14 +92,14 @@
   .sc-faq-mk{ color:var(--hana-blue); font-size:22px; line-height:1; flex-shrink:0; transition:transform 150ms ease; }
   details.sc-faq[open] .sc-faq-mk{ transform:rotate(45deg); }
   .sc-faq-a{ padding:0 22px 20px; font-family:var(--font-text); font-size:14px; color:var(--ink-2); line-height:1.65; max-width:720px; }
-  .ms-geo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);border-radius:var(--radius-panel);position:relative;overflow:hidden;color:#fff;scroll-margin-top:90px;}
+  .ms-geo{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);border-radius:var(--radius-panel);position:relative;overflow:hidden;color:#fff;scroll-margin-top:90px;}
   .ms-geo > :not(.hana-geo){position:relative;z-index:1;}
-  .ms-geo-main{padding:38px 36px;}
-  .ms-geo h2{font-family:var(--font-display);font-size:26px;font-weight:600;letter-spacing:-0.02em;color:#fff;margin:0 0 8px;}
-  .ms-geo-main > p{font-family:var(--font-text);font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.78);margin:0 0 20px;max-width:520px;}
-  .ms-geo-acts{display:flex;flex-wrap:wrap;gap:10px;}
-  .ms-geo-find{background:#fff;border-radius:var(--radius-card);padding:20px 22px 22px;margin-top:26px;max-width:480px;box-shadow:0 10px 30px rgba(3,10,23,.25);}
-  .ms-geo-find label{display:block;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink);margin:0 0 12px;}
+  .ms-geo-main{padding:28px 30px;}
+  .ms-geo h2{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-0.02em;color:#fff;margin:0 0 8px;}
+  .ms-geo-main > p{font-family:var(--font-text);font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.78);margin:0 0 16px;max-width:520px;}
+  .ms-geo-acts{display:flex;flex-wrap:wrap;gap:8px;}
+  .ms-geo-find{background:#fff;border-radius:var(--radius-card);padding:16px 18px 18px;margin-top:20px;max-width:480px;box-shadow:0 10px 30px rgba(3,10,23,.25);}
+  .ms-geo-find label{display:block;font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);margin:0 0 10px;}
   .ms-geo-find p{font-family:var(--font-text);font-size:13px;line-height:1.5;color:var(--ink-2);margin:0 0 14px;}
   .ms-geo-field{display:flex;gap:8px;}
   .ms-geo-field input{flex:1;min-width:0;font-family:var(--font-mono);font-size:14px;padding:11px 12px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:#fff;}
@@ -133,8 +133,18 @@
     <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Microelectronic assembly · MEMS &amp; Sensor Assembly</div>
     <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 18px;max-width:740px;text-wrap:balance;">MEMS and sensor packaging and assembly</h1>
     <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0 0 32px;text-wrap:pretty;">Hana assembles and packages sensitive MEMS and sensor die using low-stress attach, controlled wire bonding and packaging designed to preserve the sensing function. Capabilities include cavity, open-cavity and media-access structures for pressure, motion, gas, humidity, LiDAR and optical sensor applications.</p>
-    <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:407px;"><img src="/images/capabilities/cap-microelectronic-assembly-mems-sensor-assembly-hero.webp" alt="Ported MEMS sensor package mounted on an assembled board" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"><div style="position:absolute;inset:auto 0 0 0;height:96px;background:linear-gradient(to top,rgba(3,10,23,0.66),rgba(3,10,23,0));"></div><div style="position:absolute;left:12px;bottom:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:rgba(255,255,255,0.92);text-transform:uppercase;">Ported MEMS sensor package on an assembled board</div></div>
-    <div class="hana-spec-block" style="margin-top:18px;"><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Die attach</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">Low-stress</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Packaging</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">Cavity</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Ported</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">Media access</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Fine-pitch</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">Wire bond</div></div></div>
+    <div id="applications" class="ms-geo" data-hana-geo="side" data-geo-theme="midnight">
+  <div class="ms-geo-main">
+    <h2>Applications</h2>
+    <p>The same assembly processes are used for different end uses. These pages cover each application.</p>
+    <div class="ms-geo-acts"><a href="/markets/automotive/sensor-assembly" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Automotive sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/medical/mems-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Medical MEMS &amp; sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/consumer/smt-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Consumer sensor assembly <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/optical-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Optical &amp; sensors market <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
+    <form class="ms-geo-find" action="/capabilities/osat/package-finder" method="get" role="search">
+      <label for="ms-find-q">Find a package by size or type</label>
+      <div class="ms-geo-field"><div class="ms-tick-wrap"><input id="ms-find-q" name="q" type="search" placeholder=" " aria-label="Package size or type, for example 5x5, DFN or LiDAR" autocomplete="off" /><span class="ms-tick" aria-hidden="true"><span class="ms-tick-track"><span class="ms-tick-run"><span>5x5</span><span>DFN</span><span>LiDAR</span><span>QFN32</span><span>pressure</span><span>3x3</span><span>humidity</span><span>SOIC</span></span><span class="ms-tick-run"><span>5x5</span><span>DFN</span><span>LiDAR</span><span>QFN32</span><span>pressure</span><span>3x3</span><span>humidity</span><span>SOIC</span></span></span></span></div><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
+    </form>
+  </div>
+  <figure class="ms-geo-photo"><img src="/images/capabilities/cap-microelectronic-assembly-mems-sensor-assembly-wearable.webp" alt="Smartwatch on a wrist showing a weather forecast" width="960" height="640" fetchpriority="high" /><figcaption>Wearables use MEMS accelerometers, gyroscopes and pressure sensors.</figcaption></figure>
+</div>
   </div></div></div>
 <div class="sc-pillars-band" data-hana-bg="wafer" data-variant="light" data-accent="" data-fade="none" style="background:linear-gradient(120deg,#f5f7fa 35%,#d8e6f3 100%);position:relative;overflow:hidden;"><div class="cap-section cap-section--band"><div style="margin-bottom:64px;"><div style="margin-bottom:26px;"><h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.02em;margin:0;">Capability overview</h2><p style="font-family:var(--font-text);font-size:15.5px;color:var(--ink-2);line-height:1.6;max-width:640px;margin:10px 0 0;">The process is designed around three requirements: mounting the die with controlled mechanical stress, creating reliable interconnects, and protecting the device without obstructing the sensing path.</p></div>
     <div class="cap-grid-3 sc-stack">
@@ -161,20 +171,6 @@
     </div>
     </div>
   </div></div></div>
-<div style="background:#fff;"><div class="cap-section">
-<div id="applications" class="ms-geo" data-hana-geo="side" data-geo-theme="midnight">
-  <div class="ms-geo-main">
-    <h2>Applications</h2>
-    <p>The same assembly processes are used for different end uses. These pages cover each application.</p>
-    <div class="ms-geo-acts"><a href="/markets/automotive/sensor-assembly" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Automotive sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/medical/mems-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Medical MEMS &amp; sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/consumer/smt-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Consumer sensor assembly <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/optical-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Optical &amp; sensors market <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
-    <form class="ms-geo-find" action="/capabilities/osat/package-finder" method="get" role="search">
-      <label for="ms-find-q">Find a package by size or type</label>
-      <div class="ms-geo-field"><div class="ms-tick-wrap"><input id="ms-find-q" name="q" type="search" placeholder=" " aria-label="Package size or type, for example 5x5, DFN or LiDAR" autocomplete="off" /><span class="ms-tick" aria-hidden="true"><span class="ms-tick-track"><span class="ms-tick-run"><span>5x5</span><span>DFN</span><span>LiDAR</span><span>QFN32</span><span>pressure</span><span>3x3</span><span>humidity</span><span>SOIC</span></span><span class="ms-tick-run"><span>5x5</span><span>DFN</span><span>LiDAR</span><span>QFN32</span><span>pressure</span><span>3x3</span><span>humidity</span><span>SOIC</span></span></span></span></div><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
-    </form>
-  </div>
-  <figure class="ms-geo-photo"><img src="/images/capabilities/cap-microelectronic-assembly-mems-sensor-assembly-wearable.webp" alt="Smartwatch on a wrist showing a weather forecast" width="960" height="640" loading="lazy" /><figcaption>Wearables use MEMS accelerometers, gyroscopes and pressure sensors.</figcaption></figure>
-</div>
-</div></div>
 <div style="background:var(--hana-blue-tint);"><div class="cap-section"><div style="margin-bottom:8px;"><div style="margin-bottom:26px;"><h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.02em;margin:0;">Where we run MEMS &amp; Sensor</h2><p style="font-family:var(--font-text);font-size:15.5px;color:var(--ink-2);line-height:1.6;max-width:640px;margin:10px 0 0;">MEMS and sensor assembly runs at our microelectronic assembly sites; volume mix per site varies.</p></div>
     <div class="cap-grid-4">
       <a href="/locations/ayutthaya" style="text-decoration:none;border:1px solid var(--line);border-radius:var(--radius-card);padding:22px;background:#fff;display:flex;flex-direction:column;gap:16px;">
