@@ -136,12 +136,13 @@
     if (own !== null) return (/minimum/i.test(r.thk) ? "min " : "") + fmt(own) + " mm";
     if (r.z) return fmt(parseFloat(r.z)) + " mm";
     const s = thkSteps();
-    if (s.length && /DFN|QFN/i.test(r.pkg)) return fmt(s[0]) + "&ndash;" + fmt(s[s.length - 1]) + " mm";
+    /* The leadless ladder is for standard DFN/QFN bodies; sensor packages are custom builds. */
+    if (s.length && /DFN|QFN/i.test(r.pkg) && r.t !== "Sensor packages") return fmt(s[0]) + "&ndash;" + fmt(s[s.length - 1]) + " mm";
     return "—";
   }
   function thkOptions(rows) {
     const s = thkSteps();
-    if (!s.length || !rows.some(r => /DFN|QFN/i.test(r.pkg))) return "";
+    if (!s.length || !rows.some(r => /DFN|QFN/i.test(r.pkg) && r.t !== "Sensor packages")) return "";
     return `<p class="hs-pkg-thk"><b>Leadless thickness options</b>${s.map(v => `<span>${fmt(v)}</span>`).join("")}<em>mm</em></p>`;
   }
 
@@ -150,8 +151,10 @@
     const read = [m.fam ? `family <b>${esc(m.fam.toUpperCase())}</b>` : null,
       m.dims ? `body <b>${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm</b>` : null,
       m.leads ? `leads <b>${m.leads}</b>` : null,
-      m.grade ? `<b>Grade ${esc(m.grade)}</b>` : null].filter(Boolean).join(" &middot; ");
-    const finder = "/capabilities/osat/package-finder?q=" + encodeURIComponent(m.raw || "");
+      m.grade ? `<b>Grade ${esc(m.grade)}</b>` : null,
+      m.sensor ? `sensor packages <b>${esc(m.sensor === "lidar" ? "LiDAR" : m.sensor === "adas" ? "ADAS" : m.sensor)}</b>` : null,
+      m.aec ? `<b>AEC-Q100</b> graded packages` : null].filter(Boolean).join(" &middot; ");
+    const finder = "/capabilities/osat/package-finder?" + (m.qs || "q=" + encodeURIComponent(m.raw || ""));
     return `<section class="hs-pkg${mobile ? " hs-pkg--m" : ""}">
       <div class="hs-pkg-h">
         <div class="hs-cert-lb">Direct answer &middot; package sizes</div>
@@ -373,8 +376,10 @@
     const read = [m.fam ? esc(m.fam.toUpperCase()) : null,
       m.dims ? `${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm` : null,
       m.leads ? `${m.leads} leads` : null,
-      m.grade ? `Grade ${esc(m.grade)}` : null].filter(Boolean).join(" &middot; ");
-    const finder = "/capabilities/osat/package-finder?q=" + encodeURIComponent(m.raw || "");
+      m.grade ? `Grade ${esc(m.grade)}` : null,
+      m.sensor ? `${esc(m.sensor === "lidar" ? "LiDAR" : m.sensor === "adas" ? "ADAS" : m.sensor)} sensor packages` : null,
+      m.aec ? "AEC-Q100 graded" : null].filter(Boolean).join(" &middot; ");
+    const finder = "/capabilities/osat/package-finder?" + (m.qs || "q=" + encodeURIComponent(m.raw || ""));
     return `<div class="cap-find-pkg">
       <div class="cap-find-h">Package sizes${read ? " &middot; " + read : ""}</div>
       <div class="cap-find-pkgs">${shown.map(r => `<a class="cap-find-pkgr" href="${esc(finder)}">

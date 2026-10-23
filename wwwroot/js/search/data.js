@@ -93,7 +93,9 @@ const CAPTERMS = {
 "/locations/china/jiaxing/":"jiaxing, china, zhejiang, ems, pcba, smt, cob, cof, rfid inlay, inlay lines, ic packaging, flip chip, power discrete, power modules, led packaging, hybrid modules, jdm, medical line, automotive line, iso 13485, iatf 16949, iecq qc 080000, iso 27001",
 "/locations/thailand/ayutthaya/":"ayutthaya, ayt, thailand, hana semiconductor, osat, ems, electronics manufacturing services, pcba, ic assembly, ic packaging, semiconductor packaging, test, final test, wafer probe, burn-in, opto coupler, solid state relay, proximity sensor, high voltage isolation, mixed signal, logic, memory, rf, ultra-small packages, iso 13485, iatf 16949, iso 27001, ansi/esd",
 "/locations/thailand/lamphun/":"lamphun, lpn, thailand, northern thailand, chiang mai, ems, pcba, smt, cob, chip on board, cof, hybrid assembly, flip chip, led packaging, clear qfn, micromechanical, automotive sensors, millimetre wave, industrial meters, medical devices, iso 13485, iatf 16949",
-"/locations/usa/ohio/":"ohio, solon, twinsburg, usa, united states, america, north america, hana technologies, iatf 16949, automotive, rfid inlay, uhf inlay, hf inlay, strap, arc certified, itar, defence, defense"
+"/locations/usa/ohio/":"ohio, solon, twinsburg, usa, united states, america, north america, hana technologies, iatf 16949, automotive, rfid inlay, uhf inlay, hf inlay, strap, arc certified, itar, defence, defense",
+"/markets/automotive/sensor-assembly/":"automotive sensor, automotive sensors, automotive sensor assembly, sensor packages, adas, adas sensor, lidar, lidar sensor, radar, in-cabin sensing, pressure sensor, automotive pressure sensor, oil pressure sensor, oil sensor, fuel sensor, air pressure sensor, brake sensor, steering sensor, intake sensor, passenger weight sensor, humidity sensor, temperature sensor, fog sensor, open cavity, glass lid",
+"/capabilities/osat/hermetic-ceramic/":"hermetic, ceramic, to-can, to-46, to-8b, lidar, mems mirror, time of flight, tof, cap weld, leak test"
 };
 Object.assign(TERMS, CAPTERMS);
 const NOROW_TERMS = {};

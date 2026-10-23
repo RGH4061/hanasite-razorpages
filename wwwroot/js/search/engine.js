@@ -58,9 +58,16 @@ function findPackages(raw){
   /* Lead counts only for families whose digits ARE the lead count. SOT/SOD digits are body
      codes (SOT23 is a size, not 23 leads), so they stay out of this list. */
   const lm = q.match(/(?:qfn|dfn|lga|soic|msop)\s*-?(\d{1,3})\b/) || q.match(/\b(\d{1,3})\s*l\b/);
-  if(!d && !fam && !grade) return null;                 // not a package query
+  /* Sensor packages carry no family code a buyer would type, so the sensing type is the
+     handle ("lidar", "oil pressure", "humidity"). "AEC-Q100" or "automotive qualified"
+     without a grade means every graded row. Both added 23 Oct 2026. */
+  const sensor = (q.match(/\b(lidar|adas|humidity|pressure)\b/)||[])[1];
+  const aec = !grade && /\baec[\s-]*q\s*100\b|\bautomotive[\s-]+qualified\b/.test(q);
+  if(!d && !fam && !grade && !sensor && !aec) return null;   // not a package query
   const leads = lm ? parseInt(lm[1]) : null;
   const rows = PACKAGES.filter(r=>{
+    if(sensor && !(r.pkg+" "+r.st+" "+r.detail).toLowerCase().includes(sensor)) return false;
+    if(aec && !r.grade) return false;
     if(grade && r.grade !== "Grade "+grade) return false;
     if(fam && !(r.pkg||"").toLowerCase().includes(fam)) return false;
     if(leads && !r.leads.includes(leads)) return false;
@@ -72,7 +79,10 @@ function findPackages(raw){
     return true;
   }).sort((m,n)=>(m.x?m.x*m.y:1e9)-(n.x?n.x*n.y:1e9));
   if(!rows.length) return null;
-  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, raw};
+  /* qs: the finder handoff when the raw query would not filter the finder by itself. */
+  const qs = aec && !d && !fam && !sensor ? "cat=" + encodeURIComponent("Automotive-qualified packages")
+    : sensor && !d && !fam && !grade ? "q=" + sensor : null;
+  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, sensor, aec, qs, raw};
 }
 
 /* Punctuation-insensitive normalisation, so "fiber-optic" and "fiber optic" are the same
