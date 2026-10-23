@@ -1,6 +1,8 @@
 @page "/capabilities/osat/package-finder"
 @{
     ViewData["Title"] = "Package finder | OSAT";
+    @* Filtered views (?cat=, ?q=, ?grade=) all canonicalise to the finder itself. *@
+    ViewData["Canonical"] = "https://www.hanagroup.com/capabilities/osat/package-finder";
     ViewData["Description"] = "Filter Hana's OSAT package reference by family, body size, lead count and automotive grade — leaded and leadless bodies, power discretes and modules, optical, ceramic, TO-can, hermetic RF, SiP and sensor packages.";
 }
 

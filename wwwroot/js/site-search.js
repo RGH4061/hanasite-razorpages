@@ -217,7 +217,8 @@
       m.leads ? `leads <b>${m.leads}</b>` : null,
       m.grade ? `<b>Grade ${esc(m.grade)}</b>` : null,
       m.sensor ? `sensor packages <b>${esc(m.sensor === "lidar" ? "LiDAR" : m.sensor === "adas" ? "ADAS" : m.sensor)}</b>` : null,
-      m.aec ? `<b>AEC-Q100</b> graded packages` : null].filter(Boolean).join(" &middot; ");
+      m.aec ? `<b>AEC-Q100</b> graded packages` : null,
+      m.aec101 ? `<b>AEC-Q101</b> qualified power packages` : null].filter(Boolean).join(" &middot; ");
     const finder = "/capabilities/osat/package-finder?" + (m.qs || "q=" + encodeURIComponent(m.raw || ""));
     return `<section class="hs-pkg${mobile ? " hs-pkg--m" : ""}">
       <div class="hs-pkg-h">
@@ -442,7 +443,8 @@
       m.leads ? `${m.leads} leads` : null,
       m.grade ? `Grade ${esc(m.grade)}` : null,
       m.sensor ? `${esc(m.sensor === "lidar" ? "LiDAR" : m.sensor === "adas" ? "ADAS" : m.sensor)} sensor packages` : null,
-      m.aec ? "AEC-Q100 graded" : null].filter(Boolean).join(" &middot; ");
+      m.aec ? "AEC-Q100 graded" : null,
+      m.aec101 ? "AEC-Q101 qualified" : null].filter(Boolean).join(" &middot; ");
     const finder = "/capabilities/osat/package-finder?" + (m.qs || "q=" + encodeURIComponent(m.raw || ""));
     return `<div class="cap-find-pkg">
       <div class="cap-find-h">Package sizes${read ? " &middot; " + read : ""}</div>

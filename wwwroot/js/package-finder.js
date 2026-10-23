@@ -334,7 +334,7 @@
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
       const row = r => `<tr>
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
-          <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}</td>
+          <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
           <td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
           <td>${OWN[r.own] ? `<a class="pf-go" href="${esc(OWN[r.own])}">Page &rarr;</a>` : ""}</td>
@@ -343,7 +343,10 @@
         ${groups.map(g => `<tbody>${groups.length > 1
           ? `<tr class="pf-grp"><th colspan="5" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
-        ${g.items.map(row).join("")}</tbody>`).join("")}</table></div>` + (showThk ? thkPanel(maxThk) : "");
+        ${g.items.map(row).join("")}</tbody>`).join("")}</table></div>`
+        /* Power rows carry a maximum die size (PM package capabilities deck, Oct 2026). */
+        + (rows.some(r => r.die) ? `<p class="pf-die-n">Maximum die size can be adjusted after design and process evaluation.</p>` : "")
+        + (showThk ? thkPanel(maxThk) : "");
       if (window.HanaGeo) window.HanaGeo.init(outEl);
       paintMidnight();
       watch();

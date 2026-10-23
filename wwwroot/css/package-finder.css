@@ -138,3 +138,16 @@
   .pf-pk{font-size:17px;margin-bottom:4px}
   .pf-table td.pf-pk:before{content:none}
 }
+
+/* Power package update (23 Oct 2026): maximum die size under the body size, and the die-size footnote below the table. */
+.pf-die{display:block;margin-top:3px;font-family:var(--font-text);font-size:11.5px;color:var(--ink-3);white-space:nowrap}
+.pf-die-n{margin:10px 0 0;font-size:12.5px;color:var(--ink-3)}
+
+/* Server-rendered package table (_PackageReferenceTable) — what crawlers and no-JS visitors
+   see inside an embedded finder before package-finder.js replaces it. */
+.pf-static .pf-table{width:100%;border-collapse:collapse;margin:0 0 22px;font-family:var(--font-text)}
+.pf-static caption{text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hana-blue);padding:0 0 8px}
+.pf-static th{text-align:left;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:0 14px 8px 0;border-bottom:1px solid var(--line)}
+.pf-static td{font-size:13px;color:var(--ink-2);padding:9px 14px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.pf-static td:first-child{color:var(--ink);font-weight:600}
+@media(max-width:680px){.pf-static .pf-table{display:block;overflow-x:auto}}

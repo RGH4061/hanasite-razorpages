@@ -1,0 +1,59 @@
+@*
+    _PackageReferenceTable — the package rows for one owner page, rendered as plain HTML from
+    wwwroot/js/search/packages.js (the same data the finder uses). It sits inside the finder's
+    <div data-pkgfinder data-embed data-own="…">: package-finder.js replaces it with the
+    interactive table, so visitors see the finder while crawlers and answer engines, which
+    often do not run JavaScript, still read every size, die size and qualification.
+    Model: the owner route, e.g. "/capabilities/osat/power-packages". Added 23 Oct 2026.
+*@
+@model string
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment Env
+@using System.Text.Json
+@functions {
+    static string Field(JsonElement r, string name) =>
+        r.TryGetProperty(name, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() ?? "" : "";
+
+    static List<JsonElement> Rows(string webRoot, string own)
+    {
+        var text = System.IO.File.ReadAllText(System.IO.Path.Combine(webRoot, "js", "search", "packages.js"));
+        var start = text.IndexOf("window.HS_PACKAGES = ", StringComparison.Ordinal) + "window.HS_PACKAGES = ".Length;
+        var end = text.LastIndexOf(']') + 1;
+        using var doc = JsonDocument.Parse(text[start..end]);
+        return doc.RootElement.EnumerateArray()
+            .Where(r => Field(r, "own") == own && Field(r, "t") != "Package thickness")
+            .Select(r => r.Clone())
+            .ToList();
+    }
+}
+@{
+    var rows = Rows(Env.WebRootPath, Model);
+    var groups = rows.GroupBy(r => Field(r, "t"));
+    var hasDie = rows.Any(r => Field(r, "die") != "");
+}
+<div class="pf-static">
+@foreach (var g in groups)
+{
+    <table class="pf-table">
+        <caption>@g.Key</caption>
+        <thead><tr><th scope="col">Package</th><th scope="col">Body size</th>@if (hasDie) {<th scope="col">Max die size</th>}<th scope="col">Leads</th><th scope="col">Qualification</th></tr></thead>
+        <tbody>
+        @foreach (var r in g)
+        {
+            var leads = r.TryGetProperty("leads", out var l) && l.ValueKind == JsonValueKind.Array
+                ? string.Join(", ", l.EnumerateArray().Select(x => x.ToString())) : "";
+            <tr>
+                <td>@Field(r, "pkg")@if (Field(r, "detail") != "") {<span class="pf-det">@Field(r, "detail")</span>}</td>
+                <td>@(Field(r, "bs") == "" ? "—" : Field(r, "bs"))</td>
+                @if (hasDie) {<td>@(Field(r, "die") == "" ? "—" : Field(r, "die"))</td>}
+                <td>@(leads == "" ? "—" : leads)</td>
+                <td>@(Field(r, "grade") == "" ? "—" : Field(r, "grade"))</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+@if (hasDie)
+{
+    <p class="pf-die-n">Maximum die size can be adjusted after design and process evaluation.</p>
+}
+</div>

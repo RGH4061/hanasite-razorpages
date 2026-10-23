@@ -23,13 +23,21 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     ["/capabilities/rfid-smart-tags/rfid-tire-tags"] = "/markets/rfid/rfid-tire-tags",
     ["/capabilities/rfid-smart-tags/rfid-inlays"]    = "/markets/rfid/rfid-tags-inlays",
     ["/markets/automotive/rfid-tire-tags"]           = "/markets/rfid/rfid-tire-tags",
+    // Power merge, 23 Oct 2026: the two Power Management sub-pages fold into Power Packages;
+    // the Power Management hub stays as the market page.
+    ["/markets/power-management/igbt-sic-modules"]   = "/capabilities/osat/power-packages#power-modules",
+    ["/markets/power-management/power-discrete"]     = "/capabilities/osat/power-packages#power-discretes",
 };
 app.Use(async (context, next) =>
 {
     var path = context.Request.Path.Value?.TrimEnd('/') ?? "";
     if (redirects.TryGetValue(path, out var target))
     {
-        context.Response.Redirect(target + context.Request.QueryString, permanent: true);
+        // Any query string goes before the #section, not after it.
+        var hash = target.IndexOf('#');
+        var location = hash < 0 ? target + context.Request.QueryString
+            : target[..hash] + context.Request.QueryString + target[hash..];
+        context.Response.Redirect(location, permanent: true);
         return;
     }
     await next();

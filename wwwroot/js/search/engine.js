@@ -48,7 +48,17 @@ function findCert(raw){
    The one site-wide box recognises a package query and answers with rows, not pages.
    Fires only on a real dimension ("3x3", "0.6 x 1.0"), a known package family or an
    automotive grade, so ordinary text searches are untouched. */
-const PKFAMS = [...new Set(PACKAGES.map(r=>(r.pkg||"").toLowerCase().split(/[\s-]/)[0]).filter(f=>f.length>2))];
+/* A family is a package name's first word, or the code in brackets after it — so the
+   "TSPAK LF (TO263-7L V2)" rows answer to both "TSPAK" and "TO263". Only codes count: a
+   word that looks like a package code. Ordinary words that
+   start a description ("Power laser", "Optical module") are not families, or "power
+   module" would answer with a power laser. A code has a digit or two capitals (QFN,
+   SOT23, oDFN, InSOP, GaN). */
+const isCode = w => /\d/.test(w) || /[A-Z].*[A-Z]/.test(w);
+const PKFAMS = [...new Set(PACKAGES.flatMap(r=>{
+  const n = r.pkg || "";
+  return [n.split(/[\s-]/)[0], ((n.match(/\(([A-Za-z0-9]+)/)||[])[1]||"")];
+}).filter(f=>f.length>2 && isCode(f)).map(f=>f.toLowerCase()))];
 
 function findPackages(raw){
   const q = (raw||"").toLowerCase();
@@ -68,7 +78,9 @@ function findPackages(raw){
   if(sensor === "sensor" && !q.split(/\s+/).filter(Boolean).every(w=>/^(automotive|optical|sensors?|packages?|packaging)$/.test(w))) sensor = undefined;
   const autoSensor = sensor === "sensor" && /\bautomotive\b/.test(q);
   const aec = !grade && /\baec[\s-]*q\s*100\b|\bautomotive[\s-]+qualified\b/.test(q);
-  if(!d && !fam && !grade && !sensor && !aec) return null;   // not a package query
+  /* AEC-Q101 is the discrete-semiconductor qualification: the power discretes and TSPAK. */
+  const aec101 = /\baec[\s-]*q\s*101\b/.test(q);
+  if(!d && !fam && !grade && !sensor && !aec && !aec101) return null;   // not a package query
   const leads = lm ? parseInt(lm[1]) : null;
   const rows = PACKAGES.filter(r=>{
     if(sensor === "sensor"){
@@ -77,22 +89,26 @@ function findPackages(raw){
          humidity and general optical packages make no automotive claim. */
       if(autoSensor && !(/lidar|automotive/i.test(r.pkg+" "+r.st) || (r.t === "Sensor packages" && /pressure/i.test(r.pkg)))) return false;
     } else if(sensor && !(r.pkg+" "+r.st+" "+r.detail).toLowerCase().includes(sensor)) return false;
-    if(aec && !r.grade) return false;
+    if(aec && !/^Grade/.test(r.grade)) return false;
+    if(aec101 && r.grade !== "AEC-Q101") return false;
     if(grade && r.grade !== "Grade "+grade) return false;
     if(fam && !(r.pkg||"").toLowerCase().includes(fam)) return false;
     if(leads && !r.leads.includes(leads)) return false;
     if(d){
       if(!r.x) return false;
       const a=parseFloat(d[1]), b=parseFloat(d[2]), tol=0.06;
-      if(!((Math.abs(r.x-a)<tol&&Math.abs(r.y-b)<tol)||(Math.abs(r.x-b)<tol&&Math.abs(r.y-a)<tol))) return false;
+      /* A size that is part of the package's name ("PQFN 8×8", actually 8.0 × 7.9 mm) also counts. */
+      const named = new RegExp("\\b"+d[1]+"\\s*[x×]\\s*"+d[2]+"\\b").test((r.pkg||"").toLowerCase());
+      if(!named && !((Math.abs(r.x-a)<tol&&Math.abs(r.y-b)<tol)||(Math.abs(r.x-b)<tol&&Math.abs(r.y-a)<tol))) return false;
     }
     return true;
   }).sort((m,n)=>(m.x?m.x*m.y:1e9)-(n.x?n.x*n.y:1e9));
   if(!rows.length) return null;
   /* qs: the finder handoff when the raw query would not filter the finder by itself. */
-  const qs = aec && !d && !fam && !sensor ? "cat=" + encodeURIComponent("Automotive-qualified packages")
+  const qs = aec101 && !d && !fam ? "grade=AEC-Q101"
+    : aec && !d && !fam && !sensor ? "cat=" + encodeURIComponent("Automotive-qualified packages")
     : sensor && !d && !fam && !grade ? "q=" + sensor : null;
-  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, sensor, autoSensor, aec, qs, raw};
+  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, sensor, autoSensor, aec, aec101, qs, raw};
 }
 
 /* Punctuation-insensitive normalisation, so "fiber-optic" and "fiber optic" are the same
