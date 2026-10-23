@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Automotive Sensor Assembly";
     ViewData["Motion"] = "market";
-    ViewData["Description"] = "Hana assembles MEMS and optical automotive sensors for ADAS, radar and in-cabin sensing — stress-managed, cavity-packaged and AEC-Q100-qualified, in controlled environments in Thailand and China.";
+    ViewData["Description"] = "Hana assembles MEMS and optical automotive sensors for ADAS and in-cabin sensing — stress-managed, cavity-packaged and automotive-qualified, in controlled environments in Thailand and China.";
     ViewData["Canonical"] = "https://www.hanagroup.com/markets/automotive/sensor-assembly";
 
     var finderUrl = "/capabilities/osat/package-finder?cat=Sensor%20packages";
@@ -24,7 +24,7 @@
         new { img = "humidity-dfn",       name = "Humidity sensor package",                 pkg = "DFN",           size = "2.5 × 2.5 mm", build = "Open cavity packaging" }
     };
     var faq = new[] {
-        new { q = "What sensor types can Hana assemble?", a = "Hana supports MEMS-based pressure, inertial and acoustic sensors, optical proximity and ambient-light detectors, and radar front-end modules in cavity, LCC and custom package formats." },
+        new { q = "What sensor types can Hana assemble?", a = "Hana supports MEMS-based pressure, inertial and acoustic sensors, and optical proximity and ambient-light detectors, in cavity, LCC and custom package formats." },
         new { q = "Which automotive sensor packages has Hana built?", a = "Examples include open-cavity W185QFN LiDAR packages with a glass lid at 10 × 5.2 mm and 27 × 16 mm, a pre-molded W32 DFN oil pressure sensor package made with film-assisted molding, and a 5 × 5 mm cavity QFN pressure sensor package with a port hole in the lid. Humidity and temperature sensors can also be packaged in open-cavity SOIC and DFN formats." }
     };
     var faqLd = string.Join(",\n        ", faq.Select(f =>
@@ -53,7 +53,7 @@
       <div>
         <div class="auto-eyebrow">Automotive · Sensor Assembly</div>
         <h1 style="font-family:var(--font-display); font-size:40px; font-weight:700; color:var(--ink); line-height:1.06; letter-spacing:-0.03em; margin:0 0 18px; text-wrap:balance;">Sensor assembly for ADAS and in-cabin sensing</h1>
-        <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0 0 22px; text-wrap:pretty;">Hana assembles MEMS, optical and related automotive sensor packages for ADAS, radar, pressure measurement and in-cabin sensing.</p>
+        <p style="font-size:16px; color:var(--ink-2); line-height:1.65; margin:0 0 22px; text-wrap:pretty;">Hana assembles MEMS, optical and related automotive sensor packages for ADAS, pressure measurement and in-cabin sensing.</p>
         <div class="auto-sens-ctas">
           <a href="#sensor-packages" class="auto-btn auto-btn--primary">See sensor packages <i data-lucide="arrow-down" style="width:13px;height:13px;"></i></a>
           <a href="@finderUrl" class="auto-btn auto-btn--secondary">Open the package finder</a>
