@@ -69,6 +69,9 @@
     const LADDER = base.filter(r => r.t === "Package thickness");
     const scope = base.filter(r => r.t !== "Package thickness");
     if (!scope.length) return;
+    /* An embedded table whose packages carry no lead counts (Power Packages) drops the
+       Leads column rather than showing a column of dashes. */
+    const hasLeads = scope.some(r => r.leads.length);
     /* Package names with dashes removed, so a query that IS a name can be told apart
        from one that describes a size. */
     const PKGNAMES = new Set(base.map(r => (r.pkg || "").toLowerCase().replace(DASH, "")));
@@ -328,20 +331,20 @@
       const cols = solo => `<tr class="pf-cols${solo ? " pf-cols--solo" : ""}">
         <th scope="col" data-k="pkg">Package ${arr("pkg")}</th>
         <th scope="col" data-k="area">Body size ${arr("area")}</th>
-        <th scope="col">Leads</th>
+        ${hasLeads ? `<th scope="col">Leads</th>` : ""}
         <th scope="col" data-k="grade">Auto grade ${arr("grade")}</th>
         <th scope="col"></th></tr>`;
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
       const row = r => `<tr>
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
           <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
-          <td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>
+          ${hasLeads ? `<td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>` : ""}
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
           <td>${OWN[r.own] ? `<a class="pf-go" href="${esc(OWN[r.own])}">Page &rarr;</a>` : ""}</td>
         </tr>`;
       outEl.innerHTML = askBar + `<div class="pf-tablewrap"><table class="pf-table">
         ${groups.map(g => `<tbody>${groups.length > 1
-          ? `<tr class="pf-grp"><th colspan="5" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
+          ? `<tr class="pf-grp"><th colspan="${hasLeads ? 5 : 4}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
         ${g.items.map(row).join("")}</tbody>`).join("")}</table></div>`
         /* Power rows carry a maximum die size (PM package capabilities deck, Oct 2026). */
