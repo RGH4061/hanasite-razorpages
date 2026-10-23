@@ -96,7 +96,7 @@
   <div class="jx-about" style="display:grid;grid-template-columns:0.68fr 1.32fr;gap:48px;align-items:start;">
     <div>
       <h2 class="hana-h3" style="margin-bottom:18px;">Electronics manufacturing in Zhejiang Province</h2>
-      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Jiaxing is Hana’s China manufacturing hub, serving customers in access control, locking technology and broader industrial electronics. The site runs OSAT services and IC packaging alongside full PCBA, box build, DFM and NPI, within one vertically integrated operation.</p>
+      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Jiaxing is Hana’s China manufacturing hub, serving customers in access control, locking technology and broader industrial electronics. The site runs OSAT services and IC packaging alongside full PCBA, box build, DFM and NPI, within one vertically integrated operation. OSAT work here includes power discretes and IGBT and SiC power modules; see <a href="/capabilities/osat/power-packages" style="color:var(--hana-blue);font-weight:600;">Power Packages</a> for package sizes and qualification.</p>
       <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Several customer relationships here have run more than two decades. That is the standard we measure ourselves by. We work alongside your engineering team from first article through production ramp.</p>
       <a href="/locations" class="hana-btn hana-btn-secondary" style="margin-top:8px;display:inline-flex;align-items:center;gap:8px;">Explore locations hub <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
     </div>
@@ -127,7 +127,7 @@
             <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:9px;">Explore</div>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
               <li><a href="/capabilities/osat/package-design" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Package Design &amp; Simulation<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
-              <li><a href="/capabilities/osat/power-packages" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Power Packages (SiC, GaN &amp; IGBT)<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
+              <li><a href="/capabilities/osat/power-packages" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Power Packages (IGBT, SiC &amp; GaN)<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
               <li><a href="/capabilities/osat/qfn-dfn-lga" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">QFN, DFN &amp; LGA<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
               <li><a href="/capabilities/osat/optical-packaging" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Clear &amp; Optical Packaging<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
               <li><a href="/capabilities/osat/hermetic-ceramic" class="cg-link" style="color:var(--hana-blue-deep);text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.5;">Hermetic &amp; Ceramic Packaging<span class="cg-arr" style="display:inline-block;vertical-align:middle;margin-left:6px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span></a></li>
@@ -205,26 +205,33 @@
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/products/loc-jiaxing-lock-assemblies.webp" alt="Electronic lock assembly components" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/products/loc-jiaxing-lock-assemblies.webp" alt="Electronic lock assembly components" style="width:100%;height:100%;object-fit:contain;padding:8px;box-sizing:border-box;background:#fff;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Locking technology</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Electronic lock assemblies</div>
         </div>
       </div>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/products/loc-jiaxing-iot-gateways.webp" alt="Industrial IoT gateway with fleet management software" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/products/loc-jiaxing-iot-gateways.webp" alt="Industrial IoT gateway with fleet management software" style="width:100%;height:100%;object-fit:contain;padding:8px;box-sizing:border-box;background:#fff;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Industrial IoT</div>
           <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Industrial IoT gateways</div>
         </div>
       </div>
-      <div style="flex:0 0 274px;scroll-snap-align:start;">
-        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/photos/mk-power-module-family.webp" alt="IGBT and SiC power module family" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+      <a href="/capabilities/osat/power-packages#power-modules" style="flex:0 0 274px;scroll-snap-align:start;display:block;text-decoration:none;color:inherit;">
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/photos/mk-power-module-family.webp" alt="IGBT and SiC power modules in a range of standard package outlines" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
           <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Power electronics</div>
-          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">SiC power modules</div>
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">IGBT and SiC power modules <span style="color:var(--hana-blue);">&rarr;</span></div>
         </div>
-      </div>
+      </a>
+      <a href="/capabilities/osat/power-packages#power-discretes" style="flex:0 0 274px;scroll-snap-align:start;display:block;text-decoration:none;color:inherit;">
+        <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/photos/mk-power-management-card-power-discrete.webp" alt="Packaged power discrete devices" style="width:100%;height:100%;object-fit:cover;object-position:100% 55%;display:block;" /></div>
+        <div style="margin-top:12px;">
+          <div class="hana-spec-label" style="color:var(--ink-3);margin-bottom:5px;">Power electronics</div>
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;">Power discretes <span style="color:var(--hana-blue);">&rarr;</span></div>
+        </div>
+      </a>
       <div style="flex:0 0 274px;scroll-snap-align:start;">
         <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);width:100%;aspect-ratio:4 / 3;"><img src="/images/products/loc-jiaxing-gps-modules.webp" alt="GPS module for vehicle and asset tracking" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
         <div style="margin-top:12px;">
