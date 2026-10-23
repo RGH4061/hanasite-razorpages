@@ -6,7 +6,8 @@
 .opd-sec.img-corner .opd-tile{display:block}
 .opd-sec.img-wash .opd-bg{display:block;opacity:.14}
 .opd-sec.img-wash .opd-scrim{display:block;background:linear-gradient(90deg,#0E4A7C 0%,rgba(14,74,124,.92) 42%,rgba(14,74,124,.62) 100%)}
-.opd-sec.img-ghost .opd-bg{display:block;opacity:.26;object-position:right center;--gs:30%;--ge:78%;-webkit-mask-image:linear-gradient(90deg,transparent var(--gs),#000 var(--ge));mask-image:linear-gradient(90deg,transparent var(--gs),#000 var(--ge))}
+/* Ghost fade: the Design tweak-panel settings (intensity 160, reveal 45, softness 52, zoom 115), fixed here since the panel script is gone. */
+.opd-sec.img-ghost .opd-bg{display:block;opacity:.416;object-position:right center;transform:scale(1.15);transform-origin:right center;--gs:3%;--ge:55%;-webkit-mask-image:linear-gradient(90deg,transparent var(--gs),#000 var(--ge));mask-image:linear-gradient(90deg,transparent var(--gs),#000 var(--ge))}
 @media(max-width:1080px){.opd-tile{display:none!important}}
 .opd{--g:238px;font-family:var(--font-text)}
 .opd-axis{position:relative;height:40px;margin-left:var(--g)}
