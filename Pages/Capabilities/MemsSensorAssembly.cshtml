@@ -105,6 +105,15 @@
   .ms-geo-field input{flex:1;min-width:0;font-family:var(--font-mono);font-size:14px;padding:11px 12px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:#fff;}
   .ms-geo-field input:focus{outline:2px solid var(--hana-blue);outline-offset:1px;border-color:var(--hana-blue);}
   .ms-geo-field .hana-btn{white-space:nowrap;}
+  .ms-tick-wrap{position:relative;flex:1;min-width:0;display:flex;}
+  .ms-tick{position:absolute;top:1px;bottom:1px;left:12px;right:10px;overflow:hidden;pointer-events:none;display:flex;align-items:center;transition:opacity 150ms ease;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);}
+  .ms-tick-track{display:flex;width:max-content;animation:ms-tick 26s linear infinite;}
+  .ms-tick-run{display:flex;white-space:nowrap;font-family:var(--font-mono);font-size:14px;color:var(--ink-3);}
+  .ms-tick-run span{padding-right:22px;}
+  .ms-tick-run span::after{content:"·";padding-left:22px;color:var(--line);}
+  .ms-tick-wrap input:focus + .ms-tick, .ms-tick-wrap input:not(:placeholder-shown) + .ms-tick{opacity:0;}
+  @@keyframes ms-tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @@media (prefers-reduced-motion:reduce){ .ms-tick-track{animation:none;} }
   .ms-geo-photo{margin:0;min-height:100%;}
   .ms-geo-photo img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:48% 40%;}
   .ms-geo-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;font-family:var(--font-text);font-size:12px;line-height:1.45;color:rgba(255,255,255,.92);background:linear-gradient(to top,rgba(3,10,23,.78),rgba(3,10,23,0));}
@@ -160,7 +169,7 @@
     <div class="ms-geo-acts"><a href="/markets/automotive/sensor-assembly" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Automotive sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/medical/mems-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Medical MEMS &amp; sensors <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/consumer/smt-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Consumer sensor assembly <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a href="/markets/optical-sensors" class="hana-btn hana-btn-on-dark" style="text-decoration:none;">Optical &amp; sensors market <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></div>
     <form class="ms-geo-find" action="/capabilities/osat/package-finder" method="get" role="search">
       <label for="ms-find-q">Find a package by size or type</label>
-      <div class="ms-geo-field"><input id="ms-find-q" name="q" type="search" placeholder="e.g. 5x5" autocomplete="off" /><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
+      <div class="ms-geo-field"><div class="ms-tick-wrap"><input id="ms-find-q" name="q" type="search" placeholder=" " aria-label="Package size or type, for example 5x5, DFN or LiDAR" autocomplete="off" /><span class="ms-tick" aria-hidden="true"><span class="ms-tick-track"><span class="ms-tick-run"><span>5x5</span><span>DFN</span><span>LiDAR</span><span>QFN32</span><span>pressure</span><span>3x3</span><span>humidity</span><span>SOIC</span></span><span class="ms-tick-run"><span>5x5</span><span>DFN</span><span>LiDAR</span><span>QFN32</span><span>pressure</span><span>3x3</span><span>humidity</span><span>SOIC</span></span></span></span></div><button type="submit" class="hana-btn hana-btn-primary">Search</button></div>
     </form>
   </div>
   <figure class="ms-geo-photo"><img src="/images/capabilities/cap-microelectronic-assembly-mems-sensor-assembly-wearable.webp" alt="Smartwatch on a wrist showing a weather forecast" width="960" height="640" loading="lazy" /><figcaption>Wearables use MEMS accelerometers, gyroscopes and pressure sensors.</figcaption></figure>
@@ -228,19 +237,3 @@
 </div></div>
 </div><!-- /.cap-page-grid -->
 
-@section Scripts {
-    @* Cycles example queries through the size search placeholder; stops once the visitor focuses or types. *@
-    <script>
-    (function () {
-      var input = document.getElementById("ms-find-q");
-      if (!input) return;
-      var examples = ["e.g. 5x5", "e.g. DFN", "e.g. LiDAR", "e.g. QFN32", "e.g. pressure", "e.g. 3x3", "e.g. humidity", "e.g. SOIC"];
-      var i = 0, timer = setInterval(function () {
-        if (document.activeElement === input || input.value) return;
-        i = (i + 1) % examples.length;
-        input.placeholder = examples[i];
-      }, 2200);
-      window.addEventListener("pagehide", function () { clearInterval(timer); });
-    })();
-    </script>
-}
