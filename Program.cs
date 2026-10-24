@@ -45,8 +45,13 @@ app.Use(async (context, next) =>
     }
     await next();
 });
-app.UseStaticFiles();   // serves /wwwroot (css, js, fonts, images)
+app.UseStaticFiles();   // serves /wwwroot (css, js, fonts, images, robots.txt, llms.txt)
 app.UseRouting();
 app.MapRazorPages();
+
+// sitemap.xml lists every public page with its Thai twin, built from the Razor Pages routes
+// (Services/Seo.cs keeps noindex pages such as /search and dormant Cheongju out of it).
+app.MapGet("/sitemap.xml", (IEnumerable<EndpointDataSource> sources) =>
+    Results.Content(HanaSite.Services.Seo.SitemapXml(sources), "application/xml; charset=utf-8"));
 
 app.Run();

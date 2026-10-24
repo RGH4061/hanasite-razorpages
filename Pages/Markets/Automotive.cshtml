@@ -11,11 +11,11 @@
 
 @{
     var subs = new[] {
-        new { slug = "power-modules",   name = "Power Modules",   icon = "zap",        blurb = "Die attach, silver sintering and clip or wire bonding for IGBT and SiC power modules used in electrified powertrains." },
-        new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio",      blurb = "MEMS and optical sensor assembly for ADAS, LiDAR and in-cabin sensing, including stress-managed attachment and controlled-environment packaging." },
-        new { slug = "led-lighting",    name = "LED Lighting",    icon = "lightbulb",  blurb = "LED module and driver assembly for headlamps, signaling and interior lighting, including thermal-management requirements within the module design." },
-        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  icon = "circle-dot", blurb = "Ruggedized RFID tags designed for embedding in tires and qualified for cure temperature, flex and road-temperature exposure." },
-        new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu",        blurb = "Fine-pitch SMT board assembly for automotive electronics, with inspection and traceability on IATF 16949 lines." }
+        new { slug = "power-modules",   name = "Power Modules",   icon = "zap",        blurb = "IGBT and SiC modules and discretes for traction inverters, on-board chargers and DC-DC converters, assembled and tested at Ayutthaya and Jiaxing." },
+        new { slug = "sensor-assembly", name = "Sensor Assembly", icon = "radio",      blurb = "MEMS, optical and pressure sensor packages with open or lidded cavities, so the sensing element is exposed to light, pressure or air as the design requires." },
+        new { slug = "led-lighting",    name = "LED Lighting",    icon = "lightbulb",  blurb = "LED modules and driver boards for headlamps, daytime running lights, signaling and interior lighting, combining COB and SMT assembly at two plants in Thailand." },
+        new { slug = "rfid-tire-tags",  name = "RFID Tire Tags",  icon = "circle-dot", blurb = "Rubber-embeddable UHF tire tags built on automated roll-to-roll RFID lines, with read performance verified after cure." },
+        new { slug = "automotive-pcba", name = "Automotive PCBA", icon = "cpu",        blurb = "Body control modules, gateway ECUs and sensor interface boards on IATF 16949 lines, with AOI on every board and X-ray for BGA and area-array packages." }
     };
 
     var plants = new[] {
@@ -35,17 +35,17 @@
 
     var proof = new[] {
         new { t = "Automotive quality system", icon = "shield", d = "IATF 16949 production with PPAP and APQP discipline, supported by the documentation and process controls required for automotive programs." },
-        new { t = "Traceable by default", icon = "layers", d = "Material, unit and product traceability is captured through production, allowing field and quality questions to be traced back to the relevant board, material lot and production shift." },
-        new { t = "Resilient footprint", icon = "globe", d = "Automotive manufacturing runs across China, Thailand, Cambodia and the USA, providing options for multi-site qualification, additional capacity and supply continuity." },
+        new { t = "Traceable by default", icon = "layers", d = "Material, unit and product traceability links each board to its material lot and production shift." },
+        new { t = "Resilient footprint", icon = "globe", d = "Automotive manufacturing runs in China, Thailand, Cambodia and the USA, so a program can be dual-sourced from more than one country within the same company." },
         new { t = "Relationships that last", icon = "check", d = "Some Hana automotive programs have been in production for more than twenty years, supporting continuity of process knowledge and manufacturing experience." }
     };
 
     var faq = new[] {
         new { q = "Which automotive quality standards do you run to?", a = "Automotive lines run to IATF 16949, with PPAP and APQP discipline. Parts are qualified to the relevant AEC-Q stress qualifications for the device type." },
-        new { q = "Can a program move between your plants?", a = "Yes. Automotive processes are qualified across China, Thailand, Cambodia and the USA. Where a transfer is required for capacity or supply continuity, the program follows a documented qualification process at the receiving site." },
+        new { q = "Can an automotive program be dual-sourced across Hana plants?", a = "Yes. Automotive processes are qualified in China, Thailand, Cambodia and the USA, so a program can be qualified at a second Hana plant in another country. Each plant is qualified separately against the customer's requirements through a documented qualification process." },
         new { q = "Do you support us from design, or only build to print?", a = "Hana can support programs from DFM through production. Design-for-manufacturing review is carried out before NPI so manufacturing issues can be addressed before the product reaches the line." },
         new { q = "What level of traceability do you provide?", a = "Material, unit and product traceability is captured through production, allowing field and quality questions to be traced back to the relevant board, material lot and production shift." },
-        new { q = "How do we start a conversation?", a = "Tell us what the part does in the vehicle and your target volumes. We can identify the appropriate Hana site, process route and next steps for the program." }
+        new { q = "How do we start a conversation?", a = "Use the contact form to describe the part, what it does in the vehicle and the target volumes. Hana's automotive team will come back with a proposed site and process route." }
     };
 
     // cutaway markers — 5 components (numbered, colored) + 10 sensor/control points (warm accent)
@@ -152,8 +152,8 @@
       </div>
       <div class="auto-advlist">
         <div class="auto-advitem"><span class="ic"><i data-lucide="badge-check" style="width:18px;height:18px;"></i></span><div><div class="t">Automotive quality system</div><p>IATF 16949 production with PPAP and APQP discipline, supported by the documentation and process controls required for automotive programs.</p></div></div>
-        <div class="auto-advitem"><span class="ic"><i data-lucide="scan-barcode" style="width:18px;height:18px;"></i></span><div><div class="t">Traceable by default</div><p>Material, unit and product traceability is captured through production, allowing field and quality questions to be traced back to the relevant board, material lot and production shift.</p></div></div>
-        <div class="auto-advitem"><span class="ic"><i data-lucide="map-pinned" style="width:18px;height:18px;"></i></span><div><div class="t">Resilient footprint</div><p>Automotive manufacturing runs across China, Thailand, Cambodia and the USA, providing options for multi-site qualification, additional capacity and supply continuity.</p></div></div>
+        <div class="auto-advitem"><span class="ic"><i data-lucide="scan-barcode" style="width:18px;height:18px;"></i></span><div><div class="t">Traceable by default</div><p>Material, unit and product traceability links each board to its material lot and production shift.</p></div></div>
+        <div class="auto-advitem"><span class="ic"><i data-lucide="map-pinned" style="width:18px;height:18px;"></i></span><div><div class="t">Resilient footprint</div><p>Automotive manufacturing runs in China, Thailand, Cambodia and the USA, so a program can be dual-sourced from more than one country within the same company.</p></div></div>
         <div class="auto-advitem"><span class="ic"><i data-lucide="history" style="width:18px;height:18px;"></i></span><div><div class="t">Relationships that last</div><p>Some Hana automotive programs have been in production for more than twenty years, supporting continuity of process knowledge and manufacturing experience.</p></div></div>
       </div>
     </div>
@@ -181,7 +181,7 @@
     <div class="auto-wrap" style="padding-top:56px; padding-bottom:56px;">
       <div class="auto-sechead">
         <h2>Our IATF 16949 automotive-qualified plants</h2>
-        <p>Automotive programs run at five IATF 16949-certified plants in Thailand, China, Cambodia and the USA, giving options for multi-site qualification, added capacity and supply continuity.</p>
+        <p>Five Hana plants hold IATF 16949: Lamphun and Ayutthaya in Thailand, Jiaxing in China, Koh Kong in Cambodia and Ohio in the USA.</p>
       </div>
       <div class="auto-plants" style="grid-template-columns:repeat(5, 1fr);">
         <a class="auto-plantcard" href="/locations/lamphun" style="text-decoration:none; color:inherit;"><div><span class="co"><i data-lucide="map-pin" style="width:13px;height:13px;"></i> Thailand</span><div class="nm">Lamphun</div></div><span class="cta">View plant <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></span></a>
@@ -201,10 +201,10 @@
     </div>
     <div class="auto-faq">
         <div class="item is-open"><button type="button" class="q"><span class="num">01</span><h3 class="qt">Which automotive quality standards do you run to?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Automotive lines run to IATF 16949, with PPAP and APQP discipline. Parts are qualified to the relevant AEC-Q stress qualifications for the device type.</p></div></div>
-        <div class="item "><button type="button" class="q"><span class="num">02</span><h3 class="qt">Can a program move between your plants?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Yes. Automotive processes are qualified across China, Thailand, Cambodia and the USA. Where a transfer is required for capacity or supply continuity, the program follows a documented qualification process at the receiving site.</p></div></div>
+        <div class="item "><button type="button" class="q"><span class="num">02</span><h3 class="qt">Can an automotive program be dual-sourced across Hana plants?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Yes. Automotive processes are qualified in China, Thailand, Cambodia and the USA, so a program can be qualified at a second Hana plant in another country. Each plant is qualified separately against the customer&#39;s requirements through a documented qualification process.</p></div></div>
         <div class="item "><button type="button" class="q"><span class="num">03</span><h3 class="qt">Do you support us from design, or only build to print?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Hana can support programs from DFM through production. Design-for-manufacturing review is carried out before NPI so manufacturing issues can be addressed before the product reaches the line.</p></div></div>
         <div class="item "><button type="button" class="q"><span class="num">04</span><h3 class="qt">What level of traceability do you provide?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Material, unit and product traceability is captured through production, allowing field and quality questions to be traced back to the relevant board, material lot and production shift.</p></div></div>
-        <div class="item "><button type="button" class="q"><span class="num">05</span><h3 class="qt">How do we start a conversation?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Tell us what the part does in the vehicle and your target volumes. We can identify the appropriate Hana site, process route and next steps for the program.</p></div></div>
+        <div class="item "><button type="button" class="q"><span class="num">05</span><h3 class="qt">How do we start a conversation?</h3><span class="chev"><i data-lucide="chevron-down" style="width:16px;height:16px;"></i></span></button><div class="panel"><span></span><p>Use the contact form to describe the part, what it does in the vehicle and the target volumes. Hana&#39;s automotive team will come back with a proposed site and process route.</p></div></div>
     </div>
   </div>
 

@@ -15,6 +15,39 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
+- [ ] **Search and AI-search sweep, 24 Oct 2026: items for the developer.** The metadata layer
+  (`Services/Seo.cs`, `_Layout.cshtml`, `/sitemap.xml`, `wwwroot/robots.txt`, `wwwroot/llms.txt`)
+  is described under Fixed, 24 Oct.
+  - **Insights hub (`/insights`) is drawn by JavaScript.** The server HTML has no article links, so
+    crawlers that do not run JavaScript (most AI crawlers) see an empty blog index. A `<noscript>`
+    list of the seven article links was added on 24 Oct as a stopgap (keep it in step with
+    `ARTICLES` in `insights-hub.js`). Render the cards server-side in Razor and let
+    `insights-hub.js` filter them.
+  - **Package finder data is JavaScript-only** (`js/search/packages.js`). Consider a server-rendered
+    package table (or `<noscript>` table) so package families and sizes are readable without JS.
+  - **robots.txt is for production only.** Staging and preview hosts must serve `Disallow: /`.
+  - **Hosting/CDN AI-bot blocking:** check the production host or CDN does not block AI crawlers by
+    default (some CDNs now ship a "block AI bots" setting switched on). robots.txt allows them.
+  - **After launch:** submit sitemap.xml in Google Search Console and Bing Webmaster Tools (Bing's
+    index feeds ChatGPT search and Copilot) and turn on IndexNow if the host supports it.
+- [ ] **Search and AI-search sweep, 24 Oct 2026: copy decisions for Rupert.**
+  - **LED Lighting hero stat** says "AEC-Q · Qualified"; AEC-Q for automotive LEDs is still on the
+    unconfirmed list.
+  - **Koh Kong** uses Phnom Penh as a distance reference ("~300 km W of Phnom Penh").
+  - **Screen printing accuracy:** SMT Assembly says ±25 µm; the 2026 EMS deck (EMS PAGE 6) says
+    ±20 µm @ 6 sigma. (Placement accuracy was aligned to ±18 µm on 24 Oct; see Fixed.)
+  - **"Indicative quote within two business days"** appears on 13 capability pages (check against
+    the no-published-lead-times rule).
+  - **Unsourced claims:** PPAP/APQP on Automotive PCBA and the Automotive hub; "over 600 test
+    systems" on Ayutthaya (a capacity-type figure).
+  - **JDM name:** the JDM page and sidebar say "Joint Development Model"; the tracker name is
+    "Joint Development Manufacturing".
+  - **Lamphun** still lists "Die Attach & Wire Bond", which was folded into Flip Chip & Interconnect.
+  - **Koh Kong ISO 13485:** the Koh Kong page lists it; the Locations hub's Koh Kong list does not.
+  - **Data Centers hero chip** "Thermoelectric coolers (TEC)" (the Optical test chip was corrected).
+  - **Thai homepage and Thai IR pages** use English meta descriptions.
+  - **Long meta description** (169 characters, so search results may cut it): the Thailand
+    semiconductor strategy article. The four long capability descriptions were shortened on 24 Oct.
 - [ ] **Plant pages, 21 Oct 2026 — waiting on a decision or photos.**
   - **Hero layout:** choose between the current veil, `?hero=split` and `?hero=photo` (see Fixed,
     21 Oct (2nd)). The veil currently covers most of the photo below ~1270 px and all of it on phones.
@@ -216,6 +249,66 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 24 Oct 2026 — repetition sweep and search / AI-search (AEO) layer
+
+**Repetition.** Measured across all 120 routes (shared sentences, repeated 8-word phrases per page,
+near-duplicate sentences). Market hubs rewritten so the intro, dark panel, "Where it's made" and
+FAQ each carry different information (Medical, RFID, Consumer, Industrial & IoT, Power Management,
+Telecommunications, Data Centers, Automotive). Twelve sub-pages tightened the same way (RF Modules
+& Power Amplifiers, Consumer SMT & Sensors, IoT Device Assembly, RFID Asset Tracking, Industrial
+PCBA & Box Build, Medical MEMS & Sensors, Medical PCBA, Automotive Sensor Assembly, Automotive
+PCBA, SMT Assembly, NPI, Box Build). Medical PCBA no longer repeats the hub's FDA question.
+
+**Dual-source rule.** "Transfer / move between sites / receiving site" wording rewritten as
+dual-sourcing on SMT Assembly (body, bullets, FAQ), NPI (FAQ), Automotive PCBA (FAQ) and the
+Automotive hub (FAQ).
+
+**Metadata layer (Services/Seo.cs, called from _Layout.cshtml).**
+- Canonical tag on every page (68 pages had none); default is the route on www.hanagroup.com.
+- hreflang en / th / x-default generated for every page with a Thai twin (the English Contact
+  and IR sub-pages had none); the 72 hand-written hreflang tags were removed.
+- Open Graph and Twitter card tags on every page (none before); share image = first content photo.
+- One JSON-LD graph per page: Corporation (full record on `/`, `/th` and `/about`), WebSite with
+  SearchAction, the page (WebPage / CollectionPage / AboutPage / ContactPage, plus FAQPage when the
+  page has FAQs), BreadcrumbList from the route, a Place with address on each plant page and a
+  Service (provider: Hana) on each capability page.
+  FAQ structured data is read from the page's own FAQ markup (`details` with a "faq" class, the
+  Insights `.ins-faq` section, the Automotive `h3.qt` accordion), so it always matches the copy.
+  Hand-written FAQPage blocks (10 pages) and the homepage Organization blocks were removed.
+  Insights articles and Automotive Sensor Assembly keep their own blocks.
+- `ViewData["Robots"]` support; `/locations/cheongju` (dormant) now carries noindex.
+- **Before you start:** `RenderSectionAsync` writes straight to the output, so the layout captures
+  the Head section with `PushWriter`/`PopWriter` before `<html>` is written. Calling it in a code
+  block without the writer swap puts the whole Head section above `<html>`.
+- `/sitemap.xml` (Program.cs → `Seo.SitemapXml`): every public route with Thai alternates; leaves
+  out `/search` and Cheongju. Program.cs changes need a server restart (hot reload does not
+  re-run top-level statements), and so does a new static field in `Seo.cs` (it stays null).
+- `wwwroot/robots.txt` (allows search and AI crawlers by name, excludes `/admin/`, lists the
+  sitemap) and `wwwroot/llms.txt` (plain-language site summary for AI tools).
+
+**Meta.** 61 meta descriptions written or rewritten (30 pages shared one default; several
+sub-pages used dramatic opening lines) and 4 long ones shortened. Duplicate titles fixed: OSAT "Flip Chip & Interconnect",
+Microelectronic "Precision Flip Chip", Insights "PCB Assembly for Automotive Electronics".
+
+**AEO copy.** Twelve capability intros now name Hana in the first sentence (they were verb-less
+fragments). New FAQ sections: the five plant pages (what the plant makes, certifications,
+location) and Why Hana (company facts). RF Modules & Power Amplifiers gained a frequency-doubler
+item (OSAT deck p68) to match the hub card.
+
+**HTML preview.** `publish-preview.py` now adds `noindex, nofollow` to every generated page so the
+public GitHub Pages copy cannot compete with hanagroup.com in search or AI answers.
+
+**Rupert's decisions, 24 Oct.** Footer line changed from "The leading independent EMS and OSAT
+company…" to "A world-class independent EMS and OSAT company…" to match the homepage. The three
+"[Placeholder]" dividend answers on the Investor FAQ (EN and TH) lost their tags (the 16 Oct edit had
+removed one of four). Kept as they are: the homepage "world-class" line, the "$700M+" revenue
+figure on Why Hana, the "market leading" claims (Ohio, Lamphun, QFN, Access Control) and the Tire
+Tags "Why Hana RFID?" paragraph, which is quoted from the Hana Technologies USA site.
+SMT Assembly placement accuracy changed from ±35 µm to ±18 µm (spec block and the component
+mounting step) to match Consumer SMT & Sensor Assembly. Source: EMS PAGE 6, "Pick and place
+accuracy: +/-18 µm" (noted in a Razor comment beside the value). The ±35 µm figure was the
+hearing-aid line's machine spec (Hearing Aids deck page 7).
 
 ### 22 Oct 2026 (2nd) — RFID pages merged (Markets = product, Capabilities = process)
 

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Why Hana | EMS + OSAT microelectronics manufacturing";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "Hana brings semiconductor assembly and test (OSAT) together with electronics manufacturing (EMS) in one independent company — vertically integrated, across four countries, since 1978.";
+    ViewData["Description"] = "Why Hana: semiconductor assembly and test (OSAT) and electronics manufacturing (EMS) in one independent company, listed on the Stock Exchange of Thailand since 1993.";
 }
 @section Head {
     <link rel="stylesheet" href="~/css/about.css" />
@@ -269,6 +269,45 @@
             <a class="m-row" href="/markets/data-centers">Data Centers <span class="m-arrow">&rarr;</span></a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+    details.ab-faq{ border-top:1px solid var(--line); }
+    details.ab-faq:first-child{ border-top:none; }
+    details.ab-faq > summary{ list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-family:var(--font-text); font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
+    details.ab-faq > summary::-webkit-details-marker{ display:none; }
+    details.ab-faq[open] > summary{ background:var(--bg); }
+    .ab-faq-mk{ color:var(--hana-blue); font-size:22px; line-height:1; flex-shrink:0; transition:transform 150ms ease; }
+    details.ab-faq[open] .ab-faq-mk{ transform:rotate(45deg); }
+    .ab-faq-a{ padding:0 22px 20px; font-family:var(--font-text); font-size:14px; color:var(--ink-2); line-height:1.65; max-width:720px; }
+  </style>
+  <!-- ── FAQ: company facts in question form (structured data is generated from it) ── -->
+  <section class="band band--white" id="wh-faq">
+    <div class="band-inner">
+      <h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.02em;margin:0 0 24px;">Frequently asked questions</h2>
+      <div style="border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:#fff;max-width:860px;">
+      <details class="ab-faq" open>
+        <summary>What is Hana Microelectronics?<span class="ab-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="ab-faq-a">Hana Microelectronics is an electronics manufacturing services (EMS) and outsourced semiconductor assembly and test (OSAT) company headquartered in Bangkok, Thailand. It was founded in 1978 and manufactures for its customers at plants in Thailand, China, Cambodia and the USA.</div>
+      </details>
+      <details class="ab-faq">
+        <summary>Is Hana Microelectronics a publicly listed company?<span class="ab-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="ab-faq-a">Yes. Hana Microelectronics Public Company Limited has been listed on the Stock Exchange of Thailand since 1993 under the ticker HANA, and it operates as an independent company.</div>
+      </details>
+      <details class="ab-faq">
+        <summary>Where does Hana manufacture?<span class="ab-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="ab-faq-a">At five plants: Lamphun and Ayutthaya in Thailand, Jiaxing in China, Koh Kong in Cambodia and Solon, Ohio in the USA. A program can be dual-sourced from more than one country within the same company, with each plant qualified separately against the customer's requirements.</div>
+      </details>
+      <details class="ab-faq">
+        <summary>What is the difference between EMS and OSAT, and does Hana do both?<span class="ab-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="ab-faq-a">OSAT covers packaging and testing semiconductor die as finished ICs. EMS covers assembling components onto circuit boards and building those boards into finished products. Hana does both within one company, so a device can be packaged, tested and then built into a board or product by the same manufacturer.</div>
+      </details>
+      <details class="ab-faq">
+        <summary>How many people work at Hana?<span class="ab-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="ab-faq-a">Around 7,500 people across Hana's plants and offices.</div>
+      </details>
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Insights";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "Guides, process explainers and industry updates from Hana Microelectronics on EMS and OSAT manufacturing for automotive, power, optical, RFID and data-center electronics.";
+    ViewData["Description"] = "Process explainers and industry commentary from Hana Microelectronics on EMS and OSAT manufacturing for automotive, power, optical and RFID applications.";
 }
 
 @section Head {
@@ -80,6 +80,19 @@
         </div>
         <div class="ins-grid" id="insGrid"></div>
         <div class="ins-empty" id="insEmpty">No articles in this combination yet.</div>
+        @* The cards above are drawn by js/insights-hub.js. Crawlers that do not run JavaScript
+           (most AI crawlers) read this list instead. Keep it in step with ARTICLES in that file. *@
+        <noscript>
+          <ul class="ins-noscript-list">
+            <li><a href="/insights/automotive-pcba-assembly">PCB Assembly for Automotive Electronics</a></li>
+            <li><a href="/insights/commentary/thailand-semiconductor-strategy">Thailand&rsquo;s semiconductor strategy: real foundations, open questions</a></li>
+            <li><a href="/insights/commentary/external-laser-source-co-packaged-optics">External laser source modules for co-packaged optics: what to watch</a></li>
+            <li><a href="/insights/commentary/global-vehicle-sales-forecast">Global vehicle sales forecast: what a hybrid-weighted mix means for electronics</a></li>
+            <li><a href="/insights/commentary/memory-contract-prices-pcba">Memory contract prices in 4Q26: what rising DRAM and NAND costs mean for PCBA</a></li>
+            <li><a href="/insights/commentary/power-gan-market-forecast">Power GaN market forecast: what the 2031 outlook means for packaging</a></li>
+            <li><a href="/insights/commentary/sic-substrate-market-recovery">SiC substrate market recovery: what it means for power packaging</a></li>
+          </ul>
+        </noscript>
       </div>
     </div>
   </div>

@@ -1,0 +1,62 @@
+# Hana Microelectronics
+
+> Hana Microelectronics is an electronics manufacturing services (EMS) and outsourced semiconductor assembly and test (OSAT) company. It was founded in Bangkok in 1978, has been listed on the Stock Exchange of Thailand (ticker HANA) since 1993, and manufactures at five plants in Thailand, China, Cambodia and the USA.
+
+Key facts:
+
+- Services: PCBA and box build, IC packaging and test (OSAT), microelectronic assembly (flip chip, chip on board, MEMS and sensor assembly), hermetic and ceramic packaging, power module packaging (IGBT, SiC and GaN), RFID inlays and tags, and DFM/DFx, JDM and NPI engineering support.
+- Plants: Lamphun and Ayutthaya (Thailand), Jiaxing (Zhejiang, China), Koh Kong (Cambodia) and Solon, Ohio (USA, operating as Hana Technologies, Inc.). Headquarters: Bangkok, Thailand.
+- Certifications held across the group, by plant: ISO 9001, IATF 16949, ISO 13485, ISO 14001, ISO 45001, ISO/IEC 27001, IECQ QC 080000, ANSI/ESD S20.20, TL 9000 and ISO 14064-1. The Locations pages list which plant holds which standard.
+- Most programs are built to customers' designs, and Hana can also support design for manufacturability and joint development. Hana's RFID business also designs its own inlays and tags.
+- Multi-site programs are dual-sourced from more than one country within the same company, with each plant qualified separately against the customer's requirements.
+- Around 7,500 employees.
+
+## Markets
+
+- [Markets overview](https://www.hanagroup.com/markets): the ten markets Hana manufactures for.
+- [Automotive](https://www.hanagroup.com/markets/automotive): power modules, sensor assembly, LED lighting, RFID tire tags and PCBA on IATF 16949 lines.
+- [Industrial & IoT](https://www.hanagroup.com/markets/industrial-iot): ruggedized PCBA and box build, connected device assembly, RFID asset tracking and power modules.
+- [Telecommunications](https://www.hanagroup.com/markets/telecom): RF and millimeter-wave modules, GaN RF power packages, hermetic fiber-optic receivers and wireless modules.
+- [RFID](https://www.hanagroup.com/markets/rfid): smart cards, inlays, tags and tire tags across LF, HF and UHF.
+- [Optical & Sensors](https://www.hanagroup.com/markets/optical-sensors): camera modules and MEMS, optical, automotive and medical sensor assembly.
+- [Consumer Electronics](https://www.hanagroup.com/markets/consumer): sensor assembly, high-volume SMT, wireless charging modules and box build.
+- [Medical](https://www.hanagroup.com/markets/medical): hearing aids, medical MEMS and sensors, PCBA and wireless charging on ISO 13485 lines.
+- [Access Control](https://www.hanagroup.com/markets/access-control): RFID access cards and smart lock and door hardware assembly.
+- [Power Management](https://www.hanagroup.com/markets/power-management): IGBT and SiC power modules, intelligent power modules and power discretes.
+- [Data Centers](https://www.hanagroup.com/markets/data-centers): control electronics for thermoelectric cooling, high-density PCBA for optical test equipment and SiC power conversion.
+
+## Capabilities
+
+- [Capabilities overview](https://www.hanagroup.com/capabilities): every EMS and OSAT process Hana runs.
+- [PCBA & Box Build](https://www.hanagroup.com/capabilities/pcba-box-build): [SMT assembly](https://www.hanagroup.com/capabilities/pcba-box-build/smt-assembly), [chip on board](https://www.hanagroup.com/capabilities/pcba-box-build/cob-assembly) and [box build](https://www.hanagroup.com/capabilities/pcba-box-build/box-build).
+- [OSAT & IC Packaging](https://www.hanagroup.com/capabilities/osat): [wafer processing](https://www.hanagroup.com/capabilities/osat/wafer-processing), [QFN, DFN & LGA](https://www.hanagroup.com/capabilities/osat/qfn-dfn-lga), [ultra-small packages](https://www.hanagroup.com/capabilities/osat/ultra-small-packages), [flip chip](https://www.hanagroup.com/capabilities/osat/flip-chip), [wafer level packaging](https://www.hanagroup.com/capabilities/osat/wafer-level-packaging), [system in package](https://www.hanagroup.com/capabilities/osat/system-in-package), [power packages](https://www.hanagroup.com/capabilities/osat/power-packages), [clear & optical packaging](https://www.hanagroup.com/capabilities/osat/optical-packaging), [hermetic & ceramic packaging](https://www.hanagroup.com/capabilities/osat/hermetic-ceramic), [package design](https://www.hanagroup.com/capabilities/osat/package-design) and [wafer probe & final test](https://www.hanagroup.com/capabilities/osat/wafer-probe-final-test).
+- [Package finder](https://www.hanagroup.com/capabilities/osat/package-finder): the package reference by family, body size, lead count and automotive grade.
+- [Microelectronic Assembly](https://www.hanagroup.com/capabilities/microelectronic-assembly): [precision flip chip](https://www.hanagroup.com/capabilities/microelectronic-assembly/flip-chip-micro), [MEMS & sensor assembly](https://www.hanagroup.com/capabilities/microelectronic-assembly/mems-sensor-assembly), [interconnect](https://www.hanagroup.com/capabilities/microelectronic-assembly/precision-interconnect) and [micro-assembly](https://www.hanagroup.com/capabilities/microelectronic-assembly/micro-assembly).
+- [RFID & Smart Tags](https://www.hanagroup.com/capabilities/rfid-smart-tags): RFID inlay and tire tag manufacturing.
+- [Automation & Smart Manufacturing](https://www.hanagroup.com/capabilities/automation): [robotic and smart manufacturing](https://www.hanagroup.com/capabilities/automation/robotic-smart-manufacturing) and [manufacturing traceability](https://www.hanagroup.com/capabilities/automation/mes-traceability).
+- [DFx & JDM Collaboration](https://www.hanagroup.com/capabilities/dfx-jdm): [DFx / DFM](https://www.hanagroup.com/capabilities/dfx-jdm/dfx-dfm), [JDM](https://www.hanagroup.com/capabilities/dfx-jdm/jdm) and [NPI](https://www.hanagroup.com/capabilities/dfx-jdm/npi).
+
+## Locations
+
+- [Locations overview](https://www.hanagroup.com/locations): all plants and the certifications each holds.
+- [Lamphun, Thailand](https://www.hanagroup.com/locations/lamphun): EMS plant in northern Thailand.
+- [Ayutthaya, Thailand](https://www.hanagroup.com/locations/ayutthaya): Hana's main OSAT plant.
+- [Jiaxing, China](https://www.hanagroup.com/locations/jiaxing): EMS and OSAT plant in Zhejiang Province.
+- [Koh Kong, Cambodia](https://www.hanagroup.com/locations/koh-kong): EMS plant in the Koh Kong special economic zone.
+- [Ohio, USA](https://www.hanagroup.com/locations/ohio): RFID design and manufacturing with EMS capability.
+
+## Company
+
+- [Why Hana](https://www.hanagroup.com/about): OSAT and EMS in one independent company.
+- [History](https://www.hanagroup.com/about/history): from 1978 to today.
+- [Quality and certifications](https://www.hanagroup.com/about/quality)
+- [Leadership](https://www.hanagroup.com/about/leadership)
+- [Insights](https://www.hanagroup.com/insights): process explainers and industry commentary.
+- [Contact](https://www.hanagroup.com/contact) and [request a quote](https://www.hanagroup.com/contact/rfq)
+
+## Optional
+
+- [Investor relations](https://www.hanagroup.com/investor-relations): SET-listed company reports, governance and shareholder information.
+- [Careers](https://www.hanagroup.com/careers)
+- [Thai-language pages](https://www.hanagroup.com/th)
+- [Sitemap](https://www.hanagroup.com/sitemap.xml)

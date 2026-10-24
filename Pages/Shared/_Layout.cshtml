@@ -7,10 +7,16 @@
       ViewData["FullTitle"]    optional: the whole <title>, when it should not end in "| Hana Microelectronics"
       ViewData["Motion"]       optional: entrance-motion profile in js/motion.js (e.g. "capability")
       ViewData["Description"]  meta description
-      ViewData["Canonical"]    canonical URL
+      ViewData["Canonical"]    canonical URL (default: this page's route on www.hanagroup.com)
+      ViewData["Robots"]       optional robots directive, e.g. "noindex"
+      ViewData["OgImage"]      optional share image (default: the page's first content photo)
+
+    Canonical, hreflang, Open Graph and the JSON-LD graph (organization, website,
+    page, breadcrumbs, FAQ) are built by Services/Seo.cs from the rendered page,
+    so FAQ structured data always matches the FAQ copy on the page.
 
     Optional Razor sections a page may define:
-      @@section Head    { ... }   extra <head> markup (JSON-LD, OG tags)
+      @@section Head    { ... }   extra <head> markup (e.g. Article JSON-LD)
       @@section Scripts { ... }   page-specific JS, loaded after global JS
 
     Global assets:
@@ -21,19 +27,51 @@
       ~/js/mega-menu.js           header hover mega-menus
       ~/js/mobile-nav.js          ≤900px compact bar + slide-in accordion
 *@
+@using HanaSite.Services
+@inject IEnumerable<Microsoft.AspNetCore.Routing.EndpointDataSource> EndpointSources
 <!DOCTYPE html>
-@{ var motionProfile = ViewData["Motion"] as string; }
-<html lang="@(ViewData["Lang"] ?? "en")" @if (motionProfile != null) { <text>data-motion="@motionProfile"</text> }>
+@{
+    var motionProfile = ViewData["Motion"] as string;
+    var lang = ViewData["Lang"] as string ?? "en";
+    var fullTitle = ViewData["FullTitle"] as string ?? ViewData["Title"] + " | Hana Microelectronics";
+    var description = ViewData["Description"] as string ?? Seo.DefaultDescription;
+
+    // The page body and its Head section render first, so the metadata can be built from them.
+    // RenderSectionAsync writes straight to the output, so the Head section is captured in a buffer.
+    var pageBody = RenderBody();
+    var headWriter = new System.IO.StringWriter();
+    PushWriter(headWriter);
+    await RenderSectionAsync("Head", required: false);
+    PopWriter();
+    var pageHead = headWriter.ToString();
+    var seo = Seo.ForPage(Context, ViewData["Title"] as string, fullTitle, description,
+        ViewData["Canonical"] as string, ViewData["Robots"] as string, ViewData["OgImage"] as string, lang,
+        Seo.ToHtml(pageBody), pageHead, EndpointSources);
+}
+<html lang="@lang" @if (motionProfile != null) { <text>data-motion="@motionProfile"</text> }>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@(ViewData["FullTitle"] ?? ViewData["Title"] + " | Hana Microelectronics")</title>
+    <title>@fullTitle</title>
 
-    <meta name="description" content="@(ViewData["Description"] ?? "Hana is the leading independent EMS and OSAT company in Southeast Asia, specializing in microelectronics.")" />
-    @if (ViewData["Canonical"] != null)
+    <meta name="description" content="@description" />
+    <link rel="canonical" href="@seo.Canonical" />
+    @if (seo.Robots != null)
     {
-        <link rel="canonical" href="@ViewData["Canonical"]" />
+        <meta name="robots" content="@seo.Robots" />
     }
+    @foreach (var alt in seo.Alternates)
+    {
+        <link rel="alternate" hreflang="@alt.Lang" href="@alt.Href" />
+    }
+    <meta property="og:site_name" content="@Seo.SiteName" />
+    <meta property="og:type" content="@seo.OgType" />
+    <meta property="og:title" content="@seo.OgTitle" />
+    <meta property="og:description" content="@description" />
+    <meta property="og:url" content="@seo.Canonical" />
+    <meta property="og:image" content="@seo.OgImage" />
+    <meta property="og:locale" content="@seo.OgLocale" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" type="image/svg+xml" href="~/images/hana-mark.svg" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -50,7 +88,8 @@
     @* Lucide line-icon set (matches brand iconography spec). *@
     <script src="~/js/vendor/lucide.min.js"></script>
 
-    @await RenderSectionAsync("Head", required: false)
+    @Html.Raw(pageHead)
+    <script type="application/ld+json">@Html.Raw(seo.JsonLd)</script>
 </head>
 <body style="margin:0; background:#fff; font-family:var(--font-text); -webkit-font-smoothing:antialiased;">
 
@@ -64,7 +103,7 @@
     }
 
     <main id="main-content">
-        @RenderBody()
+        @pageBody
     </main>
 
     <partial name="_Footer" />

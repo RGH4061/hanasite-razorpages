@@ -4,15 +4,12 @@
     var yearNow = DateTime.UtcNow.AddHours(7).Year;
     ViewData["Title"] = "Our heritage";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "Building microelectronics since 1978 — the history of Hana Microelectronics across four countries.";
+    ViewData["Description"] = "The history of Hana Microelectronics: founded in Bangkok in 1978, listed on the Stock Exchange of Thailand in 1993, now manufacturing in four countries.";
     ViewData["AltLang"] = "th";
     ViewData["AltLangUrl"] = "/th/about/history";
 }
 @section Head {
     <link rel="stylesheet" href="~/css/about-history.css" />
-    <link rel="alternate" hreflang="en" href="https://www.hanagroup.com/about/history" />
-    <link rel="alternate" hreflang="th" href="https://www.hanagroup.com/th/about/history" />
-    <link rel="alternate" hreflang="x-default" href="https://www.hanagroup.com/about/history" />
 }
 
 @* Our heritage. Static content + interactive decade timeline

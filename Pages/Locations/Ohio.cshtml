@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Ohio plant";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "Hana’s US manufacturing and design base";
+    ViewData["Description"] = "Hana Technologies in Solon, Ohio: US-based RFID design and manufacturing with EMS capability, certified to IATF 16949 and ITAR.";
 }
 
 @* ============================================================
@@ -274,6 +274,37 @@
       <div style="position:relative;">
         <div style="position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--line);background:var(--surface);width:100%;height:360px;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.842220479787!2d-81.47629568709816!3d41.39844967117874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88311d00490de1f3%3A0x53f8ece4b8c520b!2sHana%20Technologies!5e0!3m2!1sen!2suk!4v1791965760364!5m2!1sen!2suk" title="Map: Hana Ohio plant" style="border:0;width:100%;height:100%;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plant FAQ: answers use facts shown elsewhere on this page (structured data is generated from it) -->
+<style>
+  details.loc-faq{ border-top:1px solid var(--line); }
+  details.loc-faq:first-child{ border-top:none; }
+  details.loc-faq > summary{ list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-family:var(--font-text); font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
+  details.loc-faq > summary::-webkit-details-marker{ display:none; }
+  details.loc-faq[open] > summary{ background:var(--bg); }
+  .loc-faq-mk{ color:var(--hana-blue); font-size:22px; line-height:1; flex-shrink:0; transition:transform 150ms ease; }
+  details.loc-faq[open] .loc-faq-mk{ transform:rotate(45deg); }
+  .loc-faq-a{ padding:0 22px 20px; font-family:var(--font-text); font-size:14px; color:var(--ink-2); line-height:1.65; max-width:720px; }
+</style>
+<section style="background:#fff;border-top:1px solid var(--line);">
+  <div style="max-width:1240px;margin:0 auto;padding:52px 32px;">
+    <h2 class="hana-h3" style="margin-bottom:22px;">Frequently asked questions</h2>
+    <div style="border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:#fff;max-width:860px;">
+      <details class="loc-faq" open>
+        <summary>What does Hana's Ohio plant manufacture?<span class="loc-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="loc-faq-a">The Ohio plant in Solon operates as Hana Technologies, Inc. It designs and manufactures UHF, HF and LF RFID inlays, straps and tire tags, and provides EMS including SMT, chip on board and box build, together with camera modules and precision optical assemblies.</div>
+      </details>
+      <details class="loc-faq">
+        <summary>Which certifications does the Ohio plant hold?<span class="loc-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="loc-faq-a">ISO 9001:2015 and IATF 16949, together with ITAR certification for defense-related work. RFID inlay design and manufacturing at the plant is certified under the ARC (Auburn) program.</div>
+      </details>
+      <details class="loc-faq">
+        <summary>Where is the Ohio plant?<span class="loc-faq-mk" aria-hidden="true">+</span></summary>
+        <div class="loc-faq-a">At 29000 Aurora Road, Solon, Ohio 44139, USA, in greater Cleveland, about 30 km from Cleveland Hopkins International Airport.</div>
+      </details>
     </div>
   </div>
 </section>
