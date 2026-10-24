@@ -119,7 +119,7 @@
     let maxEdge = MAX_EDGE, maxThk = null, sortKey = "area", sortDir = 1;
     /* Embedded tables open long categories on request (Rupert, 23 Oct 2026): a category
        with more than SHOW_ROWS rows shows its first SHOW_ROWS and a toggle for the rest. */
-    const SHOW_ROWS = 3, opened = new Set();
+    const SHOW_ROWS = 5, opened = new Set();
 
     root.className = "pf" + (embed ? " pf--embed" : "");
     root.innerHTML = `
@@ -346,9 +346,9 @@
       /* Typed filters show every match, so nothing is folded while a query is active. */
       const folding = embed && !raw && !pickCat.size && !pickGrade.size && maxEdge >= MAX_EDGE && maxThk === null;
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
-      /* Only tables split into category bars fold (the power reference); a single-category
-         table such as QFN, DFN & LGA stays whole. */
-      const fold = folding && groups.length > 1;
+      /* Every embedded table folds, including single-category ones such as QFN, DFN & LGA
+         (Rupert, 24 Oct 2026). */
+      const fold = folding;
       const row = r => `<tr>
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
           <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
