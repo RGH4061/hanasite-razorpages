@@ -178,10 +178,6 @@ A screenshot or the prototype filename it should match is ideal but not required
   titled just "Flip Chip". Its hero image is a placeholder. Either confirm the page stays, or ask
   Claude Design to remove it and repoint every link (sidebar, WLP page, 3 plant pages, 4 market
   pages, search index) to `/capabilities/osat/flip-chip`.
-- [ ] **Hotlinked images from the current live site (pre-existing, go-live risk).**
-  `About/Leadership.cshtml` (`Board_*`, `Executives_*`) and `About/Quality.cshtml` (`awards1-8.jpg`)
-  load from `https://www.hanagroup.com/images/…`. When the new site replaces the old one on that
-  domain those paths will likely vanish. Needs local copies in `wwwroot/images/` before launch.
 - [ ] **41 titles contain "Hana" twice in a softer form (Rupert to decide).** Separate from the
   doubled-site-name bug fixed on 15 Oct. Many Markets, Capabilities and IR pages set a title that
   already ends in "| Hana" or "— Hana", and `_Layout.cshtml` then appends "— Hana
@@ -198,23 +194,16 @@ A screenshot or the prototype filename it should match is ideal but not required
     Each needs its own. This is the largest SEO defect on the site.
   - **75 of 126 pages have no `<link rel="canonical">`**; 51 do (Markets, Careers, the Thai pages,
     the IR hub). Decide the convention and apply it in `_Layout.cshtml` so every page gets one.
-  - **Duplicate `<title>`:** `/capabilities/microelectronic-assembly/flip-chip-micro` and
-    `/capabilities/osat/flip-chip` are both "Flip Chip — capabilities". They are different pages
-    and need different titles.
   - **Four Thai pages serve English metadata:** `/th` (description), and
     `/th/investor-relations/{annual,esg,structure}` (both title and description).
-  - **Three pages have no `<h1>`:** `/about/history` and `/th/about/history` use 30 `<h3>` and no
-    h1 or h2 — the hero line "From a workshop in Bangkok to operations across the globe" is not in
-    a heading at all. `/search` has no headings whatsoever.
+  - **`/search` has no `<h1>` in the server HTML.** The page heading ("Six plants. Four countries.")
+    is drawn by `js/search/` after load, so it exists in the browser. The page is `noindex`, so this
+    is accessibility only. (`/about/history` and `/th/about/history` were fixed; see Fixed, 26 Oct.)
   - **PATCHED REPO-SIDE 15 Oct, fix at source:** 21 pages set `ViewData["Title"]` already ending
     in "— Hana Microelectronics" while `_Layout.cshtml:26` appends it again, so the title read
     "… — Hana Microelectronics — Hana Microelectronics" — the homepage included. Also the
     decorative `circuit-board-blue.webp` on 20 Capabilities pages had `aria-hidden="true"` but no
     `alt`; given `alt=""`.
-- [ ] **IR FAQ `[Placeholder]` dividend answers — corrected in Design on 15 Oct but STILL in the
-  20 Oct export.** `/investor-relations/faq` and its Thai twin each render three answers beginning
-  "[Placeholder]". The fix has not reached an export; check it lands next time rather than
-  assuming. Go-live blocker while it stands.
 - [ ] **The geo-motion package ships but nothing references it.** The 20 Oct export added 18
   files under `wwwroot/images/backgrounds/geo/` (blue / midnight / navy × band / section / strip,
   each as `.svg` and `.webp`) plus `css/hana-geo-motion.css` and `js/hana-geo-motion.js`. The CSS
@@ -249,6 +238,20 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 26 Oct 2026 — stale Open items confirmed resolved and closed
+
+Checked against the current code; each had already been fixed by an earlier sync.
+
+- **Hotlinked images on Leadership and Quality.** Both pages now load local files from
+  `/images/leadership/` and `/images/awards/`. The only `hanagroup.com/images` links left are the
+  JSON-LD publisher logo on 7 Insights articles, which points at `/images/hana-logo-full.svg` (shipped
+  in `wwwroot/images/`), so it resolves once the new site is live.
+- **IR FAQ `[Placeholder]` dividend answers.** No `[Placeholder]` text remains in
+  `Investors/Faq.cshtml`, its Thai twin, or any other page.
+- **Duplicate Flip Chip `<title>`.** The pages now read "Flip Chip & Interconnect | Capabilities"
+  and "Precision Flip Chip | Capabilities".
+- **No `<h1>` on History.** `/about/history` and `/th/about/history` each have an `<h1>`.
 
 ### 24 Oct 2026 — repetition sweep and search / AI-search (AEO) layer
 
