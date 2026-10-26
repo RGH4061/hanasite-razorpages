@@ -25,8 +25,6 @@ A screenshot or the prototype filename it should match is ideal but not required
     confirmed by the plants before any plant-link work.
   - **Facts to confirm:** Lamphun flip chip (GGI or C4), ISO 27001 scope, ISO 14064-1 plant, Koh Kong
     IATF, RFID ARC scope.
-  - **Tracker rows** (Excel): Redirect Map rows for the 26 Oct 301s (asset tracking, flip-chip-micro,
-    industrial power modules, `/index`, `/insights/commentary`).
   - **Thai menu labels** for the renamed flip chip and RFID pages.
   - **Insights draft** `/insights/automotive-pcba-assembly` is noindexed; re-angle it as an IATF 16949
     explainer. Its "more" cards are placeholders that link to `/insights`.
@@ -258,6 +256,8 @@ A screenshot or the prototype filename it should match is ideal but not required
   `/insights/commentary` → `/insights`.
 - **Insights pills** use Format · Topic ("Industry update · Power electronics"); Article JSON-LD
   carries `articleSection` (topic) and `genre` (format).
+- **Tracker:** Redirect Map rows #41, #42, #49, #65 corrected and the nine Program.cs redirects added
+  (#97–105); URL Structure row 32 (Medical Wireless Charging) canonical = self.
 - **Closed as stale:** "Die Attach & Wire Bond page is back" (page removed; links go to the Flip Chip
   section) and "41 titles contain Hana twice" (5 remain, each where Hana is part of the page name).
 - **Copy:** COB "where we run" sentence, Capabilities hub search hint, Leadership lede (four countries).
