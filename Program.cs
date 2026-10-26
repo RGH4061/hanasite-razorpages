@@ -30,6 +30,8 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     // Sensor merge, 23 Oct 2026: MEMS & Optical Sensor Packages folds into the MEMS & Sensor
     // Assembly capability page; the Optical & Sensors hub stays as the market page.
     ["/markets/optical-sensors/mems-sensors"]        = "/capabilities/microelectronic-assembly/mems-sensor-assembly",
+    // RFID review, 26 Oct 2026: industrial asset-tracking tags fold into RFID Tags & Inlays.
+    ["/markets/industrial-iot/rfid-asset-tracking"]  = "/markets/rfid/rfid-tags-inlays#asset-tracking",
 };
 app.Use(async (context, next) =>
 {

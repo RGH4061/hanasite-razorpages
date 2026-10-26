@@ -26,7 +26,10 @@
 .mk-hero-media .credit{position:absolute;left:12px;bottom:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.6)}
 .mk-strip{display:flex;align-items:center;flex-wrap:wrap;gap:16px;background:var(--surface);border-radius:var(--radius-spec);padding:18px 24px}
 .mk-chips{display:flex;flex-wrap:wrap;gap:10px}
-.mk-chips span{font-family:var(--font-text);font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px 14px}
+.mk-chips span,.mk-chips a{font-family:var(--font-text);font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px 14px}
+/* Chips that match a product page link to it */
+.mk-chips a{text-decoration:none;color:var(--hana-blue);transition:border-color 160ms ease}
+.mk-chips a:hover{border-color:var(--hana-blue)}
 .mk-spec{display:flex;flex-wrap:wrap;background:var(--surface);border-radius:var(--radius-spec);overflow:hidden}
 .mk-spec .cell{flex:1 1 160px;padding:16px 22px;border-left:1px solid var(--line)}
 .mk-spec .cell:first-child{border-left:0}

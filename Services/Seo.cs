@@ -53,7 +53,6 @@ public static class Seo
         ["/capabilities/microelectronic-assembly"] = "Microelectronic Assembly",
         ["/capabilities/osat"] = "OSAT & IC Packaging",
         ["/capabilities/pcba-box-build"] = "PCBA & Box Build",
-        ["/capabilities/rfid-smart-tags"] = "RFID & Smart Tags",
         ["/careers"] = "Careers",
         ["/contact"] = "Contact",
         ["/insights"] = "Insights",
