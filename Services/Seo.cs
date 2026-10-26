@@ -41,6 +41,7 @@ public static class Seo
     {
         "/search",
         "/locations/cheongju",   // dormant since 20 Aug 2026: not linked, not indexed
+        "/insights/automotive-pcba-assembly",   // draft example (tracker); to be rewritten as an IATF 16949 explainer
     };
 
     // Visible names of section pages, used for the breadcrumb trail of the pages below them.

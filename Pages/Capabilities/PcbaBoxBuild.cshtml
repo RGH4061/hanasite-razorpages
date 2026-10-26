@@ -1,7 +1,7 @@
 @page "/capabilities/pcba-box-build"
 @{
-    ViewData["Title"] = "PCBA and Box Build Assembly | Capabilities";
-    ViewData["Description"] = "PCBA and box build at Hana: fine-pitch SMT, chip on board and full product assembly with SPI, AOI and X-ray, in China, Thailand, Cambodia and the USA.";
+    ViewData["Title"] = "PCB Assembly (PCBA) & Box Build Services";
+    ViewData["Description"] = "PCB assembly (PCBA) and box build at Hana: SMT, through-hole and mixed-technology boards, chip on board and finished products, with SPI, AOI, X-ray and functional test.";
     ViewData["Motion"] = "capability";
     ViewData["CapSlug"]  = "";
     ViewData["CapGroup"] = "pcba-box-build";
@@ -34,8 +34,8 @@
   <div class="cap-section cap-section--band cap-section--hero">
     <div style="margin-bottom:52px;">
       <div style="font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--hana-blue);margin-bottom:14px;">Capabilities · PCBA &amp; Box Build</div>
-      <h1 style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin:0 0 18px;max-width:760px;text-wrap:balance;">PCBA and box build assembly</h1>
-      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">Hana provides board assembly and full product assembly within one manufacturing group, from fine-pitch SMT and bare-die integration through to finished, tested units. Qualified processes run across Hana sites in China, Thailand, Cambodia and the USA, with SPI, AOI and X-ray integrated into the standard SMT process.</p>
+      <h1 style="font-family:var(--font-display);font-size:48px;font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-0.03em;margin:0 0 18px;max-width:760px;text-wrap:balance;">PCB assembly (PCBA) and box build</h1>
+      <p style="font-family:var(--font-text);font-size:18.5px;color:var(--ink-2);line-height:1.55;max-width:680px;margin:0 0 32px;text-wrap:pretty;">Hana provides printed circuit board assembly (PCBA) and box build within one manufacturing group, from fine-pitch SMT and bare-die integration through to finished, tested units. Qualified processes run across Hana sites in China, Thailand, Cambodia and the USA, with SPI, AOI and X-ray integrated into the standard SMT process.</p>
       <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:320px;"><img src="/images/capabilities/cap-pcba-box-build-hero.webp" alt="Populated board with power inductors, spring contacts, coin cell and USB connectors" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"><div style="position:absolute;inset:auto 0 0 0;height:96px;background:linear-gradient(to top,rgba(3,10,23,0.72),rgba(3,10,23,0));"></div><div style="position:absolute;left:12px;bottom:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:rgba(255,255,255,0.92);text-transform:uppercase;">Populated board assembly with power inductors and spring contacts</div></div>
     </div>
     <div class="cap-subsel" data-hana-bg="halftone" data-variant="dark" data-accent="" data-fade="none" style="background:var(--hana-blue-deep);position:relative;overflow:hidden;border-radius:16px;">
@@ -63,9 +63,57 @@
         </div>
       </div>
     </div>
+    <div data-hana-bg="pcb" data-variant="dark" data-accent="" data-fade="none" style="margin:32px 0 0;padding:30px 34px;border-radius:var(--radius-panel);background:var(--hana-blue-deep);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden;">
+    <div style="max-width:620px;position:relative;z-index:1;">
+      <div style="font-family:var(--font-text);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:10px;">Send us your BOM</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.3;letter-spacing:-0.01em;">Send us your BOM and drawings for a manufacturability review and quotation on your PCB assembly or box build program.</div>
+    </div>
+    <a href="/contact/rfq" class="hana-btn hana-btn-on-dark" style="white-space:nowrap;position:relative;z-index:1;">Start a program <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div>
   </div>
 </div>
 
+
+
+
+
+<style>
+  details.sc-faq{ border-top:1px solid var(--line); }
+  details.sc-faq:first-child{ border-top:none; }
+  details.sc-faq > summary{ list-style:none; cursor:pointer; padding:18px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; font-family:var(--font-text); font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
+  details.sc-faq > summary::-webkit-details-marker{ display:none; }
+  details.sc-faq[open] > summary{ background:var(--bg); }
+  .sc-faq-mk{ color:var(--hana-blue); font-size:22px; line-height:1; flex-shrink:0; transition:transform 150ms ease; }
+  details.sc-faq[open] .sc-faq-mk{ transform:rotate(45deg); }
+  .sc-faq-a{ padding:0 22px 20px; font-family:var(--font-text); font-size:14px; color:var(--ink-2); line-height:1.65; max-width:720px; }
+</style>
+<div style="background:#fff;"><div class="cap-section"><div style="margin-bottom:8px;"><div style="margin-bottom:26px;"><h2 style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);line-height:1.2;letter-spacing:-0.02em;margin:0;">Frequently asked questions</h2></div>
+    <div style="border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:#fff;">
+      <details class="sc-faq" open>
+      <summary>What PCB assembly services does Hana provide?<span class="sc-faq-mk">+</span></summary>
+      <div class="sc-faq-a">Hana assembles printed circuit boards with fine-pitch, double-sided SMT, through-hole and mixed-technology processes, chip on board and conformal coating, with SPI, AOI and X-ray inspection. Box build takes the assembled board through to the finished, tested product.</div>
+    </details>
+      <details class="sc-faq">
+      <summary>Does Hana run through-hole and mixed-technology assembly?<span class="sc-faq-mk">+</span></summary>
+      <div class="sc-faq-a">Yes. Pin-through-hole components are soldered by wave, selective or laser soldering, and mixed-technology boards combine these with SMT on the same assembly.</div>
+    </details>
+      <details class="sc-faq">
+      <summary>How are assembled boards inspected and tested?<span class="sc-faq-mk">+</span></summary>
+      <div class="sc-faq-a">Solder-paste inspection, 3D AOI and X-ray are part of the standard SMT line. In-circuit and functional test are added according to program requirements, and finished products can be functionally tested after box build.</div>
+    </details>
+      <details class="sc-faq">
+      <summary>Can Hana take a board through to the finished product?<span class="sc-faq-mk">+</span></summary>
+      <div class="sc-faq-a">Yes. Box build covers enclosure and harness integration, potting, mechanical assembly, functional test and direct shipment.</div>
+    </details>
+      <details class="sc-faq">
+      <summary>Where does Hana assemble PCBs?<span class="sc-faq-mk">+</span></summary>
+      <div class="sc-faq-a">Qualified PCB assembly processes run in Thailand, China, Cambodia and the USA, so a program can be dual-sourced from multiple countries within the same company. PCB assembly runs under ISO 9001 group-wide, with IATF 16949 for automotive programs and ISO 13485 for medical programs; see <a href="/about/quality" style="color:var(--hana-blue-deep);text-decoration:underline;text-underline-offset:2px;">Quality &amp; certifications</a>.</div>
+    </details>
+      <details class="sc-faq">
+      <summary>Which applications does Hana build PCBAs for?<span class="sc-faq-mk">+</span></summary>
+      <div class="sc-faq-a">Hana builds PCBAs for <a href="/markets/automotive/automotive-pcba" style="color:var(--hana-blue-deep);text-decoration:underline;text-underline-offset:2px;">automotive</a> control units and sensor boards, <a href="/markets/medical/pcba" style="color:var(--hana-blue-deep);text-decoration:underline;text-underline-offset:2px;">medical</a> devices including flex assemblies, <a href="/markets/industrial-iot/pcba-box-build" style="color:var(--hana-blue-deep);text-decoration:underline;text-underline-offset:2px;">industrial</a> controls and equipment, and <a href="/markets/consumer/smt-sensors" style="color:var(--hana-blue-deep);text-decoration:underline;text-underline-offset:2px;">consumer</a> products such as wearables.</div>
+    </details>
+    </div>
+  </div></div></div>
 
 </div></div>
 </div><!-- /.cap-page-grid -->

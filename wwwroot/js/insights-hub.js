@@ -26,7 +26,6 @@
     { t: 'Power GaN market forecast: what the 2031 outlook means for packaging', f: 'update', tp: 'power', d: '2026-10-08', r: 3, href: '/insights/commentary/power-gan-market-forecast' },
     { t: 'SiC substrate market recovery: what it means for power packaging', f: 'update', tp: 'power', d: '2026-10-08', r: 3, href: '/insights/commentary/sic-substrate-market-recovery' },
                 { t: 'How RFID inlays are manufactured and tested', f: 'explainer', tp: 'rfid', s: 'From antenna and chip attach to conversion and testing, the process behind high-volume RFID inlays.', r: 6, featured: true, img: P + 'mk-rfid-hero.webp' },
-    { t: 'PCB Assembly for Automotive Electronics', f: 'explainer', tp: 'automotive', s: 'Fine-pitch SMT, inspection on every board, and IATF 16949 discipline across Thailand and China.', r: 5, href: '/insights/automotive-pcba-assembly', img: P + 'homepage-markets-automotive.webp' },
   ];
 
   var state = { format: 'all', topic: 'all' };
