@@ -36,6 +36,9 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     ["/capabilities/microelectronic-assembly/flip-chip-micro"] = "/capabilities/microelectronic-assembly/precision-flip-chip",
     // Power review, 26 Oct 2026: industrial power modules fold into the Power Management hub.
     ["/markets/industrial-iot/power-modules"]       = "/markets/power-management#industrial",
+    // Sweep, 26 Oct 2026: old-site and retired URLs that still collect links.
+    ["/index"]                                      = "/",
+    ["/insights/commentary"]                        = "/insights",
 };
 app.Use(async (context, next) =>
 {

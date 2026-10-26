@@ -42,6 +42,9 @@ public static class Seo
         "/search",
         "/locations/cheongju",   // dormant since 20 Aug 2026: not linked, not indexed
         "/insights/automotive-pcba-assembly",   // draft example (tracker); to be rewritten as an IATF 16949 explainer
+    "/careers/apply",        // form steps reached from a job post, not landing pages
+    "/careers/consent",
+    "/careers/job-post",     // sample listing; live listings come from Careers Admin
     };
 
     // Visible names of section pages, used for the breadcrumb trail of the pages below them.
@@ -195,7 +198,7 @@ public static class Seo
 
         if (!isHome && !headHtml.Contains("BreadcrumbList"))
         {
-            var crumbs = Breadcrumbs(path, name, routes);
+            var crumbs = Breadcrumbs(path, VisibleLeaf(bodyHtml) ?? name, routes);
             if (crumbs.Count > 1)
             {
                 page["breadcrumb"] = new JsonObject { ["@id"] = url + "#breadcrumb" };
@@ -370,6 +373,26 @@ public static class Seo
         if (q.Length < 8 || a.Length < 2 || a.StartsWith("[Placeholder]", StringComparison.OrdinalIgnoreCase)) return;
         if (list.Any(x => x.Item1 == q)) return;
         list.Add((q, a));
+    }
+
+    // The last item of the visible breadcrumb (About/Careers/Legal "crumbs" nav, Markets
+    // "mk-crumbbar", Automotive "auto-crumb"), so the structured trail names the page as the
+    // visitor sees it. Pages without one of these fall back to the title.
+    static readonly Regex CrumbRx = new(@"<(nav|div)\b[^>]*class=""(?:crumbs|mk-crumbbar|auto-crumb)""[^>]*>(.*?)</\1>", RegexOptions.Singleline | RegexOptions.Compiled);
+    static readonly Regex CrumbItemRx = new(@"<(a|span)\b([^>]*)>(.*?)</\1>", RegexOptions.Singleline | RegexOptions.Compiled);
+
+    static string? VisibleLeaf(string html)
+    {
+        var m = CrumbRx.Match(html);
+        if (!m.Success) return null;
+        string? last = null;
+        foreach (Match i in CrumbItemRx.Matches(m.Groups[2].Value))
+        {
+            if (i.Groups[2].Value.Contains("sep")) continue;
+            var t = Text(i.Groups[3].Value);
+            if (t.Length > 0) last = t;
+        }
+        return last is { Length: <= 80 } ? last : null;
     }
 
     static string Text(string html) =>

@@ -15,6 +15,22 @@ A screenshot or the prototype filename it should match is ideal but not required
 
 ## Open
 
+- [ ] **Share price is static — go-live blocker (IR / Finance).** The header and footer show
+  "฿24.50 +1.24%" on every page and never change; the IR hub panel shows 39.20 on the same page.
+  Wire both to one live SET feed (or remove the figure) before launch.
+- [ ] **Cross-page sweep, 26 Oct 2026: open items** (report: `5. Website Redesign/SEO & AEO/Website
+  sweep - overlap, duplication and search pathways (26 Oct 2026).md`).
+  - **Plant × process table.** Capability "Where we run" lists and plant pages disagree in 26 pairs
+    (COB and flip chip each name "China and Thailand" and show a Koh Kong card). Needs a table
+    confirmed by the plants before any plant-link work.
+  - **Facts to confirm:** Lamphun flip chip (GGI or C4), ISO 27001 scope, ISO 14064-1 plant, Koh Kong
+    IATF, RFID ARC scope.
+  - **Tracker rows** (Excel): Redirect Map rows for the 26 Oct 301s (asset tracking, flip-chip-micro,
+    industrial power modules, `/index`, `/insights/commentary`).
+  - **Thai menu labels** for the renamed flip chip and RFID pages.
+  - **Insights draft** `/insights/automotive-pcba-assembly` is noindexed; re-angle it as an IATF 16949
+    explainer. Its "more" cards are placeholders that link to `/insights`.
+
 - [ ] **Search and AI-search sweep, 24 Oct 2026: items for the developer.** The metadata layer
   (`Services/Seo.cs`, `_Layout.cshtml`, `/sitemap.xml`, `wwwroot/robots.txt`, `wwwroot/llms.txt`)
   is described under Fixed, 24 Oct.
@@ -42,7 +58,9 @@ A screenshot or the prototype filename it should match is ideal but not required
     systems" on Ayutthaya (a capacity-type figure).
   - **JDM name:** the JDM page and sidebar say "Joint Development Model"; the tracker name is
     "Joint Development Manufacturing".
-  - **Lamphun** still lists "Die Attach & Wire Bond", which was folded into Flip Chip & Interconnect.
+  - **Lamphun** lists "Die Attach & Wire Bond"; the link now goes to the
+    `/capabilities/osat/flip-chip#die-attach-wire-bond` section, so only the plant-list question remains
+    (see the plant × process item below).
   - **Koh Kong ISO 13485:** the Koh Kong page lists it; the Locations hub's Koh Kong list does not.
   - **Data Centers hero chip** "Thermoelectric coolers (TEC)" (the Optical test chip was corrected).
   - **Thai homepage and Thai IR pages** use English meta descriptions.
@@ -169,24 +187,6 @@ A screenshot or the prototype filename it should match is ideal but not required
     below `innerWidth < 980`, piling all six capability cards on one spot; below 980px the
     wheel retires and the six cards stack as a full-width list.
   - About pages needed no section file — clean once the chrome reflows.
-- [ ] **Die Attach & Wire Bond page is back — conflicts with the 6 Aug merge decision (Rupert to
-  decide).** The 14 Sep (2nd) export adds `Capabilities/DieAttachWireBond.cshtml`
-  (`/capabilities/osat/die-attach-wire-bond`) because the capability sidebar and 8 other pages
-  linked it (6 of those links were already dead in the previous sync). The tracker says Die Attach
-  & Wire Bond was absorbed into Flip Chip & Interconnect on 6 Aug with a 301 — but the page has
-  stayed in the Claude Design source (static preview) throughout, and OSAT Flip Chip is still
-  titled just "Flip Chip". Its hero image is a placeholder. Either confirm the page stays, or ask
-  Claude Design to remove it and repoint every link (sidebar, WLP page, 3 plant pages, 4 market
-  pages, search index) to `/capabilities/osat/flip-chip`.
-- [ ] **41 titles contain "Hana" twice in a softer form (Rupert to decide).** Separate from the
-  doubled-site-name bug fixed on 15 Oct. Many Markets, Capabilities and IR pages set a title that
-  already ends in "| Hana" or "— Hana", and `_Layout.cshtml` then appends "— Hana
-  Microelectronics", so the tab reads e.g. "Automotive Power Module Assembly | Hana — Hana
-  Microelectronics". It is not a defect in the way the full doubling was, and the short "| Hana"
-  suffix may be a deliberate SEO choice, so it was **left alone**. Decide whether the page-level
-  "| Hana" / "— Hana" comes off; if it should, fix at source for all of them.
-  (One case is legitimate and should stay: "Why Hana — … — Hana Microelectronics", where "Why
-  Hana" is the page name.)
 - [ ] **Metadata defects found in the 15 Oct review — all need fixing at source.** Two were
   patched repo-side (and so join the re-apply list); the rest are content or convention decisions.
   - **36 pages share one meta description** — the generic "Hana is the leading independent EMS and
@@ -238,6 +238,29 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 26 Oct 2026 (2nd) — cross-page sweep, section 7.1 fixes
+
+- **Links:** LED Lighting buttons now go to COB and SMT Assembly; Data Centers high-density PCBA
+  links to Industrial PCBA; Insights in-text links point to the market sub-pages (power modules,
+  sensor assembly, automotive PCBA) and to the Ayutthaya and Lamphun plants; the dead "MLCC supply"
+  link is plain text; "traceability" on the Automotive hub, Automotive PCBA and five medical pages
+  links to MES & Traceability; Package Design ↔ DFx / DFM and JDM cross-link.
+- **Navigation:** header "Markets" links to `/markets` (EN and TH; the mobile menu picks it up);
+  homepage "View all markets" link; About sub-page breadcrumbs link "About"; "More about Hana" row
+  on `/about`; word spacing restored in split homepage headings.
+- **Contact form:** Service = the six capability groups + Other; Industry adds Data Centers (EN, TH).
+- **Accessibility:** market sidebar links carry `aria-label` (abbreviation `aria-hidden`), active
+  link `aria-current="page"`.
+- **Metadata:** JSON-LD breadcrumb leaf comes from the visible breadcrumb (`Seo.VisibleLeaf`);
+  distinct titles for Consumer and Medical Wireless Charging; `/insights` without trailing slash in
+  JSON-LD; `/careers/apply`, `/consent`, `/job-post` noindexed; 301s `/index` → `/`,
+  `/insights/commentary` → `/insights`.
+- **Insights pills** use Format · Topic ("Industry update · Power electronics"); Article JSON-LD
+  carries `articleSection` (topic) and `genre` (format).
+- **Closed as stale:** "Die Attach & Wire Bond page is back" (page removed; links go to the Flip Chip
+  section) and "41 titles contain Hana twice" (5 remain, each where Hana is part of the page name).
+- **Copy:** COB "where we run" sentence, Capabilities hub search hint, Leadership lede (four countries).
 
 ### 26 Oct 2026 — stale Open items confirmed resolved and closed
 

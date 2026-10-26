@@ -84,8 +84,8 @@
       closeAll();
     });
 
-    /* Keyboard: a focused nav item opens its panel. Arrow Down (or Enter/Space on Markets, which
-       has no hub page) moves into the panel; Escape closes it and returns to the nav item. Focus
+    /* Keyboard: a focused nav item opens its panel. Arrow Down (or Enter/Space on an item
+       without a hub page) moves into the panel; Escape closes it and returns to the nav item. Focus
        moving anywhere outside the nav items and panels closes it. */
     var quietFocus = false;   // set while Escape hands focus back, so the panel stays closed
     navLinks.forEach(function (link) {
