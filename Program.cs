@@ -34,6 +34,8 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     ["/markets/industrial-iot/rfid-asset-tracking"]  = "/markets/rfid/rfid-tags-inlays#asset-tracking",
     // Flip chip review, 26 Oct 2026: precision flip chip renamed to match its page title.
     ["/capabilities/microelectronic-assembly/flip-chip-micro"] = "/capabilities/microelectronic-assembly/precision-flip-chip",
+    // Power review, 26 Oct 2026: industrial power modules fold into the Power Management hub.
+    ["/markets/industrial-iot/power-modules"]       = "/markets/power-management#industrial",
 };
 app.Use(async (context, next) =>
 {

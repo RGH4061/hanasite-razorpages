@@ -15,14 +15,14 @@ Key facts:
 
 - [Markets overview](https://www.hanagroup.com/markets): the ten markets Hana manufactures for.
 - [Automotive](https://www.hanagroup.com/markets/automotive): power modules, sensor assembly, LED lighting, RFID tire tags and PCBA on IATF 16949 lines.
-- [Industrial & IoT](https://www.hanagroup.com/markets/industrial-iot): ruggedized PCBA and box build, connected device assembly, RFID asset tracking and power modules.
+- [Industrial & IoT](https://www.hanagroup.com/markets/industrial-iot): ruggedized PCBA and box build, connected device assembly, RFID asset-tracking tags and power modules.
 - [Telecommunications](https://www.hanagroup.com/markets/telecom): RF and millimeter-wave modules, GaN RF power packages, hermetic fiber-optic receivers and wireless modules.
 - [RFID](https://www.hanagroup.com/markets/rfid): smart cards, inlays, tags and tire tags across LF, HF and UHF. Products: [RFID tags and inlays, including industrial asset-tracking tags](https://www.hanagroup.com/markets/rfid/rfid-tags-inlays), [RFID tire tags](https://www.hanagroup.com/markets/rfid/rfid-tire-tags), [RFID smart cards](https://www.hanagroup.com/markets/rfid/rfid-cards), [RFID access cards and fobs](https://www.hanagroup.com/markets/access-control/rfid-cards).
 - [Optical & Sensors](https://www.hanagroup.com/markets/optical-sensors): camera modules and MEMS, optical, automotive and medical sensor assembly.
 - [Consumer Electronics](https://www.hanagroup.com/markets/consumer): sensor assembly, high-volume SMT, wireless charging modules and box build.
 - [Medical](https://www.hanagroup.com/markets/medical): hearing aids, medical MEMS and sensors, PCBA and wireless charging on ISO 13485 lines.
 - [Access Control](https://www.hanagroup.com/markets/access-control): RFID access cards and smart lock and door hardware assembly.
-- [Power Management](https://www.hanagroup.com/markets/power-management): IGBT and SiC power modules, intelligent power modules and power discretes.
+- [Power Management](https://www.hanagroup.com/markets/power-management): IGBT and SiC power modules, IPMs and power discretes for EV, solar, wind, industrial drive and EV charging equipment (Hana builds the module, not the finished equipment); package detail is on [Power packages and modules](https://www.hanagroup.com/capabilities/osat/power-packages).
 - [Data Centers](https://www.hanagroup.com/markets/data-centers): control electronics for thermoelectric cooling, high-density PCBA for optical test equipment and SiC power conversion.
 
 ## Capabilities
