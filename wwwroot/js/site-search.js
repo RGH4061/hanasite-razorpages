@@ -17,7 +17,7 @@
     /* Renamed in the Aug 2026 restructure — the index address is /clear-mold-packaging,
        the Razor page is /optical-packaging (site owner, 14 Aug 2026). */
     "/capabilities/osat/clear-mold-packaging": "/capabilities/osat/optical-packaging",
-    "/capabilities/microelectronic-assembly/flip-chip": "/capabilities/microelectronic-assembly/flip-chip-micro",
+    "/capabilities/microelectronic-assembly/flip-chip": "/capabilities/microelectronic-assembly/precision-flip-chip",
     "/capabilities/microelectronic-assembly/interconnect-solutions": "/capabilities/microelectronic-assembly/precision-interconnect",
     "/capabilities/rfid": "/capabilities/rfid-smart-tags",
     "/capabilities/dfx-jdm/design-for-excellence": "/capabilities/dfx-jdm/dfx-dfm",
