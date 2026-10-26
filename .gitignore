@@ -4,3 +4,14 @@ obj/
 
 # macOS
 .DS_Store
+
+# Editors and IDEs
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Secrets and local settings (never commit these)
+.env
+appsettings.*.local.json
