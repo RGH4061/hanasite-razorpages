@@ -160,6 +160,23 @@ details.mk-faq[open] .mk-faq-mk{transform:rotate(90deg)}
 .mk-caplinks .links{display:flex;flex-wrap:wrap;gap:12px}
 .mk-caplinks .links a{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 18px;font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hana-blue);text-decoration:none;transition:border-color 160ms ease,background 160ms ease}
 .mk-caplinks .links a:hover{border-color:var(--hana-blue);background:var(--hana-blue-tint);color:var(--hana-blue-deep)}
+/* "More information" panel below the product rows: Midnight with the geometric "side" shapes (hana-geo-motion)
+   and white on-dark buttons to the capability pages. Mirrors .auto-moreinfo in automotive.css (27 Oct 2026). */
+.mk-moreinfo{display:flex;align-items:center;justify-content:space-between;gap:18px 28px;flex-wrap:wrap;border-radius:var(--radius-spec);padding:28px 30px;margin-top:28px}
+.mk-moreinfo h2{font-family:var(--font-display);font-size:21px;font-weight:600;color:#fff;letter-spacing:-0.01em;margin:0 0 6px}
+.mk-moreinfo p{font-family:var(--font-text);font-size:14px;color:rgba(255,255,255,.75);line-height:1.55;margin:0}
+.mk-moreinfo .acts{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:1}
+/* .has-pic: text and buttons on the left, a product photo on the right that fades into the panel (phones: photo on top) */
+.mk-moreinfo.has-pic{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:0;padding:0;align-items:stretch}
+.mk-moreinfo.has-pic .txt{display:flex;flex-direction:column;gap:18px;padding:28px 30px;position:relative;z-index:1}
+.mk-moreinfo .pic{position:relative;z-index:1;min-height:180px}
+.mk-moreinfo .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%;display:block;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 35%);mask-image:linear-gradient(to right,transparent 0,#000 35%)}
+@media(max-width:700px){
+  .mk-moreinfo.has-pic{grid-template-columns:1fr}
+  .mk-moreinfo .pic{order:-1;min-height:150px}
+  .mk-moreinfo .pic img{-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+  .mk-moreinfo.has-pic .txt{padding:4px 22px 24px}
+}
 /* verification rail beside the differentiator */
 .mk-diff{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:52px;align-items:start}
 .mk-proof .p{padding:15px 0;border-top:1px solid rgba(255,255,255,.18)}
