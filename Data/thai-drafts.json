@@ -1,0 +1,1048 @@
+{
+  "_readme": "Thai draft overlay (29 Oct 2026). Each English route listed here also renders at /th/<route> with the Thai header and footer, Thai H1, opening blurb, SEO title and description, and the Thai labels below in the breadcrumb, eyebrow and sidebar. The rest of the page stays English. \"en\" must match the English page; if the English changes, the page shows English for that line until the Thai is updated. Status: approved = Lamphun review 23 Oct; adjusted = approved Thai edited to follow a small English change; draft = new Thai, not yet reviewed; proposed = never reviewed. Line breaks in \"th\" (\\n) show as line breaks on the page; [words](/address) is a link, styled like the link in the English blurb. Add ?review=1 to a /th/ address to see each line marked by status.",
+  "labels": {
+    "Home": "หน้าแรก",
+    "Markets": "ตลาด",
+    "Capabilities": "ความสามารถ",
+    "Locations": "ที่ตั้ง",
+    "Browse capabilities": "เลือกดูความสามารถ",
+    "Package finder": "ค้นหาแพ็กเกจ",
+    "Browse all packages": "ดูแพ็กเกจทั้งหมด",
+    "Overview": "ภาพรวม",
+    "PCBA & Box Build Assembly": "PCBA และการประกอบผลิตภัณฑ์สำเร็จรูป",
+    "PCBA & Box Build": "PCBA และการประกอบผลิตภัณฑ์สำเร็จรูป",
+    "SMT Assembly": "การประกอบ SMT",
+    "COB Assembly": "การประกอบ COB",
+    "Box Build Assembly": "การประกอบผลิตภัณฑ์สำเร็จรูป",
+    "OSAT Services": "บริการ OSAT",
+    "Design": "การออกแบบ",
+    "Package Design & Simulation": "การออกแบบและจำลองแพ็กเกจ",
+    "Packaging solutions": "โซลูชันแพ็กเกจ",
+    "Power Packages (IGBT, SiC & GaN)": "แพ็กเกจสำหรับอุปกรณ์กำลัง (IGBT, SiC และ GaN)",
+    "QFN, DFN & LGA": "QFN, DFN และ LGA",
+    "Clear & Optical Packaging": "แพ็กเกจใสและแพ็กเกจเชิงแสง",
+    "Hermetic & Ceramic Packaging": "แพ็กเกจแบบปิดผนึกสนิทและเซรามิก",
+    "Ultra-small Packages": "แพ็กเกจขนาดเล็กพิเศษ",
+    "System in Package (SiP)": "ระบบในแพ็กเกจ (SiP)",
+    "Wafer, assembly & test": "เวเฟอร์ การประกอบ และการทดสอบ",
+    "Wafer Processing": "การประมวลผลเวเฟอร์",
+    "Wafer Level Packaging": "แพ็กเกจระดับเวเฟอร์",
+    "Wafer Level Packaging (WLCSP)": "แพ็กเกจระดับเวเฟอร์ (WLCSP)",
+    "Flip Chip & Interconnect": "flip chip และการเชื่อมต่อ",
+    "Wafer Probe & Final Test": "การทดสอบเวเฟอร์และการทดสอบขั้นสุดท้าย",
+    "Microelectronic Assembly": "การประกอบไมโครอิเล็กทรอนิกส์",
+    "Microelectronic assembly": "การประกอบไมโครอิเล็กทรอนิกส์",
+    "Precision Flip Chip (GGI)": "flip chip ความแม่นยำสูง (GGI)",
+    "Precision Flip Chip": "flip chip ความแม่นยำสูง",
+    "MEMS & Sensor Assembly": "การประกอบ MEMS และเซนเซอร์",
+    "Precision Interconnect": "การเชื่อมต่อความแม่นยำสูง",
+    "Micro-Assembly": "การประกอบไมโคร (Micro-Assembly)",
+    "RFID & Smart Tags": "RFID และสมาร์ทแท็ก",
+    "RFID manufacturing process": "กระบวนการผลิต RFID",
+    "Automation & Smart Manufacturing": "ระบบอัตโนมัติและการผลิตอัจฉริยะ",
+    "Robotic & Smart Manufacturing": "หุ่นยนต์และการผลิตอัจฉริยะ",
+    "Manufacturing Traceability": "การตรวจสอบย้อนกลับในการผลิต",
+    "DFx & JDM Collaboration": "ความร่วมมือ DFx และ JDM",
+    "DFx & JDM": "DFx และ JDM",
+    "Design for Excellence (DFx)": "การออกแบบเพื่อความเป็นเลิศ (DFx)",
+    "Joint Development Model (JDM)": "รูปแบบการพัฒนาร่วม (JDM)",
+    "New Product Introduction (NPI)": "การแนะนำผลิตภัณฑ์ใหม่ (NPI)",
+    "Not sure which process fits your product?": "ไม่แน่ใจว่ากระบวนการใดเหมาะกับผลิตภัณฑ์ของคุณ",
+    "We can help identify the right manufacturing route.": "เราช่วยคุณเลือกแนวทางการผลิตที่เหมาะสมได้",
+    "Contact us": "ติดต่อเรา",
+    "Thailand": "ประเทศไทย",
+    "Ayutthaya": "อยุธยา",
+    "China": "ประเทศจีน",
+    "Jiaxing": "เจียซิง",
+    "Cambodia": "ประเทศกัมพูชา",
+    "Koh Kong": "เกาะกง",
+    "Lamphun": "ลำพูน",
+    "USA": "ประเทศสหรัฐอเมริกา",
+    "Ohio": "โอไฮโอ",
+    "Access Control": "ระบบควบคุมการเข้าออก",
+    "RFID Access Cards": "บัตร RFID ควบคุมการเข้าออก",
+    "Access Control products": "ผลิตภัณฑ์ระบบควบคุมการเข้าออก",
+    "Smart Lock & Door Hardware": "ประตูควบคุมอัจฉริยะ",
+    "Not sure which fits?": "ไม่แน่ใจว่าแบบใดเหมาะกับคุณ",
+    "Tell us what the credential or lock has to do and we’ll point you to the right line.": "แจ้งให้เราทราบว่าบัตรหรือระบบล็อกต้องทำงานอย่างไร แล้วเราจะแนะนำสายการผลิตที่เหมาะสม",
+    "Automotive": "ยานยนต์",
+    "Automotive PCBA": "PCBA สำหรับยานยนต์",
+    "Automotive components": "ชิ้นส่วนยานยนต์",
+    "Power Modules": "โมดูลกำลังไฟฟ้า",
+    "Sensor Assembly": "การประกอบเซนเซอร์",
+    "RFID Tire Tags": "แท็ก RFID สำหรับยางรถยนต์",
+    "LED Lighting": "ระบบไฟ LED",
+    "Tell us what the part does in the vehicle and we’ll point you to the right line.": "แจ้งให้เราทราบว่าชิ้นส่วนทำหน้าที่อะไรในยานยนต์ แล้วเราจะแนะนำสายการผลิตที่เหมาะสม",
+    "Consumer Electronics": "อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+    "SMT & Sensor Assembly": "การประกอบ SMT และเซนเซอร์",
+    "Consumer Electronics products": "ผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+    "Wireless Charging": "การชาร์จแบบไร้สาย",
+    "Tell us what the device does and the volumes you expect and we’ll point you to the right line.": "แจ้งให้เราทราบว่าอุปกรณ์ทำหน้าที่อะไรและปริมาณการผลิตที่คาดไว้ แล้วเราจะแนะนำสายการผลิตที่เหมาะสม",
+    "Data Centers": "ศูนย์ข้อมูล",
+    "Industrial & IoT": "อุตสาหกรรมและ IoT",
+    "Industrial IoT Devices": "อุปกรณ์ IoT สำหรับอุตสาหกรรม",
+    "Industrial & IoT products": "ผลิตภัณฑ์อุตสาหกรรมและ IoT",
+    "Tell us what the product does and where it runs and we’ll point you to the right line.": "แจ้งให้เราทราบว่าผลิตภัณฑ์ทำหน้าที่อะไรและใช้งานในสภาพแวดล้อมใด แล้วเราจะแนะนำสายการผลิตที่เหมาะสม",
+    "Medical": "การแพทย์",
+    "Hearing Aid Assembly": "การประกอบเครื่องช่วยฟัง",
+    "Medical products": "ผลิตภัณฑ์ทางการแพทย์",
+    "Medical MEMS & Sensors": "MEMS และเซนเซอร์ทางการแพทย์",
+    "Medical PCBA & Box Build": "PCBA และ box build สำหรับการแพทย์",
+    "Tell us what the device does and the regulatory route it follows and we’ll point you to the right line.": "แจ้งให้เราทราบว่าอุปกรณ์ทำหน้าที่อะไรและต้องเป็นไปตามข้อกำหนดด้านกฎระเบียบใด แล้วเราจะแนะนำสายการผลิตที่เหมาะสม",
+    "Optical & Sensors": "ออปติคัลและเซนเซอร์",
+    "Camera Modules & Sensors": "โมดูลกล้องและเซนเซอร์",
+    "Optical & Sensors products": "ผลิตภัณฑ์ออปติคัลและเซนเซอร์",
+    "Automotive Sensor Assembly": "การประกอบเซนเซอร์ยานยนต์",
+    "Tell us what the module has to see or display and we’ll point you to the right line.": "แจ้งให้เราทราบว่าโมดูลต้องตรวจจับหรือแสดงผลอะไร แล้วเราจะแนะนำสายการผลิตที่เหมาะสม",
+    "Power Management": "การจัดการพลังงาน",
+    "RFID Smart Cards": "สมาร์ทการ์ด RFID",
+    "RFID products": "ผลิตภัณฑ์ RFID",
+    "RFID Tags & Inlays": "แท็ก RFID และ inlay",
+    "Tell us your specifications and we’ll take it from there.": "แจ้งข้อกำหนดของคุณ แล้วเราจะดูแลต่อจากนั้น",
+    "Telecommunications": "โทรคมนาคม",
+    "RF Modules & Power Amplifiers": "โมดูล RF และเครื่องขยายกำลัง",
+    "Telecommunications products": "ผลิตภัณฑ์โทรคมนาคม",
+    "Fiber-Optic Receivers": "ตัวรับสัญญาณใยแก้วนำแสง",
+    "Wireless Communication Modules": "โมดูลสื่อสารไร้สาย"
+  },
+  "pages": {
+    "/capabilities": {
+      "h1": {
+        "en": "End to End Capabilities With Hana",
+        "th": "ความสามารถด้านการผลิตแบบครบวงจรของ Hana",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "From a fine-pitch surface-mount line through die-level packaging and test to the finished, tested unit, the same qualified processes run across Hana plants in China, Thailand, Cambodia and the USA.",
+        "th": "Hana ให้บริการครบวงจรในอุตสาหกรรม OSAT และ EMS โดยสายการผลิตเริ่ม Wafer Process, packaging รวมถึง surface-mount แบบ fine-pitch และทดสอบระดับ die จนถึงผลิตภัณฑ์สำเร็จรูปที่ผ่านการทดสอบ กระบวนการที่ผ่านการรับรอง มาตรฐานการผลิตระดับสากล ที่ดำเนินการในโรงงานของเราในประเทศจีน ไทย กัมพูชา และสหรัฐอเมริกา",
+        "status": "approved"
+      },
+      "title": "ความสามารถด้านการผลิตแบบครบวงจรของ Hana",
+      "description": "Hana ให้บริการครบวงจรในอุตสาหกรรม OSAT และ EMS โดยสายการผลิตเริ่ม Wafer Process, packaging รวมถึง surface-mount แบบ fine-pitch และทดสอบระดับ die…"
+    },
+    "/capabilities/automation": {
+      "h1": {
+        "en": "Automation and smart manufacturing",
+        "th": "สายการผลิตอัจฉริยะและระบบอัตโนมัติ",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Automation, inspection and manufacturing data are integrated throughout Hana’s production lines. In-line optical inspection, robotic handling and unit-level traceability improve process consistency while maintaining a continuous quality record as products move through production or between Hana sites.",
+        "th": "Hana ใช้นวัตกรรมระบบอัตโนมัติและดาต้าแบบบูรณาการ โดยเชื่อมโยงระบบอัตโนมัติเข้ากับข้อมูลการผลิตตลอดทั้งสาย เพื่อส่งมอบผลิตภัณฑ์ที่มีคุณภาพสม่ำเสมอ ด้วย 3 กลไกหลัก:\n• In-line Optical Inspection: ระบบตรวจจับด้วยแสงในสายการผลิต คัดกรองความแม่นยำในทุกขั้นตอน\n• Robotic Handling: การเคลื่อนย้ายชิ้นงานด้วยหุ่นยนต์ ลดความผิดพลาดและเพิ่มความรวดเร็ว\n• Continuous Quality Records: บันทึกประวัติคุณภาพของผลิตภัณฑ์ชิ้นต่อชิ้นอย่างต่อเนื่อง แม้มีการเคลื่อนย้ายข้ามฐานการผลิต",
+        "status": "approved"
+      },
+      "title": "สายการผลิตอัจฉริยะและระบบอัตโนมัติ",
+      "description": "Hana ใช้นวัตกรรมระบบอัตโนมัติและดาต้าแบบบูรณาการ โดยเชื่อมโยงระบบอัตโนมัติเข้ากับข้อมูลการผลิตตลอดทั้งสาย เพื่อส่งมอบผลิตภัณฑ์ที่มีคุณภาพสม่ำเสมอ ด้วย 3…"
+    },
+    "/capabilities/automation/mes-traceability": {
+      "h1": {
+        "en": "Manufacturing traceability",
+        "th": "การตรวจสอบย้อนกลับในกระบวนการผลิต",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana’s manufacturing execution systems connect material, process and test information to individual production units. From incoming reels and lots through assembly, inspection and final test, manufacturing records can be linked to each serialized product.",
+        "th": "Hana ยกระดับมาตรฐานการควบคุมคุณภาพสู่โรงงานอัจฉริยะด้วยระบบบริหารการผลิต (MES) ที่ล้ำสมัย ทำหน้าที่เชื่อมโยงข้อมูลวัตถุดิบ, กระบวนการผลิต และผลการทดสอบเข้ากับชิ้นงานโดยอัตโนมัติ\nเราบันทึกและติดตามข้อมูลอย่างละเอียด ตั้งแต่ขั้นตอนการรับวัตถุดิบเข้าสู่โรงงาน ผ่านกระบวนการประกอบ การตรวจสอบคุณภาพ ไปจนถึงการทดสอบขั้นสุดท้าย ทำให้บันทึกการผลิตทั้งหมดสามารถเชื่อมโยงและสืบค้นกลับผ่านหมายเลขประจำชิ้นงาน (Unit Serial Number) ของผลิตภัณฑ์แต่ละชิ้นได้อย่างแม่นยำ",
+        "status": "approved"
+      },
+      "title": "การตรวจสอบย้อนกลับในกระบวนการผลิต",
+      "description": "Hana ยกระดับมาตรฐานการควบคุมคุณภาพสู่โรงงานอัจฉริยะด้วยระบบบริหารการผลิต (MES) ที่ล้ำสมัย ทำหน้าที่เชื่อมโยงข้อมูลวัตถุดิบ, กระบวนการผลิต…"
+    },
+    "/capabilities/automation/robotic-smart-manufacturing": {
+      "h1": {
+        "en": "Robotic and smart manufacturing",
+        "th": "หุ่นยนต์และสายการผลิตอัจฉริยะ",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana applies automation where repeatability, throughput and process control are critical. Capabilities include robotic soldering, coating and potting, operator-free singulation, automated handling and test, and inspection integrated directly into the manufacturing line.",
+        "th": "Hana ออกแบบสายการผลิตประกอบด้วยเทคโนโลยี หุ่นยนต์อัตโนมัติ เพื่อควบคุมคุณภาพให้สม่ำเสมอในทุกชิ้นงาน:\n• Robotic Precision: การบัดกรี เคลือบผิว (Coating) และหล่อเรซิน (Potting) ด้วยหุ่นยนต์ที่มีความแม่นยำสูง\n• Operator-Free Singulation: กระบวนการตัดแยกชิ้นงานอัตโนมัติโดยไม่ต้องใช้ผู้ปฏิบัติงาน ลดโอกาสเกิดข้อผิดพลาด\n• Automated Handling & Testing: ระบบเคลื่อนย้ายและทดสอบชิ้นงานแบบอัตโนมัติเต็มรูปแบบ\n• In-line Inspection: ติดตั้งระบบตรวจสอบคุณภาพโดยตรงในสายการผลิตในทุกขั้นตอน",
+        "status": "approved"
+      },
+      "title": "หุ่นยนต์และสายการผลิตอัจฉริยะ",
+      "description": "Hana ออกแบบสายการผลิตประกอบด้วยเทคโนโลยี หุ่นยนต์อัตโนมัติ เพื่อควบคุมคุณภาพให้สม่ำเสมอในทุกชิ้นงาน: Robotic Precision: การบัดกรี เคลือบผิว (Coating)…"
+    },
+    "/capabilities/dfx-jdm": {
+      "h1": {
+        "en": "DFx and joint development",
+        "th": "การออกแบบเพื่อความเป็นเลิศ (DFx) และการพัฒนาผลิตภัณฑ์ร่วมกัน",
+        "status": "proposed"
+      },
+      "lede": {
+        "en": "Hana works with customer engineering teams before volume production through design-for-excellence review, joint development and new product introduction.",
+        "th": "Hana เพิ่มประสิทธิภาพกระบวนการผลิต ทีมวิศวกรของ Hana มีความพร้อมในการพัฒนาผลิตภัณฑ์ร่วมกัน กับทางลูกค้า ตั้งแต่การพัฒนาผลิตภัณฑ์ใหม่ (NPI) จนถึงการผลิตในปริมาณมากโดยการทำงานร่วมกันอย่างเป็นระบบในทุกขั้นตอนก่อนการผลิตจริง\n• DFx (Design for Excellence): ทบทวนและปรับแต่งโครงสร้างการออกแบบเพื่อความเป็นเลิศในสายการผลิต\n• Joint Development (JDM): ร่วมมือพัฒนาผลิตภัณฑ์และออกแบบกระบวนการผลิตไปพร้อมกัน\n• Smooth NPI Transition: บริการแนะนำผลิตภัณฑ์ใหม่เพื่อส่งต่อสู่สายการผลิตใหญ่ได้อย่างมีเสถียรภาพ",
+        "status": "approved"
+      },
+      "title": "การออกแบบเพื่อความเป็นเลิศ (DFx) และการพัฒนาผลิตภัณฑ์ร่วมกัน",
+      "description": "Hana เพิ่มประสิทธิภาพกระบวนการผลิต ทีมวิศวกรของ Hana มีความพร้อมในการพัฒนาผลิตภัณฑ์ร่วมกัน กับทางลูกค้า ตั้งแต่การพัฒนาผลิตภัณฑ์ใหม่ (NPI)…"
+    },
+    "/capabilities/dfx-jdm/dfx-dfm": {
+      "h1": {
+        "en": "Design for Excellence (DFx / DFM)",
+        "th": "การออกแบบเพื่อความเป็นเลิศ (DFx / DFM)",
+        "status": "proposed"
+      },
+      "lede": {
+        "en": "Hana’s DFx process reviews a design against manufacturing, test and reliability requirements before it reaches production. The objective is to identify issues while changes can still be made efficiently, rather than during first build or production ramp. Design and simulation at semiconductor package level is covered on Package Design & Simulation.",
+        "th": "กระบวนการ DFx ของ Hana ทบทวนแบบผลิตภัณฑ์เทียบกับข้อกำหนดด้านการผลิต การทดสอบ และความน่าเชื่อถือ ก่อนเข้าสู่การผลิตจริง เพื่อค้นหาปัญหาในช่วงที่ยังแก้ไขแบบได้อย่างมีประสิทธิภาพ ซึ่งให้ผลที่ดีกว่าการพบข้อบกพร่องในการผลิตครั้งแรกหรือช่วงเพิ่มกำลังการผลิต สำหรับการออกแบบและการจำลอง (simulation) ในระดับแพ็กเกจเซมิคอนดักเตอร์ โปรดดูหน้า[การออกแบบและจำลองแพ็กเกจ (Package Design & Simulation)](/capabilities/osat/package-design)",
+        "status": "adjusted"
+      },
+      "title": "การออกแบบเพื่อความเป็นเลิศ (DFx / DFM)",
+      "description": "กระบวนการ DFx ของ Hana ทบทวนแบบผลิตภัณฑ์เทียบกับข้อกำหนดด้านการผลิต การทดสอบ และความน่าเชื่อถือ ก่อนเข้าสู่การผลิตจริง…"
+    },
+    "/capabilities/dfx-jdm/jdm": {
+      "h1": {
+        "en": "Joint Development Model (JDM)",
+        "th": "การพัฒนาผลิตภัณฑ์ร่วมกัน (JDM)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana’s Joint Development Model brings customer and Hana engineering teams together to develop the product and its manufacturing process in parallel.",
+        "th": "ทีมวิศวกรของ Hana มีความพร้อมในการพัฒนาผลิตภัณฑ์ร่วมกัน กับทางลูกค้า (JDM) โดยจะทำงานร่วมกันเพื่อพัฒนาผลิตภัณฑ์ และกระบวนการผลิตคู่กันไป",
+        "status": "approved"
+      },
+      "title": "การพัฒนาผลิตภัณฑ์ร่วมกัน (JDM)",
+      "description": "ทีมวิศวกรของ Hana มีความพร้อมในการพัฒนาผลิตภัณฑ์ร่วมกัน กับทางลูกค้า (JDM) โดยจะทำงานร่วมกันเพื่อพัฒนาผลิตภัณฑ์ และกระบวนการผลิตคู่กันไป"
+    },
+    "/capabilities/dfx-jdm/npi": {
+      "h1": {
+        "en": "New Product Introduction (NPI)",
+        "th": "กระบวนการผลิต ผลิตภัณฑ์ใหม่ (NPI)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana’s NPI process provides a controlled transition from a qualified design into stable volume production.",
+        "th": "Hana มีกระบวนการรองรับการผลิต ผลิตภัณฑ์ใหม่ (NPI) ที่มีประสิทธิภาพเชื่อมโยงจากขั้นตอนการพัฒนาสู่กระบวนการผลิตเต็มรูปแบบ ด้วยขั้นตอนที่ได้มาตรฐานสากล:\n• Prototyping & Validation: บริการสร้างชิ้นงานต้นแบบและทดสอบฟังก์ชันอย่างละเอียด\n• Smooth Transition: ควบคุมกระบวนการอย่างใกล้ชิดเพื่อการส่งต่อสู่สายการผลิตปริมาณมากที่มีเสถียรภาพ\n• Time-to-Market Optimization: ช่วยลดระยะเวลาและบริหารต้นทุน เพื่อให้ผลิตภัณฑ์พร้อมจำหน่ายได้ทันเวลา",
+        "status": "approved"
+      },
+      "title": "กระบวนการผลิต ผลิตภัณฑ์ใหม่ (NPI)",
+      "description": "Hana มีกระบวนการรองรับการผลิต ผลิตภัณฑ์ใหม่ (NPI) ที่มีประสิทธิภาพเชื่อมโยงจากขั้นตอนการพัฒนาสู่กระบวนการผลิตเต็มรูปแบบ ด้วยขั้นตอนที่ได้มาตรฐานสากล:…"
+    },
+    "/capabilities/microelectronic-assembly": {
+      "h1": {
+        "en": "Microelectronic assembly",
+        "th": "การประกอบไมโครอิเล็กทรอนิกส์",
+        "status": "proposed"
+      },
+      "lede": {
+        "en": "Hana provides precision assembly for products where placement accuracy, interconnect density and device sensitivity are critical. Capabilities include flip chip, MEMS and sensor assembly, fine-pitch interconnect and micro-assembly, supported by process control, inspection and unit-level traceability.",
+        "th": "Hana ให้บริการประกอบชิ้นส่วนอิเล็กทรอนิกส์ความแม่นยำสูง (High-Precision Assembly) สำหรับผลิตภัณฑ์ที่ต้องการความละเอียดสูงสุด ไม่ว่าจะเป็นความแม่นยำในการวางชิ้นงาน ความหนาแน่นของการเชื่อมต่อลวดไฟฟ้า หรืออุปกรณ์ที่มีความไวต่อสิ่งกระตุ้นเป็นพิเศษ\nเราเพียบพร้อมด้วยศักยภาพระดับแนวหน้า ครอบคลุมตั้งแต่การประกอบ Flip Chip, ระบบเซนเซอร์และเทคโนโลยี MEMS, การเชื่อมต่อแบบความถี่ละเอียด (Fine-Pitch Interconnect) ไปจนถึงกระบวนการ Micro-Assembly เต็มรูปแบบ รวมถึงระบบควบคุมกระบวนการผลิตที่มีประสิทธิภาพ เทคโนโลยีการตรวจสอบที่แม่นยำ และระบบตรวจสอบย้อนกลับเจาะลึกรายชิ้น (Unit-Level Traceability) เพื่อให้ผลิตภัณฑ์มีเสถียรภาพและคุณภาพสูงสุดในทุกชิ้นงาน",
+        "status": "approved"
+      },
+      "title": "การประกอบไมโครอิเล็กทรอนิกส์",
+      "description": "Hana ให้บริการประกอบชิ้นส่วนอิเล็กทรอนิกส์ความแม่นยำสูง (High-Precision Assembly) สำหรับผลิตภัณฑ์ที่ต้องการความละเอียดสูงสุด…"
+    },
+    "/capabilities/microelectronic-assembly/mems-sensor-assembly": {
+      "h1": {
+        "en": "MEMS and sensor packaging and assembly",
+        "th": "การทำแพ็กเกจและการประกอบ MEMS และเซนเซอร์",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Hana assembles and packages sensitive MEMS and sensor die, with the attach, interconnect and package structure chosen to preserve the sensing function. Capabilities include cavity, open-cavity and media-access structures for pressure, motion, gas, humidity, LiDAR and optical sensor applications.",
+        "th": "Hana ประกอบและทำแพ็กเกจ die ของ MEMS และเซนเซอร์ที่มีความไวสูง โดยเลือกวิธีการยึดติด (attach) การเชื่อมต่อ (interconnect) และโครงสร้างแพ็กเกจให้คงประสิทธิภาพการตรวจวัดของเซนเซอร์ไว้ ขีดความสามารถครอบคลุมโครงสร้างแบบมีช่องว่างภายใน (cavity) แบบเปิดช่อง (open-cavity) และแบบเปิดให้สารตัวกลางเข้าถึงได้ (media-access) สำหรับเซนเซอร์วัดความดัน การเคลื่อนไหว ก๊าซ ความชื้น LiDAR และเซนเซอร์เชิงแสง",
+        "status": "draft"
+      },
+      "title": "การทำแพ็กเกจและการประกอบ MEMS และเซนเซอร์",
+      "description": "Hana ประกอบและทำแพ็กเกจ die ของ MEMS และเซนเซอร์ที่มีความไวสูง โดยเลือกวิธีการยึดติด (attach) การเชื่อมต่อ (interconnect)…"
+    },
+    "/capabilities/microelectronic-assembly/micro-assembly": {
+      "h1": {
+        "en": "Micro-assembly",
+        "th": "การประกอบชิ้นงานขนาดเล็กพิเศษ (Micro-assembly)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana provides precision assembly for miniature components, optical assemblies, hybrids and compact modules requiring placement and alignment beyond conventional SMT capability. Processes include high-accuracy placement, active alignment and controlled micro-dispensing.",
+        "th": "Hana ให้บริการประกอบความแม่นยำสูงสำหรับชิ้นส่วนขนาดจิ๋ว ชุดประกอบเชิงแสง วงจรไฮบริด (hybrid) และโมดูลขนาดกะทัดรัด ที่ต้องการความแม่นยำในการวางและการจัดแนวเกินกว่าขีดความสามารถของ SMT ทั่วไป กระบวนการประกอบด้วย การวางชิ้นงานที่มีความแม่นยำสูง การจัดแนวแบบแอกทีฟ (active alignment) และ micro-dispensing แบบควบคุม",
+        "status": "approved"
+      },
+      "title": "การประกอบชิ้นงานขนาดเล็กพิเศษ (Micro-assembly)",
+      "description": "Hana ให้บริการประกอบความแม่นยำสูงสำหรับชิ้นส่วนขนาดจิ๋ว ชุดประกอบเชิงแสง วงจรไฮบริด (hybrid) และโมดูลขนาดกะทัดรัด…"
+    },
+    "/capabilities/microelectronic-assembly/precision-flip-chip": {
+      "h1": {
+        "en": "Precision flip chip bonding",
+        "th": "การเชื่อมต่อแบบ flip chip ความแม่นยำสูง (Precision flip chip bonding)",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Hana bonds bumped die face-down onto ceramic, glass, PCB and lead-frame substrates for optical, RF, sensor and other devices where die alignment and interconnect length affect electrical or optical performance. Gold-to-gold interconnect (GGI) is the featured process, alongside adhesive (ACF/ACP, NCF/NCP), stud bump and solder-based methods, with X-ray and placement-accuracy verification.",
+        "th": "Hana เชื่อมต่อ die ที่มี bump แบบคว่ำหน้าลงบนวัสดุฐาน (substrate) ประเภทเซรามิก แก้ว PCB และลีดเฟรม (lead frame) สำหรับอุปกรณ์เชิงแสง RF เซนเซอร์ และอุปกรณ์อื่นที่การจัดแนว die และความยาวของการเชื่อมต่อมีผลต่อสมรรถนะทางไฟฟ้าหรือทางแสง กระบวนการหลักคือการเชื่อมต่อแบบทองกับทอง (Gold-to-gold interconnect: GGI) ควบคู่กับวิธีการใช้กาวนำไฟฟ้าและไม่นำไฟฟ้า (ACF/ACP, NCF/NCP) stud bump และการบัดกรี พร้อมการตรวจสอบด้วยรังสีเอกซ์ (X-ray) และการตรวจสอบความแม่นยำในการวางชิ้นงาน",
+        "status": "draft"
+      },
+      "title": "การเชื่อมต่อแบบ flip chip ความแม่นยำสูง (Precision flip chip bonding)",
+      "description": "Hana เชื่อมต่อ die ที่มี bump แบบคว่ำหน้าลงบนวัสดุฐาน (substrate) ประเภทเซรามิก แก้ว PCB และลีดเฟรม (lead frame) สำหรับอุปกรณ์เชิงแสง RF เซนเซอร์…"
+    },
+    "/capabilities/microelectronic-assembly/precision-interconnect": {
+      "h1": {
+        "en": "Precision interconnect",
+        "th": "การเชื่อมต่อความแม่นยำสูง (Precision interconnect)",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Hana connects flex circuits, displays, substrates and modules using ACF bonding, hot-bar soldering and fine-pitch wire bond. The method is selected according to the electrical, mechanical and reliability requirements of the assembly.",
+        "th": "Hana เชื่อมต่อวงจรแบบยืดหยุ่น (flex circuit) จอแสดงผล วัสดุฐาน (substrate) และโมดูล ด้วยการเชื่อมต่อด้วยฟิล์มนำไฟฟ้า (ACF bonding) การบัดกรีแบบ hot-bar และการเชื่อมต่อด้วยลวด (wire bond) ระยะละเอียด (fine-pitch) โดยเลือกวิธีการให้เหมาะกับข้อกำหนดด้านไฟฟ้า กลไก และความน่าเชื่อถือของชิ้นงาน",
+        "status": "draft"
+      },
+      "title": "การเชื่อมต่อความแม่นยำสูง (Precision interconnect)",
+      "description": "Hana เชื่อมต่อวงจรแบบยืดหยุ่น (flex circuit) จอแสดงผล วัสดุฐาน (substrate) และโมดูล ด้วยการเชื่อมต่อด้วยฟิล์มนำไฟฟ้า (ACF bonding) การบัดกรีแบบ hot-bar…"
+    },
+    "/capabilities/osat": {
+      "h1": {
+        "en": "Outsourced semiconductor assembly and test",
+        "th": "บริการรับจ้างประกอบและทดสอบเซมิคอนดักเตอร์ (OSAT)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana provides IC packaging and semiconductor test, from wafer preparation through die attach, wire bond, flip chip and final electrical test. This OSAT capability sits alongside Hana's EMS operations, so packaged devices can move into board and product assembly within the same manufacturing group.",
+        "th": "Hana ให้บริการทำแพ็กเกจ IC และทดสอบเซมิคอนดักเตอร์ ตั้งแต่การเตรียมเวเฟอร์ ผ่าน die attach, wire bond และ flip chip จนถึงการทดสอบทางไฟฟ้าขั้นสุดท้าย ความสามารถด้าน OSAT นี้ดำเนินงานควบคู่กับงาน EMS ของ Hana ทำให้อุปกรณ์ที่ทำแพ็กเกจแล้วเข้าสู่การประกอบแผงวงจรและผลิตภัณฑ์ได้ภายในกลุ่มบริษัทเดียวกัน",
+        "status": "adjusted"
+      },
+      "title": "บริการรับจ้างประกอบและทดสอบเซมิคอนดักเตอร์ (OSAT)",
+      "description": "Hana ให้บริการทำแพ็กเกจ IC และทดสอบเซมิคอนดักเตอร์ ตั้งแต่การเตรียมเวเฟอร์ ผ่าน die attach, wire bond และ flip chip จนถึงการทดสอบทางไฟฟ้าขั้นสุดท้าย…"
+    },
+    "/capabilities/osat/flip-chip": {
+      "h1": {
+        "en": "Flip chip and wire bond",
+        "th": "การประกอบแบบ flip chip และ wire bond",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Hana assembles IC packages with flip chip and wire bond interconnect. Bumped die are placed face-down and bonded through C4 solder bumps or copper pillars, which supports short interconnects, high I/O density and a low package profile. Die attach and wire bonding run in the same OSAT flow for packages that use wire-bonded or mixed interconnect.",
+        "th": "Hana ประกอบแพ็กเกจ IC ด้วยการเชื่อมต่อแบบ flip chip และ wire bond โดย die ที่มีปุ่มเชื่อมต่อ (bump) จะถูกวางแบบคว่ำหน้าและเชื่อมติดด้วยปุ่มบัดกรี C4 (C4 solder bump) หรือเสาทองแดง (copper pillar) ซึ่งช่วยให้เส้นทางเชื่อมต่อสั้น รองรับความหนาแน่นของจุดเข้า/ออกสัญญาณ (I/O) สูง และได้แพ็กเกจที่มีความบาง ส่วนการยึดติด die (die attach) และการเชื่อมต่อด้วยลวด (wire bonding) ดำเนินการใน OSAT flow เดียวกัน สำหรับแพ็กเกจที่ใช้การเชื่อมต่อด้วยลวดหรือการเชื่อมต่อแบบผสม",
+        "status": "draft"
+      },
+      "title": "การประกอบแบบ flip chip และ wire bond",
+      "description": "Hana ประกอบแพ็กเกจ IC ด้วยการเชื่อมต่อแบบ flip chip และ wire bond โดย die ที่มีปุ่มเชื่อมต่อ (bump) จะถูกวางแบบคว่ำหน้าและเชื่อมติดด้วยปุ่มบัดกรี C4 (C4…"
+    },
+    "/capabilities/osat/hermetic-ceramic": {
+      "h1": {
+        "en": "Hermetic & Ceramic Packaging",
+        "th": "แพ็กเกจแบบปิดผนึกสนิท (hermetic) และแพ็กเกจเซรามิก",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "For devices requiring protection from moisture or a controlled open cavity, Hana assembles metal-can and ceramic packages, seals them under nitrogen, and verifies hermeticity before shipment.",
+        "th": "สำหรับอุปกรณ์ที่ต้องการการป้องกันความชื้นหรือต้องการช่องว่างภายในแบบเปิด (open cavity) ที่มีการควบคุม Hana ประกอบแพ็กเกจแบบกระป๋องโลหะ (metal can) และแพ็กเกจเซรามิก ปิดผนึกภายใต้บรรยากาศไนโตรเจน และตรวจสอบความสามารถในการปิดผนึกสนิท (hermeticity) ก่อนการจัดส่ง",
+        "status": "approved"
+      },
+      "title": "แพ็กเกจแบบปิดผนึกสนิท (hermetic) และแพ็กเกจเซรามิก",
+      "description": "สำหรับอุปกรณ์ที่ต้องการการป้องกันความชื้นหรือต้องการช่องว่างภายในแบบเปิด (open cavity) ที่มีการควบคุม Hana ประกอบแพ็กเกจแบบกระป๋องโลหะ (metal can)…"
+    },
+    "/capabilities/osat/optical-packaging": {
+      "h1": {
+        "en": "Clear & Optical Packaging",
+        "th": "แพ็กเกจแบบ Clear และ Optical",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Optical packaging has a direct role in controlling the light path, filtering unwanted wavelengths, and achieving the required package dimensions. Hana packages proximity, ambient-light, color and time-of-flight sensors and opto-couplers; MEMS, pressure and other sensor packages are covered on MEMS & Sensor Assembly.",
+        "th": "แพ็กเกจออปติคัลมีบทบาทโดยตรงในการควบคุมเส้นทางแสง การกรองความยาวคลื่นที่ไม่ต้องการ และการได้ขนาดแพ็กเกจตามที่กำหนด Hana ทำแพ็กเกจเซนเซอร์ตรวจจับระยะใกล้ (proximity) เซนเซอร์แสงแวดล้อม (ambient light) เซนเซอร์สี (color) และเซนเซอร์วัดระยะด้วยเวลาเดินทางของแสง (time-of-flight) รวมถึงออปโตคัปเปลอร์ (opto-coupler) ส่วนแพ็กเกจ MEMS เซนเซอร์ความดัน และเซนเซอร์อื่น ๆ อยู่ในหน้า[การประกอบ MEMS และเซนเซอร์ (MEMS & Sensor Assembly)](/capabilities/microelectronic-assembly/mems-sensor-assembly)",
+        "status": "adjusted"
+      },
+      "title": "แพ็กเกจแบบ Clear และ Optical",
+      "description": "แพ็กเกจออปติคัลมีบทบาทโดยตรงในการควบคุมเส้นทางแสง การกรองความยาวคลื่นที่ไม่ต้องการ และการได้ขนาดแพ็กเกจตามที่กำหนด Hana ทำแพ็กเกจเซนเซอร์ตรวจจับระยะใกล้…"
+    },
+    "/capabilities/osat/package-design": {
+      "h1": {
+        "en": "Package Design & Simulation Services",
+        "th": "บริการออกแบบและจำลองแพ็กเกจ",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana’s packaging design and simulation services help customers take sensor package concepts through to a manufacturable, volume-ready design. Using our packaging expertise, manufacturing capabilities and process IP, we can shrink, reconfigure and optimise existing designs to improve package size, assembly efficiency, performance and manufacturability at scale.",
+        "th": "บริการออกแบบและจำลองแพ็กเกจของ Hana ช่วยให้ลูกค้าพัฒนาแนวคิดแพ็กเกจเซนเซอร์ไปสู่แบบที่ผลิตได้จริงและพร้อมสำหรับการผลิตปริมาณมาก ด้วยความเชี่ยวชาญด้านแพ็กเกจ ความสามารถด้านการผลิต และทรัพย์สินทางปัญญาด้านกระบวนการ เราสามารถย่อขนาด ปรับโครงสร้าง และปรับปรุงแบบเดิม เพื่อปรับขนาดแพ็กเกจ ประสิทธิภาพการประกอบ สมรรถนะ และความสามารถในการผลิตในปริมาณมาก",
+        "status": "approved"
+      },
+      "title": "บริการออกแบบและจำลองแพ็กเกจ",
+      "description": "บริการออกแบบและจำลองแพ็กเกจของ Hana ช่วยให้ลูกค้าพัฒนาแนวคิดแพ็กเกจเซนเซอร์ไปสู่แบบที่ผลิตได้จริงและพร้อมสำหรับการผลิตปริมาณมาก…"
+    },
+    "/capabilities/osat/package-finder": {
+      "h1": {
+        "en": "Find your package",
+        "th": "ค้นหาแพ็กเกจที่เหมาะกับคุณ",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Our OSAT package portfolio options are constantly evolving. Filter through leaded and leadless bodies, automotive-qualified packages, power discretes and more.",
+        "th": "ตัวเลือกแพ็กเกจ OSAT ของเราพัฒนาอย่างต่อเนื่อง ค้นหาได้ทั้งแพ็กเกจชนิดมีขาและชนิดไม่มีขา (leaded / leadless) แพ็กเกจที่ผ่านการรับรองสำหรับยานยนต์ เซมิคอนดักเตอร์กำลังชนิดดิสครีต (power discrete) และอื่น ๆ",
+        "status": "draft"
+      },
+      "title": "ค้นหาแพ็กเกจที่เหมาะกับคุณ",
+      "description": "ตัวเลือกแพ็กเกจ OSAT ของเราพัฒนาอย่างต่อเนื่อง ค้นหาได้ทั้งแพ็กเกจชนิดมีขาและชนิดไม่มีขา (leaded / leadless) แพ็กเกจที่ผ่านการรับรองสำหรับยานยนต์…"
+    },
+    "/capabilities/osat/power-packages": {
+      "h1": {
+        "en": "Power packages and modules",
+        "th": "แพ็กเกจสำหรับอุปกรณ์กำลังและโมดูลกำลังไฟฟ้า (Power packages and modules)",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Hana assembles IGBT, SiC and GaN power discretes and power modules, from TO-247, D2PAK-7L and TOLL discretes to 62 mm modules, for designs where thermal performance, electrical isolation and current handling set the package construction.",
+        "th": "Hana ประกอบเซมิคอนดักเตอร์กำลังชนิดดิสครีต (power discrete) และโมดูลกำลังไฟฟ้า (power module) ชนิด IGBT, SiC และ GaN ตั้งแต่ดิสครีตแบบ TO-247, D2PAK-7L และ TOLL ไปจนถึงโมดูลขนาด 62 mm สำหรับงานออกแบบที่ประสิทธิภาพการระบายความร้อน การเป็นฉนวนทางไฟฟ้า และการรองรับกระแสเป็นตัวกำหนดโครงสร้างของแพ็กเกจ",
+        "status": "draft"
+      },
+      "title": "แพ็กเกจสำหรับอุปกรณ์กำลังและโมดูลกำลังไฟฟ้า (Power packages and modules)",
+      "description": "Hana ประกอบเซมิคอนดักเตอร์กำลังชนิดดิสครีต (power discrete) และโมดูลกำลังไฟฟ้า (power module) ชนิด IGBT, SiC และ GaN ตั้งแต่ดิสครีตแบบ TO-247, D2PAK-7L…"
+    },
+    "/capabilities/osat/qfn-dfn-lga": {
+      "h1": {
+        "en": "QFN, DFN & LGA",
+        "th": "แพ็กเกจ QFN, DFN และ LGA",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Through consistent investment in manufacturing technologies and package design, Hana has developed market leading capabilities in QFN, DFN and LGA packages across a broad range of body sizes, thicknesses and lead configurations. Wettable-flank processing, thin-body molding and multi-die integration are available for more demanding designs.",
+        "th": "ด้วยการลงทุนอย่างต่อเนื่องในเทคโนโลยีการผลิตและการออกแบบแพ็กเกจ Hana ได้พัฒนาความสามารถชั้นนำในตลาดสำหรับแพ็กเกจ QFN, DFN และ LGA ครอบคลุมขนาดตัวถัง ความหนา และรูปแบบขาที่หลากหลาย สำหรับแบบที่มีความต้องการสูงขึ้น มีกระบวนการ wettable flank การขึ้นรูปตัวถังบาง (thin-body molding) และการรวม die หลายตัว",
+        "status": "approved"
+      },
+      "title": "แพ็กเกจ QFN, DFN และ LGA",
+      "description": "ด้วยการลงทุนอย่างต่อเนื่องในเทคโนโลยีการผลิตและการออกแบบแพ็กเกจ Hana ได้พัฒนาความสามารถชั้นนำในตลาดสำหรับแพ็กเกจ QFN, DFN และ LGA ครอบคลุมขนาดตัวถัง…"
+    },
+    "/capabilities/osat/system-in-package": {
+      "h1": {
+        "en": "System in Package (SiP)",
+        "th": "เทคโนโลยี System in Package (SiP)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana integrates multiple die, passives and interconnect into one package, combining wire bond, flip chip and surface mount to create a compact subsystem that can be assembled and tested as a single component.",
+        "th": "Hana รวม die หลายตัว ชิ้นส่วน passive และการเชื่อมต่อไว้ในแพ็กเกจเดียว โดยใช้ wire bond, flip chip และ surface mount ร่วมกัน เพื่อสร้างระบบย่อยขนาดกะทัดรัดที่ประกอบและทดสอบได้เหมือนชิ้นส่วนเดียว",
+        "status": "adjusted"
+      },
+      "title": "เทคโนโลยี System in Package (SiP)",
+      "description": "Hana รวม die หลายตัว ชิ้นส่วน passive และการเชื่อมต่อไว้ในแพ็กเกจเดียว โดยใช้ wire bond, flip chip และ surface mount ร่วมกัน…"
+    },
+    "/capabilities/osat/ultra-small-packages": {
+      "h1": {
+        "en": "Ultra-small Packages",
+        "th": "แพ็กเกจขนาดเล็กพิเศษ",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "For compact electronics, package dimensions can be a key constraint on the final device. Hana's qualified range extends to sub-millimeter body sizes, with custom package design available where a standard footprint does not meet the application requirements.",
+        "th": "สำหรับอุปกรณ์อิเล็กทรอนิกส์ขนาดกะทัดรัด ขนาดของแพ็กเกจอาจเป็นข้อจำกัดสำคัญของอุปกรณ์ขั้นสุดท้าย แพ็กเกจที่ผ่านการรับรองของ Hana มีขนาดตัวถังเล็กกว่า 1 mm และมีบริการออกแบบแพ็กเกจเฉพาะในกรณีที่ footprint มาตรฐานไม่ตรงตามข้อกำหนดของการใช้งาน",
+        "status": "approved"
+      },
+      "title": "แพ็กเกจขนาดเล็กพิเศษ",
+      "description": "สำหรับอุปกรณ์อิเล็กทรอนิกส์ขนาดกะทัดรัด ขนาดของแพ็กเกจอาจเป็นข้อจำกัดสำคัญของอุปกรณ์ขั้นสุดท้าย แพ็กเกจที่ผ่านการรับรองของ Hana มีขนาดตัวถังเล็กกว่า 1 mm…"
+    },
+    "/capabilities/osat/wafer-level-packaging": {
+      "h1": {
+        "en": "Wafer level packaging (WLCSP)",
+        "th": "เทคโนโลยี Wafer level packaging (WLCSP)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana assembles wafer-level packages from bumped wafers, including thinning, dicing, attachment, electrical test and singulation. The finished package stays close to the dimensions of the die, which suits products where footprint and profile are critical.",
+        "th": "Hana ประกอบแพ็กเกจระดับเวเฟอร์จากเวเฟอร์ที่มี bump ครอบคลุมการลดความหนา (thinning) dicing การยึดติด การทดสอบทางไฟฟ้า และ singulation แพ็กเกจสำเร็จมีขนาดใกล้เคียงกับขนาดของ die ทำให้เหมาะกับผลิตภัณฑ์ที่ขนาดและความบางมีความสำคัญ",
+        "status": "adjusted"
+      },
+      "title": "เทคโนโลยี Wafer level packaging (WLCSP)",
+      "description": "Hana ประกอบแพ็กเกจระดับเวเฟอร์จากเวเฟอร์ที่มี bump ครอบคลุมการลดความหนา (thinning) dicing การยึดติด การทดสอบทางไฟฟ้า และ singulation…"
+    },
+    "/capabilities/osat/wafer-probe-final-test": {
+      "h1": {
+        "en": "Wafer probe and final test",
+        "th": "การทดสอบ wafer probe และการทดสอบขั้นสุดท้าย",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana runs electrical test at wafer and finished-package level, including probe, final test, burn-in and device programming. Keeping test within the OSAT flow keeps electrical results and yield data connected to the assembly process.",
+        "th": "Hana ดำเนินการทดสอบทางไฟฟ้าในระดับเวเฟอร์และระดับแพ็กเกจสำเร็จ ครอบคลุม probe การทดสอบขั้นสุดท้าย burn-in และการโปรแกรมอุปกรณ์ การทดสอบภายใน OSAT flow เดียวกันทำให้ผลการทดสอบทางไฟฟ้าและข้อมูล yield เชื่อมโยงกับกระบวนการประกอบได้",
+        "status": "adjusted"
+      },
+      "title": "การทดสอบ wafer probe และการทดสอบขั้นสุดท้าย",
+      "description": "Hana ดำเนินการทดสอบทางไฟฟ้าในระดับเวเฟอร์และระดับแพ็กเกจสำเร็จ ครอบคลุม probe การทดสอบขั้นสุดท้าย burn-in และการโปรแกรมอุปกรณ์ การทดสอบภายใน OSAT flow…"
+    },
+    "/capabilities/osat/wafer-processing": {
+      "h1": {
+        "en": "Wafer processing",
+        "th": "กระบวนการเตรียมเวเฟอร์ (Wafer processing)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana prepares incoming wafers for downstream assembly through thinning, singulation and inspection under cleanroom and ESD-controlled conditions. Wafer processing sits within the same OSAT flow as die attach and wire bond.",
+        "th": "Hana เตรียมเวเฟอร์ที่รับเข้ามาสำหรับการประกอบในขั้นตอนถัดไป ผ่านการลดความหนา (thinning) singulation และการตรวจสอบ ภายใต้สภาพแวดล้อมห้องสะอาดและพื้นที่ควบคุมไฟฟ้าสถิต (ESD) งาน wafer processing อยู่ใน OSAT flow เดียวกับ die attach และ wire bond",
+        "status": "adjusted"
+      },
+      "title": "กระบวนการเตรียมเวเฟอร์ (Wafer processing)",
+      "description": "Hana เตรียมเวเฟอร์ที่รับเข้ามาสำหรับการประกอบในขั้นตอนถัดไป ผ่านการลดความหนา (thinning) singulation และการตรวจสอบ…"
+    },
+    "/capabilities/pcba-box-build": {
+      "h1": {
+        "en": "PCB assembly (PCBA) and box build",
+        "th": "การประกอบแผงวงจรพิมพ์ (PCBA) และ box build",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Hana provides printed circuit board assembly (PCBA) and box build within one manufacturing group, from fine-pitch SMT and bare-die integration through to finished, tested units. Qualified processes run across Hana sites in China, Thailand, Cambodia and the USA, with SPI, AOI and X-ray integrated into the standard SMT process.",
+        "th": "Hana ให้บริการการประกอบแผงวงจรพิมพ์ (PCBA) และการประกอบผลิตภัณฑ์ครบชุด (box build) ภายในกลุ่มบริษัทเดียว ตั้งแต่ SMT แบบ fine-pitch และการรวม bare die ไปจนถึงผลิตภัณฑ์สำเร็จรูปที่ผ่านการทดสอบ กระบวนการที่ผ่านการรับรองดำเนินการในฐานการผลิตของ Hana ในประเทศจีน ไทย กัมพูชา และสหรัฐอเมริกา โดยมี SPI, AOI และ X-ray อยู่ในกระบวนการ SMT มาตรฐาน",
+        "status": "adjusted"
+      },
+      "title": "การประกอบแผงวงจรพิมพ์ (PCBA) และ box build",
+      "description": "Hana ให้บริการการประกอบแผงวงจรพิมพ์ (PCBA) และการประกอบผลิตภัณฑ์ครบชุด (box build) ภายในกลุ่มบริษัทเดียว ตั้งแต่ SMT แบบ fine-pitch และการรวม bare die…"
+    },
+    "/capabilities/pcba-box-build/box-build": {
+      "h1": {
+        "en": "Box build and full product assembly",
+        "th": "งาน box build และการประกอบผลิตภัณฑ์สำเร็จรูปทั้งชุด",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana's box build covers full product assembly beyond the circuit board, including enclosure and harness integration, potting, mechanical assembly and functional test. A product can be taken from tested PCBA through final assembly, verification and direct shipment.",
+        "th": "งาน box build ของ Hana ครอบคลุมการประกอบผลิตภัณฑ์ครบชุดนอกเหนือจากแผงวงจร ได้แก่ การประกอบตัวเครื่องและชุดสายไฟ (harness) potting การประกอบชิ้นส่วนเชิงกล และการทดสอบการทำงาน ผลิตภัณฑ์สามารถดำเนินการตั้งแต่ PCBA ที่ผ่านการทดสอบ ผ่านการประกอบขั้นสุดท้ายและการตรวจสอบ จนถึงการจัดส่งโดยตรง",
+        "status": "adjusted"
+      },
+      "title": "งาน box build และการประกอบผลิตภัณฑ์สำเร็จรูปทั้งชุด",
+      "description": "งาน box build ของ Hana ครอบคลุมการประกอบผลิตภัณฑ์ครบชุดนอกเหนือจากแผงวงจร ได้แก่ การประกอบตัวเครื่องและชุดสายไฟ (harness) potting การประกอบชิ้นส่วนเชิงกล…"
+    },
+    "/capabilities/pcba-box-build/cob-assembly": {
+      "h1": {
+        "en": "Chip-on-board assembly",
+        "th": "การประกอบชิปบนแผงวงจรโดยตรง (chip-on-board: COB)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana attaches bare die, wire bonds them and encapsulates them directly on the board for compact, high-volume electronic modules. The complete COB process is supported across multiple sites, including fine-pitch bonding, multi-die layouts and in-line encapsulation.",
+        "th": "Hana ยึด bare die ทำ wire bonding และ encapsulation ลงบนแผงวงจรโดยตรง สำหรับโมดูลอิเล็กทรอนิกส์ขนาดกะทัดรัดที่ผลิตในปริมาณมาก กระบวนการ COB ทั้งหมดรองรับในฐานการผลิตหลายแห่ง รวมถึง bonding แบบ fine-pitch การจัดวาง die หลายตัว และ encapsulation ในสายการผลิต",
+        "status": "adjusted"
+      },
+      "title": "การประกอบชิปบนแผงวงจรโดยตรง (chip-on-board: COB)",
+      "description": "Hana ยึด bare die ทำ wire bonding และ encapsulation ลงบนแผงวงจรโดยตรง สำหรับโมดูลอิเล็กทรอนิกส์ขนาดกะทัดรัดที่ผลิตในปริมาณมาก กระบวนการ COB…"
+    },
+    "/capabilities/pcba-box-build/smt-assembly": {
+      "h1": {
+        "en": "Surface mount technology (SMT) assembly",
+        "th": "การประกอบด้วยเทคโนโลยีการวางชิ้นส่วนบนผิวแผงวงจร (SMT)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana runs fine-pitch, double-sided SMT for products ranging from 01005 passives to 0.2 mm pitch micro-BGA and WLCSP, with solder-paste inspection, 3D AOI and X-ray integrated into the standard process.",
+        "th": "Hana ให้บริการการประกอบแบบ SMT ระยะละเอียด (fine-pitch) ทั้งสองด้านของแผงวงจร สำหรับผลิตภัณฑ์ที่ใช้ชิ้นส่วนตั้งแต่ชิ้นส่วนพาสซีฟขนาด 01005 ไปจนถึง micro-BGA และ WLCSP ที่มีระยะห่างระหว่างจุดต่อ (pitch) 0.2 mm โดยมีการตรวจสอบครีมบัดกรี (SPI) การตรวจสอบความสมบูรณ์ของตะกั่วบัดกรีด้วยระบบตรวจสอบอัตโนมัติ (3D AOI) และการตรวจสอบ (X-ray) เป็นส่วนหนึ่งของกระบวนการมาตรฐาน",
+        "status": "adjusted"
+      },
+      "title": "การประกอบด้วยเทคโนโลยีการวางชิ้นส่วนบนผิวแผงวงจร (SMT)",
+      "description": "Hana ให้บริการการประกอบแบบ SMT ระยะละเอียด (fine-pitch) ทั้งสองด้านของแผงวงจร สำหรับผลิตภัณฑ์ที่ใช้ชิ้นส่วนตั้งแต่ชิ้นส่วนพาสซีฟขนาด 01005 ไปจนถึง…"
+    },
+    "/capabilities/rfid-smart-tags": {
+      "h1": {
+        "en": "RFID manufacturing and design",
+        "th": "การผลิตและการออกแบบ RFID",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Hana runs the processes behind its RFID products, from antenna design and chip or strap attach through reel-to-reel assembly, encapsulation, encoding and read verification. The same process base produces dry and wet inlays, ruggedized tags, smart cards and tire tags built to survive vulcanization. The RFID business operates as Hana RFID.",
+        "th": "Hana ดำเนินกระบวนการผลิตเบื้องหลังผลิตภัณฑ์ RFID ทั้งหมด ตั้งแต่การออกแบบเสาอากาศ การติดตั้งชิปหรือ strap ผ่านการประกอบแบบม้วนต่อม้วน (reel-to-reel) การหุ้มห่อ (encapsulation) การเข้ารหัสข้อมูล (encoding) และการตรวจสอบการอ่าน ฐานกระบวนการเดียวกันนี้ใช้ผลิต inlay แบบแห้งและแบบเปียก (dry / wet inlay) แท็กแบบทนทาน (ruggedized tag) สมาร์ทการ์ด และแท็กยางรถยนต์ที่ทนต่อกระบวนการวัลคาไนซ์ (vulcanization) ธุรกิจ RFID ดำเนินงานในนาม Hana RFID",
+        "status": "draft"
+      },
+      "title": "การผลิตและการออกแบบ RFID",
+      "description": "Hana ดำเนินกระบวนการผลิตเบื้องหลังผลิตภัณฑ์ RFID ทั้งหมด ตั้งแต่การออกแบบเสาอากาศ การติดตั้งชิปหรือ strap ผ่านการประกอบแบบม้วนต่อม้วน (reel-to-reel)…"
+    },
+    "/locations": {
+      "h1": {
+        "en": "Our global footprint",
+        "th": "ฐานการผลิตของเราทั่วโลก",
+        "status": "proposed"
+      },
+      "lede": {
+        "en": "One group, one quality system, across four countries — so consistent quality and responsive service scale wherever you choose to build.",
+        "th": "กลุ่มบริษัทเดียว ระบบคุณภาพเดียว ในฐานการผลิต 4 ประเทศ เพื่อให้คุณภาพที่สม่ำเสมอและการบริการที่รวดเร็วครอบคลุมทุกฐานการผลิตที่คุณเลือก",
+        "status": "proposed"
+      },
+      "title": "ฐานการผลิตของเราทั่วโลก",
+      "description": "กลุ่มบริษัทเดียว ระบบคุณภาพเดียว ในฐานการผลิต 4 ประเทศ เพื่อให้คุณภาพที่สม่ำเสมอและการบริการที่รวดเร็วครอบคลุมทุกฐานการผลิตที่คุณเลือก"
+    },
+    "/locations/ayutthaya": {
+      "h1": {
+        "en": "Ayutthaya",
+        "th": "อยุธยา",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana’s primary OSAT site, providing IC assembly and test for low-to-medium pin-count devices, advanced optical-sensor packaging and EMS and PCBA services. Nearly three decades of semiconductor packaging and test in Thailand’s Hi-Tech Industrial Estate.",
+        "th": "ฐานการผลิต OSAT หลักของ Hana ให้บริการประกอบและทดสอบ IC ที่มีจำนวนขาน้อยไปจนถึงปานกลาง แพ็กเกจเซ็นเซอร์ออปติคัลขั้นสูง และบริการ EMS และ PCBA ด้วยประสบการณ์ด้านการทำแพ็กเกจและทดสอบเซมิคอนดักเตอร์เกือบ 30 ปี ในนิคมอุตสาหกรรมไฮเทค",
+        "status": "proposed"
+      },
+      "title": "อยุธยา",
+      "description": "ฐานการผลิต OSAT หลักของ Hana ให้บริการประกอบและทดสอบ IC ที่มีจำนวนขาน้อยไปจนถึงปานกลาง แพ็กเกจเซ็นเซอร์ออปติคัลขั้นสูง และบริการ EMS และ PCBA…"
+    },
+    "/locations/jiaxing": {
+      "h1": {
+        "en": "Jiaxing",
+        "th": "เจียซิง",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "From wafer to box build, Hana Jiaxing is a vertically integrated production facility from OSAT to EMS. Over two decades of manufacturing experience in China serving both the Chinese and World market from the Yangtze River Delta.",
+        "th": "Hana เจียซิงเป็นฐานการผลิตแบบครบวงจรตั้งแต่ OSAT ถึง EMS ครอบคลุมตั้งแต่เวเฟอร์จนถึง box build ด้วยประสบการณ์การผลิตในประเทศจีนกว่า 20 ปี ให้บริการทั้งตลาดจีนและตลาดโลกจากสามเหลี่ยมปากแม่น้ำแยงซี",
+        "status": "proposed"
+      },
+      "title": "เจียซิง",
+      "description": "Hana เจียซิงเป็นฐานการผลิตแบบครบวงจรตั้งแต่ OSAT ถึง EMS ครอบคลุมตั้งแต่เวเฟอร์จนถึง box build ด้วยประสบการณ์การผลิตในประเทศจีนกว่า 20 ปี…"
+    },
+    "/locations/koh-kong": {
+      "h1": {
+        "en": "Koh Kong",
+        "th": "เกาะกง",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "A TAA-compliant EMS base in the Koh Kong SEZ. Manufacturing here qualifies for US federal and government supply. PCBA, final assembly, box build and micro-assembly, from medical devices to consumer electronics.",
+        "th": "ฐานการผลิต EMS ที่เป็นไปตามข้อกำหนด TAA ในเขตเศรษฐกิจพิเศษเกาะกง ผลิตภัณฑ์ที่ผลิตที่นี่มีคุณสมบัติสำหรับการจัดซื้อของหน่วยงานรัฐบาลกลางและภาครัฐของสหรัฐอเมริกา ให้บริการ PCBA การประกอบขั้นสุดท้าย box build และ micro-assembly ตั้งแต่อุปกรณ์การแพทย์ไปจนถึงผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+        "status": "proposed"
+      },
+      "title": "เกาะกง",
+      "description": "ฐานการผลิต EMS ที่เป็นไปตามข้อกำหนด TAA ในเขตเศรษฐกิจพิเศษเกาะกง…"
+    },
+    "/locations/lamphun": {
+      "h1": {
+        "en": "Lamphun",
+        "th": "ลำพูน",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "An EMS facility in northern Thailand: PCBA, box build and high-precision microelectronic packaging, with IC assembly and OSAT services across two plants near Chiang Mai.",
+        "th": "ฐานการผลิต EMS ในภาคเหนือของประเทศไทย ให้บริการ PCBA, box build และการทำแพ็กเกจไมโครอิเล็กทรอนิกส์ความแม่นยำสูง พร้อมบริการประกอบ IC และ OSAT ในโรงงาน 2 แห่งใกล้จังหวัดเชียงใหม่",
+        "status": "proposed"
+      },
+      "title": "ลำพูน",
+      "description": "ฐานการผลิต EMS ในภาคเหนือของประเทศไทย ให้บริการ PCBA, box build และการทำแพ็กเกจไมโครอิเล็กทรอนิกส์ความแม่นยำสูง พร้อมบริการประกอบ IC และ OSAT ในโรงงาน 2…"
+    },
+    "/locations/ohio": {
+      "h1": {
+        "en": "Ohio",
+        "th": "โอไฮโอ",
+        "status": "proposed"
+      },
+      "lede": {
+        "en": "Hana’s American RFID design and manufacturing base with EMS capabilities. Operating as Hana Technologies Inc as a domestic-US, ITAR and IATF 16949 certified option.",
+        "th": "ฐานการออกแบบและผลิต RFID ของ Hana ในสหรัฐอเมริกา พร้อมขีดความสามารถด้าน EMS ดำเนินงานในนาม Hana Technologies Inc เป็นทางเลือกการผลิตภายในสหรัฐอเมริกาที่ได้รับการรับรอง ITAR และ IATF 16949",
+        "status": "draft"
+      },
+      "title": "โอไฮโอ",
+      "description": "ฐานการออกแบบและผลิต RFID ของ Hana ในสหรัฐอเมริกา พร้อมขีดความสามารถด้าน EMS ดำเนินงานในนาม Hana Technologies Inc…"
+    },
+    "/markets": {
+      "h1": {
+        "en": "Experience built across diverse markets",
+        "th": "ประสบการณ์ที่สั่งสมจากหลากหลายกลุ่มอุตสาหกรรม",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "The Hana group covers the full breadth of EMS services, from automotive qualified production and medical grade assembly to high-volume RFID inlays, complex PCBA and sensor packaging.",
+        "th": "กลุ่มบริษัท Hana ให้บริการผลิตอุปกรณ์อิเล็กทรอนิกส์ (EMS) ครอบคลุมทุกด้าน ตั้งแต่การผลิตที่ผ่านการรับรองสำหรับอุตสาหกรรมยานยนต์และการประกอบในระดับมาตรฐานเครื่องมือแพทย์ ไปจนถึงการผลิต inlay RFID ในปริมาณมาก การประกอบแผงวงจรพิมพ์ (PCBA) ที่มีความซับซ้อน และการทำแพ็กเกจเซนเซอร์",
+        "status": "approved"
+      },
+      "title": "ประสบการณ์ที่สั่งสมจากหลากหลายกลุ่มอุตสาหกรรม",
+      "description": "กลุ่มบริษัท Hana ให้บริการผลิตอุปกรณ์อิเล็กทรอนิกส์ (EMS) ครอบคลุมทุกด้าน…"
+    },
+    "/markets/access-control": {
+      "h1": {
+        "en": "Access control electronics manufacturing",
+        "th": "การผลิตอุปกรณ์อิเล็กทรอนิกส์ควบคุมสิทธิ์การเข้าออกในพื้นที่ควบคุม",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana is a market leading manufacturer of access control and RFID credentials and the electronic hardware they work with, from cards, fobs and inlays through to readers, locks and related access-control products.",
+        "th": "Hana เป็นผู้ผลิตชั้นนำของตลาดด้านอุปกรณ์ยืนยันตัวตน RFID และระบบควบคุมการเข้า-ออก (Access Control) รวมถึงฮาร์ดแวร์อิเล็กทรอนิกส์ที่ทำงานร่วมกัน ครอบคลุมตั้งแต่บัตร พวงกุญแจ RFID (Fob) และชิ้นส่วน Inlay ไปจนถึงเครื่องอ่าน (Reader) ระบบล็อก และอุปกรณ์ควบคุมการเข้า-ออกรูปแบบต่าง ๆ",
+        "status": "draft"
+      },
+      "title": "การผลิตอุปกรณ์อิเล็กทรอนิกส์ควบคุมสิทธิ์การเข้าออกในพื้นที่ควบคุม",
+      "description": "Hana เป็นผู้ผลิตชั้นนำของตลาดด้านอุปกรณ์ยืนยันตัวตน RFID และระบบควบคุมการเข้า-ออก (Access Control) รวมถึงฮาร์ดแวร์อิเล็กทรอนิกส์ที่ทำงานร่วมกัน…"
+    },
+    "/markets/access-control/rfid-cards": {
+      "h1": {
+        "en": "RFID access cards, fobs and credentials",
+        "th": "บัตร RFID พวงกุญแจ RFID (Fob) และอุปกรณ์ยืนยันตัวตนสำหรับควบคุมสิทธิ์การเข้าออก",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Hana manufactures RFID cards, fobs and access credentials from inlay production through to finished products. Automated RFID manufacturing processes are supported by more than 20 years of experience in credential and inlay production.",
+        "th": "Hana มุ่งมั่นส่งมอบผลิตภัณฑ์ที่เปี่ยมด้วยคุณภาพ ผ่านประสบการณ์กว่า 20 ปีในอุตสาหกรรมการผลิตอุปกรณ์ยืนยันตัวตน (RFID) เราพร้อมให้บริการแบบครบวงจรตั้งแต่ขั้นตอนการผลิต Inlay ไปจนถึงผลิตภัณฑ์สำเร็จรูป ไม่ว่าจะเป็น บัตร RFID, พวงกุญแจ RFID (Fob) หรืออุปกรณ์ยืนยันตัวตนรูปแบบต่างๆ ด้วยนวัตกรรมการผลิตระบบอัตโนมัติที่แม่นยำและได้มาตรฐานสากล",
+        "status": "approved"
+      },
+      "title": "บัตร RFID พวงกุญแจ RFID (Fob) และอุปกรณ์ยืนยันตัวตนสำหรับควบคุมสิทธิ์การเข้าออก",
+      "description": "Hana มุ่งมั่นส่งมอบผลิตภัณฑ์ที่เปี่ยมด้วยคุณภาพ ผ่านประสบการณ์กว่า 20 ปีในอุตสาหกรรมการผลิตอุปกรณ์ยืนยันตัวตน (RFID)…"
+    },
+    "/markets/access-control/smart-lock-assembly": {
+      "h1": {
+        "en": "Smart lock and electronic door hardware assembly",
+        "th": "ประตูควบคุมอัจฉริยะ",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Smart locks combine electronic, wireless and mechanical systems within a single product. PCBAs, radios, motors or actuators, batteries and mechanical components therefore need to be assembled and functionally tested as a complete unit.",
+        "th": "Hana ยกระดับนวัตกรรมความปลอดภัยด้วยแนวคิดการผลิต \"ประตูควบคุมอัจฉริยะ\" ที่หลอมรวมระบบอิเล็กทรอนิกส์ ระบบไร้สาย และระบบกลไกเข้าไว้ด้วยกันอย่างลงตัว เพื่อให้มั่นใจในประสิทธิภาพการใช้งาน ผลิตภัณฑ์ของเราจึงผ่านกระบวนการประกอบและทดสอบฟังก์ชันการทำงานอย่างละเอียดในทุกส่วนประกอบหลัก ไม่ว่าจะเป็น PCBA, โมดูลวิทยุ, มอเตอร์หรือแอคชูเอเตอร์, แบตเตอรี่ รวมถึงการทดสอบชิ้นส่วนกลไกทั้งหมดในรูปแบบผลิตภัณฑ์สำเร็จรูป",
+        "status": "approved"
+      },
+      "title": "ประตูควบคุมอัจฉริยะ",
+      "description": "Hana ยกระดับนวัตกรรมความปลอดภัยด้วยแนวคิดการผลิต \"ประตูควบคุมอัจฉริยะ\" ที่หลอมรวมระบบอิเล็กทรอนิกส์ ระบบไร้สาย และระบบกลไกเข้าไว้ด้วยกันอย่างลงตัว…"
+    },
+    "/markets/automotive": {
+      "h1": {
+        "en": "Automotive electronics manufacturing service",
+        "th": "บริการการผลิตอุปกรณ์อิเล็กทรอนิกส์สำหรับยานยนต์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures automotive electronics from sensor and lighting assemblies through to PCBAs, RFID tire tags and power modules for electrified powertrains. Programs run to automotive quality requirements across four countries within the Hana manufacturing group.",
+        "th": "Hana คือผู้ผลิตชิ้นส่วนอิเล็กทรอนิกส์ยานยนต์ (Automotive Electronics) ระดับสากล ครอบคลุมผลิตภัณฑ์ที่หลากหลาย ตั้งแต่ชุดประกอบเซนเซอร์อัจฉริยะ ระบบไฟส่องสว่างยานยนต์ขั้นสูง งานประกอบแผงวงจรอิเล็กทรอนิกส์ (PCBA) แท็ก RFID ประสิทธิภาพสูงสำหรับยางรถยนต์ ไปจนถึงระบบส่งกำลังไฟฟ้าสำหรับระบบขับเคลื่อนยานยนต์ไฟฟ้า (EV Power Module)\nHana ขับเคลื่อนและดำเนินการภายใต้มาตรฐานและข้อกำหนดด้านคุณภาพของอุตสาหกรรมยานยนต์ระดับสากล ผ่านฐานการผลิตอันทันสมัยใน 4 ประเทศของกลุ่มบริษัท Hana จึงมั่นใจได้ในขีดความสามารถการผลิตที่รองรับความต้องการระดับโลก ควบคู่ไปกับห่วงโซ่อุปทานที่มีเสถียรภาพและมีคุณภาพสูงสุด",
+        "status": "approved"
+      },
+      "title": "บริการการผลิตอุปกรณ์อิเล็กทรอนิกส์สำหรับยานยนต์",
+      "description": "Hana คือผู้ผลิตชิ้นส่วนอิเล็กทรอนิกส์ยานยนต์ (Automotive Electronics) ระดับสากล ครอบคลุมผลิตภัณฑ์ที่หลากหลาย ตั้งแต่ชุดประกอบเซนเซอร์อัจฉริยะ…"
+    },
+    "/markets/automotive/automotive-pcba": {
+      "h1": {
+        "en": "Automotive PCBA on IATF 16949 qualified lines",
+        "th": "สายการผลิต PCBA สำหรับอุตสาหกรรมยานยนต์ที่ผ่านการรับรองมาตรฐานสากล IATF 16949",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana assembles body control modules, gateway ECUs, sensor interface boards and other automotive electronics on IATF 16949 lines, with PPAP and APQP discipline, board-level traceability, AOI and X-ray inspection.",
+        "th": "Hana ขับเคลื่อนอุตสาหกรรมยานยนต์ ด้วยบริการประกอบชิ้นส่วนอิเล็กทรอนิกส์ยานยนต์ (Automotive Electronics) ประสิทธิภาพสูง อาทิ โมดูลควบคุมตัวถัง (Body Control Module), กล่องควบคุม BCM/ECU ประเภท Gateway รวมถึงบอร์ดเชื่อมต่อเซนเซอร์ต่างๆ บนสายการผลิตที่ได้มาตรฐานสากล IATF 16949\nเราดำเนินงานตามข้อกำหนด APQP และ PPAP พร้อมยกระดับความมั่นใจด้านความปลอดภัยด้วย[ระบบตรวจสอบย้อนกลับ (Traceability)](/capabilities/automation/mes-traceability) ลึกถึงระดับแผงวงจร ร่วมกับการตรวจเช็กคุณภาพอย่างละเอียดผ่านเทคโนโลยี AOI และระบบเอกซเรย์ (X-ray) เพื่อส่งมอบผลิตภัณฑ์ที่สมบูรณ์และมีคุณภาพ",
+        "status": "approved"
+      },
+      "title": "สายการผลิต PCBA สำหรับอุตสาหกรรมยานยนต์ที่ผ่านการรับรองมาตรฐานสากล IATF 16949",
+      "description": "Hana ขับเคลื่อนอุตสาหกรรมยานยนต์ ด้วยบริการประกอบชิ้นส่วนอิเล็กทรอนิกส์ยานยนต์ (Automotive Electronics) ประสิทธิภาพสูง อาทิ โมดูลควบคุมตัวถัง (Body…"
+    },
+    "/markets/automotive/led-lighting": {
+      "h1": {
+        "en": "LED module and driver assembly for automotive lighting",
+        "th": "ผลิตหลอดไฟ LED และชุดจ่ายไฟ สำหรับระบบไฟส่องสว่างยานยนต์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana assembles LED modules and driver boards for headlamps, daytime running lights, signaling and interior lighting. COB and SMT processes are combined with thermal-management requirements appropriate to the automotive lighting environment.",
+        "th": "Hana ผู้ผลิตและประกอบโมดูล LED พร้อมบอร์ดวงจรขับประสิทธิภาพสูง ไม่ว่าจะเป็นระบบไฟหน้า, ไฟ DRL, ไฟสัญญาณ หรือไฟภายในห้องโดยสาร\nด้วยกระบวนการประกอบ COB และ SMT ที่ออกแบบมาเพื่อการควบคุมความร้อนของผลิตภัณฑ์ให้เหมาะสม กับสภาพการใช้งานของระบบไฟส่องสว่างยานยนต์",
+        "status": "approved"
+      },
+      "title": "ผลิตหลอดไฟ LED และชุดจ่ายไฟ สำหรับระบบไฟส่องสว่างยานยนต์",
+      "description": "Hana ผู้ผลิตและประกอบโมดูล LED พร้อมบอร์ดวงจรขับประสิทธิภาพสูง ไม่ว่าจะเป็นระบบไฟหน้า, ไฟ DRL, ไฟสัญญาณ หรือไฟภายในห้องโดยสาร ด้วยกระบวนการประกอบ COB และ…"
+    },
+    "/markets/automotive/power-modules": {
+      "h1": {
+        "en": "Power modules for electrified vehicles",
+        "th": "ระบบส่งกำลังไฟฟ้า (power module) สำหรับยานยนต์ไฟฟ้า",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana’s OSAT operations in Thailand and China cover IGBT and SiC power devices from package design and thermal simulation through to module assembly and test. For EV programs, that covers modules and discretes for traction inverters, on-board chargers and DC-DC converters.",
+        "th": "ฐานการผลิต OSAT ของ Hana ในประเทศไทยและประเทศจีนครอบคลุมอุปกรณ์กำลังชนิด IGBT และซิลิคอนคาร์ไบด์ (SiC) ตั้งแต่การออกแบบแพ็กเกจและการจำลองทางความร้อน (thermal simulation) ไปจนถึงการประกอบและทดสอบโมดูล สำหรับโครงการยานยนต์ไฟฟ้า (EV) ครอบคลุมทั้งโมดูลและดิสครีตสำหรับอินเวอร์เตอร์ขับเคลื่อน (Traction Inverter) เครื่องชาร์จในตัวรถ (On-board Charger) และอุปกรณ์แปลงกระแสไฟฟ้า (DC-DC Converter)",
+        "status": "draft"
+      },
+      "title": "ระบบส่งกำลังไฟฟ้า (power module) สำหรับยานยนต์ไฟฟ้า",
+      "description": "ฐานการผลิต OSAT ของ Hana ในประเทศไทยและประเทศจีนครอบคลุมอุปกรณ์กำลังชนิด IGBT และซิลิคอนคาร์ไบด์ (SiC) ตั้งแต่การออกแบบแพ็กเกจและการจำลองทางความร้อน…"
+    },
+    "/markets/automotive/sensor-assembly": {
+      "h1": {
+        "en": "Sensor assembly for ADAS and in-cabin sensing",
+        "th": "เซนเซอร์อัจฉริยะสำหรับระบบช่วยเหลือผู้ขับขี่ (ADAS) และระบบตรวจจับภายในห้องโดยสาร (In-Cabin Sensing)",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana assembles MEMS, optical and related automotive sensor packages for ADAS, LiDAR, pressure measurement and in-cabin sensing.",
+        "th": "Hana ประกอบแพ็กเกจเซนเซอร์ MEMS เซนเซอร์เชิงแสง และเซนเซอร์ยานยนต์ที่เกี่ยวข้อง สำหรับระบบช่วยเหลือผู้ขับขี่ขั้นสูง (ADAS) LiDAR การวัดความดัน และระบบตรวจจับภายในห้องโดยสาร",
+        "status": "adjusted"
+      },
+      "title": "เซนเซอร์อัจฉริยะสำหรับระบบช่วยเหลือผู้ขับขี่ (ADAS) และระบบตรวจจับภายในห้องโดยสาร (In-Cabin Sensing)",
+      "description": "Hana ประกอบแพ็กเกจเซนเซอร์ MEMS เซนเซอร์เชิงแสง และเซนเซอร์ยานยนต์ที่เกี่ยวข้อง สำหรับระบบช่วยเหลือผู้ขับขี่ขั้นสูง (ADAS) LiDAR การวัดความดัน…"
+    },
+    "/markets/consumer": {
+      "h1": {
+        "en": "Consumer Electronics Manufacturing and Sensor Packaging",
+        "th": "การผลิตผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภคและแพ็กเกจเซนเซอร์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures sensor packages, miniaturized sensor assemblies, high-volume PCBAs and electronic modules used in smartphones, wearables and connected consumer products. Complete box-build manufacturing is also available for finished consumer electronics.",
+        "th": "Hana ผลิตแพ็กเกจเซนเซอร์ ชุดประกอบเซนเซอร์ขนาดจิ๋ว PCBA ปริมาณสูง และโมดูลอิเล็กทรอนิกส์ที่ใช้ในสมาร์ทโฟน อุปกรณ์สวมใส่ (wearables) และผลิตภัณฑ์อุปโภคบริโภคที่เชื่อมต่อเครือข่าย พร้อมบริการประกอบผลิตภัณฑ์สำเร็จรูป (box build) ครบวงจรสำหรับอุปกรณ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+        "status": "draft"
+      },
+      "title": "การผลิตผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภคและแพ็กเกจเซนเซอร์",
+      "description": "Hana ผลิตแพ็กเกจเซนเซอร์ ชุดประกอบเซนเซอร์ขนาดจิ๋ว PCBA ปริมาณสูง และโมดูลอิเล็กทรอนิกส์ที่ใช้ในสมาร์ทโฟน อุปกรณ์สวมใส่ (wearables)…"
+    },
+    "/markets/consumer/smt-sensors": {
+      "h1": {
+        "en": "PCBA and sensor packaging for consumer electronics",
+        "th": "การประกอบ PCBA และแพ็กเกจเซนเซอร์ในผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana assembles high-density consumer PCBAs and miniaturized sensor assemblies on fine-pitch SMT lines, with inspection integrated throughout the process and functional test available to program requirements.",
+        "th": "Hana ประกอบ PCBA ความหนาแน่นสูงสำหรับผลิตภัณฑ์ผู้บริโภคและชุดประกอบเซนเซอร์ขนาดจิ๋วบนสายการผลิต SMT ระยะละเอียด (fine-pitch) โดยมีการตรวจสอบตลอดกระบวนการ และมีการทดสอบการทำงานตามข้อกำหนดของแต่ละโครงการ",
+        "status": "draft"
+      },
+      "title": "การประกอบ PCBA และแพ็กเกจเซนเซอร์ในผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+      "description": "Hana ประกอบ PCBA ความหนาแน่นสูงสำหรับผลิตภัณฑ์ผู้บริโภคและชุดประกอบเซนเซอร์ขนาดจิ๋วบนสายการผลิต SMT ระยะละเอียด (fine-pitch) โดยมีการตรวจสอบตลอดกระบวนการ…"
+    },
+    "/markets/consumer/wireless-charging": {
+      "h1": {
+        "en": "Wireless charging module assembly",
+        "th": "การประกอบโมดูลชาร์จแบบไร้สาย",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures wireless charging products from coil assembly and PCBA through to box build and functional test. Coil winding and assembly are available within the Hana group, allowing the magnetic assembly and charging electronics to be managed within the same manufacturing program.",
+        "th": "Hana ให้บริการการผลิตและประกอบระบบชาร์จไร้สายแบบครบวงจรรวมทุกกระบวนการผลิตตั้งแต่ต้นน้ำจนถึงปลายน้ำไว้ในที่เดียว เพื่อการบริหารจัดการโครงการที่มีประสิทธิภาพสูงสุด\n• End-to-End Manufacturing: ครอบคลุมตั้งแต่การประกอบขดลวด, PCBA, งาน Box Build ไปจนถึงการทำ Functional Test เต็มระบบ\n• Integrated Project Management: บริหารจัดการชุดประกอบแม่เหล็กและวงจรชาร์จได้พร้อมกันภายใต้กลุ่มบริษัทเดียว ด้วยการผลิตแบบอินเฮ้าส์\n• Rigorous Quality Control: มั่นใจในประสิทธิภาพและความปลอดภัยของอุปกรณ์ผ่านขั้นตอนการทดสอบที่ได้มาตรฐานสากล",
+        "status": "approved"
+      },
+      "title": "การประกอบโมดูลชาร์จแบบไร้สาย",
+      "description": "Hana ให้บริการการผลิตและประกอบระบบชาร์จไร้สายแบบครบวงจรรวมทุกกระบวนการผลิตตั้งแต่ต้นน้ำจนถึงปลายน้ำไว้ในที่เดียว…"
+    },
+    "/markets/data-centers": {
+      "h1": {
+        "en": "Precision EMS for AI data center infrastructure",
+        "th": "บริการ OSAT and EMS ความแม่นยำสูงสำหรับโครงสร้างพื้นฐานศูนย์ข้อมูล AI",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures control electronics and modules used around thermoelectric cooling devices, together with high-density PCBAs for optical test equipment and SiC power-conversion assemblies for data-center infrastructure.",
+        "th": "Hana ผู้เชี่ยวชาญด้านการผลิตชิ้นส่วนอิเล็กทรอนิกส์\nสำหรับโครงสร้างพื้นฐานศูนย์ข้อมูล AI\n• Advanced Cooling & Controls: ผลิตอุปกรณ์ควบคุมและโมดูลสำหรับระบบระบายความร้อนเทอร์โมอิเล็กทริก\n• High-Density PCBA: รองรับงานประกอบแผงวงจรความหนาแน่นสูงสำหรับอุปกรณ์ทดสอบทางแสง\n• SiC Power Conversion: นวัตกรรมชุดประกอบแปลงพลังงานด้วยซิลิคอนคาร์ไบด์ เพื่อประสิทธิภาพสูงสุดของโครงสร้างพื้นฐานศูนย์ข้อมูล (Data Center)",
+        "status": "approved"
+      },
+      "title": "บริการ OSAT and EMS ความแม่นยำสูงสำหรับโครงสร้างพื้นฐานศูนย์ข้อมูล AI",
+      "description": "Hana ผู้เชี่ยวชาญด้านการผลิตชิ้นส่วนอิเล็กทรอนิกส์ สำหรับโครงสร้างพื้นฐานศูนย์ข้อมูล AI Advanced Cooling & Controls:…"
+    },
+    "/markets/industrial-iot": {
+      "h1": {
+        "en": "Industrial and IoT electronics manufacturing",
+        "th": "การผลิตอุปกรณ์อิเล็กทรอนิกส์สำหรับอุตสาหกรรมและ IoT",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures controllers, connected devices and power electronics for industrial equipment, from ruggedized PCBAs through to complete, tested products. Industrial programs run at Hana plants in Thailand and China.",
+        "th": "Hana ผลิตตัวควบคุม อุปกรณ์ที่เชื่อมต่อเครือข่าย และอุปกรณ์อิเล็กทรอนิกส์กำลังสำหรับเครื่องจักรอุตสาหกรรม ตั้งแต่ PCBA แบบทนทาน (ruggedized) ไปจนถึงผลิตภัณฑ์สำเร็จรูปที่ผ่านการทดสอบ โครงการด้านอุตสาหกรรมดำเนินการในโรงงานของ Hana ในประเทศไทยและประเทศจีน",
+        "status": "draft"
+      },
+      "title": "การผลิตอุปกรณ์อิเล็กทรอนิกส์สำหรับอุตสาหกรรมและ IoT",
+      "description": "Hana ผลิตตัวควบคุม อุปกรณ์ที่เชื่อมต่อเครือข่าย และอุปกรณ์อิเล็กทรอนิกส์กำลังสำหรับเครื่องจักรอุตสาหกรรม ตั้งแต่ PCBA แบบทนทาน (ruggedized)…"
+    },
+    "/markets/industrial-iot/iot-device-assembly": {
+      "h1": {
+        "en": "Industrial IoT devices, from PCBA to complete product",
+        "th": "อุปกรณ์ IoT สำหรับอุตสาหกรรม ตั้งแต่ PCBA จนถึงผลิตภัณฑ์สำเร็จรูป",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Connected-device manufacturing brings the PCBA, wireless module, antenna, sensors, battery and mechanical assembly together in one finished product. Hana supports this complete assembly process, from compact connected devices to LTE telematics units for remote asset monitoring, including functional and wireless test at finished-unit level.",
+        "th": "การผลิตอุปกรณ์ที่เชื่อมต่อเครือข่ายเป็นการรวมแผงวงจรพิมพ์ที่ประกอบชิ้นส่วนแล้ว (PCBA) โมดูลไร้สาย เสาอากาศ เซนเซอร์ แบตเตอรี่ และชิ้นส่วนกลไก เข้าไว้ในผลิตภัณฑ์สำเร็จรูปชิ้นเดียว Hana รองรับกระบวนการประกอบทั้งหมดนี้ ตั้งแต่อุปกรณ์เชื่อมต่อขนาดกะทัดรัดไปจนถึงอุปกรณ์เทเลเมติกส์ LTE (LTE telematics) สำหรับการติดตามทรัพย์สินจากระยะไกล รวมถึงการทดสอบการทำงานและการทดสอบระบบไร้สายในระดับผลิตภัณฑ์สำเร็จรูป",
+        "status": "adjusted"
+      },
+      "title": "อุปกรณ์ IoT สำหรับอุตสาหกรรม ตั้งแต่ PCBA จนถึงผลิตภัณฑ์สำเร็จรูป",
+      "description": "การผลิตอุปกรณ์ที่เชื่อมต่อเครือข่ายเป็นการรวมแผงวงจรพิมพ์ที่ประกอบชิ้นส่วนแล้ว (PCBA) โมดูลไร้สาย เสาอากาศ เซนเซอร์ แบตเตอรี่ และชิ้นส่วนกลไก…"
+    },
+    "/markets/industrial-iot/pcba-box-build": {
+      "h1": {
+        "en": "PCBA and box build for industrial equipment",
+        "th": "การประกอบแผงวงจรพิมพ์ (PCBA) และการประกอบผลิตภัณฑ์สำเร็จรูปทั้งชุด (box build) สำหรับอุปกรณ์อุตสาหกรรม",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana assembles ruggedized PCBAs and complete box-build units for industrial controllers, meters and monitoring equipment.",
+        "th": "Hana ประกอบ PCBA แบบทนทาน (ruggedized) และผลิตภัณฑ์สำเร็จรูป (box build) สำหรับตัวควบคุมในอุตสาหกรรม มิเตอร์ และอุปกรณ์ตรวจวัด (monitoring)",
+        "status": "draft"
+      },
+      "title": "การประกอบแผงวงจรพิมพ์ (PCBA) และการประกอบผลิตภัณฑ์สำเร็จรูปทั้งชุด (box build) สำหรับอุปกรณ์อุตสาหกรรม",
+      "description": "Hana ประกอบ PCBA แบบทนทาน (ruggedized) และผลิตภัณฑ์สำเร็จรูป (box build) สำหรับตัวควบคุมในอุตสาหกรรม มิเตอร์ และอุปกรณ์ตรวจวัด (monitoring)"
+    },
+    "/markets/medical": {
+      "h1": {
+        "en": "Medical electronics manufacturing",
+        "th": "การผลิตอุปกรณ์อิเล็กทรอนิกส์ทางการแพทย์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures hearing aids, drug-delivery electronics, diagnostic devices and medical sensor assemblies on dedicated medical production lines operating under an ISO 13485 quality system. Medical programs run at Hana plants in Thailand, China and Cambodia.",
+        "th": "Hana ผลิตเครื่องช่วยฟัง อุปกรณ์อิเล็กทรอนิกส์สำหรับการนำส่งยา อุปกรณ์วินิจฉัย และชุดประกอบเซนเซอร์ทางการแพทย์ บนสายการผลิตเฉพาะสำหรับงานการแพทย์ภายใต้ระบบคุณภาพ ISO 13485 โครงการด้านการแพทย์ดำเนินการในโรงงานของ Hana ในประเทศไทย ประเทศจีน และประเทศกัมพูชา",
+        "status": "adjusted"
+      },
+      "title": "การผลิตอุปกรณ์อิเล็กทรอนิกส์ทางการแพทย์",
+      "description": "Hana ผลิตเครื่องช่วยฟัง อุปกรณ์อิเล็กทรอนิกส์สำหรับการนำส่งยา อุปกรณ์วินิจฉัย และชุดประกอบเซนเซอร์ทางการแพทย์…"
+    },
+    "/markets/medical/hearing-aid-assembly": {
+      "h1": {
+        "en": "Hearing aid assembly",
+        "th": "การประกอบเครื่องช่วยฟัง",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hearing aids combine micro-miniature electronics, acoustic components and wireless functions within a highly compact finished device. Hana manufactures hearing devices on dedicated medical lines, with micro-miniature placement and attach, acoustic-component integration, functional test and unit-level traceability throughout the build.",
+        "th": "เครื่องช่วยฟังรวมวงจรอิเล็กทรอนิกส์ขนาดจิ๋ว ชิ้นส่วนเสียง และฟังก์ชันไร้สายไว้ในอุปกรณ์ขนาดกะทัดรัด Hana ผลิตเครื่องช่วยฟังบนสายการผลิตเฉพาะสำหรับงานการแพทย์ ด้วยการวางและยึดชิ้นงานขนาดจิ๋ว การประกอบชิ้นส่วนเสียง การทดสอบการทำงาน และการตรวจสอบย้อนกลับรายชิ้นตลอดกระบวนการผลิต",
+        "status": "approved"
+      },
+      "title": "การประกอบเครื่องช่วยฟัง",
+      "description": "เครื่องช่วยฟังรวมวงจรอิเล็กทรอนิกส์ขนาดจิ๋ว ชิ้นส่วนเสียง และฟังก์ชันไร้สายไว้ในอุปกรณ์ขนาดกะทัดรัด Hana…"
+    },
+    "/markets/medical/mems-sensors": {
+      "h1": {
+        "en": "Medical sensor assembly for air-flow, pressure and gas sensing",
+        "th": "การประกอบเซนเซอร์ทางการแพทย์สำหรับการตรวจวัดการไหลของอากาศ ความดัน และก๊าซ",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "MEMS sensor performance can be affected by mechanical stress introduced during die attach and packaging. Hana assembles air-flow, pressure and gas sensors for medical applications using low-stress die-attach processes, cavity and sealed package formats, and in-house gas and MEMS functional test capability.",
+        "th": "สมรรถนะของเซนเซอร์ MEMS อาจได้รับผลกระทบจากความเค้นเชิงกลที่เกิดขึ้นระหว่างกระบวนการ die attach และการทำแพ็กเกจ Hana ประกอบเซนเซอร์วัดการไหลของอากาศ เซนเซอร์วัดความดัน และเซนเซอร์ตรวจวัดก๊าซสำหรับงานด้านการแพทย์ โดยใช้กระบวนการ die attach แบบความเค้นต่ำ แพ็กเกจแบบมีช่องว่างภายใน (cavity) และแบบปิดผนึก ตลอดจนมีขีดความสามารถในการทดสอบการทำงานของเซนเซอร์ก๊าซและ MEMS ภายในองค์กร",
+        "status": "approved"
+      },
+      "title": "การประกอบเซนเซอร์ทางการแพทย์สำหรับการตรวจวัดการไหลของอากาศ ความดัน และก๊าซ",
+      "description": "สมรรถนะของเซนเซอร์ MEMS อาจได้รับผลกระทบจากความเค้นเชิงกลที่เกิดขึ้นระหว่างกระบวนการ die attach และการทำแพ็กเกจ Hana ประกอบเซนเซอร์วัดการไหลของอากาศ…"
+    },
+    "/markets/medical/pcba": {
+      "h1": {
+        "en": "PCB assembly and box build for medical devices",
+        "th": "การประกอบแผงวงจรพิมพ์ (PCB assembly) และ box build สำหรับเครื่องมือแพทย์",
+        "status": "adjusted"
+      },
+      "lede": {
+        "en": "Hana manufactures compact PCB and flex assemblies for hearing devices, wearable diagnostics and other miniature medical electronics. Capabilities include adhesiveless multi-layer flex, fine-pitch flip-chip assembly, miniature passive placement, underfill and coating, controlled folding and laser depaneling.",
+        "th": "Hana ผลิตชุดประกอบ PCB และ flex ขนาดกะทัดรัดสำหรับเครื่องช่วยฟัง อุปกรณ์วินิจฉัยแบบสวมใส่ และอุปกรณ์อิเล็กทรอนิกส์การแพทย์ขนาดเล็กอื่น ๆ ความสามารถประกอบด้วย flex หลายชั้นแบบไม่ใช้กาว การประกอบ flip-chip แบบ fine-pitch การวางชิ้นส่วน passive ขนาดเล็ก underfill และ coating การพับแบบควบคุม และ laser depaneling",
+        "status": "approved"
+      },
+      "title": "การประกอบแผงวงจรพิมพ์ (PCB assembly) และ box build สำหรับเครื่องมือแพทย์",
+      "description": "Hana ผลิตชุดประกอบ PCB และ flex ขนาดกะทัดรัดสำหรับเครื่องช่วยฟัง อุปกรณ์วินิจฉัยแบบสวมใส่ และอุปกรณ์อิเล็กทรอนิกส์การแพทย์ขนาดเล็กอื่น ๆ…"
+    },
+    "/markets/medical/wireless-charging": {
+      "h1": {
+        "en": "Wireless charging for medical devices",
+        "th": "การชาร์จแบบไร้สายสำหรับอุปกรณ์การแพทย์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures wireless charging cases and modules for hearing aids and wearable medical devices. Capability includes coil winding and assembly, PCBA, enclosure integration and functional test through to the completed charging unit.",
+        "th": "Hana ผลิตเคสและโมดูลชาร์จแบบไร้สายสำหรับเครื่องช่วยฟังและอุปกรณ์การแพทย์แบบสวมใส่ ความสามารถครอบคลุมการพันและประกอบขดลวด PCBA การประกอบเข้ากับตัวเครื่อง และการทดสอบการทำงาน จนถึงชุดชาร์จสำเร็จรูป",
+        "status": "approved"
+      },
+      "title": "การชาร์จแบบไร้สายสำหรับอุปกรณ์การแพทย์",
+      "description": "Hana ผลิตเคสและโมดูลชาร์จแบบไร้สายสำหรับเครื่องช่วยฟังและอุปกรณ์การแพทย์แบบสวมใส่ ความสามารถครอบคลุมการพันและประกอบขดลวด PCBA การประกอบเข้ากับตัวเครื่อง…"
+    },
+    "/markets/optical-sensors": {
+      "h1": {
+        "en": "Optical and sensor manufacturing",
+        "th": "การผลิตอุปกรณ์ออปติคัลและเซนเซอร์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures an array of optical and environmental sensors for various applications through our specialized focus on miniature packaging capabilities and patented processes. These products are built under controlled handling and ESD conditions, with optical and sensor manufacturing capability across multiple Hana sites.",
+        "th": "Hana ผลิตเซนเซอร์ออปติคัลและเซนเซอร์ตรวจวัดสภาพแวดล้อมหลากหลายประเภทสำหรับการใช้งานต่าง ๆ โดยอาศัยความชำนาญด้านแพ็กเกจขนาดเล็กและกระบวนการที่จดสิทธิบัตร ผลิตภัณฑ์เหล่านี้ผลิตภายใต้การควบคุมการจัดการชิ้นงานและไฟฟ้าสถิต (ESD) โดยมีความสามารถด้านการผลิตอุปกรณ์ออปติคัลและเซนเซอร์ในฐานการผลิตหลายแห่งของ Hana",
+        "status": "approved"
+      },
+      "title": "การผลิตอุปกรณ์ออปติคัลและเซนเซอร์",
+      "description": "Hana ผลิตเซนเซอร์ออปติคัลและเซนเซอร์ตรวจวัดสภาพแวดล้อมหลากหลายประเภทสำหรับการใช้งานต่าง ๆ โดยอาศัยความชำนาญด้านแพ็กเกจขนาดเล็กและกระบวนการที่จดสิทธิบัตร…"
+    },
+    "/markets/optical-sensors/camera-modules": {
+      "h1": {
+        "en": "Camera module manufacturing",
+        "th": "การผลิตโมดูลกล้อง",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures complete camera modules using controlled cleanroom assembly and active optical alignment between the lens and image sensor. The process supports precise focus, field-of-view control and protection of the sensor surface throughout assembly.",
+        "th": "Hana ผลิตโมดูลกล้องครบชุด ด้วยการประกอบในห้องสะอาด (cleanroom) แบบควบคุม และ active alignment ทางแสงระหว่างเลนส์กับเซนเซอร์ภาพ กระบวนการนี้รองรับการปรับโฟกัสที่แม่นยำ การควบคุมมุมมองภาพ (field of view) และการปกป้องพื้นผิวเซนเซอร์ตลอดการประกอบ",
+        "status": "approved"
+      },
+      "title": "การผลิตโมดูลกล้อง",
+      "description": "Hana ผลิตโมดูลกล้องครบชุด ด้วยการประกอบในห้องสะอาด (cleanroom) แบบควบคุม และ active alignment ทางแสงระหว่างเลนส์กับเซนเซอร์ภาพ…"
+    },
+    "/markets/power-management": {
+      "h1": {
+        "en": "Power management: modules and discretes",
+        "th": "การจัดการพลังงาน (Power management): โมดูลกำลังไฟฟ้าและดิสครีต",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Hana manufactures IGBT and SiC power modules, intelligent power modules and power discretes for inverters, motor drives, chargers and other power-electronics applications. The modules are integrated by customers into their own finished equipment.",
+        "th": "Hana ผลิตโมดูลกำลังไฟฟ้าชนิด IGBT และ SiC โมดูลกำลังไฟฟ้าอัจฉริยะ (IPM) และ power discrete สำหรับอินเวอร์เตอร์ ระบบขับมอเตอร์ เครื่องชาร์จ และงานอิเล็กทรอนิกส์กำลังอื่น ๆ ลูกค้านำโมดูลเหล่านี้ไปประกอบเข้ากับอุปกรณ์สำเร็จรูปของตนเอง",
+        "status": "adjusted"
+      },
+      "title": "การจัดการพลังงาน (Power management): โมดูลกำลังไฟฟ้าและดิสครีต",
+      "description": "Hana ผลิตโมดูลกำลังไฟฟ้าชนิด IGBT และ SiC โมดูลกำลังไฟฟ้าอัจฉริยะ (IPM) และ power discrete สำหรับอินเวอร์เตอร์ ระบบขับมอเตอร์ เครื่องชาร์จ…"
+    },
+    "/markets/rfid": {
+      "h1": {
+        "en": "RFID manufacturing — cards, tags and inlays",
+        "th": "การผลิต RFID: บัตร แท็ก และ inlay",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures smart cards, tags, inlays and tire tags across LF, HF and UHF, supported by more than 20 years of RFID design and manufacturing experience. Automated roll-to-roll inlay lines in China and the USA support high-volume production across multiple RFID form factors.",
+        "th": "Hana ผลิตสมาร์ทการ์ด แท็ก inlay และแท็กยางรถยนต์ ในย่าน LF, HF และ UHF โดยอาศัยประสบการณ์ด้านการออกแบบและผลิต RFID กว่า 20 ปี สายการผลิต inlay อัตโนมัติแบบ roll-to-roll ในประเทศจีนและสหรัฐอเมริการองรับการผลิตปริมาณมากในรูปแบบ RFID ที่หลากหลาย",
+        "status": "approved"
+      },
+      "title": "การผลิต RFID: บัตร แท็ก และ inlay",
+      "description": "Hana ผลิตสมาร์ทการ์ด แท็ก inlay และแท็กยางรถยนต์ ในย่าน LF, HF และ UHF โดยอาศัยประสบการณ์ด้านการออกแบบและผลิต RFID กว่า 20 ปี สายการผลิต inlay…"
+    },
+    "/markets/rfid/rfid-cards": {
+      "h1": {
+        "en": "RFID smart card manufacturing",
+        "th": "การผลิตสมาร์ทการ์ด RFID",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures contactless smart cards from inlay production through lamination, printing, finishing, encoding and personalization. Automated inlay lines support antenna and chip attach, with read/write verification and unique-ID management integrated into the production process.",
+        "th": "Hana ผลิตสมาร์ทการ์ดแบบไร้สัมผัส ตั้งแต่การผลิต inlay ไปจนถึงการเคลือบ (lamination) การพิมพ์ การตกแต่ง การเข้ารหัสข้อมูล (encoding) และการบันทึกข้อมูลเฉพาะบุคคล (personalization) สายการผลิต inlay อัตโนมัติรองรับการติดตั้งเสาอากาศและชิป โดยมีการตรวจสอบการอ่าน/เขียนและการจัดการรหัสเฉพาะ (unique ID) อยู่ในกระบวนการผลิต",
+        "status": "approved"
+      },
+      "title": "การผลิตสมาร์ทการ์ด RFID",
+      "description": "Hana ผลิตสมาร์ทการ์ดแบบไร้สัมผัส ตั้งแต่การผลิต inlay ไปจนถึงการเคลือบ (lamination) การพิมพ์ การตกแต่ง การเข้ารหัสข้อมูล (encoding)…"
+    },
+    "/markets/rfid/rfid-tags-inlays": {
+      "h1": {
+        "en": "RFID tags and inlays, including industrial and retail asset-tracking tags",
+        "th": "แท็ก RFID และ inlay รวมถึงแท็กสำหรับการติดตามทรัพย์สินในอุตสาหกรรมและค้าปลีก",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Hana manufactures RFID inlays and tags on automated roll-to-roll lines, including antenna, chip and strap attach, lamination, converting, electrical test, read verification and unique-ID handling. The process supports high-volume production across UHF, HF and LF formats.",
+        "th": "Hana ผลิต inlay และแท็ก RFID บนสายการผลิตอัตโนมัติแบบ roll-to-roll ครอบคลุมการติดตั้งเสาอากาศ ชิป และ strap การเคลือบ (lamination) converting การทดสอบทางไฟฟ้า การตรวจสอบการอ่าน และการจัดการรหัสเฉพาะ (unique ID) กระบวนการนี้รองรับการผลิตปริมาณมากในย่าน UHF, HF และ LF",
+        "status": "approved"
+      },
+      "title": "แท็ก RFID และ inlay รวมถึงแท็กสำหรับการติดตามทรัพย์สินในอุตสาหกรรมและค้าปลีก",
+      "description": "Hana ผลิต inlay และแท็ก RFID บนสายการผลิตอัตโนมัติแบบ roll-to-roll ครอบคลุมการติดตั้งเสาอากาศ ชิป และ strap การเคลือบ (lamination) converting…"
+    },
+    "/markets/rfid/rfid-tire-tags": {
+      "h1": {
+        "en": "RFID tire tags",
+        "th": "แท็ก RFID สำหรับยางรถยนต์",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures rubber-embeddable UHF tire tags using inlay and strap constructions encapsulated in materials selected for integration into the tire and exposure to the curing process. The same automated RFID manufacturing capability also supports card, logistics and industrial-tag formats.",
+        "th": "Hana ผลิตแท็กยางรถยนต์ย่านความถี่ UHF ที่สามารถฝังในเนื้อยางได้ โดยใช้โครงสร้างแบบ inlay และ strap ที่ห่อหุ้มด้วยวัสดุซึ่งคัดเลือกให้เข้ากันได้กับเนื้อยางและทนต่อกระบวนการอบคงรูป (curing) ขีดความสามารถด้านการผลิต RFID แบบอัตโนมัติเดียวกันนี้ยังรองรับแท็กในรูปแบบบัตร แท็กสำหรับงานโลจิสติกส์ และแท็กสำหรับงานอุตสาหกรรม",
+        "status": "approved"
+      },
+      "title": "แท็ก RFID สำหรับยางรถยนต์",
+      "description": "Hana ผลิตแท็กยางรถยนต์ย่านความถี่ UHF ที่สามารถฝังในเนื้อยางได้ โดยใช้โครงสร้างแบบ inlay และ strap…"
+    },
+    "/markets/telecom": {
+      "h1": {
+        "en": "Telecommunications electronics manufacturing",
+        "th": "การผลิตอุปกรณ์อิเล็กทรอนิกส์สำหรับงานโทรคมนาคม",
+        "status": "approved"
+      },
+      "lede": {
+        "en": "Hana manufactures RF, microwave and millimeter-wave modules, RF power packages, hermetic optical receivers and wireless communication modules for telecommunications and datacom applications. Capabilities include controlled high-frequency interconnect, shielding, hermetic package sealing and RF and wireless test across multiple Hana sites.",
+        "th": "Hana ผลิตโมดูลความถี่วิทยุ (RF) ไมโครเวฟ และคลื่นมิลลิเมตร (millimeter-wave) แพ็กเกจกำลัง RF (RF power package) ตัวรับสัญญาณแสงแบบปิดผนึกสนิท (hermetic optical receiver) และโมดูลสื่อสารไร้สาย สำหรับงานโทรคมนาคมและการสื่อสารข้อมูล (datacom) ขีดความสามารถประกอบด้วยการเชื่อมต่อทางไฟฟ้าความถี่สูงแบบควบคุม การป้องกันสัญญาณรบกวน (shielding) การปิดผนึกแพ็กเกจแบบสนิท (hermetic sealing) และการทดสอบ RF และระบบไร้สายในฐานการผลิตหลายแห่งของ Hana",
+        "status": "draft"
+      },
+      "title": "การผลิตอุปกรณ์อิเล็กทรอนิกส์สำหรับงานโทรคมนาคม",
+      "description": "Hana ผลิตโมดูลความถี่วิทยุ (RF) ไมโครเวฟ และคลื่นมิลลิเมตร (millimeter-wave) แพ็กเกจกำลัง RF (RF power package) ตัวรับสัญญาณแสงแบบปิดผนึกสนิท (hermetic…"
+    },
+    "/markets/telecom/rf-assembly": {
+      "h1": {
+        "en": "RF modules and power amplifiers for telecom",
+        "th": "โมดูล RF และเครื่องขยายกำลัง (power amplifier) สำหรับโทรคมนาคม",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "RF, microwave and millimeter-wave module performance depends on controlled die placement, die-attach quality, grounding, shielding and package integrity. Hana combines these assembly processes with RF measurement to verify completed modules against program requirements.",
+        "th": "ประสิทธิภาพของโมดูล RF ไมโครเวฟ และ millimeter-wave ขึ้นอยู่กับการวาง die ที่ควบคุมได้ คุณภาพของ die attach การต่อลงดิน (grounding) การป้องกันสัญญาณรบกวน (shielding) และความสมบูรณ์ของแพ็กเกจ Hana ใช้กระบวนการประกอบเหล่านี้ร่วมกับการวัดค่า RF เพื่อตรวจสอบโมดูลที่ประกอบเสร็จตามข้อกำหนดของแต่ละโครงการ",
+        "status": "approved"
+      },
+      "title": "โมดูล RF และเครื่องขยายกำลัง (power amplifier) สำหรับโทรคมนาคม",
+      "description": "ประสิทธิภาพของโมดูล RF ไมโครเวฟ และ millimeter-wave ขึ้นอยู่กับการวาง die ที่ควบคุมได้ คุณภาพของ die attach การต่อลงดิน (grounding) การป้องกันสัญญาณรบกวน…"
+    }
+  }
+}

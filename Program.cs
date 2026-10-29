@@ -4,7 +4,9 @@
 // =============================================================
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddRazorPages();
+// Thai draft pages: English pages listed in Data/thai-drafts.json also answer at /th/<route>.
+HanaSite.Services.ThaiDrafts.Init(builder.Environment.ContentRootPath);
+builder.Services.AddRazorPages(o => o.Conventions.Add(new HanaSite.Services.ThaiDraftRoutes()));
 
 var app = builder.Build();
 

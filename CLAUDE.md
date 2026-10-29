@@ -30,6 +30,7 @@ The ASP.NET Core 8 Razor Pages version of the Hana Microelectronics marketing si
 - No external CDNs for fonts or scripts; self-host in `wwwroot/`.
 - When a page is retired, add a permanent redirect in `Program.cs` and remove its links from the header, footer and sidebars.
 - Every English page with a Thai version (`Pages/ThaiPages/`) needs the same structural change in both.
+- Markets, Capabilities and Locations pages get their Thai version from `Data/thai-drafts.json` (`Services/ThaiDrafts.cs`), not from a copied page: `/th/<route>` runs the English page with a Thai H1, blurb, SEO title and description and Thai breadcrumb/sidebar labels. When you change the H1 or opening blurb of one of those pages, update its `"en"` and `"th"` in the JSON, or the Thai page shows that line in English. Check with `/th/<route>?review=1`.
 
 ## Checking your work
 

@@ -28,9 +28,29 @@
       ~/js/mobile-nav.js          ≤900px compact bar + slide-in accordion
 *@
 @using HanaSite.Services
+@using Microsoft.AspNetCore.Html
 @inject IEnumerable<Microsoft.AspNetCore.Routing.EndpointDataSource> EndpointSources
 <!DOCTYPE html>
 @{
+    // Thai draft pages (Services/ThaiDrafts.cs): /th/<route> runs the English page with a Thai overlay.
+    var requestPath = Seo.Normalize(Context.Request.Path.Value);
+    var isThaiDraft = ThaiDrafts.TryGetForThaiPath(requestPath, out var draftEnPath, out var draftPage);
+    if (isThaiDraft)
+    {
+        ViewData["Lang"] = "th";
+        ViewData["Title"] = draftPage.Title;
+        ViewData["FullTitle"] = null;
+        ViewData["Description"] = draftPage.Description;
+        ViewData["Canonical"] = Seo.SiteUrl + requestPath;
+        ViewData["AltLang"] = "en";
+        ViewData["AltLangUrl"] = draftEnPath;
+    }
+    else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null && ThaiDrafts.HasThai(requestPath))
+    {
+        ViewData["AltLang"] = "th";
+        ViewData["AltLangUrl"] = "/th" + requestPath;
+    }
+
     var motionProfile = ViewData["Motion"] as string;
     var lang = ViewData["Lang"] as string ?? "en";
     var fullTitle = ViewData["FullTitle"] as string ?? ViewData["Title"] + " | Hana Microelectronics";
@@ -38,7 +58,16 @@
 
     // The page body and its Head section render first, so the metadata can be built from them.
     // RenderSectionAsync writes straight to the output, so the Head section is captured in a buffer.
-    var pageBody = RenderBody();
+    IHtmlContent pageBody = RenderBody();
+    var routeSet = Seo.RouteSet(EndpointSources);
+    if (isThaiDraft)
+    {
+        pageBody = new HtmlString(ThaiDrafts.Apply(Seo.ToHtml(pageBody), draftPage, Context.Request.Query["review"] == "1"));
+    }
+    if (lang == "th")
+    {
+        pageBody = new HtmlString(ThaiDrafts.ThaiLinks(Seo.ToHtml(pageBody), routeSet));
+    }
     var headWriter = new System.IO.StringWriter();
     PushWriter(headWriter);
     await RenderSectionAsync("Head", required: false);
@@ -93,9 +122,9 @@
 </head>
 <body style="margin:0; background:#fff; font-family:var(--font-text); -webkit-font-smoothing:antialiased;">
 
-    @if ((string?)ViewData["Lang"] == "th")
+    @if (lang == "th")
     {
-        <partial name="_HeaderTh" />
+        @Html.Raw(ThaiDrafts.ThaiLinks(Seo.ToHtml(await Html.PartialAsync("_HeaderTh")), routeSet))
     }
     else
     {
@@ -106,7 +135,14 @@
         @pageBody
     </main>
 
-    <partial name="_Footer" />
+    @if (lang == "th")
+    {
+        @Html.Raw(ThaiDrafts.ThaiLinks(Seo.ToHtml(await Html.PartialAsync("_Footer")), routeSet))
+    }
+    else
+    {
+        <partial name="_Footer" />
+    }
 
     @* ── Global scripts ─────────────────────────────────────── *@
     <script src="~/js/hana-backgrounds.js"></script>

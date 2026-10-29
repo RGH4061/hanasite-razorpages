@@ -2,7 +2,15 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
-## Latest changes (20 Oct 2026 — Razor brought in line with the HTML site)
+## Latest changes (29 Oct 2026 — Thai draft pages for Markets, Capabilities and Locations)
+
+- **67 Thai routes** — every Markets (30), Capabilities (31) and Locations (6) page now also answers at `/th/<route>`. Cheongju is left out (dormant).
+- **How it works** — `Services/ThaiDrafts.cs` reads `Data/thai-drafts.json` and registers the `/th/` routes at startup. `_Layout.cshtml` renders the English page, then swaps in the Thai header and footer, the Thai H1 and opening blurb, the Thai `<title>` and meta description, and Thai labels in the breadcrumb, eyebrow and sidebar. The rest of each page stays English. Canonical, hreflang and the sitemap pick the new pairs up automatically.
+- **Stale-text guard** — each Thai line stores the English it was translated from. If the English changes, that line shows in English until the JSON is updated. `?review=1` colours each line by status (approved, adjusted, draft, proposed, out of date).
+- **Links** — on every Thai page (including the existing ones), header, body and footer links open the Thai version of a page where one exists. English pages with a Thai draft show the ไทย switch in the header.
+- **Translation status at launch** — 80 lines approved by the Lamphun review (23 Oct), 22 approved lines adjusted to follow later English edits, 22 new drafts, 10 never reviewed (Locations and three Capabilities H1s).
+
+ — Razor brought in line with the HTML site)
 
 The HTML site is the source of truth. A page-by-page comparison of all 125 paired pages found the gaps below; each is now fixed here.
 
