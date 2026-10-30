@@ -214,7 +214,7 @@
     if (m.sensor === "sensor") return sensorCard(m, mobile);
     const shown = m.rows.slice(0, 6);
     const read = [m.fam ? `family <b>${esc(m.fam.toUpperCase())}</b>` : null,
-      m.dims ? `body <b>${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm</b>` : null,
+      m.dims ? `body <b>${esc(m.dims[0])} &times; ${esc(m.dims[1])}${m.unit ? " " + m.unit : ""}</b>` : null,
       m.leads ? `leads <b>${m.leads}</b>` : null,
       m.grade ? `<b>Grade ${esc(m.grade)}</b>` : null,
       m.sensor ? `sensor packages <b>${esc(m.sensor === "lidar" ? "LiDAR" : m.sensor === "adas" ? "ADAS" : m.sensor)}</b>` : null,
@@ -440,7 +440,7 @@
     if (!m) return "";
     const shown = m.rows.slice(0, 4);
     const read = [m.fam ? esc(m.fam.toUpperCase()) : null,
-      m.dims ? `${esc(m.dims[0])} &times; ${esc(m.dims[1])} mm` : null,
+      m.dims ? `${esc(m.dims[0])} &times; ${esc(m.dims[1])}${m.unit ? " " + m.unit : ""}` : null,
       m.leads ? `${m.leads} leads` : null,
       m.grade ? `Grade ${esc(m.grade)}` : null,
       m.sensor ? `${esc(m.sensor === "lidar" ? "LiDAR" : m.sensor === "adas" ? "ADAS" : m.sensor)} sensor packages` : null,

@@ -60,9 +60,18 @@ const PKFAMS = [...new Set(PACKAGES.flatMap(r=>{
   return [n.split(/[\s-]/)[0], ((n.match(/\(([A-Za-z0-9]+)/)||[])[1]||"")];
 }).filter(f=>f.length>2 && isCode(f)).map(f=>f.toLowerCase()))];
 
+/* Six rows carry x and y in inches, so sizes compare in millimetres. */
+const MM = r => r.u === "in" ? [r.x*25.4, r.y*25.4] : [r.x, r.y];
+const AREA = r => { if(!r.x) return 1e9; const [a,b]=MM(r); return a*b; };
+
 function findPackages(raw){
   const q = (raw||"").toLowerCase();
-  const d = q.match(/(\d+(?:\.\d+)?)\s*[x×]\s*(\d+(?:\.\d+)?)/);
+  const d = q.match(/(\d+(?:\.\d+)?)\s*(?:in(?:ch(?:es)?)?\b|["″])?\s*[x×]\s*(\d+(?:\.\d+)?)/);
+  /* A size may name its unit ("0.07 x 0.07 in"). Without one it is read as mm, and also
+     against the printed inch figure on the rows the deck dimensions in inches. A bare "in"
+     counts only at the end of the size, so "3x3 in Thailand" stays a millimetre size. */
+  const typedIn = /\d\s*(?:inch(?:es)?\b|in\s*(?:$|[x×])|["″])/.test(q), typedMm = /\d\s*mm\b/.test(q);
+  const sizeUnits = new Set();
   const grade = (q.match(/grade\s*([012])/)||[])[1];
   const fam = PKFAMS.find(f=>new RegExp("\\b"+f.replace(/([a-z])(?=\d)/g,"$1[\\s-]*")).test(q));
   /* Lead counts only for families whose digits ARE the lead count. SOT/SOD digits are body
@@ -96,19 +105,26 @@ function findPackages(raw){
     if(leads && !r.leads.includes(leads)) return false;
     if(d){
       if(!r.x) return false;
-      const a=parseFloat(d[1]), b=parseFloat(d[2]), tol=0.06;
+      const a=parseFloat(d[1]), b=parseFloat(d[2]), tol=0.06, tolIn=0.005, scale=typedIn?25.4:1;
+      const [mx,my]=MM(r);
+      const hit=(x,y,p,q2,t)=>(Math.abs(x-p)<t&&Math.abs(y-q2)<t)||(Math.abs(x-q2)<t&&Math.abs(y-p)<t);
       /* A size that is part of the package's name ("PQFN 8×8", actually 8.0 × 7.9 mm) also counts. */
       const named = new RegExp("\\b"+d[1]+"\\s*[x×]\\s*"+d[2]+"\\b").test((r.pkg||"").toLowerCase());
-      if(!named && !((Math.abs(r.x-a)<tol&&Math.abs(r.y-b)<tol)||(Math.abs(r.x-b)<tol&&Math.abs(r.y-a)<tol))) return false;
+      const inHit = !typedIn && !typedMm && r.u==="in" && hit(r.x,r.y,a,b,tolIn);
+      const mmHit = named || hit(mx,my,a*scale,b*scale,tol);
+      if(!mmHit && !inHit) return false;
+      sizeUnits.add(inHit ? "in" : "mm");
     }
     return true;
-  }).sort((m,n)=>(m.x?m.x*m.y:1e9)-(n.x?n.x*n.y:1e9));
+  }).sort((m,n)=>AREA(m)-AREA(n));
   if(!rows.length) return null;
   /* qs: the finder handoff when the raw query would not filter the finder by itself. */
   const qs = aec101 && !d && !fam ? "grade=AEC-Q101"
     : aec && !d && !fam && !sensor ? "cat=" + encodeURIComponent("Automotive-qualified packages")
     : sensor && !d && !fam && !grade ? "q=" + sensor : null;
-  return {rows, dims:d?[d[1],d[2]]:null, fam, leads, grade, sensor, autoSensor, aec, aec101, qs, raw};
+  /* The unit for the "body 0.07 × 0.07 in" read-out: left blank if a bare size matched both. */
+  const unit = typedIn ? "in" : typedMm ? "mm" : sizeUnits.size === 1 ? [...sizeUnits][0] : "";
+  return {rows, dims:d?[d[1],d[2]]:null, unit, fam, leads, grade, sensor, autoSensor, aec, aec101, qs, raw};
 }
 
 /* Punctuation-insensitive normalisation, so "fiber-optic" and "fiber optic" are the same
