@@ -607,11 +607,13 @@ body {
   /* ── Compact sticky bar ─────────────────────────────── */
   /* !important: search.css sets .hana-header{position:relative} after this file */
   .hana-header { position: sticky !important; top: 0; z-index: 200; }
-  /* utility bar → SET ticker only: the search field and the util links come off
+  /* utility bar → SET ticker left, language switch right: the search field and the other util links come off
      (search is at the top of the mobile menu and has a header button; Careers and Insights are in its footer) */
   .hana-util-bar .hs-hdr-box { display: none !important; }
-  .hana-util-bar .hana-wrap > div:last-child { display: none !important; }
+  .hana-util-bar .hana-wrap > div:last-child > a:not(.hana-lang) { display: none !important; }
   .hana-util-bar .hana-wrap { height: 32px !important; }
+  /* a larger tap area than the 12px label, without changing the bar height */
+  .hana-util-bar .hana-lang { padding: 9px 0 9px 12px; margin: -9px 0; }
   /* hide the desktop hover nav + its mega panels on touch */
   .hana-header :is(nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]) { display: none !important; }
   .hana-header .hana-mega { display: none !important; }
@@ -748,7 +750,6 @@ body {
     color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px;
   }
   .hana-mnav-utrow a:hover { color: #fff; }
-  .hana-mnav-utrow svg { width: 14px; height: 14px; }
 }
 
 

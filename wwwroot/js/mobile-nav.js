@@ -9,7 +9,8 @@
  *     to its hub and whose chevron expands a clone of the matching
  *     <div.hana-mega[data-panel]> content (markets / capability pillars / IR
  *     groups / locations). Content is cloned, so it never drifts from desktop.
- *   • puts Search at the top of the panel (above About); Careers / Insights / EN in the foot
+ *   • puts Search at the top of the panel (above About); Careers / Insights in the foot
+ *     (the language switch stays in the ticker bar, _components.css)
  *   • single section open at a time; closes on link tap, ×, backdrop, Escape
  *
  * No dependencies. Auto-inits on DOMContentLoaded.
@@ -26,8 +27,7 @@
     burger: '<path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/>',
     close:  '<path d="M18 6 6 18"/><path d="M6 6l12 12"/>',
     chev:   '<path d="m6 9 6 6 6-6"/>',
-    search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
-    globe:  '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/>'
+    search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>'
   };
   function cssEsc(s) { return s.replace(/"/g, '\\"'); }
   /* Util-bar link text in each language: [lookup keys], Thai label */
@@ -161,14 +161,10 @@
     /* foot — util links */
     var foot = document.createElement('div');
     foot.className = 'hana-mnav-foot';
-    /* language control mirrors the desktop util-bar one — absent when the page has no twin */
-    var langA = header.querySelector('.hana-util-bar a.hana-lang');
-    var langLabel = langA ? (langA.textContent || '').trim() : '';
     foot.innerHTML =
       '<div class="hana-mnav-utrow">' +
         '<a href="' + findUtilHref(header, 'careers') + '">' + utilLabel('careers') + '</a>' +
         (findUtilHref(header, 'insights') !== '#' ? '<a href="' + findUtilHref(header, 'insights') + '">' + utilLabel('insights') + '</a>' : '') +
-        (langA ? '<a href="' + langA.getAttribute('href') + '" class="hana-mnav-lang" lang="' + (langLabel === 'EN' ? 'en' : 'th') + '">' + svg(I.globe) + ' ' + langLabel + '</a>' : '') +
       '</div>';
     panel.appendChild(foot);
 
