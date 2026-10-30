@@ -216,9 +216,10 @@ public static class ThaiDrafts
 
     // ---------------------------------------------------------------- links
 
-    static readonly Regex HrefRx = new(@"href=""(/[^""#?]*)([^""]*)""", RegexOptions.Compiled);
+    static readonly Regex HrefRx = new(@"href=""(/[^""#?]*)([^""]*)""(?![^>]*\bhana-lang\b)", RegexOptions.Compiled);
 
     /// On Thai pages, internal links open the Thai version where one exists.
+    /// The header's EN switch (class hana-lang, written after href) keeps its English address.
     public static string ThaiLinks(string html, HashSet<string> routes) =>
         HrefRx.Replace(html, m =>
         {
