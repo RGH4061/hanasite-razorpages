@@ -20,6 +20,20 @@
 @font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Sarabun';      src: url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
 
+/* Page sheets that name Plex Mono, Inter or Geist directly would otherwise hand Thai text to
+   whatever Thai font the device has (Ayuthaya and Thonburi on a Mac). These faces supply
+   Sarabun for Thai letters only, so Latin in those fonts is unchanged and the file loads only
+   when Thai is on the page. Each weight matches an existing face above: a Thai-only face at a
+   new weight would capture that weight and drop the Latin letters. The range leaves out the
+   baht sign (U+0E3F) so the ticker on English pages does not load Sarabun. */
+@font-face { font-family: 'IBM Plex Mono'; src: url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 500; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Sarabun-Regular.ttf') format('truetype'); font-weight: 500; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+@font-face { font-family: 'Inter';        src: url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 800; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+@font-face { font-family: 'Geist';        src: url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+@font-face { font-family: 'Geist';        src: url('../fonts/Sarabun-SemiBold.ttf') format('truetype'); font-weight: 700; font-display: swap; unicode-range: U+0E01-0E3A, U+0E40-0E5B; }
+
 /* Thai text — fires on <html lang="th"> (part B) and any inline lang="th" block.
    The display/text TOKENS are re-pointed inside the Thai scope, so every page rule that
    sets font via var(--font-text) / var(--font-display) resolves to Sarabun with no

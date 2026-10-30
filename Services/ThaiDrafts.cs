@@ -214,6 +214,45 @@ public static class ThaiDrafts
     static string Norm(string html) => Collapse(WebUtility.HtmlDecode(TagRx.Replace(html, "")));
     static string Collapse(string s) => Regex.Replace(s, @"\s+", " ").Trim();
 
+    // ---------------------------------------------------------------- Thai text sizes
+
+    static readonly Regex ThaiSkipRx = new(@"<(script|style|textarea|select|svg)\b.*?</\1>|<!--.*?-->", RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    static readonly Regex ThaiTextRx = new(@">([^<>]*[\u0E01-\u0E3A\u0E40-\u0E5B][^<>]*)<", RegexOptions.Compiled);
+
+    /// Wraps each piece of Thai text in span.th so css/thai-type.css can size it, including where
+    /// a page sets a size inline, and leave any English on the same page alone. Text in the
+    /// page's opening blurb (the first long paragraph after the H1) also gets th-blurb.
+    public static string MarkThai(string html)
+    {
+        var skips = ThaiSkipRx.Matches(html).Select(m => (m.Index, End: m.Index + m.Length)).ToList();
+        var blurb = BlurbRange(html);
+        var sb = new StringBuilder();
+        var last = 0;
+        foreach (Match m in ThaiTextRx.Matches(html))
+        {
+            if (skips.Any(s => m.Index >= s.Index && m.Index < s.End)) continue;
+            var g = m.Groups[1];
+            var raw = g.Value;
+            var lead = raw[..(raw.Length - raw.TrimStart().Length)];
+            var trail = raw[raw.TrimEnd().Length..];
+            var cls = g.Index >= blurb.Start && g.Index < blurb.End ? "th th-blurb" : "th";
+            sb.Append(html, last, g.Index - last).Append(lead)
+              .Append("<span class=\"").Append(cls).Append("\">").Append(raw.Trim()).Append("</span>").Append(trail);
+            last = g.Index + g.Length;
+        }
+        sb.Append(html, last, html.Length - last);
+        return sb.ToString();
+    }
+
+    static (int Start, int End) BlurbRange(string html)
+    {
+        var h1 = H1Rx.Match(html);
+        if (!h1.Success) return (0, 0);
+        for (var p = ParaRx.Match(html, h1.Index + h1.Length); p.Success; p = p.NextMatch())
+            if (Norm(p.Groups[1].Value).Length >= 30) return (p.Index, p.Index + p.Length);
+        return (0, 0);
+    }
+
     // ---------------------------------------------------------------- links
 
     static readonly Regex HrefRx = new(@"href=""(/[^""#?]*)([^""]*)""(?![^>]*\bhana-lang\b)", RegexOptions.Compiled);

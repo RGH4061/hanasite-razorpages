@@ -1,0 +1,102 @@
+/* ============================================================
+   thai-type.css — Thai text sizes. Loaded on Thai pages only, after the page sheets.
+
+   The page sheets are sized for English. Sarabun's Thai letters stand 58.6% of the font
+   size and English capitals 72.8%, so a label set in capitals looks about 20% smaller in
+   Thai at the same size. Labels here follow English size × 1.25 with a 13px minimum, and
+   Thai has no letter spacing or capitals rule. Sizes: Thai type review (30 Oct 2026).
+
+   ThaiDrafts.MarkThai wraps every Thai text node in span.th. These rules reach that text
+   even where a page sets a size inline, and English on the same page keeps its own styling.
+   Text built in JavaScript has no span.th, so it is sized by class further down.
+   ============================================================ */
+
+/* The span takes everything from its parent, then applies the Thai size floor:
+   10.5px and under become 13px, 11–13.9px become 14px, 14px and over are unchanged. */
+span.th {
+  all: unset !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-size: max(1em, min(14px, 1.27em), 13px) !important;
+}
+
+/* ── Reading text ─────────────────────────────────────────── */
+/* Under 15px becomes 15px, 15–15.9px becomes 16px, 16px and over are unchanged. */
+main :is(p, li, dd, dt, blockquote) span.th { font-size: max(1em, min(16px, 1.0667em), 15px) !important; }
+main td span.th { font-size: max(1em, 15px) !important; }
+
+/* Opening blurb, and the intro under a section heading */
+span.th.th-blurb { font-size: 18px !important; line-height: 1.75 !important; }
+main .intro span.th { font-size: 17px !important; line-height: 1.75 !important; }
+@media (max-width: 767px) {
+  span.th.th-blurb { font-size: 17px !important; }
+  main .intro span.th { font-size: 16px !important; }
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+:is(h1, h2, h3, h4):has(span.th) { letter-spacing: 0 !important; }
+h1:has(span.th), h1:has(span.th) * { line-height: 1.28 !important; letter-spacing: 0 !important; }
+h2:has(span.th), h2:has(span.th) * { line-height: 1.32 !important; letter-spacing: 0 !important; }
+:is(h3, h4):has(span.th), :is(h3, h4):has(span.th) * { line-height: 1.4 !important; letter-spacing: 0 !important; }
+@media (max-width: 767px) {
+  #main-content h1:has(span.th) { font-size: 28px !important; }
+  #main-content h1:has(span.th) * { font-size: inherit !important; }
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.hana-util-bar span.th { font-size: 13px !important; }
+.hana-util-bar .hs-hdr-input { font-size: 13px !important; font-weight: 400 !important; }
+.hana-util-bar .hs-hdr-box { min-width: 350px !important; }
+.hana-nav-link { line-height: 1.5 !important; }
+.hana-nav-link span.th { font-size: 15px !important; }
+
+/* ── Menus: desktop panels and the phone menu ─────────────── */
+/* 11px and under become 13px, 12px becomes 14px, 13–15px become 15px. */
+:is(.hana-mega, [data-panel], .hana-mnav-panel) span.th { font-size: max(1em, min(15px, 1.16em), 13px) !important; }
+:is(.hana-mega, [data-panel], .hana-mnav-panel) :is(.mm-grouplabel, .hana-spec-label, .hana-link) span.th { font-size: 13px !important; }
+:is(.hana-mega, [data-panel], .hana-mnav-panel) :is(.hana-mega-sub-link, .hana-mega-name, .hana-mega-group-heading, .hana-mega-card div) { line-height: 1.5 !important; }
+
+/* Built by mobile-nav.js, so they have no span.th */
+.hana-macc-name { font-size: 16px !important; line-height: 1.5 !important; }
+.hana-mnav-hint { font-size: 13px !important; }
+.hana-mnav-utrow a { font-size: 15px !important; }
+
+/* ── Sidebars and section menus ───────────────────────────── */
+/* 11px and under become 13px, 12px becomes 14px, 13–15px become 15px. */
+:is(aside, [class*="sidebar"], [class*="sidenav"], [class*="side-nav"], [class*="sectionnav"], [class*="section-menu"], [class*="subnav"], [class*="sub-nav"], [class*="-rail"], [class*="toc"], [class*="mobnav"]) span.th {
+  font-size: max(1em, min(15px, 1.16em), 13px) !important;
+}
+
+/* Group headings at the top of a sidebar or its phone drop-down */
+:is(.cap-group summary, .cap-mobnav summary, .side-head-label, aside .hana-link) span.th { font-size: 14px !important; }
+
+/* ── Fixed sizes ──────────────────────────────────────────── */
+:is([class*="crumb"], nav[aria-label*="readcrumb"]) span.th { font-size: 14px !important; }
+:is(button, .hana-btn, [class*="-btn"], [class*="btn-"]) span.th { font-size: 14px !important; }
+
+/* Labels that sit in a paragraph or definition list, so the reading-text rule would catch them */
+.cf-eyebrow span.th { font-size: 14px !important; }
+.contact-card dt span.th { font-size: 13px !important; }
+
+/* Captions, dates and small notes */
+:is(figcaption, .subbar .meta, .related a, .report-card-cta, .ceo-from, .ceo-attrib, .cf-office-name, .cf-privacy,
+    .cf-upload-meta, .cf-upload-text, .detail-actions a, .ev-meta, .hana-loc-card__cta, .read-more, .job-apply,
+    .p-tag, .stat-lbl, .story-person .role, .story-year, .vc-date, .vc-watch, .cf-acc-count) span.th { font-size: 13px !important; }
+
+/* The mock reCAPTCHA badge copies Google's own small print */
+.rc-text span.th { font-size: 8px !important; }
+
+/* Built in JavaScript, so they have no span.th */
+.life-img-cap .cap-title { font-size: 14px !important; }
+.life-img-cap .cap-desc { font-size: 15px !important; }
+.cap-find-meta { font-size: 14px !important; }
+
+/* ── Layout that needs room for the larger text ───────────── */
+.hha-acts { flex-wrap: wrap; }
+.cf-chip { white-space: normal; }
+.cf-row.two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 767px) {
+  .mk-crumbbar .in { flex-wrap: wrap; }
+  .mk-crumbbar .here { white-space: nowrap; }
+  .ir-hub-updated { margin-left: 0; flex-basis: 100%; }
+}

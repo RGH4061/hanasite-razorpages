@@ -76,6 +76,10 @@
     var seo = Seo.ForPage(Context, ViewData["Title"] as string, fullTitle, description,
         ViewData["Canonical"] as string, ViewData["Robots"] as string, ViewData["OgImage"] as string, lang,
         Seo.ToHtml(pageBody), pageHead, EndpointSources);
+    if (lang == "th")
+    {
+        pageBody = new HtmlString(ThaiDrafts.MarkThai(Seo.ToHtml(pageBody)));
+    }
 }
 <html lang="@lang" @if (motionProfile != null) { <text>data-motion="@motionProfile"</text> }>
 <head>
@@ -118,13 +122,18 @@
     <script src="~/js/vendor/lucide.min.js"></script>
 
     @Html.Raw(pageHead)
+    @* Thai text sizes come after the page sheets so they apply over them. *@
+    @if (lang == "th")
+    {
+        <link rel="stylesheet" href="~/css/thai-type.css" />
+    }
     <script type="application/ld+json">@Html.Raw(seo.JsonLd)</script>
 </head>
 <body style="margin:0; background:#fff; font-family:var(--font-text); -webkit-font-smoothing:antialiased;">
 
     @if (lang == "th")
     {
-        @Html.Raw(ThaiDrafts.ThaiLinks(Seo.ToHtml(await Html.PartialAsync("_HeaderTh")), routeSet))
+        @Html.Raw(ThaiDrafts.MarkThai(ThaiDrafts.ThaiLinks(Seo.ToHtml(await Html.PartialAsync("_HeaderTh")), routeSet)))
     }
     else
     {
@@ -137,7 +146,7 @@
 
     @if (lang == "th")
     {
-        @Html.Raw(ThaiDrafts.ThaiLinks(Seo.ToHtml(await Html.PartialAsync("_Footer")), routeSet))
+        @Html.Raw(ThaiDrafts.MarkThai(ThaiDrafts.ThaiLinks(Seo.ToHtml(await Html.PartialAsync("_Footer")), routeSet)))
     }
     else
     {
