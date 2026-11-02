@@ -336,8 +336,8 @@
         + aside(noSize.length, "body size") + aside(noThk.length, "thickness");
 
       if (!rows.length) {
-        outEl.innerHTML = `<div class="pf-empty"><b>Nothing in the reference matches that</b>
-          <p>Which doesn&rsquo;t mean no. Molded bodies go down to 0.6 &times; 1.0 mm, and leadless packages from 0.37 mm thick.</p></div>
+        outEl.innerHTML = `<div class="pf-empty"><b>No standard package matches that</b>
+          <p>We recommend contacting us, as we also build to custom dimensions. Molded bodies go down to 0.6 &times; 1.0 mm, and leadless packages from 0.37 mm thick.</p></div>
           ${nearest(p.dims)}${askBar}`;
         if (window.HanaGeo) window.HanaGeo.init(outEl);
         return;
