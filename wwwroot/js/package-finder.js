@@ -111,8 +111,7 @@
       if (!show.length) return "";
       return `<section class="pf-thk">
       <h3 class="pf-thk-h">Leadless package thickness</h3>
-      <p class="pf-thk-s">DFN and QFN bodies are built to a thickness ladder, and the class
-        prefix is part of the package name &mdash; a uDFN is a 0.50&nbsp;mm DFN.</p>
+      <p class="pf-thk-s">DFN and QFN bodies are built to a thickness ladder, and the class prefix is part of the package name: a uDFN is a 0.50 mm DFN.</p>
       <div class="pf-tablewrap"><table class="pf-table pf-table--thk"><thead><tr>
         <th>Family</th><th>Nominal thickness</th><th>Range</th></tr></thead><tbody>
         ${show.map(r => `<tr>

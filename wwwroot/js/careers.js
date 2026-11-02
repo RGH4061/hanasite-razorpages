@@ -59,7 +59,7 @@ const LIFE_DATA = {
   lamphun: [
     { title: "Annual company days",         desc: "Celebrating the Lamphun site's PCBA and box-build achievements each year." },
     { title: "Celebrations",                desc: "Northern Thai festivals and team milestones across the Lamphun site." },
-    { title: "Community outreach",          desc: "Deep local roots — many of our team are from Lamphun itself." },
+    { title: "Community outreach",          desc: "Many of the Lamphun team are from Lamphun itself." },
     { title: "Technical training programme", desc: "SMT, PCBA, and box-build skills training at every level." },
     { title: "Health and wellbeing",        desc: "Canteen, transport support, and health programmes for all employees." },
     { title: "Student scholarship",         desc: "Investing in young manufacturing talent across the Lamphun region." }
