@@ -132,6 +132,9 @@
   }
   const fmt = v => v.toFixed(2);
   function thkCell(r) {
+    /* A published range ("1.52–1.74 mm") or ceiling ("max 0.40 mm") is shown as given. */
+    const given = String(r.thk || "");
+    if (/\d\s*[–-]\s*\d/.test(given) || /^max /i.test(given)) return esc(given);
     const own = THK_NUM(r.thk);
     if (own !== null) return (/minimum/i.test(r.thk) ? "min " : "") + fmt(own) + " mm";
     if (r.z) return fmt(parseFloat(r.z)) + " mm";

@@ -90,6 +90,20 @@
       if (LADDER_MIN !== null && /DFN|QFN/i.test(r.pkg)) return LADDER_MIN;
       return null;
     };
+    /* What the Thickness column shows (Rupert, 2 Nov 2026: thickness is one of the first
+       things a buyer checks). A row's own figure or range ("1.52–1.74 mm", "max 0.40 mm");
+       an LGA's third dimension; for standard DFN/QFN bodies the span of the ladder classes. */
+    const LADDER_MAX = THK_STEPS.length ? THK_STEPS[THK_STEPS.length - 1] : null;
+    const thkText = r => {
+      const own = String(r.thk || "");
+      if (/\d\s*[–-]\s*\d/.test(own) || /^max /i.test(own)) return own;
+      const n = THK_NUM(own);
+      if (n !== null) return (/minimum/i.test(own) ? "min " : "") + n.toFixed(2) + " mm";
+      if (r.z) return Number(r.z).toFixed(2) + " mm";
+      if (LADDER_MIN !== null && /DFN|QFN/i.test(r.pkg) && /^(Leadless packages|Automotive-qualified packages)$/.test(r.t))
+        return LADDER_MIN.toFixed(2) + "–" + LADDER_MAX.toFixed(2) + " mm";
+      return "";
+    };
 
     function thkPanel(ceiling) {
       const show = ceiling === null ? LADDER
@@ -100,10 +114,11 @@
       <p class="pf-thk-s">DFN and QFN bodies are built to a thickness ladder, and the class
         prefix is part of the package name &mdash; a uDFN is a 0.50&nbsp;mm DFN.</p>
       <div class="pf-tablewrap"><table class="pf-table pf-table--thk"><thead><tr>
-        <th>Family</th><th>Nominal thickness</th></tr></thead><tbody>
+        <th>Family</th><th>Nominal thickness</th><th>Range</th></tr></thead><tbody>
         ${show.map(r => `<tr>
           <td class="pf-pk">${esc(r.pkg)}</td>
           <td class="pf-num" data-l="Thickness">${esc(r.thk || "\u2014")}</td>
+          <td class="pf-num" data-l="Range">${esc(r.detail || "\u2014")}</td>
         </tr>`).join("")}</tbody></table></div>
       <p class="pf-thk-n">${ceiling === null
         ? "Nominal thickness by family, from our OSAT package reference."
@@ -336,6 +351,7 @@
       const cols = solo => `<tr class="pf-cols${solo ? " pf-cols--solo" : ""}">
         <th scope="col" data-k="pkg">Package ${arr("pkg")}</th>
         <th scope="col" data-k="area">Body size ${arr("area")}</th>
+        ${hasThk ? `<th scope="col">Thickness</th>` : ""}
         ${hasLeads ? `<th scope="col">Leads</th>` : ""}
         <th scope="col" data-k="grade">Auto grade ${arr("grade")}</th>
         ${hasGo ? `<th scope="col"></th>` : ""}</tr>`;
@@ -343,7 +359,8 @@
          link would only reload it. With no links left, the column goes too. */
       const goHref = r => OWN[r.own] && r.own !== own ? OWN[r.own] : "";
       const hasGo = rows.some(goHref);
-      const span = 3 + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
+      const hasThk = rows.some(r => thkText(r));
+      const span = 3 + (hasThk ? 1 : 0) + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
       /* Typed filters show every match, so nothing is folded while a query is active. */
       const folding = !raw && !pickCat.size && !pickGrade.size && maxEdge >= MAX_EDGE && maxThk === null;
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
@@ -353,6 +370,7 @@
       const row = r => `<tr>
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
           <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
+          ${hasThk ? `<td class="pf-num" data-l="Thickness">${esc(thkText(r) || "—")}</td>` : ""}
           ${hasLeads ? `<td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>` : ""}
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
           ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r))}">Page &rarr;</a>` : ""}</td>` : ""}

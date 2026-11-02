@@ -13,20 +13,43 @@
     static string Field(JsonElement r, string name) =>
         r.TryGetProperty(name, out var v) && v.ValueKind == JsonValueKind.String ? v.GetString() ?? "" : "";
 
-    static List<JsonElement> Rows(string webRoot, string own)
+    static List<JsonElement> All(string webRoot)
     {
         var text = System.IO.File.ReadAllText(System.IO.Path.Combine(webRoot, "js", "search", "packages.js"));
         var start = text.IndexOf("window.HS_PACKAGES = ", StringComparison.Ordinal) + "window.HS_PACKAGES = ".Length;
         var end = text.LastIndexOf(']') + 1;
         using var doc = JsonDocument.Parse(text[start..end]);
-        return doc.RootElement.EnumerateArray()
-            .Where(r => Field(r, "own") == own && Field(r, "t") != "Package thickness")
-            .Select(r => r.Clone())
-            .ToList();
+        return doc.RootElement.EnumerateArray().Select(r => r.Clone()).ToList();
+    }
+
+    static double? Mm(string s)
+    {
+        var m = System.Text.RegularExpressions.Regex.Match(s ?? "", @"(\d+(?:\.\d+)?)\s*mm");
+        return m.Success ? double.Parse(m.Groups[1].Value, System.Globalization.CultureInfo.InvariantCulture) : null;
+    }
+
+    // Same rule as thkText in package-finder.js: the row's own figure or range, an LGA's third
+    // dimension, or for standard DFN/QFN bodies the span of the thickness ladder.
+    static string Thickness(JsonElement r, double? ladderMin, double? ladderMax)
+    {
+        var own = Field(r, "thk");
+        if (System.Text.RegularExpressions.Regex.IsMatch(own, @"\d\s*[–-]\s*\d") || own.StartsWith("max ", StringComparison.OrdinalIgnoreCase)) return own;
+        var n = Mm(own);
+        if (n != null) return (own.Contains("inimum") ? "min " : "") + n.Value.ToString("0.00") + " mm";
+        if (r.TryGetProperty("z", out var z) && z.ValueKind == JsonValueKind.Number) return z.GetDouble().ToString("0.00") + " mm";
+        var t = Field(r, "t");
+        if (ladderMin != null && System.Text.RegularExpressions.Regex.IsMatch(Field(r, "pkg"), "DFN|QFN", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+            && (t == "Leadless packages" || t == "Automotive-qualified packages"))
+            return ladderMin.Value.ToString("0.00") + "–" + ladderMax!.Value.ToString("0.00") + " mm";
+        return "";
     }
 }
 @{
-    var rows = Rows(Env.WebRootPath, Model);
+    var all = All(Env.WebRootPath);
+    var rows = all.Where(r => Field(r, "own") == Model && Field(r, "t") != "Package thickness").ToList();
+    var ladder = all.Where(r => Field(r, "t") == "Package thickness").Select(r => Mm(Field(r, "thk"))).Where(v => v != null).Select(v => v!.Value).ToList();
+    double? ladderMin = ladder.Count > 0 ? ladder.Min() : null, ladderMax = ladder.Count > 0 ? ladder.Max() : null;
+    var hasThk = rows.Any(r => Thickness(r, ladderMin, ladderMax) != "");
     var groups = rows.GroupBy(r => Field(r, "t"));
     var hasDie = rows.Any(r => Field(r, "die") != "");
     var hasLeads = rows.Any(r => r.TryGetProperty("leads", out var l) && l.ValueKind == JsonValueKind.Array && l.GetArrayLength() > 0);
@@ -38,7 +61,7 @@
 {
     <table class="pf-table">
         <caption>@g.Key</caption>
-        <thead><tr><th scope="col">Package</th><th scope="col">Body size</th>@if (hasDie) {<th scope="col">Max die size</th>}@if (hasLeads) {<th scope="col">Leads</th>}<th scope="col">@(hasGrade ? "Qualification" : "Construction")</th></tr></thead>
+        <thead><tr><th scope="col">Package</th><th scope="col">Body size</th>@if (hasThk) {<th scope="col">Thickness</th>}@if (hasDie) {<th scope="col">Max die size</th>}@if (hasLeads) {<th scope="col">Leads</th>}<th scope="col">@(hasGrade ? "Qualification" : "Construction")</th></tr></thead>
         <tbody>
         @foreach (var r in g)
         {
@@ -47,10 +70,25 @@
             <tr>
                 <td>@Field(r, "pkg")@if (hasGrade && Field(r, "detail") != "") {<span class="pf-det">@Field(r, "detail")</span>}</td>
                 <td>@(Field(r, "bs") == "" ? "—" : Field(r, "bs"))</td>
+                @if (hasThk) { var th = Thickness(r, ladderMin, ladderMax); <td>@(th == "" ? "—" : th)</td> }
                 @if (hasDie) {<td>@(Field(r, "die") == "" ? "—" : Field(r, "die"))</td>}
                 @if (hasLeads) {<td>@(leads == "" ? "—" : leads)</td>}
                 <td>@(hasGrade ? (Field(r, "grade") == "" ? "—" : Field(r, "grade")) : (Field(r, "st") == "" ? "—" : Field(r, "st")))</td>
             </tr>
+        }
+        </tbody>
+    </table>
+}
+@{ var ownLadder = all.Where(r => Field(r, "t") == "Package thickness" && Field(r, "own") == Model).ToList(); }
+@if (ownLadder.Count > 0)
+{
+    <table class="pf-table">
+        <caption>Leadless package thickness</caption>
+        <thead><tr><th scope="col">Family</th><th scope="col">Nominal thickness</th><th scope="col">Range</th></tr></thead>
+        <tbody>
+        @foreach (var r in ownLadder)
+        {
+            <tr><td>@Field(r, "pkg")</td><td>@Field(r, "thk")</td><td>@(Field(r, "detail") == "" ? "—" : Field(r, "detail"))</td></tr>
         }
         </tbody>
     </table>

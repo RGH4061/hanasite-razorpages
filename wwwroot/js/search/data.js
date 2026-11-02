@@ -74,7 +74,7 @@ const CAPTERMS = {
 "/capabilities/microelectronic-assembly/micro-assembly/":"micro assembly, miniature assembly, hearing aid, hearing aid assembly, fine wire soldering, micro package, acoustic test, lock mechanism, micro electro mechanical",
 "/capabilities/osat/":"osat, subcon, subcontractor, outsourced assembly and test, ic packaging, semiconductor packaging, chip packaging, package assembly, assembly and test, back end, test house",
 "/capabilities/osat/flip-chip/":"flip chip, copper pillar, cu pillar, 80 micron pitch, thermocompression, solder bump mounting, underfill, c4, die attach, die bond, wire bond, wirebond, gold wire, copper wire, aluminium wire, aluminum wire, silver sinter, ag sinter, solder die attach, conductive epoxy, deep access, multi-die, optoelectronic",
-"/capabilities/osat/qfn-dfn-lga/":"qfn, dfn, lga, leadless, wettable flank, de-burr, fam mold, msl1, multi-die leadless, automotive leadless",
+"/capabilities/osat/qfn-dfn-lga/":"qfn, dfn, lga, leadless, package thickness, thin qfn, tqfn, tdfn, uqfn, udfn, utqfn, utdfn, xtqfn, xtdfn, 08qfn, 12qfn, 13qfn, wettable flank, de-burr, fam mold, msl1, multi-die leadless, automotive leadless",
 "/capabilities/osat/system-in-package/":"sip, system in package, module, multi-die, stacked die, molded module, leadframe module, substrate module, coil assembly, hermetic, helium leak test",
 "/capabilities/osat/ultra-small-packages/":"lga, qfn, dfn, ultra small, small package, small form factor, 0.6mm, 0.37mm, thin package, miniature package, xxdfn, uqfn, body size, sot23, sc70, soic, pdip",
 "/capabilities/osat/wafer-level-packaging/":"wlcsp, wafer level packaging, wlp, chip scale package, csp, pop, package on package, 0.2mm pitch, flux dipping, tsv, ultrathin, laser dicing",
