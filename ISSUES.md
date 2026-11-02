@@ -49,7 +49,7 @@ A screenshot or the prototype filename it should match is ideal but not required
     unconfirmed list.
   - **Koh Kong** uses Phnom Penh as a distance reference ("~300 km W of Phnom Penh").
   - **Screen printing accuracy:** SMT Assembly says ±25 µm; the 2026 EMS deck (EMS PAGE 6) says
-    ±20 µm @ 6 sigma. (Placement accuracy was aligned to ±18 µm on 24 Oct; see Fixed.)
+    ±20 µm @ 6 sigma. (Placement accuracy is ±25 µm from 2 Nov; see Fixed.)
   - **"Indicative quote within two business days"** appears on 13 capability pages (check against
     the no-published-lead-times rule).
   - **Unsourced claims:** PPAP/APQP on Automotive PCBA and the Automotive hub; "over 600 test
@@ -335,6 +335,9 @@ SMT Assembly placement accuracy changed from ±35 µm to ±18 µm (spec block an
 mounting step) to match Consumer SMT & Sensor Assembly. Source: EMS PAGE 6, "Pick and place
 accuracy: +/-18 µm" (noted in a Razor comment beside the value). The ±35 µm figure was the
 hearing-aid line's machine spec (Hearing Aids deck page 7).
+**2 Nov 2026:** placement accuracy changed to ±25 µm on SMT Assembly (spec block, component mounting
+step) and Consumer SMT & Sensor Assembly (meta description, intro, FAQ). The technical team confirmed
+±25 µm (Rupert); it replaces the ±18 µm deck figure above.
 
 ### 22 Oct 2026 (2nd) — RFID pages merged (Markets = product, Capabilities = process)
 
