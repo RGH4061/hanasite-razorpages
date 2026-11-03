@@ -233,7 +233,7 @@ const CERTS = [
   alias:"14064 ghg greenhouse carbon",
   sites:[{s:"jx",num:"00033-2023-GHG-RGC",body:"DNV",date:"issued Dec 2023"}]},
 
- {id:"ITAR", full:"ITAR registration", scope:"US defence-related work",
+ {id:"ITAR", full:"ITAR registration", scope:"US defense-related work",
   alias:"itar defense defence military",
   sites:[
    {s:"oh",num:"—",body:"—",date:"",unconfirmed:1,note:"stated in the 2026 deck — registration detail not yet supplied"},
@@ -243,7 +243,7 @@ const CERTS = [
   alias:"arc auburn rfid inlay certification",
   sites:[{s:"oh",num:"—",body:"Auburn (ARC)",date:"",unconfirmed:1,note:"deck states USA and China — confirm both"}]},
 
- {id:"Sony Green Partner", full:"Sony Green Partner", scope:"Customer environmental programme",
+ {id:"Sony Green Partner", full:"Sony Green Partner", scope:"Customer environmental program",
   alias:"sony green partner",
   sites:[{s:"ayt",num:"—",body:"—",date:"",unconfirmed:1,note:"listed in the deck but not on the plant's cert table — confirm"}]}
 ];

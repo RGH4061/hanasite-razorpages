@@ -38,46 +38,47 @@ function initCarousels(root) {
 
 // ── Life at Hana — per-location content ─────────────
 //  Six core sections per site. Edit the text here to change what each
-//  plant shows; the same six titles run across every location.
+//  plant shows; the same six titles run across every location. If you
+//  rename a title, add it to CARD_KEY below so its photos and Thai card resolve.
 const LIFE_DATA = {
   ayutthaya: [
     { title: "Annual company days",         desc: "The Ayutthaya site comes together each year to celebrate its work in IC assembly and test." },
     { title: "Celebrations",                desc: "Songkran, New Year, and team milestones marked across the Ayutthaya campus." },
     { title: "Community outreach",          desc: "Supporting schools and families throughout Ayutthaya province." },
-    { title: "Technical training programme", desc: "Hands-on training in semiconductor packaging, assembly, and test." },
-    { title: "Health and wellbeing",        desc: "On-site clinic, sports facilities, and wellbeing programmes across every shift." },
+    { title: "Technical training program",  desc: "Hands-on training in semiconductor packaging, assembly, and test." },
+    { title: "Health and wellbeing",        desc: "On-site clinic, sports facilities, and wellbeing programs across every shift." },
     { title: "Student scholarship",         desc: "Sponsoring local students into careers in semiconductor manufacturing." }
   ],
   bangkok: [
     { title: "Annual company days",         desc: "Group-wide company days bringing our head-office teams together." },
     { title: "Celebrations",                desc: "Festivals, awards, and milestones marked at our Bangkok headquarters." },
-    { title: "Community outreach",          desc: "Group CSR programmes coordinated from Bangkok across all Hana sites." },
-    { title: "Technical training programme", desc: "Leadership, commercial, and customer-management development." },
+    { title: "Community outreach",          desc: "Group CSR programs coordinated from Bangkok across all Hana sites." },
+    { title: "Technical training program",  desc: "Leadership, commercial, and customer-management development." },
     { title: "Health and wellbeing",        desc: "Modern offices, flexible working, and wellbeing support." },
-    { title: "Student scholarship",         desc: "Running Hana's group scholarship and graduate-intake programmes." }
+    { title: "Student scholarship",         desc: "Running Hana's group scholarship and graduate-intake programs." }
   ],
   lamphun: [
     { title: "Annual company days",         desc: "Celebrating the Lamphun site's PCBA and box-build achievements each year." },
     { title: "Celebrations",                desc: "Northern Thai festivals and team milestones across the Lamphun site." },
     { title: "Community outreach",          desc: "Many of the Lamphun team are from Lamphun itself." },
-    { title: "Technical training programme", desc: "SMT, PCBA, and box-build skills training at every level." },
-    { title: "Health and wellbeing",        desc: "Canteen, transport support, and health programmes for all employees." },
+    { title: "Technical training program",  desc: "SMT, PCBA, and box-build skills training at every level." },
+    { title: "Health and wellbeing",        desc: "Canteen, transport support, and health programs for all employees." },
     { title: "Student scholarship",         desc: "Investing in young manufacturing talent across the Lamphun region." }
   ],
   kohkong: [
     { title: "Annual company days",         desc: "Marking the growth of our newest site with the whole Koh Kong team." },
     { title: "Celebrations",                desc: "Khmer New Year and team achievements celebrated at Koh Kong." },
     { title: "Community outreach",          desc: "Creating local jobs and supporting families across Koh Kong province." },
-    { title: "Technical training programme", desc: "Building assembly and manufacturing skills from the ground up." },
+    { title: "Technical training program",  desc: "Building assembly and manufacturing skills from the ground up." },
     { title: "Health and wellbeing",        desc: "A safe, supportive workplace with on-site welfare facilities." },
     { title: "Student scholarship",         desc: "Opening pathways into electronics manufacturing for Cambodian students." }
   ],
   jiaxing: [
     { title: "Annual company days",         desc: "The whole Jiaxing team together to mark the year's achievements." },
     { title: "Celebrations",                desc: "Lunar New Year, Mid-Autumn Festival, and team milestones at Jiaxing." },
-    { title: "Community outreach",          desc: "Supporting the families and neighbourhoods around our Jiaxing site." },
-    { title: "Technical training programme", desc: "Die attach, wire bond, and test skills training at every level." },
-    { title: "Health and wellbeing",        desc: "Canteen, transport support, and health programmes for all employees." },
+    { title: "Community outreach",          desc: "Supporting the families and neighborhoods around our Jiaxing site." },
+    { title: "Technical training program",  desc: "Die attach, wire bond, and test skills training at every level." },
+    { title: "Health and wellbeing",        desc: "Canteen, transport support, and health programs for all employees." },
     { title: "Student scholarship",         desc: "Working with local technical schools to bring new engineers into the industry." }
   ]
 };
@@ -93,6 +94,10 @@ const ASSET_BASE = window.CAREERS_ASSET_BASE || '';
 const L10N = window.CAREERS_L10N || null;
 
 function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+
+// Photo files and the /th/careers card map are keyed by each card's original title.
+// A card whose English title has since changed maps back to that title here.
+const CARD_KEY = { "Technical training program": "Technical training programme" };
 
 // Life-at-Hana photos that exist as files under images/life/. Slides without
 // a photo fall back to the placeholder icon.
@@ -129,7 +134,8 @@ const LIFE_PHOTOS = new Set([
 ]);
 
 function lifeCard(card, loc) {
-  const base = 'life-' + loc + '-' + slugify(card.title) + '-';
+  const key = CARD_KEY[card.title] || card.title;
+  const base = 'life-' + loc + '-' + slugify(key) + '-';
   let slides = '';
   for (let n = 1; n <= 6; n++) {
     const id = base + n;
@@ -141,7 +147,7 @@ function lifeCard(card, loc) {
   if (!slides) {
     slides = '<div class="life-img-slide">' + lifeSvg + '<span>' + ((L10N && L10N.photoSoon) || 'Photo coming soon') + '</span></div>';
   }
-  const tr = L10N && L10N.cards ? L10N.cards[card.title] : null;
+  const tr = L10N && L10N.cards ? L10N.cards[key] : null;
   return '<div class="life-img">' +
            '<div class="life-img-scroll">' + slides + '</div>' +
            '<div class="life-img-cap">' +
