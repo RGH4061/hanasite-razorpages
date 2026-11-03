@@ -18,6 +18,11 @@ A screenshot or the prototype filename it should match is ideal but not required
 - [ ] **Share price is static — go-live blocker (IR / Finance).** The header and footer show
   "฿24.50 +1.24%" on every page and never change; the IR hub panel shows 39.20 on the same page.
   Wire both to one live SET feed (or remove the figure) before launch.
+- [ ] **Carried over 3 Nov 2026 from the Export Fix Register.** The Claude Design hand-off notes
+  were deleted from the workspace that day; these were the only open items not recorded elsewhere.
+  The flip chip throughput figures were removed the same day (see Fixed, 3 Nov 2026).
+  - **"sub-market" on `/sitemap`** (`Pages/Sitemap.cshtml`, two sentences). The Markets labelling
+    rule avoids the word; the Automotive pages where it was first flagged are already fixed.
 - [ ] **Cross-page sweep, 26 Oct 2026: open items** (report: `5. Website Redesign/SEO & AEO/Website
   sweep - overlap, duplication and search pathways (26 Oct 2026).md`).
   - **Plant × process table.** Capability "Where we run" lists and plant pages disagree in 26 pairs
@@ -236,6 +241,16 @@ A screenshot or the prototype filename it should match is ideal but not required
 ---
 
 ## Fixed
+
+### 3 Nov 2026 — flip chip throughput figures removed (Rupert's decision)
+
+- **`/capabilities/microelectronic-assembly/precision-flip-chip`:** the "Mounting time per shot"
+  card (0.8 sec standard chip, 1.6 sec H-Package, ~1.2 Mpcs capacity per month) is gone from the
+  equipment spec grid, and the die-size card now spans that space (`grid-template-areas` updated
+  for desktop and for the ≤760px container). The FAQ question is now "What placement accuracy can
+  you achieve?" and its answer keeps only the 7 µm / 0.3° figures, so the generated FAQPage JSON-LD
+  follows. The `/th/` twin renders the same markup. Throughput and capacity figures stay off the
+  site; the 16 Oct exception covers equipment names only.
 
 ### 26 Oct 2026 (2nd) — cross-page sweep, section 7.1 fixes
 
