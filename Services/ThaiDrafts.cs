@@ -12,6 +12,10 @@
 //  English page no longer matches, that line stays English so a stale Thai line
 //  is never shown; /th/<route>?review=1 marks every line by status.
 //
+//  A page can also list "text": whole pieces of English text below the H1
+//  (headings, card titles, facts, buttons) with their Thai. Each piece is
+//  matched exactly, so a piece whose English changes stays English.
+//
 //  New routes in the JSON need a restart (routes are registered at startup);
 //  text changes are picked up on the next request.
 // =============================================================
@@ -26,7 +30,7 @@ namespace HanaSite.Services;
 public static class ThaiDrafts
 {
     public sealed record Line(string En, string Th, string Status);
-    public sealed record Page(string Title, string Description, Line? H1, Line? Lede);
+    public sealed record Page(string Title, string Description, Line? H1, Line? Lede, IReadOnlyDictionary<string, string> Text);
     sealed record Data(Dictionary<string, string> Labels, Dictionary<string, Page> Pages);
 
     static string _file = "";
@@ -63,7 +67,10 @@ public static class ThaiDrafts
             foreach (var p in ps.EnumerateObject())
             {
                 var v = p.Value;
-                pages[Seo.Normalize(p.Name)] = new Page(Str(v, "title"), Str(v, "description"), LineOf(v, "h1"), LineOf(v, "lede"));
+                var text = new Dictionary<string, string>(StringComparer.Ordinal);
+                if (v.TryGetProperty("text", out var t))
+                    foreach (var x in t.EnumerateObject()) text[Collapse(x.Name)] = x.Value.GetString() ?? "";
+                pages[Seo.Normalize(p.Name)] = new Page(Str(v, "title"), Str(v, "description"), LineOf(v, "h1"), LineOf(v, "lede"), text);
             }
         return new(labels, pages);
     }
@@ -147,6 +154,16 @@ public static class ThaiDrafts
         var top = H1Rx.Match(html).Index;
         html = TranslateLabels(html[..top]) + html[top..];
 
+        // Page text below the H1: whole text nodes listed in the page's "text" map.
+        if (page.Text.Count > 0)
+        {
+            var below = H1Rx.Match(html);
+            var start = below.Index + below.Length;
+            var used = new HashSet<string>(StringComparer.Ordinal);
+            html = html[..start] + TranslateText(html[start..], page.Text, used, review);
+            notes.Add(("Text", $"{used.Count} of {page.Text.Count}"));
+        }
+
         if (review) html = ReviewPanel(notes) + html;
         return html;
     }
@@ -201,9 +218,34 @@ public static class ThaiDrafts
         return sb.ToString();
     }
 
+    static string TranslateText(string html, IReadOnlyDictionary<string, string> map, HashSet<string> used, bool review)
+    {
+        var sb = new StringBuilder();
+        var last = 0;
+        var skips = SkipRx.Matches(html).Select(m => (m.Index, End: m.Index + m.Length)).ToList();
+        foreach (Match m in TextRx.Matches(html))
+        {
+            if (skips.Any(s => m.Index >= s.Index && m.Index < s.End)) continue;
+            var raw = m.Groups[1].Value;
+            var text = Collapse(WebUtility.HtmlDecode(raw));
+            if (text.Length == 0 || !map.TryGetValue(text, out var th)) continue;
+            used.Add(text);
+            var g = m.Groups[1];
+            var lead = raw[..(raw.Length - raw.TrimStart().Length)];
+            var trail = raw[raw.TrimEnd().Length..];
+            // "\n" in the Thai stays a newline; the fact rows that hold two lines use white-space:pre-line.
+            var enc = WebUtility.HtmlEncode(th);
+            if (review) enc = $"<span class=\"thd-mark thd-approved\">{enc}</span>";
+            sb.Append(html, last, g.Index - last).Append(lead).Append(enc).Append(trail);
+            last = g.Index + g.Length;
+        }
+        sb.Append(html, last, html.Length - last);
+        return sb.ToString();
+    }
+
     static string ReviewPanel(List<(string Item, string Status)> notes)
     {
-        var rows = string.Concat(notes.Select(n => $"<span class=\"thd-mark thd-{Slug(n.Status)}\">{n.Item}: {n.Status}</span> "));
+        var rows = string.Concat(notes.Select(n => $"<span class=\"thd-mark thd-{(n.Item == "Text" ? "approved" : Slug(n.Status))}\">{n.Item}: {n.Status}</span> "));
         return "<style>.thd-panel{position:fixed;right:16px;bottom:16px;z-index:999;background:#fff;border:1px solid #d0d5dd;border-radius:8px;padding:10px 12px;font:13px/1.6 var(--font-thai);box-shadow:0 8px 24px rgba(3,10,23,.15);display:flex;gap:6px;flex-wrap:wrap;max-width:360px}"
              + ".thd-mark{border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}"
              + ".thd-approved{background:rgba(46,160,67,.22)}.thd-adjusted{background:rgba(9,105,218,.2)}.thd-draft{background:rgba(212,167,44,.35)}"
