@@ -2,6 +2,13 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
+## Latest changes (4 Nov 2026 — Contact page: sales by email, RFQ page retired)
+
+- **Contact (`/contact`)** — sales and technical inquiries now go by email to info-request@hanaus.com, and the sales contact form is removed. The page has a split hero with the email card on the right, one box holding the head office and the collapsible regional sales offices, and an Other inquiries card with Investors, Careers, Suppliers, Other and Anonymous tabs. Styles are in `css/contact-hub.css`.
+- **Form validation** — `js/contact-forms.js` now checks required fields and email format before showing the thank-you message. This also applies to `/contact/anonymous`.
+- **RFQ page retired** — `Pages/Contact/Rfq.cshtml` is removed and `/contact/rfq` redirects (301) to `/contact#sales`. The 30 "Request a quote" buttons on Capabilities and Locations pages now link to `/contact`. The `/sitemap` page and `llms.txt` are updated.
+- **Not changed** — the Thai Contact page (`/th/contact`) keeps its old layout until it has its own translation. Its quote button now reaches the Contact page through the redirect.
+
 ## Latest changes (29 Oct 2026 — Thai draft pages for Markets, Capabilities and Locations)
 
 - **67 Thai routes** — every Markets (30), Capabilities (31) and Locations (6) page now also answers at `/th/<route>`. Cheongju is left out (dormant).

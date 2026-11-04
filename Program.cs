@@ -41,6 +41,8 @@ var redirects = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
     // Sweep, 26 Oct 2026: old-site and retired URLs that still collect links.
     ["/index"]                                      = "/",
     ["/insights/commentary"]                        = "/insights",
+    // Contact redesign, 4 Nov 2026: sales inquiries go by email, so the RFQ page is retired.
+    ["/contact/rfq"]                                = "/contact#sales",
 };
 app.Use(async (context, next) =>
 {
