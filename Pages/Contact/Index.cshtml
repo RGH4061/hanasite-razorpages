@@ -7,6 +7,8 @@
     ViewData["AltLangUrl"] = "/th/contact";
 
     var salesEmail = "info-request@hanaus.com";
+    var salesSubject = "Manufacturing inquiry for Hana Microelectronics Group";
+    var salesMailto = "mailto:" + salesEmail + "?subject=" + Uri.EscapeDataString(salesSubject);
     var countries = new[] {
         "United Kingdom", "Germany", "France", "Netherlands", "Sweden", "Norway", "Denmark", "Finland",
         "Belgium", "Switzerland", "Austria", "Italy", "Spain", "Portugal", "Poland", "Czech Republic",
@@ -41,9 +43,9 @@
       <div class="ch-email-card">
         <p class="ch-label">Sales and technical inquiries</p>
         <h2>Email our sales team</h2>
-        <a class="ch-email-address" href="mailto:@salesEmail">@salesEmail</a>
+        <a class="ch-email-address" href="@salesMailto">@salesEmail</a>
         <div class="ch-email-actions">
-          <a class="ch-btn ch-btn-primary" href="mailto:@salesEmail">Write an email</a>
+          <a class="ch-btn ch-btn-primary" href="@salesMailto">Write an email</a>
           <button type="button" class="ch-btn ch-btn-ghost" data-copy="@salesEmail">Copy address</button>
         </div>
         <p class="ch-include"><span class="ch-include-label">Helpful to include:</span> company information, website, what you make, annual volumes, the BOM and any design files such as Gerbers, drawings or test specifications.</p>
