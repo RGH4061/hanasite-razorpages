@@ -2,82 +2,241 @@
 @{
     ViewData["Title"] = "ติดต่อเรา | พูดคุยกับทีมงาน Hana";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "มีคำถามเกี่ยวกับความสามารถด้านการผลิต ความร่วมมือทางธุรกิจ หรือต้องการใบเสนอราคา แจ้งความต้องการของคุณให้เราทราบ";
+    ViewData["Description"] = "ส่งอีเมลถึง Hana Microelectronics เพื่อสอบถามเรื่องโครงการผลิต ใบเสนอราคา หรือคำถามด้านเทคนิค หรือติดต่อฝ่ายนักลงทุนสัมพันธ์ ฝ่ายทรัพยากรบุคคล และฝ่ายจัดซื้อ";
     ViewData["Canonical"] = "https://www.hanagroup.com/th/contact";
     ViewData["Lang"] = "th";
     ViewData["AltLang"] = "en";
     ViewData["AltLangUrl"] = "/contact";
+
+    var salesEmail = "info-request@hanaus.com";
+    var salesSubject = "Manufacturing inquiry for Hana Microelectronics Group";
+    var salesMailto = "mailto:" + salesEmail + "?subject=" + Uri.EscapeDataString(salesSubject);
+    // value = English name (what the backend receives), label = Thai
+    var countries = new (string Value, string Label)[] {
+        ("United Kingdom","สหราชอาณาจักร"), ("Germany","เยอรมนี"), ("France","ฝรั่งเศส"), ("Netherlands","เนเธอร์แลนด์"),
+        ("Sweden","สวีเดน"), ("Norway","นอร์เวย์"), ("Denmark","เดนมาร์ก"), ("Finland","ฟินแลนด์"),
+        ("Belgium","เบลเยียม"), ("Switzerland","สวิตเซอร์แลนด์"), ("Austria","ออสเตรีย"), ("Italy","อิตาลี"),
+        ("Spain","สเปน"), ("Portugal","โปรตุเกส"), ("Poland","โปแลนด์"), ("Czech Republic","สาธารณรัฐเช็ก"),
+        ("Ireland","ไอร์แลนด์"), ("United States","สหรัฐอเมริกา"), ("Canada","แคนาดา"), ("Mexico","เม็กซิโก"),
+        ("Thailand","ไทย"), ("China","จีน"), ("Japan","ญี่ปุ่น"), ("South Korea","เกาหลีใต้"),
+        ("Taiwan","ไต้หวัน"), ("Singapore","สิงคโปร์"), ("Malaysia","มาเลเซีย"), ("Vietnam","เวียดนาม"),
+        ("India","อินเดีย"), ("Other","อื่น ๆ")
+    };
 }
 @section Head {
-    <link rel="stylesheet" href="~/css/contact-forms.css" />
-    <link rel="stylesheet" href="~/css/contact-forms-th.css" />
+    <link rel="stylesheet" href="~/css/contact-forms.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contact-hub.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contact-forms-th.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contact-hub-th.css" asp-append-version="true" />
 }
 
-@* Contact — talk to the Hana team. Static form markup; chip multiselect via <details>+:has,
-   helper JS in ~/js/contact-forms.js (demo submit — wire OnPost for the
-   backend). Hero background via ~/js/hana-backgrounds.js. *@
+@* Contact (Thai) — same layout as /contact (Nov 2026 email-first redesign).
+   Thai text: lines carried over from the previous Thai page are unchanged; new lines are
+   drafts for Thai review. Names, addresses, phone numbers, job titles and the mailto
+   subject stay in English. Fonts: contact-forms-th.css + contact-hub-th.css. *@
 
 <div class="cf-page">
-  <section class="cf-hero" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
-    <div class="cf-hero-inner">
-      <h1 style="color:#fff;">พูดคุยกับทีมงาน Hana</h1>
-      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">มีคำถามเกี่ยวกับความสามารถด้านการผลิต ความร่วมมือทางธุรกิจ หรือต้องการใบเสนอราคา แจ้งความต้องการของคุณ แล้วเราจะส่งต่อไปยังผู้รับผิดชอบที่เหมาะสมภายในองค์กรของเรา</p>
+  @* ── 1. Split hero: sales email card on the right ─────── *@
+  <section class="cf-hero ch-hero" id="sales" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner ch-hero-inner">
+      <div class="ch-hero-text">
+        <h1 style="color:#fff;">พูดคุยกับทีมงาน Hana</h1>
+        <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">หากมีคำถามด้านการผลิต ใบเสนอราคา หรือคำถามด้านเทคนิค โปรดส่งอีเมลถึงทีมขายของเรา เราจะตอบกลับภายใน 2 วันทำการ</p>
+      </div>
+      <div class="ch-email-card">
+        <p class="ch-label">ฝ่ายขายและคำถามด้านเทคนิค</p>
+        <h2>ส่งอีเมลถึงทีมขาย</h2>
+        <a class="ch-email-address" href="@salesMailto">@salesEmail</a>
+        <div class="ch-email-actions">
+          <a class="ch-btn ch-btn-primary" href="@salesMailto">เขียนอีเมล</a>
+          <button type="button" class="ch-btn ch-btn-ghost" data-copy="@salesEmail">คัดลอกอีเมล</button>
+        </div>
+        <p class="ch-include"><span class="ch-include-label">ข้อมูลที่ควรระบุในอีเมล:</span> ข้อมูลบริษัท เว็บไซต์ ผลิตภัณฑ์ที่คุณผลิต ปริมาณการผลิตต่อปี รายการวัสดุ (BOM) และไฟล์ออกแบบ เช่น ไฟล์ Gerber แบบเขียน (drawings) หรือข้อกำหนดการทดสอบ (test specifications)</p>
+      </div>
     </div>
   </section>
-  <section class="cf-section">
-    <div class="cf-wrap" style="position:relative;z-index:1;">
-      <div class="cf-grid">
-        <div class="cf-intro">
-          <p class="cf-eyebrow">เราช่วยอะไรคุณได้บ้าง</p>
-          <div class="cf-hq-card">
-            <figure class="cf-hq-photo"><img src="~/images/Hana_bkk.webp" alt="Hana Microelectronics head office — Bangkok, Thailand"></figure>
-            <div class="cf-hq-label">Head office</div>
-            <div class="cf-hq-name">Hana Microelectronics Public Company Limited</div>
-            <address class="cf-hq-addr">65/98 Soi Vibhavadi-Rangsit 64 Junction 2, Kwang Talad Bangkhen, Khet Laksi, Bangkok 10210, Thailand</address>
-            <a href="https://maps.app.goo.gl/S8Sq7kQE9aFxt6JK7" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin:4px 0 10px;font-size:13.5px;font-weight:600;color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);width:fit-content;">ตำแหน่งบน Google Maps <span style="font-size:11px;">↗</span></a>
-            <div class="cf-hq-lines"><a href="tel:+6625511297">+66-2-551-1297-8</a><a href="tel:+6625214935">+66-2-521-4935-9</a></div>
+
+  @* ── 2. Contact bar: offices box left, other inquiries right (under the email card) ── *@
+  <section class="ch-contact-bar" data-hana-bg="wafer" data-variant="light" data-accent="" data-fade="none" style="background:linear-gradient(120deg,#f6f8fb 40%,#e6eef6 100%);">
+    <div class="cf-wrap">
+      <div class="ch-bar-grid">
+        <div class="ch-offices-box">
+          <p class="cf-offices-label" style="margin-top:0;">สำนักงานใหญ่</p>
+          <div class="ch-hq">
+            <figure class="cf-hq-photo"><img src="/images/Hana_bkk.webp" alt="Hana Microelectronics head office, Bangkok, Thailand" loading="lazy"></figure>
+            <div>
+              <div class="cf-hq-name">Hana Microelectronics Public Company Limited</div>
+              <address class="cf-hq-addr">65/98 Soi Vibhavadi-Rangsit 64 Junction 2, Kwang Talad Bangkhen, Khet Laksi, Bangkok 10210, Thailand</address>
+              <a class="ch-map-link" href="https://maps.app.goo.gl/S8Sq7kQE9aFxt6JK7" target="_blank" rel="noopener noreferrer">ตำแหน่งบน Google Maps <span aria-hidden="true">↗</span></a>
+              <div class="cf-hq-lines"><a href="tel:+6625511297">+66-2-551-1297-8</a><a href="tel:+6625214935">+66-2-521-4935-9</a></div>
+            </div>
           </div>
-          <div class="cf-offices-label">สำนักงานขาย</div><div class="cf-accordion"><details class="cf-acc-item" open><summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">สำนักงาน 2 แห่ง</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">สำนักงาน 2 แห่ง</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">ฟิลิปปินส์</div><div class="cf-office-person">Henry Lubrico<div class="cf-office-contacts"><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div><div class="cf-office"><div class="cf-office-name">สิงคโปร์</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">ยุโรป <span class="cf-acc-count">สำนักงาน 2 แห่ง</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">ฝรั่งเศส</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">เยอรมนี</div><div class="cf-office-person">Frank Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+491723830507">+49 172 3830507</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details></div>
-          <p class="cf-anon-link" style="font-size:13px;color:var(--ink-2);margin:20px 0 0;"><b>Anonymous Communication Form<br></br></b>If you would like to report / share your concerns anonymously, <a href="/contact/anonymous" style="color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--hana-blue-deep)'">click here</a>.</p>
+          <div class="ch-regional">
+            <p class="cf-offices-label" style="margin-top:0;">สำนักงานขายประจำภูมิภาค</p>
+            <div class="cf-accordion">
+            <details class="cf-acc-item">
+              <summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">สำนักงาน 2 แห่ง</span></span><span class="cf-acc-chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+              <div class="cf-acc-body">
+                <div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a></div></div>
+                <div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a></div></div>
+              </div>
+            </details>
+            <details class="cf-acc-item">
+              <summary class="cf-acc-header"><span class="cf-acc-region">ยุโรป <span class="cf-acc-count">สำนักงาน 3 แห่ง</span></span><span class="cf-acc-chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+              <div class="cf-acc-body">
+                <div class="cf-office"><div class="cf-office-name">สหราชอาณาจักรและยุโรป</div><div class="cf-office-person">Rupert Han</div><div class="cf-office-contacts"><a href="mailto:rupert@@hanabk.th.com">rupert@@hanabk.th.com</a></div></div>
+                <div class="cf-office"><div class="cf-office-name">ฝรั่งเศส</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a></div></div>
+                <div class="cf-office"><div class="cf-office-name">เยอรมนี</div><div class="cf-office-person">Frank Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+491723830507">+49 172 3830507</a></div></div>
+              </div>
+            </details>
+            <details class="cf-acc-item">
+              <summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">สำนักงาน 2 แห่ง</span></span><span class="cf-acc-chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+              <div class="cf-acc-body">
+                <div class="cf-office"><div class="cf-office-name">ฟิลิปปินส์</div><div class="cf-office-person">Henry Lubrico</div></div>
+                <div class="cf-office"><div class="cf-office-name">สิงคโปร์</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a></div></div>
+              </div>
+            </details>
+          </div>
+          </div>
         </div>
-        <div style="display:grid;gap:24px;">
-        <div class="cf-rfq-cta">
-          <h3>มีผลิตภัณฑ์ที่ต้องการให้เราผลิตหรือไม่</h3>
-          <p>Send a quote request and we&rsquo;ll route you to our sales and technical teams to start the conversation on your needs.</p>
-          <a href="/contact/rfq" class="cf-rfq-btn">ขอใบเสนอราคา</a>
+        <div class="ch-inquiries" id="other-inquiries">
+      <div class="ch-tabs" data-tabs>
+        <h2 class="ch-h2">สอบถามเรื่องอื่น ๆ</h2>
+        <div class="ch-tablist" role="tablist" aria-label="หัวข้อที่ต้องการสอบถาม">
+          <button type="button" role="tab" id="tab-ir" aria-controls="investor-relations" aria-selected="true">นักลงทุน</button>
+          <button type="button" role="tab" id="tab-careers" aria-controls="careers" aria-selected="false" tabindex="-1">ร่วมงานกับเรา</button>
+          <button type="button" role="tab" id="tab-suppliers" aria-controls="suppliers" aria-selected="false" tabindex="-1">ซัพพลายเออร์</button>
+          <button type="button" role="tab" id="tab-other" aria-controls="other" aria-selected="false" tabindex="-1">อื่น ๆ</button>
+          <button type="button" role="tab" id="tab-anon" aria-controls="anonymous-reporting" aria-selected="false" tabindex="-1">ร้องเรียน</button>
         </div>
-        <div class="cf-card" id="general-enquiry">
-  <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>ได้รับข้อความของคุณแล้ว</h3><p>ขอบคุณ เราได้ส่งต่อข้อความของคุณไปยังทีมที่เกี่ยวข้องแล้ว และจะติดต่อกลับภายใน 1 วันทำการ</p></div>
-  
-  <form class="cf-form" method="post" novalidate>
-    <div class="cf-field" style="margin-bottom:18px;"><label for="ge-reason" style="font-size:13px;font-weight:700;color:var(--ink);">เลือกหัวข้อการติดต่อหรือขอใบเสนอราคา</label>
-      <select id="ge-reason" name="ge-reason"><option value="" disabled selected>เลือก 1 รายการ</option><option>ฝ่ายขายและฝ่ายสนับสนุนลูกค้า</option><option>ขอใบเสนอราคา (RFQ)</option><option>คำถามด้านความสามารถในการผลิต / ด้านเทคนิค</option><option>นักลงทุนสัมพันธ์</option><option>ร่วมงานกับเรา</option><option>สอบถามสำหรับซัพพลายเออร์</option><option>อื่น ๆ</option></select></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row two"><div class="cf-field"><label for="ge-name"><span class="req">*</span>Name</label><input type="text" id="ge-name" name="ge-name" placeholder="ชื่อและนามสกุล" required></div><div class="cf-field"><label for="ge-company"><span class="req">*</span>บริษัท</label><input type="text" id="ge-company" name="ge-company" placeholder="ชื่อบริษัท" required></div></div>
-    <div class="cf-row two"><div class="cf-field"><label for="ge-email"><span class="req">*</span>อีเมล</label><input type="email" id="ge-email" name="ge-email" placeholder="you@@company.com" required></div><div class="cf-field"><label for="ge-phone">โทรศัพท์ <span class="hint">(ไม่บังคับ)</span></label><input type="tel" id="ge-phone" name="ge-phone" placeholder="+44 …"></div></div>
-    <div class="cf-row two"><div class="cf-field"><label for="ge-country"><span class="req">*</span>ประเทศ</label><select id="ge-country" name="ge-country"><option value="" disabled selected>เลือกประเทศ</option><option>สหราชอาณาจักร</option><option>เยอรมนี</option><option>ฝรั่งเศส</option><option>เนเธอร์แลนด์</option><option>สวีเดน</option><option>นอร์เวย์</option><option>เดนมาร์ก</option><option>ฟินแลนด์</option><option>เบลเยียม</option><option>สวิตเซอร์แลนด์</option><option>ออสเตรีย</option><option>อิตาลี</option><option>สเปน</option><option>โปรตุเกส</option><option>โปแลนด์</option><option>สาธารณรัฐเช็ก</option><option>ไอร์แลนด์</option><option>สหรัฐอเมริกา</option><option>แคนาดา</option><option>ไทย</option><option>จีน</option><option>สิงคโปร์</option><option>อื่น ๆ</option></select></div><div class="cf-field"><label for="ge-source">คุณรู้จักเราจากช่องทางใด</label><select id="ge-source" name="ge-source"><option value="" disabled selected>เลือก 1 รายการ</option><option>การค้นหาบนเว็บ</option><option>การค้นหาด้วย AI หรือแชตบอต</option><option>การแนะนำจากเพื่อนร่วมงานหรือพันธมิตร</option><option>งานแสดงสินค้าหรืองานสัมมนา</option><option>สื่อสิ่งพิมพ์หรือข่าวในอุตสาหกรรม</option><option>LinkedIn</option><option>ผู้ติดต่อเดิมที่ Hana</option><option>อื่น ๆ</option></select></div></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row two" style="margin-bottom:0;"><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="toggle-label">อุตสาหกรรม</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
-    <div class="cf-chip-panel"><div class="cf-chip-note">เลือกได้มากกว่า 1 ข้อ</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Automotive">ยานยนต์</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Industrial & IoT">อุตสาหกรรมและ IoT</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Telecommunications">โทรคมนาคม</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="RFID">RFID</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Optical & Sensors">ออปติคัลและเซ็นเซอร์</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Consumer Electronics">อิเล็กทรอนิกส์สำหรับผู้บริโภค</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Medical">การแพทย์</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Access Control">ระบบควบคุมการเข้าออก</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Power Management">การจัดการพลังงาน</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Data Centers">ศูนย์ข้อมูล</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Other">อื่น ๆ</label></div></div></details><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="toggle-label">บริการ</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
-    <div class="cf-chip-panel"><div class="cf-chip-note">เลือกได้มากกว่า 1 ข้อ</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="ge-service" value="PCBA & Box Build Assembly">PCBA และการประกอบผลิตภัณฑ์สำเร็จรูป</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="OSAT Services">บริการ OSAT</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Microelectronic Assembly">การประกอบไมโครอิเล็กทรอนิกส์</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="RFID & Smart Tags">RFID และสมาร์ทแท็ก</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Automation & Smart Manufacturing">ระบบอัตโนมัติและการผลิตอัจฉริยะ</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="DFx & JDM Collaboration">ความร่วมมือ DFx และ JDM</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Other">อื่น ๆ</label></div></div></details></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field"><label for="ge-message"><span class="req">*</span>ข้อความ</label><textarea id="ge-message" name="ge-message" placeholder="แจ้งสิ่งที่คุณต้องการ เช่น ผลิตภัณฑ์ที่คุณผลิต โครงการของคุณอยู่ในขั้นตอนใด และเราจะช่วยคุณได้อย่างไร" required></textarea></div></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field" style="margin-bottom:0;"><label>ไฟล์แนบ <span class="hint">(ไม่บังคับ)</span></label>
-      <div class="cf-upload"><input type="file" name="ge-files" accept=".pdf,.zip" multiple placeholder="PDF, ZIP"><span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-8.5 8.5a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9 16.4a1.7 1.7 0 0 1-2.3-2.3l7.8-7.8"></path></svg></span><div class="cf-upload-text"><strong>คลิกเพื่ออัปโหลด</strong> หรือลากไฟล์มาวาง</div><div class="cf-upload-meta">PDF หรือ ZIP &middot; ขนาดไม่เกิน 10 MB</div></div>
-      <div class="cf-filelist"></div>
-    </div></div>
-    <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ge"><label for="cf-rc-ge" class="rc-label">ฉันไม่ใช่โปรแกรมอัตโนมัติ</label>
-    <div class="rc-logo"><span class="rc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue-soft)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><span class="rc-text">reCAPTCHA<br>นโยบายความเป็นส่วนตัว &middot; ข้อกำหนดการใช้งาน</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">ส่งข้อความ</button></div>
-    <div class="cf-privacy">เราใช้ข้อมูลของคุณเพื่อตอบกลับคำถามของคุณเท่านั้น และจะไม่เปิดเผยข้อมูลให้แก่บุคคลภายนอก</div>
-  </form>
-</div>
+
+        @* Investor relations *@
+        <div class="ch-panel cf-card" role="tabpanel" id="investor-relations" aria-labelledby="tab-ir">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>ส่งข้อความแล้ว</h3><p>ข้อความของคุณถูกส่งไปยังฝ่ายนักลงทุนสัมพันธ์แล้ว</p></div>
+          <form class="cf-form" method="post" novalidate data-route="investor-relations">
+            <p class="ch-panel-intro">สำหรับคำถามเกี่ยวกับผลการดำเนินงาน เรื่องของผู้ถือหุ้น หรือการนัดประชุมกับนักวิเคราะห์ ดูรายชื่อผู้ติดต่อฝ่ายนักลงทุนสัมพันธ์และปฏิทินกิจกรรมได้ที่หน้า <a href="/th/investor-relations/contact">ข่าวสารและข้อมูลติดต่อสำหรับนักลงทุน</a></p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ir-name"><span class="req">*</span>ชื่อ</label><input type="text" id="ir-name" name="ir-name" autocomplete="name" required></div>
+              <div class="cf-field"><label for="ir-email"><span class="req">*</span>อีเมล</label><input type="email" id="ir-email" name="ir-email" autocomplete="email" placeholder="you@@company.com" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ir-org">องค์กร <span class="hint">(ไม่บังคับ)</span></label><input type="text" id="ir-org" name="ir-org" autocomplete="organization"></div>
+              <div class="cf-field"><label for="ir-type"><span class="req">*</span>ประเภทผู้ติดต่อ</label>
+                <select id="ir-type" name="ir-type" required>
+                  <option value="" disabled selected>เลือก 1 รายการ</option>
+                  <option value="An individual shareholder">ผู้ถือหุ้นรายย่อย</option>
+                  <option value="An institutional investor">นักลงทุนสถาบัน</option>
+                  <option value="An analyst">นักวิเคราะห์</option>
+                  <option value="A journalist">สื่อมวลชน</option>
+                  <option value="Other">อื่น ๆ</option>
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="ir-message"><span class="req">*</span>ข้อความ</label><textarea id="ir-message" name="ir-message" required></textarea></div></div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ir"><label for="cf-rc-ir" class="rc-label">ฉันไม่ใช่โปรแกรมอัตโนมัติ</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>นโยบายความเป็นส่วนตัว &middot; ข้อกำหนดการใช้งาน</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">ส่งข้อความ</button></div>
+            <div class="cf-privacy">เราใช้ข้อมูลของคุณเพื่อตอบกลับคำถามของคุณเท่านั้น และจะไม่เปิดเผยข้อมูลให้แก่บุคคลภายนอก</div>
+          </form>
+        </div>
+
+        @* Careers *@
+        <div class="ch-panel cf-card" role="tabpanel" id="careers" aria-labelledby="tab-careers">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>ส่งข้อความแล้ว</h3><p>ข้อความของคุณถูกส่งไปยังฝ่ายทรัพยากรบุคคลแล้ว</p></div>
+          <form class="cf-form" method="post" novalidate data-route="careers">
+            <p class="ch-panel-intro">สำหรับคำถามทั่วไปเกี่ยวกับการทำงานกับ Hana หากต้องการสมัครงาน โปรดใช้แบบฟอร์มในประกาศรับสมัครงานที่หน้า <a href="/th/careers">ร่วมงานกับเรา</a></p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ca-name"><span class="req">*</span>ชื่อ</label><input type="text" id="ca-name" name="ca-name" autocomplete="name" required></div>
+              <div class="cf-field"><label for="ca-email"><span class="req">*</span>อีเมล</label><input type="email" id="ca-email" name="ca-email" autocomplete="email" placeholder="you@@example.com" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ca-phone">โทรศัพท์ <span class="hint">(ไม่บังคับ)</span></label><input type="tel" id="ca-phone" name="ca-phone" autocomplete="tel"></div>
+              <div class="cf-field"><label for="ca-site">สถานที่ทำงานที่สนใจ</label>
+                <select id="ca-site" name="ca-site">
+                  <option value="" disabled selected>เลือก 1 รายการ</option>
+                  <option value="Thailand — Ayutthaya">ไทย — อยุธยา</option>
+                  <option value="Thailand — Lamphun">ไทย — ลำพูน</option>
+                  <option value="China — Jiaxing">จีน — เจียซิง</option>
+                  <option value="Cambodia — Koh Kong">กัมพูชา — เกาะกง</option>
+                  <option value="USA — Ohio">สหรัฐอเมริกา — โอไฮโอ</option>
+                  <option value="Not sure yet">ยังไม่แน่ใจ</option>
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="ca-message"><span class="req">*</span>ข้อความ</label><textarea id="ca-message" name="ca-message" required></textarea></div></div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ca"><label for="cf-rc-ca" class="rc-label">ฉันไม่ใช่โปรแกรมอัตโนมัติ</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>นโยบายความเป็นส่วนตัว &middot; ข้อกำหนดการใช้งาน</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">ส่งข้อความ</button></div>
+            <div class="cf-privacy">เราใช้ข้อมูลของคุณเพื่อตอบกลับคำถามของคุณเท่านั้น และจะไม่เปิดเผยข้อมูลให้แก่บุคคลภายนอก</div>
+          </form>
+        </div>
+
+        @* Suppliers *@
+        <div class="ch-panel cf-card" role="tabpanel" id="suppliers" aria-labelledby="tab-suppliers">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>ส่งข้อความแล้ว</h3><p>ข้อความของคุณถูกส่งไปยังฝ่ายจัดซื้อแล้ว</p></div>
+          <form class="cf-form" method="post" novalidate data-route="suppliers">
+            <p class="ch-panel-intro">สำหรับบริษัทที่ต้องการนำเสนอวัสดุ ชิ้นส่วน อุปกรณ์ หรือบริการให้แก่ Hana</p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="su-company"><span class="req">*</span>บริษัท</label><input type="text" id="su-company" name="su-company" autocomplete="organization" required></div>
+              <div class="cf-field"><label for="su-name"><span class="req">*</span>ชื่อ</label><input type="text" id="su-name" name="su-name" autocomplete="name" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="su-email"><span class="req">*</span>อีเมล</label><input type="email" id="su-email" name="su-email" autocomplete="email" placeholder="you@@company.com" required></div>
+              <div class="cf-field"><label for="su-country"><span class="req">*</span>ประเทศ</label>
+                <select id="su-country" name="su-country" required>
+                  <option value="" disabled selected>เลือกประเทศ</option>
+                  @foreach (var c in countries) { <option value="@c.Value">@c.Label</option> }
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="su-supply"><span class="req">*</span>สินค้าหรือบริการที่คุณจัดหา</label><input type="text" id="su-supply" name="su-supply" placeholder="เช่น SMT stencil, test fixture, บรรจุภัณฑ์" required></div></div>
+            <div class="cf-row one"><div class="cf-field"><label for="su-message"><span class="req">*</span>ข้อความ</label><textarea id="su-message" name="su-message" required></textarea></div></div>
+            <div class="cf-row one" style="margin-bottom:0;">
+              <div class="cf-field" style="margin-bottom:0;">
+                <label>ข้อมูลบริษัทหรือรายการสินค้า <span class="hint">(ไม่บังคับ)</span></label>
+                <div class="cf-upload">
+                  <input type="file" name="su-files" accept=".pdf" multiple>
+                  <span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span>
+                  <div class="cf-upload-text"><strong>คลิกเพื่ออัปโหลด</strong> หรือลากไฟล์มาวาง</div>
+                  <div class="cf-upload-meta">PDF ขนาดไม่เกิน 10&nbsp;MB</div>
+                </div>
+                <div class="cf-filelist"></div>
+              </div>
+            </div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-su"><label for="cf-rc-su" class="rc-label">ฉันไม่ใช่โปรแกรมอัตโนมัติ</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>นโยบายความเป็นส่วนตัว &middot; ข้อกำหนดการใช้งาน</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">ส่งข้อความ</button></div>
+            <div class="cf-privacy">เราใช้ข้อมูลของคุณเพื่อตอบกลับคำถามของคุณเท่านั้น และจะไม่เปิดเผยข้อมูลให้แก่บุคคลภายนอก</div>
+          </form>
+        </div>
+
+        @* Other *@
+        <div class="ch-panel cf-card" role="tabpanel" id="other" aria-labelledby="tab-other">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>ส่งข้อความแล้ว</h3><p>ข้อความของคุณถูกส่งไปยังทีมงานที่สำนักงานใหญ่แล้ว</p></div>
+          <form class="cf-form" method="post" novalidate data-route="other">
+            <p class="ch-panel-intro">สำหรับเรื่องอื่นที่ไม่อยู่ในหัวข้อข้างต้น คำถามด้านการผลิต ใบเสนอราคา และคำถามด้านเทคนิค โปรดส่งไปที่<a href="#sales">อีเมลของทีมขาย</a></p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ot-name"><span class="req">*</span>ชื่อ</label><input type="text" id="ot-name" name="ot-name" autocomplete="name" required></div>
+              <div class="cf-field"><label for="ot-email"><span class="req">*</span>อีเมล</label><input type="email" id="ot-email" name="ot-email" autocomplete="email" placeholder="you@@company.com" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ot-company">บริษัท <span class="hint">(ไม่บังคับ)</span></label><input type="text" id="ot-company" name="ot-company" autocomplete="organization"></div>
+              <div class="cf-field"><label for="ot-country"><span class="req">*</span>ประเทศ</label>
+                <select id="ot-country" name="ot-country" required>
+                  <option value="" disabled selected>เลือกประเทศ</option>
+                  @foreach (var c in countries) { <option value="@c.Value">@c.Label</option> }
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="ot-message"><span class="req">*</span>ข้อความ</label><textarea id="ot-message" name="ot-message" required></textarea></div></div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ot"><label for="cf-rc-ot" class="rc-label">ฉันไม่ใช่โปรแกรมอัตโนมัติ</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>นโยบายความเป็นส่วนตัว &middot; ข้อกำหนดการใช้งาน</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">ส่งข้อความ</button></div>
+            <div class="cf-privacy">เราใช้ข้อมูลของคุณเพื่อตอบกลับคำถามของคุณเท่านั้น และจะไม่เปิดเผยข้อมูลให้แก่บุคคลภายนอก</div>
+          </form>
+        </div>
+
+        @* Anonymous reporting: links to the separate form (the link stays on this page) *@
+        <div class="ch-panel cf-card" role="tabpanel" id="anonymous-reporting" aria-labelledby="tab-anon">
+          <p class="ch-panel-intro">พนักงานและบุคคลอื่นสามารถแจ้งการกระทำที่ผิดกฎหมายหรือขัดต่อจริยธรรม หรือแจ้งข้อกังวลเกี่ยวกับจรรยาบรรณ (Code of Conduct) ของเรา ผ่านแบบฟอร์มการสื่อสารแบบไม่ระบุตัวตน โดยคุณเลือกได้ว่าจะให้ข้อมูลติดต่อหรือไม่</p>
+          <a class="ch-btn ch-btn-primary" href="/contact/anonymous">เปิดแบบฟอร์มการสื่อสารแบบไม่ระบุตัวตน</a>
+        </div>
+      </div>
         </div>
       </div>
     </div>
   </section>
-</div>
 
+
+</div>
 @section Scripts {
-    <script src="~/js/contact-forms.js"></script>
+    <script src="~/js/contact-forms.js" asp-append-version="true"></script>
 }

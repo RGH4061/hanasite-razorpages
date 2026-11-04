@@ -1,0 +1,29 @@
+/* Thai overrides for contact-hub.css (/th/contact). Geist and Inter carry no Thai glyphs, so
+   Thai text uses Sarabun. Uppercase labels drop their tracking, and line heights open up
+   for stacked vowel and tone marks. The email address and phone numbers keep their Latin fonts. */
+:lang(th) .ch-label,
+:lang(th) .ch-email-card h2,
+:lang(th) .ch-btn,
+:lang(th) .ch-include,
+:lang(th) .ch-map-link,
+:lang(th) .ch-h2,
+:lang(th) .ch-tablist [role="tab"],
+:lang(th) .ch-panel-intro,
+:lang(th) .cf-office-name,
+:lang(th) .cf-acc-count,
+:lang(th) .cf-field-error { font-family: var(--font-thai); }
+
+:lang(th) .ch-label { text-transform: none; letter-spacing: 0; font-size: 14px; }
+:lang(th) .ch-btn { text-transform: none; letter-spacing: 0; font-size: 14.5px; }
+:lang(th) .ch-email-card h2,
+:lang(th) .ch-h2 { letter-spacing: 0; line-height: 1.4; }
+:lang(th) .ch-include,
+:lang(th) .ch-panel-intro { line-height: 1.75; }
+:lang(th) .ch-contact-bar .cf-offices-label { font-size: 14px; }
+:lang(th) .ch-tablist [role="tab"] { font-size: 14.5px; padding-left: 8px; padding-right: 8px; }
+
+/* phones: the five Thai tab labels are wider than the card, so the strip wraps to two rows */
+@media (max-width: 560px) {
+  :lang(th) .ch-tablist { flex-wrap: wrap; overflow: visible; padding: 0 6px; }
+  :lang(th) .ch-tablist [role="tab"] { flex: 1 0 30%; padding: 12px 6px 10px; }
+}

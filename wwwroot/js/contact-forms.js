@@ -44,11 +44,28 @@
     }
   });
   /* ---- Field validation (forms carry novalidate so these messages replace the browser's) ---- */
+  /* Messages follow the page language (<html lang="th"> on /th/ pages). */
+  var TH = /^th/i.test(document.documentElement.lang || '');
+  var MSG = TH ? {
+    choose: 'กรุณาเลือก 1 รายการ',
+    fill: 'กรุณากรอกข้อมูลในช่องนี้',
+    email: 'กรุณากรอกอีเมลให้ถูกต้อง เช่น name@company.com',
+    check: 'กรุณาตรวจสอบข้อมูลในช่องนี้',
+    copied: 'คัดลอกแล้ว',
+    copyFailed: 'คัดลอกไม่สำเร็จ'
+  } : {
+    choose: 'Please choose an option.',
+    fill: 'Please fill in this field.',
+    email: 'Enter a valid email address, such as name@company.com.',
+    check: 'Please check this field.',
+    copied: 'Copied',
+    copyFailed: 'Copy failed'
+  };
   function fieldMessage(el) {
     var blank = el.required && !String(el.value || '').trim();
-    if (blank) return el.tagName === 'SELECT' ? 'Please choose an option.' : 'Please fill in this field.';
-    if (el.validity.typeMismatch && el.type === 'email') return 'Enter a valid email address, such as name@company.com.';
-    if (!el.checkValidity()) return 'Please check this field.';
+    if (blank) return el.tagName === 'SELECT' ? MSG.choose : MSG.fill;
+    if (el.validity.typeMismatch && el.type === 'email') return MSG.email;
+    if (!el.checkValidity()) return MSG.check;
     return null;
   }
   function setError(el, msg) {
@@ -142,8 +159,8 @@
     btn.addEventListener('click', function () {
       var done = function (msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = label; }, 2000); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () { done('Copied'); }, function () { done('Copy failed'); });
-      } else { done('Copy failed'); }
+        navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () { done(MSG.copied); }, function () { done(MSG.copyFailed); });
+      } else { done(MSG.copyFailed); }
     });
   });
 

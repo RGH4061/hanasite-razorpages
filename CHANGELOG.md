@@ -7,7 +7,7 @@ What changed in the Razor Pages site, newest first. Moved here from README.md on
 - **Contact (`/contact`)** — sales and technical inquiries now go by email to info-request@hanaus.com, and the sales contact form is removed. The page has a split hero with the email card on the right, one box holding the head office and the collapsible regional sales offices, and an Other inquiries card with Investors, Careers, Suppliers, Other and Anonymous tabs. Styles are in `css/contact-hub.css`.
 - **Form validation** — `js/contact-forms.js` now checks required fields and email format before showing the thank-you message. This also applies to `/contact/anonymous`.
 - **RFQ page retired** — `Pages/Contact/Rfq.cshtml` is removed and `/contact/rfq` redirects (301) to `/contact#sales`. The 30 "Request a quote" buttons on Capabilities and Locations pages now link to `/contact`. The `/sitemap` page and `llms.txt` are updated.
-- **Not changed** — the Thai Contact page (`/th/contact`) keeps its old layout until it has its own translation. Its quote button now reaches the Contact page through the redirect.
+- **Thai Contact (`/th/contact`)** — rebuilt on the same layout. Lines from the previous Thai page are carried over; new lines are drafts for Thai review. `css/contact-hub-th.css` sets Sarabun for the new elements, and on phones the Thai tab labels wrap to two rows. `contact-forms.js` shows its error and copy messages in Thai when the page language is Thai.
 
 ## Latest changes (29 Oct 2026 — Thai draft pages for Markets, Capabilities and Locations)
 
