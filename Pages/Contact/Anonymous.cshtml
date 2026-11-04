@@ -5,7 +5,7 @@
     ViewData["Description"] = "Report concerns or potential violations of our Code of Conduct anonymously.";
 }
 @section Head {
-    <link rel="stylesheet" href="~/css/contact-forms.css" />
+    <link rel="stylesheet" href="~/css/contact-forms.css" asp-append-version="true" />
 }
 
 @* Anonymous Communication Form. Static form markup; helper JS in ~/js/contact-forms.js
@@ -65,5 +65,5 @@
 <script>(function(){var b=document.getElementById('cf-guideline-btn'),m=document.getElementById('cf-guideline-modal'),c=document.getElementById('cf-guideline-close');if(b&&m){b.addEventListener('click',function(){m.style.display='flex';});c.addEventListener('click',function(){m.style.display='none';});m.addEventListener('click',function(e){if(e.target===m)m.style.display='none';});}})();</script>
 
 @section Scripts {
-    <script src="~/js/contact-forms.js"></script>
+    <script src="~/js/contact-forms.js" asp-append-version="true"></script>
 }

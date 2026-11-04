@@ -2,79 +2,236 @@
 @{
     ViewData["Title"] = "Contact | talk to the Hana team";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "Contact Hana Microelectronics about a manufacturing program, a capability question or a quotation, with sales and support offices in Asia, Europe and the USA.";
+    ViewData["Description"] = "Email Hana Microelectronics about a manufacturing program, a quotation or a technical question, or contact investor relations, careers and supplier teams.";
     ViewData["AltLang"] = "th";
     ViewData["AltLangUrl"] = "/th/contact";
+
+    var salesEmail = "info-request@hanaus.com";
+    var countries = new[] {
+        "United Kingdom", "Germany", "France", "Netherlands", "Sweden", "Norway", "Denmark", "Finland",
+        "Belgium", "Switzerland", "Austria", "Italy", "Spain", "Portugal", "Poland", "Czech Republic",
+        "Ireland", "United States", "Canada", "Mexico", "Thailand", "China", "Japan", "South Korea",
+        "Taiwan", "Singapore", "Malaysia", "Vietnam", "India", "Other"
+    };
 }
 @section Head {
-    <link rel="stylesheet" href="~/css/contact-forms.css" />
+    <link rel="stylesheet" href="~/css/contact-forms.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contact-hub.css" asp-append-version="true" />
 }
 
-@* Contact — talk to the Hana team. Static form markup; chip multiselect via <details>+:has,
-   helper JS in ~/js/contact-forms.js (demo submit — wire OnPost for the
-   backend). Hero background via ~/js/hana-backgrounds.js. *@
+@* Contact — email-first layout (Nov 2026).
+   1. Split hero: sales and technical inquiries go by email; the email card sits on the
+      right and overlaps the hero edge. Sales inquiries have no form.
+   2. Contact bar: left = one box with head office + collapsible regional sales offices;
+      right = Other inquiries card (title, tabs, form) under the email card.
+      Each form carries data-route for the backend to pick the inbox.
+      Deep links: /contact#investor-relations, #careers, #suppliers, #other, #anonymous-reporting.
+      The Anonymous tab links to /contact/anonymous (that link stays on this page).
+   Styles: contact-forms.css (fields) + contact-hub.css (layout).
+   Demo submit and validation in ~/js/contact-forms.js — wire OnPost for the backend. *@
 
 <div class="cf-page">
-  <section class="cf-hero" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
-    <div class="cf-hero-inner">
-      <h1 style="color:#fff;">Talk to the Hana team</h1>
-      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">Send us a question about our capabilities, a partnership or a quote, and we’ll route it to the right people across our organization.</p>
+  @* ── 1. Split hero: sales email card on the right ─────── *@
+  <section class="cf-hero ch-hero" id="sales" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner ch-hero-inner">
+      <div class="ch-hero-text">
+        <h1 style="color:#fff;">Talk to the Hana team</h1>
+        <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">Manufacturing, quotation and technical questions go to our sales team by email.</p>
+      </div>
+      <div class="ch-email-card">
+        <p class="ch-label">Sales and technical inquiries</p>
+        <h2>Email our sales team</h2>
+        <a class="ch-email-address" href="mailto:@salesEmail">@salesEmail</a>
+        <div class="ch-email-actions">
+          <a class="ch-btn ch-btn-primary" href="mailto:@salesEmail">Write an email</a>
+          <button type="button" class="ch-btn ch-btn-ghost" data-copy="@salesEmail">Copy address</button>
+        </div>
+        <p class="ch-include"><span class="ch-include-label">Helpful to include:</span> company information, website, what you make, annual volumes, the BOM and any design files such as Gerbers, drawings or test specifications.</p>
+      </div>
     </div>
   </section>
-  <section class="cf-section">
-    <div class="cf-wrap" style="position:relative;z-index:1;">
-      <div class="cf-grid" data-comment-anchor="dc09b0423e-div">
-        <div class="cf-intro">
-          <p class="cf-eyebrow">How can we help?</p>
-          <div class="cf-hq-card">
-            <figure class="cf-hq-photo"><img src="/images/Hana_bkk.webp" alt="Hana Microelectronics head office — Bangkok, Thailand"></figure>
-            <div class="cf-hq-label">Head office</div>
-            <div class="cf-hq-name">Hana Microelectronics Public Company Limited</div>
-            <address class="cf-hq-addr">65/98 Soi Vibhavadi-Rangsit 64 Junction 2, Kwang Talad Bangkhen, Khet Laksi, Bangkok 10210, Thailand</address>
-            <a href="https://maps.app.goo.gl/S8Sq7kQE9aFxt6JK7" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin:4px 0 10px;font-size:13.5px;font-weight:600;color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);width:fit-content;">Google Maps Location <span style="font-size:11px;">↗</span></a>
-            <div class="cf-hq-lines"><a href="tel:+6625511297">+66-2-551-1297-8</a><a href="tel:+6625214935">+66-2-521-4935-9</a></div>
+
+  @* ── 2. Contact bar: offices box left, other inquiries right (under the email card) ── *@
+  <section class="ch-contact-bar" data-hana-bg="wafer" data-variant="light" data-accent="" data-fade="none" style="background:linear-gradient(120deg,#f6f8fb 40%,#e6eef6 100%);">
+    <div class="cf-wrap">
+      <div class="ch-bar-grid">
+        <div class="ch-offices-box">
+          <p class="cf-offices-label" style="margin-top:0;">Head office</p>
+          <div class="ch-hq">
+            <figure class="cf-hq-photo"><img src="/images/Hana_bkk.webp" alt="Hana Microelectronics head office, Bangkok, Thailand" loading="lazy"></figure>
+            <div>
+              <div class="cf-hq-name">Hana Microelectronics Public Company Limited</div>
+              <address class="cf-hq-addr">65/98 Soi Vibhavadi-Rangsit 64 Junction 2, Kwang Talad Bangkhen, Khet Laksi, Bangkok 10210, Thailand</address>
+              <a class="ch-map-link" href="https://maps.app.goo.gl/S8Sq7kQE9aFxt6JK7" target="_blank" rel="noopener noreferrer">View on Google Maps <span aria-hidden="true">↗</span></a>
+              <div class="cf-hq-lines"><a href="tel:+6625511297">+66-2-551-1297-8</a><a href="tel:+6625214935">+66-2-521-4935-9</a></div>
+            </div>
           </div>
-          <div class="cf-offices-label">Global Sales offices</div><div class="cf-accordion"><details class="cf-acc-item" open><summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">Philippines</div><div class="cf-office-person">Henry Lubrico<div class="cf-office-contacts"><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div><div class="cf-office"><div class="cf-office-name">Singapore</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details><details class="cf-acc-item"><summary class="cf-acc-header"><span class="cf-acc-region">Europe <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></span></summary><div class="cf-acc-body"><div class="cf-office"><div class="cf-office-name">France</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div><div class="cf-office"><div class="cf-office-name">Germany</div><div class="cf-office-person">Frank Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+491723830507">+49 172 3830507</a><a href="mailto:info-request@@hanaus.com">info-request@@hanaus.com</a></div></div></div></details></div>
-          <p class="cf-anon-link" style="font-size:13px;color:var(--ink-2);margin:20px 0 0;"><b>Anonymous Communication Form<br></br></b>If you would like to report / share your concerns anonymously, <a href="/contact/anonymous" style="color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--hana-blue-deep)'">click here</a>.</p>
+          <div class="ch-regional">
+            <p class="cf-offices-label" style="margin-top:0;">Regional sales offices</p>
+            <div class="cf-accordion">
+            <details class="cf-acc-item">
+              <summary class="cf-acc-header"><span class="cf-acc-region">USA <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+              <div class="cf-acc-body">
+                <div class="cf-office"><div class="cf-office-name">Hana Microelectronics, Inc.</div><div class="cf-office-person">Sanjay Mitra — President</div><div class="cf-office-addr">5255 Stevens Creek Blvd. #122, Santa Clara, CA 95051</div><div class="cf-office-contacts"><a href="tel:+14084527474">+1 (408) 452-7474</a></div></div>
+                <div class="cf-office"><div class="cf-office-name">Hana Technologies, Inc.</div><div class="cf-office-addr">29000 Aurora Road, Solon, OH 44139</div><div class="cf-office-contacts"><a href="tel:+13304054600">+1 330 405 4600</a></div></div>
+              </div>
+            </details>
+            <details class="cf-acc-item">
+              <summary class="cf-acc-header"><span class="cf-acc-region">Europe <span class="cf-acc-count">3 offices</span></span><span class="cf-acc-chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+              <div class="cf-acc-body">
+                <div class="cf-office"><div class="cf-office-name">UK and Europe</div><div class="cf-office-person">Rupert Han</div><div class="cf-office-contacts"><a href="mailto:rupert@@hanabk.th.com">rupert@@hanabk.th.com</a></div></div>
+                <div class="cf-office"><div class="cf-office-name">France</div><div class="cf-office-person">Mortar Feddal</div><div class="cf-office-contacts"><a href="tel:+33617721068">+33 6 17 72 10 68</a></div></div>
+                <div class="cf-office"><div class="cf-office-name">Germany</div><div class="cf-office-person">Frank Böhme</div><div class="cf-office-addr">Schwatlostraße 4, 12207 Berlin</div><div class="cf-office-contacts"><a href="tel:+491723830507">+49 172 3830507</a></div></div>
+              </div>
+            </details>
+            <details class="cf-acc-item">
+              <summary class="cf-acc-header"><span class="cf-acc-region">Asia <span class="cf-acc-count">2 offices</span></span><span class="cf-acc-chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
+              <div class="cf-acc-body">
+                <div class="cf-office"><div class="cf-office-name">Philippines</div><div class="cf-office-person">Henry Lubrico</div></div>
+                <div class="cf-office"><div class="cf-office-name">Singapore</div><div class="cf-office-person">SR Chok</div><div class="cf-office-contacts"><a href="tel:+6596922682">+65 9692 2682</a></div></div>
+              </div>
+            </details>
+          </div>
+          </div>
         </div>
-        <div style="display:grid;gap:24px;">
-        <div class="cf-rfq-cta">
-          <h3>Have a product to manufacture?</h3>
-          <p>Send a quote request and we&rsquo;ll route you to our sales and technical teams to start the conversation on your needs.</p>
-          <a href="/contact/rfq" class="cf-rfq-btn">Request a quote</a>
+        <div class="ch-inquiries" id="other-inquiries">
+      <div class="ch-tabs" data-tabs>
+        <h2 class="ch-h2">Other inquiries</h2>
+        <div class="ch-tablist" role="tablist" aria-label="Inquiry topic">
+          <button type="button" role="tab" id="tab-ir" aria-controls="investor-relations" aria-selected="true">Investors</button>
+          <button type="button" role="tab" id="tab-careers" aria-controls="careers" aria-selected="false" tabindex="-1">Careers</button>
+          <button type="button" role="tab" id="tab-suppliers" aria-controls="suppliers" aria-selected="false" tabindex="-1">Suppliers</button>
+          <button type="button" role="tab" id="tab-other" aria-controls="other" aria-selected="false" tabindex="-1">Other</button>
+          <button type="button" role="tab" id="tab-anon" aria-controls="anonymous-reporting" aria-selected="false" tabindex="-1">Anonymous</button>
         </div>
-        <div class="cf-card" id="general-enquiry">
-  <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Inquiry received</h3><p>Thanks! We’ve routed your message to the right team and will reply within one business day.</p></div>
-  
-  <form class="cf-form" method="post" novalidate>
-    <div class="cf-field" style="margin-bottom:18px;"><label for="ge-reason" style="font-size:13px;font-weight:700;color:var(--ink);">Select contact reason or request a quote</label>
-      <select id="ge-reason" name="ge-reason"><option value="" disabled selected>Select one</option><option>Sales and customer support</option><option>Request for quote (RFQ)</option><option>Capability / technical question</option><option>Investor relations</option><option>Careers</option><option>Supplier / vendor inquiry</option><option>Other</option></select></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row two"><div class="cf-field"><label for="ge-name"><span class="req">*</span>Name</label><input type="text" id="ge-name" name="ge-name" placeholder="First and last name" required></div><div class="cf-field"><label for="ge-company"><span class="req">*</span>Company</label><input type="text" id="ge-company" name="ge-company" placeholder="Company name" required></div></div>
-    <div class="cf-row two"><div class="cf-field"><label for="ge-email"><span class="req">*</span>Email</label><input type="email" id="ge-email" name="ge-email" placeholder="you@@company.com" required></div><div class="cf-field"><label for="ge-phone">Phone <span class="hint">(optional)</span></label><input type="tel" id="ge-phone" name="ge-phone" placeholder="+44 …"></div></div>
-    <div class="cf-row two"><div class="cf-field"><label for="ge-country"><span class="req">*</span>Country</label><select id="ge-country" name="ge-country"><option value="" disabled selected>Select country</option><option>United Kingdom</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Belgium</option><option>Switzerland</option><option>Austria</option><option>Italy</option><option>Spain</option><option>Portugal</option><option>Poland</option><option>Czech Republic</option><option>Ireland</option><option>United States</option><option>Canada</option><option>Thailand</option><option>China</option><option>Singapore</option><option>Other</option></select></div><div class="cf-field"><label for="ge-source">How did you hear of us?</label><select id="ge-source" name="ge-source"><option value="" disabled selected>Select one</option><option>Web search</option><option>AI search or chatbot</option><option>Referral from a colleague or partner</option><option>Trade show or conference</option><option>Industry publication or news</option><option>LinkedIn</option><option>Existing Hana contact</option><option>Other</option></select></div></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row two" style="margin-bottom:0;"><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="toggle-label">Industry</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
-    <div class="cf-chip-panel"><div class="cf-chip-note">Select all that apply</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Automotive">Automotive</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Industrial & IoT">Industrial & IoT</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Telecommunications">Telecommunications</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="RFID">RFID</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Optical & Sensors">Optical & Sensors</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Consumer Electronics">Consumer Electronics</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Medical">Medical</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Access Control">Access Control</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Power Management">Power Management</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Data Centers">Data Centers</label><label class="cf-chip"><input type="checkbox" name="ge-industry" value="Other">Other</label></div></div></details><details class="cf-ms cf-field"><summary class="cf-chip-toggle"><span class="toggle-label">Service</span><span class="chip-count" style="display:none">0</span><span class="chevron"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span></summary>
-    <div class="cf-chip-panel"><div class="cf-chip-note">Select all that apply</div><div class="cf-chip-group"><label class="cf-chip"><input type="checkbox" name="ge-service" value="PCBA & Box Build Assembly">PCBA &amp; Box Build Assembly</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="OSAT Services">OSAT Services</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Microelectronic Assembly">Microelectronic Assembly</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="RFID & Smart Tags">RFID &amp; Smart Tags</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Automation & Smart Manufacturing">Automation &amp; Smart Manufacturing</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="DFx & JDM Collaboration">DFx &amp; JDM Collaboration</label><label class="cf-chip"><input type="checkbox" name="ge-service" value="Other">Other</label></div></div></details></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field"><label for="ge-message"><span class="req">*</span>Message</label><textarea id="ge-message" name="ge-message" placeholder="Tell us what you&rsquo;re looking for — what you make, where you are in your project, and how we can help." required></textarea></div></div>
-    <div class="cf-divider"></div>
-    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field" style="margin-bottom:0;"><label>Attachments <span class="hint">(optional &mdash; PDF or ZIP, 10&nbsp;MB max)</span></label>
-      <div class="cf-upload"><input type="file" name="ge-files" accept=".pdf,.zip" multiple placeholder="PDF, ZIP" data-comment-anchor="a03a2f2b5b-input"><span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-8.5 8.5a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9 16.4a1.7 1.7 0 0 1-2.3-2.3l7.8-7.8"></path></svg></span><div class="cf-upload-text"><strong>Click to upload</strong> or drag and drop</div><div class="cf-upload-meta">PDF or ZIP &middot; Max 10 MB</div></div>
-      <div class="cf-filelist"></div>
-    </div></div>
-    <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ge"><label for="cf-rc-ge" class="rc-label">I'm not a robot</label>
-    <div class="rc-logo"><span class="rc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue-soft)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Send inquiry</button></div>
-    <div class="cf-privacy">We use your details to respond to your inquiry which is never shared with third parties.</div>
-  </form>
-</div>
+
+        @* Investor relations *@
+        <div class="ch-panel cf-card" role="tabpanel" id="investor-relations" aria-labelledby="tab-ir">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Message sent</h3><p>Your message has gone to our investor relations team.</p></div>
+          <form class="cf-form" method="post" novalidate data-route="investor-relations">
+            <p class="ch-panel-intro">Questions about results, shareholder matters or analyst meetings. IR contacts and the investor calendar are on the <a href="/investor-relations/contact">Investor events and contacts</a> page.</p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ir-name"><span class="req">*</span>Name</label><input type="text" id="ir-name" name="ir-name" autocomplete="name" required></div>
+              <div class="cf-field"><label for="ir-email"><span class="req">*</span>Email</label><input type="email" id="ir-email" name="ir-email" autocomplete="email" placeholder="you@@company.com" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ir-org">Organization <span class="hint">(optional)</span></label><input type="text" id="ir-org" name="ir-org" autocomplete="organization"></div>
+              <div class="cf-field"><label for="ir-type"><span class="req">*</span>I am</label>
+                <select id="ir-type" name="ir-type" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>An individual shareholder</option>
+                  <option>An institutional investor</option>
+                  <option>An analyst</option>
+                  <option>A journalist</option>
+                  <option>Other</option>
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="ir-message"><span class="req">*</span>Message</label><textarea id="ir-message" name="ir-message" required></textarea></div></div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ir"><label for="cf-rc-ir" class="rc-label">I'm not a robot</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Send message</button></div>
+            <div class="cf-privacy">We use your details only to respond to your inquiry and do not share them with third parties.</div>
+          </form>
+        </div>
+
+        @* Careers *@
+        <div class="ch-panel cf-card" role="tabpanel" id="careers" aria-labelledby="tab-careers">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Message sent</h3><p>Your message has gone to our HR team.</p></div>
+          <form class="cf-form" method="post" novalidate data-route="careers">
+            <p class="ch-panel-intro">General questions about working at Hana. To apply for a role, use the application form on the job listing in <a href="/careers">Careers</a>.</p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ca-name"><span class="req">*</span>Name</label><input type="text" id="ca-name" name="ca-name" autocomplete="name" required></div>
+              <div class="cf-field"><label for="ca-email"><span class="req">*</span>Email</label><input type="email" id="ca-email" name="ca-email" autocomplete="email" placeholder="you@@example.com" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ca-phone">Phone <span class="hint">(optional)</span></label><input type="tel" id="ca-phone" name="ca-phone" autocomplete="tel"></div>
+              <div class="cf-field"><label for="ca-site">Location of interest</label>
+                <select id="ca-site" name="ca-site">
+                  <option value="" disabled selected>Select one</option>
+                  <option>Thailand — Ayutthaya</option>
+                  <option>Thailand — Lamphun</option>
+                  <option>China — Jiaxing</option>
+                  <option>Cambodia — Koh Kong</option>
+                  <option>USA — Ohio</option>
+                  <option>Not sure yet</option>
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="ca-message"><span class="req">*</span>Message</label><textarea id="ca-message" name="ca-message" required></textarea></div></div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ca"><label for="cf-rc-ca" class="rc-label">I'm not a robot</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Send message</button></div>
+            <div class="cf-privacy">We use your details only to respond to your inquiry and do not share them with third parties.</div>
+          </form>
+        </div>
+
+        @* Suppliers *@
+        <div class="ch-panel cf-card" role="tabpanel" id="suppliers" aria-labelledby="tab-suppliers">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Message sent</h3><p>Your message has gone to our purchasing team.</p></div>
+          <form class="cf-form" method="post" novalidate data-route="suppliers">
+            <p class="ch-panel-intro">For companies offering materials, components, equipment or services to Hana.</p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="su-company"><span class="req">*</span>Company</label><input type="text" id="su-company" name="su-company" autocomplete="organization" required></div>
+              <div class="cf-field"><label for="su-name"><span class="req">*</span>Name</label><input type="text" id="su-name" name="su-name" autocomplete="name" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="su-email"><span class="req">*</span>Email</label><input type="email" id="su-email" name="su-email" autocomplete="email" placeholder="you@@company.com" required></div>
+              <div class="cf-field"><label for="su-country"><span class="req">*</span>Country</label>
+                <select id="su-country" name="su-country" required>
+                  <option value="" disabled selected>Select country</option>
+                  @foreach (var c in countries) { <option>@c</option> }
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="su-supply"><span class="req">*</span>What do you supply?</label><input type="text" id="su-supply" name="su-supply" placeholder="For example: SMT stencils, test fixtures, packaging" required></div></div>
+            <div class="cf-row one"><div class="cf-field"><label for="su-message"><span class="req">*</span>Message</label><textarea id="su-message" name="su-message" required></textarea></div></div>
+            <div class="cf-row one" style="margin-bottom:0;">
+              <div class="cf-field" style="margin-bottom:0;">
+                <label>Company profile or line card <span class="hint">(optional)</span></label>
+                <div class="cf-upload">
+                  <input type="file" name="su-files" accept=".pdf" multiple>
+                  <span class="cf-upload-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></span>
+                  <div class="cf-upload-text"><strong>Click to upload</strong> or drag and drop</div>
+                  <div class="cf-upload-meta">PDF, up to 10&nbsp;MB</div>
+                </div>
+                <div class="cf-filelist"></div>
+              </div>
+            </div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-su"><label for="cf-rc-su" class="rc-label">I'm not a robot</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Send message</button></div>
+            <div class="cf-privacy">We use your details only to respond to your inquiry and do not share them with third parties.</div>
+          </form>
+        </div>
+
+        @* Other *@
+        <div class="ch-panel cf-card" role="tabpanel" id="other" aria-labelledby="tab-other">
+          <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>Message sent</h3><p>Your message has gone to our head office team.</p></div>
+          <form class="cf-form" method="post" novalidate data-route="other">
+            <p class="ch-panel-intro">For anything not covered by the other topics. Manufacturing, quotation and technical inquiries go to the <a href="#sales">sales team email</a>.</p>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ot-name"><span class="req">*</span>Name</label><input type="text" id="ot-name" name="ot-name" autocomplete="name" required></div>
+              <div class="cf-field"><label for="ot-email"><span class="req">*</span>Email</label><input type="email" id="ot-email" name="ot-email" autocomplete="email" placeholder="you@@company.com" required></div>
+            </div>
+            <div class="cf-row two">
+              <div class="cf-field"><label for="ot-company">Company <span class="hint">(optional)</span></label><input type="text" id="ot-company" name="ot-company" autocomplete="organization"></div>
+              <div class="cf-field"><label for="ot-country"><span class="req">*</span>Country</label>
+                <select id="ot-country" name="ot-country" required>
+                  <option value="" disabled selected>Select country</option>
+                  @foreach (var c in countries) { <option>@c</option> }
+                </select></div>
+            </div>
+            <div class="cf-row one"><div class="cf-field"><label for="ot-message"><span class="req">*</span>Message</label><textarea id="ot-message" name="ot-message" required></textarea></div></div>
+            <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-ot"><label for="cf-rc-ot" class="rc-label">I'm not a robot</label><div class="rc-logo"><span class="rc-text">reCAPTCHA<br>Privacy &middot; Terms</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">Send message</button></div>
+            <div class="cf-privacy">We use your details only to respond to your inquiry and do not share them with third parties.</div>
+          </form>
+        </div>
+
+        @* Anonymous reporting: links to the separate form (the link stays on this page) *@
+        <div class="ch-panel cf-card" role="tabpanel" id="anonymous-reporting" aria-labelledby="tab-anon">
+          <p class="ch-panel-intro">Employees and other individuals can report illegal or unethical conduct, or raise concerns about our Code of Conduct, through the anonymous communication form. You can choose whether to give contact details.</p>
+          <a class="ch-btn ch-btn-primary" href="/contact/anonymous">Open the anonymous communication form</a>
+        </div>
+      </div>
         </div>
       </div>
     </div>
   </section>
-</div>
 
+
+</div>
 @section Scripts {
-    <script src="~/js/contact-forms.js"></script>
+    <script src="~/js/contact-forms.js" asp-append-version="true"></script>
 }

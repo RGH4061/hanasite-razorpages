@@ -1,0 +1,172 @@
+/* ============================================================
+   Hana — Contact page (email-first layout, Nov 2026)
+   Sits on top of contact-forms.css, which keeps the field styles.
+   1. Split hero: text left, sales email card right (overlaps the hero edge)
+   2. Contact bar: offices box left (head office + regional offices),
+      Other inquiries card right, directly under the email card
+   ============================================================ */
+
+/* ---- 1. Split hero ------------------------------------------ */
+.ch-hero .ch-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  gap: 56px;
+  align-items: center;
+  padding-top: 48px; padding-bottom: 24px;
+}
+/* the email card hangs ~56px below the hero edge into the contact bar */
+.ch-hero { overflow: visible; z-index: 2; }
+.ch-hero-text { padding-bottom: 24px; }
+.ch-hero-text .cf-hero-sub { max-width: 480px; }
+.ch-email-card {
+  position: relative; z-index: 3;
+  background: #fff;
+  border-radius: var(--radius-panel);
+  padding: 28px 28px 24px;
+  margin-bottom: -80px;
+  box-shadow: 0 1px 2px rgba(14,17,22,0.04), 0 16px 40px rgba(3,10,23,0.16);
+}
+.ch-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--hana-blue); margin: 0 0 8px;
+}
+.ch-email-card h2 {
+  font-family: var(--font-display); font-size: 24px; font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin: 0 0 14px;
+}
+.ch-email-address {
+  display: inline-block;
+  font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--hana-blue-deep); text-decoration: none;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 2px; margin-bottom: 18px;
+  overflow-wrap: anywhere;
+}
+.ch-email-address:hover { color: var(--hana-blue); border-bottom-color: var(--hana-blue-soft); }
+.ch-email-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.ch-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-text); font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none;
+  border-radius: var(--radius-button); padding: 12px 20px; cursor: pointer;
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.ch-btn-primary { background: var(--hana-blue); color: #fff; border: 1px solid var(--hana-blue); }
+.ch-btn-primary:hover { background: var(--hana-blue-deep); border-color: var(--hana-blue-deep); }
+.ch-btn-ghost { background: #fff; color: var(--hana-blue-deep); border: 1px solid var(--line); }
+.ch-btn-ghost:hover { border-color: var(--hana-blue-soft); background: var(--hana-blue-tint); }
+.ch-include {
+  border-top: 1px solid var(--line); padding-top: 14px; margin: 0;
+  font-size: 14.5px; line-height: 1.6; color: var(--ink-2);
+}
+.ch-include-label { font-weight: 700; color: var(--ink); }
+
+/* ---- 2. Contact bar ----------------------------------------- */
+.ch-contact-bar { position: relative; padding: 88px 0 64px; }   /* top padding clears the overlapping email card */
+.ch-contact-bar > .cf-wrap { position: relative; z-index: 1; }
+.ch-contact-bar > .hana-bg-layer { opacity: 0.45; }
+/* both boxes stretch to the taller of the two */
+.ch-bar-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  gap: 56px;
+  align-items: stretch;
+}
+.ch-contact-bar .cf-offices-label { font-size: 12px; color: var(--ink-2); }
+
+/* offices box: head office, then regional sales offices */
+.ch-offices-box {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 24px;
+}
+.ch-hq { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.ch-hq .cf-hq-photo { margin: 0; }
+.ch-hq .cf-hq-photo img { height: 160px; }
+.ch-hq .cf-hq-name { font-size: 18px; }
+.ch-hq .cf-hq-addr { font-size: 15px; }
+.ch-hq .cf-hq-lines { font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.ch-map-link {
+  display: inline-flex; align-items: center; gap: 6px; margin: 6px 0 4px;
+  font-size: 14.5px; font-weight: 600; color: var(--hana-blue-deep);
+  text-decoration: none; border-bottom: 1px solid var(--line);
+}
+.ch-map-link:hover { color: var(--hana-blue); }
+.ch-regional { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+.ch-contact-bar .cf-acc-header { padding: 15px 18px; }
+.ch-contact-bar .cf-acc-region { font-size: 15px; }
+.ch-contact-bar .cf-acc-region .cf-acc-count { font-size: 13px; }
+.ch-contact-bar .cf-acc-body { padding: 4px 18px 16px; }
+.ch-contact-bar .cf-office-name { font-size: 14.5px; }
+.ch-contact-bar .cf-office-person { font-size: 14px; }
+.ch-contact-bar .cf-office-addr { font-size: 13.5px; }
+.ch-contact-bar .cf-office-contacts a { font-size: 13.5px; color: var(--hana-blue-deep); }
+details.cf-acc-item > summary { list-style: none; }
+details.cf-acc-item > summary::-webkit-details-marker { display: none; }
+details.cf-acc-item[open] > summary .cf-acc-chevron { transform: rotate(180deg); }
+
+/* Other inquiries: one card; title, then the tab strip, then the active form */
+.ch-inquiries { display: flex; flex-direction: column; }
+.ch-tabs {
+  flex: 1;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: 0 1px 2px rgba(14,17,22,0.03), 0 12px 32px rgba(14,74,124,0.06);
+  overflow: hidden;
+}
+.ch-h2 {
+  font-family: var(--font-display); font-size: 20px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--ink); margin: 0; padding: 20px 22px 6px;
+}
+.ch-tablist {
+  display: flex; flex-wrap: nowrap; gap: 0;
+  padding: 0 12px; margin: 0;
+  background: #fff; border-bottom: 1px solid var(--line);
+  overflow-x: auto; scrollbar-width: none;
+}
+.ch-tablist::-webkit-scrollbar { display: none; }
+.ch-tablist [role="tab"] {
+  flex: 1 0 auto; appearance: none; background: none; cursor: pointer;
+  border: 0; border-bottom: 2px solid transparent; border-radius: 0;
+  margin: 0 0 -1px; padding: 14px 10px 12px; text-align: center;
+  font-family: var(--font-text); font-size: 13.5px; font-weight: 600; color: var(--ink-2);
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.ch-tablist [role="tab"]:hover { color: var(--hana-blue); }
+.ch-tablist [role="tab"][aria-selected="true"] { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); }
+.ch-tablist [role="tab"]:focus-visible { outline: 2px solid var(--hana-blue); outline-offset: -2px; }
+.ch-panel { border: 0; border-radius: 0; box-shadow: none; background: transparent; padding: 22px 22px 20px; }
+.ch-tabs.is-ready .ch-panel[hidden] { display: none; }
+.ch-tabs:not(.is-ready) .ch-panel + .ch-panel { border-top: 1px solid var(--line); }
+.ch-panel-intro { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin: 0 0 20px; }
+.ch-panel-intro a { color: var(--hana-blue-deep); text-decoration: none; border-bottom: 1px solid var(--line); }
+.ch-panel-intro a:hover { color: var(--hana-blue); }
+.ch-inquiries .cf-field label { font-size: 13.5px; }
+.ch-inquiries .cf-field label .hint { font-size: 12.5px; }
+.ch-inquiries .cf-field input, .ch-inquiries .cf-field select, .ch-inquiries .cf-field textarea { font-size: 14.5px; padding: 10px 12px; }
+.ch-inquiries .cf-privacy { font-size: 12.5px; }
+
+/* ---- Responsive --------------------------------------------- */
+@media (max-width: 900px) {
+  .ch-hero .ch-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .ch-hero-text .cf-hero-sub { max-width: none; }
+  .ch-hero-text { padding-bottom: 0; }
+  .ch-bar-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 560px) {
+  .ch-hero .ch-hero-inner { padding-top: 44px; padding-bottom: 0; gap: 26px; }
+  .ch-email-card { padding: 22px 20px 20px; margin-bottom: -40px; }
+  .ch-email-card h2 { font-size: 21px; }
+  .ch-email-address { font-size: 18px; }
+  .ch-email-actions .ch-btn { flex: 1 1 auto; }
+  .ch-contact-bar { padding: 72px 0 48px; }
+  .ch-offices-box { padding: 18px; }
+  .ch-hq .cf-hq-photo img { height: 150px; }
+  .ch-h2 { padding: 18px 18px 4px; }
+  .ch-tablist { padding: 0 6px; }
+  .ch-tablist [role="tab"] { padding: 13px 8px 11px; }
+  .ch-panel { padding: 20px 18px 18px; }
+  .ch-panel .ch-btn { width: 100%; }
+}
