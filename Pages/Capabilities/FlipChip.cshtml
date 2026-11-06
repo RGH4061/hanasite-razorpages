@@ -46,7 +46,7 @@
     <h1 style="font-family:var(--font-display);font-size:46px;font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-0.03em;margin:0 0 18px;max-width:740px;text-wrap:balance;">Flip chip and wire bond</h1>
     <p style="font-family:var(--font-text);font-size:18px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0 0 14px;text-wrap:pretty;">Hana assembles IC packages with flip chip and wire bond interconnect. Bumped die are placed face-down and bonded through C4 solder bumps or copper pillars, which supports short interconnects, high I/O density and a low package profile. Die attach and wire bonding run in the same OSAT flow for packages that use wire-bonded or mixed interconnect.</p>
     <p style="font-family:var(--font-text);font-size:14.5px;color:var(--ink-2);line-height:1.55;max-width:660px;margin:0 0 32px;">Bonding die onto ceramic, glass or PCB with gold-to-gold (GGI) or adhesive processes? See <a href="/capabilities/microelectronic-assembly/precision-flip-chip" style="color:var(--hana-blue-deep);text-decoration:underline;text-underline-offset:2px;">Precision Flip Chip Bonding</a>.</p>
-    <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:407px;"><img src="/images/cap-osat-flip-chip-hero-v2.webp" alt="Die placement head and wafer ring on a flip-chip bonder" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 35%;" /></div>
+    <div style="position:relative;overflow:hidden;border-radius:10px;border:1px solid var(--line);background:var(--surface);width:100%;height:407px;"><img src="/images/cap-osat-flip-chip-hero-v3.webp" alt="Panel of small round circuit assemblies with surface-mount components and gold pads" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 50%;" /></div>
     <div class="hana-spec-block" style="margin-top:18px;"><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Min bump pitch</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:22px;">80µm</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Bump types</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">C4 / Cu</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Underfill</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">CUF / NUF</div></div><div class="hana-spec-item"><div class="hana-spec-label" style="display:block;margin-bottom:8px;">Verification</div><div class="hana-spec-value" style="font-family:var(--font-mono);font-size:17px;">3D X-ray</div></div></div>
   </div></div></div>
 
@@ -88,15 +88,20 @@
 .fc-geo li::before{content:"\203A";position:absolute;left:0;top:5px;color:#7EC8FF;font-weight:700;}
 .fc-geo-note{font-family:var(--font-text);font-size:13px;line-height:1.55;color:rgba(255,255,255,.7);margin:20px 0 0;}
 @@media(max-width:700px){.fc-geo-cols{grid-template-columns:1fr;}.fc-geo-in{padding:26px 22px;}}
+/* photo on the right of the panel, faded into the Midnight background (phones: photo on top) */
+.fc-geo.has-pic{display:grid;grid-template-columns:minmax(0,1fr) 345px;}
+.fc-geo-pic{position:relative;min-height:220px;}
+.fc-geo-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%;display:block;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 20%);mask-image:linear-gradient(to right,transparent 0,#000 20%);}
+@@media(max-width:700px){.fc-geo.has-pic{grid-template-columns:1fr;}.fc-geo-pic{order:-1;min-height:170px;}.fc-geo-pic img{-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent);}}
 </style>
-<div style="background:#fff;"><div class="cap-section"><div id="die-attach-wire-bond" class="fc-geo" data-hana-geo="side" data-geo-theme="midnight"><div class="fc-geo-in">
+<div style="background:#fff;"><div class="cap-section"><div id="die-attach-wire-bond" class="fc-geo has-pic" data-hana-geo="side" data-geo-theme="midnight"><div class="fc-geo-in">
   <h2>Die attach and wire bond</h2>
   <div class="fc-geo-cols">
     <div><h3>Die attach</h3><ul><li>Epoxy and eutectic attach, including AuSn for RF packages</li><li>Solder, silver-sinter and die-attach film for power and thin packages &middot; <a href="/capabilities/osat/power-packages" style="color:#fff;text-decoration:underline;text-underline-offset:2px;">Power Packages</a></li><li>Low-stress attach for MEMS and sensor die &middot; <a href="/capabilities/microelectronic-assembly/mems-sensor-assembly" style="color:#fff;text-decoration:underline;text-underline-offset:2px;">MEMS &amp; Sensor Assembly</a></li></ul></div>
     <div><h3>Wire bond</h3><ul><li>Gold and aluminum wire</li><li>Heavy copper wire or copper clip for power modules &middot; <a href="/capabilities/osat/power-packages" style="color:#fff;text-decoration:underline;text-underline-offset:2px;">Power Packages</a></li><li>Pull and shear testing to MIL-STD-883 methods</li></ul></div>
   </div>
   <p class="fc-geo-note">Wire bonding of bare die directly onto circuit boards is covered under <a href="/capabilities/pcba-box-build/cob-assembly" style="color:#fff;text-decoration:underline;text-underline-offset:2px;">Chip-on-Board Assembly</a>.</p>
-</div></div></div></div>
+</div><div class="fc-geo-pic"><img src="/images/cap-osat-flip-chip-hero-v2.webp" alt="Die placement head and wafer ring on a flip-chip bonder" loading="lazy" /></div></div></div></div>
 
 
 <div style="background:#fff;"><div class="cap-section" style="padding-top:0;"><div data-hana-bg="pcb" data-variant="dark" data-accent="" data-fade="none" style="margin:0;padding:30px 34px;border-radius:var(--radius-panel);background:var(--hana-blue-deep);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden;">
