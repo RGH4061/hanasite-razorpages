@@ -575,8 +575,8 @@ body {
 
 @media (max-width: 980px) {
   /* Careers / News are reachable from nav + footer; hide the util dupes */
-  .hana-util-bar a[href="/careers"],
-  .hana-util-bar a[href="/news"] { display: none !important; }
+  .hana-util-bar a[href="/careers"]:not(.hana-lang),
+  .hana-util-bar a[href="/news"]:not(.hana-lang) { display: none !important; }
   /* Contact is now the sole CTA — keep it visible at all widths */
   /* compact the nav so five no-wrap items + CTA fit the row */
   .hana-header :is(nav[aria-label="Primary navigation"], nav[aria-label="เมนูหลัก"]) { gap: 14px !important; }

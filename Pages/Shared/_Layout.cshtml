@@ -35,6 +35,7 @@
     // Thai draft pages (Services/ThaiDrafts.cs): /th/<route> runs the English page with a Thai overlay.
     var requestPath = Seo.Normalize(Context.Request.Path.Value);
     var isThaiDraft = ThaiDrafts.TryGetForThaiPath(requestPath, out var draftEnPath, out var draftPage);
+    var routeSet = Seo.RouteSet(EndpointSources);
     if (isThaiDraft)
     {
         ViewData["Lang"] = "th";
@@ -50,6 +51,12 @@
         ViewData["AltLang"] = "th";
         ViewData["AltLangUrl"] = "/th" + requestPath;
     }
+    else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null)
+    {
+        // No Thai version of this page: the switch opens the Thai version of the nearest page above it.
+        ViewData["AltLang"] = "th";
+        ViewData["AltLangUrl"] = ThaiDrafts.NearestThai(requestPath, routeSet);
+    }
 
     var motionProfile = ViewData["Motion"] as string;
     var lang = ViewData["Lang"] as string ?? "en";
@@ -59,7 +66,6 @@
     // The page body and its Head section render first, so the metadata can be built from them.
     // RenderSectionAsync writes straight to the output, so the Head section is captured in a buffer.
     IHtmlContent pageBody = RenderBody();
-    var routeSet = Seo.RouteSet(EndpointSources);
     if (isThaiDraft)
     {
         pageBody = new HtmlString(ThaiDrafts.Apply(Seo.ToHtml(pageBody), draftPage, Context.Request.Query["review"] == "1"));

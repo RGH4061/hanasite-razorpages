@@ -95,6 +95,15 @@ public static class ThaiDrafts
 
     public static bool HasThai(string enPath) => Current().Pages.ContainsKey(Seo.Normalize(enPath));
 
+    /// Where the language switch goes from an English page with no Thai version: the Thai
+    /// version of the nearest page above it (/careers/apply → /th/careers), else the Thai homepage.
+    public static string NearestThai(string enPath, HashSet<string> routes)
+    {
+        for (var p = Seo.Normalize(enPath); p.Length > 1; p = p[..Math.Max(p.LastIndexOf('/'), 1)])
+            if (routes.Contains("/th" + p)) return "/th" + p;
+        return "/th";
+    }
+
     // ---------------------------------------------------------------- page body
 
     static readonly Regex H1Rx = new(@"<h1\b[^>]*>(.*?)</h1>", RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled);
