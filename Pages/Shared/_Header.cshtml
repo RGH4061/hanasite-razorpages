@@ -37,7 +37,7 @@
                 
                 @if (ViewData["AltLangUrl"] != null)
                 {
-                    <a href="@ViewData["AltLangUrl"]" class="hana-lang" style="color:inherit; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <a href="@ViewData["AltLangUrl"]" class="hana-lang" title="@ViewData["AltLangTitle"]" data-lang="@(ViewData["AltLangTitle"] != null ? "th" : null)" style="color:inherit; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                         <i data-lucide="globe" style="width:13px; height:13px;"></i>
                         @if ((string?)ViewData["AltLang"] == "th") { <span lang="th">ไทย</span> } else { <span>EN</span> }
                     </a>

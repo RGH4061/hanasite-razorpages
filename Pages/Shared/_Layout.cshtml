@@ -51,6 +51,14 @@
         ViewData["AltLang"] = "th";
         ViewData["AltLangUrl"] = "/th" + requestPath;
     }
+    else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null
+             && (requestPath == "/insights" || requestPath.StartsWith("/insights/", StringComparison.OrdinalIgnoreCase)))
+    {
+        // Insights is published in English only (Rupert, 6 Nov 2026): the switch shows and keeps the reader on this page.
+        ViewData["AltLang"] = "th";
+        ViewData["AltLangUrl"] = requestPath;
+        ViewData["AltLangTitle"] = "Insights is published in English only · บทความและมุมมองเผยแพร่เป็นภาษาอังกฤษเท่านั้น";
+    }
     else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null)
     {
         // No Thai version of this page: the switch opens the Thai version of the nearest page above it.

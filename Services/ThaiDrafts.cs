@@ -14,7 +14,8 @@
 //
 //  A page can also list "text": whole pieces of English text below the H1
 //  (headings, card titles, facts, buttons) with their Thai. Each piece is
-//  matched exactly, so a piece whose English changes stays English.
+//  matched exactly, so a piece whose English changes stays English. "textStatus"
+//  (default approved) is the review status of those pieces.
 //
 //  New routes in the JSON need a restart (routes are registered at startup);
 //  text changes are picked up on the next request.
@@ -30,7 +31,7 @@ namespace HanaSite.Services;
 public static class ThaiDrafts
 {
     public sealed record Line(string En, string Th, string Status);
-    public sealed record Page(string Title, string Description, Line? H1, Line? Lede, IReadOnlyDictionary<string, string> Text);
+    public sealed record Page(string Title, string Description, Line? H1, Line? Lede, IReadOnlyDictionary<string, string> Text, string TextStatus);
     sealed record Data(Dictionary<string, string> Labels, Dictionary<string, Page> Pages);
 
     static string _file = "";
@@ -70,7 +71,9 @@ public static class ThaiDrafts
                 var text = new Dictionary<string, string>(StringComparer.Ordinal);
                 if (v.TryGetProperty("text", out var t))
                     foreach (var x in t.EnumerateObject()) text[Collapse(x.Name)] = x.Value.GetString() ?? "";
-                pages[Seo.Normalize(p.Name)] = new Page(Str(v, "title"), Str(v, "description"), LineOf(v, "h1"), LineOf(v, "lede"), text);
+                var textStatus = Str(v, "textStatus");
+                pages[Seo.Normalize(p.Name)] = new Page(Str(v, "title"), Str(v, "description"), LineOf(v, "h1"), LineOf(v, "lede"), text,
+                    textStatus.Length > 0 ? textStatus : "approved");
             }
         return new(labels, pages);
     }
@@ -169,8 +172,8 @@ public static class ThaiDrafts
             var below = H1Rx.Match(html);
             var start = below.Index + below.Length;
             var used = new HashSet<string>(StringComparer.Ordinal);
-            html = html[..start] + TranslateText(html[start..], page.Text, used, review);
-            notes.Add(("Text", $"{used.Count} of {page.Text.Count}"));
+            html = html[..start] + TranslateText(html[start..], page.Text, used, review, page.TextStatus);
+            notes.Add(("Text", $"{page.TextStatus}, {used.Count} of {page.Text.Count}"));
         }
 
         if (review) html = ReviewPanel(notes) + html;
@@ -227,7 +230,7 @@ public static class ThaiDrafts
         return sb.ToString();
     }
 
-    static string TranslateText(string html, IReadOnlyDictionary<string, string> map, HashSet<string> used, bool review)
+    static string TranslateText(string html, IReadOnlyDictionary<string, string> map, HashSet<string> used, bool review, string status)
     {
         var sb = new StringBuilder();
         var last = 0;
@@ -244,7 +247,7 @@ public static class ThaiDrafts
             var trail = raw[raw.TrimEnd().Length..];
             // "\n" in the Thai stays a newline; the fact rows that hold two lines use white-space:pre-line.
             var enc = WebUtility.HtmlEncode(th);
-            if (review) enc = $"<span class=\"thd-mark thd-approved\">{enc}</span>";
+            if (review) enc = $"<span class=\"thd-mark thd-{Slug(status)}\">{enc}</span>";
             sb.Append(html, last, g.Index - last).Append(lead).Append(enc).Append(trail);
             last = g.Index + g.Length;
         }
@@ -254,7 +257,7 @@ public static class ThaiDrafts
 
     static string ReviewPanel(List<(string Item, string Status)> notes)
     {
-        var rows = string.Concat(notes.Select(n => $"<span class=\"thd-mark thd-{(n.Item == "Text" ? "approved" : Slug(n.Status))}\">{n.Item}: {n.Status}</span> "));
+        var rows = string.Concat(notes.Select(n => $"<span class=\"thd-mark thd-{Slug(n.Item == "Text" ? n.Status.Split(',')[0] : n.Status)}\">{n.Item}: {n.Status}</span> "));
         return "<style>.thd-panel{position:fixed;right:16px;bottom:16px;z-index:999;background:#fff;border:1px solid #d0d5dd;border-radius:8px;padding:10px 12px;font:13px/1.6 var(--font-thai);box-shadow:0 8px 24px rgba(3,10,23,.15);display:flex;gap:6px;flex-wrap:wrap;max-width:360px}"
              + ".thd-mark{border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}"
              + ".thd-approved{background:rgba(46,160,67,.22)}.thd-adjusted{background:rgba(9,105,218,.2)}.thd-draft{background:rgba(212,167,44,.35)}"
