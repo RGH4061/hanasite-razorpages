@@ -29,9 +29,7 @@
     "/capabilities/microelectronic-assembly/mems-sensor-assembly": "/capabilities/microelectronic-assembly/mems-sensor-assembly"
   };
   const MAX_EDGE = 41;
-  /* PREVIEW ONLY (?pf=v2): row links read "Details" and land on the owner page's package
-     table; a short filtered list gets one "email us about these packages" line. */
-  const V2 = /[?&]pf=v2(&|$)/.test(location.search);
+  /* Owner pages with a package table at #package-reference; "Details" links land there. */
   const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
   const SALES = "info-request@hanaus.com";
   /* Body-size pair. The leading delimiter group keeps the digits from being read out of a
@@ -179,7 +177,7 @@
     if (catsEl) catsEl.innerHTML = CATS.map(c => `<button type="button" class="pf-chip" data-c="${esc(c)}">${esc(c)}</button>`).join("");
     if (gradesEl) gradesEl.innerHTML = GRADES.map(g => `<button type="button" class="pf-chip" data-g="${esc(g)}">${esc(g)}</button>`).join("");
 
-    /* PREVIEW ONLY: one contact line for a short filtered list, with the packages named in the email. */
+    /* One contact line under any searched or filtered list, with the packages named in the email. */
     /* Up to 10 rows the subject names the packages; above that it names the search or filters. */
     const foundBar = (rows, raw) => {
       const names = [...new Set(rows.map(r => r.pkg + (r.bs ? " " + r.bs : "")))];
@@ -390,7 +388,7 @@
           ${hasThk ? `<td class="pf-num" data-l="Thickness">${esc(thkText(r) || "—")}</td>` : ""}
           ${hasLeads ? `<td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>` : ""}
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
-          ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r) + (V2 && ANCHORED.has(r.own) ? "#package-reference" : ""))}">${V2 ? "Details" : "Page"} &rarr;</a>` : ""}</td>` : ""}
+          ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r) + (ANCHORED.has(r.own) ? "#package-reference" : ""))}">Details &rarr;</a>` : ""}</td>` : ""}
         </tr>`;
       const body = g => {
         if (!fold || g.items.length <= SHOW_ROWS) return g.items.map(row).join("");
@@ -406,7 +404,7 @@
           ? `<tr class="pf-grp"><th colspan="${span}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
         ${body(g)}</tbody>`).join("")}</table></div>`
-        + (V2 && !folding ? foundBar(rows, raw) : "")
+        + (!folding ? foundBar(rows, raw) : "")
         /* Power rows carry a maximum die size (PM package capabilities deck, Oct 2026). */
         + (rows.some(r => r.die) ? `<p class="pf-die-n">Maximum die size can be adjusted after design and process evaluation.</p>` : "")
         + (showThk ? thkPanel(maxThk) : "");
