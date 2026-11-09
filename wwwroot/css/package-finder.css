@@ -56,11 +56,11 @@
 .pf-table th:not([data-geo-theme]){background:var(--pf-midnight);color:rgba(255,255,255,.94)}
 .pf-cols th{border-top:1px solid rgba(255,255,255,.1)}
 .pf-cols--solo th{border-top:0}
-.pf-table th{color:#fff;text-align:left;font-family:var(--font-text);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:11px 16px;white-space:nowrap}
+.pf-table th{color:#fff;text-align:left;font-family:var(--font-text);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:11px 12px;white-space:nowrap}
 .pf-table th[data-k]{cursor:pointer}
 .pf-table th[data-k]:hover{color:#fff}
 .pf-arr{opacity:.5;font-size:10px;margin-left:5px}
-.pf-table td{padding:11px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2);vertical-align:top}
+.pf-table td{padding:11px 12px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2);vertical-align:top}
 .pf-table tbody tr:hover{background:var(--bg)}
 /* Category bars — one per <tbody>, Midnight fill from hana-geo-motion, no shapes. */
 .pf-grp th{color:#fff;text-align:left;font-family:var(--font-display);font-size:15px;font-weight:600;letter-spacing:-.01em;text-transform:none;padding:10px 16px;line-height:20px}
@@ -100,11 +100,13 @@
 .pf-table--thk{min-width:0}
 .pf-table--thk th{width:50%}
 /* Sticky bars. .pf-tablewrap's overflow-x makes it a scroll container, which a sticky cell
-   cannot escape. The 1080px column less 32px gutters leaves 1016px against the table's
-   860px, so only under 924px does it need to scroll sideways — and there the bars stay
-   static. Bars stack rather than push each other off (sticky cells aren't scoped to their
-   row group); that is invisible only while every bar is identical. */
-@media(min-width:924px){
+   cannot escape. The full finder table needs about 990px (six columns of nowrap figures
+   and labels; Thickness was added Nov 2026), and the page column reaches its 1014px width
+   at about 1095px viewport, so only from 1100px is overflow released for the sticky bars.
+   Below that the table scrolls sideways inside its box and the bars stay static. Bars stack
+   rather than push each other off (sticky cells aren't scoped to their row group); that is
+   invisible only while every bar is identical. */
+@media(min-width:1100px){
   .pf-tablewrap{overflow:visible}
   .pf-grp th{position:sticky;top:0;z-index:2}
   /* labels pin directly under the 40px bar; with no bar (one category) they pin to the top */
