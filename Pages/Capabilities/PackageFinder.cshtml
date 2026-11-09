@@ -8,23 +8,35 @@
 
 @section Head {
     <link rel="stylesheet" href="~/css/package-finder.css" />
+    <style>
+      .pf-top,.pf-band{background:#EFF5FA;}
+      .pf-band .pf-controls,.pf-band .pf-tablewrap{box-shadow:0 1px 2px rgba(5,26,48,.04);}
+      .pf-band > .hs-page > p{border-top-color:#D3E0EC !important;}
+    </style>
 }
 
-<div class="hs-page" data-screen-label="Package finder">
+<div class="pf-top">
+<div class="hs-page" data-screen-label="Package finder" style="padding-bottom:34px;">
   <nav aria-label="Breadcrumb" class="hs-eyebrow" style="margin-bottom:14px;">
     <a href="/capabilities" style="color:var(--ink-3);">Capabilities</a> ·
     <a href="/capabilities/osat" style="color:var(--ink-3);">OSAT</a> ·
     <span style="color:var(--hana-blue);">Package finder</span>
   </nav>
-  <div class="hs-hero" style="padding-bottom:0;margin-bottom:30px;border-bottom:0;">
+  <div class="hs-hero" style="padding-bottom:0;margin-bottom:0;border-bottom:0;">
     <h1 class="hs-h1" style="margin-top:0;">Find your package</h1>
     <p style="font-size:17px;line-height:1.6;color:var(--ink-2);max-width:var(--prose-max,680px);margin:0;">
       Our OSAT package portfolio options are constantly evolving. Filter through leaded and
       leadless bodies, automotive-qualified packages, power discretes and more.</p>
   </div>
+</div>
+</div>
+@* The whole page sits on a very light blue so the white filter panel and tables stand out. *@
+<div class="pf-band">
+<div class="hs-page" style="padding-top:32px;">
   <div data-pkgfinder></div>
   <p style="margin:32px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);max-width:var(--prose-max,680px);">
     Sizes come from Hana's OSAT package reference and give each package's family, body size, thickness, lead count and automotive grade. Whether Hana can build a package for your program is confirmed case by case, so tell us what you’re working to and we’ll get back to you.</p>
+</div>
 </div>
 
 @section Scripts {
