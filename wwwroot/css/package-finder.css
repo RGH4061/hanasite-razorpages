@@ -159,3 +159,8 @@
 .pf-more-b{background:none;border:0;padding:0;cursor:pointer;color:var(--hana-blue);font-family:var(--font-text);font-size:13px;font-weight:600}
 .pf-more-b:hover{color:var(--hana-blue-deep)}
 @media (max-width:860px){.pf-table tr.pf-more{background:none;border:0;padding:0 0 6px}.pf-table tr.pf-more td:before{content:none}}
+/* PREVIEW ONLY (?pf=v2): contact line under a short filtered list */
+.pf-found{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 0;padding:14px 18px;background:var(--white);border:1px solid var(--line);border-left:3px solid var(--hana-blue);border-radius:var(--pf-radius);font-family:var(--font-text);font-size:14px;color:var(--ink-2)}
+.pf-found > span{color:var(--ink);font-weight:600}
+.pf-found a{color:var(--hana-blue);font-weight:600;text-decoration:none}
+.pf-found a:hover{color:var(--hana-blue-deep)}

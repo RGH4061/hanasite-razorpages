@@ -29,6 +29,11 @@
     "/capabilities/microelectronic-assembly/mems-sensor-assembly": "/capabilities/microelectronic-assembly/mems-sensor-assembly"
   };
   const MAX_EDGE = 41;
+  /* PREVIEW ONLY (?pf=v2): row links read "Details" and land on the owner page's package
+     table; a short filtered list gets one "email us about these packages" line. */
+  const V2 = /[?&]pf=v2(&|$)/.test(location.search);
+  const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
+  const SALES = "info-request@hanaus.com";
   /* Body-size pair. The leading delimiter group keeps the digits from being read out of a
      package name — SOT5X3 and SOT9X3 are family names, not 5 x 3 and 9 x 3 mm bodies.
      Used by both parse() and the text-remainder strip in render(); they must not diverge. */
@@ -174,6 +179,19 @@
     if (catsEl) catsEl.innerHTML = CATS.map(c => `<button type="button" class="pf-chip" data-c="${esc(c)}">${esc(c)}</button>`).join("");
     if (gradesEl) gradesEl.innerHTML = GRADES.map(g => `<button type="button" class="pf-chip" data-g="${esc(g)}">${esc(g)}</button>`).join("");
 
+    /* PREVIEW ONLY: one contact line for a short filtered list, with the packages named in the email. */
+    /* Up to 10 rows the subject names the packages; above that it names the search or filters. */
+    const foundBar = (rows, raw) => {
+      const names = [...new Set(rows.map(r => r.pkg + (r.bs ? " " + r.bs : "")))];
+      const scope = [raw, ...pickCat, ...pickGrade,
+        maxEdge < MAX_EDGE ? "max edge " + maxEdge + " mm" : "", maxThk !== null ? "max " + maxThk + " mm thick" : ""].filter(Boolean).join(", ");
+      const subject = "Package inquiry: " + (rows.length <= 10
+        ? names.slice(0, 5).join(", ") + (names.length > 5 ? " and " + (names.length - 5) + " more" : "")
+        : scope + " (" + rows.length + " packages)");
+      const n = rows.length;
+      return `<div class="pf-found"><span>Found what you need?</span>
+        <a href="mailto:${SALES}?subject=${encodeURIComponent(subject)}">Email us about ${n === 1 ? "this package" : "these " + n + " packages"} &rarr;</a></div>`;
+    };
     const askBar = `<div class="pf-ask" data-hana-geo="band" data-geo-theme="midnight">
       <div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <div class="pf-ask-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</div></div>
@@ -372,7 +390,7 @@
           ${hasThk ? `<td class="pf-num" data-l="Thickness">${esc(thkText(r) || "—")}</td>` : ""}
           ${hasLeads ? `<td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>` : ""}
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
-          ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r))}">Page &rarr;</a>` : ""}</td>` : ""}
+          ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r) + (V2 && ANCHORED.has(r.own) ? "#package-reference" : ""))}">${V2 ? "Details" : "Page"} &rarr;</a>` : ""}</td>` : ""}
         </tr>`;
       const body = g => {
         if (!fold || g.items.length <= SHOW_ROWS) return g.items.map(row).join("");
@@ -388,6 +406,7 @@
           ? `<tr class="pf-grp"><th colspan="${span}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
         ${body(g)}</tbody>`).join("")}</table></div>`
+        + (V2 && !folding ? foundBar(rows, raw) : "")
         /* Power rows carry a maximum die size (PM package capabilities deck, Oct 2026). */
         + (rows.some(r => r.die) ? `<p class="pf-die-n">Maximum die size can be adjusted after design and process evaluation.</p>` : "")
         + (showThk ? thkPanel(maxThk) : "");
