@@ -745,6 +745,34 @@
     border-radius: 3px;
     z-index: 2;
   }
+  /* notes under a card (Ayutthaya total interest, FT1 direct holding) */
+  .gs-note {
+    position: absolute;
+    width: 180px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 9.5px;
+    line-height: 1.3;
+    color: rgba(255,255,255,0.62);
+    z-index: 2;
+  }
+  .gs-sw.parent { background: var(--hana-blue-deep); border: 1px solid rgba(255,255,255,0.35); }
+
+  /* Thai diagram (/th/investor-relations/structure): Thai font, no capitals, room to wrap */
+  .gs-th .gs-key-item,
+  .gs-th .gs-legend-note,
+  .gs-th .gs-foot,
+  .gs-th .gs-note { font-family: var(--font-thai); letter-spacing: 0; }
+  .gs-th .gs-key-item { font-size: 12px; }
+  .gs-th .gs-legend-note,
+  .gs-th .gs-foot { font-size: 12px; }
+  .gs-th .gs-note { font-size: 11px; line-height: 1.35; }
+  .gs-th .gs-nm { font-family: var(--font-thai); font-size: 12px; line-height: 1.3; letter-spacing: 0; }
+  .gs-th .gs-node.root .gs-nm { font-size: 14px; }
+  .gs-th .gs-cur { font-family: var(--font-thai); font-size: 10.5px; }
+  .gs-th .gs-meta { font-family: var(--font-thai); font-size: 10.5px; line-height: 1.25; letter-spacing: 0; text-transform: none; flex-wrap: wrap; gap: 0 6px; }
+  .gs-th .gs-meta .loc { margin-left: auto; }
+
   .gs-foot {
     position: relative;
     z-index: 1;
