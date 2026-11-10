@@ -105,7 +105,8 @@
     "Fiber-Optic Receivers": "ตัวรับสัญญาณใยแก้วนำแสง",
     "Wireless Communication Modules": "โมดูลสื่อสารไร้สาย",
     "Why Hana": "ทำไมต้อง Hana",
-    "Est. 1978": "ก่อตั้ง พ.ศ. 2521"
+    "Est. 1978": "ก่อตั้ง พ.ศ. 2521",
+    "Insights": "ข้อมูลเชิงลึก"
   },
   "pages": {
     "/capabilities": {
@@ -1209,6 +1210,20 @@
         "Quality, awards & recognition": "คุณภาพ รางวัล และการรับรองมาตรฐาน",
         "Leadership": "คณะกรรมการและผู้บริหาร"
       }
+    },
+    "/insights": {
+      "h1": {
+        "en": "Insights",
+        "th": "ข้อมูลเชิงลึก",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Technical and market perspectives from Hana Microelectronics — how EMS and OSAT manufacturing works across automotive, RFID, medical, industrial and more, and what it means when you are choosing a manufacturing partner.",
+        "th": "มุมมองด้านเทคนิคและตลาดจาก Hana Microelectronics อธิบายการผลิตแบบ EMS และ OSAT ในงานยานยนต์ RFID การแพทย์ อุตสาหกรรม และอื่น ๆ รวมถึงสิ่งที่ควรพิจารณาเมื่อเลือกพันธมิตรด้านการผลิต",
+        "status": "draft"
+      },
+      "title": "ข้อมูลเชิงลึก",
+      "description": "มุมมองด้านเทคนิคและตลาดจาก Hana Microelectronics อธิบายการผลิตแบบ EMS และ OSAT ในงานยานยนต์ RFID การแพทย์ อุตสาหกรรม และอื่น ๆ…"
     }
   }
 }

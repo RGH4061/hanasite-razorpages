@@ -17,7 +17,7 @@
     { id: 'packaging', name: 'Packaging & assembly', desc: 'OSAT and PCBA processes, test and traceability, and how to choose between them.', links: [['OSAT capabilities', '/capabilities/osat'], ['PCBA & box build', '/capabilities/pcba-box-build']] },
     { id: 'sourcing', name: 'Sourcing & supply chain', desc: 'Component supply, Asian manufacturing policy, dual-sourcing and Hana sites.', links: [['Locations', '/locations']] }
   ];
-  var P = 'images/photos/';
+  var P = '/images/photos/';  // root-relative: the page also renders at /th/insights
   var ARTICLES = [
     { t: 'Thailand\u2019s semiconductor strategy: real foundations, open questions', f: 'update', tp: 'sourcing', d: '2026-10-06', r: 4, href: '/insights/commentary/thailand-semiconductor-strategy' },
     { t: 'External laser source modules for co-packaged optics: what to watch', f: 'update', tp: 'datacenter', d: '2026-10-08', r: 3, href: '/insights/commentary/external-laser-source-co-packaged-optics' },

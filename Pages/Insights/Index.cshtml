@@ -26,11 +26,6 @@
 }
 </script>
     <link rel="stylesheet" href="~/css/insights.css" />
-    <style>
-      /* Thai name under the English title (Rupert, 10 Nov 2026). Thai letters stand about 20% shorter
-         than English capitals at the same size, so 0.7em reads as a subtitle. */
-      .ins-hero h1 .ins-h1-th { display: block; margin-top: 8px; font-size: 0.7em; font-weight: 600; line-height: 1.3; letter-spacing: 0; color: rgba(255,255,255,0.8); }
-    </style>
 }
 
 <!-- breadcrumb + updated -->
@@ -47,7 +42,7 @@
   <!-- hero -->
   <section class="ins-hero" style="background-image:url('/images/photos/insights-hero-cleanroom.webp'); height: 320px">
     <div class="hana-wrap ins-hero-inner">
-      <h1>Insights <span class="ins-h1-th" lang="th">ข้อมูลเชิงลึก</span></h1>
+      <h1>Insights</h1>
       <p class="lede">Technical and market perspectives from Hana Microelectronics — how EMS and OSAT manufacturing works across automotive, RFID, medical, industrial and more, and what it means when you are choosing a manufacturing partner.</p>
     </div>
   </section>
@@ -115,5 +110,5 @@
   </section>
 
 @section Scripts {
-    <script src="~/js/insights-hub.js"></script>
+    <script src="~/js/insights-hub.js" asp-append-version="true"></script>
 }

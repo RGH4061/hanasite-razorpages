@@ -37,9 +37,10 @@
     var isThaiDraft = ThaiDrafts.TryGetForThaiPath(requestPath, out var draftEnPath, out var draftPage);
     var routeSet = Seo.RouteSet(EndpointSources);
     // Pages published in English only, with the title note their language switch shows.
+    // The Insights landing page has a Thai version (/th/insights, 10 Nov 2026); its articles do not.
     static string? EnglishOnlyNote(string path) =>
-        path == "/insights" || path.StartsWith("/insights/", StringComparison.OrdinalIgnoreCase)
-            ? "Insights is published in English only · ข้อมูลเชิงลึกเผยแพร่เป็นภาษาอังกฤษเท่านั้น"
+        path.StartsWith("/insights/", StringComparison.OrdinalIgnoreCase)
+            ? "Insights articles are published in English only · บทความในหมวดข้อมูลเชิงลึกเผยแพร่เป็นภาษาอังกฤษเท่านั้น"
         : path == "/cookie-policy" ? "The cookie policy is published in English only · นโยบายคุกกี้เผยแพร่เป็นภาษาอังกฤษเท่านั้น"
         : path == "/sitemap" ? "The site map is published in English only · แผนผังเว็บไซต์เผยแพร่เป็นภาษาอังกฤษเท่านั้น"
         : null;
@@ -60,7 +61,7 @@
     }
     else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null && EnglishOnlyNote(requestPath) is string englishOnly)
     {
-        // English-only pages (Rupert: Insights 6 Nov 2026; cookie policy and site map 10 Nov 2026): the switch
+        // English-only pages (Rupert: Insights articles 6 Nov 2026; cookie policy and site map 10 Nov 2026): the switch
         // shows and keeps the reader on this page. The title note gives the reason in both languages.
         ViewData["AltLang"] = "th";
         ViewData["AltLangUrl"] = requestPath;
