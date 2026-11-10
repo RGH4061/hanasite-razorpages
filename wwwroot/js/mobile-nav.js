@@ -33,7 +33,7 @@
   /* Util-bar link text in each language: [lookup keys], Thai label */
   var UTIL = {
     careers:  { keys: ['careers', 'ร่วมงานกับเรา'], th: 'ร่วมงานกับเรา', en: 'Careers' },
-    insights: { keys: ['insights', 'บทความและมุมมอง'], th: 'บทความและมุมมอง', en: 'Insights' }
+    insights: { keys: ['insights', 'ข้อมูลเชิงลึก', 'บทความและมุมมอง'], th: 'ข้อมูลเชิงลึก', en: 'Insights' }
   };
   function findUtilHref(header, kw) {
     var as = header.querySelectorAll('.hana-util-bar a');

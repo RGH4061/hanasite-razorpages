@@ -36,6 +36,13 @@
     var requestPath = Seo.Normalize(Context.Request.Path.Value);
     var isThaiDraft = ThaiDrafts.TryGetForThaiPath(requestPath, out var draftEnPath, out var draftPage);
     var routeSet = Seo.RouteSet(EndpointSources);
+    // Pages published in English only, with the title note their language switch shows.
+    static string? EnglishOnlyNote(string path) =>
+        path == "/insights" || path.StartsWith("/insights/", StringComparison.OrdinalIgnoreCase)
+            ? "Insights is published in English only · ข้อมูลเชิงลึกเผยแพร่เป็นภาษาอังกฤษเท่านั้น"
+        : path == "/cookie-policy" ? "The cookie policy is published in English only · นโยบายคุกกี้เผยแพร่เป็นภาษาอังกฤษเท่านั้น"
+        : path == "/sitemap" ? "The site map is published in English only · แผนผังเว็บไซต์เผยแพร่เป็นภาษาอังกฤษเท่านั้น"
+        : null;
     if (isThaiDraft)
     {
         ViewData["Lang"] = "th";
@@ -51,13 +58,13 @@
         ViewData["AltLang"] = "th";
         ViewData["AltLangUrl"] = "/th" + requestPath;
     }
-    else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null
-             && (requestPath == "/insights" || requestPath.StartsWith("/insights/", StringComparison.OrdinalIgnoreCase)))
+    else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null && EnglishOnlyNote(requestPath) is string englishOnly)
     {
-        // Insights is published in English only (Rupert, 6 Nov 2026): the switch shows and keeps the reader on this page.
+        // English-only pages (Rupert: Insights 6 Nov 2026; cookie policy and site map 10 Nov 2026): the switch
+        // shows and keeps the reader on this page. The title note gives the reason in both languages.
         ViewData["AltLang"] = "th";
         ViewData["AltLangUrl"] = requestPath;
-        ViewData["AltLangTitle"] = "Insights is published in English only · บทความและมุมมองเผยแพร่เป็นภาษาอังกฤษเท่านั้น";
+        ViewData["AltLangTitle"] = englishOnly;
     }
     else if (ViewData["Lang"] as string != "th" && ViewData["AltLangUrl"] == null)
     {
@@ -173,7 +180,7 @@
     <script src="~/js/hana-geo-motion.js"></script>
     <script src="~/js/mega-menu.js"></script>
     <script src="~/js/section-menu.js"></script>
-    <script src="~/js/mobile-nav.js"></script>
+    <script src="~/js/mobile-nav.js" asp-append-version="true"></script>
     <script src="~/js/search/data.js"></script>
     @* engine.js reads window.HS_PACKAGES once, at load — the package card in the header
        dropdown, the mobile menu and /search all depend on this file loading first. *@
