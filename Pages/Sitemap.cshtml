@@ -1,99 +1,193 @@
 @page "/sitemap"
 @{
     ViewData["Title"] = "Site map";
-    ViewData["Description"] = "Full index of pages on the Hana Microelectronics site.";
+    ViewData["Description"] = "All pages on the Hana Microelectronics website, grouped by section: capabilities, markets, locations, company information, investor relations and careers.";
+
+    // One array per column; each column stacks one or more sections.
+    // A section's items are its top-level links; Kids are the sub-pages listed under a link.
+    // Labels follow the header mega-menu so the two read the same.
+    var columns = new Sec[][]
+    {
+        new Sec[]
+        {
+            S("Capabilities",
+                L("All capabilities", "/capabilities"),
+                L("PCBA & Box Build Assembly", "/capabilities/pcba-box-build",
+                    L("SMT Assembly", "/capabilities/pcba-box-build/smt-assembly"),
+                    L("COB Assembly", "/capabilities/pcba-box-build/cob-assembly"),
+                    L("Box Build Assembly", "/capabilities/pcba-box-build/box-build")
+                ),
+                L("OSAT Services", "/capabilities/osat",
+                    L("Package Finder", "/capabilities/osat/package-finder"),
+                    L("Package Design & Simulation", "/capabilities/osat/package-design"),
+                    L("Power Packages (IGBT, SiC & GaN)", "/capabilities/osat/power-packages"),
+                    L("QFN, DFN & LGA", "/capabilities/osat/qfn-dfn-lga"),
+                    L("Clear & Optical Packaging", "/capabilities/osat/optical-packaging"),
+                    L("Hermetic & Ceramic Packaging", "/capabilities/osat/hermetic-ceramic"),
+                    L("Ultra-small Packages", "/capabilities/osat/ultra-small-packages"),
+                    L("System in Package (SiP)", "/capabilities/osat/system-in-package"),
+                    L("Wafer Processing", "/capabilities/osat/wafer-processing"),
+                    L("Wafer Level Packaging", "/capabilities/osat/wafer-level-packaging"),
+                    L("Flip Chip & Interconnect", "/capabilities/osat/flip-chip"),
+                    L("Wafer Probe & Final Test", "/capabilities/osat/wafer-probe-final-test")
+                ),
+                L("Microelectronic Assembly", "/capabilities/microelectronic-assembly",
+                    L("Precision Flip Chip (GGI)", "/capabilities/microelectronic-assembly/precision-flip-chip"),
+                    L("MEMS & Sensor Assembly", "/capabilities/microelectronic-assembly/mems-sensor-assembly"),
+                    L("Precision Interconnect", "/capabilities/microelectronic-assembly/precision-interconnect"),
+                    L("Micro-Assembly", "/capabilities/microelectronic-assembly/micro-assembly")
+                ),
+                L("RFID & Smart Tags", "/capabilities/rfid-smart-tags"),
+                L("Automation & Smart Manufacturing", "/capabilities/automation",
+                    L("Robotic & Smart Manufacturing", "/capabilities/automation/robotic-smart-manufacturing"),
+                    L("Manufacturing Traceability", "/capabilities/automation/mes-traceability")
+                ),
+                L("DFx & JDM Collaboration", "/capabilities/dfx-jdm",
+                    L("Design for Excellence (DFx / DFM)", "/capabilities/dfx-jdm/dfx-dfm"),
+                    L("Joint Development Model (JDM)", "/capabilities/dfx-jdm/jdm"),
+                    L("New Product Introduction (NPI)", "/capabilities/dfx-jdm/npi")
+                )
+            ),
+        },
+        new Sec[]
+        {
+            S("Markets",
+                L("All markets", "/markets"),
+                L("Automotive", "/markets/automotive",
+                    L("Power Modules", "/markets/automotive/power-modules"),
+                    L("Automotive PCBA", "/markets/automotive/automotive-pcba"),
+                    L("Sensor Assembly", "/markets/automotive/sensor-assembly"),
+                    L("LED Lighting", "/markets/automotive/led-lighting")
+                ),
+                L("Industrial & IoT", "/markets/industrial-iot",
+                    L("PCBA & Box Build", "/markets/industrial-iot/pcba-box-build"),
+                    L("Industrial IoT Devices", "/markets/industrial-iot/iot-device-assembly")
+                ),
+                L("Telecommunications", "/markets/telecom",
+                    L("RF Modules & Power Amplifiers", "/markets/telecom/rf-assembly")
+                ),
+                L("RFID", "/markets/rfid",
+                    L("RFID Cards", "/markets/rfid/rfid-cards"),
+                    L("Tags & Inlays", "/markets/rfid/rfid-tags-inlays"),
+                    L("RFID Tire Tags", "/markets/rfid/rfid-tire-tags")
+                ),
+                L("Optical & sensors", "/markets/optical-sensors",
+                    L("Camera Modules", "/markets/optical-sensors/camera-modules")
+                ),
+                L("Consumer electronics", "/markets/consumer",
+                    L("SMT & Sensors", "/markets/consumer/smt-sensors"),
+                    L("Wireless Charging", "/markets/consumer/wireless-charging")
+                ),
+                L("Medical", "/markets/medical",
+                    L("Hearing Aid Assembly", "/markets/medical/hearing-aid-assembly"),
+                    L("Medical MEMS & Sensors", "/markets/medical/mems-sensors"),
+                    L("Medical PCBA & Box Build", "/markets/medical/pcba"),
+                    L("Wireless Charging", "/markets/medical/wireless-charging")
+                ),
+                L("Access control", "/markets/access-control",
+                    L("RFID Cards", "/markets/access-control/rfid-cards"),
+                    L("Smart Lock Assembly", "/markets/access-control/smart-lock-assembly")
+                ),
+                L("Power management", "/markets/power-management"),
+                L("Data Centers", "/markets/data-centers")
+            ),
+        },
+        new Sec[]
+        {
+            S("About",
+                L("Why Hana", "/about"),
+                L("Leadership", "/about/leadership"),
+                L("History", "/about/history"),
+                L("Quality & certifications", "/about/quality")
+            ),
+            S("Locations",
+                L("All locations", "/locations"),
+                L("Ayutthaya, Thailand", "/locations/ayutthaya"),
+                L("Lamphun, Thailand", "/locations/lamphun"),
+                L("Jiaxing, China", "/locations/jiaxing"),
+                L("Koh Kong, Cambodia", "/locations/koh-kong"),
+                L("Ohio, USA", "/locations/ohio")
+            ),
+            S("Insights",
+                L("Insights", "/insights")
+            ),
+        },
+        new Sec[]
+        {
+            S("Investor Relations",
+                L("IR overview", "/investor-relations"),
+                L("Investor Financial News", "/investor-relations/news"),
+                L("Group Structure & Shareholders", "/investor-relations/structure"),
+                L("Annual Reports", "/investor-relations/annual"),
+                L("Sustainability", "/investor-relations/esg"),
+                L("Governance Documents", "/investor-relations/governance"),
+                L("Investor Events & Contacts", "/investor-relations/contact"),
+                L("Investor FAQ & Knowledge Hub", "/investor-relations/faq")
+            ),
+            S("Careers",
+                L("Careers", "/careers"),
+                L("Hana Stories", "/careers/stories")
+            ),
+            S("Contact",
+                L("Contact us", "/contact")
+            ),
+            S("Legal",
+                L("Privacy policy", "/privacy-policy"),
+                L("Terms of use", "/terms-of-use"),
+                L("Cookie policy", "/cookie-policy")
+            ),
+        },
+    };
+}
+@functions {
+    public record Link(string Label, string Href, Link[] Kids);
+    public record Sec(string Title, Link[] Items);
+    static Link L(string label, string href, params Link[] kids) => new(label, href, kids);
+    static Sec S(string title, params Link[] items) => new(title, items);
 }
 @section Head {
     <link rel="stylesheet" href="~/css/sitemap.css" />
 }
 
+<div class="sm">
+  <header class="sm-head">
+    <h1 class="sm-title">Site map</h1>
+    <p class="sm-lede">All pages on the Hana Microelectronics website, grouped by section.</p>
+    <ul class="sm-quick">
+      <li><a href="/">Home</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/th" lang="th">ภาษาไทย</a></li>
+    </ul>
+  </header>
 
-
-
-
-
-
-<div class="wrap">
-  <div class="head">
-    <h1 class="title">Site map &amp; page index</h1>
-    <p class="lede">Every page in this site, wired together through the shared header, footer, and mega-menu. Click any card to open it. Start from <a href="/" style="color:var(--hana-blue); text-decoration:none; border-bottom:1px solid currentColor;">the homepage</a>.</p>
+  <div class="sm-grid">
+    @foreach (var column in columns)
+    {
+      <div class="sm-col">
+        @foreach (var sec in column)
+        {
+          <section class="sm-sec">
+            <h2 class="sm-sec-title">@sec.Title</h2>
+            <ul class="sm-list">
+              @foreach (var item in sec.Items)
+              {
+                <li class="@(item.Kids.Length > 0 ? "has-kids" : null)">
+                  <a class="sm-l1" href="@item.Href">@item.Label</a>
+                  @if (item.Kids.Length > 0)
+                  {
+                    <ul class="sm-kids">
+                      @foreach (var kid in item.Kids)
+                      {
+                        <li><a class="sm-l2" href="@kid.Href">@kid.Label</a></li>
+                      }
+                    </ul>
+                  }
+                </li>
+              }
+            </ul>
+          </section>
+        }
+      </div>
+    }
   </div>
-
-  <div id="content">
-      <section>
-        <h2 class="sec-title">Home</h2>
-        <p class="sec-note">The corporate homepage — site root.</p>
-        <a class="card hub" href="/"><span class="route">Home</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/</span></a>
-        
-      </section>
-      <section>
-        <h2 class="sec-title">About</h2>
-        <p class="sec-note">Why Hana is the section entry point, branching to heritage, leadership, and recognition.</p>
-        <a class="card hub" href="/about"><span class="route">About · Why Hana</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/about</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">3 pages</div><div class="grid grid-3"><a class="card " href="/about/history"><span class="route">Our heritage</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/about/history</span></a><a class="card " href="/about/leadership"><span class="route">Leadership</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/about/leadership</span></a><a class="card " href="/about/quality"><span class="route">Quality & awards</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/about/quality</span></a></div></div>
-      </section>
-      <section>
-        <h2 class="sec-title">Capabilities</h2>
-        <p class="sec-note">Hub → six service lines. Each line links to its sub-capability detail pages.</p>
-        <a class="card hub" href="/capabilities"><span class="route">Capabilities · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">6 pages</div><div class="grid grid-3"><a class="card " href="/capabilities/pcba-box-build"><span class="route">PCBA & Box Build</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/pcba-box-build</span></a><a class="card " href="/capabilities/osat"><span class="route">OSAT</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/osat</span></a><a class="card " href="/capabilities/microelectronic-assembly"><span class="route">Microelectronic Assembly</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/microelectronic-assembly</span></a><a class="card " href="/capabilities/automation"><span class="route">Automation &amp; Smart Manufacturing</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/automation</span></a><a class="card " href="/capabilities/dfx-jdm"><span class="route">DFx & JDM</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/dfx-jdm</span></a><a class="card " href="/capabilities/rfid-smart-tags"><span class="route">RFID & Smart Tags</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/capabilities/rfid-smart-tags</span></a></div></div>
-      </section>
-      <section>
-        <h2 class="sec-title">Markets</h2>
-        <p class="sec-note">Ten market hubs, each with its own sub-market pages where the content exists. Data Centers is a hub-only page while that market develops.</p>
-        <a class="card hub" href="/markets/automotive"><span class="route">Automotive · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">5 pages</div><div class="grid grid-3"><a class="card " href="/markets/automotive/power-modules"><span class="route">Power Modules</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive/power-modules</span></a><a class="card " href="/markets/automotive/automotive-pcba"><span class="route">Automotive PCBA</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive/automotive-pcba</span></a><a class="card " href="/markets/automotive/sensor-assembly"><span class="route">Sensor Assembly</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive/sensor-assembly</span></a><a class="card " href="/markets/automotive/led-lighting"><span class="route">LED Lighting</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/automotive/led-lighting</span></a></div></div>
-        <a class="card hub" href="/markets/industrial-iot"><span class="route">Industrial &amp; IoT · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/industrial-iot</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">4 pages</div><div class="grid grid-3"><a class="card " href="/markets/industrial-iot/pcba-box-build"><span class="route">PCBA &amp; Box Build</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/industrial-iot/pcba-box-build</span></a><a class="card " href="/markets/industrial-iot/iot-device-assembly"><span class="route">Industrial IoT Devices</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/industrial-iot/iot-device-assembly</span></a></div></div>
-        <a class="card hub" href="/markets/medical"><span class="route">Medical · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/medical</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">4 pages</div><div class="grid grid-3"><a class="card " href="/markets/medical/hearing-aid-assembly"><span class="route">Hearing Aid Assembly</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/medical/hearing-aid-assembly</span></a><a class="card " href="/markets/medical/mems-sensors"><span class="route">Medical MEMS &amp; Sensors</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/medical/mems-sensors</span></a><a class="card " href="/markets/medical/pcba"><span class="route">Medical PCBA &amp; Box Build</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/medical/pcba</span></a><a class="card " href="/markets/medical/wireless-charging"><span class="route">Wireless Charging</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/medical/wireless-charging</span></a></div></div>
-        <a class="card hub" href="/markets/rfid"><span class="route">RFID · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/rfid</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">3 pages</div><div class="grid grid-3"><a class="card " href="/markets/rfid/rfid-cards"><span class="route">RFID Cards</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/rfid/rfid-cards</span></a><a class="card " href="/markets/rfid/rfid-tags-inlays"><span class="route">Tags &amp; Inlays</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/rfid/rfid-tags-inlays</span></a><a class="card " href="/markets/rfid/rfid-tire-tags"><span class="route">RFID Tire Tags</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/rfid/rfid-tire-tags</span></a></div></div>
-        <a class="card hub" href="/markets/access-control"><span class="route">Access Control · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/access-control</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">2 pages</div><div class="grid grid-3"><a class="card " href="/markets/access-control/rfid-cards"><span class="route">RFID Cards</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/access-control/rfid-cards</span></a><a class="card " href="/markets/access-control/smart-lock-assembly"><span class="route">Smart Lock Assembly</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/access-control/smart-lock-assembly</span></a></div></div>
-        <a class="card hub" href="/markets/consumer"><span class="route">Consumer Electronics · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/consumer</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">2 pages</div><div class="grid grid-3"><a class="card " href="/markets/consumer/smt-sensors"><span class="route">SMT &amp; Sensors</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/consumer/smt-sensors</span></a><a class="card " href="/markets/consumer/wireless-charging"><span class="route">Wireless Charging</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/consumer/wireless-charging</span></a></div></div>
-        <a class="card hub" href="/markets/optical-sensors"><span class="route">Optical &amp; Sensors · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/optical-sensors</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">1 page</div><div class="grid grid-3"><a class="card " href="/markets/optical-sensors/camera-modules"><span class="route">Camera Modules</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/optical-sensors/camera-modules</span></a></div></div>
-        <a class="card hub" href="/markets/power-management"><span class="route">Power Management · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/power-management</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">2 pages</div><div class="grid grid-3"></div></div>
-        <a class="card hub" href="/markets/telecom"><span class="route">Telecommunications · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/telecom</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">1 page</div><div class="grid grid-3"><a class="card " href="/markets/telecom/rf-assembly"><span class="route">RF Modules &amp; Power Amplifiers</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/telecom/rf-assembly</span></a></div></div>
-        <a class="card hub" href="/markets/data-centers"><span class="route">Data Centers · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/markets/data-centers</span></a>
-      </section>
-      <section>
-        <h2 class="sec-title">Locations</h2>
-        <p class="sec-note">Hub → six plant detail pages. Each plant links back to the hub.</p>
-        <a class="card hub" href="/locations"><span class="route">Locations · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/locations</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">5 pages</div><div class="grid grid-3"><a class="card " href="/locations/ayutthaya"><span class="route">Ayutthaya, Thailand</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/locations/ayutthaya</span></a><a class="card " href="/locations/lamphun"><span class="route">Lamphun, Thailand</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/locations/lamphun</span></a><a class="card " href="/locations/jiaxing"><span class="route">Jiaxing, China</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/locations/jiaxing</span></a><a class="card " href="/locations/ohio"><span class="route">Solon, Ohio (USA)</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/locations/ohio</span></a><a class="card " href="/locations/koh-kong"><span class="route">Koh Kong, Cambodia</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/locations/koh-kong</span></a></div></div>
-      </section>
-      <section>
-        <h2 class="sec-title">Investor Relations</h2>
-        <p class="sec-note">Hub → seven sections. SET-listed (HANA).</p>
-        <a class="card hub" href="/investor-relations"><span class="route">Investor Relations · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">7 pages</div><div class="grid grid-3"><a class="card " href="/investor-relations/news"><span class="route">Investor News</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/news</span></a><a class="card " href="/investor-relations/annual"><span class="route">Annual Reports</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/annual</span></a><a class="card " href="/investor-relations/governance"><span class="route">Governance Documents</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/governance</span></a><a class="card " href="/investor-relations/structure"><span class="route">Group Structure & Shareholders</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/structure</span></a><a class="card " href="/investor-relations/faq"><span class="route">Investor FAQ</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/faq</span></a><a class="card " href="/investor-relations/contact"><span class="route">Investor Events & Contact</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/contact</span></a><a class="card " href="/investor-relations/esg"><span class="route">Sustainability</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/investor-relations/esg</span></a></div></div>
-      </section>
-      <section>
-        <h2 class="sec-title">Careers</h2>
-        <p class="sec-note">Hub → stories, an example job post, the application form, and data consent.</p>
-        <a class="card hub" href="/careers"><span class="route">Careers · Hub</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/careers</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">4 pages</div><div class="grid grid-3"><a class="card " href="/careers/stories"><span class="route">Hana Stories</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/careers/stories</span></a><a class="card " href="/careers/job-post"><span class="route">Job Post</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/careers/job-post</span></a><a class="card " href="/careers/apply"><span class="route">Application Form</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/careers/apply</span></a><a class="card " href="/careers/consent"><span class="route">Data Consent</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/careers/consent</span></a></div></div>
-      </section>
-      <section>
-        <h2 class="sec-title">Contact</h2>
-        <p class="sec-note">Sales email, regional offices and forms for investor, careers, supplier and other inquiries.</p>
-        <a class="card hub" href="/contact"><span class="route">Contact</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/contact</span></a>
-        <span class="tree-v"></span><div class="branch"><div class="branch-label">1 page</div><div class="grid grid-3"><a class="card " href="/contact/anonymous"><span class="route">Anonymous complaint channel</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/contact/anonymous</span></a></div></div>
-      </section>
-      <section>
-        <h2 class="sec-title">Legal</h2>
-        <p class="sec-note">Policy pages, linked from the footer.</p>
-        <div class="grid grid-3"><a class="card " href="/privacy-policy"><span class="route">Privacy policy</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/privacy-policy</span></a><a class="card " href="/terms-of-use"><span class="route">Terms of use</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/terms-of-use</span></a><a class="card " href="/cookie-policy"><span class="route">Cookie policy</span><span class="file"><svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>/cookie-policy</span></a></div>
-      </section>
-
-  </div>
-
-  <footer>
-    <p>Routes are defined per page via the Razor <span style="font-family:var(--font-mono)">@@page</span> directive. All ten market hubs and their sub-market pages are live. Insights is built but held back until the first articles are ready. Thai pages currently cover Investor Relations and the privacy policy. See <span style="font-family:var(--font-mono)">README.md</span> for how to serve and where routes are defined.</p>
-  </footer>
 </div>
