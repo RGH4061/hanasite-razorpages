@@ -9,7 +9,8 @@
   var MAP_W = 1000, MAP_H = 352;
   var POS = {
     ohio: [269, 68], jiaxing: [766, 122],
-    lamphun: [737, 178], ayutthaya: [741, 189], 'koh-kong': [746, 200]
+    lamphun: [737, 178], ayutthaya: [741, 189], 'koh-kong': [746, 200],
+    'bangkok-hq': [729, 191]
   };
   var LINE = '#FFFFFF', PIN = '#FF883E';
   var FLAG = { Thailand: 'th', China: 'cn', USA: 'us', Cambodia: 'kh' };
@@ -26,8 +27,8 @@
       + '<span style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);">' + esc(p.country) + (p.status === 'affiliate' ? ' &middot; Affiliate' : '') + '</span></div>'
       + '<div style="font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.1;margin-bottom:5px;">' + esc(p.city) + '</div>'
       + '<div style="font-size:11.5px;color:var(--ink-2);line-height:1.45;margin-bottom:8px;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;">' + esc(p.summary) + '</div>'
-      + '<a href="' + esc(p.url) + '" style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:' + accent + ';text-decoration:none;display:inline-flex;align-items:center;gap:5px;">' + esc(viewLabel(p))
-      + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="' + accent + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div>';
+      + (!p.url ? '</div>' : '<a href="' + esc(p.url) + '" style="font-size:11px;font-weight:700;letter-spacing:0.04em;color:' + accent + ';text-decoration:none;display:inline-flex;align-items:center;gap:5px;">' + esc(viewLabel(p))
+      + '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="' + accent + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div>');
   }
 
   function build(container, plants, accent) {
