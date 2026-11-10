@@ -7,7 +7,7 @@
     ViewData["Description"] = "Frequently asked questions for Hana investors.";
 }
 @section Head {
-    <link rel="stylesheet" href="~/css/investors-faq.css" />
+    <link rel="stylesheet" href="~/css/investors-faq.css" asp-append-version="true" />
 }
 
 @* Investor FAQ — Hana Microelectronics. Static content. *@
@@ -64,7 +64,7 @@
           <li>
             <a href="#shares-dividends">
               <span>Shares &amp; Dividends</span>
-              <span class="count">4</span>
+              <span class="count">6</span>
             </a>
           </li>
           <li>
@@ -462,8 +462,8 @@
         <header class="section-head">
           <h2>Shares &amp; Dividends</h2>
           <p class="intro">
-            How Hana shares are listed and traded, and how the company approaches
-            dividends.
+            How Hana shares are listed and traded, the company's share capital,
+            and its dividend policy and payment history.
           </p>
         </header>
 
@@ -471,20 +471,60 @@
           <details class="faq">
             <summary><span class="q">Where are Hana Microelectronics shares listed?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana Microelectronics Public Company Limited is listed on the Stock Exchange of Thailand (SET) under the ticker symbol <strong>HANA</strong>. Shares are denominated and traded in Thai baht (THB).</p>
+              <p>Hana Microelectronics Public Co., Ltd. is listed on the Stock Exchange of Thailand (SET) under the stock code <strong>HANA</strong>. Shares are traded in Thai baht (THB).</p>
+              <dl class="faq-dl">
+                <div><dt>Name</dt><dd>Hana Microelectronics Public Co., Ltd.</dd></div>
+                <div><dt>Stock Code</dt><dd><strong>HANA</strong></dd></div>
+                <div><dt>Capital Market</dt><dd>The Stock Exchange of Thailand (SET)</dd></div>
+                <div><dt>Company Registration No.</dt><dd>0107536000773</dd></div>
+              </dl>
             </div>
           </details>
           <details class="faq">
-            <summary><span class="q">What is Hana's dividend policy?</span><span class="chev" aria-hidden="true">+</span></summary>
+            <summary><span class="q">What is Hana's share capital?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana's policy is to pay dividends from the company's net profit, subject to the company's financial position, investment plans, and Board approval. Dividend payments are announced to the SET following Board and, where required, shareholder approval.</p>
-              <p>Historical dividend records are available on the <a href="/investor-relations/news">Investor News</a> page.</p>
+              <dl class="faq-dl">
+                <div><dt>Registered Share Capital</dt><dd>885,366,746 ordinary shares at par value of Baht 1.00</dd></div>
+                <div><dt>Paid-up Capital</dt><dd>885,366,660 ordinary shares at par value of Baht 1.00</dd></div>
+                <div><dt>Par Value</dt><dd>Baht 1.00 per share</dd></div>
+              </dl>
+            </div>
+          </details>
+          <details class="faq">
+            <summary><span class="q">Dividend Policy</span><span class="chev" aria-hidden="true">+</span></summary>
+            <div class="a">
+              <p>The Company has a policy to pay dividends to shareholders at a rate of not less than 30% of its consolidated net profit, after deduction of corporate income tax and allocation to statutory reserves as required by law. The actual dividend payment shall depend on the Company’s operating results, financial position, cash flow, investment plans, and other factors as deemed appropriate by the Board of Directors, and shall be in compliance with applicable laws and regulations. Accordingly, the dividend payout ratio may be lower or higher than the above rate, and may exceed 100% of consolidated net profit where deemed appropriate by the Board of Directors.</p>
+              <p>The dividend policy of the subsidiaries is to pay dividends to the Company based on their operating results, financial position, cash flow, investment plans, and business requirements, as deemed appropriate by their respective boards of directors and in compliance with applicable laws and regulations.</p>
+            </div>
+          </details>
+          <details class="faq">
+            <summary><span class="q">Dividend Payment History</span><span class="chev" aria-hidden="true">+</span></summary>
+            <div class="a">
+              <p>Earnings and dividends per share for the last ten financial years. Each payment is announced to the SET and published on the <a href="/investor-relations/news">Investor News</a> page.</p>
+              <div class="divtable-wrap">
+                <table class="divtable">
+                  <caption class="sr-only">Dividend payment history, 2016 to 2025</caption>
+                  <thead><tr><th scope="col">Year</th><th scope="col">EPS</th><th scope="col">Interim Dividend<br>(Baht/Share)</th><th scope="col">Annual Dividend<br>(Baht/Share)</th><th scope="col">Total<br>(Baht/Share)</th><th scope="col">%<br>Payout</th></tr></thead>
+                  <tbody>
+                  <tr><th scope="row">2025</th><td>0.76</td><td>0.25</td><td>0.75</td><td>1.00</td><td>132%</td></tr>
+                  <tr><th scope="row">2024</th><td>(0.72)</td><td>0.25</td><td>0.50</td><td>0.75</td><td>&ndash;</td></tr>
+                  <tr><th scope="row">2023</th><td>2.14</td><td>0.50</td><td>0.50</td><td>1.00</td><td>47%</td></tr>
+                  <tr><th scope="row">2022</th><td>2.61</td><td>0.50</td><td>0.50</td><td>1.00</td><td>38%</td></tr>
+                  <tr><th scope="row">2021</th><td>1.92</td><td>1.00</td><td>1.00</td><td>2.00</td><td>104%</td></tr>
+                  <tr><th scope="row">2020</th><td>2.37</td><td>0.65</td><td>0.75</td><td>1.40</td><td>59%</td></tr>
+                  <tr><th scope="row">2019</th><td>2.24</td><td>0.65</td><td>0.65</td><td>1.30</td><td>58%</td></tr>
+                  <tr><th scope="row">2018</th><td>2.95</td><td>1.00</td><td>1.00</td><td>2.00</td><td>68%</td></tr>
+                  <tr><th scope="row">2017</th><td>3.59</td><td>1.00</td><td>1.00</td><td>2.00</td><td>56%</td></tr>
+                  <tr><th scope="row">2016</th><td>2.62</td><td>1.00</td><td>1.00</td><td>2.00</td><td>76%</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </details>
           <details class="faq">
             <summary><span class="q">When does Hana pay dividends?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Dividends are typically considered alongside the full-year results and approved at the Annual General Meeting, with payment following the record date set in the SET announcement. Any interim dividend is announced separately.</p>
+              <p>Hana has paid an interim dividend and an annual dividend in each year from 2016 to 2025. The annual dividend is considered alongside the full-year results and approved at the Annual General Meeting, with payment following the record date set in the SET announcement. Interim dividends are announced separately.</p>
             </div>
           </details>
           <details class="faq">

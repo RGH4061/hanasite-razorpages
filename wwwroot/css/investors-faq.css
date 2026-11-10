@@ -669,3 +669,19 @@
 }
 .sectionnav .footer-link a:hover,
 .sidenav .footer-link a:hover { color: var(--hana-blue-deep); border-bottom-color: var(--hana-blue); background: none; }
+
+/* Shares & Dividends: company details as label/value rows, and the dividend history table */
+details.faq .a .faq-dl { margin: 0 0 var(--s-3); border-top: 1px solid var(--line-soft); }
+details.faq .a .faq-dl > div { display: grid; grid-template-columns: minmax(150px, 34%) 1fr; gap: var(--s-3); padding: 9px 0; border-bottom: 1px solid var(--line-soft); font-size: 14px; line-height: 1.5; }
+details.faq .a .faq-dl dt { color: var(--ink-3); font-weight: 500; }
+details.faq .a .faq-dl dd { margin: 0; color: var(--ink); }
+details.faq .a .faq-dl:last-child { margin-bottom: 0; }
+details.faq .a .divtable-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: var(--s-3); }
+.divtable { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+.divtable th, .divtable td { padding: 8px 10px; border-bottom: 1px solid var(--line-soft); text-align: right; white-space: nowrap; }
+.divtable thead th { font-size: 11.5px; font-weight: 600; line-height: 1.3; color: var(--ink-3); white-space: nowrap; vertical-align: bottom; border-bottom: 1px solid var(--line); }
+.divtable th:first-child { text-align: left; padding-left: 0; }
+.divtable tbody th { font-weight: 600; color: var(--ink); }
+.divtable td { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.divtable td:nth-child(5) { color: var(--ink); font-weight: 600; }
+@media (max-width: 560px) { details.faq .a .faq-dl > div { grid-template-columns: 1fr; gap: 2px; } }
