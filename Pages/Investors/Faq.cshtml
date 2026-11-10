@@ -458,12 +458,11 @@
       </div>
 
       <!-- ─── 2. Shares & Dividends ─── -->
-      <section class="doc" id="shares-dividends">
+            <section class="doc" id="shares-dividends">
         <header class="section-head">
           <h2>Shares &amp; Dividends</h2>
           <p class="intro">
-            How Hana shares are listed and traded, the company's share capital,
-            and its dividend policy and payment history.
+            How Hana shares are listed and traded, and how the company approaches dividends.
           </p>
         </header>
 
@@ -471,7 +470,7 @@
           <details class="faq">
             <summary><span class="q">Where are Hana Microelectronics shares listed?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana Microelectronics Public Co., Ltd. is listed on the Stock Exchange of Thailand (SET) under the stock code <strong>HANA</strong>. Shares are traded in Thai baht (THB).</p>
+              <p>Hana Microelectronics Public Company Limited is listed on the Stock Exchange of Thailand (SET) under the ticker symbol <strong>HANA</strong>. Shares are denominated and traded in Thai baht (THB).</p>
               <dl class="faq-dl">
                 <div><dt>Name</dt><dd>Hana Microelectronics Public Co., Ltd.</dd></div>
                 <div><dt>Stock Code</dt><dd><strong>HANA</strong></dd></div>
@@ -491,13 +490,14 @@
             </div>
           </details>
           <details class="faq">
-            <summary><span class="q">Dividend Policy</span><span class="chev" aria-hidden="true">+</span></summary>
+            <summary><span class="q">What is Hana's dividend policy?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
               <p>The Company has a policy to pay dividends to shareholders at a rate of not less than 30% of its consolidated net profit, after deduction of corporate income tax and allocation to statutory reserves as required by law. The actual dividend payment shall depend on the Company’s operating results, financial position, cash flow, investment plans, and other factors as deemed appropriate by the Board of Directors, and shall be in compliance with applicable laws and regulations. Accordingly, the dividend payout ratio may be lower or higher than the above rate, and may exceed 100% of consolidated net profit where deemed appropriate by the Board of Directors.</p>
               <p>The dividend policy of the subsidiaries is to pay dividends to the Company based on their operating results, financial position, cash flow, investment plans, and business requirements, as deemed appropriate by their respective boards of directors and in compliance with applicable laws and regulations.</p>
+              <p>Historical dividend records are shown under <a href="#dividend-history" data-open-faq>Dividend Payment History</a> below.</p>
             </div>
           </details>
-          <details class="faq">
+          <details class="faq" id="dividend-history">
             <summary><span class="q">Dividend Payment History</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
               <p>Earnings and dividends per share for the last ten financial years. Each payment is announced to the SET and published on the <a href="/investor-relations/news">Investor News</a> page.</p>
@@ -524,7 +524,7 @@
           <details class="faq">
             <summary><span class="q">When does Hana pay dividends?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana has paid an interim dividend and an annual dividend in each year from 2016 to 2025. The annual dividend is considered alongside the full-year results and approved at the Annual General Meeting, with payment following the record date set in the SET announcement. Interim dividends are announced separately.</p>
+              <p>Dividends are typically considered alongside the full-year results and approved at the Annual General Meeting, with payment following the record date set in the SET announcement. Any interim dividend is announced separately.</p>
             </div>
           </details>
           <details class="faq">
@@ -550,13 +550,13 @@
           <details class="faq">
             <summary><span class="q">When does Hana's financial year end?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana's financial year runs from 1 January to 31 December. The company reports results on a quarterly basis (Q1–Q4) in line with SET requirements.</p>
+              <p>Hana's financial year runs from 1 January to 31 December. The company reports results on a quarterly basis in line with SET requirements.</p>
             </div>
           </details>
           <details class="faq">
             <summary><span class="q">How often does Hana report results?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana publishes quarterly financial statements together with a Management Discussion &amp; Analysis (MD&amp;A), and a full-year Annual Report (Form 56-1 One Report). Each release is announced to the SET and made available on the company's Investor Relations pages.</p>
+              <p>Hana publishes quarterly financial statements together with a Management’s Discussion &amp; Analysis (MD&amp;A), and a full-year Annual Report (Form 56-1 One Report). Each release is announced to the SET and made available on the company's Investor Relations pages.</p>
             </div>
           </details>
           <details class="faq">
@@ -599,7 +599,7 @@
           <details class="faq">
             <summary><span class="q">When was Hana listed on the SET?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>Hana Microelectronics has been listed on the Stock Exchange of Thailand since 01 Feb 1993. Listing details and the company's history are summarized in the Annual Report.</p>
+              <p>Hana Microelectronics has been listed on the Stock Exchange of Thailand since 01 Feb 1993. Listing details are summarized in the Annual Report.</p>
             </div>
           </details>
           <details class="faq">
@@ -642,6 +642,9 @@
   </section>
 
 @section Scripts {
+<script>
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-open-faq]');if(!a)return;var d=document.querySelector(a.getAttribute('href'));if(d&&d.tagName==='DETAILS'){d.open=true;}});
+</script>
     <script>
 document.querySelectorAll('.detail .tab').forEach(function(tab){
   tab.addEventListener('click', function(){
