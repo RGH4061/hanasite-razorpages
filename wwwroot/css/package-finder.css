@@ -373,7 +373,7 @@
 .pf-add--demo{cursor:default;padding:1px 8px;margin:0 2px;font-size:12px;vertical-align:1px;pointer-events:none}
 
 /* Finder page band: inquiry list on the left, custom sizes on the right */
-.pf-ask--two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:0;padding:0}
+.pf-ask--two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;padding:0;align-items:stretch}
 .pf-ask--two .pf-ask-part{padding:22px 26px}
 .pf-ask--two .pf-ask-part--custom{display:flex;flex-direction:column;align-items:flex-start;gap:14px;border-left:1px solid rgba(255,255,255,.16)}
 .pf-ask--two .pf-ask-part--custom .pf-btn{margin-left:0}
@@ -388,3 +388,26 @@
   .pf .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td.pf-pk{padding-right:84px}
 }
 .pf-tray .pf-tokx .pf-tray-bs{font-size:12px;font-weight:400;color:var(--ink-2)}
+/* Band halves (12 Nov 2026): equal width, headings level, one action each */
+.pf-ask--two .pf-ask-part{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px 28px}
+.pf-ask--two .pf-ask-part .pf-ask-s{margin-top:0}
+.pf-ask--two .pf-ask-part--custom{gap:16px}
+.pf-ask--custom .pf-ask-t{flex:1 1 320px}
+@media(max-width:860px){
+  .pf-ask--two .pf-ask-part{padding:16px 18px;gap:8px}
+  .pf-ask--two .pf-ask-part--custom{gap:12px}
+  .pf-ask--two .pf-ask-t{font-size:16px;line-height:1.3}
+  .pf-ask--two .pf-ask-s{font-size:13px;line-height:1.55}
+  .pf-ask--two .pf-btn{padding:9px 14px}
+}
+/* Outline button in the two-part band (Rupert, 12 Nov 2026), so the custom-size email
+   reads as the second route and the "+ Add" buttons lead. The no-match message keeps the
+   solid button, where it is the only action. */
+.pf-ask--two .pf-btn{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.75);padding:10px 21px}
+.pf-ask--two .pf-btn:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.pf-ask--two .pf-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:860px){.pf-ask--two .pf-btn{padding:8px 13px}}
+/* Left half (Rupert, 12 Nov 2026): stronger white text and a slightly larger title */
+.pf-ask--two .pf-ask-part--add .pf-ask-t{font-size:22px}
+.pf-ask--two .pf-ask-part--add .pf-ask-s{color:rgba(255,255,255,.95)}
+@media(max-width:860px){.pf-ask--two .pf-ask-part--add .pf-ask-t{font-size:18px}}

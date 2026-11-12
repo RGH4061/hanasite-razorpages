@@ -387,14 +387,20 @@
         + (t.length > 1 ? `<button type="button" class="pf-xall">Clear all</button>` : "");
     };
 
-    const askCustom = `<div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
-      <div class="pf-ask-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</div></div>
-      <a class="pf-btn" href="${L("/contact")}">Email your target package specification</a>`;
-    const askBar = `<div class="pf-ask" data-hana-geo="band" data-geo-theme="midnight">${askCustom}</div>`;
+    /* Custom sizes (Rupert, 12 Nov 2026): heading and one button, no explanatory line. The
+       button opens an email, not the contact page; its body asks for what the removed line
+       used to ask for (body size, lead count, thickness). */
+    const CUSTOM_SUBJECT = "Custom Packaging Requirements Hana Microelectronics Group";
+    const CUSTOM_BODY = "Hello,\n\nWe are looking for a custom package. Our requirements:\n\n"
+      + "Package type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\nThank you.";
+    const customMail = "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(CUSTOM_BODY);
+    const askCustom = `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
+      <a class="pf-btn" href="${esc(customMail)}">Email your package specification needs</a>`;
+    const askBar = `<div class="pf-ask pf-ask--custom" data-hana-geo="band" data-geo-theme="midnight">${askCustom}</div>`;
     /* Above every table the band explains the inquiry list, ahead of the rows: listed
        packages on the left, custom sizes on the right. The empty state keeps askBar. */
     const askTwo = `<div class="pf-ask pf-ask--two" data-hana-geo="band" data-geo-theme="midnight">
-      <div class="pf-ask-part"><div class="pf-ask-t">Send one inquiry for several packages</div>
+      <div class="pf-ask-part pf-ask-part--add"><div class="pf-ask-t">Send one inquiry for several packages</div>
         <div class="pf-ask-s">Click <span class="pf-add pf-add--demo" aria-hidden="true"><span>+</span> Add</span> on each package you need. They collect in your inquiry, ready to email to us in one message.</div></div>
       <div class="pf-ask-part pf-ask-part--custom">${askCustom}</div></div>`;
 
