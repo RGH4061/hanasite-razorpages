@@ -342,3 +342,14 @@
 }
 /* Embedded tables: the category bar spans the card column on phones, as on the finder */
 @media(max-width:860px){.pf--embed .pf-grp th:nth-child(1){display:block}}
+/* Phone cards (Rupert, 12 Nov 2026): Details sits at the bottom right of the card, level
+   with the Auto grade row, instead of on its own line under a divider. Under 360px it drops
+   to a short line of its own so it cannot meet a wide grade badge such as AEC-Q101. */
+@media(max-width:860px){
+  .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more){position:relative;padding-bottom:14px}
+  .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td:not([data-l]):not(.pf-pk):not(.pf-sel){position:absolute;right:0;bottom:14px;text-align:right;padding:0;border-top:0;display:block}
+  .pf-table td .pf-go{font-size:12.5px;line-height:22px;white-space:nowrap}
+}
+@media(max-width:359px){
+  .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td:not([data-l]):not(.pf-pk):not(.pf-sel){position:static;grid-column:1/-1;margin-top:-4px}
+}
