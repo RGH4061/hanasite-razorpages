@@ -89,7 +89,8 @@
    off and the table fits the content column. Five columns now that Category has gone. */
 .pf--embed .pf-table{min-width:420px}
 .pf--embed .pf-table th,.pf--embed .pf-table td{padding-left:12px;padding-right:12px}
-.pf--embed .pf-table th:nth-child(5),.pf--embed .pf-table td:nth-child(5){display:none}
+/* (Removed 12 Nov 2026: a rule hiding the 5th column of embedded tables. Since Thickness
+   was added it hid Auto grade, and it would have hidden the Inquiry column.) */
 .pf--embed .pf-grp th:nth-child(1){display:table-cell}
 /* Thickness ladder — shown under the results when leadless DFN/QFN rows are in view.
    Two columns only, so it opts out of the 860px min-width the main table needs. */
@@ -232,11 +233,9 @@
   .pf--page .pf-cols--solo th{top:var(--pf-st,40px)}
 }
 
-/* Tick boxes */
+/* Inquiry column (+ Add buttons) */
 .pf-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.pf--page .pf-table .pf-sel-h,.pf--page .pf-table td.pf-sel{width:34px;padding-left:14px;padding-right:0}
-.pf--page td.pf-sel input{width:16px;height:16px;margin:2px 0 0;accent-color:var(--hana-blue);cursor:pointer}
-.pf--page .pf-table tr.is-sel td{background:#EAF3FC}
+.pf .pf-table tr.is-sel td{background:#EAF3FC}
 
 /* Corner card: dark Midnight, warm accent on the count and the email button. The orange
    carries dark text; white on #FF883E is about 2.3:1. Picks are light chips. */
@@ -290,15 +289,14 @@
   /* The specification button wraps instead of being cut off by the panel edge */
   .pf-btn{flex:1 1 100%;white-space:normal;text-align:center;line-height:1.5}
   /* Phone cards: the tick box sits at the top right of each card, not on a line of its own */
-  .pf--page .pf-table tbody tr{position:relative}
-  .pf--page .pf-table td.pf-sel{position:absolute;top:14px;right:16px;width:auto;padding:0}
-  .pf--page .pf-table td.pf-sel:before{content:none}
-  .pf--page .pf-table td.pf-sel input{width:20px;height:20px;margin:0}
-  .pf--page .pf-table td.pf-pk{padding-right:36px}
+  .pf .pf-table tbody tr{position:relative}
+  .pf .pf-table td.pf-sel{position:absolute;top:14px;right:16px;width:auto;padding:0}
+  .pf .pf-table td.pf-sel:before{content:none}
+  .pf .pf-table td.pf-pk{padding-right:36px}
 }
 @media(max-width:860px){
-  .pf--page .pf-table tr.is-sel{background:#EAF3FC;border-color:#BBD7F2}
-  .pf--page .pf-table tr.is-sel td{background:none}
+  .pf .pf-table tr.is-sel{background:#EAF3FC;border-color:#BBD7F2}
+  .pf .pf-table tr.is-sel td{background:none}
 }
 /* Where the site header is pinned (phones), the pinned line and the table bars sit under it */
 .pf--page .pf-status{top:var(--pf-hdr,0px)}
@@ -327,7 +325,7 @@
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;padding:14px 16px 12px}
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td{padding:0;min-width:0}
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td.pf-pk{grid-column:1/-1;margin:0;font-size:16px;line-height:1.3}
-  .pf--page .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td.pf-pk{padding-right:34px}
+  .pf .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td.pf-pk{padding-right:34px}
   .pf-table td.pf-pk .pf-det{margin-top:3px;font-size:12.5px;font-weight:400;line-height:1.4}
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td[data-l]{display:flex;flex-direction:column;align-items:flex-start;gap:3px;white-space:normal;font-size:14px;color:var(--ink)}
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td[data-l]:before{display:block;min-width:0;font-size:10px;line-height:1.2}
@@ -335,7 +333,7 @@
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td:not([data-l]):not(.pf-pk):not(.pf-sel){grid-column:1/-1;display:flex;justify-content:flex-end;padding-top:10px;border-top:1px solid var(--line)}
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td:not([data-l]):not(.pf-pk):not(.pf-sel):empty{display:none}
   .pf-table td .pf-go{font-size:13px;font-weight:600}
-  .pf--page .pf-table td.pf-sel{top:12px;right:14px}
+  .pf .pf-table td.pf-sel{top:12px;right:14px}
 }
 @media(max-width:860px){
   .pf-tray-in{gap:12px;padding:10px 14px}
@@ -363,3 +361,30 @@
   .pf--embed .pf-rows .pf-row--size:has(.pf-sz + .pf-sz) > .pf-sz:first-of-type{flex:0 0 calc(100% - 118px)}
   .pf--embed .pf-rows .pf-row--size > .pf-sz + .pf-sz{margin-left:118px}
 }
+
+/* "+ Add" / "✓ Added" in the last column, replacing the tick boxes (Rupert, 12 Nov 2026) */
+.pf .pf-table .pf-sel-h,.pf .pf-table td.pf-sel{width:1%;padding-left:6px;padding-right:14px;text-align:right;white-space:nowrap}
+.pf-add{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border:1px solid var(--hana-blue);border-radius:4px;background:#fff;color:var(--hana-blue);font-family:var(--font-text);font-size:12.5px;font-weight:600;line-height:1.3;cursor:pointer;white-space:nowrap}
+.pf-add:hover{background:#E6F0FA}
+.pf-add.on{background:var(--hana-blue);color:#fff}
+.pf-add.on:hover{background:var(--hana-blue-deep,#0E4A7C);border-color:var(--hana-blue-deep,#0E4A7C)}
+.pf-add:focus-visible{outline:2px solid var(--hana-blue);outline-offset:2px}
+/* the inline sample in the band is not a control */
+.pf-add--demo{cursor:default;padding:1px 8px;margin:0 2px;font-size:12px;vertical-align:1px;pointer-events:none}
+
+/* Finder page band: inquiry list on the left, custom sizes on the right */
+.pf-ask--two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:0;padding:0}
+.pf-ask--two .pf-ask-part{padding:22px 26px}
+.pf-ask--two .pf-ask-part--custom{display:flex;flex-direction:column;align-items:flex-start;gap:14px;border-left:1px solid rgba(255,255,255,.16)}
+.pf-ask--two .pf-ask-part--custom .pf-btn{margin-left:0}
+.pf-ask--two .pf-ask-s{line-height:1.6}
+
+@media(max-width:860px){
+  .pf-ask--two{grid-template-columns:minmax(0,1fr)}
+  .pf-ask--two .pf-ask-part{padding:18px 20px}
+  .pf-ask--two .pf-ask-part--custom{border-left:0;border-top:1px solid rgba(255,255,255,.16)}
+  /* phone cards: the Add button sits at the top right, beside the package name */
+  .pf .pf-table td.pf-sel{position:absolute;top:12px;right:14px;width:auto;padding:0}
+  .pf .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td.pf-pk{padding-right:84px}
+}
+.pf-tray .pf-tokx .pf-tray-bs{font-size:12px;font-weight:400;color:var(--ink-2)}

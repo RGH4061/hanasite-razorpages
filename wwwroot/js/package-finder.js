@@ -141,8 +141,8 @@
        filter rows (Nov 2026): an "All" chip and a count on every chip, package-type chips,
        an Automotive / Non-automotive switch, body-edge presets, Reset and a line of active
        filters. A row shows only where it offers a choice for the packages in scope.
-       FULL marks what only the finder page has: tick boxes and the corner card, the pinned
-       filter line and the filters in the address bar. */
+       Every finder also has the "+ Add" buttons and the inquiry card. FULL marks what only
+       the finder page has: the pinned filter line and the filters in the address bar. */
     const FULL = !embed;
     const AUTO_CAT = "Automotive-qualified packages";
     const isAuto = r => !!r.grade && r.grade !== "Industrial";
@@ -236,7 +236,7 @@
       </div>
       <div class="pf-status"><div class="pf-count"></div><div class="pf-active" hidden></div></div>
       <div class="pf-out"></div>
-      ${FULL ? `<div class="pf-tray" hidden role="region" aria-label="Selected packages"></div>` : ""}`;
+      <div class="pf-tray" hidden role="region" aria-label="Your package inquiry"></div>`;
 
     const q = root.querySelector(".pf-q"), parseEl = root.querySelector(".pf-parse");
     const catsEl = root.querySelector(".pf-cats"), gradesEl = root.querySelector(".pf-grades");
@@ -244,11 +244,27 @@
     const thkEl = root.querySelector(".pf-thkr"), thkvEl = root.querySelector(".pf-thkv");
     const thkLabel = () => maxThk === null ? "any" : "\u2264 " + maxThk.toFixed(2) + " mm";
     const countEl = root.querySelector(".pf-count"), outEl = root.querySelector(".pf-out");
-    /* Full page: buyers tick packages across searches and send one enquiry naming them all.
-       Ticks survive filter changes; they are held for this visit only. */
-    const KEY = new Map(scope.map((r, i) => [r, i]));
+    /* Buyers add packages across searches and pages and send one inquiry naming them all.
+       Picks are keyed by position in the full reference, and kept for the visit
+       (sessionStorage) under each package's name, description, size and thickness, so a
+       package added on the QFN page is still in the card on the Power page or the finder.
+       The list stays in the visitor's browser and clears when the tab is closed. */
+    const KEY = new Map(ALL.map((r, i) => [r, i]));
+    const SKEY = r => [r.t, r.pkg, r.bs || "", r.detail || "", r.thk || ""].join("|");
+    const STORE = "hana-pf-inquiry";
     const picked = new Set();
+    try {
+      const saved = new Set(JSON.parse(sessionStorage.getItem(STORE) || "[]"));
+      ALL.forEach((r, i) => { if (saved.has(SKEY(r))) picked.add(i); });
+    } catch (e) {}
+    const save = () => {
+      try { sessionStorage.setItem(STORE, JSON.stringify(ALL.filter((r, i) => picked.has(i)).map(SKEY))); } catch (e) {}
+    };
     const trayEl = root.querySelector(".pf-tray");
+    /* The card is fixed to the window. Capability pages fade their sections in with a
+       transform, which would anchor a fixed element to the section instead, so the card
+       lives directly on the body. */
+    if (trayEl) document.body.appendChild(trayEl);
     const pkgLine = r => [r.pkg, r.bs, thkText(r) ? thkText(r) + " thick" : "",
       r.leads.length ? r.leads.join("/") + " leads" : "", r.grade].filter(Boolean).join(", ");
     const mailto = rows => {
@@ -263,13 +279,13 @@
     };
     const tray = () => {
       if (!trayEl) return;
-      const rows = scope.filter(r => picked.has(KEY.get(r)));
+      const rows = ALL.filter(r => picked.has(KEY.get(r)));
       trayEl.hidden = !rows.length;
       document.body.classList.toggle("pf-tray-on", !!rows.length);
       if (!rows.length) { trayEl.innerHTML = ""; setSt(); return; }
       const SHOW = 6, n = rows.length;
       trayEl.innerHTML = `<div class="pf-tray-in" data-geo-theme="midnight">
-        <div class="pf-tray-n"><b class="pf-tray-badge">${n}</b> package${n === 1 ? "" : "s"} selected</div>
+        <div class="pf-tray-n"><b class="pf-tray-badge">${n}</b> package${n === 1 ? "" : "s"} in your inquiry</div>
         <div class="pf-tray-list">${rows.slice(0, SHOW).map(r =>
           `<button type="button" class="pf-tokx" data-unsel="${KEY.get(r)}" aria-label="Remove ${esc(r.pkg)}">${esc(r.pkg)}${r.bs ? ` <span class="pf-tray-bs">${esc(r.bs)}</span>` : ""}<span aria-hidden="true">&times;</span></button>`).join("")}
           ${n > SHOW ? `<span class="pf-tray-more">+${n - SHOW} more</span>` : ""}</div>
@@ -286,14 +302,25 @@
       root.style.setProperty("--pf-hdr", (h && getComputedStyle(h).position === "sticky" ? h.offsetHeight : 0) + "px");
     });
     if (FULL) window.addEventListener("resize", setSt);
+    /* "+ Add" / "✓ Added": a labelled toggle reads as an action, where a bare tick box
+       gave no hint of what it did (Rupert, 12 Nov 2026). */
+    const ADD = '<span aria-hidden="true">+</span> Add', ADDED = '<span aria-hidden="true">&#10003;</span> Added';
+    const addBtn = r => {
+      const k = KEY.get(r), on = picked.has(k);
+      return `<button type="button" class="pf-add${on ? " on" : ""}" data-sel="${k}" aria-pressed="${on}" aria-label="Add ${esc(r.pkg + (r.bs ? " " + r.bs : ""))} to your inquiry">${on ? ADDED : ADD}</button>`;
+    };
     const setPick = (k, on) => {
       on ? picked.add(k) : picked.delete(k);
-      outEl.querySelectorAll(`[data-sel="${k}"]`).forEach(c => { c.checked = on; c.closest("tr").classList.toggle("is-sel", on); });
+      save();
+      outEl.querySelectorAll(`[data-sel="${k}"]`).forEach(b => {
+        b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); b.innerHTML = on ? ADDED : ADD;
+        b.closest("tr").classList.toggle("is-sel", on);
+      });
       tray();
     };
-    if (FULL) {
-      outEl.addEventListener("change", e => {
-        const c = e.target.closest("[data-sel]"); if (c) setPick(+c.dataset.sel, c.checked);
+    {
+      outEl.addEventListener("click", e => {
+        const b = e.target.closest("button[data-sel]"); if (b) setPick(+b.dataset.sel, !picked.has(+b.dataset.sel));
       });
       trayEl.addEventListener("click", e => {
         if (e.target.closest(".pf-tray-clear")) { [...picked].forEach(k => setPick(k, false)); return; }
@@ -360,23 +387,16 @@
         + (t.length > 1 ? `<button type="button" class="pf-xall">Clear all</button>` : "");
     };
 
-    /* One contact line under any searched or filtered list, with the packages named in the email. */
-    /* Up to 10 rows the subject names the packages; above that it names the search or filters. */
-    const foundBar = (rows, raw) => {
-      const names = [...new Set(rows.map(r => r.pkg + (r.bs ? " " + r.bs : "")))];
-      const scope = [raw, ...pickCat, ...pickFam, app === "auto" ? "automotive" : app === "non" ? "non-automotive" : "", ...pickGrade,
-        maxEdge < MAX_EDGE ? "max edge " + maxEdge + " mm" : "", maxThk !== null ? "max " + maxThk + " mm thick" : ""].filter(Boolean).join(", ");
-      const subject = "Package inquiry: " + (rows.length <= 10
-        ? names.slice(0, 5).join(", ") + (names.length > 5 ? " and " + (names.length - 5) + " more" : "")
-        : scope + " (" + rows.length + " packages)");
-      const n = rows.length;
-      return `<div class="pf-found"><span>Found what you need?</span>
-        <a href="mailto:${SALES}?subject=${encodeURIComponent(subject)}">Email us about ${n === 1 ? "this package" : "these " + n + " packages"} &rarr;</a></div>`;
-    };
-    const askBar = `<div class="pf-ask" data-hana-geo="band" data-geo-theme="midnight">
-      <div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
+    const askCustom = `<div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <div class="pf-ask-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</div></div>
-      <a class="pf-btn" href="${L("/contact")}">Email your target package specification</a></div>`;
+      <a class="pf-btn" href="${L("/contact")}">Email your target package specification</a>`;
+    const askBar = `<div class="pf-ask" data-hana-geo="band" data-geo-theme="midnight">${askCustom}</div>`;
+    /* Above every table the band explains the inquiry list, ahead of the rows: listed
+       packages on the left, custom sizes on the right. The empty state keeps askBar. */
+    const askTwo = `<div class="pf-ask pf-ask--two" data-hana-geo="band" data-geo-theme="midnight">
+      <div class="pf-ask-part"><div class="pf-ask-t">Send one inquiry for several packages</div>
+        <div class="pf-ask-s">Click <span class="pf-add pf-add--demo" aria-hidden="true"><span>+</span> Add</span> on each package you need. They collect in your inquiry, ready to email to us in one message.</div></div>
+      <div class="pf-ask-part pf-ask-part--custom">${askCustom}</div></div>`;
 
     function nearest(dims) {
       if (!dims) return "";
@@ -552,33 +572,33 @@
          A single category in scope gets no bar — it would only repeat the page. */
       /* Column labels repeat under each category bar, so they stay in view with it. */
       const cols = solo => `<tr class="pf-cols${solo ? " pf-cols--solo" : ""}">
-        ${FULL ? `<th scope="col" class="pf-sel-h"><span class="pf-sr">Select</span></th>` : ""}
         <th scope="col" data-k="pkg">Package ${arr("pkg")}</th>
         <th scope="col" data-k="area">Body size ${arr("area")}</th>
         ${hasThk ? `<th scope="col">Thickness</th>` : ""}
         ${hasLeads ? `<th scope="col">Leads</th>` : ""}
         <th scope="col" data-k="grade">Auto grade ${arr("grade")}</th>
-        ${hasGo ? `<th scope="col"></th>` : ""}</tr>`;
+        ${hasGo ? `<th scope="col"></th>` : ""}
+        <th scope="col" class="pf-sel-h">Inquiry</th></tr>`;
       /* A row links to the page that owns it, except on that page itself, where the
          link would only reload it. With no links left, the column goes too. */
       const goHref = r => OWN[r.own] && r.own !== own ? L(OWN[r.own]) : "";
       const hasGo = rows.some(goHref);
       const hasThk = rows.some(r => thkText(r));
-      const span = 3 + (FULL ? 1 : 0) + (hasThk ? 1 : 0) + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
+      const span = 4 + (hasThk ? 1 : 0) + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
       /* Typed filters show every match, so nothing is folded while a query is active. */
       const folding = !raw && !pickCat.size && !pickGrade.size && !pickFam.size && app === "all" && maxEdge >= MAX_EDGE && maxThk === null;
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
       /* Every table folds, including single-category ones such as QFN, DFN & LGA
          (Rupert, 24 Oct 2026). */
       const fold = folding;
-      const row = r => `<tr${FULL && picked.has(KEY.get(r)) ? ` class="is-sel"` : ""}>
-          ${FULL ? `<td class="pf-sel"><input type="checkbox" data-sel="${KEY.get(r)}"${picked.has(KEY.get(r)) ? " checked" : ""} aria-label="Select ${esc(r.pkg + (r.bs ? " " + r.bs : ""))}"></td>` : ""}
+      const row = r => `<tr${picked.has(KEY.get(r)) ? ` class="is-sel"` : ""}>
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
           <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
           ${hasThk ? `<td class="pf-num" data-l="Thickness">${esc(thkText(r) || "—")}</td>` : ""}
           ${hasLeads ? `<td class="pf-num" data-l="Leads">${r.leads.length ? esc(r.leads.join(", ")) : "—"}</td>` : ""}
           <td data-l="Auto grade">${r.grade ? `<span class="pf-grade">${esc(r.grade)}</span>` : "—"}</td>
           ${hasGo ? `<td>${goHref(r) ? `<a class="pf-go" href="${esc(goHref(r) + (ANCHORED.has(r.own) ? "#package-reference" : ""))}">Details &rarr;</a>` : ""}</td>` : ""}
+          <td class="pf-sel">${addBtn(r)}</td>
         </tr>`;
       const body = g => {
         if (!fold || g.items.length <= SHOW_ROWS) return g.items.map(row).join("");
@@ -589,12 +609,11 @@
             ? "Show fewer"
             : `Show all ${g.items.length} packages`} <span aria-hidden="true">${open ? "&uarr;" : "&darr;"}</span></button></td></tr>`;
       };
-      outEl.innerHTML = askBar + `<div class="pf-tablewrap"><table class="pf-table">
+      outEl.innerHTML = askTwo + `<div class="pf-tablewrap"><table class="pf-table">
         ${groups.map(g => `<tbody>${groups.length > 1
           ? `<tr class="pf-grp"><th colspan="${span}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
         ${body(g)}</tbody>`).join("")}</table></div>`
-        + (!folding ? foundBar(rows, raw) : "")
         /* Power rows carry a maximum die size (PM package capabilities deck, Oct 2026). */
         + (rows.some(r => r.die) ? `<p class="pf-die-n">Maximum die size can be adjusted after design and process evaluation.</p>` : "")
         + (showThk ? thkPanel(maxThk) : "");
@@ -717,6 +736,7 @@
     }
     sync();
     render();
+    tray();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
