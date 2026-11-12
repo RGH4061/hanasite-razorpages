@@ -32,6 +32,9 @@
   /* Owner pages with a package table at #package-reference; "Details" links land there. */
   const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
   const SALES = "info-request@hanaus.com";
+  /* Contact lines at the end of both inquiry emails (Rupert, 12 Nov 2026), so sales can
+     reply and route the inquiry without asking first. */
+  const CONTACT_LINES = "Name:\nPosition:\nCompany:\nCountry:\nPhone number:";
   /* On Thai pages (/th/…) links go to the Thai versions; every page the finder links to
      has one. The finder's own labels stay English. */
   const TH = document.documentElement.lang === "th";
@@ -270,11 +273,11 @@
     const mailto = rows => {
       const subject = "Package inquiry: " + rows.slice(0, 3).map(r => r.pkg + (r.bs ? " " + r.bs : "")).join("; ")
         + (rows.length > 3 ? " and " + (rows.length - 3) + " more" : "");
-      const body = "Hello,\n\nWe would like to discuss these packages from your package finder:\n\n"
+      const body = "Hello,\n\nWe would like to discuss these packages from your website:\n\n"
         /* Mail links much over 2,000 characters fail in some clients, so long lists are cut. */
-        + rows.slice(0, 15).map(r => "- " + pkgLine(r)).join("\n")
-        + (rows.length > 15 ? "\n- and " + (rows.length - 15) + " more packages" : "")
-        + "\n\nApplication:\nEstimated annual volume:\nTarget timing:\n\nThank you.";
+        + rows.slice(0, 12).map(r => "- " + pkgLine(r)).join("\n")
+        + (rows.length > 12 ? "\n- and " + (rows.length - 12) + " more packages" : "")
+        + "\n\nApplication:\nEstimated annual volume:\nTarget timing:\n\n" + CONTACT_LINES + "\n\nThank you.";
       return "mailto:" + SALES + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     };
     const tray = () => {
@@ -392,7 +395,8 @@
        used to ask for (body size, lead count, thickness). */
     const CUSTOM_SUBJECT = "Custom Packaging Requirements Hana Microelectronics Group";
     const CUSTOM_BODY = "Hello,\n\nWe are looking for a custom package. Our requirements:\n\n"
-      + "Package type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\nThank you.";
+      + "Package type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n"
+      + CONTACT_LINES + "\n\nThank you.";
     const customMail = "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(CUSTOM_BODY);
     const askCustom = `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <a class="pf-btn" href="${esc(customMail)}">Email your package specification needs</a>`;
