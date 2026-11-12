@@ -137,10 +137,12 @@
     const CATS = [...new Set(scope.map(r => r.t))];
     const GRADES = [...new Set(scope.map(r => r.grade).filter(Boolean))].sort();
     const pickCat = new Set(), pickGrade = new Set();
-    /* The full finder page (Nov 2026) has compact filter rows, an "All" chip and a count on
-       every chip, package-type chips, an Automotive / Non-automotive switch, body-edge
-       presets, a pinned line of active filters and tick boxes for one enquiry. Embedded
-       tables keep the original panel. */
+    /* Every finder (full page and the tables embedded on capability pages) uses the same
+       filter rows (Nov 2026): an "All" chip and a count on every chip, package-type chips,
+       an Automotive / Non-automotive switch, body-edge presets, Reset and a line of active
+       filters. A row shows only where it offers a choice for the packages in scope.
+       FULL marks what only the finder page has: tick boxes and the corner card, the pinned
+       filter line and the filters in the address bar. */
     const FULL = !embed;
     const AUTO_CAT = "Automotive-qualified packages";
     const isAuto = r => !!r.grade && r.grade !== "Industrial";
@@ -162,8 +164,8 @@
        not the outline, so a GaN or SiC device can come in several outlines. */
     const devText = r => [r.pkg, r.fam, r.t, r.detail].join(" ");
     const DEV_RX = [["GaN", r => /\bGaN\b/i.test(devText(r))], ["SiC", r => /\bSiC\b/i.test(devText(r))]];
-    const FAMS = FULL ? FAM_RX.filter(([, f]) => scope.filter(f).length >= 2) : [];
-    const DEVS = FULL ? DEV_RX.filter(([, f]) => scope.some(f)) : [];
+    const FAMS = FAM_RX.filter(([, f]) => scope.filter(f).length >= 2);
+    const DEVS = DEV_RX.filter(([, f]) => scope.some(f));
     const famTest = Object.fromEntries([...FAMS, ...DEVS]);
     const isDev = f => DEVS.some(([d]) => d === f);
     /* Within a group any pick matches; across the two groups both must, so QFN + GaN
@@ -174,7 +176,7 @@
     /* The reference files its 18 automotive packages under their own category. With the
        Automotive switch replacing that chip, the full page files each one under Leaded or Leadless by
        outline as well, so Automotive + Leadless finds the automotive QFNs and DFNs. */
-    const catOf = r => FULL && r.t === AUTO_CAT ? (/QFN|DFN|LGA/i.test(r.pkg) ? "Leadless packages" : "Leaded packages") : r.t;
+    const catOf = r => r.t === AUTO_CAT ? (/QFN|DFN|LGA/i.test(r.pkg) ? "Leadless packages" : "Leaded packages") : r.t;
     const appOK = (r, a) => a === "all" || (a === "auto") === isAuto(r);
     /* Every chip filter. `skip` leaves groups out, which is how a chip's count is taken:
        the rows it would show if it were the only pick in its own group. */
@@ -194,6 +196,12 @@
        finder page shows 7 (Rupert, 30 Oct 2026), embedded tables 5. */
     const SHOW_ROWS = embed ? 5 : 7, opened = new Set();
 
+    /* Which rows offer a choice here. The automotive category chip is replaced by the
+       Application switch, so it never counts towards the Category row. */
+    const CAT_CHIPS = CATS.filter(c => c !== AUTO_CAT);
+    const SHOW_CAT = CAT_CHIPS.length > 1;
+    const SHOW_FAM = FAMS.length + DEVS.length > 1;
+    const SHOW_APP = scope.some(isAuto) && scope.some(r => !isAuto(r));
     root.className = "pf" + (embed ? " pf--embed" : "") + (FULL ? " pf--page" : "");
     root.innerHTML = `
       <div class="pf-controls">
@@ -205,16 +213,16 @@
           <span class="pf-hint">try <b>Grade 0</b> or <b>3x3</b></span>
         </div>
         <div class="pf-parse"></div>
-        ${FULL ? `<button type="button" class="pf-ftoggle" aria-expanded="false"><i data-lucide="sliders-horizontal" style="width:15px;height:15px"></i> Filters<span class="pf-fcount"></span><span class="pf-fchev" aria-hidden="true">&#9662;</span></button>
+        <button type="button" class="pf-ftoggle" aria-expanded="false"><i data-lucide="sliders-horizontal" style="width:15px;height:15px"></i> Filters<span class="pf-fcount"></span><span class="pf-fchev" aria-hidden="true">&#9662;</span></button>
         <div class="pf-filters pf-rows">
-          <div class="pf-row"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>
-          <div class="pf-row"><span class="pf-label">Package type</span><div class="pf-chips pf-fams"></div></div>
-          <div class="pf-row"><span class="pf-label">Application</span>
+          ${SHOW_CAT ? `<div class="pf-row"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>` : ""}
+          ${SHOW_FAM ? `<div class="pf-row"><span class="pf-label">Package type</span><div class="pf-chips pf-fams"></div></div>` : ""}
+          ${SHOW_APP ? `<div class="pf-row"><span class="pf-label">Application</span>
             <div class="pf-seg" role="radiogroup" aria-label="Application">
               <button type="button" role="radio" data-app="all">All<span class="pf-n"></span></button>
               <button type="button" role="radio" data-app="auto">Automotive<span class="pf-n"></span></button>
               <button type="button" role="radio" data-app="non">Non-automotive<span class="pf-n"></span></button></div>
-            <div class="pf-chips pf-grades pf-grades--app" aria-label="Automotive grade"></div></div>
+            <div class="pf-chips pf-grades pf-grades--app" aria-label="Automotive grade"></div></div>` : ""}
           <div class="pf-row pf-row--size"><span class="pf-label">Size</span>
             <div class="pf-sz"><span class="pf-szl">Largest body edge, mm</span>
               <div class="pf-chips pf-edges" role="group" aria-label="Largest body edge">${EDGE_PRESETS.map(v =>
@@ -224,21 +232,9 @@
               <span class="pf-rv pf-thkv">any</span></div></div>` : ""}
             <button class="pf-clear pf-reset" type="button"><i data-lucide="rotate-ccw" style="width:13px;height:13px"></i> Reset filters</button>
           </div>
-        </div>` : `<div class="pf-filters">
-          ${CATS.length > 1 ? `<div class="pf-fgroup pf-fgroup--wide"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>` : ""}
-          <div class="pf-fside">
-          ${GRADES.length ? `<div class="pf-fgroup"><span class="pf-label">Automotive grade</span><div class="pf-chips pf-grades"></div></div>` : ""}
-          <div class="pf-fgroup"><span class="pf-label">Largest body edge</span>
-            <div class="pf-range"><input class="pf-size" type="range" min="1" max="${MAX_EDGE}" step="0.5" value="${MAX_EDGE}" aria-label="Largest body edge">
-            <span class="pf-rv">any</span></div></div>
-          ${THK_STEPS.length ? `<div class="pf-fgroup"><span class="pf-label">Maximum thickness</span>
-            <div class="pf-range"><input class="pf-thkr" type="range" min="0" max="${THK_STEPS.length}" step="1" value="${THK_STEPS.length}" aria-label="Maximum thickness">
-            <span class="pf-rv pf-thkv">any</span></div></div>` : ""}
-          <button class="pf-clear" type="button">Clear all</button>
-          </div>
-        </div>`}
+        </div>
       </div>
-      ${FULL ? `<div class="pf-status"><div class="pf-count"></div><div class="pf-active" hidden></div></div>` : `<div class="pf-count"></div>`}
+      <div class="pf-status"><div class="pf-count"></div><div class="pf-active" hidden></div></div>
       <div class="pf-out"></div>
       ${FULL ? `<div class="pf-tray" hidden role="region" aria-label="Selected packages"></div>` : ""}`;
 
@@ -306,11 +302,11 @@
     }
 
     const famsEl = root.querySelector(".pf-fams");
-    const N = FULL ? `<span class="pf-n"></span>` : "";
+    const N = `<span class="pf-n"></span>`;
     const allChip = k => `<button type="button" class="pf-chip pf-all" data-all="${k}">All${N}</button>`;
-    if (catsEl) catsEl.innerHTML = (FULL ? allChip("cat") : "") + CATS.filter(c => !FULL || c !== AUTO_CAT)
-      .map(c => `<button type="button" class="pf-chip" data-c="${esc(c)}"${FULL && CAT_SHORT[c] ? ` title="${esc(c)}"` : ""}>${esc(FULL ? CAT_SHORT[c] || c : c)}${N}</button>`).join("");
-    if (gradesEl) gradesEl.innerHTML = GRADES.filter(g => !FULL || g !== "Industrial").map(g => `<button type="button" class="pf-chip" data-g="${esc(g)}">${esc(g)}${N}</button>`).join("");
+    if (catsEl) catsEl.innerHTML = allChip("cat") + CAT_CHIPS
+      .map(c => `<button type="button" class="pf-chip" data-c="${esc(c)}"${CAT_SHORT[c] ? ` title="${esc(c)}"` : ""}>${esc(CAT_SHORT[c] || c)}${N}</button>`).join("");
+    if (gradesEl) gradesEl.innerHTML = GRADES.filter(g => g !== "Industrial").map(g => `<button type="button" class="pf-chip" data-g="${esc(g)}">${esc(g)}${N}</button>`).join("");
     if (famsEl) famsEl.innerHTML = allChip("fam") + FAMS.map(([f]) => `<button type="button" class="pf-chip" data-f="${esc(f)}">${esc(f)}${N}</button>`).join("")
       + (DEVS.length ? `<span class="pf-div" aria-hidden="true"></span><span class="pf-sub">Power device</span>`
         + DEVS.map(([f]) => `<button type="button" class="pf-chip" data-f="${esc(f)}">${esc(f)}${N}</button>`).join("") : "");
@@ -323,7 +319,7 @@
       root.querySelectorAll("[data-all]").forEach(b => b.classList.toggle("on", !(b.dataset.all === "cat" ? pickCat : pickFam).size));
       root.querySelectorAll("[data-app]").forEach(b => { const on = b.dataset.app === app; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
       root.querySelectorAll("[data-edge]").forEach(b => b.classList.toggle("on", parseFloat(b.dataset.edge) === maxEdge));
-      if (FULL && gradesEl) gradesEl.hidden = app !== "auto";
+      if (gradesEl) gradesEl.hidden = app !== "auto";
     };
     /* Counts on every chip; a chip that would empty the list is greyed out unless it is
        already picked, so it can still be switched off. */
@@ -538,7 +534,7 @@
         : "";
       countEl.innerHTML = (rows.length ? `<b>${rows.length}</b> package${rows.length === 1 ? "" : "s"} <span>of ${scope.length}</span>` : "")
         + aside(noSize.length, "body size") + aside(noThk.length, "thickness");
-      if (FULL) { counts(pool); active(raw); }
+      counts(pool); active(raw);
 
       if (!rows.length) {
         outEl.innerHTML = `<div class="pf-empty"><b>No standard package matches that</b>

@@ -201,9 +201,9 @@
 .pf-rows .pf-rv{min-width:58px}
 .pf-rows .pf-reset{flex:none;margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:4px;padding:5px 11px;text-decoration:none;font-size:12px;color:var(--ink-2);background:var(--white)}
 .pf-rows .pf-reset:hover{border-color:var(--hana-blue);color:var(--hana-blue)}
-.pf--page .pf-q::placeholder{color:#59606A}
-.pf--page .pf-hint{color:var(--ink-2)}
-.pf--page .pf-hint b{color:var(--ink)}
+.pf .pf-q::placeholder{color:#59606A}
+.pf .pf-hint{color:var(--ink-2)}
+.pf .pf-hint b{color:var(--ink)}
 @media(max-width:1100px){.pf-rows .pf-row--size{flex-wrap:wrap}}
 @media(max-width:860px){
   .pf-rows .pf-row{flex-wrap:wrap;gap:8px}
@@ -214,9 +214,11 @@
 }
 
 /* Pinned line: package count and the active filters, each removable */
-.pf--page .pf-status{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:22px 0 8px;padding:8px 0;background:#EFF5FA}
-.pf--page .pf-status .pf-count{margin:0}
-.pf--page .pf-count span{color:var(--ink-2)}
+.pf-status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:22px 0 8px}
+.pf--embed .pf-status{margin-top:20px}
+.pf--page .pf-status{position:sticky;top:0;z-index:6;padding:8px 0;background:#EFF5FA}
+.pf .pf-status .pf-count{margin:0}
+.pf .pf-count span{color:var(--ink-2)}
 .pf-active{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .pf-active[hidden]{display:none}
 .pf-tokx{display:inline-flex;align-items:center;gap:6px;padding:3px 6px 3px 10px;border:1px solid var(--hana-blue);border-radius:999px;background:var(--white);color:var(--ink);font-family:var(--font-text);font-size:12px;cursor:pointer}
@@ -277,9 +279,9 @@
   .pf-ftoggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 18px;border:0;background:var(--white);font-family:var(--font-text);font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
   .pf-ftoggle .pf-fcount{font-weight:400;color:var(--hana-blue)}
   .pf-ftoggle .pf-fchev{margin-left:auto;color:var(--ink-2);transition:transform .18s ease}
-  .pf--page.pf-fopen .pf-ftoggle .pf-fchev{transform:rotate(180deg)}
-  .pf--page .pf-rows{display:none;border-top:1px solid var(--line)}
-  .pf--page.pf-fopen .pf-rows{display:block}
+  .pf.pf-fopen .pf-ftoggle .pf-fchev{transform:rotate(180deg)}
+  .pf .pf-rows{display:none;border-top:1px solid var(--line)}
+  .pf.pf-fopen .pf-rows{display:block}
   .pf-sz{flex-wrap:wrap}
   .pf-rows .pf-edges{flex:1 1 100%;flex-wrap:wrap}
   .pf-rows .pf-thkr{flex:1;min-width:0}
@@ -352,4 +354,12 @@
 }
 @media(max-width:359px){
   .pf-table tbody tr:not(.pf-grp):not(.pf-cols):not(.pf-more) > td:not([data-l]):not(.pf-pk):not(.pf-sel){position:static;grid-column:1/-1;margin-top:-4px}
+}
+/* Embedded finders sit in a narrower content column, so the size row may wrap */
+.pf--embed .pf-rows .pf-row--size{flex-wrap:wrap;row-gap:8px}
+@media(min-width:861px){
+  /* Embedded: body-edge buttons on the first line; thickness and Reset on the second,
+     lined up under the buttons rather than under the row label */
+  .pf--embed .pf-rows .pf-row--size:has(.pf-sz + .pf-sz) > .pf-sz:first-of-type{flex:0 0 calc(100% - 118px)}
+  .pf--embed .pf-rows .pf-row--size > .pf-sz + .pf-sz{margin-left:118px}
 }
