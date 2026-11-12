@@ -4,8 +4,8 @@
 
    Two modes, one implementation:
    · full page  — <div data-pkgfinder> on /capabilities/osat/package-finder.
-                  Reads and writes ?q= ?cat= ?grade= ?max= ?thk= so a filtered view is linkable
-                  and the handoff from site search lands pre-filtered.
+                  Reads and writes ?q= ?cat= ?fam= ?app= ?grade= ?max= ?thk= so a filtered view
+                  is linkable and the handoff from site search lands pre-filtered.
    · embedded   — <div data-pkgfinder data-embed data-own="/capabilities/osat/qfn-dfn-lga">
                   on the pages that own those rows, so their tables are live, not static.
                   No URL writing, no category chips for rows outside the page's scope.
@@ -133,13 +133,64 @@
     const CATS = [...new Set(scope.map(r => r.t))];
     const GRADES = [...new Set(scope.map(r => r.grade).filter(Boolean))].sort();
     const pickCat = new Set(), pickGrade = new Set();
+    /* The full finder page (Nov 2026) has compact filter rows, an "All" chip and a count on
+       every chip, package-type chips, an Automotive / Non-automotive switch, body-edge
+       presets, a pinned line of active filters and tick boxes for one enquiry. Embedded
+       tables keep the original panel. */
+    const FULL = !embed;
+    const AUTO_CAT = "Automotive-qualified packages";
+    const isAuto = r => !!r.grade && r.grade !== "Industrial";
+    const CAT_SHORT = {
+      "Leaded packages": "Leaded", "Leadless packages": "Leadless",
+      "Top-side cooling power packages": "Top-side cooling", "GaN power packages": "GaN power",
+      "Dual-cool power packages": "Dual-cool", "Optical package dimensions": "Optical",
+      "Ceramic packages": "Ceramic", "TO-can packages": "TO-can",
+      "Hermetic RF & ceramic diode packages": "Hermetic RF & diode",
+      "SiP \u2014 leadframe base": "SiP leadframe", "SiP \u2014 substrate base": "SiP substrate",
+      "Sensor packages": "Sensor" };
+    /* Package families buyers search by. Only families the reference carries are shown. */
+    const FAM_RX = [
+      ["QFN", r => /QFN/i.test(r.pkg)], ["DFN", r => /DFN/i.test(r.pkg)], ["LGA", r => /LGA/i.test(r.pkg)],
+      ["SOT", r => /^(SOT|SC70)/i.test(r.pkg)], ["SOIC", r => /SOIC/i.test(r.pkg)],
+      ["SOP / MSOP", r => /SOP/i.test(r.pkg)], ["TO", r => /^(TO|D2PAK)/i.test(r.pkg)],
+      ["SiP", r => /^SiP/.test(r.t)]];
+    /* Power device materials sit after a divider on the same row: they describe the die,
+       not the outline, so a GaN or SiC device can come in several outlines. */
+    const devText = r => [r.pkg, r.fam, r.t, r.detail].join(" ");
+    const DEV_RX = [["GaN", r => /\bGaN\b/i.test(devText(r))], ["SiC", r => /\bSiC\b/i.test(devText(r))]];
+    const FAMS = FULL ? FAM_RX.filter(([, f]) => scope.filter(f).length >= 2) : [];
+    const DEVS = FULL ? DEV_RX.filter(([, f]) => scope.some(f)) : [];
+    const famTest = Object.fromEntries([...FAMS, ...DEVS]);
+    const isDev = f => DEVS.some(([d]) => d === f);
+    /* Within a group any pick matches; across the two groups both must, so QFN + GaN
+       finds GaN QFNs rather than every QFN and every GaN package. */
+    const pickFam = new Set();
+    let app = "all";
     let maxEdge = MAX_EDGE, maxThk = null, sortKey = "area", sortDir = 1;
+    /* The reference files its 18 automotive packages under their own category. With the
+       Automotive switch replacing that chip, the full page files each one under Leaded or Leadless by
+       outline as well, so Automotive + Leadless finds the automotive QFNs and DFNs. */
+    const catOf = r => FULL && r.t === AUTO_CAT ? (/QFN|DFN|LGA/i.test(r.pkg) ? "Leadless packages" : "Leaded packages") : r.t;
+    const appOK = (r, a) => a === "all" || (a === "auto") === isAuto(r);
+    /* Every chip filter. `skip` leaves groups out, which is how a chip's count is taken:
+       the rows it would show if it were the only pick in its own group. */
+    const facetOK = (r, ...skip) => {
+      const outl = [...pickFam].filter(f => !isDev(f)), dev = [...pickFam].filter(isDev);
+      return (skip.includes("cat") || !pickCat.size || pickCat.has(catOf(r)))
+        && (skip.includes("grade") || !pickGrade.size || pickGrade.has(r.grade))
+        && (skip.includes("outl") || !outl.length || outl.some(f => famTest[f](r)))
+        && (skip.includes("dev") || !dev.length || dev.some(f => famTest[f](r)))
+        && (skip.includes("app") || appOK(r, app));
+    };
+    const edgeOK = (r, lim = maxEdge) => lim >= MAX_EDGE || (!!r.x && Math.max(...MM(r)) <= lim);
+    const thkOK = r => { if (maxThk === null) return true; const t = rowThkMin(r); return t !== null && t <= maxThk; };
+    const EDGE_PRESETS = [MAX_EDGE, 2, 3, 5, 8, 12, 20];
     /* Tables open long categories on request (Rupert, 23 Oct 2026): a category with more
        than SHOW_ROWS rows shows its first SHOW_ROWS and a toggle for the rest. The full
        finder page shows 7 (Rupert, 30 Oct 2026), embedded tables 5. */
     const SHOW_ROWS = embed ? 5 : 7, opened = new Set();
 
-    root.className = "pf" + (embed ? " pf--embed" : "");
+    root.className = "pf" + (embed ? " pf--embed" : "") + (FULL ? " pf--page" : "");
     root.innerHTML = `
       <div class="pf-controls">
         <div class="pf-paste">
@@ -150,7 +201,25 @@
           <span class="pf-hint">try <b>Grade 0</b> or <b>3x3</b></span>
         </div>
         <div class="pf-parse"></div>
-        <div class="pf-filters">
+        ${FULL ? `<div class="pf-filters pf-rows">
+          <div class="pf-row"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>
+          <div class="pf-row"><span class="pf-label">Package type</span><div class="pf-chips pf-fams"></div></div>
+          <div class="pf-row"><span class="pf-label">Application</span>
+            <div class="pf-seg" role="radiogroup" aria-label="Application">
+              <button type="button" role="radio" data-app="all">All<span class="pf-n"></span></button>
+              <button type="button" role="radio" data-app="auto">Automotive<span class="pf-n"></span></button>
+              <button type="button" role="radio" data-app="non">Non-automotive<span class="pf-n"></span></button></div>
+            <div class="pf-chips pf-grades pf-grades--app" aria-label="Automotive grade"></div></div>
+          <div class="pf-row pf-row--size"><span class="pf-label">Size</span>
+            <div class="pf-sz"><span class="pf-szl">Largest body edge, mm</span>
+              <div class="pf-chips pf-edges" role="group" aria-label="Largest body edge">${EDGE_PRESETS.map(v =>
+                `<button type="button" class="pf-chip" data-edge="${v}">${v >= MAX_EDGE ? "Any" : "\u2264 " + v}</button>`).join("")}</div></div>
+            ${THK_STEPS.length ? `<div class="pf-sz"><span class="pf-szl">Max thickness</span>
+              <div class="pf-range"><input class="pf-thkr" type="range" min="0" max="${THK_STEPS.length}" step="1" value="${THK_STEPS.length}" aria-label="Maximum thickness">
+              <span class="pf-rv pf-thkv">any</span></div></div>` : ""}
+            <button class="pf-clear pf-reset" type="button"><i data-lucide="rotate-ccw" style="width:13px;height:13px"></i> Reset filters</button>
+          </div>
+        </div>` : `<div class="pf-filters">
           ${CATS.length > 1 ? `<div class="pf-fgroup pf-fgroup--wide"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>` : ""}
           <div class="pf-fside">
           ${GRADES.length ? `<div class="pf-fgroup"><span class="pf-label">Automotive grade</span><div class="pf-chips pf-grades"></div></div>` : ""}
@@ -162,10 +231,11 @@
             <span class="pf-rv pf-thkv">any</span></div></div>` : ""}
           <button class="pf-clear" type="button">Clear all</button>
           </div>
-        </div>
+        </div>`}
       </div>
-      <div class="pf-count"></div>
-      <div class="pf-out"></div>`;
+      ${FULL ? `<div class="pf-status"><div class="pf-count"></div><div class="pf-active" hidden></div></div>` : `<div class="pf-count"></div>`}
+      <div class="pf-out"></div>
+      ${FULL ? `<div class="pf-tray" hidden role="region" aria-label="Selected packages"></div>` : ""}`;
 
     const q = root.querySelector(".pf-q"), parseEl = root.querySelector(".pf-parse");
     const catsEl = root.querySelector(".pf-cats"), gradesEl = root.querySelector(".pf-grades");
@@ -173,15 +243,120 @@
     const thkEl = root.querySelector(".pf-thkr"), thkvEl = root.querySelector(".pf-thkv");
     const thkLabel = () => maxThk === null ? "any" : "\u2264 " + maxThk.toFixed(2) + " mm";
     const countEl = root.querySelector(".pf-count"), outEl = root.querySelector(".pf-out");
+    /* Full page: buyers tick packages across searches and send one enquiry naming them all.
+       Ticks survive filter changes; they are held for this visit only. */
+    const KEY = new Map(scope.map((r, i) => [r, i]));
+    const picked = new Set();
+    const trayEl = root.querySelector(".pf-tray");
+    const pkgLine = r => [r.pkg, r.bs, thkText(r) ? thkText(r) + " thick" : "",
+      r.leads.length ? r.leads.join("/") + " leads" : "", r.grade].filter(Boolean).join(", ");
+    const mailto = rows => {
+      const subject = "Package inquiry: " + rows.slice(0, 3).map(r => r.pkg + (r.bs ? " " + r.bs : "")).join("; ")
+        + (rows.length > 3 ? " and " + (rows.length - 3) + " more" : "");
+      const body = "Hello,\n\nWe would like to discuss these packages from your package finder:\n\n"
+        /* Mail links much over 2,000 characters fail in some clients, so long lists are cut. */
+        + rows.slice(0, 15).map(r => "- " + pkgLine(r)).join("\n")
+        + (rows.length > 15 ? "\n- and " + (rows.length - 15) + " more packages" : "")
+        + "\n\nApplication:\nEstimated annual volume:\nTarget timing:\n\nThank you.";
+      return "mailto:" + SALES + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    };
+    const tray = () => {
+      if (!trayEl) return;
+      const rows = scope.filter(r => picked.has(KEY.get(r)));
+      trayEl.hidden = !rows.length;
+      document.body.classList.toggle("pf-tray-on", !!rows.length);
+      if (!rows.length) { trayEl.innerHTML = ""; setSt(); return; }
+      const SHOW = 6, n = rows.length;
+      trayEl.innerHTML = `<div class="pf-tray-in" data-geo-theme="midnight">
+        <div class="pf-tray-n"><b class="pf-tray-badge">${n}</b> package${n === 1 ? "" : "s"} selected</div>
+        <div class="pf-tray-list">${rows.slice(0, SHOW).map(r =>
+          `<button type="button" class="pf-tokx" data-unsel="${KEY.get(r)}" aria-label="Remove ${esc(r.pkg)}">${esc(r.pkg)}${r.bs ? ` <span class="pf-tray-bs">${esc(r.bs)}</span>` : ""}<span aria-hidden="true">&times;</span></button>`).join("")}
+          ${n > SHOW ? `<span class="pf-tray-more">+${n - SHOW} more</span>` : ""}</div>
+        <button type="button" class="pf-xall pf-tray-clear">Clear</button>
+        <a class="pf-tray-go" href="${esc(mailto(rows))}">Email us about ${n === 1 ? "this package" : "these " + n} &rarr;</a>
+      </div>`;
+      setSt();
+    };
+    const setSt = () => requestAnimationFrame(() => {
+      const st = root.querySelector(".pf-status"); if (st) root.style.setProperty("--pf-st", st.offsetHeight + "px");
+    });
+    const setPick = (k, on) => {
+      on ? picked.add(k) : picked.delete(k);
+      outEl.querySelectorAll(`[data-sel="${k}"]`).forEach(c => { c.checked = on; c.closest("tr").classList.toggle("is-sel", on); });
+      tray();
+    };
+    if (FULL) {
+      outEl.addEventListener("change", e => {
+        const c = e.target.closest("[data-sel]"); if (c) setPick(+c.dataset.sel, c.checked);
+      });
+      trayEl.addEventListener("click", e => {
+        if (e.target.closest(".pf-tray-clear")) { [...picked].forEach(k => setPick(k, false)); return; }
+        const b = e.target.closest("[data-unsel]"); if (b) setPick(+b.dataset.unsel, false);
+      });
+    }
 
-    if (catsEl) catsEl.innerHTML = CATS.map(c => `<button type="button" class="pf-chip" data-c="${esc(c)}">${esc(c)}</button>`).join("");
-    if (gradesEl) gradesEl.innerHTML = GRADES.map(g => `<button type="button" class="pf-chip" data-g="${esc(g)}">${esc(g)}</button>`).join("");
+    const famsEl = root.querySelector(".pf-fams");
+    const N = FULL ? `<span class="pf-n"></span>` : "";
+    const allChip = k => `<button type="button" class="pf-chip pf-all" data-all="${k}">All${N}</button>`;
+    if (catsEl) catsEl.innerHTML = (FULL ? allChip("cat") : "") + CATS.filter(c => !FULL || c !== AUTO_CAT)
+      .map(c => `<button type="button" class="pf-chip" data-c="${esc(c)}"${FULL && CAT_SHORT[c] ? ` title="${esc(c)}"` : ""}>${esc(FULL ? CAT_SHORT[c] || c : c)}${N}</button>`).join("");
+    if (gradesEl) gradesEl.innerHTML = GRADES.filter(g => !FULL || g !== "Industrial").map(g => `<button type="button" class="pf-chip" data-g="${esc(g)}">${esc(g)}${N}</button>`).join("");
+    if (famsEl) famsEl.innerHTML = allChip("fam") + FAMS.map(([f]) => `<button type="button" class="pf-chip" data-f="${esc(f)}">${esc(f)}${N}</button>`).join("")
+      + (DEVS.length ? `<span class="pf-div" aria-hidden="true"></span><span class="pf-sub">Power device</span>`
+        + DEVS.map(([f]) => `<button type="button" class="pf-chip" data-f="${esc(f)}">${esc(f)}${N}</button>`).join("") : "");
+    /* Chip and switch states follow the filter state, so URL arrival, Reset and the "All"
+       chips all stay in step. */
+    const sync = () => {
+      root.querySelectorAll("[data-c]").forEach(b => b.classList.toggle("on", pickCat.has(b.dataset.c)));
+      root.querySelectorAll("[data-g]").forEach(b => b.classList.toggle("on", pickGrade.has(b.dataset.g)));
+      root.querySelectorAll("[data-f]").forEach(b => b.classList.toggle("on", pickFam.has(b.dataset.f)));
+      root.querySelectorAll("[data-all]").forEach(b => b.classList.toggle("on", !(b.dataset.all === "cat" ? pickCat : pickFam).size));
+      root.querySelectorAll("[data-app]").forEach(b => { const on = b.dataset.app === app; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+      root.querySelectorAll("[data-edge]").forEach(b => b.classList.toggle("on", parseFloat(b.dataset.edge) === maxEdge));
+      if (FULL && gradesEl) gradesEl.hidden = app !== "auto";
+    };
+    /* Counts on every chip; a chip that would empty the list is greyed out unless it is
+       already picked, so it can still be switched off. */
+    const setN = (b, n) => {
+      const el = b.querySelector(".pf-n"); if (el) el.textContent = n;
+      b.disabled = !n && !b.classList.contains("on") && !b.dataset.all;
+    };
+    const counts = pool => {
+      const n = (skip, test) => pool.filter(r => facetOK(r, ...skip) && test(r) && edgeOK(r) && thkOK(r)).length;
+      root.querySelectorAll("[data-c]").forEach(b => setN(b, n(["cat"], r => catOf(r) === b.dataset.c)));
+      root.querySelectorAll("[data-f]").forEach(b => setN(b, n([isDev(b.dataset.f) ? "dev" : "outl"], famTest[b.dataset.f])));
+      root.querySelectorAll("[data-g]").forEach(b => setN(b, n(["grade"], r => r.grade === b.dataset.g)));
+      root.querySelectorAll("[data-app]").forEach(b => setN(b, n(["app", "grade"], r => appOK(r, b.dataset.app))));
+      root.querySelectorAll("[data-all]").forEach(b => setN(b, n(b.dataset.all === "cat" ? ["cat"] : ["outl", "dev"], () => true)));
+      root.querySelectorAll("[data-edge]").forEach(b => {
+        const lim = parseFloat(b.dataset.edge);
+        b.disabled = lim < MAX_EDGE && lim !== maxEdge && !pool.some(r => facetOK(r) && thkOK(r) && edgeOK(r, lim));
+      });
+    };
+    /* The filters in force, each removable, above the results. It sticks to the top of
+       the window, so a buyer far down a long table can still see and undo them. */
+    const active = raw => {
+      const el = root.querySelector(".pf-active"); if (!el) return;
+      const t = [];
+      if (raw) t.push(["q", "", "\u201c" + raw + "\u201d"]);
+      pickCat.forEach(c => t.push(["cat", c, CAT_SHORT[c] || c]));
+      pickFam.forEach(f => t.push(["fam", f, f]));
+      if (app !== "all") t.push(["app", "", app === "auto" ? "Automotive" : "Non-automotive"]);
+      pickGrade.forEach(g => t.push(["grade", g, g]));
+      if (maxEdge < MAX_EDGE) t.push(["edge", "", "Body edge \u2264 " + maxEdge + " mm"]);
+      if (maxThk !== null) t.push(["thk", "", "Thickness \u2264 " + maxThk.toFixed(2) + " mm"]);
+      el.hidden = !t.length;
+      /* The table's own sticky bars sit under this line, so they are offset by its height. */
+      setSt();
+      el.innerHTML = t.map(([k, v, l]) => `<button type="button" class="pf-tokx" data-x="${k}" data-v="${esc(v)}" aria-label="Remove filter: ${esc(l)}">${esc(l)}<span aria-hidden="true">&times;</span></button>`).join("")
+        + (t.length > 1 ? `<button type="button" class="pf-xall">Clear all</button>` : "");
+    };
 
     /* One contact line under any searched or filtered list, with the packages named in the email. */
     /* Up to 10 rows the subject names the packages; above that it names the search or filters. */
     const foundBar = (rows, raw) => {
       const names = [...new Set(rows.map(r => r.pkg + (r.bs ? " " + r.bs : "")))];
-      const scope = [raw, ...pickCat, ...pickGrade,
+      const scope = [raw, ...pickCat, ...pickFam, app === "auto" ? "automotive" : app === "non" ? "non-automotive" : "", ...pickGrade,
         maxEdge < MAX_EDGE ? "max edge " + maxEdge + " mm" : "", maxThk !== null ? "max " + maxThk + " mm thick" : ""].filter(Boolean).join(", ");
       const subject = "Package inquiry: " + (rows.length <= 10
         ? names.slice(0, 5).join(", ") + (names.length > 5 ? " and " + (names.length - 5) + " more" : "")
@@ -268,6 +443,8 @@
     function writeURL() {
       if (embed) return;
       const u = new URLSearchParams();
+      if (pickFam.size) u.set("fam", [...pickFam].join("|"));
+      if (app !== "all") u.set("app", app);
       const v = q.value.trim();
       if (v) u.set("q", v);
       if (pickCat.size) u.set("cat", [...pickCat].join("|"));
@@ -305,9 +482,7 @@
       parseEl.innerHTML = bits.length ? `<span class="pf-label">Read as</span>${bits.join("")}` : "";
       parseEl.classList.toggle("on", !!bits.length);
 
-      const preThk = scope.filter(r => {
-        if (pickCat.size && !pickCat.has(r.t)) return false;
-        if (pickGrade.size && !pickGrade.has(r.grade)) return false;
+      const textOK = r => {
         if (p.leads && !r.leads.includes(p.leads)) return false;
         if (p.dims) {
           if (!r.x) return false;
@@ -324,7 +499,9 @@
           if (!needles.every(w => hay.includes(w))) return false;
         }
         return true;
-      });
+      };
+      const pool = scope.filter(textOK);
+      const preThk = pool.filter(r => facetOK(r));
 
       /* A ceiling can only speak for rows that publish the measurement. The rest are
          set aside and counted. Body size and thickness are handled the same way. */
@@ -349,12 +526,15 @@
         : "";
       countEl.innerHTML = (rows.length ? `<b>${rows.length}</b> package${rows.length === 1 ? "" : "s"} <span>of ${scope.length}</span>` : "")
         + aside(noSize.length, "body size") + aside(noThk.length, "thickness");
+      if (FULL) { counts(pool); active(raw); }
 
       if (!rows.length) {
         outEl.innerHTML = `<div class="pf-empty"><b>No standard package matches that</b>
           <p>We recommend contacting us, as we also build to custom dimensions. Molded bodies go down to 0.6 &times; 1.0 mm, and leadless packages from 0.37 mm thick.</p></div>
           ${nearest(p.dims)}${askBar}`;
         if (window.HanaGeo) window.HanaGeo.init(outEl);
+        /* The panel icons are drawn here too, or a page that opens on an empty result has none. */
+        if (window.lucide) window.lucide.createIcons();
         return;
       }
 
@@ -364,6 +544,7 @@
          A single category in scope gets no bar — it would only repeat the page. */
       /* Column labels repeat under each category bar, so they stay in view with it. */
       const cols = solo => `<tr class="pf-cols${solo ? " pf-cols--solo" : ""}">
+        ${FULL ? `<th scope="col" class="pf-sel-h"><span class="pf-sr">Select</span></th>` : ""}
         <th scope="col" data-k="pkg">Package ${arr("pkg")}</th>
         <th scope="col" data-k="area">Body size ${arr("area")}</th>
         ${hasThk ? `<th scope="col">Thickness</th>` : ""}
@@ -375,14 +556,15 @@
       const goHref = r => OWN[r.own] && r.own !== own ? OWN[r.own] : "";
       const hasGo = rows.some(goHref);
       const hasThk = rows.some(r => thkText(r));
-      const span = 3 + (hasThk ? 1 : 0) + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
+      const span = 3 + (FULL ? 1 : 0) + (hasThk ? 1 : 0) + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
       /* Typed filters show every match, so nothing is folded while a query is active. */
-      const folding = !raw && !pickCat.size && !pickGrade.size && maxEdge >= MAX_EDGE && maxThk === null;
+      const folding = !raw && !pickCat.size && !pickGrade.size && !pickFam.size && app === "all" && maxEdge >= MAX_EDGE && maxThk === null;
       const groups = CATS.map(c => ({ cat: c, items: rows.filter(r => r.t === c) })).filter(g => g.items.length);
       /* Every table folds, including single-category ones such as QFN, DFN & LGA
          (Rupert, 24 Oct 2026). */
       const fold = folding;
-      const row = r => `<tr>
+      const row = r => `<tr${FULL && picked.has(KEY.get(r)) ? ` class="is-sel"` : ""}>
+          ${FULL ? `<td class="pf-sel"><input type="checkbox" data-sel="${KEY.get(r)}"${picked.has(KEY.get(r)) ? " checked" : ""} aria-label="Select ${esc(r.pkg + (r.bs ? " " + r.bs : ""))}"></td>` : ""}
           <td class="pf-pk">${esc(r.pkg)}${r.detail ? `<span class="pf-det">${esc(r.detail)}</span>` : ""}</td>
           <td class="pf-num" data-l="Body size">${esc(r.bs || "—")}${r.die ? `<span class="pf-die">Max die ${esc(r.die)}</span>` : ""}</td>
           ${hasThk ? `<td class="pf-num" data-l="Thickness">${esc(thkText(r) || "—")}</td>` : ""}
@@ -425,12 +607,25 @@
       if (window.lucide) window.lucide.createIcons();
     }
 
+    if (famsEl) famsEl.addEventListener("click", e => {
+      const b = e.target.closest("[data-f], [data-all]"); if (!b) return;
+      if (b.dataset.all) pickFam.clear();
+      else { const f = b.dataset.f; pickFam.has(f) ? pickFam.delete(f) : pickFam.add(f); }
+      sync(); render();
+    });
+    root.querySelectorAll("[data-app]").forEach(b => b.addEventListener("click", () => {
+      app = b.dataset.app;
+      if (app !== "auto") pickGrade.clear();
+      sync(); render();
+    }));
     if (catsEl) catsEl.addEventListener("click", e => {
+      const all = e.target.closest("[data-all]");
+      if (all) { pickCat.clear(); sync(); render(); return; }
       const b = e.target.closest("[data-c]"); if (!b) return;
       const c = b.dataset.c;
       pickCat.has(c) ? pickCat.delete(c) : pickCat.add(c);
       b.classList.toggle("on", pickCat.has(c));
-      render();
+      sync(); render();
     });
     if (gradesEl) gradesEl.addEventListener("click", e => {
       const b = e.target.closest("[data-g]"); if (!b) return;
@@ -439,7 +634,13 @@
       b.classList.toggle("on", pickGrade.has(g));
       render();
     });
-    sizeEl.addEventListener("input", e => {
+    const edgesEl = root.querySelector(".pf-edges");
+    if (edgesEl) edgesEl.addEventListener("click", e => {
+      const b = e.target.closest("[data-edge]"); if (!b || b.disabled) return;
+      maxEdge = parseFloat(b.dataset.edge);
+      sync(); render();
+    });
+    if (sizeEl) sizeEl.addEventListener("input", e => {
       maxEdge = parseFloat(e.target.value);
       rvEl.textContent = maxEdge >= MAX_EDGE ? "any" : "≤ " + maxEdge + " mm";
       render();
@@ -451,12 +652,29 @@
       render();
     });
     q.addEventListener("input", render);
-    root.querySelector(".pf-clear").addEventListener("click", () => {
-      pickCat.clear(); pickGrade.clear(); maxEdge = MAX_EDGE;
-      q.value = ""; sizeEl.value = MAX_EDGE; rvEl.textContent = "any";
-      maxThk = null; if (thkEl) { thkEl.value = THK_STEPS.length; thkvEl.textContent = "any"; }
+    const clearThk = () => { maxThk = null; if (thkEl) { thkEl.value = THK_STEPS.length; thkvEl.textContent = "any"; } };
+    const clearEdge = () => { maxEdge = MAX_EDGE; if (sizeEl) { sizeEl.value = MAX_EDGE; rvEl.textContent = "any"; } };
+    const resetAll = () => {
+      pickCat.clear(); pickGrade.clear(); clearEdge();
+      q.value = ""; clearThk();
+      pickFam.clear(); app = "all";
       root.querySelectorAll(".pf-chip").forEach(c => c.classList.remove("on"));
-      render();
+      sync(); render();
+    };
+    root.querySelector(".pf-clear").addEventListener("click", resetAll);
+    const activeEl = root.querySelector(".pf-active");
+    if (activeEl) activeEl.addEventListener("click", e => {
+      if (e.target.closest(".pf-xall")) return resetAll();
+      const b = e.target.closest("[data-x]"); if (!b) return;
+      const k = b.dataset.x, v = b.dataset.v;
+      if (k === "q") q.value = "";
+      else if (k === "cat") pickCat.delete(v);
+      else if (k === "fam") pickFam.delete(v);
+      else if (k === "grade") pickGrade.delete(v);
+      else if (k === "app") { app = "all"; pickGrade.clear(); }
+      else if (k === "edge") clearEdge();
+      else if (k === "thk") clearThk();
+      sync(); render();
     });
 
     /* Arriving state: ?q= from the site-search package card, or data-q on an embed. */
@@ -468,16 +686,22 @@
       (u.get("cat") || "").split("|").filter(Boolean).forEach(c => { if (CATS.includes(c)) pickCat.add(c); });
       (u.get("grade") || "").split("|").filter(Boolean).forEach(g => { if (GRADES.includes(g)) pickGrade.add(g); });
       if (u.get("max")) {
-        maxEdge = parseFloat(u.get("max")); sizeEl.value = maxEdge;
-        rvEl.textContent = maxEdge >= MAX_EDGE ? "any" : "≤ " + maxEdge + " mm";
+        maxEdge = parseFloat(u.get("max"));
+        if (sizeEl) { sizeEl.value = maxEdge; rvEl.textContent = maxEdge >= MAX_EDGE ? "any" : "≤ " + maxEdge + " mm"; }
       }
       if (thkEl && u.get("thk")) {
         const i = THK_STEPS.indexOf(parseFloat(u.get("thk")));
         if (i >= 0) { maxThk = THK_STEPS[i]; thkEl.value = i; thkvEl.textContent = thkLabel(); }
       }
-      root.querySelectorAll("[data-c]").forEach(b => b.classList.toggle("on", pickCat.has(b.dataset.c)));
-      root.querySelectorAll("[data-g]").forEach(b => b.classList.toggle("on", pickGrade.has(b.dataset.g)));
+      if (FULL) {
+        (u.get("fam") || "").split("|").filter(Boolean).forEach(f => { if (famTest[f]) pickFam.add(f); });
+        if (["auto", "non"].includes(u.get("app"))) app = u.get("app");
+        /* The old automotive category link (?cat=Automotive-qualified packages) lands on the switch. */
+        if (pickCat.delete(AUTO_CAT)) app = "auto";
+        if (pickGrade.size && app === "all") app = "auto";
+      }
     }
+    sync();
     render();
   }
 

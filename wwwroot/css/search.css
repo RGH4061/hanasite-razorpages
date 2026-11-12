@@ -355,3 +355,10 @@ tbody.is-open .hs-sens-x{display:table-row}
 .hs-pkg--m .hs-sens-more-r td{padding:0 18px!important}
 .hs-sens-pg{color:var(--hana-blue);font-weight:600;font-size:13px;white-space:nowrap}
 .hs-sens-pg:hover{text-decoration:underline}
+
+/* Package and sensor answer cards, and package rows in the capabilities search: figures in
+   Inter with equal-width digits, matching the package finder (Rupert, 12 Nov 2026). IBM Plex
+   Mono's dotted zero made sizes such as 0.80 hard to read. */
+.hs-pkg-num,.hs-pkg-thk span,.hs-sens-types span,.hs-sens-grp th span,.cap-find-pkgr span,.cap-find-pkgr small{
+  font-family:var(--font-text);font-variant-numeric:tabular-nums}
+.hs-pkg-num{font-size:14px}

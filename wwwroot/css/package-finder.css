@@ -164,3 +164,109 @@
 .pf-found > span{color:var(--ink);font-weight:600}
 .pf-found a{color:var(--hana-blue);font-weight:600;text-decoration:none}
 .pf-found a:hover{color:var(--hana-blue-deep)}
+
+/* ── Full finder page (Nov 2026) ────────────────────────────────────────────────
+   Compact filter rows with the label on the left, an "All" chip and a count on every
+   chip, an Automotive / Non-automotive switch, body-edge presets, a pinned line of the
+   active filters, and tick boxes that collect packages for one enquiry (corner card).
+   Embedded tables on the capability pages keep the original panel above. */
+.pf-rows{display:block;padding:6px 18px 4px}
+.pf-rows .pf-row{display:flex;align-items:flex-start;gap:14px;padding:9px 0;border-bottom:1px solid var(--line)}
+.pf-rows .pf-row:last-child{border-bottom:0}
+/* Labels and small text in --ink-2 (about 9:1 on white): --ink-3 read faint at 10–11px. */
+.pf-rows .pf-row > .pf-label{flex:0 0 104px;margin:0;padding-top:7px;font-size:11px;letter-spacing:.08em;color:var(--ink-2)}
+.pf-rows .pf-chips{flex:1;min-width:0;gap:5px}
+.pf-rows .pf-chip{padding:4px 9px;font-size:12px}
+.pf-rows .pf-chip.pf-all{font-weight:600}
+.pf-rows .pf-chip:disabled,.pf-seg button:disabled{opacity:.38;cursor:default;border-color:var(--line)}
+.pf-rows .pf-n{margin-left:5px;font-size:10.5px;color:var(--ink-3)}
+.pf-rows .pf-chip.on .pf-n,.pf-seg button.on .pf-n{color:rgba(255,255,255,.8)}
+.pf-rows .pf-div{width:1px;align-self:stretch;margin:2px 6px;background:var(--line)}
+.pf-rows .pf-sub{align-self:center;font-size:11.5px;color:var(--ink-2);margin-right:2px;white-space:nowrap}
+.pf-rows .pf-grades--app{flex:0 1 auto;padding-left:14px;border-left:1px solid var(--line)}
+.pf-rows .pf-grades--app[hidden]{display:none}
+.pf-seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;flex:none}
+.pf-seg button{border:0;border-left:1px solid var(--line);background:var(--white);padding:4px 12px;font-family:var(--font-text);font-size:12px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.pf-seg button:first-child{border-left:0}
+.pf-seg button:hover{color:var(--hana-blue)}
+.pf-seg button.on{background:var(--hana-blue);color:#fff}
+.pf-rows .pf-row--size{align-items:center;flex-wrap:nowrap}
+.pf-rows .pf-row--size > .pf-label{padding-top:0}
+.pf-sz{display:flex;align-items:center;gap:10px}
+.pf-sz + .pf-sz{margin-left:14px}
+.pf-szl{font-family:var(--font-text);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.pf-rows .pf-edges{flex:none;gap:4px}
+.pf-rows .pf-edges .pf-chip{padding:4px 8px;font-size:11.5px}
+.pf-rows .pf-thkr{width:120px}
+.pf-rows .pf-rv{min-width:58px}
+.pf-rows .pf-reset{flex:none;margin-left:auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:4px;padding:5px 11px;text-decoration:none;font-size:12px;color:var(--ink-2);background:var(--white)}
+.pf-rows .pf-reset:hover{border-color:var(--hana-blue);color:var(--hana-blue)}
+.pf--page .pf-q::placeholder{color:#59606A}
+.pf--page .pf-hint{color:var(--ink-2)}
+.pf--page .pf-hint b{color:var(--ink)}
+@media(max-width:1100px){.pf-rows .pf-row--size{flex-wrap:wrap}}
+@media(max-width:860px){
+  .pf-rows .pf-row{flex-wrap:wrap;gap:8px}
+  .pf-rows .pf-row > .pf-label{flex:1 1 100%;padding-top:0}
+  .pf-rows .pf-grades--app{padding-left:0;border-left:0}
+  .pf-sz + .pf-sz{margin-left:0}
+  .pf-rows .pf-reset{margin-left:0}
+}
+
+/* Pinned line: package count and the active filters, each removable */
+.pf--page .pf-status{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:22px 0 8px;padding:8px 0;background:#EFF5FA}
+.pf--page .pf-status .pf-count{margin:0}
+.pf--page .pf-count span{color:var(--ink-2)}
+.pf-active{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pf-active[hidden]{display:none}
+.pf-tokx{display:inline-flex;align-items:center;gap:6px;padding:3px 6px 3px 10px;border:1px solid var(--hana-blue);border-radius:999px;background:var(--white);color:var(--ink);font-family:var(--font-text);font-size:12px;cursor:pointer}
+.pf-tokx span{font-size:14px;line-height:1;color:var(--hana-blue)}
+.pf-tokx:hover{background:#E6F0FA}
+.pf-xall{background:none;border:0;padding:0 2px;color:var(--hana-blue);font-family:var(--font-text);font-size:12px;text-decoration:underline;cursor:pointer}
+/* The table's own sticky bars sit under the pinned line (--pf-st is its height, set in JS). */
+@media(min-width:1100px){
+  .pf--page .pf-grp th{top:var(--pf-st,40px)}
+  .pf--page .pf-cols th{top:calc(var(--pf-st,40px) + 40px)}
+  .pf--page .pf-cols--solo th{top:var(--pf-st,40px)}
+}
+
+/* Tick boxes */
+.pf-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pf--page .pf-table .pf-sel-h,.pf--page .pf-table td.pf-sel{width:34px;padding-left:14px;padding-right:0}
+.pf--page td.pf-sel input{width:16px;height:16px;margin:2px 0 0;accent-color:var(--hana-blue);cursor:pointer}
+.pf--page .pf-table tr.is-sel td{background:#EAF3FC}
+
+/* Corner card: dark Midnight, warm accent on the count and the email button. The orange
+   carries dark text; white on #FF883E is about 2.3:1. Picks are light chips. */
+.pf-tray{position:fixed;right:20px;bottom:20px;z-index:40;width:300px}
+.pf-tray[hidden]{display:none}
+.pf-tray-in{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:16px;color:#fff;border:1px solid rgba(78,155,218,.35);border-radius:var(--pf-radius,8px);box-shadow:0 14px 40px rgba(3,10,23,.45);background:radial-gradient(80% 140% at 85% 50%,#072c4d 0%,#030a17 70%)}
+.pf-tray-n{font-family:var(--font-text);font-size:14px;color:rgba(229,238,245,.85);white-space:nowrap}
+.pf-tray-n b{color:#fff}
+.pf-tray-badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;margin-right:4px;border-radius:999px;background:var(--warm-accent,#FF883E);color:#0E1116 !important;font-size:12.5px}
+.pf-tray-list{display:flex;flex-direction:column;align-items:stretch;gap:6px}
+.pf-tray .pf-tokx{justify-content:flex-start;gap:8px;padding:5px 8px 5px 10px;border-radius:4px;background:var(--hana-blue-tint,#E5EEF5);border-color:var(--hana-blue-tint,#E5EEF5);color:var(--ink);font-weight:600}
+.pf-tray .pf-tokx:hover{background:#fff;border-color:#fff}
+.pf-tray .pf-tokx > span[aria-hidden]{margin-left:auto;color:var(--ink-2)}
+.pf-tray-bs{font-size:12px;font-weight:400;color:var(--ink-2)}
+.pf-tray-more{font-size:12px;color:rgba(229,238,245,.75)}
+.pf-tray .pf-tray-clear{align-self:flex-start;color:rgba(229,238,245,.85)}
+.pf-tray-go{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:4px;background:var(--warm-accent,#FF883E);color:#0E1116;font-family:var(--font-text);font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
+.pf-tray-go:hover{background:#ff9b5c;color:#0E1116}
+/* Phones: a bar along the bottom with the count and the button */
+@media(max-width:860px){
+  .pf-tray{right:0;bottom:0;width:100%}
+  .pf-tray-in{flex-direction:row;align-items:center;border-radius:0;border-width:1px 0 0}
+  .pf-tray-list,.pf-tray .pf-tray-clear{display:none}
+  .pf-tray-go{margin-left:auto}
+  body.pf-tray-on{padding-bottom:72px}
+}
+
+/* Figures in Inter rather than IBM Plex Mono (Rupert, 12 Nov 2026): Plex Mono's dotted
+   zero made sizes such as 0.80 hard to read. tabular-nums keeps the digits equal width,
+   so columns still line up. The finder uses two fonts: Geist for headings, Inter for the
+   rest, including the table's category bars. */
+.pf-num,.pf-rv,.pf-hint b,.pf-grp th span,.pf-nearrow .pf-d,.pf-rows .pf-n,.pf-rows .pf-edges .pf-chip,.pf-tray-bs,.pf-tray-badge{
+  font-family:var(--font-text);font-variant-numeric:tabular-nums}
+.pf-num{font-size:14px}
+.pf-grp th{font-family:var(--font-text);font-size:14.5px;letter-spacing:0}
