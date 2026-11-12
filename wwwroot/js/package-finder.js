@@ -32,6 +32,10 @@
   /* Owner pages with a package table at #package-reference; "Details" links land there. */
   const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
   const SALES = "info-request@hanaus.com";
+  /* On Thai pages (/th/…) links go to the Thai versions; every page the finder links to
+     has one. The finder's own labels stay English. */
+  const TH = document.documentElement.lang === "th";
+  const L = p => TH ? "/th" + p : p;
   /* Body-size pair. The leading delimiter group keeps the digits from being read out of a
      package name — SOT5X3 and SOT9X3 are family names, not 5 x 3 and 9 x 3 mm bodies.
      Used by both parse() and the text-remainder strip in render(); they must not diverge. */
@@ -201,7 +205,8 @@
           <span class="pf-hint">try <b>Grade 0</b> or <b>3x3</b></span>
         </div>
         <div class="pf-parse"></div>
-        ${FULL ? `<div class="pf-filters pf-rows">
+        ${FULL ? `<button type="button" class="pf-ftoggle" aria-expanded="false"><i data-lucide="sliders-horizontal" style="width:15px;height:15px"></i> Filters<span class="pf-fcount"></span><span class="pf-fchev" aria-hidden="true">&#9662;</span></button>
+        <div class="pf-filters pf-rows">
           <div class="pf-row"><span class="pf-label">Category</span><div class="pf-chips pf-cats"></div></div>
           <div class="pf-row"><span class="pf-label">Package type</span><div class="pf-chips pf-fams"></div></div>
           <div class="pf-row"><span class="pf-label">Application</span>
@@ -277,9 +282,14 @@
       </div>`;
       setSt();
     };
+    /* --pf-st: height of the pinned line, so the table's sticky bars sit under it.
+       --pf-hdr: height of the site header where it is pinned (phones), so the line sits under that. */
     const setSt = () => requestAnimationFrame(() => {
       const st = root.querySelector(".pf-status"); if (st) root.style.setProperty("--pf-st", st.offsetHeight + "px");
+      const h = document.querySelector(".hana-header");
+      root.style.setProperty("--pf-hdr", (h && getComputedStyle(h).position === "sticky" ? h.offsetHeight : 0) + "px");
     });
+    if (FULL) window.addEventListener("resize", setSt);
     const setPick = (k, on) => {
       on ? picked.add(k) : picked.delete(k);
       outEl.querySelectorAll(`[data-sel="${k}"]`).forEach(c => { c.checked = on; c.closest("tr").classList.toggle("is-sel", on); });
@@ -346,6 +356,8 @@
       if (maxEdge < MAX_EDGE) t.push(["edge", "", "Body edge \u2264 " + maxEdge + " mm"]);
       if (maxThk !== null) t.push(["thk", "", "Thickness \u2264 " + maxThk.toFixed(2) + " mm"]);
       el.hidden = !t.length;
+      const fc = root.querySelector(".pf-fcount"), nf = t.filter(([k]) => k !== "q").length;
+      if (fc) fc.textContent = nf ? " \u00b7 " + nf + " active" : "";
       /* The table's own sticky bars sit under this line, so they are offset by its height. */
       setSt();
       el.innerHTML = t.map(([k, v, l]) => `<button type="button" class="pf-tokx" data-x="${k}" data-v="${esc(v)}" aria-label="Remove filter: ${esc(l)}">${esc(l)}<span aria-hidden="true">&times;</span></button>`).join("")
@@ -368,7 +380,7 @@
     const askBar = `<div class="pf-ask" data-hana-geo="band" data-geo-theme="midnight">
       <div><div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <div class="pf-ask-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</div></div>
-      <a class="pf-btn" href="/contact">Email your target package specification</a></div>`;
+      <a class="pf-btn" href="${L("/contact")}">Email your target package specification</a></div>`;
 
     function nearest(dims) {
       if (!dims) return "";
@@ -553,7 +565,7 @@
         ${hasGo ? `<th scope="col"></th>` : ""}</tr>`;
       /* A row links to the page that owns it, except on that page itself, where the
          link would only reload it. With no links left, the column goes too. */
-      const goHref = r => OWN[r.own] && r.own !== own ? OWN[r.own] : "";
+      const goHref = r => OWN[r.own] && r.own !== own ? L(OWN[r.own]) : "";
       const hasGo = rows.some(goHref);
       const hasThk = rows.some(r => thkText(r));
       const span = 3 + (FULL ? 1 : 0) + (hasThk ? 1 : 0) + (hasLeads ? 1 : 0) + (hasGo ? 1 : 0);
@@ -662,6 +674,12 @@
       sync(); render();
     };
     root.querySelector(".pf-clear").addEventListener("click", resetAll);
+    /* Phones: the filter rows fold behind a "Filters" button; the search field stays open. */
+    const ftog = root.querySelector(".pf-ftoggle");
+    if (ftog) ftog.addEventListener("click", () => {
+      const open = root.classList.toggle("pf-fopen");
+      ftog.setAttribute("aria-expanded", open);
+    });
     const activeEl = root.querySelector(".pf-active");
     if (activeEl) activeEl.addEventListener("click", e => {
       if (e.target.closest(".pf-xall")) return resetAll();

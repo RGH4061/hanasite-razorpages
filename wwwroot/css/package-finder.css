@@ -270,3 +270,49 @@
   font-family:var(--font-text);font-variant-numeric:tabular-nums}
 .pf-num{font-size:14px}
 .pf-grp th{font-family:var(--font-text);font-size:14.5px;letter-spacing:0}
+
+/* Phones: filters fold behind a "Filters" button, size presets wrap */
+.pf-ftoggle{display:none}
+@media(max-width:860px){
+  .pf-ftoggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 18px;border:0;background:var(--white);font-family:var(--font-text);font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+  .pf-ftoggle .pf-fcount{font-weight:400;color:var(--hana-blue)}
+  .pf-ftoggle .pf-fchev{margin-left:auto;color:var(--ink-2);transition:transform .18s ease}
+  .pf--page.pf-fopen .pf-ftoggle .pf-fchev{transform:rotate(180deg)}
+  .pf--page .pf-rows{display:none;border-top:1px solid var(--line)}
+  .pf--page.pf-fopen .pf-rows{display:block}
+  .pf-sz{flex-wrap:wrap}
+  .pf-rows .pf-edges{flex:1 1 100%;flex-wrap:wrap}
+  .pf-rows .pf-thkr{flex:1;min-width:0}
+}
+@media(max-width:860px){
+  /* The specification button wraps instead of being cut off by the panel edge */
+  .pf-btn{flex:1 1 100%;white-space:normal;text-align:center;line-height:1.5}
+  /* Phone cards: the tick box sits at the top right of each card, not on a line of its own */
+  .pf--page .pf-table tbody tr{position:relative}
+  .pf--page .pf-table td.pf-sel{position:absolute;top:14px;right:16px;width:auto;padding:0}
+  .pf--page .pf-table td.pf-sel:before{content:none}
+  .pf--page .pf-table td.pf-sel input{width:20px;height:20px;margin:0}
+  .pf--page .pf-table td.pf-pk{padding-right:36px}
+}
+@media(max-width:860px){
+  .pf--page .pf-table tr.is-sel{background:#EAF3FC;border-color:#BBD7F2}
+  .pf--page .pf-table tr.is-sel td{background:none}
+}
+/* Where the site header is pinned (phones), the pinned line and the table bars sit under it */
+.pf--page .pf-status{top:var(--pf-hdr,0px)}
+@media(min-width:1100px){
+  .pf--page .pf-grp th{top:calc(var(--pf-hdr,0px) + var(--pf-st,40px))}
+  .pf--page .pf-cols th{top:calc(var(--pf-hdr,0px) + var(--pf-st,40px) + 40px)}
+  .pf--page .pf-cols--solo th{top:calc(var(--pf-hdr,0px) + var(--pf-st,40px))}
+}
+@media(max-width:860px){.pf-rows .pf-div{display:none}.pf-rows .pf-sub{flex-basis:auto;margin-left:2px}}
+/* Phone cards: long sizes such as "3.90 × 4.90–9.90 mm (150 mil)" wrap beside their label
+   instead of pushing the page wider (the Thai pages' font is wider than Inter). */
+@media(max-width:860px){
+  .pf-table td.pf-num{display:flex;white-space:normal}
+  .pf-table td.pf-num:before{flex:none}
+}
+@media(max-width:860px){
+  .pf-table td.pf-num{flex-wrap:wrap}
+  .pf-table td.pf-num .pf-die{flex:1 1 100%;padding-left:96px;white-space:normal}
+}

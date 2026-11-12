@@ -38,10 +38,16 @@
 /* Package finder pill under the hero buttons */
 .hpk-pill{display:inline-flex;align-items:center;gap:10px;margin-top:18px;pointer-events:auto;padding:7px 12px 7px 10px;border:1px solid rgba(18,131,221,0.35);border-radius:999px;background:rgba(18,131,221,0.08);text-decoration:none;font-family:var(--font-mono);font-size:12px;color:rgba(229,238,245,0.85);letter-spacing:0.02em}
 .hpk-pill:hover{border-color:rgba(18,131,221,0.7);background:rgba(18,131,221,0.16);color:#fff}
-.hpk-pill .hpk-ex{color:rgba(78,155,218,0.85)}
+.hpk-pill .hpk-ex{position:relative;display:block;width:128px;height:16px;overflow:hidden;color:rgba(78,155,218,0.85);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)}
+.hpk-track{position:absolute;top:0;left:0;display:flex;width:max-content;line-height:16px;animation:hpkTick 18s linear infinite}
+.hpk-pill:hover .hpk-track{animation-play-state:paused}
+.hpk-run{display:flex;white-space:nowrap}
+.hpk-run span::after{content:"\00B7";padding:0 8px}
+@@keyframes hpkTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@@media (prefers-reduced-motion:reduce){.hpk-track{animation:none}}
 .hpk-pill .hpk-sep{width:1px;height:14px;background:rgba(18,131,221,0.35)}
 .hpk-pill{white-space:nowrap;max-width:100%}
-@@media (max-width:420px){.hpk-pill .hpk-sep,.hpk-pill .hpk-ex{display:none}}
+@@media (max-width:359px){.hpk-pill .hpk-sep,.hpk-pill .hpk-ex{display:none}}
 .hpk-pill{font-family:var(--font-thai);letter-spacing:0}.hpk-pill .hpk-ex{font-family:var(--font-mono);letter-spacing:0.02em}
 @@media (prefers-reduced-motion:reduce){.hrv,.hrw-in{opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important;transition:none!important}.hrw-edge{display:none}}
 </style>
@@ -114,9 +120,11 @@
         </div>
         <div class="hha-acts"><a href="/th/capabilities/osat/package-finder" class="hpk-pill">
             <i data-lucide="search" style="width:13px; height:13px;"></i>
-            ค้นหาขนาดแพ็กเกจ
+            @* Draft Thai (12 Nov 2026): the approved finder H1 ค้นหาแพ็กเกจที่เหมาะกับคุณ, shortened to
+               match the English "Find a package". Not yet reviewed by the Thai team. *@
+            ค้นหาแพ็กเกจ
             <span class="hpk-sep" aria-hidden="true"></span>
-            <span class="hpk-ex" aria-hidden="true">5x5 &middot; DFN &middot; QFN32</span>
+            <span class="hpk-ex" aria-hidden="true"><span class="hpk-track"><span class="hpk-run"><span>5x5</span><span>DFN</span><span>GaN</span><span>TSPAK</span><span>EASY</span><span>QFN</span><span>SOT</span></span><span class="hpk-run"><span>5x5</span><span>DFN</span><span>GaN</span><span>TSPAK</span><span>EASY</span><span>QFN</span><span>SOT</span></span></span></span>
             <i data-lucide="arrow-right" style="width:13px; height:13px;"></i>
         </a></div>
 
