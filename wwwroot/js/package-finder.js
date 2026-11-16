@@ -271,7 +271,7 @@
     const pkgLine = r => [r.pkg, r.bs, thkText(r) ? thkText(r) + " thick" : "",
       r.leads.length ? r.leads.join("/") + " leads" : "", r.grade].filter(Boolean).join(", ");
     const mailto = rows => {
-      const subject = "Package inquiry: " + rows.slice(0, 3).map(r => r.pkg + (r.bs ? " " + r.bs : "")).join("; ")
+      const subject = "Hana Package Inquiry: " + rows.slice(0, 3).map(r => r.pkg + (r.bs ? " " + r.bs : "")).join("; ")
         + (rows.length > 3 ? " and " + (rows.length - 3) + " more" : "");
       const body = "Hello,\n\nWe would like to discuss these packages from your website:\n\n"
         /* Mail links much over 2,000 characters fail in some clients, so long lists are cut. */
