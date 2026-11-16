@@ -78,9 +78,6 @@
 .pf-nearrow:first-of-type{border-top:0}
 .pf-nearrow b{min-width:130px;color:var(--ink)}
 .pf-nearrow .pf-d{color:var(--ink-3);font-size:12.5px;margin-left:auto;font-family:var(--font-mono)}
-.pf-empty{background:var(--white);border:1px solid var(--line);border-radius:var(--pf-radius);padding:34px 30px;text-align:center;margin-bottom:16px}
-.pf-empty b{display:block;font-family:var(--font-display);font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
-.pf-empty p{color:var(--ink-2);max-width:58ch;margin:0 auto;font-size:14.5px}
 /* embedded on the pages that own these rows */
 .pf--embed .pf-count{margin-top:20px;font-size:14px}
 .pf--embed .pf-ask{padding:18px 22px}
@@ -392,7 +389,6 @@
 .pf-ask--two .pf-ask-part{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px 28px}
 .pf-ask--two .pf-ask-part .pf-ask-s{margin-top:0}
 .pf-ask--two .pf-ask-part--custom{gap:16px}
-.pf-ask--custom .pf-ask-t{flex:1 1 320px}
 @media(max-width:860px){
   .pf-ask--two .pf-ask-part{padding:16px 18px;gap:8px}
   .pf-ask--two .pf-ask-part--custom{gap:12px}
@@ -423,4 +419,25 @@
 @media(max-width:860px){
   .pf-tray-in{flex-wrap:wrap}
   .pf-tray .pf-mh{flex:1 0 100%;margin-top:-4px}
+}
+
+/* No-match band (16 Nov 2026): message on the left, email button and its help line on the right */
+.pf-ask--empty{padding:26px 28px;gap:16px 32px}
+.pf-ask--empty .pf-ask-txt{flex:1 1 380px;min-width:0}
+.pf-ask--empty .pf-ask-t{font-size:22px}
+.pf-ask--empty .pf-ask-s{font-size:14.5px;line-height:1.6;margin-top:6px;color:rgba(255,255,255,.92)}
+.pf-ask-go{display:flex;flex-direction:column;align-items:flex-end;gap:8px;margin-left:auto}
+.pf-ask-go .pf-btn{margin-left:0}
+@media(max-width:860px){
+  .pf-ask--empty{padding:18px 20px}
+  .pf-ask--empty .pf-ask-t{font-size:18px}
+  .pf-ask--empty .pf-ask-s{font-size:13.5px}
+  .pf-ask-go{flex:1 1 100%;align-items:stretch;margin-left:0}
+}
+/* Closest sizes on phones: the distance drops to its own line instead of pushing the row past the screen edge */
+@media(max-width:600px){
+  .pf-near{padding:14px 16px}
+  .pf-nearrow{flex-wrap:wrap;column-gap:12px;row-gap:2px}
+  .pf-nearrow b{min-width:72px}
+  .pf-nearrow .pf-d{flex-basis:100%;margin-left:0}
 }

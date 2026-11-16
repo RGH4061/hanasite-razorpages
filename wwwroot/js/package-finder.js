@@ -415,9 +415,15 @@
     };
     const askCustom = c => `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a>`;
-    const askBar = c => `<div class="pf-ask pf-ask--custom" data-hana-geo="band" data-geo-theme="midnight">${askCustom(c)}</div>`;
+    /* A search with no match (Rupert, 16 Nov 2026): the message and the email button sit
+       in one band, ahead of the closest sizes, so the next step is the first thing read.
+       The button has its own wrapper so the email help line can sit under it. */
+    const askEmpty = c => `<div class="pf-ask pf-ask--empty" data-hana-geo="band" data-geo-theme="midnight">
+      <div class="pf-ask-txt"><div class="pf-ask-t">No standard package matches that</div>
+        <div class="pf-ask-s">We recommend contacting us, as we also build to custom dimensions. Molded bodies go down to 0.6&nbsp;&times;&nbsp;1.0&nbsp;mm, and leadless packages from 0.37&nbsp;mm thick.</div></div>
+      <div class="pf-ask-go"><a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a></div></div>`;
     /* Above every table the band explains the inquiry list, ahead of the rows: listed
-       packages on the left, custom sizes on the right. The empty state keeps askBar. */
+       packages on the left, custom sizes on the right. */
     const askTwo = c => `<div class="pf-ask pf-ask--two" data-hana-geo="band" data-geo-theme="midnight">
       <div class="pf-ask-part pf-ask-part--add"><div class="pf-ask-t">Send one inquiry for several packages</div>
         <div class="pf-ask-s">Click <span class="pf-add pf-add--demo" aria-hidden="true"><span>+</span> Add</span> on each package you need. They collect in your inquiry, ready to email to us in one message.</div></div>
@@ -583,9 +589,7 @@
       const ask = { raw, maxEdge, maxThk, app, grades: [...pickGrade] };
 
       if (!rows.length) {
-        outEl.innerHTML = `<div class="pf-empty"><b>No standard package matches that</b>
-          <p>We recommend contacting us, as we also build to custom dimensions. Molded bodies go down to 0.6 &times; 1.0 mm, and leadless packages from 0.37 mm thick.</p></div>
-          ${nearest(p.dims)}${askBar(ask)}`;
+        outEl.innerHTML = askEmpty(ask) + nearest(p.dims);
         if (window.HanaGeo) window.HanaGeo.init(outEl);
         /* The panel icons are drawn here too, or a page that opens on an empty result has none. */
         if (window.lucide) window.lucide.createIcons();
