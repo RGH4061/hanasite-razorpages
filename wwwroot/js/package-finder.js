@@ -32,6 +32,10 @@
   /* Owner pages with a package table at #package-reference; "Details" links land there. */
   const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
   const SALES = "info-request@hanaus.com";
+  /* "Copy email" sits beside every email button from the start (Rupert, 16 Nov 2026), so a
+     visitor whose email program does not open can paste the same email elsewhere. */
+  const COPY_ICON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const COPY_BTN = `<button type="button" class="pf-copy">${COPY_ICON}<span>Copy email</span></button>`;
   /* Contact lines at the end of both inquiry emails (Rupert, 12 Nov 2026), so sales can
      reply and route the inquiry without asking first. */
   const CONTACT_LINES = "Name:\nPosition:\nCompany:\nCountry:\nPhone number:";
@@ -294,7 +298,7 @@
           `<button type="button" class="pf-tokx" data-unsel="${KEY.get(r)}" aria-label="Remove ${esc(r.pkg)}">${esc(r.pkg)}${r.bs ? ` <span class="pf-tray-bs">${esc(r.bs)}</span>` : ""}<span aria-hidden="true">&times;</span></button>`).join("")}
           ${n > SHOW ? `<span class="pf-tray-more">+${n - SHOW} more</span>` : ""}</div>
         <button type="button" class="pf-xall pf-tray-clear">Clear</button>
-        <a class="pf-tray-go pf-mail" href="${esc(mailto(rows))}">Email us about ${n === 1 ? "this package" : "these " + n} &rarr;</a>
+        <div class="pf-mailrow pf-mailrow--tray"><a class="pf-tray-go pf-mail" href="${esc(mailto(rows))}">Email us about ${n === 1 ? "this package" : "these " + n} &rarr;</a>${COPY_BTN}</div>
       </div>`;
       setSt();
     };
@@ -409,19 +413,20 @@
       ].filter(Boolean);
       const body = "Hello,\n\nWe are looking for a custom package."
         + (context.length ? "\n\n" + context.join("\n") : "")
-        + "\n\nOur requirements:\n\nPackage type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n"
-        + CONTACT_LINES + "\n\nThank you.";
+        /* Order set by Rupert, 16 Nov 2026: contact lines first, as in the package email. */
+        + "\n\n" + CONTACT_LINES
+        + "\n\nOur requirements:\n\nPackage type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n\nThank you.";
       return "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(body);
     };
     const askCustom = c => `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
-      <a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a>`;
+      <div class="pf-mailrow"><a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a>${COPY_BTN}</div>`;
     /* A search with no match (Rupert, 16 Nov 2026): the message and the email button sit
        in one band, ahead of the closest sizes, so the next step is the first thing read.
-       The button has its own wrapper so the email help line can sit under it. */
+       The email and copy buttons share a wrapper, which the copy button reads the email from. */
     const askEmpty = c => `<div class="pf-ask pf-ask--empty" data-hana-geo="band" data-geo-theme="midnight">
       <div class="pf-ask-txt"><div class="pf-ask-t">No standard package matches that</div>
         <div class="pf-ask-s">We recommend contacting us, as we also build to custom dimensions. Molded bodies go down to 0.6&nbsp;&times;&nbsp;1.0&nbsp;mm, and leadless packages from 0.37&nbsp;mm thick.</div></div>
-      <div class="pf-ask-go"><a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a></div></div>`;
+      <div class="pf-mailrow pf-mailrow--go"><a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a>${COPY_BTN}</div></div>`;
     /* Above every table the band explains the inquiry list, ahead of the rows: listed
        packages on the left, custom sizes on the right. */
     const askTwo = c => `<div class="pf-ask pf-ask--two" data-hana-geo="band" data-geo-theme="midnight">
@@ -769,20 +774,19 @@
     tray();
   }
 
-  /* Email help (Rupert, 16 Nov 2026). The inquiry buttons are mailto: links, which open
-     the visitor's email program and do nothing where there is none (webmail-only users,
-     in-app browsers). A page cannot see whether an email program opened, but when one
-     does, the browser window loses focus (a desktop app or a Gmail tab comes to the
-     front; on phones the mail app hides the page). If the page still has focus 2.5 s
-     after the click, one line appears under the clicked button with the same email as
-     copyable text or as a Gmail or Outlook on the web draft. If focus moves within 8 s
-     (a slow-starting email program), the line is removed again. */
+  /* Copy email (Rupert, 16 Nov 2026). The email buttons are mailto: links, which open the
+     visitor's email program and do nothing where there is none (webmail-only users, in-app
+     browsers). The copy button beside each one copies the same email as text: To, Subject
+     and body. It replaced a help line that appeared only when no email program seemed to
+     open, which visitors could not find again. */
   const mailParts = href => {
     const u = new URL(href);
     return { to: decodeURIComponent(u.pathname), subject: u.searchParams.get("subject") || "", body: u.searchParams.get("body") || "" };
   };
-  /* Clipboard API first; then the older copy command; resolves false if both are blocked. */
-  const copyText = t => {
+  /* Copies the email as formatted text where the browser allows it, so the "Send to" line
+     pastes in bold into Outlook or Gmail; plain text otherwise. The ClipboardItem is built
+     inside the click, which Safari requires. Resolves false if every method is blocked. */
+  const copyText = (t, html) => {
     const legacy = () => {
       const ta = document.createElement("textarea");
       ta.value = t; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
@@ -791,61 +795,51 @@
       try { ok = document.execCommand("copy"); } catch (e) {} finally { ta.remove(); }
       return ok;
     };
-    if (navigator.clipboard && window.isSecureContext)
-      return navigator.clipboard.writeText(t).then(() => true, () => legacy());
-    return Promise.resolve(legacy());
-  };
-  const mailHelpLine = a => {
-    const d = mailParts(a.href), q = encodeURIComponent;
-    let el = a.nextElementSibling;
-    if (!el || !el.classList.contains("pf-mh")) {
-      el = document.createElement("div");
-      el.className = "pf-mh";
-      el.setAttribute("role", "status");
-      a.insertAdjacentElement("afterend", el);
+    if (!navigator.clipboard || !window.isSecureContext) return Promise.resolve(legacy());
+    const plain = () => navigator.clipboard.writeText(t).then(() => true, () => legacy());
+    if (html && window.ClipboardItem && navigator.clipboard.write) {
+      try {
+        return navigator.clipboard.write([new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([t], { type: "text/plain" })
+        })]).then(() => true, plain);
+      } catch (e) { return plain(); }
     }
-    /* Two unbreakable groups, so a narrow box (the inquiry card) breaks between them. */
-    el.innerHTML = `<span class="pf-mh-g">Email didn&rsquo;t open?</span>
-      <span class="pf-mh-g"><button type="button" class="pf-mh-a pf-mh-copy">Copy email</button>
-      <span aria-hidden="true">&middot;</span> <a class="pf-mh-a" target="_blank" rel="noopener"
-        href="${esc("https://mail.google.com/mail/?view=cm&fs=1&to=" + q(d.to) + "&su=" + q(d.subject) + "&body=" + q(d.body))}">Gmail</a>
-      <span aria-hidden="true">&middot;</span> <a class="pf-mh-a" target="_blank" rel="noopener"
-        href="${esc("https://outlook.office.com/mail/deeplink/compose?to=" + q(d.to) + "&subject=" + q(d.subject) + "&body=" + q(d.body))}">Outlook</a></span>`;
-    el.querySelector(".pf-mh-copy").addEventListener("click", e => {
-      const b = e.currentTarget, text = "To: " + d.to + "\nSubject: " + d.subject + "\n\n" + d.body;
-      copyText(text).then(ok => {
-        if (ok) { b.textContent = "Copied"; setTimeout(() => { b.textContent = "Copy email"; }, 2000); return; }
-        /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */
-        let ta = el.querySelector("textarea");
-        if (!ta) { ta = document.createElement("textarea"); ta.readOnly = true; ta.setAttribute("aria-label", "Email text"); el.appendChild(ta); }
-        ta.value = text; ta.focus(); ta.select();
-        b.textContent = "Press ⌘C or Ctrl+C";
-      });
-    });
+    return plain();
   };
-  let mailWatch = null;
-  /* Delegated, so it covers buttons that are redrawn on every filter change. The mailto
-     link itself is not stopped. */
+  /* Delegated, so it covers buttons that are redrawn on every filter change. */
   document.addEventListener("click", e => {
-    const a = e.target.closest && e.target.closest("a.pf-mail[href^='mailto:']");
+    const b = e.target.closest && e.target.closest(".pf-copy");
+    if (!b) return;
+    const row = b.closest(".pf-mailrow"), a = row && row.querySelector("a.pf-mail");
     if (!a) return;
-    if (mailWatch) mailWatch.stop();
-    const timer = setTimeout(() => mailHelpLine(a), 2500);
-    const end = setTimeout(() => stop(), 8000);
-    const stop = () => {
-      clearTimeout(timer); clearTimeout(end);
-      window.removeEventListener("blur", left);
-      document.removeEventListener("visibilitychange", left);
-      if (mailWatch && mailWatch.stop === stop) mailWatch = null;
-    };
-    const left = ev => {
-      if (ev.type === "visibilitychange" && !document.hidden) return;
-      const h = a.nextElementSibling; if (h && h.classList.contains("pf-mh")) h.remove();
-      stop();
-    };
-    window.addEventListener("blur", left);
-    document.addEventListener("visibilitychange", left);
-    mailWatch = { stop };
+    const d = mailParts(a.href), label = b.querySelector("span");
+    /* "Send to" first, in bold, so the address stands out once pasted (Rupert, 16 Nov 2026). */
+    const text = "Send to: " + d.to + "\nSubject: " + d.subject + "\n\n" + d.body;
+    const html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px">'
+      + "<b>Send to: " + esc(d.to) + "</b><br>Subject: " + esc(d.subject) + "<br><br>"
+      + esc(d.body).replace(/\n/g, "<br>") + "</div>";
+    copyText(text, html).then(ok => {
+      if (ok) {
+        label.textContent = "Copied";
+        b.classList.add("on");
+        clearTimeout(b._t);
+        b._t = setTimeout(() => { label.textContent = "Copy email"; b.classList.remove("on"); }, 2500);
+        /* Where to send it stays in view under the buttons until the panel is redrawn. */
+        if (!row.querySelector(".pf-copied")) row.insertAdjacentHTML("beforeend",
+          `<div class="pf-copied" role="status">Copied. Paste it into a new email and send it to <b>${esc(d.to)}</b>.</div>`);
+        return;
+      }
+      /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */
+      let ta = row.parentNode.querySelector(".pf-copytext");
+      if (!ta) {
+        ta = document.createElement("textarea");
+        ta.className = "pf-copytext"; ta.readOnly = true; ta.setAttribute("aria-label", "Email text");
+        row.insertAdjacentElement("afterend", ta);
+      }
+      ta.value = text; ta.focus(); ta.select();
+      label.textContent = "Press ⌘C or Ctrl+C";
+    });
   });
 
   document.addEventListener("DOMContentLoaded", () => {

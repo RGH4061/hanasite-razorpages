@@ -257,7 +257,7 @@
   .pf-tray-in{flex-direction:row;align-items:center;border-radius:0;border-width:1px 0 0}
   .pf-tray-list,.pf-tray .pf-tray-clear{display:none}
   .pf-tray-go{margin-left:auto}
-  body.pf-tray-on{padding-bottom:72px}
+  body.pf-tray-on{padding-bottom:112px}
 }
 
 /* Figures in Inter rather than IBM Plex Mono (Rupert, 12 Nov 2026): Plex Mono's dotted
@@ -408,31 +408,15 @@
 .pf-ask--two .pf-ask-part--add .pf-ask-s{color:rgba(255,255,255,.95)}
 @media(max-width:860px){.pf-ask--two .pf-ask-part--add .pf-ask-t{font-size:18px}}
 
-/* Email help line under a clicked inquiry button, shown only when no email program
-   seemed to open (16 Nov 2026). Both buttons sit on Midnight backgrounds. */
-.pf-mh{font-family:var(--font-text);font-size:13px;line-height:1.5;color:rgba(229,238,245,.85)}
-.pf-mh-g{display:inline-block;white-space:nowrap}
-.pf-mh-a{padding:0;border:0;background:none;font:inherit;font-weight:600;color:#fff;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
-.pf-mh-a:hover{color:var(--warm-accent,#FF883E)}
-.pf-mh textarea{display:block;width:100%;height:120px;margin-top:8px;padding:6px 8px;border:0;border-radius:4px;font:12px/1.45 var(--font-text);color:var(--ink);resize:vertical}
-.pf-tray .pf-mh{text-align:center}
-@media(max-width:860px){
-  .pf-tray-in{flex-wrap:wrap}
-  .pf-tray .pf-mh{flex:1 0 100%;margin-top:-4px}
-}
-
-/* No-match band (16 Nov 2026): message on the left, email button and its help line on the right */
+/* No-match band (16 Nov 2026): message on the left, email and copy buttons on the right */
 .pf-ask--empty{padding:26px 28px;gap:16px 32px}
 .pf-ask--empty .pf-ask-txt{flex:1 1 380px;min-width:0}
 .pf-ask--empty .pf-ask-t{font-size:22px}
 .pf-ask--empty .pf-ask-s{font-size:14.5px;line-height:1.6;margin-top:6px;color:rgba(255,255,255,.92)}
-.pf-ask-go{display:flex;flex-direction:column;align-items:flex-end;gap:8px;margin-left:auto}
-.pf-ask-go .pf-btn{margin-left:0}
 @media(max-width:860px){
   .pf-ask--empty{padding:18px 20px}
   .pf-ask--empty .pf-ask-t{font-size:18px}
   .pf-ask--empty .pf-ask-s{font-size:13.5px}
-  .pf-ask-go{flex:1 1 100%;align-items:stretch;margin-left:0}
 }
 /* Closest sizes on phones: the distance drops to its own line instead of pushing the row past the screen edge */
 @media(max-width:600px){
@@ -440,4 +424,33 @@
   .pf-nearrow{flex-wrap:wrap;column-gap:12px;row-gap:2px}
   .pf-nearrow b{min-width:72px}
   .pf-nearrow .pf-d{flex-basis:100%;margin-left:0}
+}
+
+/* Email button + "Copy email" (16 Nov 2026). Every email button sits in a .pf-mailrow with a
+   copy button, all on Midnight backgrounds. */
+.pf-mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.pf-mailrow .pf-btn{margin-left:0}
+.pf-mailrow--go{margin-left:auto}
+.pf-copy{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 14px;border:1px solid rgba(255,255,255,.4);border-radius:4px;background:transparent;color:#fff;font-family:var(--font-text);font-size:13px;font-weight:600;line-height:1.2;cursor:pointer;white-space:nowrap}
+.pf-copy:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.pf-copy:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pf-copy.on{border-color:var(--warm-accent,#FF883E);color:var(--warm-accent,#FF883E)}
+.pf-copied{flex:1 1 100%;font-family:var(--font-text);font-size:13px;line-height:1.5;color:rgba(229,238,245,.9)}
+.pf-copied b{color:#fff;font-weight:700;white-space:nowrap}
+.pf-mailrow--go .pf-copied{text-align:right}
+.pf-tray .pf-copied{text-align:center}
+.pf-copytext{display:block;width:100%;height:120px;margin-top:10px;padding:6px 8px;border:0;border-radius:4px;font:12px/1.45 var(--font-text);color:var(--ink);resize:vertical}
+.pf-mailrow--tray{flex-direction:column;align-items:stretch;gap:8px}
+@media(max-width:860px){
+  .pf-mailrow--go{flex:1 1 100%;margin-left:0}
+  .pf-ask .pf-mailrow{align-self:stretch}
+  .pf-ask .pf-mailrow .pf-btn,.pf-ask .pf-mailrow .pf-copy{flex:1 1 100%}
+  /* Phone bar: count and Copy email on the first line, the orange button full width below */
+  .pf-tray-in{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 12px}
+  .pf-mailrow--tray{display:contents}
+  .pf-tray-n{grid-column:1;grid-row:1}
+  .pf-tray .pf-copy{grid-column:2;grid-row:1;padding:6px 11px}
+  .pf-tray-go{grid-column:1/-1;grid-row:2;margin-left:0}
+  .pf-tray .pf-copytext,.pf-tray .pf-copied{grid-column:1/-1;margin-top:0}
+  .pf-mailrow--go .pf-copied{text-align:left}
 }
