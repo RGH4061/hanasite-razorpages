@@ -393,23 +393,23 @@
     /* Custom sizes (Rupert, 12 Nov 2026): heading and one button, no explanatory line. The
        button opens an email, not the contact page; its body asks for what the removed line
        used to ask for (body size, lead count, thickness). What the buyer searched for and
-       filtered on is filled in (Rupert, 16 Nov 2026), so a "QFN 7x7" search that finds
-       nothing arrives as "Package type: QFN / Body size (mm): 7 × 7". */
+       filtered on is quoted at the top (Rupert, 16 Nov 2026); the requirement lines stay
+       blank for the buyer to fill in. */
     const CUSTOM_SUBJECT = "Custom Packaging Requirements Hana Microelectronics Group";
-    const FAMILY = /(QFN|DFN|LGA|SOIC|MSOP|TSSOP|SSOP|SOP|SOT|QFP|BGA|PDIP|D2PAK|DPAK|TOLL|TO-?\d{2,3}|SiP)/i;
     const customMail = c => {
-      const fam = c.raw && c.raw.match(FAMILY);
-      const lines = [
+      const used = [
+        c.app === "auto" ? "Automotive" + (c.grades.length ? " (" + c.grades.join(", ") + ")" : "") : c.app === "non" ? "Non-automotive" : "",
+        c.maxEdge < MAX_EDGE ? "largest body edge up to " + c.maxEdge + " mm" : "",
+        c.maxThk !== null ? "thickness up to " + c.maxThk.toFixed(2) + " mm" : ""
+      ].filter(Boolean);
+      const context = [
         c.raw ? "Searched for on your website: " + c.raw : "",
-        "Package type: " + (fam ? (/^sip$/i.test(fam[1]) ? "SiP" : fam[1].toUpperCase()) : ""),
-        "Body size (mm): " + (c.dims ? c.dims[0] + " \u00d7 " + c.dims[1] : c.maxEdge < MAX_EDGE ? "largest edge up to " + c.maxEdge : ""),
-        "Lead count: " + (c.leads || ""),
-        "Thickness (mm): " + (c.maxThk !== null ? "up to " + c.maxThk.toFixed(2) : ""),
-        "Application: " + (c.app === "auto" ? "Automotive" + (c.grades.length ? " (" + c.grades.join(", ") + ")" : "") : ""),
-        "Estimated annual volume: ", "Target timing: "
-      ].filter(Boolean).map(l => l.trimEnd());
-      const body = "Hello,\n\nWe are looking for a custom package. Our requirements:\n\n" + lines.join("\n")
-        + "\n\n" + CONTACT_LINES + "\n\nThank you.";
+        used.length ? "Filters used: " + used.join(", ") : ""
+      ].filter(Boolean);
+      const body = "Hello,\n\nWe are looking for a custom package."
+        + (context.length ? "\n\n" + context.join("\n") : "")
+        + "\n\nOur requirements:\n\nPackage type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n"
+        + CONTACT_LINES + "\n\nThank you.";
       return "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(body);
     };
     const askCustom = c => `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
@@ -579,7 +579,7 @@
       countEl.innerHTML = (rows.length ? `<b>${rows.length}</b> package${rows.length === 1 ? "" : "s"} <span>of ${scope.length}</span>` : "")
         + aside(noSize.length, "body size") + aside(noThk.length, "thickness");
       counts(pool); active(raw);
-      const ask = { raw, dims: p.dims, leads: p.leads, maxEdge, maxThk, app, grades: [...pickGrade] };
+      const ask = { raw, maxEdge, maxThk, app, grades: [...pickGrade] };
 
       if (!rows.length) {
         outEl.innerHTML = `<div class="pf-empty"><b>No standard package matches that</b>
