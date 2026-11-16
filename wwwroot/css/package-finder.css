@@ -411,3 +411,25 @@
 .pf-ask--two .pf-ask-part--add .pf-ask-t{font-size:22px}
 .pf-ask--two .pf-ask-part--add .pf-ask-s{color:rgba(255,255,255,.95)}
 @media(max-width:860px){.pf-ask--two .pf-ask-part--add .pf-ask-t{font-size:18px}}
+
+/* Email fallback panel, shown after an inquiry button is clicked (16 Nov 2026) */
+.pf-mailhelp{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:60;width:min(460px,calc(100% - 32px));padding:18px 20px 18px;background:#fff;border:1px solid var(--line);border-radius:var(--pf-radius,8px);box-shadow:0 18px 48px rgba(3,10,23,.28);font-family:var(--font-text);color:var(--ink)}
+.pf-mailhelp[hidden]{display:none}
+.pf-mh-x{position:absolute;top:8px;right:10px;border:0;background:none;font-size:22px;line-height:1;color:var(--ink-2);cursor:pointer;padding:4px}
+.pf-mh-x:hover{color:var(--ink)}
+.pf-mh-t{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 28px 6px 0}
+.pf-mh-s{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin:0 0 14px}
+.pf-mh-s b{color:var(--ink);font-weight:600}
+.pf-mh-acts{display:flex;flex-wrap:wrap;gap:8px}
+.pf-mh-copy,.pf-mh-web{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:4px;font-family:var(--font-text);font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap}
+.pf-mh-copy{border:1px solid var(--hana-blue);background:var(--hana-blue);color:#fff;min-width:110px}
+.pf-mh-copy:hover{background:var(--hana-blue-deep,#0E4A7C);border-color:var(--hana-blue-deep,#0E4A7C)}
+.pf-mh-web{border:1px solid var(--line);background:#fff;color:var(--ink)}
+.pf-mh-web:hover{border-color:var(--hana-blue);color:var(--hana-blue)}
+@media(max-width:860px){
+  .pf-mailhelp{left:0;right:0;bottom:0;transform:none;width:100%;border-radius:12px 12px 0 0;border-width:1px 0 0;padding:18px 18px 22px}
+  .pf-mh-acts > *{flex:1 1 auto}
+}
+.pf-mh-text{display:block;width:100%;height:150px;margin-top:12px;padding:8px 10px;border:1px solid var(--line);border-radius:4px;font-family:var(--font-text);font-size:12.5px;line-height:1.5;color:var(--ink);resize:vertical}
+.pf-mh-text[hidden]{display:none}
+.pf-mh-to{white-space:nowrap}

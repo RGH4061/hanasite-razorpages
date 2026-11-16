@@ -294,7 +294,7 @@
           `<button type="button" class="pf-tokx" data-unsel="${KEY.get(r)}" aria-label="Remove ${esc(r.pkg)}">${esc(r.pkg)}${r.bs ? ` <span class="pf-tray-bs">${esc(r.bs)}</span>` : ""}<span aria-hidden="true">&times;</span></button>`).join("")}
           ${n > SHOW ? `<span class="pf-tray-more">+${n - SHOW} more</span>` : ""}</div>
         <button type="button" class="pf-xall pf-tray-clear">Clear</button>
-        <a class="pf-tray-go" href="${esc(mailto(rows))}">Email us about ${n === 1 ? "this package" : "these " + n} &rarr;</a>
+        <a class="pf-tray-go pf-mail" href="${esc(mailto(rows))}">Email us about ${n === 1 ? "this package" : "these " + n} &rarr;</a>
       </div>`;
       setSt();
     };
@@ -414,7 +414,7 @@
       return "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(body);
     };
     const askCustom = c => `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
-      <a class="pf-btn" href="${esc(customMail(c))}">Email your package specification needs</a>`;
+      <a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a>`;
     const askBar = c => `<div class="pf-ask pf-ask--custom" data-hana-geo="band" data-geo-theme="midnight">${askCustom(c)}</div>`;
     /* Above every table the band explains the inquiry list, ahead of the rows: listed
        packages on the left, custom sizes on the right. The empty state keeps askBar. */
@@ -764,6 +764,76 @@
     render();
     tray();
   }
+
+  /* Email fallback (Rupert, 16 Nov 2026). The inquiry buttons are mailto: links, which
+     open the visitor's email program, and do nothing where there is none (webmail-only
+     users, in-app browsers). After every click a small panel offers the same email as
+     copyable text, or as a Gmail or Outlook on the web draft. */
+  let mailHelp = null, mailData = null;
+  const mailParts = href => {
+    const u = new URL(href);
+    return { to: decodeURIComponent(u.pathname), subject: u.searchParams.get("subject") || "", body: u.searchParams.get("body") || "" };
+  };
+  /* Clipboard API first; then the older copy command; resolves false if both are blocked. */
+  const copyText = t => {
+    const legacy = () => {
+      const ta = document.createElement("textarea");
+      ta.value = t; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      document.body.appendChild(ta); ta.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {} finally { ta.remove(); }
+      return ok;
+    };
+    if (navigator.clipboard && window.isSecureContext)
+      return navigator.clipboard.writeText(t).then(() => true, () => legacy());
+    return Promise.resolve(legacy());
+  };
+  const closeMailHelp = () => { if (mailHelp) mailHelp.hidden = true; };
+  function showMailHelp(d) {
+    mailData = d;
+    if (!mailHelp) {
+      mailHelp = document.createElement("div");
+      mailHelp.className = "pf-mailhelp";
+      mailHelp.setAttribute("role", "dialog");
+      mailHelp.setAttribute("aria-labelledby", "pf-mh-t");
+      mailHelp.innerHTML = `<button type="button" class="pf-mh-x" aria-label="Close">&times;</button>
+        <div class="pf-mh-t" id="pf-mh-t">Your email is ready</div>
+        <div class="pf-mh-s">It should open in your email program. If it didn&rsquo;t, copy it or open it in webmail, and send it to <b class="pf-mh-to"></b>.</div>
+        <div class="pf-mh-acts">
+          <button type="button" class="pf-mh-copy">Copy email</button>
+          <a class="pf-mh-web pf-mh-gmail" target="_blank" rel="noopener">Open in Gmail</a>
+          <a class="pf-mh-web pf-mh-outlook" target="_blank" rel="noopener">Open in Outlook</a>
+        </div>
+        <textarea class="pf-mh-text" readonly hidden aria-label="Email text"></textarea>`;
+      document.body.appendChild(mailHelp);
+      mailHelp.querySelector(".pf-mh-x").addEventListener("click", closeMailHelp);
+      mailHelp.querySelector(".pf-mh-copy").addEventListener("click", e => {
+        const b = e.currentTarget;
+        const text = "To: " + mailData.to + "\nSubject: " + mailData.subject + "\n\n" + mailData.body;
+        copyText(text).then(ok => {
+          if (ok) { b.textContent = "Copied"; setTimeout(() => { b.textContent = "Copy email"; }, 2000); return; }
+          /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */
+          const ta = mailHelp.querySelector(".pf-mh-text");
+          ta.value = text; ta.hidden = false; ta.focus(); ta.select();
+          b.textContent = "Text selected: press Ctrl+C or \u2318C";
+        });
+      });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") closeMailHelp(); });
+    }
+    const q = encodeURIComponent;
+    mailHelp.querySelector(".pf-mh-to").textContent = d.to;
+    mailHelp.querySelector(".pf-mh-gmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + q(d.to) + "&su=" + q(d.subject) + "&body=" + q(d.body);
+    mailHelp.querySelector(".pf-mh-outlook").href = "https://outlook.office.com/mail/deeplink/compose?to=" + q(d.to) + "&subject=" + q(d.subject) + "&body=" + q(d.body);
+    mailHelp.querySelector(".pf-mh-copy").textContent = "Copy email";
+    mailHelp.querySelector(".pf-mh-text").hidden = true;
+    mailHelp.hidden = false;
+  }
+  /* Delegated, so it covers buttons that are redrawn on every filter change. The mailto
+     link is not stopped; the panel appears alongside it. */
+  document.addEventListener("click", e => {
+    const a = e.target.closest && e.target.closest("a.pf-mail[href^='mailto:']");
+    if (a) showMailHelp(mailParts(a.href));
+  });
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-pkgfinder]").forEach(build);
