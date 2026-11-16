@@ -765,11 +765,14 @@
     tray();
   }
 
-  /* Email fallback (Rupert, 16 Nov 2026). The inquiry buttons are mailto: links, which
-     open the visitor's email program, and do nothing where there is none (webmail-only
-     users, in-app browsers). After every click a small panel offers the same email as
-     copyable text, or as a Gmail or Outlook on the web draft. */
-  let mailHelp = null, mailData = null;
+  /* Email help (Rupert, 16 Nov 2026). The inquiry buttons are mailto: links, which open
+     the visitor's email program and do nothing where there is none (webmail-only users,
+     in-app browsers). A page cannot see whether an email program opened, but when one
+     does, the browser window loses focus (a desktop app or a Gmail tab comes to the
+     front; on phones the mail app hides the page). If the page still has focus 2.5 s
+     after the click, one line appears under the clicked button with the same email as
+     copyable text or as a Gmail or Outlook on the web draft. If focus moves within 8 s
+     (a slow-starting email program), the line is removed again. */
   const mailParts = href => {
     const u = new URL(href);
     return { to: decodeURIComponent(u.pathname), subject: u.searchParams.get("subject") || "", body: u.searchParams.get("body") || "" };
@@ -788,51 +791,57 @@
       return navigator.clipboard.writeText(t).then(() => true, () => legacy());
     return Promise.resolve(legacy());
   };
-  const closeMailHelp = () => { if (mailHelp) mailHelp.hidden = true; };
-  function showMailHelp(d) {
-    mailData = d;
-    if (!mailHelp) {
-      mailHelp = document.createElement("div");
-      mailHelp.className = "pf-mailhelp";
-      mailHelp.setAttribute("role", "dialog");
-      mailHelp.setAttribute("aria-labelledby", "pf-mh-t");
-      mailHelp.innerHTML = `<button type="button" class="pf-mh-x" aria-label="Close">&times;</button>
-        <div class="pf-mh-t" id="pf-mh-t">Your email is ready</div>
-        <div class="pf-mh-s">It should open in your email program. If it didn&rsquo;t, copy it or open it in webmail, and send it to <b class="pf-mh-to"></b>.</div>
-        <div class="pf-mh-acts">
-          <button type="button" class="pf-mh-copy">Copy email</button>
-          <a class="pf-mh-web pf-mh-gmail" target="_blank" rel="noopener">Open in Gmail</a>
-          <a class="pf-mh-web pf-mh-outlook" target="_blank" rel="noopener">Open in Outlook</a>
-        </div>
-        <textarea class="pf-mh-text" readonly hidden aria-label="Email text"></textarea>`;
-      document.body.appendChild(mailHelp);
-      mailHelp.querySelector(".pf-mh-x").addEventListener("click", closeMailHelp);
-      mailHelp.querySelector(".pf-mh-copy").addEventListener("click", e => {
-        const b = e.currentTarget;
-        const text = "To: " + mailData.to + "\nSubject: " + mailData.subject + "\n\n" + mailData.body;
-        copyText(text).then(ok => {
-          if (ok) { b.textContent = "Copied"; setTimeout(() => { b.textContent = "Copy email"; }, 2000); return; }
-          /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */
-          const ta = mailHelp.querySelector(".pf-mh-text");
-          ta.value = text; ta.hidden = false; ta.focus(); ta.select();
-          b.textContent = "Text selected: press Ctrl+C or \u2318C";
-        });
-      });
-      document.addEventListener("keydown", e => { if (e.key === "Escape") closeMailHelp(); });
+  const mailHelpLine = a => {
+    const d = mailParts(a.href), q = encodeURIComponent;
+    let el = a.nextElementSibling;
+    if (!el || !el.classList.contains("pf-mh")) {
+      el = document.createElement("div");
+      el.className = "pf-mh";
+      el.setAttribute("role", "status");
+      a.insertAdjacentElement("afterend", el);
     }
-    const q = encodeURIComponent;
-    mailHelp.querySelector(".pf-mh-to").textContent = d.to;
-    mailHelp.querySelector(".pf-mh-gmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + q(d.to) + "&su=" + q(d.subject) + "&body=" + q(d.body);
-    mailHelp.querySelector(".pf-mh-outlook").href = "https://outlook.office.com/mail/deeplink/compose?to=" + q(d.to) + "&subject=" + q(d.subject) + "&body=" + q(d.body);
-    mailHelp.querySelector(".pf-mh-copy").textContent = "Copy email";
-    mailHelp.querySelector(".pf-mh-text").hidden = true;
-    mailHelp.hidden = false;
-  }
+    /* Two unbreakable groups, so a narrow box (the inquiry card) breaks between them. */
+    el.innerHTML = `<span class="pf-mh-g">Email didn&rsquo;t open?</span>
+      <span class="pf-mh-g"><button type="button" class="pf-mh-a pf-mh-copy">Copy email</button>
+      <span aria-hidden="true">&middot;</span> <a class="pf-mh-a" target="_blank" rel="noopener"
+        href="${esc("https://mail.google.com/mail/?view=cm&fs=1&to=" + q(d.to) + "&su=" + q(d.subject) + "&body=" + q(d.body))}">Gmail</a>
+      <span aria-hidden="true">&middot;</span> <a class="pf-mh-a" target="_blank" rel="noopener"
+        href="${esc("https://outlook.office.com/mail/deeplink/compose?to=" + q(d.to) + "&subject=" + q(d.subject) + "&body=" + q(d.body))}">Outlook</a></span>`;
+    el.querySelector(".pf-mh-copy").addEventListener("click", e => {
+      const b = e.currentTarget, text = "To: " + d.to + "\nSubject: " + d.subject + "\n\n" + d.body;
+      copyText(text).then(ok => {
+        if (ok) { b.textContent = "Copied"; setTimeout(() => { b.textContent = "Copy email"; }, 2000); return; }
+        /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */
+        let ta = el.querySelector("textarea");
+        if (!ta) { ta = document.createElement("textarea"); ta.readOnly = true; ta.setAttribute("aria-label", "Email text"); el.appendChild(ta); }
+        ta.value = text; ta.focus(); ta.select();
+        b.textContent = "Press ⌘C or Ctrl+C";
+      });
+    });
+  };
+  let mailWatch = null;
   /* Delegated, so it covers buttons that are redrawn on every filter change. The mailto
-     link is not stopped; the panel appears alongside it. */
+     link itself is not stopped. */
   document.addEventListener("click", e => {
     const a = e.target.closest && e.target.closest("a.pf-mail[href^='mailto:']");
-    if (a) showMailHelp(mailParts(a.href));
+    if (!a) return;
+    if (mailWatch) mailWatch.stop();
+    const timer = setTimeout(() => mailHelpLine(a), 2500);
+    const end = setTimeout(() => stop(), 8000);
+    const stop = () => {
+      clearTimeout(timer); clearTimeout(end);
+      window.removeEventListener("blur", left);
+      document.removeEventListener("visibilitychange", left);
+      if (mailWatch && mailWatch.stop === stop) mailWatch = null;
+    };
+    const left = ev => {
+      if (ev.type === "visibilitychange" && !document.hidden) return;
+      const h = a.nextElementSibling; if (h && h.classList.contains("pf-mh")) h.remove();
+      stop();
+    };
+    window.addEventListener("blur", left);
+    document.addEventListener("visibilitychange", left);
+    mailWatch = { stop };
   });
 
   document.addEventListener("DOMContentLoaded", () => {
