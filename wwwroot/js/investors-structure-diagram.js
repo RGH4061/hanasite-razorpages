@@ -15,7 +15,7 @@
 
     // English: name, currency, function, country. Functions are shortened to fit the card.
     var N = [
-      { id:'root', cx:510, y:6, w:300, h:62, root:true, pct:'100%', cur:'THB',
+      { id:'root', cx:510, y:6, w:300, h:62, root:true, pct:'', cur:'THB',
         name:'Hana Microelectronics Public Co., Ltd.' },
 
       // Tier 1: held directly by the parent
