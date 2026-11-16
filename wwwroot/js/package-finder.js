@@ -277,7 +277,8 @@
         /* Mail links much over 2,000 characters fail in some clients, so long lists are cut. */
         + rows.slice(0, 12).map(r => "- " + pkgLine(r)).join("\n")
         + (rows.length > 12 ? "\n- and " + (rows.length - 12) + " more packages" : "")
-        + "\n\nApplication:\nEstimated annual volume:\nTarget timing:\n\n" + CONTACT_LINES + "\n\nThank you.";
+        /* Order set by Rupert, 16 Nov 2026: contact lines, then the project lines. */
+        + "\n\n" + CONTACT_LINES + "\n\nApplication:\nEstimated annual volume:\nTarget timing:\n\n\nThank you.";
       return "mailto:" + SALES + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     };
     const tray = () => {
