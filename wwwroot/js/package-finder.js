@@ -392,21 +392,35 @@
 
     /* Custom sizes (Rupert, 12 Nov 2026): heading and one button, no explanatory line. The
        button opens an email, not the contact page; its body asks for what the removed line
-       used to ask for (body size, lead count, thickness). */
+       used to ask for (body size, lead count, thickness). What the buyer searched for and
+       filtered on is filled in (Rupert, 16 Nov 2026), so a "QFN 7x7" search that finds
+       nothing arrives as "Package type: QFN / Body size (mm): 7 × 7". */
     const CUSTOM_SUBJECT = "Custom Packaging Requirements Hana Microelectronics Group";
-    const CUSTOM_BODY = "Hello,\n\nWe are looking for a custom package. Our requirements:\n\n"
-      + "Package type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n"
-      + CONTACT_LINES + "\n\nThank you.";
-    const customMail = "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(CUSTOM_BODY);
-    const askCustom = `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
-      <a class="pf-btn" href="${esc(customMail)}">Email your package specification needs</a>`;
-    const askBar = `<div class="pf-ask pf-ask--custom" data-hana-geo="band" data-geo-theme="midnight">${askCustom}</div>`;
+    const FAMILY = /(QFN|DFN|LGA|SOIC|MSOP|TSSOP|SSOP|SOP|SOT|QFP|BGA|PDIP|D2PAK|DPAK|TOLL|TO-?\d{2,3}|SiP)/i;
+    const customMail = c => {
+      const fam = c.raw && c.raw.match(FAMILY);
+      const lines = [
+        c.raw ? "Searched for on your website: " + c.raw : "",
+        "Package type: " + (fam ? (/^sip$/i.test(fam[1]) ? "SiP" : fam[1].toUpperCase()) : ""),
+        "Body size (mm): " + (c.dims ? c.dims[0] + " \u00d7 " + c.dims[1] : c.maxEdge < MAX_EDGE ? "largest edge up to " + c.maxEdge : ""),
+        "Lead count: " + (c.leads || ""),
+        "Thickness (mm): " + (c.maxThk !== null ? "up to " + c.maxThk.toFixed(2) : ""),
+        "Application: " + (c.app === "auto" ? "Automotive" + (c.grades.length ? " (" + c.grades.join(", ") + ")" : "") : ""),
+        "Estimated annual volume: ", "Target timing: "
+      ].filter(Boolean).map(l => l.trimEnd());
+      const body = "Hello,\n\nWe are looking for a custom package. Our requirements:\n\n" + lines.join("\n")
+        + "\n\n" + CONTACT_LINES + "\n\nThank you.";
+      return "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(body);
+    };
+    const askCustom = c => `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
+      <a class="pf-btn" href="${esc(customMail(c))}">Email your package specification needs</a>`;
+    const askBar = c => `<div class="pf-ask pf-ask--custom" data-hana-geo="band" data-geo-theme="midnight">${askCustom(c)}</div>`;
     /* Above every table the band explains the inquiry list, ahead of the rows: listed
        packages on the left, custom sizes on the right. The empty state keeps askBar. */
-    const askTwo = `<div class="pf-ask pf-ask--two" data-hana-geo="band" data-geo-theme="midnight">
+    const askTwo = c => `<div class="pf-ask pf-ask--two" data-hana-geo="band" data-geo-theme="midnight">
       <div class="pf-ask-part pf-ask-part--add"><div class="pf-ask-t">Send one inquiry for several packages</div>
         <div class="pf-ask-s">Click <span class="pf-add pf-add--demo" aria-hidden="true"><span>+</span> Add</span> on each package you need. They collect in your inquiry, ready to email to us in one message.</div></div>
-      <div class="pf-ask-part pf-ask-part--custom">${askCustom}</div></div>`;
+      <div class="pf-ask-part pf-ask-part--custom">${askCustom(c)}</div></div>`;
 
     function nearest(dims) {
       if (!dims) return "";
@@ -565,11 +579,12 @@
       countEl.innerHTML = (rows.length ? `<b>${rows.length}</b> package${rows.length === 1 ? "" : "s"} <span>of ${scope.length}</span>` : "")
         + aside(noSize.length, "body size") + aside(noThk.length, "thickness");
       counts(pool); active(raw);
+      const ask = { raw, dims: p.dims, leads: p.leads, maxEdge, maxThk, app, grades: [...pickGrade] };
 
       if (!rows.length) {
         outEl.innerHTML = `<div class="pf-empty"><b>No standard package matches that</b>
           <p>We recommend contacting us, as we also build to custom dimensions. Molded bodies go down to 0.6 &times; 1.0 mm, and leadless packages from 0.37 mm thick.</p></div>
-          ${nearest(p.dims)}${askBar}`;
+          ${nearest(p.dims)}${askBar(ask)}`;
         if (window.HanaGeo) window.HanaGeo.init(outEl);
         /* The panel icons are drawn here too, or a page that opens on an empty result has none. */
         if (window.lucide) window.lucide.createIcons();
@@ -619,7 +634,7 @@
             ? "Show fewer"
             : `Show all ${g.items.length} packages`} <span aria-hidden="true">${open ? "&uarr;" : "&darr;"}</span></button></td></tr>`;
       };
-      outEl.innerHTML = askTwo + `<div class="pf-tablewrap"><table class="pf-table">
+      outEl.innerHTML = askTwo(ask) + `<div class="pf-tablewrap"><table class="pf-table">
         ${groups.map(g => `<tbody>${groups.length > 1
           ? `<tr class="pf-grp"><th colspan="${span}" data-geo-theme="midnight">${esc(g.cat)}<span>${g.items.length}</span></th></tr>` : ""}
         ${cols(groups.length < 2)}
