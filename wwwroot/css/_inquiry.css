@@ -1,0 +1,50 @@
+/* ============================================================
+   _inquiry.css — package inquiry on every page (16 Nov 2026)
+   The "Copy email" button that sits beside every email button, and the inquiry tab and
+   card that js/inquiry-tray.js shows on pages without a package table. The finder's own
+   card and its layouts are in package-finder.css. All of it sits on Midnight backgrounds.
+   ============================================================ */
+.pf-mailrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.pf-mailrow .pf-btn{margin-left:0}
+.pf-copy{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 14px;border:1px solid rgba(255,255,255,.4);border-radius:4px;background:transparent;color:#fff;font-family:var(--font-text);font-size:13px;font-weight:600;line-height:1.2;cursor:pointer;white-space:nowrap}
+.pf-copy:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.pf-copy:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pf-copy.on{border-color:var(--warm-accent,#FF883E);color:var(--warm-accent,#FF883E)}
+.pf-copied{flex:1 1 100%;font-family:var(--font-text);font-size:13px;line-height:1.5;color:rgba(229,238,245,.9)}
+.pf-copied b{color:#fff;font-weight:700;white-space:nowrap}
+.pf-copytext{display:block;width:100%;height:120px;margin-top:10px;padding:6px 8px;border:0;border-radius:4px;font:12px/1.45 var(--font-text);color:var(--ink);resize:vertical}
+
+/* Inquiry tab: bottom-right corner, opens the card */
+.inq{position:fixed;right:20px;bottom:20px;z-index:40;font-family:var(--font-text)}
+.inq-tab{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border:1px solid rgba(78,155,218,.45);border-radius:999px;background:radial-gradient(120% 160% at 85% 50%,#072c4d 0%,#030a17 70%);color:#fff;font-family:var(--font-text);font-size:13.5px;font-weight:600;line-height:1.2;box-shadow:0 10px 28px rgba(3,10,23,.4);cursor:pointer}
+.inq-tab:hover{border-color:rgba(255,255,255,.7)}
+.inq-tab:focus-visible,.inq-min:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.inq-tab[hidden]{display:none}
+.inq-chev{font-size:11px;color:rgba(229,238,245,.8)}
+.inq-badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--warm-accent,#FF883E);color:#0E1116;font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.inq-card{display:flex;flex-direction:column;gap:10px;width:300px;padding:16px;color:#fff;border:1px solid rgba(78,155,218,.35);border-radius:8px;box-shadow:0 14px 40px rgba(3,10,23,.45);background:radial-gradient(80% 140% at 85% 50%,#072c4d 0%,#030a17 70%);outline:none}
+.inq-card[hidden]{display:none}
+.inq-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:rgba(229,238,245,.85);white-space:nowrap}
+.inq-head .inq-badge{margin-right:4px}
+.inq-min{border:0;background:none;padding:4px 7px;border-radius:4px;color:rgba(229,238,245,.85);font-size:14px;line-height:1;cursor:pointer}
+.inq-min:hover{color:#fff;background:rgba(255,255,255,.1)}
+.inq-list{display:flex;flex-direction:column;align-items:stretch;gap:6px}
+.inq-chip{padding:5px 10px;border-radius:4px;background:var(--hana-blue-tint,#E5EEF5);color:var(--ink);font-size:13px;font-weight:600}
+.inq-bs{font-size:12px;font-weight:400;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.inq-more{font-size:12px;color:rgba(229,238,245,.75)}
+.inq-mail{flex-direction:column;align-items:stretch;gap:8px}
+.inq-go{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:4px;background:var(--warm-accent,#FF883E);color:#0E1116;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
+.inq-go:hover{background:#ff9b5c;color:#0E1116}
+.inq .pf-copied{text-align:center}
+.inq-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.inq-foot a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.inq-foot a:hover{color:var(--warm-accent,#FF883E)}
+.inq-clear{border:0;background:none;padding:0;color:rgba(229,238,245,.85);font:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.inq-clear:hover{color:#fff}
+@media(max-width:860px){
+  .inq{right:12px;bottom:12px}
+  .inq-tab{font-size:13px}
+  /* Opened on a phone, the card is a sheet across the bottom of the screen */
+  .inq-card{position:fixed;left:0;right:0;bottom:0;width:auto;border-radius:12px 12px 0 0;border-width:1px 0 0;padding:14px 16px 18px}
+  .inq-list{flex-direction:row;flex-wrap:wrap}
+}

@@ -33,7 +33,8 @@
   const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
   const SALES = "info-request@hanaus.com";
   /* "Copy email" sits beside every email button from the start (Rupert, 16 Nov 2026), so a
-     visitor whose email program does not open can paste the same email elsewhere. */
+     visitor whose email program does not open can paste the same email elsewhere. The
+     copying itself is done by inquiry-tray.js, which every page loads. */
   const COPY_ICON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
   const COPY_BTN = `<button type="button" class="pf-copy">${COPY_ICON}<span>Copy email</span></button>`;
   /* Contact lines at the end of both inquiry emails (Rupert, 12 Nov 2026), so sales can
@@ -258,7 +259,7 @@
        The list stays in the visitor's browser and clears when the tab is closed. */
     const KEY = new Map(ALL.map((r, i) => [r, i]));
     const SKEY = r => [r.t, r.pkg, r.bs || "", r.detail || "", r.thk || ""].join("|");
-    const STORE = "hana-pf-inquiry";
+    const STORE = "hana-pf-inquiry", CARD = "hana-pf-inquiry-card";
     const picked = new Set();
     try {
       const saved = new Set(JSON.parse(sessionStorage.getItem(STORE) || "[]"));
@@ -288,6 +289,12 @@
     const tray = () => {
       if (!trayEl) return;
       const rows = ALL.filter(r => picked.has(KEY.get(r)));
+      /* The card's contents for the inquiry tab on pages without a package table
+         (inquiry-tray.js): names and sizes, and the finished email link. */
+      try {
+        if (rows.length) sessionStorage.setItem(CARD, JSON.stringify({ rows: rows.map(r => ({ pkg: r.pkg, bs: r.bs || "" })), mailto: mailto(rows) }));
+        else sessionStorage.removeItem(CARD);
+      } catch (e) {}
       trayEl.hidden = !rows.length;
       document.body.classList.toggle("pf-tray-on", !!rows.length);
       if (!rows.length) { trayEl.innerHTML = ""; setSt(); return; }
@@ -773,74 +780,6 @@
     render();
     tray();
   }
-
-  /* Copy email (Rupert, 16 Nov 2026). The email buttons are mailto: links, which open the
-     visitor's email program and do nothing where there is none (webmail-only users, in-app
-     browsers). The copy button beside each one copies the same email as text: To, Subject
-     and body. It replaced a help line that appeared only when no email program seemed to
-     open, which visitors could not find again. */
-  const mailParts = href => {
-    const u = new URL(href);
-    return { to: decodeURIComponent(u.pathname), subject: u.searchParams.get("subject") || "", body: u.searchParams.get("body") || "" };
-  };
-  /* Copies the email as formatted text where the browser allows it, so the "Send to" line
-     pastes in bold into Outlook or Gmail; plain text otherwise. The ClipboardItem is built
-     inside the click, which Safari requires. Resolves false if every method is blocked. */
-  const copyText = (t, html) => {
-    const legacy = () => {
-      const ta = document.createElement("textarea");
-      ta.value = t; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
-      document.body.appendChild(ta); ta.select();
-      let ok = false;
-      try { ok = document.execCommand("copy"); } catch (e) {} finally { ta.remove(); }
-      return ok;
-    };
-    if (!navigator.clipboard || !window.isSecureContext) return Promise.resolve(legacy());
-    const plain = () => navigator.clipboard.writeText(t).then(() => true, () => legacy());
-    if (html && window.ClipboardItem && navigator.clipboard.write) {
-      try {
-        return navigator.clipboard.write([new ClipboardItem({
-          "text/html": new Blob([html], { type: "text/html" }),
-          "text/plain": new Blob([t], { type: "text/plain" })
-        })]).then(() => true, plain);
-      } catch (e) { return plain(); }
-    }
-    return plain();
-  };
-  /* Delegated, so it covers buttons that are redrawn on every filter change. */
-  document.addEventListener("click", e => {
-    const b = e.target.closest && e.target.closest(".pf-copy");
-    if (!b) return;
-    const row = b.closest(".pf-mailrow"), a = row && row.querySelector("a.pf-mail");
-    if (!a) return;
-    const d = mailParts(a.href), label = b.querySelector("span");
-    /* "Send to" first, in bold, so the address stands out once pasted (Rupert, 16 Nov 2026). */
-    const text = "Send to: " + d.to + "\nSubject: " + d.subject + "\n\n" + d.body;
-    const html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px">'
-      + "<b>Send to: " + esc(d.to) + "</b><br>Subject: " + esc(d.subject) + "<br><br>"
-      + esc(d.body).replace(/\n/g, "<br>") + "</div>";
-    copyText(text, html).then(ok => {
-      if (ok) {
-        label.textContent = "Copied";
-        b.classList.add("on");
-        clearTimeout(b._t);
-        b._t = setTimeout(() => { label.textContent = "Copy email"; b.classList.remove("on"); }, 2500);
-        /* Where to send it stays in view under the buttons until the panel is redrawn. */
-        if (!row.querySelector(".pf-copied")) row.insertAdjacentHTML("beforeend",
-          `<div class="pf-copied" role="status">Copied. Paste it into a new email and send it to <b>${esc(d.to)}</b>.</div>`);
-        return;
-      }
-      /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */
-      let ta = row.parentNode.querySelector(".pf-copytext");
-      if (!ta) {
-        ta = document.createElement("textarea");
-        ta.className = "pf-copytext"; ta.readOnly = true; ta.setAttribute("aria-label", "Email text");
-        row.insertAdjacentElement("afterend", ta);
-      }
-      ta.value = text; ta.focus(); ta.select();
-      label.textContent = "Press ⌘C or Ctrl+C";
-    });
-  });
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-pkgfinder]").forEach(build);
