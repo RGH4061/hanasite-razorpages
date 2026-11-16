@@ -728,7 +728,8 @@
     justify-content: center;
     gap: 4px;
   }
-  .gs-node.root .gs-nm  { color: #fff; font-size: 13px; margin: 0; }
+  .gs-node.root { padding: 8px 18px; }
+  .gs-node.root .gs-nm  { color: #fff; font-size: 13px; margin: 0; white-space: nowrap; }
   .gs-node.root .gs-pct { color: #fff; }
   .gs-node.root .gs-cur { color: rgba(255,255,255,0.6); }
 

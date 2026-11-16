@@ -90,6 +90,12 @@
       el.style.top = n.y + 'px';
       el.style.width = n.w + 'px';
       el.style.height = n.h + 'px';
+      // Parent box: width follows the company name, centred on the trunk line.
+      if (n.root) {
+        el.style.left = n.cx + 'px';
+        el.style.width = 'max-content';
+        el.style.transform = 'translateX(-50%)';
+      }
       var meta = n.fn ? '<div class="gs-meta"><span>' + n.fn + '</span><span class="loc">' + n.loc + '</span></div>' : '';
       var row = n.root ? '' :
         '<div class="gs-row"><span class="gs-pct">' + n.pct + '</span><span class="gs-cur">' + n.cur + '</span></div>';
