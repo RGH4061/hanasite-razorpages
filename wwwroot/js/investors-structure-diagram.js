@@ -15,7 +15,8 @@
 
     // English: name, currency, function, country. Functions are shortened to fit the card.
     var N = [
-      { id:'root', cx:510, y:6, w:300, h:62, root:true, pct:'', cur:'THB',
+      // Parent box shows the name only (no ownership % or currency), so it is shorter.
+      { id:'root', cx:510, y:15, w:300, h:44, root:true,
         name:'Hana Microelectronics Public Co., Ltd.' },
 
       // Tier 1: held directly by the parent
@@ -42,7 +43,7 @@
 
     // Thai: approved text from slide 2 of the same deck.
     var T = {
-      root:  { name:'บริษัท ฮานา ไมโครอิเล็คโทรนิคส จำกัด (มหาชน)', cur:'บาท' },
+      root:  { name:'บริษัท ฮานา ไมโครอิเล็คโทรนิคส จำกัด (มหาชน)' },
       omac:  { name:'บริษัท โอแมค เซลล์ จํากัด', cur:'เหรียญฮ่องกง', fn:'จัดซื้อ', loc:'ฮ่องกง' },
       inv:   { name:'บริษัท ฮานา ไมโครอิเล็คโทรนิคส อินเวสเมนท์ จำกัด', cur:'เหรียญสหรัฐ', fn:'ลงทุน', loc:'หมู่เกาะบริติชเวอร์จิน' },
       cam:   { name:'บริษัท ฮานา ไมโครอิเล็คโทรนิคส (กัมพูชา) จำกัด', cur:'เหรียญสหรัฐ', fn:'ผลิตและจำหน่าย', loc:'กัมพูชา' },
@@ -90,8 +91,9 @@
       el.style.width = n.w + 'px';
       el.style.height = n.h + 'px';
       var meta = n.fn ? '<div class="gs-meta"><span>' + n.fn + '</span><span class="loc">' + n.loc + '</span></div>' : '';
-      el.innerHTML =
-        '<div class="gs-row"><span class="gs-pct">' + n.pct + '</span><span class="gs-cur">' + n.cur + '</span></div>' +
+      var row = n.root ? '' :
+        '<div class="gs-row"><span class="gs-pct">' + n.pct + '</span><span class="gs-cur">' + n.cur + '</span></div>';
+      el.innerHTML = row +
         '<div class="gs-nm">' + n.name + '</div>' + meta;
       tree.appendChild(el);
     });
