@@ -66,7 +66,7 @@ const LIFE_DATA = {
     { title: "Student scholarship",         desc: "Investing in young manufacturing talent across the Lamphun region." }
   ],
   kohkong: [
-    { title: "Annual company days",         desc: "Marking the growth of our newest site with the whole Koh Kong team." },
+    { title: "Annual company days",         desc: "Annual parties and team-building days that bring the Koh Kong team together." },
     { title: "Celebrations",                desc: "Khmer New Year and team achievements celebrated at Koh Kong." },
     { title: "Community outreach",          desc: "Creating local jobs and supporting families across Koh Kong province." },
     { title: "Technical training program",  desc: "Building assembly and manufacturing skills from the ground up." },
