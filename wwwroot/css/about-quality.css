@@ -108,7 +108,7 @@
   }
   .cert-cta svg { width: 16px; height: 16px; }
   .cert-cta:hover { color: var(--hana-blue-deep); gap: 12px; }
-  /* Plant certification pages, one row under the intro (the locations link follows) */
+  /* Plant certification pages, one row under the intro */
   .cert-plants { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: var(--s-4); }
   .cert-plants-h { margin-right: 4px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-2); }
   /* Light blue, so they stand apart from the grey Certifications/Awards chips (Rupert, 17 Nov 2026) */
