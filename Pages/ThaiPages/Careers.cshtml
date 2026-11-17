@@ -382,164 +382,89 @@
 
 <!-- ── Job listings ── -->
 <div class="layout-bg" id="open-roles">
-  <div class="layout">
+  @* Placeholder roles removed (Rupert, 17 Nov 2026). Live listings will come from Careers Admin
+     (/admin/jobs). Until a role is posted the filters are hidden and the empty message shows.
+     Each role renders as one card in #jobs-list, for example:
+       <div class="job-card" data-location="ayutthaya|lamphun|bangkok|kohkong" data-type="fulltime|parttime|internship">
+         <div class="job-info">
+           <div class="job-title">Role title</div>
+           <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Full Time <span class="sep">|</span> Posted 27 Jan 2026</div>
+         </div>
+         <a href="/careers/job-post" class="job-apply">Apply →</a>
+       </div> *@
+  @{ var hasJobs = false; var jobCount = 0; }
+  <div class="layout@(hasJobs ? "" : " layout--single")">
 
-    <aside class="filter-sidebar" aria-label="กรองตำแหน่งงาน">
-      <div class="label">กรองตำแหน่งงาน</div>
+    @if (hasJobs)
+    {
+      <aside class="filter-sidebar" aria-label="กรองตำแหน่งงาน">
+        <div class="label">กรองตำแหน่งงาน</div>
 
-      <div class="filter-group">
-        <div class="filter-group-label">สถานที่ตั้ง</div>
+        <div class="filter-group">
+          <div class="filter-group-label">สถานที่ตั้ง</div>
 
-        <div class="filter-country">ประเทศไทย</div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-bkk" checked>
-          <label for="f-bkk">สำนักงานใหญ่กรุงเทพฯ</label>
-        </div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-ayt" checked>
-          <label for="f-ayt">อยุธยา</label>
-        </div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-lpn" checked>
-          <label for="f-lpn">ลำพูน</label>
+          <div class="filter-country">ประเทศไทย</div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-bkk" checked>
+            <label for="f-bkk">สำนักงานใหญ่กรุงเทพฯ</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-ayt" checked>
+            <label for="f-ayt">อยุธยา</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-lpn" checked>
+            <label for="f-lpn">ลำพูน</label>
+          </div>
+
+          <div class="filter-country">ประเทศกัมพูชา</div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-kk" checked>
+            <label for="f-kk">เกาะกง</label>
+          </div>
         </div>
 
-        <div class="filter-country">ประเทศกัมพูชา</div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-kk" checked>
-          <label for="f-kk">เกาะกง</label>
-        </div>
-      </div>
+        <hr class="filter-divider">
 
-      <hr class="filter-divider">
+        <div class="filter-group">
+          <div class="filter-group-label">ประเภทการจ้างงาน</div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-ft" checked>
+            <label for="f-ft">งานเต็มเวลา</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-pt" checked>
+            <label for="f-pt">งานพาร์ทไทม์</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-int" checked>
+            <label for="f-int">การฝึกงาน</label>
+          </div>
+        </div>
 
-      <div class="filter-group">
-        <div class="filter-group-label">ประเภทการจ้างงาน</div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-ft" checked>
-          <label for="f-ft">งานเต็มเวลา</label>
+        <div class="footer-link">
+          <a href="#" onclick="clearFilters(); return false;">ล้างค่าตัวกรองทั้งหมด</a>
         </div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-pt" checked>
-          <label for="f-pt">งานพาร์ทไทม์</label>
-        </div>
-        <div class="filter-option">
-          <input type="checkbox" id="f-int" checked>
-          <label for="f-int">การฝึกงาน</label>
-        </div>
-      </div>
-
-      <div class="footer-link">
-        <a href="#" onclick="clearFilters(); return false;">ล้างค่าตัวกรองทั้งหมด</a>
-      </div>
-    </aside>
+      </aside>
+    }
 
     <main class="jobs-content">
       <header class="jobs-head">
         <div class="section-label">
           <span>ตำแหน่งงานที่เปิดรับ</span>
-          <span class="pip">·</span>
-          <span id="job-count">7 roles</span>
+          @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount roles</span> }
           <span class="pip">·</span>
           <span>อัปเดตทุกวันผ่านระบบ ATS</span>
         </div>
         <h2>ตำแหน่งว่างปัจจุบัน</h2>
-        <p class="intro">ตำแหน่งงานเหล่านี้ประจำอยู่ที่โรงงานของเราในประเทศไทยและกัมพูชา ใช้ตัวกรองด้านซ้ายเพื่อค้นหาตามสถานที่ตั้งหรือประเภทตำแหน่งงาน</p>
+        <p class="intro">ตำแหน่งงานเหล่านี้ประจำอยู่ที่โรงงานของเราในประเทศไทยและกัมพูชา</p>
       </header>
 
       <div class="jobs-list" id="jobs-list">
-
-        <div class="job-card" data-location="ayutthaya" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">SMT Process Engineer</div>
-            <div class="job-meta">
-              <span class="loc-tag">Ayutthaya</span>
-              Full Time
-              <span class="sep">|</span>
-              Posted 27 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
-        <div class="job-card" data-location="ayutthaya" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">IC Assembly Technician</div>
-            <div class="job-meta">
-              <span class="loc-tag">Ayutthaya</span>
-              Full Time
-              <span class="sep">|</span>
-              Posted 24 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
-        <div class="job-card" data-location="lamphun" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">Quality Assurance Engineer</div>
-            <div class="job-meta">
-              <span class="loc-tag">Lamphun</span>
-              Full Time
-              <span class="sep">|</span>
-              Posted 22 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
-        <div class="job-card" data-location="bangkok" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">HR Business Partner</div>
-            <div class="job-meta">
-              <span class="loc-tag">Bangkok HQ</span>
-              Full Time
-              <span class="sep">|</span>
-              Posted 20 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
-        <div class="job-card" data-location="bangkok" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">Supply Chain Coordinator</div>
-            <div class="job-meta">
-              <span class="loc-tag">Bangkok HQ</span>
-              Full Time
-              <span class="sep">|</span>
-              Posted 15 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
-        <div class="job-card" data-location="lamphun" data-type="internship">
-          <div class="job-info">
-            <div class="job-title">Manufacturing Intern — PCBA Line</div>
-            <div class="job-meta">
-              <span class="loc-tag">Lamphun</span>
-              Internship
-              <span class="sep">|</span>
-              Posted 10 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
-        <div class="job-card" data-location="kohkong" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">Assembly Line Operator</div>
-            <div class="job-meta">
-              <span class="loc-tag">Koh Kong</span>
-              Full Time
-              <span class="sep">|</span>
-              Posted 5 Jan 2026
-            </div>
-          </div>
-          <a href="/careers/job-post" class="job-apply">สมัครงาน →</a>
-        </div>
-
+        @if (!hasJobs)
+        {
+          <p class="jobs-empty">ขณะนี้ยังไม่มีตำแหน่งงานที่เปิดรับ ตำแหน่งงานใหม่จะประกาศในหน้านี้</p>
+        }
       </div>
     </main>
   </div>

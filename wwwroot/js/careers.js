@@ -47,7 +47,7 @@ const LIFE_DATA = {
     { title: "Community outreach",          desc: "Supporting schools and families throughout Ayutthaya province." },
     { title: "Technical training program",  desc: "Hands-on training in semiconductor packaging, assembly, and test." },
     { title: "Health and wellbeing",        desc: "On-site clinic, sports facilities, and wellbeing programs across every shift." },
-    { title: "Student scholarship",         desc: "Sponsoring local students into careers in semiconductor manufacturing." }
+    { title: "Student scholarship and internship programs", desc: "Sponsoring local students into careers in semiconductor manufacturing." }
   ],
   bangkok: [
     { title: "Annual company days",         desc: "Group-wide company days bringing our head-office teams together." },
@@ -97,20 +97,20 @@ function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace
 
 // Photo files and the /th/careers card map are keyed by each card's original title.
 // A card whose English title has since changed maps back to that title here.
-const CARD_KEY = { "Technical training program": "Technical training programme" };
+const CARD_KEY = { "Technical training program": "Technical training programme", "Student scholarship and internship programs": "Student scholarship" };
 
 // Life-at-Hana photos that exist as files under images/life/. Slides without
 // a photo fall back to the placeholder icon.
 const LIFE_PHOTOS = new Set([
   "life-ayutthaya-annual-company-days-1","life-ayutthaya-annual-company-days-2",
-  "life-ayutthaya-celebrations-1","life-ayutthaya-celebrations-2",
+  "life-ayutthaya-celebrations-1","life-ayutthaya-celebrations-2","life-ayutthaya-celebrations-3",
   "life-ayutthaya-community-outreach-1",
   "life-ayutthaya-technical-training-programme-1","life-ayutthaya-technical-training-programme-2",
   "life-ayutthaya-health-and-wellbeing-1","life-ayutthaya-health-and-wellbeing-2",
-  "life-ayutthaya-student-scholarship-1",
+  "life-ayutthaya-student-scholarship-1","life-ayutthaya-student-scholarship-2","life-ayutthaya-student-scholarship-3",
   "life-bangkok-annual-company-days-1",
   "life-bangkok-celebrations-1","life-bangkok-celebrations-2",
-  "life-bangkok-community-outreach-1",
+  "life-bangkok-community-outreach-1","life-bangkok-community-outreach-2","life-bangkok-community-outreach-3",
   "life-bangkok-technical-training-programme-1",
   "life-bangkok-health-and-wellbeing-1","life-bangkok-health-and-wellbeing-2",
   "life-bangkok-student-scholarship-1","life-bangkok-student-scholarship-2",
@@ -120,8 +120,8 @@ const LIFE_PHOTOS = new Set([
   "life-lamphun-technical-training-programme-1","life-lamphun-technical-training-programme-2",
   "life-lamphun-health-and-wellbeing-1","life-lamphun-health-and-wellbeing-2","life-lamphun-health-and-wellbeing-3",
   "life-lamphun-student-scholarship-1","life-lamphun-student-scholarship-2","life-lamphun-student-scholarship-3",
-  "life-kohkong-annual-company-days-1","life-kohkong-celebrations-1",
-  "life-kohkong-community-outreach-1","life-kohkong-technical-training-programme-1",
+  "life-kohkong-annual-company-days-1","life-kohkong-annual-company-days-2","life-kohkong-celebrations-1","life-kohkong-celebrations-2",
+  "life-kohkong-community-outreach-1","life-kohkong-community-outreach-2","life-kohkong-community-outreach-3","life-kohkong-technical-training-programme-1","life-kohkong-technical-training-programme-2",
   "life-kohkong-health-and-wellbeing-1","life-kohkong-student-scholarship-1",
   "life-jiaxing-annual-company-days-1","life-jiaxing-annual-company-days-2",
   "life-jiaxing-annual-company-days-3","life-jiaxing-annual-company-days-4",
@@ -192,7 +192,7 @@ function applyFilters() {
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
-  countEl.textContent = L10N && L10N.roles ? visible + L10N.roles : visible + (visible === 1 ? ' role' : ' roles');
+  if (countEl) countEl.textContent = L10N && L10N.roles ? visible + L10N.roles : visible + (visible === 1 ? ' role' : ' roles');
 }
 function clearFilters() {
   checkboxes.forEach(cb => cb.checked = true);

@@ -558,6 +558,10 @@
     display: grid; grid-template-columns: 220px 1fr; gap: var(--s-8);
   }
 
+  /* No roles posted: no filter column, and a short message where the list goes */
+  .layout.layout--single { grid-template-columns: minmax(0, 1fr); }
+  .jobs-empty { margin: 0; padding: var(--s-5) 0; border-top: 1px solid var(--hana-blue-deep); border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+
   /* Filter sidebar */
   aside.filter-sidebar { position: sticky; top: 96px; align-self: start; }
   .filter-sidebar .label {
