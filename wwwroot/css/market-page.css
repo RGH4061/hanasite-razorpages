@@ -370,3 +370,14 @@ body:has(.mk-spoke-grid.is-collapsed) .hana-footer .mm-strip{margin-left:56px}
   .mk-spoke-grid.is-collapsed .mk-side .helper{display:block}
   .mk-side .s{box-sizing:border-box;min-height:44px;padding-top:12px;padding-bottom:12px}
 }
+
+/* One wide product card: image left, text right (Access Control hub, 17 Nov 2026) */
+.mk-card--wide{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:300px}
+.mk-card--wide .mk-ph{border-bottom:0;border-right:1px solid var(--line);min-height:260px}
+.mk-card--wide .body{padding:36px 40px;justify-content:center}
+.mk-card--wide .t{font-size:24px}
+.mk-card--wide p{font-size:15px;line-height:1.6;max-width:60ch}
+.mk-card-links{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:24px}
+.mk-card-links .more{margin-top:0;padding:11px 18px;font-size:12.5px;border:1px solid var(--hana-blue);border-radius:4px;text-decoration:none;transition:background .15s,color .15s}
+.mk-card-links .more:hover{background:var(--hana-blue);color:#fff}
+@media(max-width:760px){.mk-card--wide{grid-template-columns:1fr}.mk-card--wide .mk-ph{border-right:0;border-bottom:1px solid var(--line);min-height:220px}.mk-card--wide .body{padding:24px}}
