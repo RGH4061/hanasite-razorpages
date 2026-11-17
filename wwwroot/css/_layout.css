@@ -61,6 +61,7 @@
 .cap-section--band{position:relative;z-index:1}
 .cap-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sec-gap-sm)}
 .cap-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sec-gap-sm)}
+.cap-grid-4.cap-grid-4--three{grid-template-columns:repeat(3,1fr)}
 /* plant cards: keep "Explore <plant> →" on one line in the narrow four-up cards */
 .cap-grid-4 > a > span:last-child{white-space:nowrap}
 .cap-row-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sec-gap);align-items:center}
