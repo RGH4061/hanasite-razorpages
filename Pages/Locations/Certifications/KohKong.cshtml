@@ -1,0 +1,11 @@
+@page "/locations/koh-kong/certifications"
+@{
+    ViewData["Title"] = "Koh Kong certifications";
+    ViewData["Motion"] = "page";
+    ViewData["Description"] = HanaSite.Services.Certifications.Description("koh-kong");
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/certifications.css" asp-append-version="true" />
+}
+@* Koh Kong plant certificates. Content comes from Data/certifications.json; layout in Pages/Shared/_PlantCertifications.cshtml. *@
+<partial name="_PlantCertifications" model='"koh-kong"' />

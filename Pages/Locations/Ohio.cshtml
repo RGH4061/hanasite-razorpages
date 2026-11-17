@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Ohio plant";
     ViewData["Motion"] = "page";
-    ViewData["Description"] = "Hana Technologies in Solon, Ohio: US-based RFID design and manufacturing with EMS capability, certified to IATF 16949 and ITAR.";
+    ViewData["Description"] = "Hana Technologies in Solon, Ohio: US-based RFID design and manufacturing with EMS capability, certified to IATF 16949 and registered under ITAR.";
 }
 
 @* ============================================================
@@ -53,7 +53,7 @@
     <div style="max-width:1240px;margin:0 auto;padding:0 32px;height:100%;display:flex;flex-direction:column;justify-content:center;">
       <div style="max-width:460px;">
         <h1 style="font-family:var(--font-display);font-size:60px;font-weight:700;letter-spacing:-0.03em;line-height:0.98;color:#fff;margin:0 0 18px;">Ohio</h1>
-        <p style="font-size:18px;line-height:1.55;color:rgba(255,255,255,0.85);margin:0;">Hana Technologies Inc is Hana’s American RFID design and manufacturing base, with EMS capability. It is a domestic-US option with ITAR and IATF 16949 certification.</p>
+        <p style="font-size:18px;line-height:1.55;color:rgba(255,255,255,0.85);margin:0;">Hana Technologies Inc is Hana’s American RFID design and manufacturing base, with EMS capability. It is a domestic-US option, registered under ITAR and certified to IATF 16949.</p>
         <div class="hana-spec-label" style="color:#7EC8FF;margin:26px 0 10px;">Visit the Hana Technologies websites</div>
         <div style="display:flex;flex-wrap:wrap;gap:12px;"><a href="https://hanarfid.com/" target="_blank" rel="noopener noreferrer" class="hana-btn hana-btn-on-dark" style="padding:15px 26px;font-size:13px;">Hana Technologies — RFID<span style="margin-left:8px;">↗</span></a><a href="https://hana-micro.com/" target="_blank" rel="noopener noreferrer" class="hana-btn hana-btn-on-dark" style="padding:15px 26px;font-size:13px;">Hana Technologies — EMS<span style="margin-left:8px;">↗</span></a></div>
       </div>
@@ -66,26 +66,12 @@
   <div style="max-width:1240px;margin:0 auto;padding:24px 32px;">
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;">
       <div style="flex:1;height:1px;background:var(--line);min-width:40px;"></div>
-      <p style="font-size:11.5px;color:var(--ink-3);margin:0;">Current 2026 &middot; full certificates on request</p>
+      <a href="/locations/ohio/certifications" class="hana-link" style="font-size:12px;">View certificates and download PDFs &rarr;</a>
     </div>
     <div class="lc-certs" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
-        <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:13px 16px;">
-      <div style="width:34px;height:34px;border-radius:50%;border:1.5px solid #0E4A7C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0E4A7C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
-      <div><div style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.15;">ISO 9001:2015</div>
-      <div style="font-size:11.5px;color:var(--ink-3);margin-top:2px;">Quality management</div></div>
-    </div>
-        <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:13px 16px;">
-      <div style="width:34px;height:34px;border-radius:50%;border:1.5px solid #0E4A7C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0E4A7C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
-      <div><div style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.15;">ITAR</div>
-      <div style="font-size:11.5px;color:var(--ink-3);margin-top:2px;">ITAR certified</div></div>
-    </div>
-        <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:13px 16px;">
-      <div style="width:34px;height:34px;border-radius:50%;border:1.5px solid #0E4A7C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0E4A7C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
-      <div><div style="font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.15;">IATF 16949</div>
-      <div style="font-size:11.5px;color:var(--ink-3);margin-top:2px;">Automotive</div></div>
-    </div>
+      @* Tiles from Data/certifications.json; see Pages/Shared/_PlantCertTiles.cshtml *@
+      <partial name="_PlantCertTiles" model='"ohio"' />
         <div style="display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;min-height:62px;"><img src="/images/partners/impinj-nxp.webp" alt="Impinj &amp; NXP Gold Partner" style="max-height:54px;max-width:100%;object-fit:contain;" /></div>
-        <div style="display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-card);padding:14px 16px;min-height:62px;"><img src="/images/partners/arc-quality.webp" alt="ARC Quality 2025" style="max-height:54px;max-width:100%;object-fit:contain;" /></div>
     </div>
   </div>
 </section>
@@ -96,7 +82,7 @@
       <h2 class="hana-h3" style="margin-bottom:18px;">Hana RFID and EMS manufacturing in the USA</h2>
       <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">Operating as Hana Technologies Inc, we are leaders in the identification/IoT industry, offering an array of RFID products to the unique demands of our customers as well as lean EMS and contract manufacturing services.</p>
       <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">We combine materials knowledge and RFID design capability with global manufacturing capacity, so customers can be supported locally. Hana RFID partners with converters and system integrators, who receive exclusive access to our products. Our RFID solutions are used for tagging and tracking, and can also support connectivity, service efficiency and customer service.</p>
-      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">The site holds IATF 16949 for automotive work, ITAR certification for defense-related work and ARC certification for RFID inlay design and manufacturing.</p>
+      <p style="font-size:15.5px;color:var(--ink-2);line-height:1.7;margin:0 0 16px;max-width:540px;">The site holds IATF 16949 for automotive work, ITAR registration for defense-related work and ARC certification for RFID inlay design and manufacturing.</p>
       <a href="/locations" class="hana-btn hana-btn-secondary" style="margin-top:8px;display:inline-flex;align-items:center;gap:8px;">Explore locations hub <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
     </div>
     <div>
@@ -298,7 +284,7 @@
       </details>
       <details class="loc-faq">
         <summary>Which certifications does the Ohio plant hold?<span class="loc-faq-mk" aria-hidden="true">+</span></summary>
-        <div class="loc-faq-a">ISO 9001:2015 and IATF 16949, together with ITAR certification for defense-related work. RFID inlay design and manufacturing at the plant is certified under the ARC (Auburn) program.</div>
+        <div class="loc-faq-a">ISO 9001:2015 and IATF 16949, and the plant is registered under ITAR for defense-related work. RFID inlay design and manufacturing at the plant is certified under the ARC (Auburn) program. Certificates are on the <a href="/locations/ohio/certifications" style="color:var(--hana-blue);text-decoration:underline;text-underline-offset:2px;">Ohio certifications page</a>.</div>
       </details>
       <details class="loc-faq">
         <summary>Where is the Ohio plant?<span class="loc-faq-mk" aria-hidden="true">+</span></summary>

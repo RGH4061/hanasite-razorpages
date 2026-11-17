@@ -106,7 +106,9 @@
     "Wireless Communication Modules": "โมดูลสื่อสารไร้สาย",
     "Why Hana": "ทำไมต้อง Hana",
     "Est. 1978": "ก่อตั้ง พ.ศ. 2521",
-    "Insights": "ข้อมูลเชิงลึก"
+    "Insights": "ข้อมูลเชิงลึก",
+    "Certifications": "การรับรองมาตรฐาน",
+    "Quality certificates": "ใบรับรองคุณภาพ"
   },
   "pages": {
     "/capabilities": {
@@ -682,6 +684,213 @@
         "Address": "ที่อยู่",
         "Greater Cleveland, Ohio": "เขตเกรตเตอร์คลีฟแลนด์ รัฐโอไฮโอ"
       }
+    },
+    "/locations/ayutthaya/certifications": {
+      "h1": {
+        "en": "Ayutthaya certifications",
+        "th": "การรับรองมาตรฐานของโรงงานอยุธยา",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Certificates held by the Ayutthaya plant in central Thailand, with the certification body and certificate number for each. Open a PDF to see the scope and validity of a certificate.",
+        "th": "ใบรับรองมาตรฐานของโรงงานอยุธยาในภาคกลางของประเทศไทย พร้อมชื่อหน่วยรับรองและเลขที่ใบรับรองของแต่ละฉบับ เปิดไฟล์ PDF เพื่อดูขอบเขตและอายุของใบรับรอง",
+        "status": "draft"
+      },
+      "title": "การรับรองมาตรฐานของโรงงานอยุธยา",
+      "description": "ใบรับรองมาตรฐานของโรงงานอยุธยา ได้แก่ ISO 9001:2015, IATF 16949:2016, ISO 14001:2015, ISO 45001:2018, ANSI/ESD S20.20-2021, ISO/IEC 27001:2022, ISO 13485:2016, Carbon Footprint for Organization, RBA Platinum Level, Sony Green Partner, ITAR พร้อมไฟล์ PDF ของใบรับรอง",
+      "text": {
+        "Standard": "มาตรฐาน",
+        "Area": "ด้าน",
+        "Certification body": "หน่วยรับรอง",
+        "Certificate no.": "เลขที่ใบรับรอง",
+        "Certificate": "ใบรับรอง",
+        "View PDF": "ดู PDF",
+        "Certificates are issued by the certification bodies named.": "ใบรับรองออกโดยหน่วยรับรองตามที่ระบุไว้",
+        "For a certificate that is not listed,": "หากต้องการใบรับรองที่ไม่ได้ระบุไว้",
+        "contact us": "ติดต่อเรา",
+        "Certifications at other plants": "การรับรองมาตรฐานของโรงงานอื่น",
+        "Plant 1": "แห่งที่ 1",
+        "Plant 2": "แห่งที่ 2",
+        "Ayutthaya": "อยุธยา",
+        "Lamphun": "ลำพูน",
+        "Jiaxing": "เจียซิง",
+        "Koh Kong": "เกาะกง",
+        "Ohio": "โอไฮโอ",
+        "Quality management": "ระบบบริหารงานคุณภาพ",
+        "Automotive quality management": "ระบบบริหารงานคุณภาพสำหรับยานยนต์",
+        "Environmental management": "ระบบการจัดการสิ่งแวดล้อม",
+        "Occupational health and safety": "อาชีวอนามัยและความปลอดภัย",
+        "Electrostatic discharge control": "การควบคุมไฟฟ้าสถิต",
+        "Information security": "ความมั่นคงปลอดภัยของสารสนเทศ",
+        "Medical device quality management": "ระบบบริหารงานคุณภาพสำหรับอุปกรณ์การแพทย์",
+        "Organizational carbon footprint": "คาร์บอนฟุตพริ้นท์ขององค์กร",
+        "Responsible Business Alliance validated audit": "การตรวจประเมินตามมาตรฐาน RBA",
+        "Environmental supply chain": "ห่วงโซ่อุปทานที่เป็นมิตรต่อสิ่งแวดล้อม",
+        "US defense-related work": "งานด้านกลาโหมของสหรัฐอเมริกา",
+        "About the Ayutthaya plant": "เกี่ยวกับโรงงานอยุธยา"
+      },
+      "textStatus": "draft"
+    },
+    "/locations/lamphun/certifications": {
+      "h1": {
+        "en": "Lamphun certifications",
+        "th": "การรับรองมาตรฐานของโรงงานลำพูน",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Certificates held by the Lamphun plants in northern Thailand, with the certification body and certificate number for each. Open a PDF to see the scope and validity of a certificate.",
+        "th": "ใบรับรองมาตรฐานของโรงงานลำพูนทั้ง 2 แห่งในภาคเหนือของประเทศไทย พร้อมชื่อหน่วยรับรองและเลขที่ใบรับรองของแต่ละฉบับ เปิดไฟล์ PDF เพื่อดูขอบเขตและอายุของใบรับรอง",
+        "status": "draft"
+      },
+      "title": "การรับรองมาตรฐานของโรงงานลำพูน",
+      "description": "ใบรับรองมาตรฐานของโรงงานลำพูน ได้แก่ ISO 9001:2015, IATF 16949:2016, ISO 13485:2016, ISO 14001:2015, ISO 45001:2018 พร้อมไฟล์ PDF ของใบรับรอง",
+      "text": {
+        "Standard": "มาตรฐาน",
+        "Area": "ด้าน",
+        "Certification body": "หน่วยรับรอง",
+        "Certificate no.": "เลขที่ใบรับรอง",
+        "Certificate": "ใบรับรอง",
+        "View PDF": "ดู PDF",
+        "Certificates are issued by the certification bodies named.": "ใบรับรองออกโดยหน่วยรับรองตามที่ระบุไว้",
+        "For a certificate that is not listed,": "หากต้องการใบรับรองที่ไม่ได้ระบุไว้",
+        "contact us": "ติดต่อเรา",
+        "Certifications at other plants": "การรับรองมาตรฐานของโรงงานอื่น",
+        "Plant 1": "แห่งที่ 1",
+        "Plant 2": "แห่งที่ 2",
+        "Ayutthaya": "อยุธยา",
+        "Lamphun": "ลำพูน",
+        "Jiaxing": "เจียซิง",
+        "Koh Kong": "เกาะกง",
+        "Ohio": "โอไฮโอ",
+        "Quality management": "ระบบบริหารงานคุณภาพ",
+        "Automotive quality management": "ระบบบริหารงานคุณภาพสำหรับยานยนต์",
+        "Medical device quality management": "ระบบบริหารงานคุณภาพสำหรับอุปกรณ์การแพทย์",
+        "Environmental management": "ระบบการจัดการสิ่งแวดล้อม",
+        "Occupational health and safety": "อาชีวอนามัยและความปลอดภัย",
+        "About the Lamphun plants": "เกี่ยวกับโรงงานลำพูน"
+      },
+      "textStatus": "draft"
+    },
+    "/locations/jiaxing/certifications": {
+      "h1": {
+        "en": "Jiaxing certifications",
+        "th": "การรับรองมาตรฐานของโรงงานเจียซิง",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Certificates held by the Jiaxing plant in Zhejiang, China, with the certification body and certificate number for each. Open a PDF to see the scope and validity of a certificate.",
+        "th": "ใบรับรองมาตรฐานของโรงงานเจียซิงในมณฑลเจ้อเจียง ประเทศจีน พร้อมชื่อหน่วยรับรองและเลขที่ใบรับรองของแต่ละฉบับ เปิดไฟล์ PDF เพื่อดูขอบเขตและอายุของใบรับรอง",
+        "status": "draft"
+      },
+      "title": "การรับรองมาตรฐานของโรงงานเจียซิง",
+      "description": "ใบรับรองมาตรฐานของโรงงานเจียซิง ได้แก่ ISO 9001:2015, IATF 16949:2016, ISO 13485:2016, ISO 14001:2015, ISO 45001:2018, IECQ QC 080000:2017, ISO/IEC 27001:2022, ISO 14064-1 พร้อมไฟล์ PDF ของใบรับรอง",
+      "text": {
+        "Standard": "มาตรฐาน",
+        "Area": "ด้าน",
+        "Certification body": "หน่วยรับรอง",
+        "Certificate no.": "เลขที่ใบรับรอง",
+        "Certificate": "ใบรับรอง",
+        "View PDF": "ดู PDF",
+        "Certificates are issued by the certification bodies named.": "ใบรับรองออกโดยหน่วยรับรองตามที่ระบุไว้",
+        "For a certificate that is not listed,": "หากต้องการใบรับรองที่ไม่ได้ระบุไว้",
+        "contact us": "ติดต่อเรา",
+        "Certifications at other plants": "การรับรองมาตรฐานของโรงงานอื่น",
+        "Plant 1": "แห่งที่ 1",
+        "Plant 2": "แห่งที่ 2",
+        "Ayutthaya": "อยุธยา",
+        "Lamphun": "ลำพูน",
+        "Jiaxing": "เจียซิง",
+        "Koh Kong": "เกาะกง",
+        "Ohio": "โอไฮโอ",
+        "Quality management": "ระบบบริหารงานคุณภาพ",
+        "Automotive quality management": "ระบบบริหารงานคุณภาพสำหรับยานยนต์",
+        "Medical device quality management": "ระบบบริหารงานคุณภาพสำหรับอุปกรณ์การแพทย์",
+        "Environmental management": "ระบบการจัดการสิ่งแวดล้อม",
+        "Occupational health and safety": "อาชีวอนามัยและความปลอดภัย",
+        "Hazardous substance process management": "การจัดการสารอันตรายในกระบวนการผลิต",
+        "Information security": "ความมั่นคงปลอดภัยของสารสนเทศ",
+        "Greenhouse gas statement": "การทวนสอบปริมาณก๊าซเรือนกระจก",
+        "About the Jiaxing plant": "เกี่ยวกับโรงงานเจียซิง"
+      },
+      "textStatus": "draft"
+    },
+    "/locations/koh-kong/certifications": {
+      "h1": {
+        "en": "Koh Kong certifications",
+        "th": "การรับรองมาตรฐานของโรงงานเกาะกง",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Certificates held by the Koh Kong plant in Cambodia, with the certification body and certificate number for each. Open a PDF to see the scope and validity of a certificate.",
+        "th": "ใบรับรองมาตรฐานของโรงงานเกาะกงในประเทศกัมพูชา พร้อมชื่อหน่วยรับรองและเลขที่ใบรับรองของแต่ละฉบับ เปิดไฟล์ PDF เพื่อดูขอบเขตและอายุของใบรับรอง",
+        "status": "draft"
+      },
+      "title": "การรับรองมาตรฐานของโรงงานเกาะกง",
+      "description": "ใบรับรองมาตรฐานของโรงงานเกาะกง ได้แก่ ISO 9001:2015, TL 9000:2016, ISO 13485:2016, IATF 16949:2016 พร้อมไฟล์ PDF ของใบรับรอง",
+      "text": {
+        "Standard": "มาตรฐาน",
+        "Area": "ด้าน",
+        "Certification body": "หน่วยรับรอง",
+        "Certificate no.": "เลขที่ใบรับรอง",
+        "Certificate": "ใบรับรอง",
+        "View PDF": "ดู PDF",
+        "Certificates are issued by the certification bodies named.": "ใบรับรองออกโดยหน่วยรับรองตามที่ระบุไว้",
+        "For a certificate that is not listed,": "หากต้องการใบรับรองที่ไม่ได้ระบุไว้",
+        "contact us": "ติดต่อเรา",
+        "Certifications at other plants": "การรับรองมาตรฐานของโรงงานอื่น",
+        "Plant 1": "แห่งที่ 1",
+        "Plant 2": "แห่งที่ 2",
+        "Ayutthaya": "อยุธยา",
+        "Lamphun": "ลำพูน",
+        "Jiaxing": "เจียซิง",
+        "Koh Kong": "เกาะกง",
+        "Ohio": "โอไฮโอ",
+        "Quality management": "ระบบบริหารงานคุณภาพ",
+        "Telecommunications quality management": "ระบบบริหารงานคุณภาพสำหรับโทรคมนาคม",
+        "Medical device quality management": "ระบบบริหารงานคุณภาพสำหรับอุปกรณ์การแพทย์",
+        "Automotive quality management": "ระบบบริหารงานคุณภาพสำหรับยานยนต์",
+        "About the Koh Kong plant": "เกี่ยวกับโรงงานเกาะกง"
+      },
+      "textStatus": "draft"
+    },
+    "/locations/ohio/certifications": {
+      "h1": {
+        "en": "Ohio certifications",
+        "th": "การรับรองมาตรฐานของโรงงานโอไฮโอ",
+        "status": "draft"
+      },
+      "lede": {
+        "en": "Certificates held by the Ohio plant in Solon, Ohio, with the certification body and certificate number for each. Open a PDF to see the scope and validity of a certificate.",
+        "th": "ใบรับรองมาตรฐานของโรงงานโอไฮโอในเมืองโซลอน รัฐโอไฮโอ พร้อมชื่อหน่วยรับรองและเลขที่ใบรับรองของแต่ละฉบับ เปิดไฟล์ PDF เพื่อดูขอบเขตและอายุของใบรับรอง",
+        "status": "draft"
+      },
+      "title": "การรับรองมาตรฐานของโรงงานโอไฮโอ",
+      "description": "ใบรับรองมาตรฐานของโรงงานโอไฮโอ ได้แก่ ISO 9001:2015, IATF 16949:2016, ARC Quality, ITAR พร้อมไฟล์ PDF ของใบรับรอง",
+      "text": {
+        "Standard": "มาตรฐาน",
+        "Area": "ด้าน",
+        "Certification body": "หน่วยรับรอง",
+        "Certificate no.": "เลขที่ใบรับรอง",
+        "Certificate": "ใบรับรอง",
+        "View PDF": "ดู PDF",
+        "Certificates are issued by the certification bodies named.": "ใบรับรองออกโดยหน่วยรับรองตามที่ระบุไว้",
+        "For a certificate that is not listed,": "หากต้องการใบรับรองที่ไม่ได้ระบุไว้",
+        "contact us": "ติดต่อเรา",
+        "Certifications at other plants": "การรับรองมาตรฐานของโรงงานอื่น",
+        "Plant 1": "แห่งที่ 1",
+        "Plant 2": "แห่งที่ 2",
+        "Ayutthaya": "อยุธยา",
+        "Lamphun": "ลำพูน",
+        "Jiaxing": "เจียซิง",
+        "Koh Kong": "เกาะกง",
+        "Ohio": "โอไฮโอ",
+        "Quality management": "ระบบบริหารงานคุณภาพ",
+        "Automotive quality management": "ระบบบริหารงานคุณภาพสำหรับยานยนต์",
+        "RFID inlay quality": "คุณภาพ RFID inlay",
+        "US defense-related work": "งานด้านกลาโหมของสหรัฐอเมริกา",
+        "About the Ohio plant": "เกี่ยวกับโรงงานโอไฮโอ"
+      },
+      "textStatus": "draft"
     },
     "/markets": {
       "h1": {

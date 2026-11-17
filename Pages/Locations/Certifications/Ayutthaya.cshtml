@@ -1,0 +1,11 @@
+@page "/locations/ayutthaya/certifications"
+@{
+    ViewData["Title"] = "Ayutthaya certifications";
+    ViewData["Motion"] = "page";
+    ViewData["Description"] = HanaSite.Services.Certifications.Description("ayutthaya");
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/certifications.css" asp-append-version="true" />
+}
+@* Ayutthaya plant certificates. Content comes from Data/certifications.json; layout in Pages/Shared/_PlantCertifications.cshtml. *@
+<partial name="_PlantCertifications" model='"ayutthaya"' />

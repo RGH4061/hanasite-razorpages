@@ -92,7 +92,6 @@
 .hs-chip.warm{color:#A8551F;border-color:#F0BE99;background:#FDF1E8}
 .hs-chip.ok{color:var(--success);border-color:#A8D4BC;background:#EFF7F2}
 .hs-dot{width:7px;height:7px;border-radius:50%;background:var(--success);display:inline-block;margin-right:8px}
-.hs-dot.warm{background:var(--warm-accent)}
 
 /* ── empty state ── */
 .hs-empty{margin-top:34px;padding-top:30px;border-top:1px solid var(--line)}
@@ -117,11 +116,8 @@
 
 /* ── certification card ── */
 .hs-cert{margin-top:26px;background:var(--white);border:1px solid var(--hana-blue);border-radius:var(--radius-card);overflow:hidden}
-.hs-cert--none{border-color:var(--line)}
 .hs-cert-h{padding:24px 24px 20px;background:var(--hana-blue-tint);border-bottom:1px solid var(--line)}
-.hs-cert--none .hs-cert-h{background:var(--surface)}
 .hs-cert-lb{font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--hana-blue-deep);margin-bottom:10px}
-.hs-cert--none .hs-cert-lb{color:var(--ink-3)}
 .hs-cert-n{font-family:var(--font-display);font-size:30px;font-weight:600;letter-spacing:-.02em;margin:0;color:var(--ink)}
 .hs-cert-s{margin:5px 0 0;font-size:15px;color:var(--ink-2)}
 .hs-cert-c{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;font-size:13px;font-weight:500;color:var(--ink)}
@@ -133,11 +129,9 @@
 .hs-c-site{display:flex;flex-direction:column;gap:1px}
 .hs-c-site b{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .hs-c-site small{font-size:12px;color:var(--ink-3)}
-.hs-c-tbc{grid-column:2}
 .hs-c-num{font-family:var(--font-mono);font-size:13px;color:var(--ink)}
 .hs-c-go{color:var(--line)}
 .hs-cert-r:hover .hs-c-go{color:var(--hana-blue)}
-.hs-c-note{grid-column:1/-1;font-size:12px;color:var(--ink-3);padding-top:6px;border-top:1px dashed var(--line);margin-top:2px}
 .hs-cert-f{padding:16px 24px 18px;background:var(--bg)}
 .hs-cert-f p{margin:0;font-size:12.5px;color:var(--ink-2)}
 .hs-cert-f .hs-src{margin-top:5px;color:var(--ink-3);font-size:12px}
@@ -145,7 +139,6 @@
 .hs-cert--m .hs-cert-n{font-size:24px}
 .hs-cert--m .hs-cert-r{grid-template-columns:1fr auto;gap:4px 12px;padding:14px 18px;row-gap:6px}
 .hs-cert--m .hs-c-site{grid-column:1}
-.hs-cert--m .hs-c-tbc{grid-column:2;justify-self:end}
 .hs-cert--m .hs-c-num{grid-column:1/-1}
 .hs-cert--m .hs-c-go{display:none}
 .hs-cert--m .hs-cert-f{padding:16px 18px}

@@ -1,0 +1,97 @@
+@model string
+@using HanaSite.Services
+@*
+    Plant certification page body (17 Nov 2026). Model = the plant's key in
+    Data/certifications.json ("lamphun", "koh-kong"). Each page under
+    Pages/Locations/Certifications/ is a thin wrapper around this partial.
+    Certificates link to /File/ViewDoc/<id>, the old site's document IDs, as on the
+    IR pages; a certificate with no document is listed without a link. Styles in
+    ~/css/certifications.css. Each row shows the certification mark from the old site where one
+    exists (Data/certifications.json "logo"); the mark is decorative, so its alt text is empty. The Thai pages are the same page through the overlay
+    in Data/thai-drafts.json: every label below is a whole text node so it can be
+    matched, and the lede is plain text with no apostrophe.
+*@
+@{
+    var plant = Certifications.Get(Model);
+    if (plant == null) { return; }
+    var multi = plant.Sites.Count > 1;
+    var others = Certifications.All.Where(p => p.Key != Model).ToList();
+    var lede = $"Certificates held by the {plant.Name} {(multi ? "plants" : "plant")} {plant.Region}, with the certification body and certificate number for each. Open a PDF to see the scope and validity of a certificate.";
+    var back = $"About the {plant.Name} {(multi ? "plants" : "plant")}";
+    // The Thai page is this page through the overlay, which translates text but not attributes,
+    // so the PDF buttons' screen-reader label is written here in both languages.
+    var thai = Context.Request.Path.StartsWithSegments("/th");
+}
+
+<div class="cert-crumbs">
+  <div class="cert-crumbs-in">
+    <a href="/locations" class="hana-link">Locations</a>
+    <span class="sep" aria-hidden="true">&rsaquo;</span>
+    <a href="@plant.Location" class="hana-link">@plant.Name</a>
+    <span class="sep" aria-hidden="true">&rsaquo;</span>
+    <span class="cur">Certifications</span>
+  </div>
+</div>
+
+@* Dark title header (Rupert, 17 Nov 2026): the grid art on Midnight, as on the location pages' services band. *@
+<section class="cert-head" data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="left">
+  <div class="cert-wrap cert-head-in">
+    <div class="hana-spec-label cert-eyebrow">Quality certificates</div>
+    <h1>@plant.Name certifications</h1>
+    <p class="cert-lede">@lede</p>
+    <a class="cert-back" href="@plant.Location">@back<span aria-hidden="true"> &rarr;</span></a>
+  </div>
+</section>
+
+<section class="cert-body">
+  <div class="cert-wrap">
+    @foreach (var site in plant.Sites)
+    {
+      @if (multi && site.Name.Length > 0)
+      {
+        <h2 class="cert-site">@site.Name</h2>
+      }
+      <div class="cert-tablewrap">
+        <table class="cert-table">
+          <thead>
+            <tr><th scope="col">Standard</th><th scope="col">Area</th><th scope="col">Certification body</th><th scope="col">Certificate no.</th><th scope="col"><span class="sr-only">Certificate</span></th></tr>
+          </thead>
+          <tbody>
+          @foreach (var c in site.Certs)
+          {
+            var std = Certifications.Std(c.Std);
+            <tr>
+              <th scope="row" class="ct-std">
+                <div class="ct-stdin">
+                  <span class="ct-logo">@if (c.Logo != null) { <img src="@c.Logo" alt="" loading="lazy" decoding="async" /> }</span>
+                  <span class="ct-name">@std.Name</span>
+                </div>
+              </th>
+              <td class="ct-area">@std.Area</td>
+              <td class="ct-body@(c.Body == null ? " ct-none" : "")">@(c.Body ?? "—")</td>
+              <td class="ct-num@(c.Number == null ? " ct-none" : "")">@(c.Number ?? "—")</td>
+              <td class="ct-doc">
+                @if (c.Doc != null)
+                {
+                  <a class="ct-pdf" href="/File/ViewDoc/@c.Doc" data-doc-id="@c.Doc" target="_blank" rel="noopener" aria-label="@(thai ? $"ดู PDF: ใบรับรอง {std.Name} (เปิดในแท็บใหม่)" : $"View PDF: {std.Name} certificate (opens in a new tab)")"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>View PDF</span></a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <p class="cert-note">Certificates are issued by the certification bodies named.</p>
+    <p class="cert-note">For a certificate that is not listed, <a href="/contact" class="cert-link">contact us</a>.</p>
+
+    <nav class="cert-others" aria-label="Certifications at other plants">
+      <span class="cert-others-h">Certifications at other plants</span>
+      @foreach (var o in others)
+      {
+        <a href="@o.Value.Page" class="cert-link">@o.Value.Name</a>
+      }
+    </nav>
+  </div>
+</section>

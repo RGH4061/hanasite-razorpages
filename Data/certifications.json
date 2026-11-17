@@ -1,0 +1,100 @@
+{
+  "_readme": "Plant certificate register (17 Nov 2026). One row per certificate, read by the plant certification pages (/locations/<plant>/certifications) through Services/Certifications.cs; the header search card's CERTS list in wwwroot/js/search/data.js is regenerated from it with '5. Website Redesign/tools/sync-cert-search.py'. doc = the old site's document ID, served at /File/ViewDoc/<doc> (the same database and link pattern as the IR pages; files are not copied into the repo). doc null = listed without a download (Rupert, 17 Nov 2026: ITAR, Sony Green Partner and Koh Kong IATF 16949 have no document on the old site; Ohio IATF 16949 certificate to follow). Standards also carry \"short\" and \"label\" (the location page tiles and the Locations hub chips), \"chip\" where the hub chip differs from \"short\", and \"status\" (the word the search card shows when a row has no number; ITAR is a registration, Rupert 17 Nov 2026). body/number null = not known; shown as a dash. Dates are not shown (Rupert, 17 Nov 2026). logo = the certification mark cut from the old site's Quality Certificates banner for that plant (wwwroot/images/certifications/); null = no mark on the old site. Source: the Quality Certificates pages AytQty, LpnQty, JxQty, KkQty and OhioQty on hanagroup.com, read 17 Nov 2026.",
+  "standards": {
+    "iso9001": {"name": "ISO 9001:2015", "area": "Quality management", "search": {"id": "ISO 9001", "full": "ISO 9001:2015", "alias": "9001 quality management"}, "short": "ISO 9001", "label": "Quality management"},
+    "iatf": {"name": "IATF 16949:2016", "area": "Automotive quality management", "search": {"id": "IATF 16949", "full": "IATF 16949:2016", "alias": "16949 iatf automotive certification"}, "short": "IATF 16949", "label": "Automotive"},
+    "iso13485": {"name": "ISO 13485:2016", "area": "Medical device quality management", "search": {"id": "ISO 13485", "full": "ISO 13485:2016", "alias": "13485 medical device medical certification"}, "short": "ISO 13485", "label": "Medical devices"},
+    "iso14001": {"name": "ISO 14001:2015", "area": "Environmental management", "search": {"id": "ISO 14001", "full": "ISO 14001:2015", "alias": "14001 environmental"}, "short": "ISO 14001", "label": "Environmental"},
+    "iso45001": {"name": "ISO 45001:2018", "area": "Occupational health and safety", "search": {"id": "ISO 45001", "full": "ISO 45001:2018", "alias": "45001 health safety"}, "short": "ISO 45001", "label": "Occupational health & safety"},
+    "iso27001": {"name": "ISO/IEC 27001:2022", "area": "Information security", "search": {"id": "ISO 27001", "full": "ISO/IEC 27001:2022", "alias": "27001 information security cyber data security"}, "short": "ISO/IEC 27001", "label": "Information security"},
+    "esd": {"name": "ANSI/ESD S20.20-2021", "area": "Electrostatic discharge control", "search": {"id": "ANSI/ESD S20.20", "full": "ANSI/ESD S20.20-2021", "alias": "esd s20.20 static"}, "short": "ANSI/ESD S20.20", "label": "ESD control program"},
+    "iecq": {"name": "IECQ QC 080000:2017", "area": "Hazardous substance process management", "search": {"id": "IECQ QC 080000", "full": "IECQ QC 080000:2017", "alias": "qc080000 iecq hazardous substance rohs"}, "short": "IECQ QC 080000", "label": "Hazardous substance management"},
+    "tl9000": {"name": "TL 9000:2016", "area": "Telecommunications quality management", "search": {"id": "TL9000", "full": "TL 9000:2016", "alias": "tl9000 tl 9000 telecom telecommunications"}, "short": "TL 9000", "label": "Telecom quality"},
+    "iso14064": {"name": "ISO 14064-1", "area": "Greenhouse gas statement", "search": {"id": "ISO 14064", "full": "ISO 14064-1", "alias": "14064 ghg greenhouse"}, "short": "ISO 14064-1", "label": "Greenhouse gas statement"},
+    "cfo": {"name": "Carbon Footprint for Organization", "area": "Organizational carbon footprint", "search": {"id": "Carbon Footprint", "full": "Carbon Footprint for Organization", "alias": "cfo tgo carbon footprint organization"}, "short": "Carbon Footprint for Organization", "label": "Organizational carbon footprint (TGO)"},
+    "rba": {"name": "RBA Platinum Level", "area": "Responsible Business Alliance validated audit", "search": {"id": "RBA", "full": "RBA Platinum Level", "alias": "rba responsible business alliance platinum"}, "short": "RBA Platinum", "label": "Responsible Business Alliance"},
+    "itar": {"name": "ITAR", "area": "US defense-related work", "search": {"id": "ITAR", "full": "ITAR registration", "alias": "itar defense defence military"}, "short": "ITAR", "label": "ITAR registered", "chip": "ITAR registered", "status": "Registered"},
+    "arc": {"name": "ARC Quality", "area": "RFID inlay quality", "search": {"id": "ARC", "full": "ARC Quality Certification", "alias": "arc auburn rfid inlay certification"}, "short": "ARC Quality", "label": "RFID inlay quality (Auburn)"},
+    "sony": {"name": "Sony Green Partner", "area": "Environmental supply chain", "search": {"id": "Sony Green Partner", "full": "Sony Green Partner", "alias": "sony green partner"}, "short": "Sony Green Partner", "label": "Environmental supply chain"}
+  },
+  "plants": {
+    "ayutthaya": {
+      "name": "Ayutthaya", "region": "in central Thailand",
+      "location": "/locations/ayutthaya", "page": "/locations/ayutthaya/certifications",
+      "sites": [
+        { "name": "", "certs": [
+          { "std": "iso9001", "body": "SGS", "number": "TH21/14373", "doc": 848, "logo": "/images/certifications/ayutthaya-iso9001.webp" },
+          { "std": "iatf", "body": "SGS", "number": "TH06/3318 IATF0534357", "doc": 849, "logo": "/images/certifications/ayutthaya-iatf.webp" },
+          { "std": "iso14001", "body": "Bureau Veritas", "number": "TH016510", "doc": 850, "logo": "/images/certifications/ayutthaya-iso14001.webp" },
+          { "std": "iso45001", "body": "Bureau Veritas", "number": "TH018896", "doc": 851, "logo": "/images/certifications/ayutthaya-iso45001.webp" },
+          { "std": "esd", "body": "SGS", "number": "TH18/11154", "doc": 852, "logo": "/images/certifications/ayutthaya-esd.webp" },
+          { "std": "iso27001", "body": "Bureau Veritas", "number": "TH025675", "doc": 853, "logo": "/images/certifications/ayutthaya-iso27001.webp" },
+          { "std": "iso13485", "body": "SGS", "number": "TH21/14457", "doc": 1346, "logo": "/images/certifications/ayutthaya-iso13485.webp" },
+          { "std": "cfo", "body": "TGO", "number": "TGO CFO FY26-05-698", "doc": 6108, "logo": "/images/certifications/ayutthaya-cfo.webp" },
+          { "std": "rba", "body": "TÜV Rheinland", "number": "VAR-20260615-THA-01A01-1", "doc": 6110, "logo": "/images/certifications/ayutthaya-rba.webp" },
+          { "std": "sony", "body": "Sony", "number": null, "doc": null, "logo": "/images/certifications/sony-green-partner.webp" },
+          { "std": "itar", "body": "US Department of State (DDTC)", "number": null, "doc": null, "logo": "/images/certifications/itar-registered.webp" }
+        ] }
+      ]
+    },
+    "lamphun": {
+      "name": "Lamphun", "region": "in northern Thailand",
+      "location": "/locations/lamphun", "page": "/locations/lamphun/certifications",
+      "sites": [
+        { "name": "Plant 1", "certs": [
+          { "std": "iso9001", "body": "SGS", "number": "TH10/5267", "doc": 831, "logo": "/images/certifications/lamphun-1-iso9001.webp" },
+          { "std": "iatf", "body": "SGS", "number": "TH10/5266.01", "doc": 832, "logo": "/images/certifications/lamphun-1-iatf.webp" },
+          { "std": "iso13485", "body": "SGS", "number": "GB07/72438", "doc": 833, "logo": "/images/certifications/lamphun-1-iso13485.webp" },
+          { "std": "iso14001", "body": "SGS", "number": "TH08/1526", "doc": 834, "logo": "/images/certifications/lamphun-1-iso14001.webp" },
+          { "std": "iso45001", "body": "SGS", "number": "TH08/1527", "doc": 835, "logo": "/images/certifications/lamphun-1-iso45001.webp" }
+        ] },
+        { "name": "Plant 2", "certs": [
+          { "std": "iso9001", "body": "SGS", "number": "TH18/11250", "doc": 837, "logo": "/images/certifications/lamphun-2-iso9001.webp" },
+          { "std": "iatf", "body": "SGS", "number": "TH10/5266.02", "doc": 840, "logo": "/images/certifications/lamphun-2-iatf.webp" },
+          { "std": "iso14001", "body": "SGS", "number": "TH15/9027", "doc": 838, "logo": "/images/certifications/lamphun-2-iso14001.webp" },
+          { "std": "iso45001", "body": "SGS", "number": "TH15/9028", "doc": 839, "logo": "/images/certifications/lamphun-2-iso45001.webp" }
+        ] }
+      ]
+    },
+    "jiaxing": {
+      "name": "Jiaxing", "region": "in Zhejiang, China",
+      "location": "/locations/jiaxing", "page": "/locations/jiaxing/certifications",
+      "sites": [
+        { "name": "", "certs": [
+          { "std": "iso9001", "body": "Bureau Veritas", "number": "CNBJ314315-U", "doc": 869, "logo": "/images/certifications/jiaxing-iso9001.webp" },
+          { "std": "iatf", "body": "Bureau Veritas", "number": "CN038585-IATF / 430177", "doc": 870, "logo": "/images/certifications/jiaxing-iatf.webp" },
+          { "std": "iso13485", "body": "DNV", "number": "249057-2017-AQ-RGC-NA-PS", "doc": 871, "logo": "/images/certifications/jiaxing-iso13485.webp" },
+          { "std": "iso14001", "body": "DNV", "number": "3148-2006-AE-RGC-RvA", "doc": 872, "logo": "/images/certifications/jiaxing-iso14001.webp" },
+          { "std": "iso45001", "body": "DNV", "number": "185471-2015-ASA-RGC-RvA", "doc": 873, "logo": "/images/certifications/jiaxing-iso45001.webp" },
+          { "std": "iecq", "body": "SGS-CSTC", "number": "IECQ-H-SGSCN 09.0267", "doc": 874, "logo": "/images/certifications/jiaxing-iecq.webp" },
+          { "std": "iso27001", "body": "DNV", "number": "639119-2023-AIS-RGC-UKAS", "doc": 4621, "logo": "/images/certifications/jiaxing-iso27001.webp" },
+          { "std": "iso14064", "body": "DNV", "number": "00033-2023-GHG-RGC", "doc": 5810, "logo": "/images/certifications/jiaxing-iso14064.webp" }
+        ] }
+      ]
+    },
+    "koh-kong": {
+      "name": "Koh Kong", "region": "in Cambodia",
+      "location": "/locations/koh-kong", "page": "/locations/koh-kong/certifications",
+      "sites": [
+        { "name": "", "certs": [
+          { "std": "iso9001", "body": "Best ISO", "number": "TAQ24527", "doc": 932, "logo": "/images/certifications/koh-kong-iso9001.webp" },
+          { "std": "tl9000", "body": "BSI", "number": "FM788162", "doc": 933, "logo": "/images/certifications/koh-kong-tl9000.webp" },
+          { "std": "iso13485", "body": "URS", "number": "145834/A/0001/UK/En", "doc": 6056, "logo": "/images/certifications/koh-kong-iso13485.webp" },
+          { "std": "iatf", "body": null, "number": null, "doc": null, "logo": "/images/certifications/iatf-16949-certified.webp" }
+        ] }
+      ]
+    },
+    "ohio": {
+      "name": "Ohio", "region": "in Solon, Ohio",
+      "location": "/locations/ohio", "page": "/locations/ohio/certifications",
+      "sites": [
+        { "name": "", "certs": [
+          { "std": "iso9001", "body": "NSF-ISR", "number": "C0865043-IS2", "doc": 918, "logo": "/images/certifications/ohio-iso9001.webp" },
+          { "std": "iatf", "body": null, "number": null, "doc": null, "logo": "/images/certifications/iatf-16949-certified.webp" },
+          { "std": "arc", "body": "Auburn University RFID Lab", "number": null, "doc": 5969, "logo": "/images/certifications/ohio-arc.webp" },
+          { "std": "itar", "body": "US Department of State (DDTC)", "number": null, "doc": null, "logo": "/images/certifications/itar-registered.webp" }
+        ] }
+      ]
+    }
+  }
+}

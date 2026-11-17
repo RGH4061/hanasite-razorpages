@@ -1,0 +1,11 @@
+@page "/locations/ohio/certifications"
+@{
+    ViewData["Title"] = "Ohio certifications";
+    ViewData["Motion"] = "page";
+    ViewData["Description"] = HanaSite.Services.Certifications.Description("ohio");
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/certifications.css" asp-append-version="true" />
+}
+@* Ohio plant certificates. Content comes from Data/certifications.json; layout in Pages/Shared/_PlantCertifications.cshtml. *@
+<partial name="_PlantCertifications" model='"ohio"' />

@@ -98,37 +98,32 @@
       ${dead ? "" : `<span class="hs-res-go">&rarr;</span>`}</${tag}>`;
   }
 
+  /* Certification card (17 Nov 2026): every site that holds the standard, linking to that
+     plant's certification page, where the certificate PDFs open. Data from the register
+     (Data/certifications.json) through data.js. A plant with two sites shows both numbers;
+     a certificate without a number shows "Certified". No dates (Rupert, 17 Nov 2026). */
   function certCard(c) {
     const S = window.HS.SITES, total = Object.keys(S).length;
-    const open = c.sites.filter(s => s.unconfirmed).length;
-    const none = c.sites.length - open === 0;
-    const line = none
-      ? `Stated in the 2026 deck for ${c.sites.length} of ${total} sites. No certificate supplied for any of them — not publishable yet.`
-      : `Held at ${c.sites.length} of ${total} Hana sites` + (open ? ` · ${open} awaiting certificate detail from the plant` : "");
     const rows = c.sites.map(s => {
-      const st = S[s.s], tbc = !!s.unconfirmed;
-      return `<a href="${esc(href(st.u))}" class="hs-cert-r${tbc ? " tbc" : ""}">
+      const st = S[s.s];
+      return `<a href="${esc(href(st.cu || st.u))}" class="hs-cert-r">
         <span class="hs-c-site"><b>${esc(st.n)}</b><small>${esc(st.c)}</small></span>
-        ${tbc
-          ? `<span class="hs-c-tbc"><span class="hs-chip warm">To confirm</span></span>`
-          : `<span class="hs-c-num">${s.num && s.num !== "—" ? esc(s.num) : "Certified"}</span>`}
-        <span class="hs-c-go">&rarr;</span>
-        ${s.note ? `<span class="hs-c-note">${esc(s.note)}</span>` : ""}</a>`;
+        <span class="hs-c-num">${s.num && s.num !== "—" ? esc(s.num) : "Certified"}</span>
+        <span class="hs-c-go">&rarr;</span></a>`;
     }).join("");
-    return `<section class="hs-cert${none ? " hs-cert--none" : ""}">
+    return `<section class="hs-cert">
       <div class="hs-cert-h">
         <div class="hs-cert-lb">Direct answer · certification</div>
         <h2 class="hs-cert-n">${esc(c.full)}</h2>
         <p class="hs-cert-s">${esc(c.scope)}</p>
-        <div class="hs-cert-c"><span class="hs-dot${none ? " warm" : ""}"></span><span>${esc(line)}</span></div>
+        <div class="hs-cert-c"><span class="hs-dot"></span><span>Held at ${c.sites.length} of ${total} Hana sites</span></div>
       </div>
       <div class="hs-cert-tb">
         <div class="hs-cert-hr"><span>Site</span><span>Certificate</span><span></span></div>
         ${rows}
       </div>
       <div class="hs-cert-f">
-        <p>Each site links to its location page, where the certificate PDF can be downloaded.</p>
-        <p class="hs-src">Sourced from the current quality pages and the 2026 company overview deck.</p>
+        <p>Each site links to its certification page, where the certificate PDFs can be opened.</p>
       </div></section>`;
   }
 

@@ -6,6 +6,8 @@
 var builder = WebApplication.CreateBuilder(args);
 // Thai draft pages: English pages listed in Data/thai-drafts.json also answer at /th/<route>.
 HanaSite.Services.ThaiDrafts.Init(builder.Environment.ContentRootPath);
+// Plant certificate register (Data/certifications.json) for the plant certification pages.
+HanaSite.Services.Certifications.Init(builder.Environment.ContentRootPath);
 builder.Services.AddRazorPages(o => o.Conventions.Add(new HanaSite.Services.ThaiDraftRoutes()));
 
 var app = builder.Build();

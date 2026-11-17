@@ -7,7 +7,13 @@ const PAGES = [{"n": "Home", "u": "/", "t": "Home", "s": "Corporate", "k": "elec
    cookie policy. Insights articles stay out of the index on purpose (Rupert, 17 Nov 2026). */
 PAGES.push(
   {"n": "Package Finder", "u": "/capabilities/osat/package-finder", "t": "Sub-page", "s": "Capabilities", "k": "OSAT package finder", "p": "HIGH"},
-  {"n": "Cookie Policy", "u": "/cookie-policy", "t": "Legal", "s": "Corporate", "k": "Hana Microelectronics cookie policy", "p": "LOW"}
+  {"n": "Cookie Policy", "u": "/cookie-policy", "t": "Legal", "s": "Corporate", "k": "Hana Microelectronics cookie policy", "p": "LOW"},
+  /* The plant certification pages (17 Nov 2026). */
+  {"n": "Ayutthaya certifications", "u": "/locations/ayutthaya/certifications", "t": "Sub-page", "s": "Locations", "k": "Ayutthaya plant certificates", "p": "MEDIUM"},
+  {"n": "Lamphun certifications", "u": "/locations/lamphun/certifications", "t": "Sub-page", "s": "Locations", "k": "Lamphun plant certificates", "p": "MEDIUM"},
+  {"n": "Jiaxing certifications", "u": "/locations/jiaxing/certifications", "t": "Sub-page", "s": "Locations", "k": "Jiaxing plant certificates", "p": "MEDIUM"},
+  {"n": "Koh Kong certifications", "u": "/locations/koh-kong/certifications", "t": "Sub-page", "s": "Locations", "k": "Koh Kong plant certificates", "p": "MEDIUM"},
+  {"n": "Ohio certifications", "u": "/locations/ohio/certifications", "t": "Sub-page", "s": "Locations", "k": "Ohio plant certificates", "p": "MEDIUM"}
 );
 
 /* Sample of the proposed SEARCH TERMS column — the shorthand people actually type.
@@ -116,7 +122,12 @@ const MORE_TERMS = {
  "/investor-relations/faqs": "dividend dividends payout agm annual general meeting",
  "/investor-relations/events-contact": "results earnings financial results quarterly results earnings call results presentation",
  "/capabilities/osat/package-finder": "package finder find a package package search package size sizes package dimensions",
- "/cookie-policy": "cookie cookies"
+ "/cookie-policy": "cookie cookies",
+ "/locations/ayutthaya/certifications": "certificates certificate certification pdf quality certificates iso certificates",
+ "/locations/lamphun/certifications": "certificates certificate certification pdf quality certificates iso certificates",
+ "/locations/jiaxing/certifications": "certificates certificate certification pdf quality certificates iso certificates",
+ "/locations/koh-kong/certifications": "certificates certificate certification pdf quality certificates iso certificates",
+ "/locations/ohio/certifications": "certificates certificate certification pdf quality certificates iso certificates"
 };
 Object.keys(MORE_TERMS).forEach(u => { TERMS[u] = ((TERMS[u] || "") + " " + MORE_TERMS[u]).trim(); });
 
@@ -174,102 +185,113 @@ const HUBPRODUCTS = {
 
 /* ---------------------------------------------------------------------------
    CERTIFICATION INDEX — which site holds what.
-   Every row taken from the plant review documents in
-   Page Specs & Templates/Locations/. Nothing here is invented.
-
-   PROVENANCE: those tables come from the CURRENT website quality pages
-   (/AytQty, /LpnQty, /JxQty, /KkQty) plus the 2026 company overview deck.
-   Plant confirmations never formally came back (the reviews went out 14 May 2026).
-   Rupert declared the certification list confirmed on 16 Sep 2026, and confirmed
-   ISO 9001 at Ohio on 17 Nov 2026. Rows still flagged "unconfirmed" below are the ones
-   no one has confirmed yet. The card shows the site and certificate number only: dates
-   are not shown (Rupert, 17 Nov 2026).
+   GENERATED from Data/certifications.json by "5. Website Redesign/tools/sync-cert-search.py".
+   Do not edit this block by hand: change the register and run the script.
+   u = the location page (index address), cu = the plant certification page.
+   Dates are not shown (Rupert, 17 Nov 2026).
    --------------------------------------------------------------------------- */
 const SITES = {
- ayt:{n:"Ayutthaya",c:"Thailand",r:"OSAT · EMS",u:"/locations/thailand/ayutthaya/"},
- lpn:{n:"Lamphun",  c:"Thailand",r:"EMS", u:"/locations/thailand/lamphun/"},
- jx: {n:"Jiaxing",  c:"China",   r:"EMS", u:"/locations/china/jiaxing/"},
- kk: {n:"Koh Kong", c:"Cambodia",r:"EMS", u:"/locations/cambodia/koh-kong/"},
- oh: {n:"Solon",    c:"Ohio, USA",r:"RFID & Optical",u:"/locations/usa/ohio/"}
+ ayt:{n:"Ayutthaya",c:"Thailand",r:"OSAT · EMS",u:"/locations/thailand/ayutthaya/",cu:"/locations/ayutthaya/certifications"},
+ lpn:{n:"Lamphun",c:"Thailand",r:"EMS",u:"/locations/thailand/lamphun/",cu:"/locations/lamphun/certifications"},
+ jx:{n:"Jiaxing",c:"China",r:"EMS",u:"/locations/china/jiaxing/",cu:"/locations/jiaxing/certifications"},
+ kk:{n:"Koh Kong",c:"Cambodia",r:"EMS",u:"/locations/cambodia/koh-kong/",cu:"/locations/koh-kong/certifications"},
+ oh:{n:"Ohio",c:"USA",r:"RFID & Optical",u:"/locations/usa/ohio/",cu:"/locations/ohio/certifications"}
 };
 
 const CERTS = [
- {id:"ISO 13485", full:"ISO 13485:2016", scope:"Medical devices — quality management",
+ {id:"ISO 13485", full:"ISO 13485:2016", scope:"Medical device quality management",
   alias:"13485 medical device medical certification",
   sites:[
-   {s:"ayt",num:"TH21/14457",body:"SGS",date:"renewed Oct 2024"},
-   {s:"lpn",num:"GB07/72438",body:"SGS",date:"renewed Jul 2025"},
-   {s:"jx", num:"249057-2017-AQ-RGC-NA-PS",body:"DNV",date:"renewed Feb 2025"},
-   {s:"kk", num:"145834/A/0001/UK/En",body:"URS",date:"issued Feb 2026",note:"the 2026 deck does not list this — confirm"}]},
+   {s:"ayt",num:"TH21/14457",body:"SGS"},
+   {s:"lpn",num:"GB07/72438",body:"SGS"},
+   {s:"jx",num:"249057-2017-AQ-RGC-NA-PS",body:"DNV"},
+   {s:"kk",num:"145834/A/0001/UK/En",body:"URS"}]},
 
- {id:"IATF 16949", full:"IATF 16949:2016", scope:"Automotive — quality management",
+ {id:"IATF 16949", full:"IATF 16949:2016", scope:"Automotive quality management",
   alias:"16949 iatf automotive certification",
   sites:[
-   {s:"ayt",num:"TH06/3318 IATF0534357",body:"SGS",date:"renewed Jul 2024"},
-   {s:"lpn",num:"TH10/5266.01",body:"SGS",date:"renewed Aug 2024"},
-   {s:"jx", num:"CN038585-IATF/430177",body:"BV",date:"renewed Sep 2024"},
-   {s:"kk", num:"—",body:"—",date:"",unconfirmed:1,note:"listed in the 2026 deck but not on the plant's cert table — confirm"},
-   {s:"oh", num:"—",body:"—",date:"",unconfirmed:1,note:"IATF 16949 confirmed by Rupert 22 Oct 2026 — certificate number and dates not yet supplied"}]},
+   {s:"ayt",num:"TH06/3318 IATF0534357",body:"SGS"},
+   {s:"lpn",num:"TH10/5266.01 · TH10/5266.02",body:"SGS"},
+   {s:"jx",num:"CN038585-IATF / 430177",body:"Bureau Veritas"},
+   {s:"kk",num:"—",body:"—"},
+   {s:"oh",num:"—",body:"—"}]},
 
  {id:"ISO 9001", full:"ISO 9001:2015", scope:"Quality management",
   alias:"9001 quality management",
   sites:[
-   {s:"ayt",num:"TH21/14373",body:"SGS",date:"renewed Jul 2024"},
-   {s:"lpn",num:"TH10/5267",body:"SGS",date:"renewed Aug 2024"},
-   {s:"jx", num:"CNBJ314315-U / CN051400",body:"BV",date:"renewed Aug 2024"},
-   {s:"kk", num:"TAQ24527",body:"Best ISO",date:"issued Mar 2024"},
-   {s:"oh", num:"—",body:"—",date:""}]},    /* Ohio confirmed by Rupert, 17 Nov 2026 */
+   {s:"ayt",num:"TH21/14373",body:"SGS"},
+   {s:"lpn",num:"TH10/5267 · TH18/11250",body:"SGS"},
+   {s:"jx",num:"CNBJ314315-U",body:"Bureau Veritas"},
+   {s:"kk",num:"TAQ24527",body:"Best ISO"},
+   {s:"oh",num:"C0865043-IS2",body:"NSF-ISR"}]},
 
  {id:"ISO 14001", full:"ISO 14001:2015", scope:"Environmental management",
   alias:"14001 environmental",
   sites:[
-   {s:"ayt",num:"TH016510",body:"BVQI",date:"renewed Jun 2024"},
-   {s:"lpn",num:"TH08/1526",body:"SGS",date:"renewed May 2023"},
-   {s:"jx", num:"3148-2006-AE-RGC-RvA",body:"DNV",date:"renewed Nov 2024"}]},
+   {s:"ayt",num:"TH016510",body:"Bureau Veritas"},
+   {s:"lpn",num:"TH08/1526 · TH15/9027",body:"SGS"},
+   {s:"jx",num:"3148-2006-AE-RGC-RvA",body:"DNV"}]},
 
  {id:"ISO 45001", full:"ISO 45001:2018", scope:"Occupational health and safety",
   alias:"45001 health safety",
   sites:[
-   {s:"ayt",num:"TH018896",body:"BVQI",date:"renewed Jun 2025"},
-   {s:"lpn",num:"TH08/1527",body:"SGS",date:"renewed May 2023"},
-   {s:"jx", num:"185471-2015-ASA-RGC-RvA",body:"DNV",date:"renewed Oct 2024"}]},
+   {s:"ayt",num:"TH018896",body:"Bureau Veritas"},
+   {s:"lpn",num:"TH08/1527 · TH15/9028",body:"SGS"},
+   {s:"jx",num:"185471-2015-ASA-RGC-RvA",body:"DNV"}]},
 
  {id:"ISO 27001", full:"ISO/IEC 27001:2022", scope:"Information security",
   alias:"27001 information security cyber data security",
   sites:[
-   {s:"ayt",num:"TH025675",body:"BVQI",date:"renewed Aug 2025"},
-   {s:"jx", num:"639119-2023-AIS-RGC-UKAS",body:"DNV",date:"renewed Oct 2025"}]},
+   {s:"ayt",num:"TH025675",body:"Bureau Veritas"},
+   {s:"jx",num:"639119-2023-AIS-RGC-UKAS",body:"DNV"}]},
 
  {id:"ANSI/ESD S20.20", full:"ANSI/ESD S20.20-2021", scope:"Electrostatic discharge control",
   alias:"esd s20.20 static",
-  sites:[{s:"ayt",num:"TH18/11154",body:"SGS",date:"renewed Aug 2025"}]},
+  sites:[
+   {s:"ayt",num:"TH18/11154",body:"SGS"}]},
 
  {id:"IECQ QC 080000", full:"IECQ QC 080000:2017", scope:"Hazardous substance process management",
   alias:"qc080000 iecq hazardous substance rohs",
-  sites:[{s:"jx",num:"IECQ-H-SGSCN 09.0267",body:"SGS-CSTC",date:"renewed Jul 2023"}]},
+  sites:[
+   {s:"jx",num:"IECQ-H-SGSCN 09.0267",body:"SGS-CSTC"}]},
 
- {id:"TL9000", full:"TL9000:2016", scope:"Telecommunications — quality management",
-  alias:"tl9000 telecom telecommunications",
-  sites:[{s:"kk",num:"FM788162",body:"BSI",date:"issued Sep 2023"}]},
+ {id:"TL9000", full:"TL 9000:2016", scope:"Telecommunications quality management",
+  alias:"tl9000 tl 9000 telecom telecommunications",
+  sites:[
+   {s:"kk",num:"FM788162",body:"BSI"}]},
 
  {id:"ISO 14064", full:"ISO 14064-1", scope:"Greenhouse gas statement",
-  alias:"14064 ghg greenhouse carbon",
-  sites:[{s:"jx",num:"00033-2023-GHG-RGC",body:"DNV",date:"issued Dec 2023"}]},
+  alias:"14064 ghg greenhouse",
+  sites:[
+   {s:"jx",num:"00033-2023-GHG-RGC",body:"DNV"}]},
+
+ {id:"Carbon Footprint", full:"Carbon Footprint for Organization", scope:"Organizational carbon footprint",
+  alias:"cfo tgo carbon footprint organization",
+  sites:[
+   {s:"ayt",num:"TGO CFO FY26-05-698",body:"TGO"}]},
+
+ {id:"RBA", full:"RBA Platinum Level", scope:"Responsible Business Alliance validated audit",
+  alias:"rba responsible business alliance platinum",
+  sites:[
+   {s:"ayt",num:"VAR-20260615-THA-01A01-1",body:"TÜV Rheinland"}]},
 
  {id:"ITAR", full:"ITAR registration", scope:"US defense-related work",
   alias:"itar defense defence military",
   sites:[
-   {s:"oh",num:"—",body:"—",date:"",unconfirmed:1,note:"stated in the 2026 deck — registration detail not yet supplied"},
-   {s:"ayt",num:"—",body:"—",date:"",unconfirmed:1,note:"listed in the deck but not on the plant's cert table — confirm"}]},
+   {s:"ayt",num:"Registered",body:"US Department of State (DDTC)"},
+   {s:"oh",num:"Registered",body:"US Department of State (DDTC)"}]},
 
- {id:"ARC", full:"ARC Quality Certification", scope:"RFID inlay design and manufacture (Auburn)",
+ {id:"ARC", full:"ARC Quality Certification", scope:"RFID inlay quality",
   alias:"arc auburn rfid inlay certification",
-  sites:[{s:"oh",num:"—",body:"Auburn (ARC)",date:"",unconfirmed:1,note:"deck states USA and China — confirm both"}]},
+  sites:[
+   {s:"oh",num:"—",body:"Auburn University RFID Lab"}]},
 
- {id:"Sony Green Partner", full:"Sony Green Partner", scope:"Customer environmental program",
+ {id:"Sony Green Partner", full:"Sony Green Partner", scope:"Environmental supply chain",
   alias:"sony green partner",
-  sites:[{s:"ayt",num:"—",body:"—",date:"",unconfirmed:1,note:"listed in the deck but not on the plant's cert table — confirm"}]}
+  sites:[
+   {s:"ayt",num:"—",body:"Sony"}]}
 ];
+
 
 /* Certifications feed the page index too, so location pages surface in normal results. */
 CERTS.forEach(c=>c.sites.forEach(s=>{

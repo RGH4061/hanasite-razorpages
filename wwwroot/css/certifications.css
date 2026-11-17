@@ -1,0 +1,78 @@
+/* ============================================================
+   certifications.css — plant certification pages (17 Nov 2026)
+   /locations/<plant>/certifications, built by Pages/Shared/_PlantCertifications.cshtml.
+   One table per site; on phones each row becomes a short card.
+   ============================================================ */
+.cert-crumbs{border-bottom:1px solid var(--line);background:var(--bg)}
+.cert-crumbs-in{max-width:1240px;margin:0 auto;padding:11px 20px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--font-text);font-size:12.5px;color:var(--ink-3)}
+.cert-crumbs .hana-link{font-size:12.5px}
+.cert-crumbs .sep{color:var(--line)}
+.cert-crumbs .cur{color:var(--ink);font-weight:600}
+
+.cert-wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+/* Title header: dark, with the site's grid art (hana-backgrounds.js draws it behind the text) */
+.cert-head{position:relative;overflow:hidden;background:#030a17;padding:64px 0 60px}
+.cert-head-in{position:relative;z-index:1}
+.cert-eyebrow{color:#7EC8FF;margin-bottom:14px}
+.cert-head h1{font-family:var(--font-display);font-size:52px;font-weight:700;letter-spacing:-.03em;line-height:1.02;color:#fff;margin:0 0 18px}
+.cert-lede{max-width:68ch;margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.85)}
+.cert-back{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-family:var(--font-text);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7EC8FF;text-decoration:none}
+.cert-back:hover{color:#fff}
+.cert-back:focus-visible{outline:2px solid #7EC8FF;outline-offset:3px}
+
+.cert-body{padding:44px 0 80px}
+.cert-site{font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin:40px 0 12px}
+.cert-body .cert-wrap > .cert-site:first-child{margin-top:0}
+
+.cert-tablewrap{background:#fff;border:1px solid var(--line);border-radius:var(--radius-card,8px);overflow:hidden}
+.cert-table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:var(--font-text)}
+/* Fixed column widths, so the tables on a two-site page line up */
+.cert-table thead th:nth-child(1){width:29%}.cert-table thead th:nth-child(2){width:25%}.cert-table thead th:nth-child(3){width:15%}.cert-table thead th:nth-child(4){width:17%}.cert-table thead th:nth-child(5){width:14%}
+.cert-table th,.cert-table td{padding:14px 20px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:14.5px;line-height:1.4}
+.cert-table thead th{padding:11px 20px;background:var(--bg);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.cert-table tbody tr:last-child > *{border-bottom:0}
+.ct-std{font-weight:600;color:var(--ink)}
+/* Certification mark from the old site beside the standard; an empty box keeps the names in line */
+.ct-stdin{display:flex;align-items:center;gap:14px}
+.ct-logo{flex:none;display:flex;align-items:center;justify-content:center;width:112px;height:48px}
+.ct-logo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.ct-area{color:var(--ink-2)}
+.ct-body{color:var(--ink)}
+.ct-num{color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ct-none{color:var(--ink-3)}
+.ct-doc{text-align:right;white-space:nowrap}
+/* Room to the right of the PDF button (Rupert, 17 Nov 2026) */
+.cert-table th:last-child,.cert-table td:last-child{padding-right:32px}
+.ct-pdf{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border:1px solid var(--line);border-radius:4px;font-size:13px;font-weight:600;color:var(--hana-blue-deep);text-decoration:none;transition:border-color var(--dur-base,.18s),color var(--dur-base,.18s)}
+.ct-pdf:hover{border-color:var(--hana-blue);color:var(--hana-blue)}
+.ct-pdf:focus-visible{outline:2px solid var(--hana-blue);outline-offset:2px}
+
+.cert-link{color:var(--hana-blue);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.cert-link:hover{color:var(--hana-blue-deep)}
+.cert-note{margin:18px 0 0;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.cert-note + .cert-note{margin-top:4px}
+.cert-others{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:14px}
+.cert-others-h{font-weight:600;color:var(--ink)}
+
+@media(max-width:760px){
+  .cert-wrap{padding:0 16px}
+  .cert-head{padding:40px 0 36px}
+  .cert-head h1{font-size:34px}
+  .cert-lede{font-size:15.5px}
+  .cert-body{padding:28px 0 56px}
+  .cert-site{font-size:19px;margin-top:30px}
+  /* Each row becomes a card: standard and area, then body and number, PDF button on the right */
+  .cert-table thead{display:none}
+  .cert-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;padding:14px 18px 14px 16px;border-bottom:1px solid var(--line)}
+  .cert-table tbody tr:last-child{border-bottom:0}
+  .cert-table th,.cert-table td,.cert-table th:last-child,.cert-table td:last-child{padding:0;border:0;font-size:14px}
+  .cert-table{table-layout:auto}
+  .ct-std{grid-column:1}
+  .ct-stdin{gap:10px}
+  .ct-logo{width:84px;height:42px}
+  .ct-logo:empty{display:none}
+  .ct-area{grid-column:1;font-size:13.5px;margin-top:2px}
+  .ct-body,.ct-num{grid-column:1;font-size:13px;color:var(--ink-3);margin-top:2px}
+  .ct-none{display:none}
+  .ct-doc{grid-column:2;grid-row:1 / span 4;align-self:center;width:auto}
+}
