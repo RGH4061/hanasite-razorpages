@@ -170,3 +170,7 @@ details.cf-acc-item[open] > summary .cf-acc-chevron { transform: rotate(180deg);
   .ch-panel { padding: 20px 18px 18px; }
   .ch-panel .ch-btn { width: 100%; }
 }
+
+/* Link button under an office (Hana Technologies → Hana RFID contact page), 17 Nov 2026 */
+.cf-office-btn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:7px 12px;border:1px solid var(--hana-blue);border-radius:4px;font-family:var(--font-text);font-size:12.5px;font-weight:600;color:var(--hana-blue-deep);text-decoration:none;transition:background .15s,color .15s}
+.cf-office-btn:hover{background:var(--hana-blue);color:#fff}
