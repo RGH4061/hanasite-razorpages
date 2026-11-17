@@ -11,7 +11,9 @@
 .pf-copy:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .pf-copy.on{border-color:var(--warm-accent,#FF883E);color:var(--warm-accent,#FF883E)}
 .pf-copied{flex:1 1 100%;font-family:var(--font-text);font-size:13px;line-height:1.5;color:rgba(229,238,245,.9)}
-.pf-copied b{color:#fff;font-weight:700;white-space:nowrap}
+.pf-nw{white-space:nowrap}
+/* The address inside the note: search.css gives every <b> in the package card's band its own block style */
+.pf-copied .pf-nw b{display:inline;font:inherit;font-weight:700;letter-spacing:0;color:#fff}
 .pf-copytext{display:block;width:100%;height:120px;margin-top:10px;padding:6px 8px;border:0;border-radius:4px;font:12px/1.45 var(--font-text);color:var(--ink);resize:vertical}
 
 /* Inquiry tab: bottom-right corner, opens the card */

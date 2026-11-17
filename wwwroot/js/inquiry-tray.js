@@ -18,6 +18,27 @@
   const COPY_ICON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
   const COPY_BTN = `<button type="button" class="pf-copy">${COPY_ICON}<span>Copy email</span></button>`;
 
+  /* ── Email wording, shared by the package finder and the search card ──────
+     Where the inquiry goes, the contact lines at the end of both emails (Rupert, 12 Nov
+     2026) and the custom packaging email (subject and body set by Rupert, 16 Nov 2026). */
+  const SALES = "info-request@hanaus.com";
+  const CONTACT_LINES = "Name:\nPosition:\nCompany:\nCountry:\nPhone number:";
+  const CUSTOM_SUBJECT = "Custom Packaging Requirements Hana Microelectronics Group";
+  /* search: what the visitor typed (may be empty); filters: plain-language filter names. */
+  const customMail = (search, filters) => {
+    const context = [
+      search ? "Searched for on your website: " + search : "",
+      filters && filters.length ? "Filters used: " + filters.join(", ") : ""
+    ].filter(Boolean);
+    const body = "Hello,\n\nWe are looking for a custom package."
+      + (context.length ? "\n\n" + context.join("\n") : "")
+      /* Contact lines first, as in the package email. */
+      + "\n\n" + CONTACT_LINES
+      + "\n\nOur requirements:\n\nPackage type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n\nThank you.";
+    return "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(body);
+  };
+  window.HanaInquiry = { SALES, CONTACT_LINES, COPY_BTN, customMail };
+
   /* ── Copy email ──────────────────────────────────────────────
      The email buttons are mailto: links, which open the visitor's email program and do
      nothing where there is none (webmail-only users, in-app browsers). The copy button
@@ -72,7 +93,7 @@
         b._t = setTimeout(() => { label.textContent = "Copy email"; b.classList.remove("on"); }, 2500);
         /* Where to send it stays in view under the buttons until the card is redrawn. */
         if (!row.querySelector(".pf-copied")) row.insertAdjacentHTML("beforeend",
-          `<div class="pf-copied" role="status">Copied. Paste it into a new email and send it to <b>${esc(d.to)}</b>.</div>`);
+          `<div class="pf-copied" role="status">Copied. Paste it into a new email and send it to <span class="pf-nw"><b>${esc(d.to)}</b>.</span></div>`);
         return;
       }
       /* Copying blocked by the browser: show the text, selected, for the visitor to copy. */

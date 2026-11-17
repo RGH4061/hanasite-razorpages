@@ -54,12 +54,31 @@
     return key + hash;
   }
 
+  /* Result order (Rupert, 17 Nov 2026): the groups are ordered by their best match, so the
+     page a visitor is most likely after comes first whatever section it sits in. The section
+     weights in data.js (Capabilities lead on an even match) are already part of each score.
+     An anchor hit (#board-of-directors on Leadership) is not listed, but it lifts the page
+     that holds it, and adds that page when the page itself did not match. */
   function query(q, opts) {
     const res = window.HS.search(q, opts);
-    res.groups = res.groups
-      .map(g => ({ section: g.section, items: g.items.filter(r => !r.p.anchor) }))
-      .filter(g => g.items.length);
-    res.total = res.groups.reduce((n, g) => n + g.items.length, 0);
+    const rows = res.groups.flatMap(g => g.items);
+    const pages = new Map();
+    rows.filter(r => !r.p.anchor).forEach(r => pages.set(r.p.u, r));
+    rows.filter(r => r.p.anchor).forEach(r => {
+      const u = r.p.u.replace(/#.+$/, ""), page = pages.get(u);
+      if (page) page.s = Math.max(page.s, r.s);
+      else {
+        const p = window.HS.PAGES.find(x => x.u === u);
+        if (p) pages.set(u, { p, s: r.s, hits: r.hits });
+      }
+    });
+    const rank = s => { const i = window.HS.SECTION_ORDER.indexOf(s); return i < 0 ? 99 : i; };
+    const bySection = {};
+    [...pages.values()].sort((a, b) => b.s - a.s).forEach(r => (bySection[r.p.s] = bySection[r.p.s] || []).push(r));
+    res.groups = Object.keys(bySection)
+      .map(s => ({ section: s, items: bySection[s] }))
+      .sort((a, b) => b.items[0].s - a.items[0].s || rank(a.section) - rank(b.section));
+    res.total = pages.size;
     return res;
   }
 
@@ -74,8 +93,7 @@
       <span class="hs-res-b">
         <span class="hs-res-t">${esc(p.n)}
           ${dead ? `<span class="hs-chip warm">${p.miss ? "Page not yet written" : "Not in this export"}</span>` : ""}</span>
-        <span class="hs-res-d">${esc(p.k || "")}</span>
-        <span class="hs-res-u">${esc(p.u)}</span>
+        <span class="hs-res-u">${esc(f || p.u)}</span>
       </span>
       ${dead ? "" : `<span class="hs-res-go">&rarr;</span>`}</${tag}>`;
   }
@@ -93,7 +111,7 @@
         <span class="hs-c-site"><b>${esc(st.n)}</b><small>${esc(st.c)}</small></span>
         ${tbc
           ? `<span class="hs-c-tbc"><span class="hs-chip warm">To confirm</span></span>`
-          : `<span class="hs-c-num">${esc(s.num)}</span><span class="hs-c-body">${esc(s.date)}</span>`}
+          : `<span class="hs-c-num">${s.num && s.num !== "—" ? esc(s.num) : "Certified"}</span>`}
         <span class="hs-c-go">&rarr;</span>
         ${s.note ? `<span class="hs-c-note">${esc(s.note)}</span>` : ""}</a>`;
     }).join("");
@@ -105,7 +123,7 @@
         <div class="hs-cert-c"><span class="hs-dot${none ? " warm" : ""}"></span><span>${esc(line)}</span></div>
       </div>
       <div class="hs-cert-tb">
-        <div class="hs-cert-hr"><span>Site</span><span>Certificate</span><span>Date</span><span></span></div>
+        <div class="hs-cert-hr"><span>Site</span><span>Certificate</span><span></span></div>
         ${rows}
       </div>
       <div class="hs-cert-f">
@@ -224,6 +242,12 @@
       m.aec ? `<b>AEC-Q100</b> graded packages` : null,
       m.aec101 ? `<b>AEC-Q101</b> qualified power packages` : null].filter(Boolean).join(" &middot; ");
     const finder = "/capabilities/osat/package-finder?" + (m.qs || "q=" + encodeURIComponent(m.raw || ""));
+    /* The band's button builds the custom packaging email, quoting the search, with a Copy
+       email button beside it (Rupert, 17 Nov 2026). The wording lives in inquiry-tray.js. */
+    const HI = window.HanaInquiry;
+    const specBtn = HI
+      ? `<div class="pf-mailrow hs-pkg-mail"><a class="hs-pkg-cta pf-mail" href="${esc(HI.customMail(m.raw, []))}">Email your package specification needs</a>${HI.COPY_BTN}</div>`
+      : `<a class="hs-pkg-cta" href="/contact">Email your package specification needs</a>`;
     return `<section class="hs-pkg${mobile ? " hs-pkg--m" : ""}">
       <div class="hs-pkg-h">
         <div class="hs-cert-lb">Direct answer &middot; package sizes</div>
@@ -246,7 +270,7 @@
       <div class="hs-pkg-band" data-hana-geo="band" data-geo-theme="midnight">
         <div><b>Don&rsquo;t see the size you need? We can customize packaging sizes.</b>
         <span class="hs-pkg-band-s">Tell us the body size, lead count and thickness you&rsquo;re working to, and we&rsquo;ll come back on whether it&rsquo;s in our window.</span></div>
-        <a class="hs-pkg-cta" href="/contact">Email your target package specification</a>
+        ${specBtn}
       </div></section>`;
   }
 

@@ -75,7 +75,6 @@
 .hs-res-t{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-.015em;color:var(--hana-blue-deep);line-height:1.2}
 .hs-res:hover .hs-res-t{color:var(--hana-blue)}
 .hs-res-in{font-family:var(--font-text);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.hs-res-d{font-size:14px;color:var(--ink-2);line-height:1.5}
 .hs-res-u{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-3)}
 .hs-res-w{font-size:11.5px;color:var(--hana-blue-deep);opacity:.75;font-family:var(--font-mono)}
 .hs-res-go{flex:none;color:var(--line);padding-top:4px;transition:color var(--dur-base) var(--ease)}
@@ -126,7 +125,7 @@
 .hs-cert-n{font-family:var(--font-display);font-size:30px;font-weight:600;letter-spacing:-.02em;margin:0;color:var(--ink)}
 .hs-cert-s{margin:5px 0 0;font-size:15px;color:var(--ink-2)}
 .hs-cert-c{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;font-size:13px;font-weight:500;color:var(--ink)}
-.hs-cert-hr,.hs-cert-r{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1.6fr) minmax(0,1.2fr) 24px;gap:16px;align-items:center;padding:14px 24px;width:100%;box-sizing:border-box}
+.hs-cert-hr,.hs-cert-r{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,2.4fr) 24px;gap:16px;align-items:center;padding:14px 24px;width:100%;box-sizing:border-box}
 .hs-cert-hr{padding-top:12px;padding-bottom:12px;border-bottom:1px solid var(--line);background:var(--white)}
 .hs-cert-hr span{font-family:var(--font-text);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .hs-cert-r{border-bottom:1px solid var(--line);transition:background var(--dur-base) var(--ease)}
@@ -134,9 +133,8 @@
 .hs-c-site{display:flex;flex-direction:column;gap:1px}
 .hs-c-site b{font-family:var(--font-display);font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .hs-c-site small{font-size:12px;color:var(--ink-3)}
-.hs-c-tbc{grid-column:2/4}
+.hs-c-tbc{grid-column:2}
 .hs-c-num{font-family:var(--font-mono);font-size:13px;color:var(--ink)}
-.hs-c-body{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-3)}
 .hs-c-go{color:var(--line)}
 .hs-cert-r:hover .hs-c-go{color:var(--hana-blue)}
 .hs-c-note{grid-column:1/-1;font-size:12px;color:var(--ink-3);padding-top:6px;border-top:1px dashed var(--line);margin-top:2px}
@@ -149,7 +147,6 @@
 .hs-cert--m .hs-c-site{grid-column:1}
 .hs-cert--m .hs-c-tbc{grid-column:2;justify-self:end}
 .hs-cert--m .hs-c-num{grid-column:1/-1}
-.hs-cert--m .hs-c-body{grid-column:1/-1}
 .hs-cert--m .hs-c-go{display:none}
 .hs-cert--m .hs-cert-f{padding:16px 18px}
 
@@ -332,6 +329,10 @@
 .hs-pkg-band-s{display:block;margin-top:4px;max-width:58ch;font-size:13px;line-height:1.5;color:rgba(255,255,255,.78)}
 .hs-pkg-cta{margin-left:auto;flex:none;background:#fff;color:var(--hana-blue-deep);border-radius:var(--radius-button);padding:10px 18px;font-family:var(--font-text);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 .hs-pkg-cta:hover{background:var(--hana-blue-tint)}
+/* Email button + Copy email in the package card's band (17 Nov 2026) */
+.hs-pkg-mail{margin-left:auto;flex:none}
+.hs-pkg-mail .hs-pkg-cta{margin-left:0}
+@media(max-width:700px){.hs-pkg-mail{margin-left:0;flex:1 1 100%}.hs-pkg-mail .hs-pkg-cta,.hs-pkg-mail .pf-copy{flex:1 1 100%;text-align:center;white-space:normal}}
 .hs-pkg--m .hs-pkg-h{padding:18px}
 .hs-pkg--m .hs-pkg-t th,.hs-pkg--m .hs-pkg-t td{padding:10px 18px}
 .hs-pkg--m .hs-pkg-band{padding:16px 18px}

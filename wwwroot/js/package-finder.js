@@ -31,15 +31,10 @@
   const MAX_EDGE = 41;
   /* Owner pages with a package table at #package-reference; "Details" links land there. */
   const ANCHORED = new Set(["/capabilities/osat/ultra-small-packages", "/capabilities/osat/qfn-dfn-lga", "/capabilities/osat/power-packages"]);
-  const SALES = "info-request@hanaus.com";
-  /* "Copy email" sits beside every email button from the start (Rupert, 16 Nov 2026), so a
-     visitor whose email program does not open can paste the same email elsewhere. The
-     copying itself is done by inquiry-tray.js, which every page loads. */
-  const COPY_ICON = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-  const COPY_BTN = `<button type="button" class="pf-copy">${COPY_ICON}<span>Copy email</span></button>`;
-  /* Contact lines at the end of both inquiry emails (Rupert, 12 Nov 2026), so sales can
-     reply and route the inquiry without asking first. */
-  const CONTACT_LINES = "Name:\nPosition:\nCompany:\nCountry:\nPhone number:";
+  /* The email address, the contact lines, the custom packaging email and the "Copy email"
+     button are shared with the search card, so they live in inquiry-tray.js, which every
+     page loads before this script. Copying is done there too. */
+  const { SALES, CONTACT_LINES, COPY_BTN } = window.HanaInquiry;
   /* On Thai pages (/th/…) links go to the Thai versions; every page the finder links to
      has one. The finder's own labels stay English. */
   const TH = document.documentElement.lang === "th";
@@ -407,23 +402,13 @@
        used to ask for (body size, lead count, thickness). What the buyer searched for and
        filtered on is quoted at the top (Rupert, 16 Nov 2026); the requirement lines stay
        blank for the buyer to fill in. */
-    const CUSTOM_SUBJECT = "Custom Packaging Requirements Hana Microelectronics Group";
     const customMail = c => {
       const used = [
         c.app === "auto" ? "Automotive" + (c.grades.length ? " (" + c.grades.join(", ") + ")" : "") : c.app === "non" ? "Non-automotive" : "",
         c.maxEdge < MAX_EDGE ? "largest body edge up to " + c.maxEdge + " mm" : "",
         c.maxThk !== null ? "thickness up to " + c.maxThk.toFixed(2) + " mm" : ""
       ].filter(Boolean);
-      const context = [
-        c.raw ? "Searched for on your website: " + c.raw : "",
-        used.length ? "Filters used: " + used.join(", ") : ""
-      ].filter(Boolean);
-      const body = "Hello,\n\nWe are looking for a custom package."
-        + (context.length ? "\n\n" + context.join("\n") : "")
-        /* Order set by Rupert, 16 Nov 2026: contact lines first, as in the package email. */
-        + "\n\n" + CONTACT_LINES
-        + "\n\nOur requirements:\n\nPackage type:\nBody size (mm):\nLead count:\nThickness (mm):\nApplication:\nEstimated annual volume:\nTarget timing:\n\n\nThank you.";
-      return "mailto:" + SALES + "?subject=" + encodeURIComponent(CUSTOM_SUBJECT) + "&body=" + encodeURIComponent(body);
+      return window.HanaInquiry.customMail(c.raw, used);
     };
     const askCustom = c => `<div class="pf-ask-t">Don&rsquo;t see the size you need? We can customize packaging sizes.</div>
       <div class="pf-mailrow"><a class="pf-btn pf-mail" href="${esc(customMail(c))}">Email your package specification needs</a>${COPY_BTN}</div>`;
