@@ -396,11 +396,11 @@
        <div class="job-card" data-location="ayutthaya|lamphun|bangkok|kohkong" data-type="fulltime|parttime|internship">
          <div class="job-info">
            <div class="job-title">Role title</div>
-           <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Full Time <span class="sep">|</span> Posted 27 Jan 2026</div>
+           <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Engineering <span class="sep">|</span> Full Time <span class="sep">|</span> Posted 27 Jan 2026</div>
          </div>
          <a href="/careers/job-post" class="job-apply">Apply →</a>
        </div> *@
-  @{ var hasJobs = false; var jobCount = 0; }
+  @{ var hasJobs = true; var jobCount = 1; }
   <div class="layout@(hasJobs ? "" : " layout--single")">
 
     @if (hasJobs)
@@ -429,6 +429,12 @@
           <div class="filter-option">
             <input type="checkbox" id="f-kk" checked>
             <label for="f-kk">Koh Kong</label>
+          </div>
+
+          @* USA roles are posted on the Hana RFID site, so this is a link, not a filter. *@
+          <div class="filter-country">USA</div>
+          <div class="filter-option filter-external">
+            <a href="https://hanarfid.com/careers/#apply" target="_blank" rel="noopener">Hana USA roles <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
           </div>
         </div>
 
@@ -460,17 +466,34 @@
       <header class="jobs-head">
         <div class="section-label">
           <span>Open Positions</span>
-          @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount roles</span> }
+          @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount @(jobCount == 1 ? "role" : "roles")</span> }
         </div>
         <h2>Current vacancies</h2>
         <p class="intro">Roles are based at our Thailand and Cambodia facilities.</p>
       </header>
 
       <div class="jobs-list" id="jobs-list">
+        @* Pre-Assembly Engineer, Ayutthaya: copied from the live listing (hanagroup.com jobId=1069, posted 19 Nov 2026). *@
+        <div class="job-card" data-location="ayutthaya" data-type="fulltime">
+          <div class="job-info">
+            <div class="job-title">Pre-Assembly Engineer</div>
+            <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Engineering <span class="sep">|</span> Full Time <span class="sep">|</span> Posted 19 Nov 2026</div>
+          </div>
+          <a href="/careers/job-post" class="job-apply">Apply →</a>
+        </div>
         @if (!hasJobs)
         {
           <p class="jobs-empty">No vacancies are listed at the moment. New roles will be posted on this page.</p>
         }
+      </div>
+
+      @* USA roles: Hana Technologies (Ohio) keeps its own listings on hanarfid.com, updated there. *@
+      <div class="us-roles">
+        <div class="us-roles-info">
+          <div class="job-title">Roles in the USA</div>
+          <div class="job-meta"><span class="loc-tag">Ohio</span> Listed on the Hana RFID careers page</div>
+        </div>
+        <a href="https://hanarfid.com/careers/#apply" class="job-apply" target="_blank" rel="noopener">View USA roles <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
       </div>
     </main>
   </div>

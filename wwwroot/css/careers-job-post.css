@@ -124,6 +124,25 @@
   .apply-btn:hover { background: var(--hana-blue); border-color: var(--hana-blue); }
   .apply-note { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-3); text-align: center; letter-spacing: -0.005em; line-height: 1.6; }
   .apply-note a { color: var(--ink-2); }
+  .apply-card-body .apply-btn { margin-bottom: 0; }
+  /* Recruiter contact band at the foot of the apply card (option C, 23 Nov 2026) */
+  .apply-contact {
+    display: flex; align-items: flex-start; gap: var(--s-3);
+    padding: var(--s-4) var(--s-5);
+    background: var(--surface); border-top: 1px solid var(--line);
+    text-decoration: none; transition: background 0.12s;
+  }
+  .apply-contact:hover { background: var(--hana-blue-tint); }
+  .apply-contact-icon {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--hana-blue-tint); color: var(--hana-blue-deep);
+    border: 1px solid rgba(14,74,124,0.14);
+  }
+  .apply-contact-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .apply-contact-label { font-size: 12px; line-height: 1.45; color: var(--ink-3); }
+  .apply-contact-email { font-size: 13.5px; font-weight: 500; color: var(--hana-blue-deep); overflow-wrap: anywhere; }
+  .apply-contact:hover .apply-contact-email { text-decoration: underline; }
   .details-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
   .details-card-head {
     font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500;
@@ -178,6 +197,14 @@
   @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; gap: var(--s-6); }
     aside.job-sidebar { position: relative; top: 0; }
+    /* Mobile/tablet: apply + role details sit above the description; job boards stay below it */
+    aside.job-sidebar { display: contents; }
+    aside.job-sidebar .apply-card,
+    aside.job-sidebar .details-card { order: -1; }
+    aside.job-sidebar .apply-card { margin-bottom: 0; }
+    aside.job-sidebar .boards-card { margin-top: 0; }
+    /* The card sits right under the page title here, so its role/location header repeats it */
+    .apply-card-head { display: none; }
     .subbar-inner { flex-wrap: wrap; gap: var(--s-3); }
   }
   @media (max-width: 640px) {

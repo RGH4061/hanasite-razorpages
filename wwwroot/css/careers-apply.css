@@ -185,3 +185,32 @@
     .subbar-inner { flex-wrap: wrap; gap: var(--s-3); }
     .step-line { max-width: 28px; }
   }
+
+/* ── Legibility pass (23 Nov 2026) ──
+   Thai: Inter carries a Thai-only Sarabun face (see _components.css), so Thai text is set in Inter,
+   with no capitals tracking, at English size × 1.25 and never below 13px.
+   English: 10px mono labels raised to 11px; grey notes darkened; phone inputs at 16px so iOS does not zoom. */
+.th, .thai-sub {
+  font-family: 'Inter', sans-serif;
+  text-transform: none; letter-spacing: 0;
+  font-weight: 400; line-height: 1.5;
+}
+.thai-sub { font-size: 15px; color: #4A4F58; }
+label.field-label .th { font-size: 16px; font-weight: 500; }
+.section-label .thai-sub,
+.thai-block-label .th,
+.emp-block-head .th,
+.lang-table th .th { font-size: 14px; color: #4A4F58; }
+.section-label .thai-sub, .thai-block-label .th, .emp-block-head .th { font-weight: 500; }
+.lang-table th .th { display: block; }
+.emp-block-head .th { margin-right: auto; margin-left: calc(-1 * var(--s-3) + 4px); }
+
+.section-label, .emp-block-head, .thai-block-label { font-size: 11px; }
+.lang-table th { font-size: 11px; vertical-align: top; }
+.req, .optional, .field-note { font-size: 11px; }
+.optional, .field-note, .thai-block-label { color: #4A4F58; }
+.lang-table input[type="text"], .lang-table select { font-size: 14px; }
+
+@media (max-width: 640px) {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea { font-size: 16px; }
+}

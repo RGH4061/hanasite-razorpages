@@ -30,7 +30,7 @@ const cvArea = document.getElementById('cv-area');
     clone.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
     clone.querySelectorAll('[required]').forEach(e => e.removeAttribute('required'));
     const head = clone.querySelector('.emp-block-head');
-    head.innerHTML = 'Education ' + eduCount + ' — Additional / เพิ่มเติม' +
+    head.innerHTML = 'Education ' + eduCount + ' — Additional / <span class="th">เพิ่มเติม</span>' +
       '<button type="button" class="block-remove">Remove</button>';
     head.querySelector('.block-remove').addEventListener('click', () => clone.remove());
     eduBlocks.appendChild(clone);
