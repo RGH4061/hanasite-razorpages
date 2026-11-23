@@ -15,7 +15,7 @@
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/">Home</a><span class="sep">/</span>
       <a href="/careers">Careers</a><span class="sep">/</span>
-      <a href="/careers/job-post">Pre-Assembly Engineer</a><span class="sep">/</span>
+      <span data-role-crumb hidden><a href="/careers#open-roles" data-role-link data-role-title></a><span class="sep">/</span></span>
       <span>Data Consent</span>
     </nav>
     <div class="meta">Step 1 of 2 &nbsp;·&nbsp; <strong>Data Consent</strong></div>
@@ -37,7 +37,7 @@
   <div class="consent-header">
     <div class="eyebrow">Application · Data Consent</div>
     <h1>Personal Data Consent Form</h1>
-    <p class="applying-for">Applying for: <strong>Pre-Assembly Engineer</strong> &nbsp;·&nbsp; Ayutthaya, Thailand</p>
+    <p class="applying-for" data-role-line hidden>Applying for: <strong data-role-title></strong> &nbsp;·&nbsp; <span data-role-loc></span></p>
   </div>
 
   <div class="notice">
@@ -78,12 +78,16 @@
   </div>
 
   <div class="action-row">
-    <a class="btn-accept" id="accept-btn" href="/careers/apply" aria-disabled="true">Accept →</a>
-    <a href="/careers/job-post" class="btn-back">← Back to role</a>
+    <a class="btn-accept" id="accept-btn" href="/careers/apply" data-keep-job aria-disabled="true">Accept →</a>
+    <a href="/careers#open-roles" class="btn-back" data-role-link>← Back to role</a>
   </div>
 
 </div>
 
+@* The role comes from ?job=<slug> (set by the role page's Apply button); js/careers-role.js fills it in. *@
+<script type="application/json" id="careers-jobs">@Html.Raw(HanaSite.Services.CareersJobs.ClientJson())</script>
+
 @section Scripts {
     <script src="~/js/careers-consent.js"></script>
+    <script src="~/js/careers-role.js" asp-append-version="true"></script>
 }

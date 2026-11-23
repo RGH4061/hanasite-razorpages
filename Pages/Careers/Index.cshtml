@@ -390,17 +390,9 @@
 
 <!-- ── Job listings ── -->
 <div class="layout-bg" id="open-roles">
-  @* Placeholder roles removed (Rupert, 17 Nov 2026). Live listings will come from Careers Admin
-     (/admin/jobs). Until a role is posted the filters are hidden and the empty message shows.
-     Each role renders as one card in #jobs-list, for example:
-       <div class="job-card" data-location="ayutthaya|lamphun|bangkok|kohkong" data-type="fulltime|parttime|internship">
-         <div class="job-info">
-           <div class="job-title">Role title</div>
-           <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Engineering <span class="sep">|</span> Full Time <span class="sep">|</span> Posted 27 Jan 2026</div>
-         </div>
-         <a href="/careers/job-post" class="job-apply">Apply →</a>
-       </div> *@
-  @{ var hasJobs = true; var jobCount = 1; }
+  @* Open roles come from Data/careers-jobs.json (Services/CareersJobs.cs) until Careers Admin (/admin/jobs)
+     supplies them. With no roles the filters are hidden and the empty message shows. *@
+  @{ var jobs = HanaSite.Services.CareersJobs.All; var hasJobs = jobs.Count > 0; var jobCount = jobs.Count; }
   <div class="layout@(hasJobs ? "" : " layout--single")">
 
     @if (hasJobs)
@@ -429,6 +421,12 @@
           <div class="filter-option">
             <input type="checkbox" id="f-kk" checked>
             <label for="f-kk">Koh Kong</label>
+          </div>
+
+          <div class="filter-country">China</div>
+          <div class="filter-option">
+            <input type="checkbox" id="f-jx" checked>
+            <label for="f-jx">Jiaxing</label>
           </div>
 
           @* USA roles are posted on the Hana RFID site, so this is a link, not a filter. *@
@@ -469,18 +467,22 @@
           @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount @(jobCount == 1 ? "role" : "roles")</span> }
         </div>
         <h2>Current vacancies</h2>
-        <p class="intro">Roles are based at our Thailand and Cambodia facilities.</p>
+        <p class="intro">Roles are based at our Thailand, Cambodia and China facilities.</p>
       </header>
 
       <div class="jobs-list" id="jobs-list">
-        @* Pre-Assembly Engineer, Ayutthaya: copied from the live listing (hanagroup.com jobId=1069, posted 19 Nov 2026). *@
-        <div class="job-card" data-location="ayutthaya" data-type="fulltime">
-          <div class="job-info">
-            <div class="job-title">Pre-Assembly Engineer</div>
-            <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Engineering <span class="sep">|</span> Full Time <span class="sep">|</span> Posted 19 Nov 2026</div>
+        @* Roles come from Data/careers-jobs.json (newest first); each links to its page under /careers/jobs/. *@
+        @foreach (var job in jobs)
+        {
+          var plant = HanaSite.Services.CareersJobs.PlantOf(job);
+          <div class="job-card" data-location="@job.Plant" data-type="@job.TypeKey">
+            <div class="job-info">
+              <div class="job-title">@job.Title</div>
+              <div class="job-meta"><span class="loc-tag">@plant.Name</span> @job.Department <span class="sep">|</span> @job.Type <span class="sep">|</span> Posted @job.PostedText</div>
+            </div>
+            <a href="@job.Url" class="job-apply">Apply →</a>
           </div>
-          <a href="/careers/job-post" class="job-apply">Apply →</a>
-        </div>
+        }
         @if (!hasJobs)
         {
           <p class="jobs-empty">No vacancies are listed at the moment. New roles will be posted on this page.</p>

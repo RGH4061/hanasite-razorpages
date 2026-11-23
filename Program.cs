@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 HanaSite.Services.ThaiDrafts.Init(builder.Environment.ContentRootPath);
 // Plant certificate register (Data/certifications.json) for the plant certification pages.
 HanaSite.Services.Certifications.Init(builder.Environment.ContentRootPath);
+HanaSite.Services.CareersJobs.Init(builder.Environment.ContentRootPath);
 builder.Services.AddRazorPages(o => o.Conventions.Add(new HanaSite.Services.ThaiDraftRoutes()));
 
 var app = builder.Build();

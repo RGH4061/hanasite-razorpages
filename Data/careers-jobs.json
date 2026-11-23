@@ -1,0 +1,122 @@
+// Data/careers-jobs.json — open roles on /careers (read by Services/CareersJobs.cs).
+// Each role is copied from its live hanagroup.com listing (sourceJobId); never invent job content.
+// Each role also needs a page file: Pages/Careers/Jobs/<Name>.cshtml with @page "/careers/jobs/<slug>".
+// plant: ayutthaya | lamphun | bangkok | kohkong | jiaxing  (sets the filter, the location and the recruitment inbox)
+// about, benefits and boards are optional; leave them out unless HR supplied them.
+{
+  "plants": {
+    "ayutthaya": { "name": "Ayutthaya", "location": "Ayutthaya, Thailand", "email": "Recruiter@ayt.hanabk.th.com" },
+    "lamphun":   { "name": "Lamphun",   "location": "Lamphun, Thailand",   "email": "rc_hana@lpn.hanabk.th.com" },
+    "bangkok":   { "name": "Bangkok HQ", "location": "Bangkok, Thailand",  "email": "recruit@hanabk.th.com" },
+    "kohkong":   { "name": "Koh Kong",  "location": "Koh Kong, Cambodia",  "email": "recruit@hanacambodia.com" },
+    "jiaxing":   { "name": "Jiaxing",   "location": "Jiaxing, China",      "email": "recruit@hanajx.com" }
+  },
+  "jobs": [
+    {
+      "slug": "sqe-jiaxing",
+      "sourceJobId": 1084,
+      "title": "Supplier Quality Engineer (SQE)",
+      "plant": "jiaxing",
+      "department": "Quality",
+      "type": "Full Time",
+      "payBasis": "Monthly",
+      "posted": "2026-11-23",
+      "responsibilities": [
+        "Handle incoming quality non-conformities of electronic components, PCBs and structural raw materials.",
+        "Train inspectors to improve their inspection competency.",
+        "Conduct supplier evaluation for electronic components, PCBs and structural parts, including new supplier development, annual audit of existing suppliers, quality capability assessment, corrective action follow-up and supplier quality improvement.",
+        "Drive suppliers to analyze and resolve raw material quality issues occurring in production processes.",
+        "Compile and submit weekly and monthly quality reports for key materials."
+      ],
+      "qualifications": [
+        "Minimum 3 years of supplier management experience in the electronics industry. Experience in SMT & PCBA, semiconductor packaging and testing is preferred, and electroplating experience is a plus.",
+        "Have experience in developing new suppliers.",
+        "Familiar with ISO / IATF system requirements.",
+        "Good English skills in reading, writing and speaking.",
+        "Strong logical thinking and ability to work under pressure.",
+        "Able to travel for supplier audits as required."
+      ]
+    },
+    {
+      "slug": "pre-assembly-engineer-ayutthaya",
+      "sourceJobId": 1069,
+      "title": "Pre-Assembly Engineer",
+      "plant": "ayutthaya",
+      "department": "Engineering",
+      "type": "Full Time",
+      "payBasis": "Monthly",
+      "posted": "2026-11-19",
+      "about": "As a Pre-Assembly Engineer at our Ayutthaya facility, you will be responsible for the accuracy and readiness of assembly documentation before production begins. You will work closely with customers, production planning, and the engineering team to ensure a smooth transition from order to production floor.",
+      "responsibilities": [
+        "Review customer assembly documents and provide guidance on Assembly Instructions, Build Sheets, and Marking Instructions",
+        "Translate or guide the translation of customer documents into required internal formats",
+        "Ensure correctness of all information per the PC loading schedule"
+      ],
+      "qualifications": [
+        "Bachelor's degree in Engineering, or Science in Electronics, Electrical, Mechanical or a related field",
+        "Newly graduated candidates are welcome; or at least 3 years of work experience in electronics manufacturing",
+        "Able to communicate in English",
+        "Computer proficiency in AutoCAD and Microsoft Office"
+      ],
+      "benefits": [
+        "Competitive salary and annual performance review",
+        "Health insurance and welfare benefits",
+        "Annual leave plus Thai public holidays",
+        "Technical training and career development programs",
+        "On-site facilities including canteen and transport support",
+        "A close-knit team culture with strong focus on employee wellbeing"
+      ],
+      "boards": [
+        { "name": "Indeed", "url": "#" },
+        { "name": "LinkedIn", "url": "#" },
+        { "name": "JobsDB", "url": "#" },
+        { "name": "JobStreet", "url": "#" },
+        { "name": "Glassdoor", "url": "#" }
+      ]
+    },
+    {
+      "slug": "product-process-engineer-lamphun",
+      "sourceJobId": 5,
+      "title": "Product/Process Engineer",
+      "plant": "lamphun",
+      "department": "Engineering",
+      "type": "Full Time",
+      "payBasis": "Monthly",
+      "posted": "2026-11-18",
+      "responsibilities": [
+        "Establish, analyze and evaluate engineering processes.",
+        "Plan and coordinate activities involved in process improvement to meet customer requirements."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electronics, Mechanical, Industrial or Telecommunication Engineering.",
+        "New graduates or 1–3 years of working experience in electronics manufacturing.",
+        "Good English communication skills.",
+        "Experience in surface mount technology, chip on board assembly and printed circuit board assembly.",
+        "Able to work in Lamphun province."
+      ]
+    },
+    {
+      "slug": "pmc-officer-koh-kong",
+      "sourceJobId": 15,
+      "title": "Production and Material Control (PMC) Officer",
+      "plant": "kohkong",
+      "department": "Supply Chain",
+      "type": "Full Time",
+      "payBasis": "Monthly",
+      "posted": "2026-11-18",
+      "responsibilities": [
+        "Check all forecast updates against the build sheet to ensure the material set (direct material, spare parts, indirect material and consigned material) is enough to support the forecast and PO.",
+        "Contact vendors and purchasing to pull in and expedite shipments when demand increases, or to push out or cancel orders to keep a suitable inventory level when actual loading is lower than the forecast.",
+        "Check the actual loading to prepare material, check material inventory status, and confirm all forecasts for PC and Marketing so the loading can be confirmed to the customer.",
+        "Keep the manager informed of potential problems related to direct and indirect material."
+      ],
+      "qualifications": [
+        "Bachelor's degree or related skills.",
+        "At least 3 years of experience in material planning or related work.",
+        "Good analytical thinking, planning and problem-solving skills.",
+        "Able to speak English; Thai is an advantage.",
+        "Computer skills: Word, Excel, PowerPoint and email."
+      ]
+    }
+  ]
+}

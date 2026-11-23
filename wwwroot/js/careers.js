@@ -180,7 +180,7 @@ const checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkb
 const cards = document.querySelectorAll('.job-card');
 const countEl = document.getElementById('job-count');
 
-const locMap  = { 'f-bkk': 'bangkok', 'f-ayt': 'ayutthaya', 'f-lpn': 'lamphun', 'f-kk': 'kohkong' };
+const locMap  = { 'f-bkk': 'bangkok', 'f-ayt': 'ayutthaya', 'f-lpn': 'lamphun', 'f-kk': 'kohkong', 'f-jx': 'jiaxing' };
 const typeMap = { 'f-ft': 'fulltime', 'f-pt': 'parttime', 'f-int': 'internship' };
 
 function applyFilters() {
