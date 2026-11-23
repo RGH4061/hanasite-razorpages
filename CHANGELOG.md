@@ -2,6 +2,12 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
+## Latest changes (23 Nov 2026 — Package finder on phones)
+
+- **Count line no longer pinned on phones** — below 861px, the line with the package count and the active filter chips (`.pf-status`) stays above the results instead of sticking under the site header. With a few filters it was about 95px tall, so together with the header and the inquiry bar it covered about 280px of a 700px screen. Desktop is unchanged.
+- **Clear on the phone inquiry bar** — the "Clear" button in the inquiry bar was hidden on phones. It now sits beside "Copy email", so the whole selection can be emptied in one tap, as on desktop. Applies to the finder page and the embedded finders.
+- Both changes are in `css/package-finder.css` (block dated 23 Nov 2026 at the end of the file).
+
 ## Latest changes (4 Nov 2026 — Contact page: sales by email, RFQ page retired)
 
 - **Contact (`/contact`)** — sales and technical inquiries now go by email to info-request@hanaus.com, and the sales contact form is removed. The page has a split hero with the email card on the right, one box holding the head office and the collapsible regional sales offices, and an Other inquiries card with Investors, Careers, Suppliers, Other and Anonymous tabs. Styles are in `css/contact-hub.css`.

@@ -255,7 +255,7 @@
 @media(max-width:860px){
   .pf-tray{right:0;bottom:0;width:100%}
   .pf-tray-in{flex-direction:row;align-items:center;border-radius:0;border-width:1px 0 0}
-  .pf-tray-list,.pf-tray .pf-tray-clear{display:none}
+  .pf-tray-list{display:none}
   .pf-tray-go{margin-left:auto}
   body.pf-tray-on{padding-bottom:112px}
 }
@@ -444,4 +444,17 @@
   .pf-tray-go{grid-column:1/-1;grid-row:2;margin-left:0}
   .pf-tray .pf-copytext,.pf-tray .pf-copied{grid-column:1/-1;margin-top:0}
   .pf-mailrow--go .pf-copied{text-align:left}
+}
+
+/* Phones (Rupert, 23 Nov 2026). The count line with the active filters no longer pins
+   under the site header: with a few filters it grew to about 95px, and with the header and
+   the inquiry bar it covered some 280px of a 700px screen. It now stays above the results.
+   The inquiry bar keeps a "Clear" button, which was hidden on phones, so the selection can
+   be emptied without un-ticking each card. */
+@media(max-width:860px){
+  .pf--page .pf-status{position:static;padding:0;background:none}
+  .pf-tray-in{grid-template-columns:minmax(0,1fr) auto auto}
+  .pf-tray-n{white-space:normal;line-height:1.35}
+  .pf-tray .pf-tray-clear{display:block;grid-column:2;grid-row:1;padding:6px 2px;font-size:13px}
+  .pf-tray .pf-copy{grid-column:3}
 }
