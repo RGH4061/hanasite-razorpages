@@ -478,6 +478,7 @@
           <div class="job-card" data-location="@job.Plant" data-type="@job.TypeKey">
             <div class="job-info">
               <div class="job-title">@job.Title</div>
+              @if (job.StartLine is not null) { <div class="job-start">@job.StartLine</div> }
               <div class="job-meta"><span class="loc-tag">@plant.Name</span> @job.Department <span class="sep">|</span> @job.Type <span class="sep">|</span> Posted @job.PostedText</div>
             </div>
             <a href="@job.Url" class="job-apply">Apply →</a>

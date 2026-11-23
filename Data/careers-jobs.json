@@ -3,6 +3,8 @@
 // Each role also needs a page file: Pages/Careers/Jobs/<Name>.cshtml with @page "/careers/jobs/<slug>".
 // plant: ayutthaya | lamphun | bangkok | kohkong | jiaxing  (sets the filter, the location and the recruitment inbox)
 // about, benefits and boards are optional; leave them out unless HR supplied them.
+// startDate (optional, e.g. "Q1 2027") marks a role recruiting ahead of a future start: shown as
+// "Welcoming Applicants for <startDate> Start Date" under the title.
 {
   "plants": {
     "ayutthaya": { "name": "Ayutthaya", "location": "Ayutthaya, Thailand", "email": "Recruiter@ayt.hanabk.th.com" },
@@ -93,6 +95,26 @@
         "Good English communication skills.",
         "Experience in surface mount technology, chip on board assembly and printed circuit board assembly.",
         "Able to work in Lamphun province."
+      ]
+    },
+    {
+      "slug": "smt-planner-ayutthaya",
+      "sourceJobId": 1074,
+      "title": "SMT PC, MC Planner and Sr. Planner",
+      "startDate": "Q1 2027",
+      "plant": "ayutthaya",
+      "department": "Supply Chain",
+      "type": "Full Time",
+      "payBasis": "Monthly",
+      "posted": "2026-11-18",
+      "responsibilities": [
+        "Handle SMT forecasting and production control, PCB raw material sourcing, and communication with overseas customers."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Physics, Mathematics, Statistics, Economics, Business, Industrial Engineering or a related field.",
+        "3–12 years of work experience in an electronics company, preferably in production control and/or material control.",
+        "Able to communicate in English.",
+        "Computer skills: Microsoft Office (Excel: VLOOKUP, PivotTables, SUMIF)."
       ]
     },
     {

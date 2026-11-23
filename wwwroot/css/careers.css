@@ -811,3 +811,6 @@
   .us-roles { flex-direction: column; align-items: flex-start; gap: var(--s-3); }
   .job-meta { white-space: normal; flex-wrap: wrap; row-gap: 4px; }
 }
+
+/* Roles recruiting ahead of a future start date (23 Nov 2026) */
+.job-start { font-size: 13px; font-weight: 500; color: var(--hana-blue-deep); margin: -4px 0 var(--s-2); }

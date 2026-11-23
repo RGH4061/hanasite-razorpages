@@ -21,9 +21,11 @@ public static class CareersJobs
         string Slug, int? SourceJobId, string Title, string Plant, string Department,
         string Type, string PayBasis, string Posted, string? About,
         List<string> Responsibilities, List<string> Qualifications,
-        List<string>? Benefits, List<Board>? Boards)
+        List<string>? Benefits, List<Board>? Boards, string? StartDate = null)
     {
         public string Url => "/careers/jobs/" + Slug;
+        /// Line under the title for a role recruiting ahead of a future start, or null.
+        public string? StartLine => string.IsNullOrWhiteSpace(StartDate) ? null : $"Welcoming Applicants for {StartDate} Start Date";
         public DateTime PostedDate => DateTime.ParseExact(Posted, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         public string PostedText => PostedDate.ToString("d MMM yyyy", CultureInfo.InvariantCulture);
         /// data-type value used by the Careers filter (fulltime, parttime, internship).

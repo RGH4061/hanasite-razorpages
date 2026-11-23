@@ -61,6 +61,7 @@
     <div class="hero-inner">
       <div class="eyebrow">Open role · @job.Department</div>
       <h1>@job.Title</h1>
+      @if (job.StartLine is not null) { <p class="hero-start">@job.StartLine</p> }
     </div>
   </section>
 </div>
@@ -141,6 +142,7 @@
         <div class="detail-row"><span class="detail-key">Type</span><span class="detail-val">@job.Type</span></div>
         <div class="detail-row"><span class="detail-key">Department</span><span class="detail-val">@job.Department</span></div>
         <div class="detail-row"><span class="detail-key">Pay basis</span><span class="detail-val">@job.PayBasis</span></div>
+        @if (job.StartDate is not null) { <div class="detail-row"><span class="detail-key">Start date</span><span class="detail-val">@job.StartDate</span></div> }
         <div class="detail-row"><span class="detail-key">Posted</span><span class="detail-val">@job.PostedText</span></div>
       </div>
 
