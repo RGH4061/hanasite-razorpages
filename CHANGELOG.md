@@ -7,6 +7,7 @@ What changed in the Razor Pages site, newest first. Moved here from README.md on
 - **Count line no longer pinned on phones** — below 861px, the line with the package count and the active filter chips (`.pf-status`) stays above the results instead of sticking under the site header. With a few filters it was about 95px tall, so together with the header and the inquiry bar it covered about 280px of a 700px screen. Desktop is unchanged.
 - **Clear on the phone inquiry bar** — the "Clear" button in the inquiry bar was hidden on phones. It now sits beside "Copy email", so the whole selection can be emptied in one tap, as on desktop. Applies to the finder page and the embedded finders.
 - Both changes are in `css/package-finder.css` (block dated 23 Nov 2026 at the end of the file).
+- **Inquiry list on phones** — tapping the count in the phone inquiry bar ("2 packages in your inquiry") opens the list of selected packages above the bar, each with × to remove it; tapping again closes it. Phones show every selected package (desktop still shows six and "+n more"). In `js/package-finder.js` (`trayOpen`) and the second 23 Nov block in `css/package-finder.css`.
 
 ## Latest changes (4 Nov 2026 — Contact page: sales by email, RFQ page retired)
 

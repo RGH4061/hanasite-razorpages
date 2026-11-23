@@ -281,6 +281,7 @@
         + "\n\n" + CONTACT_LINES + "\n\nApplication:\nEstimated annual volume:\nTarget timing:\n\n\nThank you.";
       return "mailto:" + SALES + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     };
+    let trayOpen = false;
     const tray = () => {
       if (!trayEl) return;
       const rows = ALL.filter(r => picked.has(KEY.get(r)));
@@ -292,11 +293,12 @@
       } catch (e) {}
       trayEl.hidden = !rows.length;
       document.body.classList.toggle("pf-tray-on", !!rows.length);
-      if (!rows.length) { trayEl.innerHTML = ""; setSt(); return; }
-      const SHOW = 6, n = rows.length;
+      if (!rows.length) { trayOpen = false; trayEl.classList.remove("pf-tray--open"); trayEl.innerHTML = ""; setSt(); return; }
+      const SHOW = matchMedia("(max-width:860px)").matches ? Infinity : 6, n = rows.length;
+      trayEl.classList.toggle("pf-tray--open", trayOpen);
       trayEl.innerHTML = `<div class="pf-tray-in" data-geo-theme="midnight">
-        <div class="pf-tray-n"><b class="pf-tray-badge">${n}</b> package${n === 1 ? "" : "s"} in your inquiry</div>
-        <div class="pf-tray-list">${rows.slice(0, SHOW).map(r =>
+        <button type="button" class="pf-tray-n" aria-expanded="${trayOpen}" aria-controls="pf-tray-list"><b class="pf-tray-badge">${n}</b> package${n === 1 ? "" : "s"} in your inquiry<span class="pf-tray-caret" aria-hidden="true"></span></button>
+        <div class="pf-tray-list" id="pf-tray-list">${rows.slice(0, SHOW).map(r =>
           `<button type="button" class="pf-tokx" data-unsel="${KEY.get(r)}" aria-label="Remove ${esc(r.pkg)}">${esc(r.pkg)}${r.bs ? ` <span class="pf-tray-bs">${esc(r.bs)}</span>` : ""}<span aria-hidden="true">&times;</span></button>`).join("")}
           ${n > SHOW ? `<span class="pf-tray-more">+${n - SHOW} more</span>` : ""}</div>
         <button type="button" class="pf-xall pf-tray-clear">Clear</button>
@@ -333,6 +335,8 @@
         const b = e.target.closest("button[data-sel]"); if (b) setPick(+b.dataset.sel, !picked.has(+b.dataset.sel));
       });
       trayEl.addEventListener("click", e => {
+        /* Phones: the count opens the list of selected packages (Rupert, 23 Nov 2026). */
+        if (e.target.closest(".pf-tray-n")) { trayOpen = !trayOpen; tray(); return; }
         if (e.target.closest(".pf-tray-clear")) { [...picked].forEach(k => setPick(k, false)); return; }
         const b = e.target.closest("[data-unsel]"); if (b) setPick(+b.dataset.unsel, false);
       });

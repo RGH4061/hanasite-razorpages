@@ -458,3 +458,18 @@
   .pf-tray .pf-tray-clear{display:block;grid-column:2;grid-row:1;padding:6px 2px;font-size:13px}
   .pf-tray .pf-copy{grid-column:3}
 }
+
+/* Phones (Rupert, 23 Nov 2026). Tapping the count in the inquiry bar opens the list of
+   selected packages above it; each row's × removes that package. The list was hidden on
+   phones, so there was no way to see what had been added. On desktop the list is always
+   shown and the count is plain text. */
+.pf-tray-n{border:0;background:none;padding:0;text-align:left;cursor:default}
+.pf-tray-caret{display:none}
+@media(max-width:860px){
+  .pf-tray-n{cursor:pointer;display:flex;align-items:center;gap:2px}
+  .pf-tray-caret{display:inline-block;width:7px;height:7px;margin-left:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(2px) rotate(-135deg);transition:transform .15s}
+  .pf-tray--open .pf-tray-caret{transform:translateY(-2px) rotate(45deg)}
+  .pf-tray--open .pf-tray-list{display:flex;grid-column:1/-1;grid-row:1;max-height:min(45vh,320px);overflow-y:auto;padding-bottom:4px;border-bottom:1px solid rgba(229,238,245,.15)}
+  .pf-tray--open .pf-tray-n,.pf-tray--open .pf-tray-clear,.pf-tray--open .pf-copy{grid-row:2}
+  .pf-tray--open .pf-tray-go{grid-row:3}
+}
