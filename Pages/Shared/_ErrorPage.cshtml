@@ -1,0 +1,71 @@
+@*
+    Pages/Shared/_ErrorPage.cshtml — body of the 404 and error pages (23 Nov 2026).
+    Model: Services/ErrorPages.cs ErrorPageInfo. Styles: css/error-page.css.
+    Thai lines are drafts for review (Thai gets its own translation); section names come from the Thai header.
+    Links are written root-relative; the HTML preview publish rewrites them for 404.html.
+    The language switch is the header's (AltLangUrl, set in Services/ErrorPages.cs Apply).
+*@
+@model HanaSite.Services.ErrorPageInfo
+@{
+    var th = Model.Thai;
+    var notFound = Model.Code == 404;
+    // Main sections, in header order. Thai names are the Thai header's.
+    var sections = new (string En, string Th, string Href)[]
+    {
+        ("Capabilities", "ความสามารถ", "/capabilities"),
+        ("Package finder", "ค้นหาแพ็กเกจ", "/capabilities/osat/package-finder"),
+        ("Markets", "ตลาด", "/markets"),
+        ("Locations", "ที่ตั้ง", "/locations"),
+        ("About Hana", "เกี่ยวกับเรา", "/about"),
+        ("Investor relations", "นักลงทุนสัมพันธ์", "/investor-relations"),
+        ("Careers", "ร่วมงานกับเรา", "/careers"),
+        ("Contact", "ติดต่อเรา", "/contact"),
+    };
+    string Href(string en) => th ? (en == "/" ? "/th/" : "/th" + en) : en;
+}
+<div class="ep">
+  <div class="ep-head">
+    <p class="ep-code">@(th ? "ข้อผิดพลาด " : "Error ")@Model.Code</p>
+    @if (notFound)
+    {
+      <h1 class="ep-title">@(th ? "ไม่พบหน้านี้" : "Page not found")</h1>
+      <p class="ep-lede">@(th
+          ? "ไม่มีหน้าที่ที่อยู่นี้ หรือหน้านี้ถูกย้ายไปแล้ว ที่อยู่หลายหน้าเปลี่ยนไปเมื่อมีการปรับปรุงเว็บไซต์ คุณสามารถค้นหาเนื้อหาด้านล่าง หรือเลือกหัวข้อหลัก"
+          : "There is no page at this address, or the page has moved. Many addresses changed when the website was rebuilt, so the content you are looking for may be under a new address. You can search the site below or go to one of the main sections.")</p>
+
+      <form class="ep-search" action="/search" method="get" role="search">
+        <label class="ep-label" for="ep-q">@(th ? "ค้นหาในเว็บไซต์ (ภาษาอังกฤษ)" : "Search the site")</label>
+        <div class="ep-field">
+          <input id="ep-q" name="q" type="search" value="@Model.Words" autocomplete="off"
+                 placeholder="@(th ? "เช่น QFN, box build, ISO 13485" : "For example QFN, box build, ISO 13485")" />
+          <button type="submit">@(th ? "ค้นหา" : "Search")</button>
+        </div>
+      </form>
+    }
+    else
+    {
+      <h1 class="ep-title">@(th ? "ไม่สามารถโหลดหน้านี้ได้" : "This page could not be loaded")</h1>
+      <p class="ep-lede">@(th
+          ? "เกิดปัญหาที่เซิร์ฟเวอร์ของเราระหว่างโหลดหน้านี้ โปรดลองอีกครั้งในอีกสักครู่ หากยังพบปัญหา โปรดติดต่อเราพร้อมแจ้งที่อยู่ของหน้านี้"
+          : "A problem on our server stopped this page from loading. Please try again in a few minutes. If the problem continues, contact us and include the page address.")</p>
+      <div class="ep-actions">
+        <button type="button" class="ep-btn" onclick="location.reload()">@(th ? "ลองอีกครั้ง" : "Try again")</button>
+        <a class="ep-btn ep-btn--ghost" href="@Href("/")">@(th ? "หน้าแรก" : "Home page")</a>
+      </div>
+    }
+  </div>
+
+  <nav class="ep-sections" aria-label="@(th ? "หัวข้อหลัก" : "Main sections")">
+    <h2 class="ep-sec-title">@(th ? "หัวข้อหลัก" : "Main sections")</h2>
+    <ul>
+      @foreach (var s in sections)
+      {
+        <li><a href="@Href(s.Href)">@(th ? s.Th : s.En)</a></li>
+      }
+    </ul>
+    <p class="ep-more">
+      <a href="@Href("/")">@(th ? "หน้าแรก" : "Home page")</a>
+      @if (!th) { <a href="/sitemap">Site map</a> }
+    </p>
+  </nav>
+</div>

@@ -1,0 +1,16 @@
+@page "/404"
+@*
+    /404 — the not-found page at its own address. Published to the HTML preview as 404.html,
+    which GitHub Pages serves for any missing file. Missing addresses on the Razor site reach
+    the same content through /error (Program.cs).
+*@
+@using HanaSite.Services
+@{
+    Response.StatusCode = 404;
+    var info = new ErrorPageInfo(404, false, "");
+    ErrorPages.Apply(ViewData, info);
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/error-page.css" asp-append-version="true" />
+}
+<partial name="_ErrorPage" model="info" />

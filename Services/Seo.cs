@@ -44,6 +44,8 @@ public static class Seo
         "/insights/automotive-pcba-assembly",   // draft example (tracker); to be rewritten as an IATF 16949 explainer
     "/careers/apply",        // form steps reached from a job post, not landing pages
     "/careers/consent",
+    "/404",                  // error pages (23 Nov 2026)
+    "/error",
     };
 
     // Visible names of section pages, used for the breadcrumb trail of the pages below them.

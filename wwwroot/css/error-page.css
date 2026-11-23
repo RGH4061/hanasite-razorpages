@@ -1,0 +1,33 @@
+/* 404 and error pages (23 Nov 2026): Pages/Shared/_ErrorPage.cshtml. Scoped under .ep. */
+.ep { max-width: 1200px; margin: 0 auto; padding: 0 32px 96px; color: var(--ink); }
+.ep-head { padding: 64px 0 48px; max-width: 720px; }
+.ep-code { font-family: var(--font-text); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hana-blue); margin: 0 0 14px; }
+.ep-title { font-family: var(--font-display); font-weight: 700; font-size: 42px; letter-spacing: -0.03em; line-height: 1.05; margin: 0; }
+.ep-lede { font-size: 17px; line-height: 1.55; color: var(--ink-2); margin: 16px 0 0; }
+
+.ep-search { margin-top: 32px; }
+.ep-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.ep-field { display: flex; gap: 8px; }
+.ep-field input { flex: 1 1 auto; min-width: 0; height: 48px; padding: 0 14px; font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+.ep-field input:focus { outline: 2px solid var(--hana-blue); outline-offset: 1px; border-color: var(--hana-blue); }
+.ep-field button, .ep-btn { height: 48px; padding: 0 22px; font-family: var(--font-text); font-size: 14px; font-weight: 600; color: #fff; background: var(--hana-blue); border: 1px solid var(--hana-blue); border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.ep-field button:hover, .ep-btn:hover { filter: brightness(1.08); }
+.ep-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.ep-btn--ghost { color: var(--hana-blue); background: transparent; }
+
+.ep-sections { border-top: 2px solid var(--ink); padding-top: 14px; }
+.ep-sec-title { font-family: var(--font-text); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hana-blue); margin: 0 0 18px; }
+.ep-sections ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 40px; }
+.ep-sections li a { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); text-decoration: none; }
+.ep-more { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 28px 0 0; font-size: 14px; }
+.ep-more a { color: var(--hana-blue); font-weight: 600; text-decoration: none; }
+.ep a:hover { color: var(--hana-blue); text-decoration: underline; text-underline-offset: 3px; }
+.ep a:focus-visible, .ep button:focus-visible { outline: 2px solid var(--hana-blue); outline-offset: 2px; }
+
+@media (max-width: 1024px) { .ep-sections ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .ep { padding: 0 20px 64px; }
+  .ep-head { padding: 40px 0 36px; }
+  .ep-title { font-size: 32px; }
+  .ep-field button { padding: 0 16px; }
+}

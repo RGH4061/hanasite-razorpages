@@ -2,6 +2,11 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
+## Latest changes (23 Nov 2026 — Error pages, footer)
+
+- **Error pages** — missing addresses now show a "Page not found" page (status 404 kept) with a search box pre-filled from the missing address, the main sections, the home page and the site map. Other errors show "This page could not be loaded" with Try again and Home page; outside Development every unhandled exception lands there. Addresses under /th/ get Thai text (draft lines for review; section names from the Thai header). Missing images, scripts and other files keep the plain empty 404. Files: `Pages/Error.cshtml` (/error), `Pages/NotFound.cshtml` (/404, published to the HTML preview as 404.html), `Pages/Shared/_ErrorPage.cshtml`, `Services/ErrorPages.cs`, `css/error-page.css`; wiring in `Program.cs`; both routes are noindex and out of sitemap.xml (`Services/Seo.cs`).
+- **Footer** — Capabilities column has a Package finder link under OSAT services.
+
 ## Latest changes (23 Nov 2026 — Package finder on phones)
 
 - **Count line no longer pinned on phones** — below 861px, the line with the package count and the active filter chips (`.pf-status`) stays above the results instead of sticking under the site header. With a few filters it was about 95px tall, so together with the header and the inquiry bar it covered about 280px of a 700px screen. Desktop is unchanged.

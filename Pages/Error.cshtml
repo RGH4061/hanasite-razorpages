@@ -1,0 +1,22 @@
+@page "/error"
+@*
+    /error — every empty error response and, outside Development, every unhandled exception
+    lands here (Program.cs). 404s show the not-found page; other codes show "could not be loaded".
+    Thai when the original address was under /th/. Never indexed.
+*@
+@using HanaSite.Services
+@using Microsoft.AspNetCore.Diagnostics
+@{
+    var reExec = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+    var exception = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+    var original = reExec?.OriginalPath ?? exception?.Path;
+    var code = exception != null ? 500
+        : int.TryParse(Request.Query["code"], out var c) && c >= 400 && c < 600 ? c : 500;
+    if (reExec == null && exception == null) Response.StatusCode = code;
+    var info = new ErrorPageInfo(code, ErrorPages.IsThai(original), code == 404 ? ErrorPages.WordsFrom(original) : "");
+    ErrorPages.Apply(ViewData, info);
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/error-page.css" asp-append-version="true" />
+}
+<partial name="_ErrorPage" model="info" />

@@ -15,9 +15,22 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/error");
     app.UseHsts();
 }
+// Error pages (23 Nov 2026): any error response without a body (missing page, missing file,
+// wrong method) shows Pages/Error.cshtml with its status code kept; /th/ addresses get the Thai text.
+app.UseStatusCodePagesWithReExecute("/error", "?code={0}");
+// Missing files (images, scripts, styles, fonts, video) keep the plain empty response: a browser
+// asking for an image has no use for an HTML page. Old-site .html addresses still get the page.
+app.Use(async (context, next) =>
+{
+    var ext = Path.GetExtension(context.Request.Path.Value ?? "");
+    if (ext.Length > 0 && !ext.Equals(".html", StringComparison.OrdinalIgnoreCase) && !ext.Equals(".htm", StringComparison.OrdinalIgnoreCase)
+        && context.Features.Get<Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>() is { } pages)
+        pages.Enabled = false;
+    await next();
+});
 
 app.UseHttpsRedirection();
 
