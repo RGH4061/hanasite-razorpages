@@ -100,3 +100,32 @@ h2:has(span.th), h2:has(span.th) * { line-height: 1.32 !important; letter-spacin
   .mk-crumbbar .here { white-space: nowrap; }
   .ir-hub-updated { margin-left: 0; flex-basis: 100%; }
 }
+
+/* ── Plant page header (Locations, 24 Nov 2026) ────────────
+   The English header is a fixed-height panel (440px; 400px under 900px; 360px
+   under 620px) with the title and intro placed inside it, so text that does not
+   fit is cut off. The Thai intro runs about twice the English (Ayutthaya lost the
+   top of its H1 and the end of its intro). On Thai pages the panel keeps those
+   heights as a minimum and grows with its text, the text column is 600px instead
+   of 460px, and the dark scrim behind the text reaches 40px past the column.
+   The photo, texture and scrim are absolutely placed, so they fill the taller panel. */
+.lc-hero-veil { height: auto !important; min-height: 440px; display: flex; }
+.lc-hero-veil > div:has(h1) { position: relative !important; inset: auto !important; flex: 1; display: flex; }
+.lc-hero-veil > div:has(h1) > div { height: auto !important; width: 100%; box-sizing: border-box; padding-top: 44px !important; padding-bottom: 52px !important; }
+.lc-hero-veil > div:has(h1) > div > div { max-width: 600px !important; }
+.lc-hero-veil p { max-width: none !important; }
+/* Scrim stops follow the text column: its right edge is 50% + 12px on wide screens
+   (1240px container, 32px padding) and 632px on narrower ones. */
+.lc-hero-veil > div[style*="linear-gradient(to right"]:not(.lc-hero-tex) {
+  width: 100% !important;
+  background: linear-gradient(to right, rgba(3,10,23,.94) 0, rgba(3,10,23,.86) max(calc(50% + 52px), 672px),
+    rgba(3,10,23,.4) max(calc(50% + 212px), 832px), rgba(3,10,23,0) max(calc(50% + 392px), 1012px)) !important;
+}
+.lc-hero-veil .lc-hero-tex { width: min(100%, 840px) !important; }
+@media (max-width: 900px) {
+  .lc-hero-veil { min-height: 400px; }
+}
+@media (max-width: 620px) {
+  .lc-hero-veil { min-height: 360px; }
+  .lc-hero-veil > div:has(h1) > div { padding-top: 32px !important; padding-bottom: 40px !important; }
+}
