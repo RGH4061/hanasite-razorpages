@@ -2,6 +2,13 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
+## Latest changes (24 Nov 2026 — Thai text for Ayutthaya and 19 Capabilities pages)
+
+- **Thai team's review deck applied** — `Data/thai-drafts.json` now carries the Thai from *Website HANA Translation.pptx* (mapped in `hana-thai-translation-update.md`, Thai Translation/Verification Docs) for `/th/locations/ayutthaya` and 19 Capabilities pages: 620 text pieces in the pages' `"text"` maps, plus the H1 and opening blurb of 7 pages (Ayutthaya, PCBA & box build, SMT, Box Build, DFx/DFM, JDM, NPI), which replace Thai approved in the Lamphun review. No English changed and no code changed.
+- **Status** — pages whose deck Thai was a picture and was typed out by eye (SMT, COB, Box Build, DFx/DFM, JDM, NPI) are `"textStatus": "draft"` until the Thai team proofreads them; the JDM H1 and blurb are draft for the same reason. The rest are approved. `/th/<route>?review=1` shows every piece matching (N of N on all 20 pages).
+- **Held back** (stay English for now): the WLCSP "0.2 mm pitch" bullet (wording queried with the Thai team), the four glossary lines the team added on Wafer Probe & Final Test, nine card titles whose English is also a hero fact or table caption (SiP, Wafer processing, Flip chip, Wafer probe, Power packages, COB), and the eight hero tile values on DFx/DFM and JDM.
+- **Line breaks** — rows where the team split one English paragraph, and the descriptions they added under bullets, keep a `\n` in the Thai. In the `"text"` map that shows as a space for now; showing it as a line break is an open decision.
+
 ## Latest changes (23 Nov 2026 — Error pages, footer)
 
 - **Error pages** — missing addresses now show a "Page not found" page (status 404 kept) with a search box pre-filled from the missing address, the main sections, the home page and the site map. Other errors show "This page could not be loaded" with Try again and Home page; outside Development every unhandled exception lands there. Addresses under /th/ get Thai text (draft lines for review; section names from the Thai header). Missing images, scripts and other files keep the plain empty 404. Files: `Pages/Error.cshtml` (/error), `Pages/NotFound.cshtml` (/404, published to the HTML preview as 404.html), `Pages/Shared/_ErrorPage.cshtml`, `Services/ErrorPages.cs`, `css/error-page.css`; wiring in `Program.cs`; both routes are noindex and out of sitemap.xml (`Services/Seo.cs`).
