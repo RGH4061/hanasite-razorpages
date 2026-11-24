@@ -30,11 +30,11 @@
     {
       <h1 class="ep-title">@(th ? "ไม่พบหน้านี้" : "Page not found")</h1>
       <p class="ep-lede">@(th
-          ? "ไม่มีหน้าที่ที่อยู่นี้ หรือหน้านี้ถูกย้ายไปแล้ว ที่อยู่หลายหน้าเปลี่ยนไปเมื่อมีการปรับปรุงเว็บไซต์ คุณสามารถค้นหาเนื้อหาด้านล่าง หรือเลือกหัวข้อหลัก"
+          ? "ไม่พบหน้าเว็บตามที่อยู่ (URL) นี้ หรือหน้าดังกล่าวอาจถูกย้ายไปแล้ว ที่อยู่ของหลายหน้ามีการเปลี่ยนแปลงหลังการปรับปรุงเว็บไซต์ใหม่ เนื้อหาที่คุณต้องการจึงอาจอยู่ที่ที่อยู่ใหม่ คุณสามารถค้นหาในเว็บไซต์ได้ด้านล่าง หรือไปที่หัวข้อหลักของเว็บไซต์"
           : "There is no page at this address, or the page has moved. Many addresses changed when the website was rebuilt, so the content you are looking for may be under a new address. You can search the site below or go to one of the main sections.")</p>
 
       <form class="ep-search" action="/search" method="get" role="search">
-        <label class="ep-label" for="ep-q">@(th ? "ค้นหาในเว็บไซต์ (ภาษาอังกฤษ)" : "Search the site")</label>
+        <label class="ep-label" for="ep-q">@(th ? "ค้นหาในเว็บไซต์ (พิมพ์คำค้นเป็นภาษาอังกฤษ)" : "Search the site")</label>
         <div class="ep-field">
           <input id="ep-q" name="q" type="search" value="@Model.Words" autocomplete="off"
                  placeholder="@(th ? "เช่น QFN, box build, ISO 13485" : "For example QFN, box build, ISO 13485")" />
@@ -46,7 +46,7 @@
     {
       <h1 class="ep-title">@(th ? "ไม่สามารถโหลดหน้านี้ได้" : "This page could not be loaded")</h1>
       <p class="ep-lede">@(th
-          ? "เกิดปัญหาที่เซิร์ฟเวอร์ของเราระหว่างโหลดหน้านี้ โปรดลองอีกครั้งในอีกสักครู่ หากยังพบปัญหา โปรดติดต่อเราพร้อมแจ้งที่อยู่ของหน้านี้"
+          ? "ปัญหาที่เซิร์ฟเวอร์ของเราทำให้ไม่สามารถโหลดหน้านี้ได้ โปรดลองอีกครั้งในอีกไม่กี่นาที หากยังพบปัญหา โปรดติดต่อเราพร้อมแจ้งที่อยู่ (URL) ของหน้านี้"
           : "A problem on our server stopped this page from loading. Please try again in a few minutes. If the problem continues, contact us and include the page address.")</p>
       <div class="ep-actions">
         <button type="button" class="ep-btn" onclick="location.reload()">@(th ? "ลองอีกครั้ง" : "Try again")</button>
