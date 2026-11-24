@@ -52,13 +52,17 @@
 
 <section style="background:linear-gradient(to right,rgba(14,74,124,0.11) 0%,rgba(14,74,124,0.04) 30%,rgba(245,247,250,0) 62%),var(--bg);border-bottom:1px solid var(--line);">
   <div style="max-width:1240px;margin:0 auto;padding:24px 32px;">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;">
-      <div style="flex:1;height:1px;background:var(--line);min-width:40px;"></div>
-      <a href="/locations/ayutthaya/certifications" class="hana-link" style="font-size:12px;">View certificates and download PDFs &rarr;</a>
-    </div>
     <div class="lc-certs" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       @* Tiles from Data/certifications.json; see Pages/Shared/_PlantCertTiles.cshtml *@
       <partial name="_PlantCertTiles" model='"ayutthaya"' />
+      @* 12th tile, Ayutthaya only (Rupert, 24 Nov 2026): replaces the small "View certificates and download PDFs" link above the grid
+         and adds the RBA/CSR policy page. Filled blue so it reads as links, not as another certificate; two link rows only (24 Nov 2026). *@
+      <div class="ayt-cert-cta" style="display:flex;flex-direction:column;background:#0E4A7C;border:1px solid #0E4A7C;border-radius:var(--radius-card);overflow:hidden;min-height:62px;">
+        <a href="/locations/ayutthaya/certifications" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;color:#fff;text-decoration:none;font-family:var(--font-display);font-size:14.5px;font-weight:600;letter-spacing:-0.01em;">View Certification PDFs<span aria-hidden="true" style="color:#9ED3FF;">&rarr;</span></a>
+        <div style="height:1px;background:rgba(255,255,255,0.18);"></div>
+        <a href="/locations/ayutthaya/rba-csr-policy" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;color:#fff;text-decoration:none;font-family:var(--font-display);font-size:14.5px;font-weight:600;letter-spacing:-0.01em;">RBA/CSR policy<span aria-hidden="true" style="color:#9ED3FF;">&rarr;</span></a>
+      </div>
+      <style>.ayt-cert-cta a:hover{background:rgba(255,255,255,0.08)}.ayt-cert-cta a:focus-visible{outline:2px solid #9ED3FF;outline-offset:-2px}</style>
     </div>
   </div>
 </section>

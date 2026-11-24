@@ -108,7 +108,9 @@
     "Est. 1978": "ก่อตั้ง พ.ศ. 2521",
     "Insights": "ข้อมูลเชิงลึก",
     "Certifications": "การรับรองมาตรฐาน",
-    "Quality certificates": "ใบรับรองคุณภาพ"
+    "Quality certificates": "ใบรับรองคุณภาพ",
+    "RBA/CSR policy": "นโยบาย RBA/CSR",
+    "Hana Semiconductor (Ayutthaya) Co., Ltd.": "บริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด"
   },
   "pages": {
     "/capabilities": {
@@ -595,7 +597,9 @@
         "Outsourced semiconductor assembly and test (OSAT) in Thailand": "บริการรับจ้างประกอบและทดสอบเซมิคอนดักเตอร์ (OSAT) ในประเทศไทย",
         "Located in the Hi-Tech Industrial Estate at Bang Pa-in, central Thailand, close to Bangkok’s international airport and the deep-sea port at Laem Chabang.": "ตั้งอยู่ในนิคมอุตสาหกรรมไฮเทค อำเภอบางปะอิน ภาคกลางของประเทศไทย ใกล้ท่าอากาศยานนานาชาติของกรุงเทพฯ และท่าเรือน้ำลึกแหลมฉบัง",
         "Laem Chabang · ~130 km": "แหลมฉบัง · ~130 กม.",
-        "Don Mueang International (Bangkok) · ~40 km Suvarnabhumi International (Bangkok) · ~60 km": "ท่าอากาศยานนานาชาติดอนเมือง (กรุงเทพฯ) · ~40 กม.\nท่าอากาศยานสุวรรณภูมิ (กรุงเทพฯ) · ~60 กม."
+        "Don Mueang International (Bangkok) · ~40 km Suvarnabhumi International (Bangkok) · ~60 km": "ท่าอากาศยานนานาชาติดอนเมือง (กรุงเทพฯ) · ~40 กม.\nท่าอากาศยานสุวรรณภูมิ (กรุงเทพฯ) · ~60 กม.",
+        "View Certification PDFs": "ดูไฟล์ PDF ใบรับรอง",
+        "RBA/CSR policy": "นโยบาย RBA/CSR"
       }
     },
     "/locations/jiaxing": {
@@ -727,7 +731,10 @@
         "Responsible Business Alliance validated audit": "การตรวจประเมินตามมาตรฐาน RBA",
         "Environmental supply chain": "ห่วงโซ่อุปทานที่เป็นมิตรต่อสิ่งแวดล้อม",
         "US defense-related work": "งานด้านกลาโหมของสหรัฐอเมริกา",
-        "About the Ayutthaya plant": "เกี่ยวกับโรงงานอยุธยา"
+        "About the Ayutthaya plant": "เกี่ยวกับโรงงานอยุธยา",
+        "RBA/CSR and Code of Conduct policy": "นโยบาย RBA/CSR และจรรยาบรรณทางธุรกิจ (Code of Conduct)",
+        "The policy of Hana Semiconductor (Ayutthaya) Co., Ltd. on ethics, labor, health and safety, and the environment.": "นโยบายของบริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด ด้านจริยธรรม แรงงาน อาชีวอนามัยและความปลอดภัย และสิ่งแวดล้อม",
+        "Read the policy →": "อ่านนโยบาย →"
       },
       "textStatus": "draft"
     },
@@ -1433,6 +1440,33 @@
       },
       "title": "ข้อมูลเชิงลึก",
       "description": "มุมมองด้านเทคนิคและตลาดจาก Hana Microelectronics อธิบายบริการผลิตอุปกรณ์อิเล็กทรอนิกส์ (EMS) และ OSAT ครอบคลุมตลาดกลุ่มยานยนต์ RFID การแพทย์ อุตสาหกรรม…"
+    },
+    "/locations/ayutthaya/rba-csr-policy": {
+      "h1": {
+        "en": "RBA/CSR and Code of Conduct policy",
+        "th": "นโยบาย RBA/CSR และจรรยาบรรณทางธุรกิจ (Code of Conduct)",
+        "status": "draft"
+      },
+      "title": "นโยบาย RBA/CSR และจรรยาบรรณทางธุรกิจ โรงงานอยุธยา",
+      "description": "นโยบาย RBA/CSR และจรรยาบรรณทางธุรกิจ (Code of Conduct) ของบริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด ครอบคลุมการปฏิบัติตามกฎหมายและจริยธรรม สิทธิมนุษยชน สิ่งแวดล้อม ชุมชน และอาชีวอนามัยและความปลอดภัย",
+      "text": {
+        "Ayutthaya certifications": "การรับรองมาตรฐานของโรงงานอยุธยา",
+        "The RBA/CSR/Code of Conduct Policy of HANA Semiconductor (Ayutthaya) Co., Ltd.": "นโยบาย RBA/CSR และจรรยาบรรณทางธุรกิจ (Code of Conduct) ของบริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด",
+        "HANA Semiconductor (Ayutthaya) Co., Ltd. is committed to conducting its affairs ethically and lawfully. We approach all our business activities with integrity, fostering the trust of our customers and society with a sense of appreciation for all our stakeholders, partners and employees.": "บริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด มุ่งมั่นดำเนินธุรกิจอย่างมีจริยธรรมและถูกต้องตามกฎหมาย เราดำเนินกิจกรรมทางธุรกิจทั้งหมดด้วยความซื่อสัตย์สุจริต เพื่อสร้างความไว้วางใจจากลูกค้าและสังคม พร้อมทั้งตระหนักถึงคุณค่าของผู้มีส่วนได้ส่วนเสีย คู่ค้า และพนักงานทุกคน",
+        "In conducting our corporate activities with integrity, we comply with all applicable laws and we maintain a sound relationship with government and administrative authorities and society.": "ในการดำเนินกิจกรรมขององค์กรด้วยความซื่อสัตย์สุจริต เราปฏิบัติตามกฎหมายที่เกี่ยวข้องทั้งหมด และรักษาความสัมพันธ์ที่ดีกับหน่วยงานภาครัฐ หน่วยงานกำกับดูแล และสังคม",
+        "We respect the human rights of all employees and keep working conditions comfortable and safe. We facilitate and support the advancement and growth of every employee and accord all employees the respect they deserve as individuals. We respect the human rights and individuality of all stakeholders in our business activities.": "เราเคารพสิทธิมนุษยชนของพนักงานทุกคน และดูแลสภาพการทำงานให้เหมาะสมและปลอดภัย เราส่งเสริมและสนับสนุนความก้าวหน้าและการพัฒนาของพนักงานทุกคน และให้ความเคารพพนักงานแต่ละคนอย่างสมควร เราเคารพสิทธิมนุษยชนและความเป็นปัจเจกบุคคลของผู้มีส่วนได้ส่วนเสียทุกฝ่ายในการดำเนินธุรกิจของเรา",
+        "In recognition of the fact that environmental issues impact everyone in common, we will focus strongly on such issues independently, so as not to place a burden on the public.": "ด้วยตระหนักว่าปัญหาสิ่งแวดล้อมส่งผลกระทบต่อทุกคน เราจะให้ความสำคัญกับประเด็นด้านสิ่งแวดล้อมอย่างจริงจังด้วยตนเอง เพื่อไม่ให้เป็นภาระต่อสาธารณชน",
+        "We communicate with society and promote disclosure of company information to become a more open enterprise. As a good corporate citizen, we extensively engage in philanthropic activities. We advance corporate management that contributes to the further development of the country and society.": "เราสื่อสารกับสังคมและส่งเสริมการเปิดเผยข้อมูลของบริษัท เพื่อเป็นองค์กรที่เปิดกว้างและโปร่งใสยิ่งขึ้น ในฐานะพลเมืองที่ดีของสังคม เราเข้าร่วมกิจกรรมเพื่อสังคมอย่างกว้างขวาง และบริหารองค์กรโดยมุ่งส่งเสริมการพัฒนาประเทศและสังคม",
+        "We realize that safety is one of the most important factors in operating the job and focus on risk management and Occupational Health and Safety improvement to prevent losses from fire, accidents, injury and sickness in the workplace.": "เราตระหนักว่าความปลอดภัยเป็นปัจจัยสำคัญที่สุดประการหนึ่งในการปฏิบัติงาน และมุ่งเน้นการบริหารความเสี่ยงควบคู่กับการปรับปรุงด้านอาชีวอนามัยและความปลอดภัย เพื่อป้องกันความสูญเสียจากอัคคีภัย อุบัติเหตุ การบาดเจ็บ และการเจ็บป่วยในสถานที่ทำงาน",
+        "RBA/CSR Policy": "นโยบาย RBA/CSR",
+        "RBA/CSR Standards": "มาตรฐาน RBA/CSR",
+        "Conflict Minerals Policy": "นโยบายแร่ขัดแย้ง (Conflict Minerals)",
+        "Related": "ข้อมูลที่เกี่ยวข้อง",
+        "Sections": "หัวข้อ",
+        "View Certification PDFs": "ดูไฟล์ PDF ใบรับรอง",
+        "Anonymous Feedback Form": "แบบฟอร์มสื่อสารแบบไม่เปิดเผยตัวตน"
+      },
+      "textStatus": "draft"
     }
   }
 }

@@ -10,6 +10,7 @@ PAGES.push(
   {"n": "Cookie Policy", "u": "/cookie-policy", "t": "Legal", "s": "Corporate", "k": "Hana Microelectronics cookie policy", "p": "LOW"},
   /* The plant certification pages (17 Nov 2026). */
   {"n": "Ayutthaya certifications", "u": "/locations/ayutthaya/certifications", "t": "Sub-page", "s": "Locations", "k": "Ayutthaya plant certificates", "p": "MEDIUM"},
+  {"n": "Ayutthaya RBA/CSR policy", "u": "/locations/ayutthaya/rba-csr-policy", "t": "Sub-page", "s": "Locations", "k": "Ayutthaya RBA CSR policy, RBA standards and conflict minerals policy", "p": "MEDIUM"},
   {"n": "Lamphun certifications", "u": "/locations/lamphun/certifications", "t": "Sub-page", "s": "Locations", "k": "Lamphun plant certificates", "p": "MEDIUM"},
   {"n": "Jiaxing certifications", "u": "/locations/jiaxing/certifications", "t": "Sub-page", "s": "Locations", "k": "Jiaxing plant certificates", "p": "MEDIUM"},
   {"n": "Koh Kong certifications", "u": "/locations/koh-kong/certifications", "t": "Sub-page", "s": "Locations", "k": "Koh Kong plant certificates", "p": "MEDIUM"},
@@ -124,6 +125,7 @@ const MORE_TERMS = {
  "/capabilities/osat/package-finder": "package finder find a package package search package size sizes package dimensions",
  "/cookie-policy": "cookie cookies",
  "/locations/ayutthaya/certifications": "certificates certificate certification pdf quality certificates iso certificates",
+ "/locations/ayutthaya/rba-csr-policy": "rba csr corporate social responsibility code of conduct policy responsible business alliance ethics labor human rights rba standards conflict minerals responsible minerals sourcing 3tg tin tantalum tungsten gold cobalt mica cmrt crt emrt rmap oecd",
  "/locations/lamphun/certifications": "certificates certificate certification pdf quality certificates iso certificates",
  "/locations/jiaxing/certifications": "certificates certificate certification pdf quality certificates iso certificates",
  "/locations/koh-kong/certifications": "certificates certificate certification pdf quality certificates iso certificates",

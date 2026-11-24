@@ -1,0 +1,189 @@
+@page "/locations/ayutthaya/rba-csr-policy"
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment Env
+@{
+    ViewData["Title"] = "Ayutthaya RBA/CSR and Code of Conduct policy";
+    ViewData["Motion"] = "page";
+    ViewData["Description"] = "The RBA/CSR and Code of Conduct policy of Hana Semiconductor (Ayutthaya) Co., Ltd., covering ethics and legal compliance, human rights, the environment, community and occupational health and safety.";
+    // RBA/CSR Standards tab text (English and Thai), 24 Nov 2026
+    var thai = HttpContext.Request.Path.StartsWithSegments("/th");
+    using var stdDoc = System.Text.Json.JsonDocument.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(Env.ContentRootPath, "Data", "ayutthaya-rba-standard.json")));
+    var std = stdDoc.RootElement.GetProperty(thai ? "th" : "en").Clone();
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/certifications.css" asp-append-version="true" />
+}
+@*
+    Ayutthaya RBA/CSR policy (added 24 Nov 2026). Text is the signed policy from the old site's
+    /Manufacturing/AytCSR page, kept as a company policy statement (house voice rules do not apply). Grammar and typos
+    corrected at Rupert's request (24 Nov 2026). One further edit: the second paragraph repeated its opening clause on the old page
+    ("...we comply with all applicable laws and conducting our corporate activities with integrity,
+    we comply with all applicable laws and..."); the repeat is removed. Linked from the Ayutthaya
+    location page (12th certificate tile) and the Ayutthaya certifications page. Styles reuse
+    ~/css/certifications.css. Thai: /th/locations/ayutthaya/rba-csr-policy through the overlay in
+    Data/thai-drafts.json (draft, 24 Nov 2026).
+*@
+
+<div class="cert-crumbs">
+  <div class="cert-crumbs-in">
+    <a href="/locations" class="hana-link">Locations</a>
+    <span class="sep" aria-hidden="true">&rsaquo;</span>
+    <a href="/locations/ayutthaya" class="hana-link">Ayutthaya</a>
+    <span class="sep" aria-hidden="true">&rsaquo;</span>
+    <a href="/locations/ayutthaya/certifications" class="hana-link">Certifications</a>
+    <span class="sep" aria-hidden="true">&rsaquo;</span>
+    <span class="cur">RBA/CSR policy</span>
+  </div>
+</div>
+
+<section class="cert-head" data-hana-bg="grid" data-variant="dark" data-accent="cyan" data-fade="left">
+  <div class="cert-wrap cert-head-in">
+    <div class="hana-spec-label cert-eyebrow">Hana Semiconductor (Ayutthaya) Co., Ltd.</div>
+    <h1 style="margin-bottom:0;">RBA/CSR and Code of Conduct policy</h1>
+    <a class="cert-back" style="margin-top:12px;" href="/locations/ayutthaya/certifications">Ayutthaya certifications<span aria-hidden="true"> &rarr;</span></a>
+  </div>
+</section>
+
+<section class="cert-body">
+  <div class="cert-wrap">
+    @* Three tabs (Rupert, 24 Nov 2026). #rba-csr-standard and #conflict-minerals in the address open that tab.
+       Standard and Conflict Minerals text comes from Data/ayutthaya-rba-standard.json. *@
+    <style>
+      .csr-tabs{background:#fff;border:1px solid var(--line);border-radius:var(--radius-card,8px)}
+      .csr-tablist{display:flex;gap:4px;border-radius:var(--radius-card,8px) var(--radius-card,8px) 0 0;border-bottom:1px solid var(--line);padding:0 28px;overflow-x:auto;scrollbar-width:none}
+      .csr-tablist button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;margin:0 0 -1px;padding:16px 12px 14px;font-family:var(--font-text);font-size:14px;font-weight:600;color:var(--ink-3);cursor:pointer;white-space:nowrap}
+      .csr-tablist button:hover{color:var(--ink)}
+      .csr-tablist button[aria-selected="true"]{color:#0E4A7C;border-bottom-color:#1283DD}
+      .csr-tablist button:focus-visible{outline:2px solid #1283DD;outline-offset:-2px}
+      .csr-panel{padding:36px 40px}
+      .csr-panel[hidden]{display:none}
+      .csr-sec{border-top:1px solid var(--line);padding-top:4px}
+      .csr-sec h3{display:flex;gap:8px;margin:18px 0 12px;font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink)}
+      .csr-sec-key{color:#0E4A7C}
+      .csr-sec-body{padding:0 0 18px;font-size:15px;line-height:1.7;color:var(--ink-2)}
+      .csr-sec-body p{margin:0 0 12px}
+      .csr-sec-body ol{margin:4px 0 0;padding-left:22px}
+      .csr-sec-body li{margin:0 0 12px;padding-left:4px}
+      .csr-sec-body li strong{color:var(--ink);font-weight:600}
+      .csr-pdf{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;padding:10px 16px;border:1px solid #0E4A7C;border-radius:6px;font-size:13.5px;font-weight:600;color:#0E4A7C;text-decoration:none}
+      .csr-pdf:hover{background:#0E4A7C;color:#fff}
+      .csr-min{font-size:15.5px;line-height:1.7;color:var(--ink-2)}
+      .csr-min p{margin:0 0 14px}
+      .csr-min h3{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);margin:18px 0 6px}
+      .csr-min ul{margin:0 0 16px;padding-left:22px}
+      .csr-min li{margin:0 0 8px;padding-left:4px}
+      .csr-min-sign{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+      .csr-min-sign div:first-child{font-weight:600;color:var(--ink)}
+      .csr-grid{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:56px;align-items:start}
+      .csr-main{max-width:820px}
+      .csr-rail{position:sticky;top:96px;display:flex;flex-direction:column;gap:22px;padding-left:24px;border-left:1px solid var(--line)}
+      .csr-rail-block{display:flex;flex-direction:column;gap:9px}
+      .csr-rail-label{font-family:var(--font-text);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+      .csr-rail a{font-size:14px;line-height:1.4;color:#0E4A7C;text-decoration:none}
+      .csr-rail a:hover{text-decoration:underline}
+      .csr-sec{scroll-margin-top:96px}
+      @@media(max-width:980px){.csr-grid{grid-template-columns:1fr;gap:28px}.csr-rail{position:static;padding:20px 0 0;border-left:0;border-top:1px solid var(--line)}.csr-jump{display:none}}
+      @@media(max-width:640px){.csr-tablist{padding:0 12px;flex-wrap:wrap;gap:0 2px}.csr-tablist button{padding:12px 8px 10px;font-size:13px}.csr-panel{padding:24px 18px}.csr-panel h2{font-size:19px!important}}
+    </style>
+    <div class="csr-tabs">
+      <div class="csr-tablist" role="tablist" aria-label="Ayutthaya RBA/CSR documents">
+        <button type="button" role="tab" id="tab-csr-policy" aria-controls="rba-csr-policy" aria-selected="true">RBA/CSR Policy</button>
+        <button type="button" role="tab" id="tab-csr-standard" aria-controls="rba-csr-standard" aria-selected="false" tabindex="-1">RBA/CSR Standards</button>
+        <button type="button" role="tab" id="tab-conflict" aria-controls="conflict-minerals" aria-selected="false" tabindex="-1">Conflict Minerals Policy</button>
+      </div>
+    <article class="csr-panel" role="tabpanel" id="rba-csr-policy" aria-labelledby="tab-csr-policy">
+      <div class="csr-grid"><div class="csr-main">
+      <h2 style="font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:var(--ink);margin:0 0 20px;">The RBA/CSR/Code of Conduct Policy of HANA Semiconductor (Ayutthaya) Co., Ltd.</h2>
+      <div style="font-family:var(--font-text);font-size:15.5px;line-height:1.7;color:var(--ink-2);">
+        <p style="margin:0 0 16px;">HANA Semiconductor (Ayutthaya) Co., Ltd. is committed to conducting its affairs ethically and lawfully. We approach all our business activities with integrity, fostering the trust of our customers and society with a sense of appreciation for all our stakeholders, partners and employees.</p>
+        <ol style="margin:0;padding-left:22px;">
+          <li style="margin:0 0 12px;padding-left:4px;">In conducting our corporate activities with integrity, we comply with all applicable laws and we maintain a sound relationship with government and administrative authorities and society.</li>
+          <li style="margin:0 0 12px;padding-left:4px;">We respect the human rights of all employees and keep working conditions comfortable and safe. We facilitate and support the advancement and growth of every employee and accord all employees the respect they deserve as individuals. We respect the human rights and individuality of all stakeholders in our business activities.</li>
+          <li style="margin:0 0 12px;padding-left:4px;">In recognition of the fact that environmental issues impact everyone in common, we will focus strongly on such issues independently, so as not to place a burden on the public.</li>
+          <li style="margin:0 0 12px;padding-left:4px;">We communicate with society and promote disclosure of company information to become a more open enterprise. As a good corporate citizen, we extensively engage in philanthropic activities. We advance corporate management that contributes to the further development of the country and society.</li>
+          <li style="margin:0 0 0;padding-left:4px;">We realize that safety is one of the most important factors in operating the job and focus on risk management and Occupational Health and Safety improvement to prevent losses from fire, accidents, injury and sickness in the workplace.</li>
+        </ol>
+      </div>
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line);">
+        <img src="/images/ayutthaya-gm-signature.webp" alt="Signature of Sanjay Mitra" width="173" height="88" style="display:block;width:173px;height:auto;margin:0 0 6px -4px;">
+        <div style="font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);">Sanjay Mitra</div>
+        <div style="font-size:13px;color:var(--ink-3);margin-top:2px;">Vice President &amp; General Manager</div>
+      </div>
+      </div>
+      <aside class="csr-rail">
+        <div class="csr-rail-block">
+          <div class="csr-rail-label">Related</div>
+          <a href="/locations/ayutthaya/certifications">View Certification PDFs</a>
+          <a href="/contact/anonymous">Anonymous Feedback Form</a>
+        </div>
+      </aside>
+      </div>
+    </article>
+    @* RBA/CSR Standards: English and Thai from Data/ayutthaya-rba-standard.json; the Thai page (/th/...) renders the "th" copy.
+       Sections A-E are plain headed blocks (folding removed at Rupert's request, 24 Nov 2026). *@
+    <section class="csr-panel" role="tabpanel" id="rba-csr-standard" aria-labelledby="tab-csr-standard" hidden>
+      <div class="csr-grid"><div class="csr-main">
+      <h2 style="font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:var(--ink);margin:0 0 20px;">@std.GetProperty("title").GetString()</h2>
+      <p style="margin:0 0 20px;font-size:15.5px;line-height:1.7;color:var(--ink-2);">@std.GetProperty("scope").GetString()</p>
+      @foreach (var sec in std.GetProperty("sections").EnumerateArray())
+      {
+        <div class="csr-sec" id="std-@(sec.GetProperty("key").GetString()!.ToLowerInvariant())">
+          <h3><span class="csr-sec-key">@sec.GetProperty("key").GetString().</span> @sec.GetProperty("title").GetString()</h3>
+          <div class="csr-sec-body">
+            <p>@sec.GetProperty("intro").GetString()</p>
+            @if (sec.GetProperty("lead").GetString() is { Length: > 0 } lead) { <p>@lead</p> }
+            <ol>
+            @foreach (var it in sec.GetProperty("items").EnumerateArray())
+            {
+              <li><strong>@it.GetProperty("t").GetString()</strong> @it.GetProperty("b").GetString()</li>
+            }
+            </ol>
+          </div>
+        </div>
+      }
+      </div>
+      <aside class="csr-rail">
+        <nav class="csr-rail-block csr-jump" aria-label="Sections">
+          <div class="csr-rail-label">Sections</div>
+          @foreach (var sec in std.GetProperty("sections").EnumerateArray())
+          {
+            <a href="#std-@(sec.GetProperty("key").GetString()!.ToLowerInvariant())">@sec.GetProperty("key").GetString(). @sec.GetProperty("title").GetString()</a>
+          }
+        </nav>
+        <div class="csr-rail-block">
+          <div class="csr-rail-label">Related</div>
+          <a href="/locations/ayutthaya/certifications">View Certification PDFs</a>
+          <a href="/contact/anonymous">Anonymous Feedback Form</a>
+        </div>
+      </aside>
+      </div>
+    </section>
+    @* Conflict Minerals tab: text and PDF per language from Data/ayutthaya-rba-standard.json ("minerals"). *@
+    @{ var mn = std.GetProperty("minerals"); }
+    <section class="csr-panel" role="tabpanel" id="conflict-minerals" aria-labelledby="tab-conflict" hidden>
+      <div class="csr-grid"><div class="csr-main">
+      <h2 style="font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:var(--ink);margin:0 0 6px;">@mn.GetProperty("title").GetString()</h2>
+      @if (mn.GetProperty("meta").GetString() is { Length: > 0 } meta) { <div style="font-size:13px;color:var(--ink-3);margin:0 0 18px;">@meta</div> } else { <div style="height:14px;"></div> }
+      <a class="csr-pdf" href="@mn.GetProperty("pdf").GetString()" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>@mn.GetProperty("pdfLabel").GetString()</a>
+      <div class="csr-min">
+      @foreach (var b in mn.GetProperty("blocks").EnumerateArray())
+      {
+        if (b.TryGetProperty("p", out var bp)) { <p>@bp.GetString()</p> }
+        else if (b.TryGetProperty("h", out var bh)) { <h3>@bh.GetString()</h3> }
+        else if (b.TryGetProperty("ul", out var bu)) { <ul>@foreach (var li in bu.EnumerateArray()) { <li>@li.GetString()</li> }</ul> }
+        else if (b.TryGetProperty("sign", out var bs)) { <div class="csr-min-sign">@foreach (var ln in bs.EnumerateArray()) { <div>@ln.GetString()</div> }</div> }
+      }
+      </div>
+      </div>
+      <aside class="csr-rail">
+        <div class="csr-rail-block">
+          <div class="csr-rail-label">Related</div>
+          <a href="/locations/ayutthaya/certifications">View Certification PDFs</a>
+          <a href="/contact/anonymous">Anonymous Feedback Form</a>
+        </div>
+      </aside>
+      </div>
+    </section>
+    </div>
+    <script>(function(){var tabs=[].slice.call(document.querySelectorAll('.csr-tablist [role=tab]'));function show(t,focus){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});if(focus)t.focus();}tabs.forEach(function(t,i){t.addEventListener('click',function(){show(t);history.replaceState(null,'','#'+t.getAttribute('aria-controls'));});t.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d)show(tabs[(i+d+tabs.length)%tabs.length],true);});});var h=location.hash.slice(1);tabs.forEach(function(t){if(t.getAttribute('aria-controls')===h)show(t);});})();</script>
+  </div>
+</section>

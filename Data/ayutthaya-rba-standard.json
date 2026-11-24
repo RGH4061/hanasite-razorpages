@@ -1,0 +1,521 @@
+{
+  "_note": "Ayutthaya RBA/CSR Standards (Rupert, 24 Nov 2026), rendered in the RBA/CSR Standard tab of Pages/Locations/AyutthayaCsrPolicy.cshtml. English and Thai are the copy Rupert supplied, cleaned of PDF copy artefacts only: split Thai vowels, words broken by stray spaces, footnote numbers, and a footnote that had slipped into Thai E9. \"minerals\" (24 Nov 2026) is the Conflict Minerals Policy tab: English from EN-Mineral Policy.pdf (Responsible Minerals Sourcing Policy v2.0, May 2025), Thai transcribed from the scanned TH-Mineral Policy Doc..pdf (an older conflict minerals policy, not a translation of the English). Blocks: p = paragraph, ul = bullets, h = item heading, sign = signature lines. The PDFs are in wwwroot/documents/.",
+  "en": {
+    "title": "RBA/CSR Standards of HANA Semiconductor (Ayutthaya) Co. Ltd.",
+    "scope": "This policy applies to all Hana (Ayutthaya) employees and adopted by our stakeholders, major direct material suppliers and partners.",
+    "sections": [
+      {
+        "key": "A",
+        "title": "Labor",
+        "intro": "Participants commit to respect the human rights of workers, and to treat them with dignity. This applies to direct and indirect suppliers, as well as all workers including temporary, migrant, student, contract, direct employees, and any other type of worker.",
+        "lead": "The labor standards are as follows:",
+        "items": [
+          {
+            "t": "Prohibition of Forced Labor",
+            "b": "Forced labor in any form, including but not limited to, bonded (including debt bondage) or indentured labor, involuntary or exploitative prison labor, slavery or trafficking of persons is not permitted. This includes transporting, harboring, recruiting, transferring, or receiving persons by means of threat, force, coercion, abduction or fraud for labor or services. There shall be no unreasonable restrictions on workers’ freedom of movement in the facility in addition to unreasonable restrictions on entering or exiting company-provided facilities including, if applicable, workers’ dormitories or living quarters. As part of the hiring process, all workers must be provided with a written employment agreement in their native language, or in a language the worker can understand, that contains a description of terms and conditions of employment. Foreign migrant workers must receive the employment agreement prior to the worker departing from his or her country of origin and there shall be no substitution or change(s) allowed in the employment agreement upon arrival in the receiving country unless these changes are made to meet local law and provide equal or better terms. All work shall be voluntary, and workers shall be free to leave work at any time or terminate their employment without penalty if reasonable notice is given, which shall be clearly stated in workers’ contracts. Participants shall maintain documentation on all leaving workers. Employers, agents, and sub-agents may not hold or otherwise destroy, conceal, or confiscate identity or immigration documents, such as government-issued identification, passports, or work permits. Notwithstanding the foregoing, employers can only hold documentation if necessary to comply with the local law. In this case, at no time shall workers be denied access to their documents. Workers shall not be required to pay employers’ agents or sub-agents’ recruitment fees or other related fees for their employment. If any such fees are found to have been paid by workers, such fees shall be repaid to the worker."
+          },
+          {
+            "t": "Young Workers",
+            "b": "Child labor shall not be used in any stage of manufacturing. The term “child” refers to any person under the age of 15, or under the age for completing compulsory education, or under the minimum age for employment in the country, whichever is greatest. Workers under the age of 18 (Young Workers) shall not perform work that is likely to jeopardize their health or safety, including night shifts and overtime. Participants shall ensure proper management of student workers through proper maintenance of student records, rigorous due diligence of educational partners, and protection of students’ rights in accordance with applicable laws and regulations. Participants shall implement an appropriate mechanism to verify the age of workers. The use of legitimate workplace learning programs, which comply with all laws and regulations, is supported. Participants shall provide appropriate support and training to all student workers. In the absence of local law, the wage rate for student workers, interns, and apprentices shall be at least the same wage rate as other entry-level workers performing equal or similar tasks. If child labor is identified, assistance/remediation shall be provided."
+          },
+          {
+            "t": "Working Hours",
+            "b": "Working hours shall not exceed the maximum set by local law. Further, a workweek shall not be more than 60 hours per week, including overtime, except in emergency or unusual situations. All overtime shall be voluntary. Workers shall be allowed at least one day off every seven days."
+          },
+          {
+            "t": "Wages and Benefits",
+            "b": "Compensation paid to workers shall comply with all applicable wage laws, including those relating to minimum wages, overtime hours and legally mandated benefits. All workers shall receive equal pay for equal work and qualification. Workers shall be compensated for overtime at pay rates greater than regular hourly rates. Deductions from wages as a disciplinary measure shall not be permitted. For each pay period, workers shall be provided with a timely and understandable wage statement that includes sufficient information to verify accurate compensation for work performed. All use of temporary, dispatch and outsourced labor shall be within the limits of the local law."
+          },
+          {
+            "t": "Non-Discrimination/Non-Harassment/Humane Treatment",
+            "b": "Participants shall commit to a workplace free of harassment and unlawful discrimination. There shall be no harsh or inhumane treatment including violence, gender-based violence, sexual harassment, sexual abuse, corporal punishment, mental or physical coercion, bullying, public shaming, or verbal abuse of workers; nor is there to be the threat of any such treatment. Companies shall not engage in discrimination or harassment based on race, color, age, gender, sexual orientation, gender identity or expression, ethnicity or national origin, disability, pregnancy, religion, political affiliation, union membership, covered veteran status, protected genetic information or marital status in hiring and employment practices such as wages, promotions, rewards, and access to training. Disciplinary policies and procedures in support of these requirements shall be clearly defined and communicated to workers. Workers shall be provided with reasonable accommodation for religious practices and disability. In addition, workers or potential workers should not be subjected to medical tests, including pregnancy or virginity tests, or physical exams that could be used in a discriminatory way. This was drafted in consideration of ILO Discrimination (Employment and Occupation) Convention (No.111)."
+          },
+          {
+            "t": "Freedom of Association and Collective Bargaining",
+            "b": "Open communication and direct engagement between workers and management are the most effective ways to resolve workplace and compensation issues. Workers and/or their representatives shall be able to openly communicate and share ideas and concerns with management regarding working conditions and management practices without fear of discrimination, reprisal, intimidation, or harassment. In alignment with these principles, participants shall respect the right of all workers to form and join trade unions of their own choosing, to bargain collectively, and to engage in peaceful assembly as well as respect the right of workers to refrain from such activities. Where the right of freedom of association and collective bargaining is restricted by applicable laws and regulations, workers shall be allowed to elect and join alternate lawful forms of worker representations."
+          }
+        ]
+      },
+      {
+        "key": "B",
+        "title": "Health and Safety",
+        "intro": "Participants recognize that in addition to minimizing the incidence of work-related injuries and illnesses, a safe and healthy working environment enhances the quality of products and services, consistency of production and worker retention and morale. Participants also recognize that ongoing worker input and education are essential to identifying and solving health and safety issues in the workplace.",
+        "lead": "The health and safety standards are as follows:",
+        "items": [
+          {
+            "t": "Occupational Health and Safety",
+            "b": "Worker potential for exposure to health and safety hazards (chemical, electrical and other energy sources, fire, vehicles, and fall hazards, etc.) shall be identified and assessed, mitigated using the Hierarchy of Controls. Where hazards cannot be adequately controlled by these means, workers shall be provided with appropriate, well-maintained, personal protective equipment, and educational materials about risks to them associated with these hazards. Gender-responsive measures shall be taken, such as not having pregnant women and nursing mothers in working conditions, which could be hazardous to them or their child and to provide reasonable accommodations for nursing mothers."
+          },
+          {
+            "t": "Emergency Preparedness",
+            "b": "Potential emergency situations and events shall be identified and assessed, and their impact minimized by implementing emergency plans and response procedures including emergency reporting, employee notification and evacuation procedures, worker training, and drills. Emergency drills shall be executed at least annually or as required by local law, whichever is more stringent. Emergency plans shall also include appropriate fire detection and suppression equipment, clear and unobstructed egress, adequate exit facilities, contact information for emergency responders, and recovery plans. Such plans and procedures shall focus on minimizing harm to life, the environment, and property."
+          },
+          {
+            "t": "Occupational Injury and Illness",
+            "b": "Procedures and systems shall be in place to prevent, manage, track and report occupational injuries and illnesses, including provisions to encourage worker reporting, classify and record injury and illness cases, provide necessary medical treatment, investigate cases and implement corrective actions to eliminate their causes, and facilitate the return of workers to work. Participants shall allow workers to remove themselves from imminent harm, and not return until the situation is mitigated, without fear of retaliation."
+          },
+          {
+            "t": "Industrial Hygiene",
+            "b": "Worker exposure to chemical, biological, and physical agents shall be identified, evaluated, and controlled according to the Hierarchy of Controls. When hazards cannot be adequately controlled, workers shall be provided with and use appropriate, well-maintained, personal protective equipment free of charge. Participants shall provide workers with safe and healthy working environments, which shall be maintained through ongoing, systematic monitoring of workers’ health and working environments. Participants shall provide occupational health monitoring to routinely evaluate if workers’ health is being harmed from occupational exposures. Protective occupational health programs shall be ongoing and include educational materials about the risks associated with exposure to workplace hazards."
+          },
+          {
+            "t": "Physically Demanding Work",
+            "b": "Worker exposure to the hazards of physically demanding tasks, including manual material handling and heavy or repetitive lifting, prolonged standing, and highly repetitive or forceful assembly tasks shall be identified, evaluated, and controlled."
+          },
+          {
+            "t": "Machine Safeguarding",
+            "b": "Production and other machinery shall be evaluated for safety hazards. Physical guards, interlocks, and barriers shall be provided and properly maintained where machinery presents an injury hazard to workers."
+          },
+          {
+            "t": "Sanitation, Food, and Housing",
+            "b": "Workers shall be provided with ready access to clean toilet facilities, potable water and sanitary food preparation, storage, and eating facilities. Worker dormitories provided by the Participant or a labor agent shall be maintained to be clean and safe, and provided with appropriate emergency egress, hot water for bathing and showering, adequate lighting, and adequate conditioned ventilation, individually secured accommodations for storing personal and valuable items, and reasonable personal space along with reasonable entry and exit privileges."
+          },
+          {
+            "t": "Health and Safety Communication",
+            "b": "Participants shall provide workers with appropriate workplace health and safety information and training in the language of the worker or in a language the worker can understand for all identified workplace hazards that workers are exposed to, including but not limited to mechanical, electrical, chemical, fire, and physical hazards. Health and safety related information shall be clearly posted in the facility or placed in a location identifiable and accessible by workers. Health information and training shall include content on specific risks to relevant demographics, such as gender and age, if applicable. Training shall be provided to all workers prior to the beginning of work and regularly thereafter. Workers shall be encouraged to raise any health and safety concerns without retaliation."
+          }
+        ]
+      },
+      {
+        "key": "C",
+        "title": "Environmental",
+        "intro": "Across all business functions, Participants recognize that environmental responsibility is integral to producing world-class products. Participants shall identify the environmental impacts and minimize adverse effects on the community, environment, and natural resources, while safeguarding the health and safety of the public.",
+        "lead": "The environmental standards are as follows:",
+        "items": [
+          {
+            "t": "Environmental Permits and Reporting",
+            "b": "All required environmental permits (e.g. discharge monitoring), approvals, and registrations shall be obtained, maintained, and kept current and their operational and reporting requirements shall be followed."
+          },
+          {
+            "t": "Pollution Prevention and Resource Conservation",
+            "b": "Emissions and discharges of pollutants and generation of waste shall be minimized or eliminated at the source or by practices such as adding pollution control equipment; modifying production, maintenance, and facility processes; or by other means. The use of natural resources, including water, fossil fuels, minerals, and virgin forest products, shall be conserved by practices such as modifying production, maintenance and facility processes, materials substitution, re-use, conservation, recycling, or other means."
+          },
+          {
+            "t": "Hazardous Substances",
+            "b": "Chemicals, waste, and other materials posing a hazard to humans or the environment shall be identified, labeled, and managed to ensure their safe handling, movement, storage, use, recycling or reuse, and disposal. Hazardous waste data shall be tracked and documented."
+          },
+          {
+            "t": "Solid Waste",
+            "b": "Participants shall implement a systematic approach to identify, manage, reduce, and responsibly dispose of or recycle solid waste (non-hazardous). Waste data shall be tracked and documented."
+          },
+          {
+            "t": "Air Emissions",
+            "b": "Air emissions of volatile organic chemicals, aerosols, corrosives, particulates, ozone depleting substances, and combustion byproducts generated from operations shall be characterized, routinely monitored, controlled, and treated as required prior to discharge. Ozone-depleting substances shall be effectively managed in accordance with the Montreal Protocol and applicable regulations. Participants shall conduct routine monitoring of the performance of its air emission control systems."
+          },
+          {
+            "t": "Materials Restrictions",
+            "b": "Participants shall adhere to all applicable laws, regulations, and customer requirements regarding the prohibition or restriction of specific substances in products and manufacturing, including labeling for recycling and disposal."
+          },
+          {
+            "t": "Water Management",
+            "b": "Participants shall implement a water management program that documents, characterizes, and monitors water sources, use and discharge; seeks opportunities to conserve water; and controls channels of contamination. All wastewater shall be characterized, monitored, controlled, and treated as required prior to discharge or disposal. Participants shall conduct routine monitoring of the performance of its wastewater treatment and containment systems to ensure optimal performance and regulatory compliance."
+          },
+          {
+            "t": "Energy Consumption and Greenhouse Gas Emissions",
+            "b": "Participants shall establish and report against an absolute corporate-wide greenhouse gas reduction goal. Energy consumption and all Scopes 1, 2, and significant categories of Scope 3 greenhouse gas emissions shall be tracked, documented, and publicly reported. Participants shall look for methods to improve energy efficiency and to minimize their energy consumption and greenhouse gas emissions."
+          }
+        ]
+      },
+      {
+        "key": "D",
+        "title": "Ethics",
+        "intro": "To meet social responsibilities and to achieve success in the marketplace, Participants and their agents shall uphold the highest standards of ethics including the following:",
+        "lead": "",
+        "items": [
+          {
+            "t": "Business Integrity",
+            "b": "The highest standards of integrity shall be upheld in all business interactions. Participants shall have a zero-tolerance policy to prohibit any and all forms of bribery, corruption, extortion and embezzlement."
+          },
+          {
+            "t": "No Improper Advantage",
+            "b": "Bribes or other means of obtaining undue or improper advantage shall not be promised, offered, authorized, given, or accepted. This prohibition covers promising, offering, authorizing, giving or accepting anything of value, either directly or indirectly through a third party, in order to obtain or retain business, direct business to any person, or otherwise gain an improper advantage. Monitoring, record keeping, and enforcement procedures shall be implemented to ensure compliance with anti-corruption laws."
+          },
+          {
+            "t": "Disclosure of Information",
+            "b": "All business dealings shall be transparently performed and accurately reflected on the Participant’s business books and records. Information regarding participant’s labor, health and safety, environmental practices, business activities, structure, financial situation, and performance shall be disclosed in accordance with applicable regulations and prevailing industry practices. Falsification of records or misrepresentation of conditions or practices in the supply chain are unacceptable."
+          },
+          {
+            "t": "Intellectual Property",
+            "b": "Intellectual property rights shall be respected. Transfer of technology and know-how is to be done in a manner that protects intellectual property rights, and customer and supplier information shall be safeguarded."
+          },
+          {
+            "t": "Fair Business, Advertising and Competition",
+            "b": "Standards of fair business, advertising, and competition shall be upheld."
+          },
+          {
+            "t": "Protection of Identity and Non-Retaliation",
+            "b": "Programs that ensure the confidentiality, anonymity, and protection of supplier and employee whistleblowers shall be maintained, unless prohibited by law. Participants shall have a communicated process for their personnel to be able to raise any concerns without fear of retaliation."
+          },
+          {
+            "t": "Responsible Sourcing of Minerals",
+            "b": "Participants shall adopt a policy and exercise due diligence on the source and chain of custody of the tantalum, tin, tungsten, gold, and cobalt in the products they manufacture to reasonably assure that they are sourced in a way consistent with the Organisation for Economic Co-operation and Development (OECD) Guidance for Responsible Supply Chains of Minerals from Conflict-Affected and High-Risk Areas or an equivalent and recognized due diligence framework."
+          },
+          {
+            "t": "Privacy",
+            "b": "Participants shall commit to protecting the reasonable privacy expectations of personal information of everyone they do business with, including suppliers, customers, consumers, and employees. Participants shall comply with privacy and information security laws and regulatory requirements when personal information is collected, stored, processed, transmitted, and shared."
+          }
+        ]
+      },
+      {
+        "key": "E",
+        "title": "Management Systems",
+        "intro": "Participants shall adopt or establish a management system with a scope that is related to the content of this Code. The management system shall be designed to ensure: (a) compliance with applicable laws, regulations and customer requirements related to the participant’s operations and products; (b) conformance with this Code; and (c) identification and mitigation of operational risks related to this Code. It shall also facilitate continual improvement.",
+        "lead": "The management system shall contain the following elements:",
+        "items": [
+          {
+            "t": "Company Commitment",
+            "b": "Participants shall establish human rights, health and safety, environmental and ethics policy statements affirming Participant’s commitment to due diligence and continual improvement, endorsed by executive management. Policy statements shall be made public and communicated to workers in a language they understand via accessible channels."
+          },
+          {
+            "t": "Management Accountability and Responsibility",
+            "b": "Participants shall clearly identify senior executive and company representative(s) responsible for ensuring implementation of the management systems and associated programs. Senior management reviews the status of the management systems on a regular basis."
+          },
+          {
+            "t": "Legal and Customer Requirements",
+            "b": "Participants shall adopt or establish a process to identify, monitor and understand applicable laws, regulations, and customer requirements, including the requirements of this Code."
+          },
+          {
+            "t": "Risk Assessment and Risk Management",
+            "b": "Participants shall adopt or establish a process to identify the legal compliance, environmental, health and safety, labor practice and ethics risks, including the risks of severe human rights and environmental impacts, associated with Participant’s operations. Participants shall determine the relative significance for each risk and implement appropriate procedural and physical controls to control the identified risks and ensure regulatory compliance."
+          },
+          {
+            "t": "Improvement Objectives",
+            "b": "Participants shall establish written performance objectives, targets and implementation plans to improve the Participant’s social, environmental, and health and safety performance, including a periodic assessment of Participant’s performance in achieving those objectives."
+          },
+          {
+            "t": "Training",
+            "b": "Participants shall establish programs for training managers and workers to implement Participant’s policies, procedures, and improvement objectives and to meet applicable legal and regulatory requirements."
+          },
+          {
+            "t": "Communication",
+            "b": "Participants shall establish process for communicating clear and accurate information about Participant’s policies, practices, expectations, and performance to workers, suppliers, and customers."
+          },
+          {
+            "t": "Worker/Stakeholder Engagement and Access To Remedy",
+            "b": "Participants shall establish processes for ongoing two-way communication with workers, their representatives, and other stakeholders where relevant or necessary. The process shall aim to obtain feedback on operational practices and conditions covered by this Code, and to foster continuous improvement. Workers shall be given a safe environment to provide grievance and feedback without fear of reprisal or retaliation."
+          },
+          {
+            "t": "Audits and Assessments",
+            "b": "Participants shall conduct periodic self-evaluations to ensure conformity to legal and regulatory requirements, the content of the Code, and customer contractual requirements related to social and environmental responsibility."
+          },
+          {
+            "t": "Corrective Action Process",
+            "b": "Participants shall establish a process for timely correction of deficiencies identified by internal or external assessments, inspections, investigations, and reviews."
+          },
+          {
+            "t": "Documentation and Records",
+            "b": "Participants shall create and maintain documents and records to ensure regulatory compliance and conformity to company requirements along with appropriate confidentiality to protect privacy."
+          },
+          {
+            "t": "Supplier Responsibility",
+            "b": "Participants shall establish a process to communicate Code requirements to suppliers and to monitor supplier compliance to the Code."
+          }
+        ]
+      }
+    ],
+    "minerals": {
+      "title": "Responsible Minerals Sourcing Policy",
+      "meta": "Version 2.0, May 2025",
+      "pdf": "/documents/ayutthaya-responsible-minerals-sourcing-policy-en.pdf",
+      "pdfLabel": "Download the policy (PDF, EN)",
+      "blocks": [
+        {
+          "p": "HANA Semiconductor (Ayutthaya) Co., Ltd. (hereafter called “HANA”) purchases raw materials containing these minerals from suppliers. We are committed to ethical business practices and the responsible sourcing of minerals used in our products. We recognize the risks associated with the extraction, transportation, and trade of minerals in conflict-affected and high-risk areas (CAHRAs) such as the Democratic Republic of the Congo (DRC) and its neighboring countries and are dedicated to ensuring that our supply chain supports human rights and avoids contributing to conflict."
+        },
+        {
+          "p": "This policy applies to all suppliers and sub-suppliers involved in the sourcing of materials containing:"
+        },
+        {
+          "ul": [
+            "Tin, Tantalum, Tungsten, and Gold (3TG) - governed by the Conflict Minerals Reporting Template (CMRT)",
+            "Cobalt - governed by the Cobalt Reporting Template (CRT)",
+            "Mica and Other High-Risk Minerals - governed by the Extended Minerals Reporting Template (EMRT)"
+          ]
+        },
+        {
+          "p": "HANA expects all suppliers to:"
+        },
+        {
+          "h": "Adopt Responsible Sourcing Practices"
+        },
+        {
+          "p": "Implement due diligence processes aligned with the Organization for Economic Co-operation and Development (OECD) Due Diligence Guidance for Responsible Supply Chains of Minerals from Conflict-Affected and High-Risk Areas."
+        },
+        {
+          "h": "Complete Reporting Templates"
+        },
+        {
+          "ul": [
+            "Annually provide a completed CMRT to disclose sourcing of 3TG minerals.",
+            "If applicable, provide a completed CRT for cobalt sourcing.",
+            "Provide a completed EMRT for mica or other high-risk minerals where requested."
+          ]
+        },
+        {
+          "h": "Use of Conformant Smelters and Refiners"
+        },
+        {
+          "p": "Source minerals from smelters and refiners that are verified as conformant with the Responsible Minerals Assurance Process (RMAP) or equivalent standards."
+        },
+        {
+          "p": "HANA requires all direct suppliers to:"
+        },
+        {
+          "ul": [
+            "Acknowledge and align with this policy.",
+            "Cascade the requirements to their suppliers.",
+            "Cooperate in audits or assessments as needed."
+          ]
+        },
+        {
+          "p": "If HANA is aware of any supplier whose supply chain includes metals from sources that are directly or indirectly benefiting armed conflict in the DRC, HANA will immediately take proper action and reconsider the supplier relationship."
+        }
+      ]
+    }
+  },
+  "th": {
+    "title": "มาตรฐานความรับผิดชอบต่อสังคมของบริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด",
+    "scope": "นโยบายนี้บังคับใช้กับพนักงานของ Hana (อยุธยา) ทุกคนและนำมาใช้โดยผู้มีส่วนได้ส่วนเสียของเรา ผู้จัดหาวัสดุ และหุ้นส่วน",
+    "sections": [
+      {
+        "key": "A",
+        "title": "แรงงาน",
+        "intro": "ผู้เข้าร่วมให้คำมั่นในการเคารพสิทธิมนุษยชนของแรงงาน และปฏิบัติต่อแรงงานอย่างมีศักดิ์ศรีและด้วยความเคารพ โดยประยุกต์ใช้กับซัพพลายเออร์ทั้งทางตรงและทางอ้อม รวมถึงแรงงานทั้งหมด รวมถึงแรงงานชั่วคราว แรงงานต่างด้าว แรงงานนักเรียน แรงงานสัญญาจ้าง พนักงานลูกจ้างโดยตรง และแรงงานประเภทอื่น ๆ",
+        "lead": "",
+        "items": [
+          {
+            "t": "การห้ามแรงงานบังคับ",
+            "b": "แรงงานบังคับในทุกรูปแบบ รวมถึงแต่ไม่จำกัดเฉพาะแรงงานผูกมัดแรงงาน (รวมถึงผูกมัดด้วยภาระหนี้) ไม่ว่าจะโดยสมัครใจหรือไม่สมัครใจ หรือแรงงานตามพันธะสัญญา หรือการหาประโยชน์จากแรงงานนักโทษ ทาส หรือการค้ามนุษย์ ซึ่งรวมไปถึงการขนส่ง การเคลื่อนย้าย การเกณฑ์ การถ่ายโอน หรือการบังคับบุคคลเข้าทำงานด้วยการข่มขู่ บังคับ ขู่เข็ญ ลักพาตัว หรือหลอกลวงให้ใช้แรงงานหรือให้บริการ ห้ามมีข้อจำกัดที่ปราศจากเหตุผลอันควรในการห้ามแรงงานเคลื่อนที่ภายในสถานที่ประกอบการ นอกจากนี้ยังรวมถึงข้อจำกัดที่ปราศจากเหตุผลอันควรในการเข้าหรือออกจากสถานที่ซึ่งจัดหาให้โดยบริษัท รวมถึงหอพักหรือที่พักอาศัยสำหรับคนงาน ถ้ามี ในส่วนของกระบวนการจ้างงาน แรงงานต้องได้รับสัญญาจ้างงานเป็นลายลักษณ์อักษรในภาษาท้องถิ่นซึ่งมีรายละเอียดข้อกำหนดและเงื่อนไขการจ้างงาน หรือในภาษาที่คนงานสามารถเข้าใจได้ซึ่งมีคำอธิบายข้อกำหนดและเงื่อนไขการจ้างงาน แรงงานต่างด้าวต้องได้รับหนังสือสัญญาจ้างงานก่อนที่แรงงานจะออกจากประเทศที่เป็นถิ่นกำเนิดของตน และต้องไม่มีการสับเปลี่ยนหรือการเปลี่ยนแปลงเนื้อหาในสัญญาจ้างงานหลังจากที่แรงงานมาถึงยังประเทศปลายทางที่รับแรงงาน เว้นแต่เปลี่ยนแปลงให้ตรงตามกฎหมายในท้องถิ่น และมีเงื่อนไขที่เทียบเท่าหรือดีกว่า งานทั้งหมดควรเป็นไปโดยสมัครใจ และแรงงานต้องมีอิสระที่จะออกจากงานหรือพ้นจากการจ้างงานเมื่อใดก็ได้โดยไม่มีการลงโทษ หากได้รับแจ้งอย่างสมเหตุสมผลซึ่งควรระบุไว้อย่างชัดเจนในสัญญาของแรงงาน ผู้เข้าร่วมจะต้องเก็บรักษาเอกสารเกี่ยวกับแรงงานที่ออกจากงานทุกคน ผู้ว่าจ้าง ตัวแทน และตัวแทนช่วงจะไม่ยึดถือหรือทำลาย ปกปิด หรืออายัดเอกสารระบุตัวบุคคลหรือเอกสารการเข้าเมืองของแรงงาน เช่น บัตรประจำตัวที่ออกให้โดยรัฐบาล หนังสือเดินทาง หรือหนังสืออนุญาตทำงาน ไม่ว่าเนื้อความข้างต้นจะเป็นเช่นไรก็ตาม นายจ้างสามารถเก็บเอกสารเฉพาะที่จำเป็นเพื่อให้สอดคล้องกับกฎหมายท้องถิ่นเท่านั้น ในกรณีนี้ ไม่ควรปฏิเสธไม่ให้แรงงานเข้าถึงเอกสารของตนไม่ว่าเมื่อใดก็ตาม แรงงานต้องไม่มีการจ่ายค่าธรรมเนียมใด ๆ หรือค่าธรรมเนียมอื่นที่เกี่ยวกับการจ้างงานของตนให้แก่ตัวแทนของนายจ้างหรือตัวแทนช่วงในการจัดหางาน หากพบว่าแรงงานเป็นผู้จ่ายค่าธรรมเนียมดังกล่าว ค่าธรรมเนียมจำนวนนั้น ๆ ต้องถูกคืนให้กับแรงงาน"
+          },
+          {
+            "t": "แรงงานเยาวชน",
+            "b": "ไม่ควรมีการใช้แรงงานเด็กในทุกขั้นตอนของการผลิต “เด็ก” หมายถึงบุคคลใด ๆ ที่มีอายุต่ำกว่า 15 ปี หรือมีอายุต่ำกว่าอายุสำเร็จการศึกษาภาคบังคับ หรือมีอายุต่ำกว่าอายุการจ้างงานขั้นต่ำในประเทศ โดยถืออายุที่สูงสุดเป็นหลัก แรงงานที่มีอายุต่ำกว่า 18 ปี (แรงงานเยาวชน) ต้องไม่ทำงานที่เสี่ยงอันตรายต่อสุขภาพหรือความปลอดภัยของตน ทั้งนี้รวมถึงการไม่ทำงานกะกลางคืนและการไม่ทำงานล่วงเวลา ผู้เข้าร่วมจะต้องตรวจสอบให้แน่ใจว่ามีระบบการจัดการแรงงานนักเรียนอย่างเหมาะสม โดยมีการเก็บรักษาข้อมูลระเบียนนักเรียน ตรวจสอบเงื่อนไขการจ้างงานของหน่วยงานการศึกษาที่เข้าร่วมอย่างเข้มงวด และปกป้องสิทธิของนักเรียนตามกฎหมายและกฎระเบียบที่เกี่ยวข้อง ผู้เข้าร่วมจะต้องใช้กลไกที่เหมาะสมในการตรวจสอบอายุของแรงงาน บริษัทสามารถสนับสนุนให้มีโครงการฝึกงานเพื่อการเรียนรู้ที่ถูกต้องตามกฎหมายและกฎระเบียบ ผู้เข้าร่วมจะต้องให้การสนับสนุนและการฝึกอบรมแก่แรงงานนักเรียนทุกคนตามสมควร หากไม่มีกฎหมายในท้องถิ่นกำหนดไว้ อัตราค่าจ้างแรงงานนักเรียน ผู้ฝึกงาน และแรงงานฝึกหัดอย่างน้อยต้องเท่ากับอัตราค่าจ้างของแรงงานขั้นเริ่มต้นที่ทำงานแบบเดียวกันหรือคล้ายคลึงกัน หากพบว่ามีการใช้แรงงานเด็ก ควรให้ความช่วยเหลือ/ดำเนินการแก้ไข"
+          },
+          {
+            "t": "ชั่วโมงการทำงาน",
+            "b": "ชั่วโมงการทำงานไม่ควรเกินจำนวนสูงสุดที่กำหนดไว้ในกฎหมายท้องถิ่น นอกจากนี้ ชั่วโมงทำงานไม่ควรมากกว่า 60 ชั่วโมงต่อสัปดาห์ รวมถึงชั่วโมงทำงานล่วงเวลา เว้นแต่ในกรณีฉุกเฉินหรือสถานการณ์ที่ไม่ปกติ การทำงานล่วงเวลาทั้งหมดควรเป็นไปด้วยความสมัครใจ แรงงานต้องได้รับอนุญาตให้มีวันหยุดอย่างน้อยหนึ่งวันต่อสัปดาห์"
+          },
+          {
+            "t": "ค่าจ้างและสวัสดิการ",
+            "b": "ค่าตอบแทนที่จ่ายให้แก่แรงงานต้องเป็นไปตามที่กฎหมายกำหนดไว้ รวมถึงกรณีที่เกี่ยวข้องกับค่าแรงขั้นต่ำ ค่าล่วงเวลา และสวัสดิการตามที่กฎหมายได้กำหนดไว้ แรงงานทุกคนจะได้รับค่าตอบแทนที่เท่าเทียมจากเนื้องานและคุณสมบัติที่เท่าเทียมกัน แรงงานควรได้รับค่าตอบแทนจากการทำงานล่วงเวลามากกว่าอัตราค่าแรงรายชั่วโมงในเวลาทำงานปกติ ห้ามใช้วิธีการหักค่าแรงเพื่อเป็นมาตรการลงโทษทางวินัย ในแต่ละรอบของการจ่ายค่าแรง แรงงานต้องได้รับแจ้งรายการค่าจ้างภายในเวลาอันควรและสามารถเข้าใจได้ง่าย รวมถึงข้อมูลที่เพียงพอต่อการพิสูจน์ความถูกต้องของค่าจ้างต่องานที่ได้ทำ การใช้แรงงานชั่วคราว แรงงานนอกพื้นที่ และแรงงานภายนอกทั้งหมดควรอยู่ภายใต้ข้อจำกัดของกฎหมายท้องถิ่น"
+          },
+          {
+            "t": "การไม่เลือกปฏิบัติ/การไม่คุกคาม/การปฏิบัติอย่างมีมนุษยธรรม",
+            "b": "ผู้เข้าร่วมควรให้คำมั่นที่จะจัดหาที่ทำงานซึ่งปราศจากการข่มเหงและปราศจากการเลือกปฏิบัติที่ผิดกฎหมาย ไม่ควรปฏิบัติต่อผู้อื่นโดยใช้ความรุนแรงหรือไร้มนุษยธรรม รวมถึงความรุนแรง ความรุนแรงบนพื้นฐานของเพศภาวะ การล่วงละเมิดทางเพศ การข่มเหงทางเพศ การลงโทษรุนแรง การขู่เข็ญทางจิตใจหรือร่างกาย การกลั่นแกล้ง การทำให้อับอายต่อหน้าสาธารณะ หรือการละเมิดด้วยวาจาต่อแรงงาน หรือแม้แต่การขู่ว่าจะกระทำการดังกล่าว บริษัทไม่ควรเลือกปฏิบัติหรือคุกคามผู้อื่นอันเนื่องมาจากชาติพันธุ์ สีผิว อายุ เพศ รสนิยมทางเพศ อัตลักษณ์ทางเพศหรือการแสดงออกทางเพศภาวะ เผ่าพันธุ์หรือถิ่นกำเนิด ความพิการ การตั้งครรภ์ ศาสนา ความสัมพันธ์ทางการเมือง สมาชิกสหภาพ สถานะทหารผ่านศึก ข้อมูลทางพันธุกรรมที่ได้รับการคุ้มครอง หรือสถานะการสมรส ในการจ้างงานและวิธีปฏิบัติในการทำงาน เช่น ค่าแรง การเลื่อนขั้น การให้รางวัล และโอกาสในการได้รับการฝึกอบรม นโยบายและกระบวนการทางวินัยเพื่อป้องกันการกระทำข้างต้นต้องได้รับการกำหนดไว้อย่างชัดเจนและแจ้งให้แรงงานรับทราบ ควรจัดให้มีสถานที่ปฏิบัติศาสนกิจและสถานที่สำหรับผู้พิการอย่างสมเหตุสมผล นอกจากนี้ แรงงานหรือผู้ที่อาจเป็นแรงงานไม่ควรต้องถูกกำหนดให้ทำการตรวจสุขภาพ รวมทั้งการตรวจการตั้งครรภ์หรือความบริสุทธิ์ หรือทดสอบสมรรถภาพทางร่างกายซึ่งอาจนำไปสู่การเลือกปฏิบัติ โดยได้มีการร่างเอกสารฉบับนี้ตามอนุสัญญาว่าด้วยการเลือกปฏิบัติ (การจ้างงานและอาชีพ) ขององค์การแรงงานสากล (ฉบับที่ 111)"
+          },
+          {
+            "t": "เสรีภาพในการสมาคมและการเจรจาต่อรองร่วมกัน",
+            "b": "การสื่อสารอย่างเปิดเผยและการมีส่วนร่วมโดยตรงระหว่างแรงงานและฝ่ายบริหารเป็นวิธีที่มีประสิทธิภาพมากที่สุดในการแก้ไขปัญหาในสถานที่ทำงานและปัญหาค่าตอบแทน แรงงานและ/หรือผู้แทนจะต้องสามารถสื่อสารและแบ่งปันแนวคิดและความกังวลกับฝ่ายบริหารเกี่ยวกับสภาพการทำงานและวิธีการบริหารได้อย่างเปิดเผย โดยปราศจากความกลัวจากการถูกเลือกปฏิบัติ ลงโทษ ข่มขู่ หรือคุกคาม เพื่อให้เป็นไปตามหลักการเหล่านี้ ผู้เข้าร่วมต้องเคารพสิทธิของแรงงานทุกคนที่ต้องการก่อตั้งและเข้าร่วมสหภาพการค้าตามความสมัครใจ เพื่อการต่อรองร่วมกันและการชุมนุมอย่างสันติ เช่นเดียวกันกับการเคารพสิทธิของแรงงานที่ละเว้นจากการร่วมกิจกรรมดังกล่าว ในกรณีที่สิทธิเสรีภาพในการสมาคมและการเจรจาต่อรองร่วมกันถูกจำกัดโดยกฎหมายและระเบียบข้อบังคับที่เกี่ยวข้อง แรงงานควรได้รับอนุญาตให้เลือกและเข้าร่วมรูปแบบตัวแทนแรงงานที่ถูกต้องตามกฎหมายอื่น ๆ"
+          }
+        ]
+      },
+      {
+        "key": "B",
+        "title": "สุขภาพและความปลอดภัย",
+        "intro": "ผู้เข้าร่วมตระหนักว่า นอกจากการลดอุบัติการณ์ของการบาดเจ็บและความเจ็บป่วยอันเนื่องมาจากการทำงานแล้ว สิ่งแวดล้อมการทำงานที่ปลอดภัยและดีต่อสุขภาพจะช่วยเพิ่มคุณภาพของผลิตภัณฑ์และบริการ การผลิตมีความสม่ำเสมอ ตลอดจนสามารถรักษาแรงงานและขวัญกำลังใจของแรงงาน ผู้เข้าร่วมยังตระหนักอีกว่าการให้ข้อมูลและความรู้แก่แรงงานอย่างต่อเนื่องเป็นสิ่งสำคัญที่จะค้นหาและแก้ไขปัญหาด้านสุขภาพและความปลอดภัยในสถานประกอบการ",
+        "lead": "มาตรฐานด้านสุขภาพและความปลอดภัย มีดังนี้:",
+        "items": [
+          {
+            "t": "ความปลอดภัยและอาชีวอนามัย",
+            "b": "แรงงานที่มีโอกาสได้รับอันตรายต่อสุขภาพและความปลอดภัย (สารเคมี ไฟฟ้า และแหล่งพลังงานอื่น เพลิงไหม้ ยานพาหนะ และอันตรายจากการตกจากที่สูง ฯลฯ) จะต้องได้รับการระบุและประเมิน บรรเทาโดยใช้ลำดับชั้นการควบคุม เมื่ออันตรายต่าง ๆ ไม่สามารถควบคุมได้โดยวิธีการข้างต้น แรงงานควรได้รับอุปกรณ์ป้องกันส่วนบุคคลที่ได้รับการบำรุงรักษาอย่างดีและเหมาะสม รวมทั้งเอกสารให้ความรู้เกี่ยวกับความเสี่ยงต่อการเกิดอันตรายเหล่านั้น ควรใช้มาตรการที่คำนึงถึงเพศ (Gender-responsive) เช่น ไม่ยินยอมให้สตรีตั้งครรภ์และมารดาที่ให้นมบุตรในสถานที่ทำงาน ซึ่งอาจเป็นอันตรายต่อสตรีหรือบุตรของพวกเธอ และจัดหาสถานที่ที่เหมาะสมสำหรับมารดาที่ให้นมบุตร"
+          },
+          {
+            "t": "ความพร้อมในกรณีฉุกเฉิน",
+            "b": "สถานการณ์และเหตุการณ์ในกรณีฉุกเฉินที่อาจเกิดขึ้นควรได้รับการตรวจสอบและประเมิน และลดผลกระทบให้น้อยที่สุด โดยการใช้แผนรับมือฉุกเฉินและกระบวนการตอบสนอง รวมถึงการรายงานเหตุฉุกเฉิน การแจ้งเตือนพนักงานและกระบวนการอพยพลี้ภัย การฝึกซ้อมแรงงานและการฝึกซ้อมหนีไฟควรต้องดำเนินการฝึกซ้อมหนีไฟอย่างน้อยปีละครั้งหรือตามที่กฎหมายกำหนด แล้วแต่ว่าข้อกำหนดใดจะเข้มงวดกว่า นอกจากนี้ แผนฉุกเฉินควรรวมถึงเครื่องมือตรวจจับและดับเพลิงที่เหมาะสม ทางออกที่ไม่มีสิ่งกีดขวางและชัดเจน ทางออกฉุกเฉินที่เพียงพอ ข้อมูลติดต่อหน่วยกู้ภัยฉุกเฉิน และแผนฟื้นฟู แผนและกระบวนการดังกล่าวจะต้องเน้นที่การลดอันตรายที่เกิดขึ้นต่อชีวิต สิ่งแวดล้อม และทรัพย์สินให้เหลือน้อยที่สุด"
+          },
+          {
+            "t": "การบาดเจ็บและความเจ็บป่วยอันเนื่องจากการทำงาน",
+            "b": "ควรนำระเบียบปฏิบัติและระบบต่าง ๆ มาใช้เพื่อป้องกัน จัดการ ติดตาม และรายงานการบาดเจ็บและความเจ็บป่วยอันเนื่องมาจากการทำงาน รวมถึงมาตรการส่งเสริมการรายงานของแรงงาน การจำแนกและบันทึกกรณีบาดเจ็บและเจ็บป่วย การให้การรักษาที่จำเป็น การสอบสวนและดำเนินการเพื่อแก้ไขที่สาเหตุ และการอำนวยความสะดวกให้แรงงานกลับเข้าทำงาน ผู้เข้าร่วมจะต้องอนุญาตให้แรงงานพาตนออกจากสถานการณ์อันตรายที่กำลังจะเกิดขึ้น และไม่กลับมาจนกว่าสถานการณ์จะคลายความรุนแรงลง โดยไม่ต้องกลัวการตอบโต้เอาคืน"
+          },
+          {
+            "t": "สุขอนามัยอุตสาหกรรม",
+            "b": "แรงงานที่เสี่ยงต่อการสัมผัสสารเคมี สารชีวภาพและกายภาพควรได้รับการระบุ ประเมิน ควบคุม ตามลำดับขั้นของการควบคุม เมื่อไม่สามารถควบคุมอันตรายได้อย่างเพียงพอ ควรมีมาตรการปกป้องแรงงานโดยการใช้อุปกรณ์ป้องกันส่วนบุคคลที่เหมาะสม ซึ่งต้องได้รับการบำรุงรักษาอย่างดี และไม่มีค่าใช้จ่าย ผู้เข้าร่วมจะต้องจัดให้มีสภาพแวดล้อมการทำงานที่ปลอดภัยและดีต่อสุขภาพแก่แรงงาน จัดให้มีการติดตามตรวจสอบสุขภาพของคนงานและสภาพแวดล้อมในการทำงานโดยทำอย่างต่อเนื่องและเป็นระบบ ผู้เข้าร่วมจะต้องจัดให้มีการตรวจติดตามตรวจสอบด้านอาชีวอนามัยเพื่อประเมินเป็นประจำว่า สุขภาพของแรงงานได้รับอันตรายจากการประกอบอาชีพหรือไม่ ควรจัดให้มีโปรแกรมการป้องกันด้านอาชีวอนามัยอย่างต่อเนื่อง และควรมีเอกสารให้ความรู้เกี่ยวกับความเสี่ยงที่เชื่อมโยงกับการได้สัมผัสกับสิ่งที่เป็นอันตรายในสถานที่ทำงาน"
+          },
+          {
+            "t": "งานที่ต้องการแรงงานทางกายภาพ",
+            "b": "แรงงานที่เสี่ยงต่ออันตรายจากงานที่ใช้แรงงานทางกายภาพ รวมถึงการจัดการกับวัสดุโดยแรงงานคนและการยกของหนักหรือยกของเป็นประจำ การยืนเป็นเวลานานหรือเป็นประจำ หรืองานประกอบที่ใช้แรงมาก ควรได้รับการระบุ ประเมิน และควบคุม"
+          },
+          {
+            "t": "การป้องกันอันตรายจากการใช้เครื่องจักรกล",
+            "b": "เครื่องจักรกลการผลิตและเครื่องจักรอื่น ๆ จะต้องได้รับการประเมินความปลอดภัย ควรจัดให้มีเครื่องป้องกันทางกายภาพ เครื่องล็อก และสิ่งป้องกัน ที่ได้รับการบำรุงรักษาอย่างเหมาะสม ในกรณีที่เครื่องจักรอาจก่อให้เกิดอันตรายและการบาดเจ็บต่อแรงงาน"
+          },
+          {
+            "t": "สุขอนามัย อาหาร และที่อยู่อาศัย",
+            "b": "แรงงานควรเข้าถึงห้องสุขาที่สะอาด น้ำดื่มสะอาด และการเตรียม การจัดเก็บอาหารและสถานที่รับประทานอาหารที่ถูกสุขลักษณะ หอพักแรงงานซึ่งจัดหาให้โดยผู้เข้าร่วมหรือนายหน้าจัดหาแรงงานให้ต้องได้รับการดูแลรักษาให้สะอาดและปลอดภัย พร้อมด้วยมาตรการฉุกเฉินที่เหมาะสม น้ำร้อนสำหรับอาบน้ำ แสงสว่างที่เพียงพอ และการระบายอากาศที่เพียงพอ และพื้นที่ส่วนบุคคลที่มีความปลอดภัยเพื่อเก็บรักษาทรัพย์สินส่วนบุคคลหรือของมีค่า และพื้นที่ส่วนตัวพร้อมสิทธิในการเข้าออกสถานที่ได้ตามเหตุผลอันควร"
+          },
+          {
+            "t": "การสื่อสารด้านสุขภาพและความปลอดภัย",
+            "b": "ผู้เข้าร่วมจะต้องให้ข้อมูลเรื่องสุขภาพและความปลอดภัยที่เหมาะสมแก่แรงงาน และการฝึกอบรมในภาษาที่แรงงานใช้หรือในภาษาที่แรงงานเข้าใจ เกี่ยวกับอันตรายที่ถูกระบุในสถานที่ทำงาน ซึ่งแรงงานมีความเสี่ยงที่จะประสบ รวมถึงแต่ไม่จำกัดเพียงอันตรายจากเครื่องจักร ไฟฟ้า สารเคมี อัคคีภัย และอันตรายทางร่างกาย ข้อมูลที่เกี่ยวข้องกับด้านสุขภาพและความปลอดภัยจะต้องได้รับการติดประกาศไว้อย่างชัดเจนในสถานประกอบการ หรือติดไว้ในสถานที่ที่ระบุไว้และแรงงานสามารถเข้าถึงได้ ข้อมูลสุขภาพและการฝึกอบรมควรรวมถึงเนื้อหาเกี่ยวกับความเสี่ยงเฉพาะด้านสำหรับประชากรแต่ละกลุ่ม เช่น เพศและอายุ หากมี ควรจัดให้มีการฝึกอบรมให้กับแรงงานทุกคนก่อนเริ่มต้นการทำงาน และจัดให้มีเป็นประจำหลังจากนั้น แรงงานจะต้องได้รับการสนับสนุนให้แจ้งข้อกังวลด้านสุขภาพและความปลอดภัยใด ๆ โดยปราศจากการตอบโต้"
+          }
+        ]
+      },
+      {
+        "key": "C",
+        "title": "ด้านสิ่งแวดล้อม",
+        "intro": "ในทุกฟังก์ชั่นทางธุรกิจ ผู้เข้าร่วมควรตระหนักว่าความรับผิดชอบต่อสิ่งแวดล้อมถือเป็นส่วนหนึ่งของการผลิตสินค้าระดับโลก ผู้เข้าร่วมจะควรระบุผลกระทบต่อสิ่งแวดล้อมและลดผลกระทบทางลบที่มีต่อชุมชน สิ่งแวดล้อม และทรัพยากรธรรมชาติในการดำเนินการผลิต และปกป้องสุขภาพและความปลอดภัยของสาธารณชนไปพร้อม ๆ กัน",
+        "lead": "มาตรฐานด้านสิ่งแวดล้อม มีดังนี้:",
+        "items": [
+          {
+            "t": "ใบอนุญาตและการรายงานด้านสิ่งแวดล้อม",
+            "b": "ใบอนุญาตด้านสิ่งแวดล้อมที่จำเป็นทั้งหมด (เช่น การเฝ้าติดตามการปล่อยของเสีย) การอนุมัติ และการขึ้นทะเบียนควรดำเนินการขอออก เก็บรักษา และปรับปรุงให้ตรงกับสถานการณ์ปัจจุบัน และต้องปฏิบัติตามข้อกำหนดในการรายงาน"
+          },
+          {
+            "t": "การป้องกันมลภาวะและการลดการใช้ทรัพยากร",
+            "b": "ควรลดการปล่อย การระบายสารพิษ และการผลิตของเสียให้เหลือน้อยที่สุด รวมถึงการขจัดแหล่งก่อเกิดหรือทำการปฏิบัติการให้หมดไป ตัวอย่างเช่น การเพิ่มอุปกรณ์ควบคุมมลพิษ การปรับปรุงขั้นตอนการผลิต การบำรุงรักษา และกระบวนการทางสาธารณูปโภค หรือโดยวิธีการอื่น ๆ ควรอนุรักษ์การใช้ทรัพยากรธรรมชาติ ซึ่งรวมถึงน้ำ เชื้อเพลิงฟอสซิล แร่ธาตุ และผลิตภัณฑ์จากป่าดงดิบ ด้วยวิธีการปฏิบัติการ เช่น ปรับปรุงขั้นตอนการผลิต การบำรุงรักษา และกระบวนการทางสาธารณูปโภค การใช้วัสดุทดแทน การนำไปใช้ซ้ำ การอนุรักษ์ การรีไซเคิล หรือโดยวิธีการอื่น ๆ"
+          },
+          {
+            "t": "วัตถุอันตราย",
+            "b": "สารเคมี ของเสีย และวัตถุอื่นใดที่ก่อให้เกิดอันตรายต่อมนุษย์หรือสิ่งแวดล้อม ควรได้รับการระบุ ติดป้ายแสดง และจัดการ เพื่อให้มั่นใจว่ามีการดูแลด้านความปลอดภัยในเรื่องการจัดการ การเคลื่อนย้าย การจัดเก็บ การใช้ การรีไซเคิล หรือการนำกลับมาใช้ใหม่ รวมถึงการกำจัดทิ้ง ข้อมูลของเสียอันตรายควรมีการติดตามและจัดทำเป็นเอกสาร"
+          },
+          {
+            "t": "ขยะมูลฝอย",
+            "b": "ผู้เข้าร่วมจะต้องใช้วิธีการที่เป็นระบบในการระบุ จัดการ ลด และกำจัดหรือรีไซเคิลขยะมูลฝอย (ที่ไม่เป็นอันตราย) อย่างมีความรับผิดชอบ ข้อมูลของเสียควรมีการติดตามและจัดทำเป็นเอกสาร"
+          },
+          {
+            "t": "การปล่อยมลภาวะทางอากาศ",
+            "b": "การปล่อยสารระเหยที่เป็นสารอินทรีย์เคมี ละอองลอย สารกัดกร่อน สารอนุภาค สารทำลายโอโซน และผลพลอยได้จากการเผาไหม้ ควรได้รับการจำแนก ตรวจสอบเป็นประจำ ควบคุมและบำบัดก่อนจะปล่อยออกไป สารที่ทำลายชั้นบรรยากาศโอโซนควรจัดการอย่างมีประสิทธิภาพตามพิธีสารมอนทรีออลและระเบียบข้อบังคับที่เกี่ยวข้อง ผู้เข้าร่วมต้องดำเนินการตรวจสอบการทำงานของระบบควบคุมการปล่อยมลภาวะทางอากาศเป็นประจำ"
+          },
+          {
+            "t": "ข้อจำกัดด้านวัสดุ",
+            "b": "ผู้เข้าร่วมควรยึดถือการปฏิบัติตามกฎหมาย ระเบียบ และข้อกำหนดของลูกค้าเกี่ยวกับการห้ามหรือการจำกัดสารเฉพาะในสินค้าและการผลิต รวมถึงการติดฉลากระบุเกี่ยวกับการรีไซเคิลและการกำจัดทิ้ง"
+          },
+          {
+            "t": "การจัดการน้ำ",
+            "b": "ผู้เข้าร่วมจะต้องดำเนินโครงการการจัดการน้ำ ซึ่งต้องจัดทำบันทึก กำหนดคุณลักษณะ และตรวจสอบติดตามแหล่งน้ำ การใช้น้ำ และการปล่อยน้ำ รวมถึงการแสวงหาโอกาสในการอนุรักษ์น้ำ และควบคุมช่องทางการปนเปื้อน ควรกำหนดคุณลักษณะ ตรวจติดตาม ควบคุม และบำบัดน้ำเสียทุกชนิดตามที่กำหนด ก่อนทำการปล่อยหรือทิ้งสู่ภายนอก ผู้เข้าร่วมจะต้องทำการเฝ้าพินิจประสิทธิภาพของระบบการบำบัดน้ำเสียและระบบการกักเก็บเป็นประจำ เพื่อให้แน่ใจว่ามีประสิทธิภาพสูงสุดและสอดคล้องกับกฎระเบียบ"
+          },
+          {
+            "t": "การใช้พลังงานและการปล่อยก๊าซเรือนกระจก",
+            "b": "ผู้เข้าร่วมควรกำหนดและจัดทำรายงานเป้าหมายการลดก๊าซเรือนกระจกทั่วทั้งองค์กร การใช้พลังงานและการปล่อยก๊าซเรือนกระจกในขอบเขตที่ 1, 2 ทั้งหมด รวมถึงหมวดหมู่ที่สำคัญของขอบเขตที่ 3 จะต้องได้รับการติดตาม บันทึก และรายงานต่อสาธารณะ ผู้เข้าร่วมควรหาวิธีการปรับปรุงประสิทธิภาพในการใช้พลังงานและเพื่อลดปริมาณการใช้พลังงานและการปล่อยก๊าซเรือนกระจกให้ต่ำที่สุด"
+          }
+        ]
+      },
+      {
+        "key": "D",
+        "title": "จริยธรรม",
+        "intro": "เพื่อแสดงความรับผิดชอบต่อสังคมและประสบความสำเร็จในตลาด ผู้เข้าร่วมและตัวแทนควรยึดถือปฏิบัติตามมาตรฐานจริยธรรมขั้นสูงสุด รวมถึงจริยธรรมด้านล่างนี้:",
+        "lead": "",
+        "items": [
+          {
+            "t": "ความซื่อสัตย์ทางธุรกิจ",
+            "b": "ควรยึดถือมาตรฐานความซื่อตรงขั้นสูงสุดในทุกการดำเนินการทางธุรกิจ ผู้เข้าร่วมจะต้องมีนโยบายไม่ประนีประนอมต่อการทุจริตโดยสิ้นเชิง ทั้งนี้ เพื่อป้องกันการติดสินบน การทุจริต การรีดไถ และการฉ้อฉลในทุกรูปแบบ"
+          },
+          {
+            "t": "ไม่มีการเอื้อประโยชน์ที่ไม่เหมาะสม",
+            "b": "ไม่ควรสัญญา เสนอให้ มอบอำนาจ ให้ หรือยอมรับการติดสินบนหรือวิธีการอื่นใดที่จะทำให้ได้รับผลประโยชน์ที่ไม่ควรหรือไม่เหมาะสม ข้อห้ามนี้รวมถึงการสัญญา เสนอ มอบอำนาจ ให้ หรือยอมรับสิ่งของใดที่มีมูลค่า ไม่ว่าโดยตรงหรือโดยอ้อม เพื่อให้ได้มาหรือรักษาธุรกิจไว้ ชี้นำธุรกิจแก่ผู้ใดผู้หนึ่ง หรือได้รับผลประโยชน์ที่ไม่เหมาะสม ต้องมีการตรวจสอบติดตาม มีการเก็บรักษาบันทึกและบังคับใช้กระบวนการต่าง ๆ เพื่อให้มั่นใจว่าเป็นไปตามกฎหมายต่อต้านการทุจริต"
+          },
+          {
+            "t": "การเปิดเผยข้อมูล",
+            "b": "การเจรจาทางธุรกิจทั้งหมดควรกระทำอย่างโปร่งใสและมีการอ้างอิงในเอกสารและบันทึกข้อมูลทางธุรกิจของผู้เข้าร่วมอย่างถูกต้องแม่นยำ ข้อมูลเกี่ยวกับแรงงาน สุขภาพและความปลอดภัย วิธีปฏิบัติด้านสิ่งแวดล้อม กิจกรรมทางธุรกิจ โครงสร้าง สถานะทางการเงิน และผลประกอบการของผู้เข้าร่วมควรได้รับการเปิดเผยตามกฎระเบียบและแนวปฏิบัติที่เกี่ยวข้องของอุตสาหกรรม การปลอมแปลงบันทึกข้อมูลหรือแถลงข้อความอันเป็นเท็จเกี่ยวกับเงื่อนไขหรือวิธีปฏิบัติในห่วงโซ่อุปทานเป็นสิ่งที่ยอมรับไม่ได้"
+          },
+          {
+            "t": "ทรัพย์สินทางปัญญา",
+            "b": "ควรเคารพสิทธิในทรัพย์สินทางปัญญา การถ่ายโอนเทคโนโลยีและความรู้ความชำนาญต้องกระทำในลักษณะที่มีการปกป้องสิทธิในทรัพย์สินทางปัญญา และข้อมูลของลูกค้าและซัพพลายเออร์ควรได้รับการปกป้อง"
+          },
+          {
+            "t": "การดำเนินธุรกิจ การโฆษณา และการแข่งขันที่เป็นธรรม",
+            "b": "ควรดำเนินการรักษามาตรฐานของการดำเนินธุรกิจ การโฆษณา และการแข่งขันที่เป็นธรรม"
+          },
+          {
+            "t": "การปกป้องลักษณะบุคคลและการไม่ตอบโต้",
+            "b": "ควรดูแลรักษาโครงการที่รับประกันการรักษาความลับ การไม่เปิดเผยชื่อ และการปกป้องซัพพลายเออร์และลูกจ้างที่แจ้งเบาะแส เว้นแต่จะถูกห้ามโดยกฎหมาย ผู้เข้าร่วมควรมีกระบวนการสื่อสารสำหรับบุคลากรเพื่อให้สามารถแจ้งความกังวลของตนได้โดยปราศจากความกลัวจากการถูกตอบโต้"
+          },
+          {
+            "t": "การหาแหล่งแร่ธาตุโดยมีความรับผิดชอบ",
+            "b": "ผู้เข้าร่วมจะต้องนำเอานโยบายมาใช้และดำเนินการตรวจสอบสถานะอย่างเคร่งครัดในการหาแหล่งที่มาและลำดับห่วงโซ่ของการคุ้มครองแทนทาลัม ดีบุก ทังสเตน ทองคำและโคบอลต์ในผลิตภัณฑ์ที่ตนผลิต เพื่อให้มั่นใจว่าได้มีการจัดหาโดยสอดคล้องกับแนวทางขององค์การเพื่อความร่วมมือและการพัฒนาทางเศรษฐกิจ (Organization for Economic Cooperation and Development, OECD) สำหรับห่วงโซ่อุปทานที่มีความรับผิดชอบสำหรับแร่จากพื้นที่ที่มีความขัดแย้งและมีความเสี่ยงสูง หรือกรอบการตรวจสอบสถานะที่เป็นที่ยอมรับและเทียบเท่า"
+          },
+          {
+            "t": "ความเป็นส่วนตัว",
+            "b": "ผู้เข้าร่วมควรมุ่งมั่นในการปกป้องข้อมูลส่วนบุคคลตามความคาดหมายและด้วยเหตุผลอันควรของผู้ที่ทำธุรกิจด้วย รวมถึงซัพพลายเออร์ ลูกค้า ผู้บริโภค และพนักงาน ผู้เข้าร่วมพึงปฏิบัติตามกฎหมายรักษาความปลอดภัยความเป็นส่วนตัวและความปลอดภัยของข้อมูล และระเบียบข้อกำหนดในกรณีที่ได้รวบรวม เก็บรักษา ประมวลผล ส่งต่อ และแบ่งปันข้อมูลส่วนบุคคล"
+          }
+        ]
+      },
+      {
+        "key": "E",
+        "title": "ระบบการบริหารจัดการ",
+        "intro": "ผู้เข้าร่วมจะต้องปฏิบัติใช้หรือจัดตั้งระบบการจัดการซึ่งมีขอบเขตที่เกี่ยวข้องกับเนื้อหาของหลักจรรยาบรรณนี้ ระบบการจัดการต้องได้รับการออกแบบขึ้นเพื่อให้ (ก) สอดคล้องกับกฎหมาย ระเบียบ และข้อกำหนดของลูกค้าที่เกี่ยวข้องกับการประกอบกิจการและผลิตภัณฑ์ของผู้เข้าร่วมที่มีการบังคับใช้ (ข) สอดคล้องกับหลักจรรยาบรรณนี้ และ (ค) ระบุและบรรเทาความเสี่ยงจากการปฏิบัติงานอันเกี่ยวเนื่องกับหลักจรรยาบรรณนี้ ระบบควรเอื้ออำนวยการปรับปรุงอย่างต่อเนื่อง",
+        "lead": "ระบบการจัดการควรมีองค์ประกอบเบื้องต้นดังต่อไปนี้:",
+        "items": [
+          {
+            "t": "ความมุ่งมั่นของบริษัท",
+            "b": "ผู้เข้าร่วมควรจัดทำคำแถลงนโยบายสิทธิมนุษยชน สุขภาพและความปลอดภัย สิ่งแวดล้อม และจริยธรรมซึ่งยืนยันความมุ่งมั่นของผู้เข้าร่วมในการตรวจสอบวิเคราะห์และการปรับปรุงอย่างต่อเนื่อง ซึ่งคำแถลงนั้นลงนามรับรองโดยฝ่ายบริหาร คำแถลงนโยบายควรเปิดเผยต่อสาธารณะและสื่อสารกับแรงงานในภาษาที่พวกเขาเข้าใจผ่านช่องทางที่สามารถเข้าถึงได้"
+          },
+          {
+            "t": "ความสำนึกในหน้าที่และความรับผิดชอบของฝ่ายบริหาร",
+            "b": "ผู้เข้าร่วมควรระบุตัวตนผู้บริหารอาวุโสและผู้แทนของบริษัทที่รับผิดชอบในการนำระบบการจัดการและโครงการที่เกี่ยวข้องมาปฏิบัติอย่างชัดเจน ผู้บริหารอาวุโสทำการทบทวนสถานะของระบบการจัดการเป็นประจำ"
+          },
+          {
+            "t": "ข้อกำหนดทางกฎหมายและข้อกำหนดของลูกค้า",
+            "b": "ผู้เข้าร่วมควรประยุกต์ใช้และจัดทำกระบวนการเพื่อระบุ เฝ้าระวัง และทำความเข้าใจเกี่ยวกับกฎหมาย กฎระเบียบ และข้อกำหนดของลูกค้าที่บังคับใช้ รวมถึงข้อกำหนดของหลักจรรยาบรรณนี้"
+          },
+          {
+            "t": "การประเมินความเสี่ยงและการจัดการความเสี่ยง",
+            "b": "ผู้เข้าร่วมควรประยุกต์หรือจัดทำกระบวนการเพื่อระบุการปฏิบัติตามกฎหมาย ระเบียบด้านสิ่งแวดล้อม สุขภาพและความปลอดภัย ตลอดจนวิธีปฏิบัติต่อแรงงานและความเสี่ยงต่อจริยธรรมที่เกี่ยวข้องกับการประกอบกิจการของผู้เข้าร่วม ผู้เข้าร่วมควรพิจารณาตัดสินใจที่เกี่ยวข้องอย่างมีนัยสำคัญสำหรับความเสี่ยงแต่ละประการและการใช้กระบวนการและการควบคุมทางกายภาพที่เหมาะสม เพื่อควบคุมความเสี่ยงที่ระบุได้ให้เป็นไปตามระเบียบข้อบังคับ"
+          },
+          {
+            "t": "วัตถุประสงค์การปรับปรุง",
+            "b": "ผู้เข้าร่วมควรจัดทำวัตถุประสงค์ เป้าหมาย และแผนการปฏิบัติอย่างเป็นลายลักษณ์อักษร เพื่อปรับปรุงผลการทำงานด้านสังคม สิ่งแวดล้อม สุขภาพและความปลอดภัยของผู้เข้าร่วม รวมถึงการประเมินผลความสำเร็จตามวัตถุประสงค์ของผู้เข้าร่วมเป็นระยะ ๆ"
+          },
+          {
+            "t": "การฝึกอบรม",
+            "b": "ผู้เข้าร่วมควรจัดทำโปรแกรมการฝึกอบรมผู้จัดการและแรงงานเพื่อบังคับใช้นโยบาย กระบวนการทำงาน และวัตถุประสงค์การปรับปรุงของผู้เข้าร่วม และเพื่อให้เป็นไปตามกฎหมายและระเบียบข้อกำหนดที่บังคับใช้"
+          },
+          {
+            "t": "การสื่อสาร",
+            "b": "ผู้เข้าร่วมควรจัดทำกระบวนการสื่อสารข้อมูลที่ชัดเจนและถูกต้องเกี่ยวกับนโยบาย แนวปฏิบัติ ความคาดหมาย และผลการทำงานของผู้เข้าร่วม ต่อแรงงาน ซัพพลายเออร์ และลูกค้า"
+          },
+          {
+            "t": "การมีส่วนร่วมของแรงงาน/ผู้มีส่วนได้ส่วนเสียและการเข้าถึงการมาตรการเยียวยา",
+            "b": "ผู้เข้าร่วมจะต้องกำหนดกระบวนการสื่อสารแบบสองทางกับแรงงานอย่างต่อเนื่อง หรือกับตัวแทนของพวกเขา และผู้มีส่วนได้ส่วนเสียอื่น ๆ ที่เกี่ยวข้องหรือจำเป็น กระบวนการดังกล่าวมุ่งเน้นที่การรับฟังข้อเสนอแนะคำติชมวิธีปฏิบัติและสภาพการทำงานภายใต้หลักจรรยาบรรณนี้ และเพื่อส่งเสริมการปรับปรุงอย่างต่อเนื่อง แรงงานควรมีสภาพแวดล้อมที่ปลอดภัยในการร้องทุกข์และแสดงความคิดเห็น โดยไม่ต้องกลัวต่อการแก้แค้นหรือการตอบโต้"
+          },
+          {
+            "t": "การตรวจติดตามและการประเมิน",
+            "b": "ผู้เข้าร่วมควรดำเนินการประเมินตนเองเป็นระยะ ๆ เพื่อให้มั่นใจว่าได้ดำเนินการตามกฎหมายและระเบียบข้อกำหนด รวมถึงเนื้อหาของหลักจรรยาบรรณและข้อกำหนดของลูกค้าเกี่ยวกับกับความรับผิดชอบต่อสังคมและสิ่งแวดล้อมตามที่สัญญาไว้"
+          },
+          {
+            "t": "กระบวนการปฏิบัติการแก้ไข",
+            "b": "ผู้เข้าร่วมควรจัดทำกระบวนการปฏิบัติการแก้ไขอย่างทันท่วงทีต่อความเสื่อมประสิทธิภาพ ซึ่งระบุได้จากการประเมินภายในหรือภายนอก การตรวจสอบ การสืบสวน และการทบทวน"
+          },
+          {
+            "t": "การจัดทำเอกสารและบันทึกข้อมูล",
+            "b": "ผู้เข้าร่วมควรสร้างและรักษาเอกสารและบันทึกข้อมูล เพื่อให้มั่นใจว่าได้ปฏิบัติตามกฎระเบียบและสอดคล้องกับข้อกำหนดของบริษัท พร้อมทั้งการรักษาความลับเพื่อปกป้องความเป็นส่วนตัวตามความเหมาะสม"
+          },
+          {
+            "t": "ความรับผิดชอบต่อซัพพลายเออร์",
+            "b": "ผู้เข้าร่วมควรจัดทำกระบวนการเพื่อสื่อสารข้อกำหนดหลักจรรยาบรรณให้กับซัพพลายเออร์ และเฝ้าติดตามให้ซัพพลายเออร์ปฏิบัติตามหลักจรรยาบรรณนี้"
+          }
+        ]
+      }
+    ],
+    "minerals": {
+      "title": "นโยบายการจัดการแร่ที่อยู่ภายใต้ข้อขัดแย้ง",
+      "meta": "",
+      "pdf": "/documents/ayutthaya-conflict-minerals-policy-th.pdf",
+      "pdfLabel": "ดาวน์โหลดนโยบาย (PDF, TH)",
+      "blocks": [
+        {
+          "p": "ในเดือน สิงหาคม 2555, สำนักงานคณะกรรมการหลักทรัพย์และตลาดหลักทรัพย์สหรัฐอเมริกา (SEC) ได้มีการนำกฎหมายดอดด์-แฟรงค์ หัวข้อ 1502 มาบังคับใช้ ข้อบังคับนี้ใช้บังคับกับบริษัทที่จดทะเบียนในตลาดหลักทรัพย์ของสหรัฐอเมริกาโดยต้องทำเอกสารประจำปีในการเปิดเผยและรายงานกับสำนักงานคณะกรรมการหลักทรัพย์และตลาดหลักทรัพย์สหรัฐอเมริกาในเรื่องของการใช้แร่ที่อยู่ภายใต้ข้อขัดแย้ง (ดีบุก, แทนทาลัม, ทังสเตน ทองคำ) ในผลิตภัณฑ์ของบริษัท ซึ่งรวมถึง “โคบอลต์” ที่ออกประกาศเมื่อเดือนธันวาคม 2561"
+        },
+        {
+          "p": "ฮานา สัญญาว่าวัตถุดิบที่สรรหา และ/หรือ จัดซื้อโดยฮานา ที่ใช้ในการจัดการห่วงโซ่อุปทานจะมาจากแหล่งแร่ที่มีความรับผิดชอบ และไม่มีการใช้แร่ธาตุที่อยู่ภายใต้ข้อขัดแย้งที่มาจากสาธารณรัฐประชาธิปไตยคองโกหรือประเทศที่อยู่ใกล้กัน"
+        },
+        {
+          "p": "ฮานาคาดหวังกับซัพพลายเออร์ในการให้คำมั่นสัญญาว่าจะนำไปจัดทำและปฏิบัติตามความรับผิดชอบในการหาแหล่งผลิตแร่ธาตุรวมถึงข้อกำหนดดังนี้"
+        },
+        {
+          "ul": [
+            "จัดทำนโยบายห้ามใช้ และ/หรือสนับสนุนในการใช้แร่ธาตุที่สกัดมาจากแร่ธาตุที่อยู่ภายใต้ข้อขัดแย้ง (ดีบุก, แทนทาลัม, ทังสเตน ทองคำ และโคบอลต์) จากสาธารณรัฐประชาธิปไตยคองโก หรือประเทศที่อยู่ใกล้กัน",
+            "ปฏิบัติตามจรรยาบรรณทางการค้าของอุตสาหกรรมอิเลกทรอนิกส์ และจัดหาวัตถุดิบจากซัพพลายเออร์ที่มีความรับผิดชอบต่อสังคม",
+            "แสดงถึงแหล่งที่มาและชื่อผู้ถลุงแร่ของแร่ที่อยู่ภายใต้ข้อขัดแย้งของผลิตภัณฑ์ที่จัดส่งให้ฮานา"
+          ]
+        },
+        {
+          "sign": [
+            "นาย พงศกร จังเสถียร",
+            "ผู้อำนวยการ ฝ่ายคุณภาพ",
+            "บริษัท ฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด"
+          ]
+        }
+      ]
+    }
+  }
+}
