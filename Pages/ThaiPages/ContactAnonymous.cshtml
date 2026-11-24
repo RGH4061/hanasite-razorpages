@@ -1,0 +1,76 @@
+@page "/th/contact/anonymous"
+@{
+    ViewData["Title"] = "แบบฟอร์มสื่อสารแบบไม่เปิดเผยตัวตน";
+    ViewData["Motion"] = "page";
+    ViewData["Description"] = "แบบฟอร์มนี้ใช้สำหรับสอบถามหรือแจ้งข้อกังวลเกี่ยวกับจรรยาบรรณทางธุรกิจ (Code of Conduct)";
+    ViewData["Canonical"] = "https://www.hanagroup.com/th/contact/anonymous";
+    ViewData["Lang"] = "th";
+    ViewData["AltLang"] = "en";
+    ViewData["AltLangUrl"] = "/contact/anonymous";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/contact-forms.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contact-forms-th.css" asp-append-version="true" />
+}
+
+@* Thai Anonymous Communication Form (added 24 Nov 2026). Same markup as Pages/Contact/Anonymous.cshtml.
+   Page text is the approved Thai copy Rupert supplied on 24 Nov 2026. Lines not in that copy are drafts that
+   need Thai review: the "About this channel" label, the guideline button and modal title, the issue field
+   label, the submit button and the success message. *@
+
+<div class="cf-page">
+  <section class="cf-hero" data-hana-bg="pcb" data-variant="dark" data-accent="cyan" data-fade="left" style="background:var(--hana-blue-deep);">
+    <div class="cf-hero-inner">
+      <h1 style="color:#fff;">แบบฟอร์มสื่อสารแบบไม่เปิดเผยตัวตน</h1>
+      <p class="cf-hero-sub" style="color:rgba(229,238,245,0.72);">แบบฟอร์มนี้ใช้สำหรับสอบถามหรือแจ้งข้อกังวลเกี่ยวกับจรรยาบรรณทางธุรกิจ (Code of Conduct)</p>
+    </div>
+  </section>
+  <section class="cf-section">
+    <div class="cf-wrap" style="position:relative;z-index:1;">
+      <div class="cf-grid">
+        <div class="cf-intro">
+          <p class="cf-eyebrow">เกี่ยวกับช่องทางนี้</p>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 18px;">ท่านสามารถส่งข้อมูลโดยไม่เปิดเผยตัวตนได้ อย่างไรก็ตาม บริษัทขอแนะนำให้ระบุข้อมูลติดต่อ เพื่อให้สามารถติดตามเรื่องและตอบกลับได้อย่างรวดเร็ว หากไม่มีข้อมูลติดต่อ บริษัทอาจไม่สามารถแจ้งผลกลับได้</p>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 18px;">HANA เชื่อว่าการสื่อสารอย่างเปิดเผยเป็นส่วนสำคัญต่อความสำเร็จขององค์กร จึงจัดให้มีช่องทางร้องเรียนสำหรับพนักงานและผู้เกี่ยวข้อง เพื่อแจ้งพฤติกรรมที่ผิดกฎหมาย ผิดจริยธรรม หรือไม่เป็นไปตามข้อกำหนด โดยบริษัทจะรักษาข้อมูลของผู้ร้องเรียนเป็นความลับอย่างเคร่งครัด</p>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 28px;">ท่านสามารถแจ้งข้อกังวล ข้อร้องเรียน หรือการกระทำที่อาจฝ่าฝืนกฎหมาย ระเบียบ หรือจรรยาบรรณของบริษัทได้ บริษัทจะคุ้มครองผู้แจ้งข้อมูลโดยสุจริต และจะไม่มีผลกระทบต่อหน้าที่การงานจากการแจ้งเรื่อง การตั้งคำถาม หรือการรายงานพฤติกรรมที่ไม่เหมาะสม หากท่านเห็นว่าถูกตอบโต้ หรือ ทำให้หวาดกลัว จากการแจ้งเรื่องของท่าน กรุณาติดต่อผู้อำนวยการฝ่ายทรัพยากรบุคคลและฝึกอบรม (Head of Human Resources and Training) ผู้บริหารจะให้ความสำคัญกับทุกข้อร้องเรียน ดำเนินการตรวจสอบ และดำเนินการอย่างเหมาะสม</p>
+
+          <div class="cf-offices-label">ช่องทางสื่อสารแบบไม่เปิดเผยตัวตนทางไปรษณีย์</div>
+          <p style="font-family:var(--font-text);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin:0 0 18px;">ท่านสามารถติดต่อหรือแจ้งข้อมูลโดยไม่เปิดเผยตัวตน ผ่านทางไปรษณีย์ตามที่อยู่ดังต่อไปนี้:</p>
+          <div class="cf-office"><div class="cf-office-name">ผู้อำนวยการฝ่ายทรัพยากรบุคคลและฝึกอบรม</div><div class="cf-office-name" style="margin-top:2px;">บริษัทฮานา เซมิคอนดักเตอร์ (อยุธยา) จำกัด</div><div class="cf-office-addr" style="margin-top:10px;">นิคมอุตสาหกรรมไฮเทค<br>100 หมู่ 1 ตำบลบ้านเลน อำเภอบางปะอิน<br>ถนนสายเอเซีย กม.59 จังหวัดพระนครศรีอยุธยา 13160</div></div>
+        </div>
+        <div class="cf-card" id="anon-form">
+  <div class="cf-success" hidden><div class="cf-success-mark"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div><h3>ได้รับเรื่องแล้ว</h3><p>บริษัทได้รับข้อมูลของท่านแล้ว หากท่านระบุข้อมูลติดต่อไว้ บริษัทจะติดต่อกลับ</p></div>
+
+  <form class="cf-form" method="post" novalidate>
+    <button type="button" id="cf-guideline-btn" class="hana-btn hana-btn-secondary" style="margin-top:20px;padding:11px 22px;font-size:12px;background-color:var(--hana-blue-tint)">แนวทางช่องทางร้องเรียน</button>
+    <div class="cf-row one" style="margin-bottom:0;"><div class="cf-field"><label for="an-message" style="padding:5px;"><span class="req">*</span>คำถามหรือรายละเอียดของเรื่องที่แจ้ง</label><textarea id="an-message" name="an-message" required style="min-height:160px;"></textarea></div></div>
+    <div class="cf-privacy" style="margin:4px 0 6px;">ช่องที่มีเครื่องหมาย (*) เป็นข้อมูลที่จำเป็นต้องกรอก</div>
+    <div class="cf-privacy" style="margin:0 0 18px;">บริษัทจะดำเนินการตรวจสอบเรื่องที่ได้รับแจ้ง และดำเนินการอย่างเหมาะสมตามข้อมูลที่ได้รับ หากท่านต้องการให้บริษัทติดตามผลหรือแจ้งความคืบหน้ากลับ กรุณาระบุความประสงค์ไว้ในช่อง แล้วบริษัทจะติดต่อกลับ อย่างไรก็ตาม หากท่านเลือกแจ้งเรื่องแบบไม่เปิดเผยตัวตน บริษัทจะไม่สามารถติดต่อกลับหรือติดตามผลกับท่านได้ หากต้องการไม่เปิดเผยตัวตน กรุณา งดระบุชื่อหรือข้อมูลติดต่อของท่าน</div>
+    <div class="cf-divider"></div>
+    <div class="cf-offices-label" style="margin:18px 0 4px;">กรอกหรือไม่กรอกก็ได้</div>
+    <div class="cf-row two"><div class="cf-field"><label for="an-name">ชื่อ</label><input type="text" id="an-name" name="an-name"></div><div class="cf-field"><label for="an-email">อีเมล์</label><input type="email" id="an-email" name="an-email"></div></div>
+    <div class="cf-row two"><div class="cf-field"><label for="an-phone">เบอร์ติดต่อ</label><input type="tel" id="an-phone" name="an-phone"></div></div>
+    <div class="cf-submit-area"><div class="cf-recaptcha"><input type="checkbox" id="cf-rc-an"><label for="cf-rc-an" class="rc-label">ฉันไม่ใช่โปรแกรมอัตโนมัติ</label>
+    <div class="rc-logo"><span class="rc-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hana-blue-soft)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><span class="rc-text">reCAPTCHA<br>นโยบายความเป็นส่วนตัว &middot; ข้อกำหนดการใช้งาน</span></div></div><button type="submit" class="cf-btn-submit" disabled style="opacity:0.5;cursor:not-allowed;">ส่งข้อมูล</button></div>
+  </form>
+</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="cf-guideline-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(3,10,23,0.6);align-items:center;justify-content:center;padding:32px;">
+  <div style="background:#fff;border-radius:8px;max-width:920px;width:100%;max-height:88vh;overflow:auto;position:relative;">
+    <button type="button" id="cf-guideline-close" aria-label="ปิด" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border:1px solid var(--line);border-radius:4px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-2);">&times;</button>
+    <div style="padding:32px;">
+      <h3 style="font-family:var(--font-display);font-weight:600;font-size:20px;color:var(--ink);margin:0 0 20px;">แนวทางช่องทางร้องเรียน</h3>
+      <img src="/images/complaint-channel-th.webp" alt="แนวทางช่องทางร้องเรียน (ไทย)" style="width:100%;display:block;border:1px solid var(--line);border-radius:6px;margin-bottom:20px;">
+      <img src="/images/complaint-channel-en.webp" alt="Guideline for complaint channel (English)" style="width:100%;display:block;border:1px solid var(--line);border-radius:6px;">
+    </div>
+  </div>
+</div>
+<script>(function(){var b=document.getElementById('cf-guideline-btn'),m=document.getElementById('cf-guideline-modal'),c=document.getElementById('cf-guideline-close');if(b&&m){b.addEventListener('click',function(){m.style.display='flex';});c.addEventListener('click',function(){m.style.display='none';});m.addEventListener('click',function(e){if(e.target===m)m.style.display='none';});}})();</script>
+
+@section Scripts {
+    <script src="~/js/contact-forms.js" asp-append-version="true"></script>
+}
