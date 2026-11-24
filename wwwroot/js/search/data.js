@@ -14,7 +14,9 @@ PAGES.push(
   {"n": "Lamphun certifications", "u": "/locations/lamphun/certifications", "t": "Sub-page", "s": "Locations", "k": "Lamphun plant certificates", "p": "MEDIUM"},
   {"n": "Jiaxing certifications", "u": "/locations/jiaxing/certifications", "t": "Sub-page", "s": "Locations", "k": "Jiaxing plant certificates", "p": "MEDIUM"},
   {"n": "Koh Kong certifications", "u": "/locations/koh-kong/certifications", "t": "Sub-page", "s": "Locations", "k": "Koh Kong plant certificates", "p": "MEDIUM"},
-  {"n": "Ohio certifications", "u": "/locations/ohio/certifications", "t": "Sub-page", "s": "Locations", "k": "Ohio plant certificates", "p": "MEDIUM"}
+  {"n": "Ohio certifications", "u": "/locations/ohio/certifications", "t": "Sub-page", "s": "Locations", "k": "Ohio plant certificates", "p": "MEDIUM"},
+  /* The anonymous feedback form (24 Nov 2026), reached from the Contact page's Feedback tab. */
+  {"n": "Anonymous Feedback Form", "u": "/contact/anonymous", "t": "Sub-page", "s": "Contact", "k": "anonymous feedback form", "p": "MEDIUM"}
 );
 
 /* Sample of the proposed SEARCH TERMS column — the shorthand people actually type.
@@ -118,14 +120,15 @@ const NOROW_TERMS = {};
    investor FAQ; results and earnings -> Investor Events; quote, sales, email, phone and
    suppliers -> Contact. */
 const MORE_TERMS = {
- "/contact/": "quote quotation rfq request a quote sales email phone telephone enquiry inquiry supplier suppliers",
+ "/contact/": "quote quotation rfq request a quote sales email phone telephone enquiry inquiry supplier suppliers other inquiries feedback",
  "/investor-relations/": "stock price share price ticker set",
  "/investor-relations/faqs": "dividend dividends payout agm annual general meeting",
  "/investor-relations/events-contact": "results earnings financial results quarterly results earnings call results presentation",
  "/capabilities/osat/package-finder": "package finder find a package package search package size sizes package dimensions",
  "/cookie-policy": "cookie cookies",
  "/locations/ayutthaya/certifications": "certificates certificate certification pdf quality certificates iso certificates",
- "/locations/ayutthaya/rba-csr-policy": "rba csr corporate social responsibility code of conduct policy responsible business alliance ethics labor human rights rba standards conflict minerals responsible minerals sourcing 3tg tin tantalum tungsten gold cobalt mica cmrt crt emrt rmap oecd",
+ "/locations/ayutthaya/rba-csr-policy": "rba csr corporate social responsibility code of conduct policy responsible business alliance ethics labor human rights rba standards conflict minerals responsible minerals sourcing 3tg tin tantalum tungsten gold cobalt mica cmrt crt emrt rmap oecd, csr policy, ayutthaya csr, ayt csr, csr ayutthaya, social responsibility, corporate responsibility, rba policy, rba code of conduct, rba standard, ethics policy, business ethics, labour, labour standards, labor standards, working conditions, forced labour, child labour, health and safety policy, environmental policy, responsible sourcing, conflict free, conflict-free, conflict minerals policy, dodd-frank, sustainability policy",
+ "/contact/anonymous": "feedback, feedback form, anonymous, anonymous feedback, anonymous form, anonymous report, report a concern, raise a concern, concern, complaint, complaints, grievance, whistleblower, whistleblowing, whistle blower, speak up, ethics hotline, ethics report, misconduct, fraud, corruption, bribery",
  "/locations/lamphun/certifications": "certificates certificate certification pdf quality certificates iso certificates",
  "/locations/jiaxing/certifications": "certificates certificate certification pdf quality certificates iso certificates",
  "/locations/koh-kong/certifications": "certificates certificate certification pdf quality certificates iso certificates",
@@ -297,8 +300,12 @@ const CERTS = [
 
 /* Certifications feed the page index too, so location pages surface in normal results. */
 CERTS.forEach(c=>c.sites.forEach(s=>{
-  const u = SITES[s.s].u;
+  const u = SITES[s.s].u, cu = SITES[s.s].cu;
   TERMS[u] = (TERMS[u]||"") + " " + c.id.toLowerCase() + " " + c.full.toLowerCase() + " " + c.alias;
+  /* The plant certification page gets the standard's name only. The aliases ("automotive",
+     "medical") would push those words past the 15% common-word line and change unrelated
+     rankings; a certification query reaches these pages through engine.js instead. */
+  if(cu) TERMS[cu] = (TERMS[cu]||"") + " " + c.id.toLowerCase() + " " + c.full.toLowerCase();
 }));
 
 /* The two pages decided 31 July with no row in the URL Structure tab yet. */

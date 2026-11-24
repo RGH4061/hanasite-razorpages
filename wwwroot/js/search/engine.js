@@ -192,7 +192,18 @@ function search(raw, opts){
   const hint = smart ? (toks.find(t=>t.intent)||{}).intent || null : null;
   let pool = ALL.filter(p=>p.t!=="Template");
   if(opts.section) pool = pool.filter(p=>p.s===opts.section);
-  const rows = pool.map(p=>score(p, toks, hint, raw)).filter(Boolean).sort((a,b)=>b.s-a.s);
+  const cert = opts.noCert ? null : findCert(raw);
+  const rows = pool.map(p=>score(p, toks, hint, raw)).filter(Boolean);
+  /* A certification query leads with the certification pages of the plants that hold it
+     (Rupert, 24 Nov 2026), ahead of the location pages, which carry the same terms. A plant
+     named in the query ("lamphun iso 14001") still comes first among them. */
+  if(smart && cert){
+    const cu = new Set(cert.sites.map(s=>SITES[s.s].cu).filter(Boolean));
+    rows.forEach(r=>{ if(cu.delete(r.p.u)) r.s += 300; });
+    /* A holder's certification page that did not match the words itself is still listed. */
+    cu.forEach(u=>{ const p = pool.find(x=>x.u===u); if(p) rows.push({p, s:300, hits:[[cert.id,"certification"]]}); });
+  }
+  rows.sort((a,b)=>b.s-a.s);
   const bySection = {};
   rows.forEach(r=>{ (bySection[r.p.s] = bySection[r.p.s] || []).push(r); });
   const groups = SECTION_ORDER.filter(s=>bySection[s]).map(s=>({section:s, items:bySection[s]}));
@@ -205,7 +216,7 @@ function search(raw, opts){
     if(i > 0) groups.unshift(groups.splice(i,1)[0]);
   }
   return {raw, toks, hint, groups, total:rows.length,
-    cert: opts.noCert ? null : findCert(raw),
+    cert,
     pkg: opts.noPkg ? null : (smart ? findPackages(raw) : null)};
 }
 
