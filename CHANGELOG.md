@@ -2,7 +2,15 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
-## Latest changes (24 Nov 2026 — Thai text for Ayutthaya and 19 Capabilities pages)
+## Latest changes (25 Nov 2026 — Thai team's layout review)
+
+- **Shorter Thai** — the Thai team's reply to *Thai layout review (24 Nov 2026).xlsx* is applied in `Data/thai-drafts.json`: Ayutthaya H1 (อยุธยา), opening blurb, "OSAT in Thailand" paragraphs and service cards (the fourth card, DFx & JDM Collaboration, is now translated too); the "Key capability" badge on SMT; the "Why run…" sections on COB, Box Build, DFx/DFM and JDM (one-line bullets, no added descriptions, no English in brackets); the Flip chip die attach and wire bond columns; and the first NPI stage card. The NPI Process qualification and third cards were not in the reply and are unchanged.
+- **Kept in English at the team's request** — the stats bar values on Box Build and labels on DFx/DFM and JDM, the Flip chip sub-headings and its Power Packages and Chip-on-Board Assembly links, and the Proactive DFx Engineering Analysis label on NPI: their entries are removed, so the English shows.
+- **Capabilities side menu in English** — `ThaiDrafts.TranslateLabels` now skips `<aside id="cap-sb">`, so the "Browse capabilities" menu shows the English names on Thai pages. Breadcrumbs, eyebrows and the Thai header's Capabilities menu are still Thai.
+- **Not applied** — a fourth bullet the team wrote for JDM's first "Why" block (ความรับผิดชอบร่วมกันของทีมวิศวกรรม) has no English counterpart. Two missing spaces were corrected (Hana ให้บริการ, รองรับ Low-to-Medium).
+- **Result at 1280px** — the Ayutthaya header fits its original 440px again (483px on a 375px phone); the "Why" sections are 600–675px tall (were 990–1,230px; English 440–480px).
+
+## Earlier changes (24 Nov 2026 — Thai text for Ayutthaya and 19 Capabilities pages)
 
 - **Thai team's review deck applied** — `Data/thai-drafts.json` now carries the Thai from *Website HANA Translation.pptx* (mapped in `hana-thai-translation-update.md`, Thai Translation/Verification Docs) for `/th/locations/ayutthaya` and 19 Capabilities pages: 620 text pieces in the pages' `"text"` maps, plus the H1 and opening blurb of 7 pages (Ayutthaya, PCBA & box build, SMT, Box Build, DFx/DFM, JDM, NPI), which replace Thai approved in the Lamphun review. No English changed.
 - **Status** — pages whose deck Thai was a picture and was typed out by eye (SMT, COB, Box Build, DFx/DFM, JDM, NPI) are `"textStatus": "draft"` until the Thai team proofreads them; the JDM H1 and blurb are draft for the same reason. The rest are approved. `/th/<route>?review=1` shows every piece matching (N of N on all 20 pages).

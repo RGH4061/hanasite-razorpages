@@ -205,8 +205,11 @@ public static class ThaiDrafts
         var labels = Current().Labels;
         var sb = new StringBuilder();
         var last = 0;
-        // Leave script and style blocks alone.
-        var skips = SkipRx.Matches(html).Select(m => (m.Index, End: m.Index + m.Length)).ToList();
+        // Leave script and style blocks alone, and the capabilities side menu (#cap-sb): the Thai team
+        // asked for the capability names there to stay in English (layout review, 25 Nov 2026).
+        var skips = SkipRx.Matches(html).Cast<Match>()
+            .Concat(Regex.Matches(html, @"<aside id=""cap-sb"">.*?</aside>", RegexOptions.Singleline).Cast<Match>())
+            .Select(m => (m.Index, End: m.Index + m.Length)).ToList();
         foreach (Match m in TextRx.Matches(html))
         {
             if (skips.Any(s => m.Index >= s.Index && m.Index < s.End)) continue;
