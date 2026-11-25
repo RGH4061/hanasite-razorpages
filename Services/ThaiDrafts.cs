@@ -14,8 +14,9 @@
 //
 //  A page can also list "text": whole pieces of English text below the H1
 //  (headings, card titles, facts, buttons) with their Thai. Each piece is
-//  matched exactly, so a piece whose English changes stays English. "textStatus"
-//  (default approved) is the review status of those pieces.
+//  matched exactly, so a piece whose English changes stays English. "\n" in the
+//  Thai is a line break. "textStatus" (default approved) is the review status
+//  of those pieces.
 //
 //  New routes in the JSON need a restart (routes are registered at startup);
 //  text changes are picked up on the next request.
@@ -204,8 +205,11 @@ public static class ThaiDrafts
         var labels = Current().Labels;
         var sb = new StringBuilder();
         var last = 0;
-        // Leave script and style blocks alone.
-        var skips = SkipRx.Matches(html).Select(m => (m.Index, End: m.Index + m.Length)).ToList();
+        // Leave script and style blocks alone, and the capabilities side menu (#cap-sb): the Thai team
+        // asked for the capability names there to stay in English (layout review, 25 Nov 2026).
+        var skips = SkipRx.Matches(html).Cast<Match>()
+            .Concat(Regex.Matches(html, @"<aside id=""cap-sb"">.*?</aside>", RegexOptions.Singleline).Cast<Match>())
+            .Select(m => (m.Index, End: m.Index + m.Length)).ToList();
         foreach (Match m in TextRx.Matches(html))
         {
             if (skips.Any(s => m.Index >= s.Index && m.Index < s.End)) continue;
@@ -245,8 +249,10 @@ public static class ThaiDrafts
             var g = m.Groups[1];
             var lead = raw[..(raw.Length - raw.TrimStart().Length)];
             var trail = raw[raw.TrimEnd().Length..];
-            // "\n" in the Thai stays a newline; the fact rows that hold two lines use white-space:pre-line.
-            var enc = WebUtility.HtmlEncode(th);
+            // "\n" in the Thai becomes a line break, as in the H1 and blurb (the Thai team splits some
+            // paragraphs and puts a description under a bullet label). A <br> rather than white-space:pre-line,
+            // because span.th (thai-type.css) resets white-space and would hide a newline.
+            var enc = WebUtility.HtmlEncode(th).Replace("\n", "<br>");
             if (review) enc = $"<span class=\"thd-mark thd-{Slug(status)}\">{enc}</span>";
             sb.Append(html, last, g.Index - last).Append(lead).Append(enc).Append(trail);
             last = g.Index + g.Length;
