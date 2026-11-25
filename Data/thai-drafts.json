@@ -1350,7 +1350,7 @@
       "description": "ใบรับรองมาตรฐานของโรงงานอยุธยา ได้แก่ ISO 9001:2015, IATF 16949:2016, ISO 14001:2015, ISO 45001:2018, ANSI/ESD S20.20-2021, ISO/IEC 27001:2022, ISO 13485:2016, Carbon Footprint for Organization, RBA Platinum Level, Sony Green Partner, ITAR พร้อมไฟล์ PDF ของใบรับรอง",
       "text": {
         "Standard": "มาตรฐาน",
-        "Area": "ด้าน",
+        "Type of certification": "ด้าน",
         "Certification body": "หน่วยรับรอง",
         "Certificate no.": "เลขที่ใบรับรอง",
         "Certificate": "ใบรับรอง",
@@ -1399,7 +1399,7 @@
       "description": "ใบรับรองมาตรฐานของโรงงานลำพูน ได้แก่ ISO 9001:2015, IATF 16949:2016, ISO 13485:2016, ISO 14001:2015, ISO 45001:2018 พร้อมไฟล์ PDF ของใบรับรอง",
       "text": {
         "Standard": "มาตรฐาน",
-        "Area": "ด้าน",
+        "Type of certification": "ด้าน",
         "Certification body": "หน่วยรับรอง",
         "Certificate no.": "เลขที่ใบรับรอง",
         "Certificate": "ใบรับรอง",
@@ -1439,7 +1439,7 @@
       "description": "ใบรับรองมาตรฐานของโรงงานเจียซิง ได้แก่ ISO 9001:2015, IATF 16949:2016, ISO 13485:2016, ISO 14001:2015, ISO 45001:2018, IECQ QC 080000:2017, ISO/IEC 27001:2022, ISO 14064-1 พร้อมไฟล์ PDF ของใบรับรอง",
       "text": {
         "Standard": "มาตรฐาน",
-        "Area": "ด้าน",
+        "Type of certification": "ด้าน",
         "Certification body": "หน่วยรับรอง",
         "Certificate no.": "เลขที่ใบรับรอง",
         "Certificate": "ใบรับรอง",
@@ -1482,7 +1482,7 @@
       "description": "ใบรับรองมาตรฐานของโรงงานเกาะกง ได้แก่ ISO 9001:2015, TL 9000:2016, ISO 13485:2016, IATF 16949:2016 พร้อมไฟล์ PDF ของใบรับรอง",
       "text": {
         "Standard": "มาตรฐาน",
-        "Area": "ด้าน",
+        "Type of certification": "ด้าน",
         "Certification body": "หน่วยรับรอง",
         "Certificate no.": "เลขที่ใบรับรอง",
         "Certificate": "ใบรับรอง",
@@ -1521,7 +1521,7 @@
       "description": "ใบรับรองมาตรฐานของโรงงานโอไฮโอ ได้แก่ ISO 9001:2015, IATF 16949:2016, ARC Quality, ITAR พร้อมไฟล์ PDF ของใบรับรอง",
       "text": {
         "Standard": "มาตรฐาน",
-        "Area": "ด้าน",
+        "Type of certification": "ด้าน",
         "Certification body": "หน่วยรับรอง",
         "Certificate no.": "เลขที่ใบรับรอง",
         "Certificate": "ใบรับรอง",
