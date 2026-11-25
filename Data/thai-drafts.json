@@ -1273,16 +1273,19 @@
       },
       "lede": {
         "en": "Koh Kong is a TAA-compliant EMS plant in Cambodia and products built here can qualify for US federal and government supply. The site runs PCBA, final assembly, box build and micro-assembly for medical devices and consumer electronics.",
-        "th": "ฐานการผลิต EMS ที่เป็นไปตามข้อกำหนด TAA ในเขตเศรษฐกิจพิเศษเกาะกง ผลิตภัณฑ์ที่ผลิตที่นี่มีคุณสมบัติสำหรับการจัดซื้อของหน่วยงานรัฐบาลกลางและภาครัฐของสหรัฐอเมริกา ให้บริการ PCBA, final assembly, box build และ micro-assembly ตั้งแต่อุปกรณ์การแพทย์ไปจนถึงผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
+        "th": "ฐานการผลิตอุปกรณ์อิเล็กทรอนิกส์ (EMS) ที่สอดคล้องตามข้อกำหนด TAA (Trade Agreements Act) โดยผลิตภัณฑ์ที่ผลิตจากโรงงานแห่งนี้ ผ่านเกณฑ์ด้านแหล่งกำเนิดสินค้าสำหรับการจัดซื้อจัดจ้างของรัฐบาลกลางและหน่วยงานภาครัฐของสหรัฐอเมริกา โรงงานมีความเชี่ยวชาญด้านการผลิตและประกอบผลิตภัณฑ์อิเล็กทรอนิกส์อย่างครบวงจร ครอบคลุมตั้งแต่ PCBA, Final Assembly, Box Build และ Micro-assembly รองรับการผลิตอุปกรณ์ทางการแพทย์และผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค",
         "status": "approved"
       },
       "title": "เกาะกง",
       "description": "ฐานการผลิต EMS ที่เป็นไปตามข้อกำหนด TAA ในเขตเศรษฐกิจพิเศษเกาะกง…",
       "text": {
-        "Electronics manufacturing in the Koh Kong SEZ": "การผลิตอุปกรณ์อิเล็กทรอนิกส์ในเขตเศรษฐกิจพิเศษเกาะกง",
+        "Electronics manufacturing in the Koh Kong SEZ": "ศักยภาพด้านการผลิตและประกอบผลิตภัณฑ์อิเล็กทรอนิกส์",
         "In the Koh Kong SEZ in southwest Cambodia": "ตั้งอยู่ในเขตเศรษฐกิจพิเศษเกาะกง ทางตะวันตกเฉียงใต้ของประเทศกัมพูชา",
         "Reference city": "เมืองอ้างอิง",
-        "Koh Kong is ~300 km W of Phnom Penh and ~400 km SE of Bangkok": "ห่างจากพนมเปญไปทางตะวันตกประมาณ 300 กม. · ห่างจากกรุงเทพฯ ไปทางตะวันออกเฉียงใต้ประมาณ 400 กม."
+        "Koh Kong is ~300 km W of Phnom Penh and ~400 km SE of Bangkok": "ห่างจากพนมเปญไปทางตะวันตกประมาณ 300 กม. · ห่างจากกรุงเทพฯ ไปทางตะวันออกเฉียงใต้ประมาณ 400 กม.",
+        "Koh Kong provides electronics manufacturing services with deep PCBA and final-assembly capability, building medical devices, consumer electronics and access-control products.": "โรงงานฮานา เกาะกง ประเทศกัมพูชา ให้บริการรับจ้างผลิตผลิตภัณฑ์อิเล็กทรอนิกส์ (EMS) โดยมีความเชี่ยวชาญด้านการประกอบแผงวงจรอิเล็กทรอนิกส์ (PCBA) และการประกอบผลิตภัณฑ์ขั้นสุดท้าย (Final Assembly) รองรับการผลิตอุปกรณ์ทางการแพทย์ ผลิตภัณฑ์อิเล็กทรอนิกส์สำหรับผู้บริโภค และผลิตภัณฑ์ระบบควบคุมการเข้า-ออก (Access Control)",
+        "The Cambodian site offers competitive labor costs within the Hana group, with the technical capability to build to medical and automotive quality requirements. Cambodia is a TAA-designated country, so products substantially transformed there are eligible for US federal and government procurement. Few low-cost manufacturing locations offer this route.": "โรงงานในประเทศกัมพูชามีข้อได้เปรียบด้านต้นทุนแรงงานที่สามารถแข่งขันได้ภายในกลุ่มบริษัทฮานา ควบคู่กับศักยภาพทางเทคนิคและความเชี่ยวชาญในการผลิตที่รองรับข้อกำหนดด้านคุณภาพของอุตสาหกรรมการแพทย์และยานยนต์\nนอกจากนี้ กัมพูชายังเป็นประเทศที่ได้รับการกำหนดสถานะภายใต้กฎหมาย Trade Agreements Act (TAA) ของสหรัฐอเมริกา มีคุณสมบัติตามข้อกำหนดด้านแหล่งกำเนิดสินค้าสำหรับการจัดซื้อจัดจ้างของรัฐบาลกลางและหน่วยงานภาครัฐของสหรัฐอเมริกาได้ ซึ่งถือเป็นข้อได้เปรียบในแหล่งผลิตที่มีต้นทุนแข่งขันได้",
+        "Product examples from Hana Koh Kong": "ตัวอย่างผลิตภัณฑ์จากโรงงานฮานา เกาะกง"
       }
     },
     "/locations/lamphun": {

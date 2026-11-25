@@ -8,6 +8,7 @@ What changed in the Razor Pages site, newest first. Moved here from README.md on
 - **Kept in English at the team's request** — the stats bar values on Box Build and labels on DFx/DFM and JDM, the Flip chip sub-headings and its Power Packages and Chip-on-Board Assembly links, and the Proactive DFx Engineering Analysis label on NPI: their entries are removed, so the English shows.
 - **Capabilities side menu in English** — `ThaiDrafts.TranslateLabels` now skips `<aside id="cap-sb">`, so the "Browse capabilities" menu shows the English names on Thai pages. Breadcrumbs, eyebrows and the Thai header's Capabilities menu are still Thai.
 - **Not applied** — a fourth bullet the team wrote for JDM's first "Why" block (ความรับผิดชอบร่วมกันของทีมวิศวกรรม) has no English counterpart. Two missing spaces were corrected (Hana ให้บริการ, รองรับ Low-to-Medium).
+- **Koh Kong** — new Thai from the team (`koh_kong_site.xlsx`): opening blurb (replaces the Lamphun-approved line), the "Electronics manufacturing in the Koh Kong SEZ" heading and its two paragraphs (the second is split into two Thai lines), and the "Product examples from Hana Koh Kong" heading. The header keeps 440px on desktop (453px on a 375px phone).
 - **Result at 1280px** — the Ayutthaya header fits its original 440px again (483px on a 375px phone); the "Why" sections are 600–675px tall (were 990–1,230px; English 440–480px).
 
 ## Earlier changes (24 Nov 2026 — Thai text for Ayutthaya and 19 Capabilities pages)
