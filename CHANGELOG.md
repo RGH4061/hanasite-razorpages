@@ -2,7 +2,11 @@
 
 What changed in the Razor Pages site, newest first. Moved here from README.md on 26 Oct 2026, wording unchanged.
 
-## Latest changes (25 Nov 2026 — Thai team's layout review)
+## Latest changes (26 Nov 2026 — Contact email source tag)
+
+- **Sales email subject names the previous page** — new `wwwroot/js/contact-source.js`, loaded on `/contact` and `/th/contact`, appends "(from <page path>)" to the subject of the info-request@hanaus.com links when the visitor arrived from another page on the site ("home page" for `/`). Lets incoming enquiry emails be credited to the page that produced them. Reads `document.referrer` only; no cookies or storage, so no consent needed. Regional office emails and the Copy address button are unchanged.
+
+## Earlier changes (25 Nov 2026 — Thai team's layout review)
 
 - **Shorter Thai** — the Thai team's reply to *Thai layout review (24 Nov 2026).xlsx* is applied in `Data/thai-drafts.json`: Ayutthaya H1 (อยุธยา), opening blurb, "OSAT in Thailand" paragraphs and service cards (the fourth card, DFx & JDM Collaboration, is now translated too); the "Key capability" badge on SMT; the "Why run…" sections on COB, Box Build, DFx/DFM and JDM (one-line bullets, no added descriptions, no English in brackets); the Flip chip die attach and wire bond columns; and the first NPI stage card. The NPI Process qualification and third cards were not in the reply and are unchanged.
 - **Kept in English at the team's request** — the stats bar values on Box Build and labels on DFx/DFM and JDM, the Flip chip sub-headings and its Power Packages and Chip-on-Board Assembly links, and the Proactive DFx Engineering Analysis label on NPI: their entries are removed, so the English shows.
