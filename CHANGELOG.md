@@ -4,7 +4,7 @@ What changed in the Razor Pages site, newest first. Moved here from README.md on
 
 ## Latest changes (26 Nov 2026 — Contact email source tag)
 
-- **Sales email subject names the previous page** — new `wwwroot/js/contact-source.js`, loaded on `/contact` and `/th/contact`, appends "(from <page path>)" to the subject of the info-request@hanaus.com links when the visitor arrived from another page on the site ("home page" for `/`). Lets incoming enquiry emails be credited to the page that produced them. Reads `document.referrer` only; no cookies or storage, so no consent needed. Regional office emails and the Copy address button are unchanged.
+- **Sales email subject carries a page reference** — new `wwwroot/js/contact-source.js`, loaded on `/contact` and `/th/contact`, appends "(Ref C26)" to the subject of the info-request@hanaus.com links when the visitor arrived from another page on the site. Codes are a section letter plus a number (H home, M Markets, C Capabilities, L Locations, A About, I Investor relations, J Careers, N Insights, S other; 00 = the hub), listed in `wwwroot/js/page-refs.js`, which `5. Website Redesign/tools/sync-page-refs.py` generates and keeps stable. Thai pages add "T" (C26T). A page with no code yet shows its address instead ("from /new/page"). Lets incoming enquiry emails be credited to the page that produced them. Reads `document.referrer` only; no cookies or storage, so no consent needed. Regional office emails and the Copy address button are unchanged. Run the sync script after adding or renaming a page.
 
 ## Earlier changes (25 Nov 2026 — Thai team's layout review)
 
