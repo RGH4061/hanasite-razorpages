@@ -15,6 +15,12 @@
 
 @* Investor Relations — Hana Microelectronics. Static content. *@
 
+@{
+    // SET serves its HANA price widget only on the website registered with it (www.hanagroup.com); on any
+    // other host (localhost, the GitHub Pages preview) its firewall answers "Access denied", so those hosts
+    // show the HANA-box half of SET's sample image, labelled as a preview.
+    var setLive = HttpContext.Request.Host.Host.EndsWith("hanagroup.com", StringComparison.OrdinalIgnoreCase);
+}
 <div class="ir-hub">
 
   <div class="mk-crumbbar"><div class="mk-wrap in"><a href="/">Home</a><span class="sep">&rsaquo;</span><span class="here">Investor Relations</span><span class="ir-hub-updated">Updated <strong>14 May 2026</strong></span></div></div>
@@ -42,21 +48,24 @@
           </div>
           <span class="fb-cta">View all News &amp; filings  →</span>
         </a>
-        <div class="stock-panel">
+        @* SET price panel: SET's free IR widget (irpage.jsp, the HANA price box, 200 x 214 px, shown at x1.25). *@
+        <div class="stock-panel sp-set">
           <div class="sp-label">HANA &nbsp;·&nbsp; SET price</div>
-          <div>
-            <div class="sp-price-row">
-              <div class="sp-price">39.20</div>
-              <div class="sp-change">↑ +83.2%</div>
-            </div>
-            <div class="sp-period" style="margin-top:6px">YTD Jan – Jun 2026</div>
+          <div class="sp-set-box">
+            @if (setLive)
+            {
+            <iframe class="sp-set-frame" src="https://weblink.settrade.com/IRPage/irpage.jsp?txtSymbol=HANA&amp;language=en&amp;key=27160" title="HANA share price from the Stock Exchange of Thailand" width="200" height="214" frameborder="0" scrolling="no"></iframe>
+            }
+            else
+            {
+            <img class="sp-set-frame" src="https://media.set.or.th/set/Images/2022/Mar/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%9E%E0%B8%A2%E0%B9%8C%E0%B8%AF.jpg" alt="SET sample display of the IR widget" />
+            }
           </div>
-          <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
-          <div class="sp-footer">
-            <div><div class="sf-val">21.40</div><div class="sf-lbl">YTD low</div></div>
-            <div><div class="sf-val">39.20</div><div class="sf-lbl">Current</div></div>
-            <div><div class="sf-val">Q2 2026</div><div class="sf-lbl">Next result</div></div>
-          </div>
+          @if (!setLive)
+          {
+          <span class="sp-set-tag">Preview: SET sample (Thai, old data)</span>
+          }
+          <p class="sp-set-note">Prices delayed 15 minutes. Source: Stock Exchange of Thailand.</p>
           <a href="https://www.set.or.th/en/market/product/stock/quote/hana/price" target="_blank" rel="noopener noreferrer" class="sp-set-link">View HANA on SET &nbsp;↗</a>
         </div>
       </div>

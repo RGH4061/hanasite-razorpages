@@ -1,5 +1,8 @@
 @page "/th/investor-relations"
 @{
+    var setLive = HttpContext.Request.Host.Host.EndsWith("hanagroup.com", StringComparison.OrdinalIgnoreCase);
+}
+@{
     ViewData["Title"] = "นักลงทุนสัมพันธ์";
     ViewData["Motion"] = "page";
     ViewData["Description"] = "HANA: ข้อมูลทางการเงิน การกำกับดูแลกิจการ และข้อมูลผู้ถือหุ้น";
@@ -44,21 +47,25 @@
           </div>
           <span class="fb-cta">ดูข่าวสารและข้อมูลที่เผยแพร่ทั้งหมด →</span>
         </a>
-        <div class="stock-panel">
+        @* SET price panel: SET's free IR widget, Thai version (see the English hub for the host rule). The English
+           hub's line "Prices delayed 15 minutes. Source: Stock Exchange of Thailand." has no approved Thai, so it
+           is left out here; the widget itself carries SET's 15-minute label. *@
+        <div class="stock-panel sp-set">
           <div class="sp-label">ราคาหุ้น HANA ใน SET</div>
-          <div>
-            <div class="sp-price-row">
-              <div class="sp-price">39.20</div>
-              <div class="sp-change">↑ +83.2%</div>
-            </div>
-            <div class="sp-period" style="margin-top:6px">ม.ค. – มิ.ย. 2569</div>
+          <div class="sp-set-box">
+            @if (setLive)
+            {
+            <iframe class="sp-set-frame" src="https://weblink.settrade.com/IRPage/irpage.jsp?txtSymbol=HANA&amp;language=th&amp;key=27160" title="HANA share price from the Stock Exchange of Thailand" width="200" height="214" frameborder="0" scrolling="no"></iframe>
+            }
+            else
+            {
+            <img class="sp-set-frame" src="https://media.set.or.th/set/Images/2022/Mar/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%9E%E0%B8%A2%E0%B9%8C%E0%B8%AF.jpg" alt="SET sample display of the IR widget" />
+            }
           </div>
-          <div class="sp-chart-wrap"><canvas id="stock-chart"></canvas></div>
-          <div class="sp-footer">
-            <div><div class="sf-val">21.40</div><div class="sf-lbl">ราคาต่ำสุดตั้งแต่ต้นปี</div></div>
-            <div><div class="sf-val">39.20</div><div class="sf-lbl">ราคาปัจจุบัน</div></div>
-            <div><div class="sf-val">ไตรมาส 2/2569</div><div class="sf-lbl">ผลประกอบการครั้งถัดไป</div></div>
-          </div>
+          @if (!setLive)
+          {
+          <span class="sp-set-tag">Preview: SET sample</span>
+          }
           <a href="https://www.set.or.th/th/market/product/stock/quote/hana/price" target="_blank" rel="noopener noreferrer" class="sp-set-link">ดูข้อมูล HANA ใน SET ↗</a>
         </div>
       </div>

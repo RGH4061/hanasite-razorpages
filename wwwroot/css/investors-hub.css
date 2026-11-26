@@ -63,3 +63,18 @@ html[lang="th"] .ir-hub .hana-btn { letter-spacing: .02em; }
   .ir-hub-body { padding-bottom: 40px; }
   .ir-hub .ir-hub-cta { margin-top: 40px; }
 }
+
+/* SET price panel (Nov 2026): SET's HANA price box (200 x 214 px, fixed size, shown at x1.25) in place of
+   the old self-drawn panel. Off hanagroup.com the page shows SET's sample image, cropped to its right
+   half (the HANA box), with a "Preview" tag. */
+.ir-hub .sp-set { justify-content: flex-start; gap: 14px; }
+.ir-hub .sp-set-box { align-self: center; width: 100%; max-width: 250px; aspect-ratio: 200 / 214; position: relative; background: #fff;
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+/* the widget is fixed at 200 x 214 px, so it is scaled up to 250 px wide (x1.25) */
+.ir-hub iframe.sp-set-frame { position: absolute; left: 0; top: 0; width: 200px; height: 214px; border: 0;
+  transform: scale(1.25); transform-origin: 0 0; }
+.ir-hub img.sp-set-frame { display: block; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+.ir-hub .sp-set-tag { align-self: flex-start; margin-bottom: -4px; padding: 3px 7px; border-radius: 4px; background: rgba(14, 40, 70, .82);
+  color: #fff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px; letter-spacing: .02em; }
+.ir-hub .sp-set-note { margin: 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
+.ir-hub .sp-set .sp-set-link { margin-top: auto; }

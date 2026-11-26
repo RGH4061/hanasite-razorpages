@@ -603,6 +603,22 @@ body {
   }
 }
 
+/* Footer layout (Nov 2026): the logo, blurb, "SET-listed" line and LinkedIn form one row across the
+   top; the four link columns are followed by a 200 px "Share price" column holding SET's HANA price box. */
+.hana-footer .ft-grid { row-gap: 32px !important; }
+.hana-footer .ft-brand-row { grid-column: 1 / -1; display: flex; align-items: center; gap: 36px;
+  padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.hana-footer .ft-brand-row > p { margin: 0 !important; max-width: 340px !important; }
+.hana-footer .ft-brand-row > .ft-setlisted { order: 3; margin-left: auto; }
+.hana-footer .ft-brand-row > a[aria-label="Hana on LinkedIn"] { order: 4; }
+@media (max-width: 900px) {
+  .hana-footer .ft-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  .hana-footer .ft-brand-row { flex-wrap: wrap; gap: 16px 28px; }
+}
+@media (max-width: 560px) {
+  .hana-footer .ft-grid { grid-template-columns: 1fr !important; }
+}
+
 /* ============================================================
    Mobile header — ≤900px  (Option C: dark half-width slide-in)
    Compact sticky bar + right-docked accordion built by

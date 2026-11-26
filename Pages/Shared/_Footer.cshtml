@@ -2,20 +2,24 @@
     // On Thai pages, footer links open the Thai version where one exists.
     var thai = (string?)ViewData["Lang"] == "th";
     string L(string path) => thai ? (path == "/" ? "/th" : "/th" + path) : path;
+    // Share price column: SET's HANA price box (irpage.jsp, 200 x 214 px). SET serves it only on the
+    // website registered with it (www.hanagroup.com); on any other host (localhost, the GitHub Pages
+    // preview) its firewall answers "Access denied", so those hosts show SET's sample image instead.
+    var setLive = Context.Request.Host.Host.EndsWith("hanagroup.com", StringComparison.OrdinalIgnoreCase);
 }
 <footer class="hana-footer" style="font-family:var(--font-text);">
     <div class="mm-strip" data-hana-geo="strip" data-geo-theme="midnight" aria-hidden="true" style="height:40px;"></div>
 
     
     <div style="background:#F7F8FA; color:var(--ink-2);">
-        <div class="hana-wrap"
+        <div class="hana-wrap ft-grid"
              style="padding-top:48px; padding-bottom:28px;
                     display:grid;
-                    grid-template-columns:1.4fr repeat(4, 1fr);
+                    grid-template-columns:repeat(4, 1fr) 200px;
                     gap:40px; align-items:start;">
 
             
-            <div>
+            <div class="ft-brand-row">
                 <a href="@L("/")" aria-label="Hana Microelectronics — home">
                     <img src="~/images/hana-logo-full-trimmed.webp" alt="Hana"
                          width="200" height="65"
@@ -45,14 +49,7 @@
                 </a>
 
                 
-                <div style="font-family:var(--font-mono); font-size:12px;
-                             color:var(--ink-3); margin-top:18px; line-height:1.7;">
-                    <div>SET-listed &middot; Bangkok</div>
-                    <div>
-                        HANA &middot; ฿24.50
-                        <span style="color:var(--success); margin-left:4px;">+1.24%</span>
-                    </div>
-                </div>
+                <div class="ft-setlisted" style="font-family:var(--font-mono); font-size:12px; color:var(--ink-3); line-height:1.7;">SET-listed &middot; Bangkok</div>
             </div>
 
             
@@ -122,6 +119,27 @@
                     <li><a href="@L("/investor-relations/faq")"         style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">FAQ &amp; Knowledge Hub</a></li>
                     <li><a href="@L("/investor-relations/contact")"     style="font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 150ms ease;" onmouseover="this.style.color='var(--hana-blue)'" onmouseout="this.style.color='var(--ink-2)'">IR contact</a></li>
                 </ul>
+            </div>
+
+            @* Share price: SET's HANA price box (see setLive above). Settrade's 160 x 60 banner was
+               tried and dropped: it shows only the SET Index and takes no symbol. *@
+            <div>
+                <div style="font-family:var(--font-text); font-size:12px; font-weight:600;
+                             text-transform:uppercase; letter-spacing:0.1em;
+                             color:var(--ink); margin-bottom:12px;">Share price</div>
+                <div style="width:200px; height:214px; overflow:hidden; border:1px solid var(--line); border-radius:4px; background:#fff;">
+                    @if (setLive)
+                    {
+                    <iframe src="https://weblink.settrade.com/IRPage/irpage.jsp?txtSymbol=HANA&amp;language=@(thai ? "th" : "en")&amp;key=27160" title="HANA share price from the Stock Exchange of Thailand" width="200" height="214" frameborder="0" scrolling="no"
+                            style="display:block; border:0;"></iframe>
+                    }
+                    else
+                    {
+                    <img src="https://media.set.or.th/set/Images/2022/Mar/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%9E%E0%B8%A2%E0%B9%8C%E0%B8%AF.jpg"
+                         alt="SET sample display of the IR widget" style="display:block; width:200px; height:214px; object-fit:cover; object-position:right center;" />
+                    }
+                </div>
+                <div style="font-size:11px; color:var(--ink-4); margin-top:8px; line-height:1.5;">Delayed 15 minutes. Source: SET.</div>
             </div>
 
         </div>
