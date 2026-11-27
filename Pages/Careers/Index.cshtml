@@ -392,42 +392,50 @@
 <div class="layout-bg" id="open-roles">
   @* Open roles come from Data/careers-jobs.json (Services/CareersJobs.cs) until Careers Admin (/admin/jobs)
      supplies them. With no roles the filters are hidden and the empty message shows. *@
-  @{ var jobs = HanaSite.Services.CareersJobs.All; var hasJobs = jobs.Count > 0; var jobCount = jobs.Count; }
+  @{ var jobs = HanaSite.Services.CareersJobs.All; var hasJobs = jobs.Count > 0; var jobCount = jobs.Count;
+          var countries = new[] {
+              ("Thailand", new[] { ("bangkok", "f-bkk"), ("ayutthaya", "f-ayt"), ("lamphun", "f-lpn") }),
+              ("Cambodia", new[] { ("kohkong", "f-kk") }),
+              ("China",    new[] { ("jiaxing", "f-jx") }),
+          };
+          var plantCount = jobs.GroupBy(j => j.Plant).ToDictionary(g => g.Key, g => g.Count());
+          var deptCount = jobs.GroupBy(j => j.Department).OrderBy(g => g.Key).Select(g => (g.Key, g.Count())).ToList();
+          var types = new[] { ("fulltime", "f-ft", "Full time"), ("contract", "f-ct", "Contract"), ("internship", "f-int", "Internship") };
+          var typeCount = jobs.GroupBy(j => j.TypeKey).ToDictionary(g => g.Key, g => g.Count());
+  }
   <div class="layout@(hasJobs ? "" : " layout--single")">
 
     @if (hasJobs)
     {
+      @* Filter options are built from the roles: each shows its role count, and options with no
+         roles are left out (a country heading goes when none of its plants has a role). Position
+         type shows only when the roles span more than one type. Phones and tablets get a
+         "Filter roles" button that opens the groups (careers.js). *@
       <aside class="filter-sidebar" aria-label="Filter jobs">
         <div class="label">Filter roles</div>
+        <button type="button" class="filter-toggle" aria-expanded="false" aria-controls="filter-body">
+          <span>Filter roles</span>
+          <span class="filter-toggle-state" id="filter-state"></span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
 
+        <div class="filter-body" id="filter-body">
         <div class="filter-group">
           <div class="filter-group-label">Location</div>
 
-          <div class="filter-country">Thailand</div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-bkk" checked>
-            <label for="f-bkk">Bangkok HQ</label>
-          </div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-ayt" checked>
-            <label for="f-ayt">Ayutthaya</label>
-          </div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-lpn" checked>
-            <label for="f-lpn">Lamphun</label>
-          </div>
-
-          <div class="filter-country">Cambodia</div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-kk" checked>
-            <label for="f-kk">Koh Kong</label>
-          </div>
-
-          <div class="filter-country">China</div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-jx" checked>
-            <label for="f-jx">Jiaxing</label>
-          </div>
+          @foreach (var (country, plants) in countries)
+          {
+              var listed = plants.Where(p => plantCount.ContainsKey(p.Item1)).ToList();
+              if (listed.Count == 0) { continue; }
+              <div class="filter-country">@country</div>
+              foreach (var (key, id) in listed)
+              {
+                  <div class="filter-option">
+                    <input type="checkbox" id="@id" checked>
+                    <label for="@id">@HanaSite.Services.CareersJobs.PlantOf(jobs.First(j => j.Plant == key)).Name <span class="filter-count">@plantCount[key]</span></label>
+                  </div>
+              }
+          }
 
           @* USA roles are posted on the Hana RFID site, so this is a link, not a filter. *@
           <div class="filter-country">USA</div>
@@ -439,23 +447,36 @@
         <hr class="filter-divider">
 
         <div class="filter-group">
-          <div class="filter-group-label">Position type</div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-ft" checked>
-            <label for="f-ft">Full time</label>
-          </div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-ct" checked>
-            <label for="f-ct">Contract</label>
-          </div>
-          <div class="filter-option">
-            <input type="checkbox" id="f-int" checked>
-            <label for="f-int">Internship</label>
-          </div>
+          <div class="filter-group-label">Department</div>
+          @foreach (var (dept, n) in deptCount)
+          {
+            var deptId = "f-dept-" + System.Text.RegularExpressions.Regex.Replace(dept.ToLowerInvariant(), "[^a-z0-9]+", "-").Trim('-');
+            <div class="filter-option">
+              <input type="checkbox" id="@deptId" data-dept="@dept" checked>
+              <label for="@deptId">@dept <span class="filter-count">@n</span></label>
+            </div>
+          }
         </div>
+
+        @if (typeCount.Count > 1)
+        {
+          <hr class="filter-divider">
+
+          <div class="filter-group">
+            <div class="filter-group-label">Position type</div>
+            @foreach (var (key, id, label) in types.Where(t => typeCount.ContainsKey(t.Item1)))
+            {
+              <div class="filter-option">
+                <input type="checkbox" id="@id" checked>
+                <label for="@id">@label <span class="filter-count">@typeCount[key]</span></label>
+              </div>
+            }
+          </div>
+        }
 
         <div class="footer-link">
           <a href="#" onclick="clearFilters(); return false;">Clear all filters</a>
+        </div>
         </div>
       </aside>
     }
@@ -471,18 +492,36 @@
       </header>
 
       <div class="jobs-list" id="jobs-list">
-        @* Roles come from Data/careers-jobs.json (newest first); each links to its page under /careers/jobs/. *@
-        @foreach (var job in jobs)
+        @* Roles come from Data/careers-jobs.json, grouped by plant in the filter order (Thailand,
+           Cambodia, China), each under a small location heading. Within a plant: newest first, and
+           roles posted the same day keep the file order. Each group opens and closes from its
+           heading (details/summary); careers.js hides a group when the filters leave it with no roles. *@
+        @foreach (var (country, plants) in countries)
         {
-          var plant = HanaSite.Services.CareersJobs.PlantOf(job);
-          <div class="job-card" data-location="@job.Plant" data-type="@job.TypeKey">
-            <div class="job-info">
-              <div class="job-title">@job.Title</div>
-              @if (job.StartLine is not null) { <div class="job-start">@job.StartLine</div> }
-              <div class="job-meta"><span class="loc-tag">@plant.Name</span> @job.Department <span class="sep">|</span> @job.Type <span class="sep">|</span> Posted @job.PostedText</div>
-            </div>
-            <a href="@job.Url" class="job-apply">Apply →</a>
-          </div>
+          foreach (var (key, _) in plants)
+          {
+            var group = jobs.Where(j => j.Plant == key).ToList();
+            if (group.Count == 0) { continue; }
+            var gPlant = HanaSite.Services.CareersJobs.PlantOf(group[0]);
+            <details class="job-group" data-location="@key" open>
+              <summary class="job-group-head"><span>@gPlant.Location</span><span class="job-group-count">@group.Count @(group.Count == 1 ? "role" : "roles")</span><svg class="job-group-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+              @foreach (var job in group)
+              {
+                <div class="job-card" data-location="@job.Plant" data-type="@job.TypeKey" data-dept="@job.Department">
+                  <div class="job-info">
+                    <div class="job-title">@job.Title</div>
+                    @if (job.StartLine is not null) { <div class="job-start">@job.StartLine</div> }
+                    <div class="job-meta">@job.Department <span class="sep">|</span> @job.Type <span class="sep">|</span> Posted @job.PostedText</div>
+                  </div>
+                  <a href="@job.Url" class="job-apply">Apply →</a>
+                </div>
+              }
+            </details>
+          }
+        }
+        @if (hasJobs)
+        {
+          <p class="jobs-empty jobs-nomatch" id="jobs-nomatch" hidden>No roles match these filters. <a href="#" onclick="clearFilters(); return false;">Clear all filters</a></p>
         }
         @if (!hasJobs)
         {

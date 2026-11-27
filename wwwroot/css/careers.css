@@ -814,3 +814,49 @@
 
 /* Roles recruiting ahead of a future start date (23 Nov 2026) */
 .job-start { font-size: 13px; font-weight: 500; color: var(--hana-blue-deep); margin: -4px 0 var(--s-2); }
+
+/* ── Role filters (27 Nov 2026): counts, no-match line, collapsible on phones and tablets ── */
+.filter-count {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px; font-weight: 500; color: var(--ink-4); margin-left: 4px;
+}
+.jobs-nomatch a { color: var(--hana-blue); }
+.filter-toggle { display: none; }
+@media (max-width: 960px) {
+  .filter-sidebar .label { display: none; }
+  .filter-toggle {
+    display: flex; align-items: center; gap: var(--s-2); width: 100%;
+    padding: 12px 16px; border: 1px solid var(--line); border-radius: 4px;
+    background: var(--surface, #fff); color: var(--ink); cursor: pointer;
+    font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.2; text-align: left;
+  }
+  .filter-toggle-state {
+    margin-left: auto; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 500; color: var(--hana-blue);
+  }
+  .filter-toggle svg { flex-shrink: 0; transition: transform .15s; }
+  .filter-toggle-state:empty + svg { margin-left: auto; }
+  .filter-sidebar.open .filter-toggle svg { transform: rotate(180deg); }
+  .filter-body { display: none; padding: var(--s-4) var(--s-1) 0; }
+  .filter-sidebar.open .filter-body { display: block; }
+}
+
+/* ── Roles grouped by location (27 Nov 2026) ── */
+.job-group + .job-group { margin-top: var(--s-6); }
+.job-group-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3);
+  margin: 0; padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--hana-blue-deep);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--hana-blue-deep);
+}
+.job-group-count { font-weight: 500; color: var(--ink-3); letter-spacing: 0.06em; }
+/* Collapsible location groups: the heading is the toggle */
+summary.job-group-head { cursor: pointer; list-style: none; padding-top: var(--s-2); }
+summary.job-group-head::-webkit-details-marker { display: none; }
+summary.job-group-head > span:first-child { margin-right: auto; }
+.job-group-chev { flex-shrink: 0; align-self: center; color: var(--hana-blue-deep); transition: transform .15s; }
+.job-group:not([open]) .job-group-chev { transform: rotate(-90deg); }
+summary.job-group-head:hover > span:first-child { color: var(--hana-blue); }
+summary.job-group-head:focus-visible { outline: 2px solid var(--hana-blue); outline-offset: 2px; }

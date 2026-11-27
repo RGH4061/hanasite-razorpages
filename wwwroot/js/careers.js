@@ -183,22 +183,53 @@ const countEl = document.getElementById('job-count');
 
 const locMap  = { 'f-bkk': 'bangkok', 'f-ayt': 'ayutthaya', 'f-lpn': 'lamphun', 'f-kk': 'kohkong', 'f-jx': 'jiaxing' };
 const typeMap = { 'f-ft': 'fulltime', 'f-ct': 'contract', 'f-int': 'internship' };
+// Department boxes are generated from the roles (data-dept); pages without them skip this filter.
+const deptBoxes = document.querySelectorAll('.filter-sidebar input[data-dept]');
+
+// A filter group whose boxes are not on the page (no roles of that kind, or Position type with
+// one type only) does not filter. Pages without the department boxes skip that filter.
+function activeFrom(map) {
+  const present = Object.entries(map).filter(([id]) => document.getElementById(id));
+  if (present.length === 0) return null;
+  return present.filter(([id]) => document.getElementById(id).checked).map(([,v]) => v);
+}
+const noMatch = document.getElementById('jobs-nomatch');
+const filterState = document.getElementById('filter-state');
 
 function applyFilters() {
-  const activeLocs  = Object.entries(locMap).filter(([id]) => document.getElementById(id).checked).map(([,v]) => v);
-  const activeTypes = Object.entries(typeMap).filter(([id]) => document.getElementById(id).checked).map(([,v]) => v);
+  const activeLocs  = activeFrom(locMap);
+  const activeTypes = activeFrom(typeMap);
+  const activeDepts = deptBoxes.length ? Array.from(deptBoxes).filter(cb => cb.checked).map(cb => cb.dataset.dept) : null;
   let visible = 0;
   cards.forEach(card => {
-    const show = activeLocs.includes(card.dataset.location) && activeTypes.includes(card.dataset.type);
+    const show = (!activeLocs  || activeLocs.includes(card.dataset.location))
+              && (!activeTypes || activeTypes.includes(card.dataset.type))
+              && (!activeDepts || activeDepts.includes(card.dataset.dept));
     card.style.display = show ? '' : 'none';
     if (show) visible++;
   });
   if (countEl) countEl.textContent = L10N && L10N.roles ? visible + L10N.roles : visible + (visible === 1 ? ' role' : ' roles');
+  if (noMatch) noMatch.hidden = visible > 0;
+  // Location headings (English page): hide a plant's heading when none of its roles is showing.
+  document.querySelectorAll('.job-group').forEach(g => {
+    const n = Array.from(g.querySelectorAll('.job-card')).filter(c => c.style.display !== 'none').length;
+    g.hidden = n === 0;
+    const countTag = g.querySelector('.job-group-count');
+    if (countTag) countTag.textContent = n + (n === 1 ? ' role' : ' roles');
+  });
+  if (filterState) filterState.textContent = visible < cards.length ? visible + ' of ' + cards.length : '';
 }
 function clearFilters() {
   checkboxes.forEach(cb => cb.checked = true);
   applyFilters();
 }
+// Phones and tablets: the "Filter roles" button opens and closes the filter groups.
+const filterToggle = document.querySelector('.filter-toggle');
+if (filterToggle) filterToggle.addEventListener('click', () => {
+  const open = filterToggle.getAttribute('aria-expanded') !== 'true';
+  filterToggle.setAttribute('aria-expanded', open);
+  filterToggle.closest('.filter-sidebar').classList.toggle('open', open);
+});
 checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
 
 // ═══════════════════════════════════════════════════
