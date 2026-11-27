@@ -1,5 +1,9 @@
 @page "/investor-relations/faq"
 @{
+    // Results Presentations hidden (management, 27 Nov 2026) until the Q4/2026 recording is published.
+    // To bring it back: set this to true, add the video, and rename the page "FAQ & Presentations" again
+    // (H1, breadcrumb, intro, IR hub card and the IR sub-navigation links; see git history).
+    const bool ShowPresentations = false;
     ViewData["Title"] = "Investor FAQ";
     ViewData["Motion"] = "page";
     ViewData["AltLang"] = "th";
@@ -22,7 +26,7 @@
         <span class="sep">/</span>
         <a href="/investor-relations">Investor Relations</a>
         <span class="sep">/</span>
-        <span>FAQ &amp; Presentations</span>
+        <span>FAQ</span>
       </nav>
       <div class="meta">
         Page updated <strong>12 Jun 2026</strong>
@@ -33,10 +37,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>FAQ &amp; Presentations</h1>
+      <h1>Frequently Asked Questions</h1>
       <p class="lede">
-        Watch our latest SET Earnings Call presentations and find answers to
-        common questions about Hana Microelectronics Public Company Limited
+        Answers to common questions about Hana Microelectronics Public Company Limited
         (SET: HANA) — our shares, dividends, financial reporting, and how to
         reach the Investor Relations team.
       </p>
@@ -49,6 +52,8 @@
   <div class="layout">
     <aside class="sectionnav" aria-label="On this page">
       <div class="label">On this page</div>
+      @if (ShowPresentations)
+      {
       <ol>
         <li>
           <a href="#presentations">
@@ -58,6 +63,7 @@
           </a>
         </li>
       </ol>
+      }
       <div class="navgroup">
         <div class="navgroup-label">Investor FAQs</div>
         <ol class="subnav">
@@ -90,6 +96,9 @@
 
     <main class="content">
 
+      @if (ShowPresentations)
+      {
+      <text>
       <!-- ─── 1. Results Presentations (SET video slots) ─── -->
       <section class="doc" id="presentations">
         <header class="section-head">
@@ -101,138 +110,19 @@
           </p>
         </header>
 
-        <!-- Featured latest session: video + on-page summary + collapsible transcript -->
-        <div class="feature">
+        @* Results Presentations reset (management, 27 Nov 2026): every earlier recording was removed;
+             the first recording on the new site is Q4/2026. 
+             To publish it, swap the frame below for the featured video block used before this change
+             (git history: button.frame.has-poster.yt-facade with data-yt = the YouTube ID, poster in
+             images/ir/, the "Latest" pill and date in .vc-kind, and the SET link in .detail). *@
+        <div class="feature feature--pending">
           <div class="feature-head">
-            <div class="vc-kind">
-              <span class="latest">Latest</span>
-              <span>Earnings Call</span>
-              <span class="pip">·</span>
-              <span>25 Nov 2026</span>
-            </div>
-            <h3>Q3/2026 results presentation</h3>
+            <div class="vc-kind"><span>Earnings Call</span></div>
+            <h3>Q4/2026 results presentation</h3>
           </div>
-
           <div class="feature-grid">
-            <!-- data-yt accepts a YouTube video ID or a full YouTube URL -->
-            <button type="button" class="frame has-poster yt-facade" data-yt="PGM2eot0ivE"
-                    aria-label="Play the Q3/2026 results presentation on YouTube">
-              <img src="/images/ir/oppday-q3-2026.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="22" height="24" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-          </div>
-
-          <!-- Q3/2026: SET link only. The on-page "Full summary" / "Transcript" tabs (as used for
-               Q2/2026, removed 25 Nov 2026 with that recording's move to Earlier presentations)
-               return once a Q3 summary is written from SET's transcript. -->
-          <div class="detail">
-            <div class="detail-bar">
-              <div class="detail-actions">
-                <a href="https://opportunity-day.setgroup.or.th/en/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">Summary and transcript on SET ↗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-label">Earlier presentations</div>
-
-        <div class="videogrid">
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="qypZsmot9Z8"
-                    aria-label="Play the Q2/2026 results presentation on YouTube">
-              <img src="/images/ir/oppday-q2-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>Q2/2026 results presentation</h3>
-              <div class="vc-formats">
-                <span class="fmt">Video</span>
-                <span class="fmt">Transcript</span>
-                <span class="fmt">Summary</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">26 Aug 2026</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/en/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">Transcript &amp; summary on SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="dpO3qOWC51Q"
-                    aria-label="Play the Q1/2026 results presentation on YouTube">
-              <img src="/images/ir/oppday-q1-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>Q1/2026 results presentation</h3>
-              <div class="vc-formats">
-                <span class="fmt">Video</span>
-                <span class="fmt">Transcript</span>
-                <span class="fmt">Summary</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">28 May 2026</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/en/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">Transcript &amp; summary on SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="kre-X63WrWE"
-                    aria-label="Play the FY2025 and Q4/2025 results presentation on YouTube">
-              <img src="/images/ir/oppday-fy2025-q4-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>FY2025 &amp; Q4/2025 results presentation</h3>
-              <div class="vc-formats">
-                <span class="fmt">Video</span>
-                <span class="fmt">Transcript</span>
-                <span class="fmt">Summary</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">13 Mar 2026</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/en/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">Transcript &amp; summary on SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="Pgnee4KAqQo"
-                    aria-label="Play the Q3/2025 results presentation on YouTube">
-              <img src="/images/ir/oppday-q3-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>Q3/2025 results presentation</h3>
-              <div class="vc-formats">
-                <span class="fmt">Video</span>
-                <span class="fmt">Transcript</span>
-                <span class="fmt">Summary</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">Nov 2025</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/en/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">Transcript &amp; summary on SET ↗</a>
-              </div>
+            <div class="frame pending-frame">
+              <p class="pending-text">The recording will be published here after the Q4/2026 Earnings Call session.</p>
             </div>
           </div>
         </div>
@@ -242,6 +132,8 @@
           <a href="/investor-relations/contact" style="color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);">Investor Events &amp; Contact</a> page.
         </p>
       </section>
+      </text>
+      }
 
       <!-- ─── Group heading: Investor FAQs ─── -->
       <div class="grouphead" id="faqs">
@@ -362,7 +254,7 @@
           <details class="faq">
             <summary><span class="q">Where can I find Hana's annual report and financial statements?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>The latest Annual Report (56-1 One Report) is available on the <a href="/investor-relations/annual">Annual Reports</a> page. Quarterly statements and MD&amp;A are on the <a href="/investor-relations/news">Investor News</a> page. Results presentations are on this page, under <a href="#presentations">Results Presentations</a>.</p>
+              <p>The latest Annual Report (56-1 One Report) is available on the <a href="/investor-relations/annual">Annual Reports</a> page. Quarterly statements and MD&amp;A are on the <a href="/investor-relations/news">Investor News</a> page.@if (ShowPresentations) {<text> Results presentations are on this page, under <a href="#presentations">Results Presentations</a>.</text>}</p>
             </div>
           </details>
           <details class="faq">

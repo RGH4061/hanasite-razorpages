@@ -686,3 +686,11 @@ details.faq .a .divtable-wrap { overflow-x: auto; -webkit-overflow-scrolling: to
 .divtable td:nth-child(5) { color: var(--ink); font-weight: 600; }
 details.faq .a p.divnote { margin-top: var(--s-2); font-size: 12.5px; line-height: 1.5; color: var(--ink-3); }
 @media (max-width: 560px) { details.faq .a .faq-dl > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Results Presentations placeholder (27 Nov 2026): no recordings are listed until the Q4/2026
+   session; the slot keeps the featured frame's size and shows a one-line note. */
+.feature--pending .pending-frame { padding: var(--s-5); }
+.feature--pending .pending-text {
+  position: relative; z-index: 1; margin: 0; max-width: 420px; text-align: center;
+  font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.82);
+}

@@ -1,5 +1,9 @@
 @page "/th/investor-relations/faq"
 @{
+    // Results Presentations hidden (management, 27 Nov 2026) until the Q4/2026 recording is published.
+    // To bring it back: set this to true, add the video, and rename the page "FAQ & Presentations" again
+    // (H1, breadcrumb, intro, IR hub card and the IR sub-navigation links; see git history).
+    const bool ShowPresentations = false;
     ViewData["Title"] = "คำถามที่พบบ่อยจากนักลงทุน";
     ViewData["Motion"] = "page";
     ViewData["Description"] = "คำถามที่พบบ่อยจากนักลงทุน HANA";
@@ -28,7 +32,7 @@
         <span class="sep">/</span>
         <a href="/th/investor-relations">นักลงทุนสัมพันธ์</a>
         <span class="sep">/</span>
-        <span>คำถามที่พบบ่อยและข้อมูลการนำเสนอผลประกอบการ</span>
+        <span>คำถามที่พบบ่อย</span>
       </nav>
       <div class="meta">
         ข้อมูลล่าสุด <strong>12 มิถุนายน 2569</strong>
@@ -39,9 +43,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>คำถามที่พบบ่อยและข้อมูลการนำเสนอผลประกอบการ</h1>
+      <h1>คำถามที่พบบ่อย</h1>
       <p class="lede">
-        รับชมบันทึกการนำเสนอผลประกอบการ (SET Earnings Call) คำถามที่พบบ่อยเกี่ยวกับหุ้น เงินปันผล รายงานทางการเงิน และช่องทางติดต่อนักลงทุนสัมพันธ์
+        คำถามที่พบบ่อยเกี่ยวกับหุ้น เงินปันผล รายงานทางการเงิน และช่องทางติดต่อนักลงทุนสัมพันธ์
       </p>
     </div>
   </section>
@@ -52,6 +56,8 @@
   <div class="layout">
     <aside class="sectionnav" aria-label="On this page">
       <div class="label">On this page</div>
+      @if (ShowPresentations)
+      {
       <ol>
         <li>
           <a href="#presentations">
@@ -61,6 +67,7 @@
           </a>
         </li>
       </ol>
+      }
       <div class="navgroup">
         <div class="navgroup-label">คำถามที่พบบ่อยจากนักลงทุน</div>
         <ol class="subnav">
@@ -93,6 +100,9 @@
 
     <main class="content">
 
+      @if (ShowPresentations)
+      {
+      <text>
       <!-- ─── 1. Results Presentations (SET video slots) ─── -->
       <section class="doc" id="presentations">
         <header class="section-head">
@@ -102,137 +112,19 @@
           </p>
         </header>
 
-        <!-- Featured latest session: video + on-page summary + collapsible transcript -->
-        <div class="feature">
+        @* Results Presentations reset (management, 27 Nov 2026): every earlier recording was removed;
+             the first recording on the new site is Q4/2026. Thai line is a draft for review.
+             To publish it, swap the frame below for the featured video block used before this change
+             (git history: button.frame.has-poster.yt-facade with data-yt = the YouTube ID, poster in
+             images/ir/, the "Latest" pill and date in .vc-kind, and the SET link in .detail). *@
+        <div class="feature feature--pending">
           <div class="feature-head">
-            <div class="vc-kind">
-              <span class="latest">ล่าสุด</span>
-              <span>Earnings Call</span>
-              <span class="pip">·</span>
-              <span>25 พ.ย. 2569</span>
-            </div>
-            <h3>การนำเสนอผลประกอบการไตรมาส 3/2569</h3>
+            <div class="vc-kind"><span>Earnings Call</span></div>
+            <h3>การนำเสนอผลประกอบการไตรมาส 4/2569</h3>
           </div>
-
           <div class="feature-grid">
-            <!-- data-yt accepts a YouTube video ID or a full YouTube URL -->
-            <button type="button" class="frame has-poster yt-facade" data-yt="PGM2eot0ivE"
-                    aria-label="รับชมการนำเสนอผลประกอบการไตรมาส 3/2569 บน YouTube">
-              <img src="~/images/ir/oppday-q3-2026.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="22" height="24" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-          </div>
-
-          <!-- Q3/2569: SET link only, as on the English page. The on-page summary and transcript
-               tabs (used for Q2/2569, removed 25 Nov 2026) return once a Q3 summary is written. -->
-          <div class="detail">
-            <div class="detail-bar">
-              <div class="detail-actions">
-                <a href="https://opportunity-day.setgroup.or.th/th/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">สรุปข้อมูลและบทถอดความใน SET ↗</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-label">การนำเสนอข้อมูลก่อนหน้า</div>
-
-        <div class="videogrid">
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="qypZsmot9Z8"
-                    aria-label="รับชมการนำเสนอผลประกอบการไตรมาส 2/2569 บน YouTube">
-              <img src="~/images/ir/oppday-q2-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>การนำเสนอผลประกอบการไตรมาส 2/2569</h3>
-              <div class="vc-formats">
-                <span class="fmt">วิดีโอ</span>
-                <span class="fmt">บทถอดความ</span>
-                <span class="fmt">สรุปข้อมูล</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">26 ส.ค. 2569</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/th/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">บทถอดความและสรุปข้อมูลใน SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="dpO3qOWC51Q"
-                    aria-label="รับชมการนำเสนอผลประกอบการไตรมาส 1/2569 บน YouTube">
-              <img src="~/images/ir/oppday-q1-2026.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>การนำเสนอผลประกอบการไตรมาส 1/2569</h3>
-              <div class="vc-formats">
-                <span class="fmt">วิดีโอ</span>
-                <span class="fmt">บทถอดความ</span>
-                <span class="fmt">สรุปข้อมูล</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">28 พ.ค. 2569</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/th/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">บทถอดความและสรุปข้อมูลใน SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="kre-X63WrWE"
-                    aria-label="รับชมการนำเสนอผลประกอบการประจำปี 2568 และไตรมาส 4/2568 บน YouTube">
-              <img src="~/images/ir/oppday-fy2025-q4-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>การนำเสนอผลประกอบการประจำปี 2568 และไตรมาส 4/2568</h3>
-              <div class="vc-formats">
-                <span class="fmt">วิดีโอ</span>
-                <span class="fmt">บทถอดความ</span>
-                <span class="fmt">สรุปข้อมูล</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">13 มี.ค. 2569</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/th/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">บทถอดความและสรุปข้อมูลใน SET ↗</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="videocard">
-            <button type="button" class="frame has-poster yt-facade" data-yt="Pgnee4KAqQo"
-                    aria-label="รับชมการนำเสนอผลประกอบการไตรมาส 3/2568 บน YouTube">
-              <img src="~/images/ir/oppday-q3-2025.webp" alt="" width="800" height="450" loading="lazy" decoding="async">
-              <span class="embed-tag">YouTube</span>
-              <span class="play" aria-hidden="true">
-                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M0 0L16 9L0 18V0Z" fill="#0E4A7C"/></svg>
-              </span>
-            </button>
-            <div class="vc-body">
-              <div class="vc-kind">Earnings Call</div>
-              <h3>การนำเสนอผลประกอบการไตรมาส 3/2568</h3>
-              <div class="vc-formats">
-                <span class="fmt">วิดีโอ</span>
-                <span class="fmt">บทถอดความ</span>
-                <span class="fmt">สรุปข้อมูล</span>
-              </div>
-              <div class="vc-meta">
-                <span class="vc-date">พ.ย. 2568</span>
-                <a class="vc-watch" href="https://opportunity-day.setgroup.or.th/th/search?txt=HANA&amp;year&amp;trust&amp;market&amp;industry&amp;theme&amp;type&amp;stage" target="_blank" rel="noopener">บทถอดความและสรุปข้อมูลใน SET ↗</a>
-              </div>
+            <div class="frame pending-frame">
+              <p class="pending-text">บันทึกการนำเสนอจะเผยแพร่ที่นี่หลังการประชุม Earnings Call ไตรมาส 4/2569</p>
             </div>
           </div>
         </div>
@@ -242,6 +134,8 @@
           <a href="/th/investor-relations/contact" style="color:var(--hana-blue-deep);text-decoration:none;border-bottom:1px solid var(--line);">กิจกรรมนักลงทุน</a>
         </p>
       </section>
+      </text>
+      }
 
       <!-- ─── Group heading: Investor FAQs ─── -->
       <div class="grouphead" id="faqs">
@@ -359,7 +253,7 @@
           <details class="faq">
             <summary><span class="q">สามารถค้นหารายงานประจำปีและงบการเงินของ Hana ได้จากที่ใด?</span><span class="chev" aria-hidden="true">+</span></summary>
             <div class="a">
-              <p>รายงานประจำปีฉบับล่าสุด (56-1 One Report) อยู่ใน<a href="/th/investor-relations/annual">หมวดรายงานประจำปี</a> งบการเงินรายไตรมาสและคำอธิบายและวิเคราะห์ของฝ่ายจัดการ (MD&amp;A) อยู่ใน<a href="/th/investor-relations/news">หมวดข่าวสารสำหรับนักลงทุน</a> ส่วนการนำเสนอผลประกอบการอยู่ในหมวดคำถามที่พบบ่อย ในส่วน<a href="#presentations">การนำเสนอผลประกอบการ</a></p>
+              <p>รายงานประจำปีฉบับล่าสุด (56-1 One Report) อยู่ใน<a href="/th/investor-relations/annual">หมวดรายงานประจำปี</a> งบการเงินรายไตรมาสและคำอธิบายและวิเคราะห์ของฝ่ายจัดการ (MD&amp;A) อยู่ใน<a href="/th/investor-relations/news">หมวดข่าวสารสำหรับนักลงทุน</a>@if (ShowPresentations) {<text> ส่วนการนำเสนอผลประกอบการอยู่ในหมวดคำถามที่พบบ่อย ในส่วน<a href="#presentations">การนำเสนอผลประกอบการ</a></text>}</p>
             </div>
           </details>
           <details class="faq">
