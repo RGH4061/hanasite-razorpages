@@ -537,8 +537,26 @@
   </div>
 </div>
 
-<!-- spacing before footer -->
-<div style="height: var(--s-8); background: var(--hana-band); border-top: 1px solid var(--hana-band-line); background-color: rgb(253, 253, 253)"></div>
+
+@* General application band (approved 27 Nov 2026). One email button to the Bangkok HQ
+   recruitment inbox (Data/careers-jobs.json "bangkok"); HQ passes CVs on to the relevant plant. *@
+@if (hasJobs)
+{
+  var hq = HanaSite.Services.CareersJobs.PlantOf(jobs.First() with { Plant = "bangkok" });
+  <section class="cv-cta" data-hana-geo="side" data-geo-theme="midnight" data-geo-motion aria-labelledby="cv-cta-title">
+    <div class="cv-cta-inner">
+      <div class="cv-cta-text">
+        <h2 id="cv-cta-title">Send us your CV</h2>
+        <p>If none of the current vacancies matches your experience, you can email your CV to our recruitment team. Include a short note on the kind of role and the location you are interested in, and the team will pass it to the relevant plant for future consideration of any available roles.</p>
+      </div>
+      <a class="cv-cta-btn" href="mailto:@hq.Email?subject=General%20application%20-%20CV">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Email your CV
+      </a>
+    </div>
+  </section>
+}
+
 
 <!-- ── Page end (removed) ── -->
 <section class="page-end" aria-label="Recruiting contact" style="display:none">
