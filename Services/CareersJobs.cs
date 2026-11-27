@@ -21,7 +21,7 @@ public static class CareersJobs
         string Slug, int? SourceJobId, string Title, string Plant, string Department,
         string Type, string PayBasis, string Posted, string? About,
         List<string> Responsibilities, List<string> Qualifications,
-        List<string>? Benefits, List<Board>? Boards, string? StartDate = null)
+        List<string>? Benefits, List<Board>? Boards, string? StartDate = null, string? Lang = null)
     {
         public string Url => "/careers/jobs/" + Slug;
         /// Line under the title for a role recruiting ahead of a future start, or null.

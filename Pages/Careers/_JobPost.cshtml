@@ -89,18 +89,21 @@
       </div>
       }
 
+      @if (job.Responsibilities.Count > 0)
+      {
       <div class="jd-section">
         <div class="jd-label"><span>Responsibilities</span></div>
         <h2>Key responsibilities</h2>
-        <ul class="jd-list">
+        <ul class="jd-list" lang="@(job.Lang ?? "en")">
           @foreach (var r in job.Responsibilities) { <li>@r</li> }
         </ul>
       </div>
+      }
 
       <div class="jd-section">
         <div class="jd-label"><span>Requirements</span></div>
         <h2>Qualifications</h2>
-        <ul class="jd-list">
+        <ul class="jd-list" lang="@(job.Lang ?? "en")">
           @foreach (var q in job.Qualifications) { <li>@q</li> }
         </ul>
       </div>

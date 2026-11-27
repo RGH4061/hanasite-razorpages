@@ -215,3 +215,6 @@
 
 /* Roles recruiting ahead of a future start date (23 Nov 2026) */
 .hero .hero-start { margin: calc(-1 * var(--s-3)) 0 var(--s-5); font-size: 16px; font-weight: 500; color: #9CCBF5; }
+
+/* Listings HR posted in Thai (lang "th" in Data/careers-jobs.json): Sarabun via Inter's Thai face, a step larger */
+.jd-list[lang="th"] li { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.65; }

@@ -1,6 +1,6 @@
-@page "/careers/jobs/pmc-officer-koh-kong"
+@page "/careers/jobs/design-engineer-ayutthaya"
 @{
-    var job = HanaSite.Services.CareersJobs.Get("pmc-officer-koh-kong")!;
+    var job = HanaSite.Services.CareersJobs.Get("design-engineer-ayutthaya")!;
     var plant = HanaSite.Services.CareersJobs.PlantOf(job);
     ViewData["Title"] = job.Title + " | Careers";
     ViewData["Motion"] = "page";
@@ -9,5 +9,5 @@
 @section Head {
     <link rel="stylesheet" href="~/css/careers-job-post.css" />
 }
-@* Role content: Data/careers-jobs.json ("pmc-officer-koh-kong"). Layout: Pages/Careers/_JobPost.cshtml. *@
+@* Role content: Data/careers-jobs.json ("design-engineer-ayutthaya"). Layout: Pages/Careers/_JobPost.cshtml. *@
 <partial name="_JobPost" model="job" />

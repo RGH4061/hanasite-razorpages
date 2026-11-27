@@ -1,10 +1,13 @@
 // Data/careers-jobs.json — open roles on /careers (read by Services/CareersJobs.cs).
 // Each role is copied from its live hanagroup.com listing (sourceJobId); never invent job content.
+// House rules (Rupert, 23–27 Nov 2026): spell out abbreviated titles; obvious typos tidied, meaning kept;
+// department from the backend list; no reference number; no about/benefits/boards unless HR supplied them.
 // Each role also needs a page file: Pages/Careers/Jobs/<Name>.cshtml with @page "/careers/jobs/<slug>".
 // plant: ayutthaya | lamphun | bangkok | kohkong | jiaxing  (sets the filter, the location and the recruitment inbox)
-// about, benefits and boards are optional; leave them out unless HR supplied them.
 // startDate (optional, e.g. "Q1 2027") marks a role recruiting ahead of a future start: shown as
 // "Welcoming Applicants for <startDate> Start Date" under the title.
+// lang "th": the listing text is in Thai (as HR posted it); the title stays English.
+// Roles are listed newest first; roles posted on the same day keep the order below (the live site's order).
 {
   "plants": {
     "ayutthaya": { "name": "Ayutthaya", "location": "Ayutthaya, Thailand", "email": "Recruiter@ayt.hanabk.th.com" },
@@ -15,14 +18,9 @@
   },
   "jobs": [
     {
-      "slug": "sqe-jiaxing",
-      "sourceJobId": 1084,
+      "slug": "sqe-jiaxing", "sourceJobId": 1084,
       "title": "Supplier Quality Engineer (SQE)",
-      "plant": "jiaxing",
-      "department": "Quality",
-      "type": "Full Time",
-      "payBasis": "Monthly",
-      "posted": "2026-11-23",
+      "plant": "jiaxing", "department": "Quality", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-23",
       "responsibilities": [
         "Handle incoming quality non-conformities of electronic components, PCBs and structural raw materials.",
         "Train inspectors to improve their inspection competency.",
@@ -40,51 +38,156 @@
       ]
     },
     {
-      "slug": "pre-assembly-engineer-ayutthaya",
-      "sourceJobId": 1069,
+      "slug": "pre-assembly-engineer-ayutthaya", "sourceJobId": 1069,
       "title": "Pre-Assembly Engineer",
-      "plant": "ayutthaya",
-      "department": "Engineering",
-      "type": "Full Time",
-      "payBasis": "Monthly",
-      "posted": "2026-11-19",
-      "about": "As a Pre-Assembly Engineer at our Ayutthaya facility, you will be responsible for the accuracy and readiness of assembly documentation before production begins. You will work closely with customers, production planning, and the engineering team to ensure a smooth transition from order to production floor.",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
       "responsibilities": [
-        "Review customer assembly documents and provide guidance on Assembly Instructions, Build Sheets, and Marking Instructions",
-        "Translate or guide the translation of customer documents into required internal formats",
-        "Ensure correctness of all information per the PC loading schedule"
+        "Review customer assembly documents and provide guidance on Assembly Instructions, Build Sheets and Marking Instructions special requirements.",
+        "Translate or guide the translation of customer documents into Build Sheet and Marking Instruction format.",
+        "Ensure all information is correct per the PC loading schedule."
       ],
       "qualifications": [
-        "Bachelor's degree in Engineering, or Science in Electronics, Electrical, Mechanical or a related field",
-        "Newly graduated candidates are welcome; or at least 3 years of work experience in electronics manufacturing",
-        "Able to communicate in English",
-        "Computer proficiency in AutoCAD and Microsoft Office"
-      ],
-      "benefits": [
-        "Competitive salary and annual performance review",
-        "Health insurance and welfare benefits",
-        "Annual leave plus Thai public holidays",
-        "Technical training and career development programs",
-        "On-site facilities including canteen and transport support",
-        "A close-knit team culture with strong focus on employee wellbeing"
-      ],
-      "boards": [
-        { "name": "Indeed", "url": "#" },
-        { "name": "LinkedIn", "url": "#" },
-        { "name": "JobsDB", "url": "#" },
-        { "name": "JobStreet", "url": "#" },
-        { "name": "Glassdoor", "url": "#" }
+        "Bachelor's degree in Engineering, or Science in Electronics, Electrical, Mechanical or a related field.",
+        "Newly graduated candidates are welcome; or at least 3 years of work experience in electronics manufacturing.",
+        "Able to communicate in English.",
+        "Computer skills: AutoCAD and Microsoft Office."
       ]
     },
     {
-      "slug": "product-process-engineer-lamphun",
-      "sourceJobId": 5,
+      "slug": "project-program-management-senior-engineer-ayutthaya", "sourceJobId": 1068,
+      "title": "Project and Program Management Senior Engineer",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
+      "responsibilities": [
+        "Carry out all activities in the design and development of new products to achieve a first-pass design and full release to the production line.",
+        "Prepare all official documents for new product development in line with quality standards and customer special requirements."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electronics, Electrical, Mechanical or a related field.",
+        "5 years or more of work experience in IC / semiconductor assembly or electronics manufacturing.",
+        "Good English communication.",
+        "Computer skills: Microsoft Office."
+      ]
+    },
+    {
+      "slug": "process-engineer-fol-eol-ayutthaya", "sourceJobId": 1065,
+      "title": "Process Engineer (Front-of-Line and End-of-Line)",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
+      "responsibilities": [
+        "Design and control production processes to achieve high-quality products within the appropriate lead time.",
+        "Minimize production cost, and solve and prevent problems.",
+        "Take part in developing business processes to improve the efficiency and profitability of the manufacturing facility.",
+        "Study and inspect existing machines, equipment and production processes to develop them for better yield and product quality."
+      ],
+      "qualifications": [
+        "Bachelor's degree or higher in Electronics, Electrical or Mechanical Engineering or a related field.",
+        "At least 2–5 years of work experience in IC assembly, preferably in Front-of-Line (die attach, wire bond) and End-of-Line (mold, plating, DTF, marking) processes.",
+        "Good command of written and spoken English.",
+        "Computer skills: Microsoft Office."
+      ]
+    },
+    {
+      "slug": "hr-senior-manager-ayutthaya", "sourceJobId": 1066,
+      "title": "Human Resources Senior Manager",
+      "plant": "ayutthaya", "department": "Human Resources", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
+      "responsibilities": [
+        "Establish systematic and effective employment procedures and documentation.",
+        "Coordinate with management in reviewing organizational manpower requirements and establish the recruitment plan.",
+        "Review and create employment policies and procedures in line with external conditions and company policies.",
+        "Provide an internal job opportunity program for employees to build motivation and reduce turnover.",
+        "Oversee all aspects of the operation and ensure compliance with the Labor Protection Act and company policies and regulations.",
+        "Develop appropriate systems and methods for training needs analysis.",
+        "Initiate and carry out a yearly training needs survey for technical staff.",
+        "Manage training and development for all employees throughout the program and solve problems.",
+        "Coach and counsel subordinates to develop their capability in HR and training functions."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Law, Human Resources, Industrial Engineering, Psychology, Political Science or a related field.",
+        "Over 10 years' experience in human resources in a manufacturing environment.",
+        "Strong leadership at management level.",
+        "Good interpersonal and presentation skills.",
+        "Proficient in written and spoken English.",
+        "Experience negotiating and managing collective bargaining agreements, and able to communicate effectively."
+      ]
+    },
+    {
+      "slug": "swr-engineer-ayutthaya", "sourceJobId": 1067,
+      "title": "Special Work Request (SWR) Engineer",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
+      "responsibilities": [
+        "Ensure that all customer special work requests (SWR) are properly generated, reviewed and loaded from assembly through test operations correctly, as the customer expects, and shipped on time to the customer's cycle time requirement."
+      ],
+      "qualifications": [
+        "Bachelor's degree or higher in Electronics, Mechanical or Electrical Engineering or a related field.",
+        "1–3 years of work experience, preferably in the semiconductor or electronics industry.",
+        "Manage new product development and introduction activities from design for manufacturing.",
+        "Computer skills: Microsoft Office and AutoCAD.",
+        "Good command of written and spoken English."
+      ]
+    },
+    {
+      "slug": "test-engineer-senior-ayutthaya", "sourceJobId": 1064,
+      "title": "Test Engineer / Senior Test Engineer",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
+      "responsibilities": [
+        "Plan, design and evaluate products and test programs with the production team so that finished products can be identified easily and tested thoroughly.",
+        "Evaluate new machines and conduct pre-qualification tests or test runs to keep machines consistent and capable of meeting production and customer requirements."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electronics, Electrical or Mechanical Engineering.",
+        "7–10 years of work experience in the final test process in semiconductor or electronics manufacturing.",
+        "Test program development and test hardware design, with debugging and troubleshooting ability.",
+        "Knowledge of computer programming in C/C++ and Visual Basic.",
+        "Experience with testers (Eagle ETS364/300/200, ASL1000, TESEC, CHROMA, etc.).",
+        "Experience with test handlers (SRM, ISEMCA, TESEC, HONTECH, SEIKO EPSON, STI, etc.).",
+        "Improve tester and handler OEE and MSA.",
+        "Improve test process capability, yield and output to meet KPIs.",
+        "Create procedures and plan manpower and machine ratios to support the strategic plan.",
+        "Manage process flow, PFMEA, MFMEA, OCAP and technical support.",
+        "Manage and coach technicians and technical operators.",
+        "Able to speak, read and write in English.",
+        "Computer skills: Microsoft Office."
+      ]
+    },
+    {
+      "slug": "npi-engineer-ayutthaya", "sourceJobId": 3,
+      "title": "New Product Introduction (NPI) Engineer",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-19",
+      "responsibilities": [
+        "Provide engineering support for all activities in the product development process.",
+        "Prepare project timelines and identify all resource requirements for the manufacturing process.",
+        "Monitor the status of all new products and ensure effective project execution.",
+        "Work with design engineering and assist in the transition of design prototypes into cost-efficient, high-volume products.",
+        "Develop prototype designs according to the required techniques and manufacturing processes.",
+        "Provide the technical knowledge needed to solve difficult process problems.",
+        "Provide technical support to the materials management team for all initiatives and manage the effective use of outsourced products."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Science or Engineering.",
+        "2–5 years of experience in the die bond process in the semiconductor manufacturing industry.",
+        "Proficient in written and spoken English.",
+        "Excellent analytical ability.",
+        "Good leadership and project management skills."
+      ]
+    },
+    {
+      "slug": "customer-service-engineer-lamphun", "sourceJobId": 20,
+      "title": "Customer Service Engineer / Customer Service Officer",
+      "plant": "lamphun", "department": "Customer Service", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Coordinate between customers and Hana operations to provide the best service to customers in terms of quality and delivery."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Engineering, Science or any field. Technical knowledge is preferred.",
+        "Minimum 2–5 years of experience in marketing, sales, production control or customer service in electronics manufacturing, including dealing with customers and preparing quotations.",
+        "Able to communicate effectively in English.",
+        "Able to work outside normal hours.",
+        "Able to work in Lamphun."
+      ]
+    },
+    {
+      "slug": "product-process-engineer-lamphun", "sourceJobId": 5,
       "title": "Product/Process Engineer",
-      "plant": "lamphun",
-      "department": "Engineering",
-      "type": "Full Time",
-      "payBasis": "Monthly",
-      "posted": "2026-11-18",
+      "plant": "lamphun", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
       "responsibilities": [
         "Establish, analyze and evaluate engineering processes.",
         "Plan and coordinate activities involved in process improvement to meet customer requirements."
@@ -98,15 +201,220 @@
       ]
     },
     {
-      "slug": "smt-planner-ayutthaya",
-      "sourceJobId": 1074,
-      "title": "SMT Production Control and Material Control Planner / Senior Planner",
-      "startDate": "Q1 2027",
-      "plant": "ayutthaya",
-      "department": "Supply Chain",
-      "type": "Full Time",
-      "payBasis": "Monthly",
-      "posted": "2026-11-18",
+      "slug": "planner-lamphun", "sourceJobId": 6,
+      "title": "Planner",
+      "plant": "lamphun", "department": "Supply Chain", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Plan, manage and coordinate all activities involved in production and inventory control, in both processing and storage, to meet customer requirements and operational goals."
+      ],
+      "qualifications": [
+        "Bachelor's degree or equivalent in any field.",
+        "Minimum 2 years of work experience in production or material planning and control in electronics manufacturing, or a related function.",
+        "Good communication in English and good Microsoft Excel skills.",
+        "Able to work in Lamphun province."
+      ]
+    },
+    {
+      "slug": "test-engineer-lamphun", "sourceJobId": 7,
+      "title": "Test Engineer",
+      "plant": "lamphun", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Implement, maintain and improve electrical test capability, capacity, yield and quality by coordinating with related departments."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electronics, Electrical, Mechatronics or Telecommunication Engineering.",
+        "Basic knowledge of integrated circuits, with experience in troubleshooting, failure analysis, test or a related function.",
+        "Good command of English.",
+        "Able to work in Lamphun province."
+      ]
+    },
+    {
+      "slug": "procurement-engineer-lamphun", "sourceJobId": 8,
+      "title": "Procurement Engineer",
+      "plant": "lamphun", "department": "Supply Chain", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Find suppliers for custom parts (PCB, flex, plastics, metal parts).",
+        "Visit and qualify suppliers.",
+        "Coordinate with the Hana team on the technical aspects of purchased prices.",
+        "Monitor supplier quality.",
+        "Supervise, monitor and advise subordinates (if any) to work in accordance with company rules and regulations.",
+        "Supervise and manage subordinates (if any) to work in accordance with company safety regulations in daily operations.",
+        "Conduct subordinates' performance appraisals (if any) on time.",
+        "Perform other duties as assigned by the immediate superior or requested by line managers and directors."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electronics Engineering or Materials Science. A bachelor's degree in any field with a technical background is also acceptable.",
+        "Minimum 2 years of experience in supplier quality engineering or technical (electronics/electrical) procurement, with good knowledge of sources.",
+        "Good English communication and computer skills.",
+        "Able to work in Lamphun province."
+      ]
+    },
+    {
+      "slug": "internal-audit-engineer-lamphun", "sourceJobId": 32,
+      "title": "Internal Audit Engineer",
+      "plant": "lamphun", "department": "Quality", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Conduct internal audit activities according to the certified standards.",
+        "Coordinate with external parties on audit activities."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Science (Physics, Chemistry) or an Engineering-related field.",
+        "Experience in QMS audits (ISO 9001, IATF 16949, ISO 13485) and working experience in electronics manufacturing processes.",
+        "Good English communication skills."
+      ]
+    },
+    {
+      "slug": "production-supervisor-lamphun", "sourceJobId": 40,
+      "title": "Production Supervisor",
+      "plant": "lamphun", "department": "Production", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Under close supervision, act as line supervisor of a shift within the Manufacturing Department, supervising and directing line leaders and groups of production operators to achieve daily schedules, yield goals, quality and productivity standards, and cost standards."
+      ],
+      "qualifications": [
+        "Bachelor's degree in any field; Bachelor of Science preferred.",
+        "Minimum 2–3 years of work experience in manufacturing, in production, production control or a related function.",
+        "Interpersonal, supervisory and leadership skills.",
+        "Good English communication.",
+        "Able to work rotating shifts, Monday to Saturday (6 days a week).",
+        "Able to work in Lamphun province."
+      ]
+    },
+    {
+      "slug": "test-technician-lamphun", "sourceJobId": 47,
+      "title": "Test Technician", "lang": "th",
+      "plant": "lamphun", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "ตรวจสอบ /ดูแล /ซ่อมบำรุง เครื่องมือที่ใช้ทดสอบผลิตภัณฑ์",
+        "เก็บข้อมูลตามที่วิศวกรมอบหมาย และดูแล/ทดสอบงานทดลองของวิศวกร"
+      ],
+      "qualifications": [
+        "วุฒิการศึกษา ปวส.สาขาไฟฟ้า,อิเล็คทรอนิคส์ และ เทคนิคคอมพิวเตอร์",
+        "เป็นนักศึกษาจบใหม่ หรือมมีประสบการณ์ 1-2 ปีในโรงงานอุตสาหกรรมที่เกี่ยวข้องจะพิจารณาเป็นพิเศษ",
+        "ทำงานเป็นกะ และ เวียนกะได้",
+        "มีความสามารถในการใช้คอมพิวเตอร์และ ภาษาอังกฤษ"
+      ]
+    },
+    {
+      "slug": "technical-assistant-lamphun", "sourceJobId": 48,
+      "title": "Technical Assistant", "lang": "th",
+      "plant": "lamphun", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "เป็นผู้ช่วยวิศวกรในการเตรียมวัตถุดิบสําหรับการทดลอง/ผลิตและพัฒนาปรับปรุงกระบวนการผลิต"
+      ],
+      "qualifications": [
+        "วุฒิการศึกษา ปวส.สาขาไฟฟ้ากำลัง หรืออิเล็คทรอนิคส์",
+        "เป็นนักศึกษาจบใหม่ หรือ หากมี ประสบการณ์ทำงานในด้านการผลิต / ซ่อมบำรุงเครื่องจักรในโรงงานอุตสาหกรรมที่เกี่ยวข้องจะพิจารณาเป็นพิเศษ",
+        "มีความสามารถในการใช้คอมพิวเตอร์และ ภาษาอังกฤษ"
+      ]
+    },
+    {
+      "slug": "smt-sourcing-purchasing-manager-ayutthaya", "sourceJobId": 1080,
+      "title": "SMT Sourcing and Purchasing Section Manager", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Supply Chain", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Initiate procurement of direct and indirect materials, machines and equipment, tooling and spare parts from local and overseas suppliers according to approved purchase requisitions, and follow up or expedite orders to ensure timely delivery and product quality."
+      ],
+      "qualifications": [
+        "Bachelor's or master's degree in Business, Management, Engineering, Science or a related field.",
+        "5–12 years of purchasing experience in electronics manufacturing.",
+        "Negotiation skills and good knowledge of semiconductor production processes.",
+        "Familiar with procurement of SMT materials (sourcing and purchasing).",
+        "Excellent command of written and spoken English."
+      ]
+    },
+    {
+      "slug": "test-engineer-ayutthaya", "sourceJobId": 1079,
+      "title": "Test Engineer",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Improve tester and handler OEE and MSA."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electronics, Electrical or Mechanical Engineering.",
+        "0–3 years of work experience in the test process in semiconductor or electronics manufacturing.",
+        "Test program development and test hardware design, with debugging and troubleshooting ability.",
+        "Knowledge of computer programming in C/C++ and Visual Basic.",
+        "Manage and coach technicians and technical operators.",
+        "Able to speak, read and write in English.",
+        "Computer skills: Microsoft Office."
+      ]
+    },
+    {
+      "slug": "production-supervisor-ayutthaya", "sourceJobId": 1078,
+      "title": "Production Supervisor / Senior Production Supervisor", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Production", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Plan, organize and control production to meet department objectives with good productivity, quality and utilization.",
+        "Control expenses in own area of responsibility to meet department goals.",
+        "Monitor production activities and report updates to upper management.",
+        "Supervise subordinates in compliance with company policies and regulations."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Engineering or a related field.",
+        "0–3 years (Production Supervisor) or 5–12 years (Senior Production Supervisor) of experience as a production supervisor.",
+        "Good command of written and spoken English.",
+        "Strong leadership and analytical ability."
+      ]
+    },
+    {
+      "slug": "design-engineer-ayutthaya", "sourceJobId": 1077,
+      "title": "Design Engineer",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Carry out and take responsibility for all activities concerning the design, development and process review of new projects.",
+        "Coordinate the final design and process review with R&D, the engineers concerned and Process Engineering.",
+        "Release documentation or specifications for internal and external (customer) approval."
+      ],
+      "qualifications": [
+        "Bachelor's degree or higher in Electronics, Mechanical or Electrical Engineering or a related field.",
+        "2–5 years of work experience, preferably in the semiconductor or electronics industry.",
+        "Computer skills: Microsoft Office, AutoCAD and SolidWorks 2D/3D.",
+        "Good command of written and spoken English."
+      ]
+    },
+    {
+      "slug": "business-development-customer-support-ayutthaya", "sourceJobId": 1076,
+      "title": "Business Development and Customer Support Staff",
+      "plant": "ayutthaya", "department": "Business Development", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Assess demand for products and help identify potential customers.",
+        "Work with project managers to oversee the productivity of marketing plans.",
+        "Initiate, assess and review marketing activity and results.",
+        "Develop, establish and maintain marketing strategies to meet organizational objectives.",
+        "Work with customers in a supporting role to Marketing.",
+        "Develop good relationships with clients.",
+        "Formulate sales and marketing plans and strategies for company products."
+      ],
+      "qualifications": [
+        "Bachelor's or master's degree in Industrial Engineering, Business, Management, Liberal Arts, Mass Communication or a related field.",
+        "5–7 years of experience in marketing, technical engineering, purchasing or business development.",
+        "Knowledge of local and overseas markets is preferred.",
+        "Strong negotiation skills.",
+        "Good command of written and spoken English."
+      ]
+    },
+    {
+      "slug": "principal-engineer-ayutthaya", "sourceJobId": 1075,
+      "title": "Principal Engineer (Manager Level): Flip-Chip, Power Packaging or SMT", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Manage new product development (flip-chip technology, power packaging and/or SMT) and integrate process improvement.",
+        "Lead NPI so that the technology and products are developed and qualified to a high level of quality.",
+        "Design, execute and analyze experiments, and optimize current processes to improve the yield and performance of new products.",
+        "Manage the engineering team and coordinate with assembly and test operations to improve yield and quality."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Electrical/Electronic Engineering, Science or a related field.",
+        "8 years or more of direct experience in flip-chip, power packaging or SMT.",
+        "Comprehensive knowledge of semiconductor manufacturing processes.",
+        "Strong verbal and written English communication skills.",
+        "Strong reporting and statistical analysis skills."
+      ]
+    },
+    {
+      "slug": "smt-planner-ayutthaya", "sourceJobId": 1074,
+      "title": "SMT Production Control and Material Control Planner / Senior Planner", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Supply Chain", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
       "responsibilities": [
         "Handle SMT forecasting and production control, PCB raw material sourcing, and communication with overseas customers."
       ],
@@ -118,26 +426,60 @@
       ]
     },
     {
-      "slug": "pmc-officer-koh-kong",
-      "sourceJobId": 15,
-      "title": "Production and Material Control (PMC) Officer",
-      "plant": "kohkong",
-      "department": "Supply Chain",
-      "type": "Full Time",
-      "payBasis": "Monthly",
-      "posted": "2026-11-18",
+      "slug": "smt-pcb-test-engineer-ayutthaya", "sourceJobId": 1073,
+      "title": "SMT and PCB Test Engineer / Senior Engineer", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
       "responsibilities": [
-        "Check all forecast updates against the build sheet to ensure the material set (direct material, spare parts, indirect material and consigned material) is enough to support the forecast and PO.",
-        "Contact vendors and purchasing to pull in and expedite shipments when demand increases, or to push out or cancel orders to keep a suitable inventory level when actual loading is lower than the forecast.",
-        "Check the actual loading to prepare material, check material inventory status, and confirm all forecasts for PC and Marketing so the loading can be confirmed to the customer.",
-        "Keep the manager informed of potential problems related to direct and indirect material."
+        "Technical leadership experience with SMT, module, SiP and flip-chip assembly products is an advantage."
       ],
       "qualifications": [
-        "Bachelor's degree or related skills.",
-        "At least 3 years of experience in material planning or related work.",
-        "Good analytical thinking, planning and problem-solving skills.",
-        "Able to speak English; Thai is an advantage.",
-        "Computer skills: Word, Excel, PowerPoint and email."
+        "Bachelor's degree in Electronics, Electrical or Mechanical Engineering.",
+        "2–7 years of work experience in SMT, PCB test and assembly processes in semiconductor or electronics manufacturing.",
+        "Lead product and process design for RFQs and NPI development, run SMT and PCB processes, and improve box build.",
+        "Knowledge of PCB and SMT, and of computer programming in C/C++ and Visual Basic.",
+        "Manage and coach technicians and technical operators.",
+        "Able to speak, read and write in English.",
+        "Computer skills: Microsoft Office."
+      ]
+    },
+    {
+      "slug": "buyer-procurement-engineer-ayutthaya", "sourceJobId": 1072,
+      "title": "Buyer / Senior Buyer and Procurement Engineer", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Supply Chain", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Initiate procurement of direct and indirect materials, machines and equipment, tooling and spare parts from local and overseas suppliers according to approved purchase requisitions, and follow up or expedite orders to ensure timely delivery and product quality."
+      ],
+      "qualifications": [
+        "Bachelor's or master's degree in Business, Management, Engineering, Science or a related field.",
+        "1–3 years of purchasing experience in electronics manufacturing.",
+        "Negotiation skills and good knowledge of semiconductor production processes.",
+        "Excellent command of written and spoken English."
+      ]
+    },
+    {
+      "slug": "assembly-process-engineer-ayutthaya", "sourceJobId": 1071,
+      "title": "Die Attach, Wire Bond, Mold and Flip-Chip Engineer", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Engineering", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [],
+      "qualifications": [
+        "Bachelor's degree or higher in Electronics, Electrical or Mechanical Engineering or a related field.",
+        "At least 3–10 years of work experience in IC assembly, preferably in Front-of-Line and End-of-Line processes (die attach, wafer back grinding, saw (laser/blade), wire bond, flip chip, mold, plating).",
+        "Good command of written and spoken English.",
+        "Computer skills: Microsoft Office."
+      ]
+    },
+    {
+      "slug": "planner-ayutthaya", "sourceJobId": 1070,
+      "title": "Production Control and Material Control Planner / Senior Planner", "startDate": "Q1 2027",
+      "plant": "ayutthaya", "department": "Supply Chain", "type": "Full Time", "payBasis": "Monthly", "posted": "2026-11-18",
+      "responsibilities": [
+        "Handle forecasting and production control, and communication with overseas customers."
+      ],
+      "qualifications": [
+        "Bachelor's degree in Physics, Mathematics, Statistics, Economics, Business, Industrial Engineering or a related field.",
+        "3–12 years of work experience in an electronics company, preferably in production control and/or material control.",
+        "Able to communicate in English.",
+        "Computer skills: Microsoft Office (Excel: VLOOKUP, PivotTables, SUMIF)."
       ]
     }
   ]

@@ -1,0 +1,13 @@
+@page "/careers/jobs/procurement-engineer-lamphun"
+@{
+    var job = HanaSite.Services.CareersJobs.Get("procurement-engineer-lamphun")!;
+    var plant = HanaSite.Services.CareersJobs.PlantOf(job);
+    ViewData["Title"] = job.Title + " | Careers";
+    ViewData["Motion"] = "page";
+    ViewData["Description"] = job.Title + ", " + plant.Location + ". " + job.Type + " role at Hana Microelectronics.";
+}
+@section Head {
+    <link rel="stylesheet" href="~/css/careers-job-post.css" />
+}
+@* Role content: Data/careers-jobs.json ("procurement-engineer-lamphun"). Layout: Pages/Careers/_JobPost.cshtml. *@
+<partial name="_JobPost" model="job" />
