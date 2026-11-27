@@ -148,11 +148,12 @@ function lifeCard(card, loc) {
     slides = '<div class="life-img-slide">' + lifeSvg + '<span>' + ((L10N && L10N.photoSoon) || 'Photo coming soon') + '</span></div>';
   }
   const tr = L10N && L10N.cards ? L10N.cards[key] : null;
+  const trDesc = L10N && L10N.descs && L10N.descs[loc] ? L10N.descs[loc][key] : null;
   return '<div class="life-img">' +
            '<div class="life-img-scroll">' + slides + '</div>' +
            '<div class="life-img-cap">' +
              '<div class="cap-title">' + (tr ? tr.title : card.title) + '</div>' +
-             '<p class="cap-desc">' + (tr ? tr.desc : card.desc) + '</p>' +
+             '<p class="cap-desc">' + (trDesc || (tr ? tr.desc : card.desc)) + '</p>' +
            '</div>' +
          '</div>';
 }
@@ -181,7 +182,7 @@ const cards = document.querySelectorAll('.job-card');
 const countEl = document.getElementById('job-count');
 
 const locMap  = { 'f-bkk': 'bangkok', 'f-ayt': 'ayutthaya', 'f-lpn': 'lamphun', 'f-kk': 'kohkong', 'f-jx': 'jiaxing' };
-const typeMap = { 'f-ft': 'fulltime', 'f-pt': 'parttime', 'f-int': 'internship' };
+const typeMap = { 'f-ft': 'fulltime', 'f-ct': 'contract', 'f-int': 'internship' };
 
 function applyFilters() {
   const activeLocs  = Object.entries(locMap).filter(([id]) => document.getElementById(id).checked).map(([,v]) => v);
