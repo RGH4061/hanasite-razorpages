@@ -433,7 +433,7 @@
     },
     "/capabilities/osat": {
       "h1": {
-        "en": "Outsourced semiconductor assembly and test",
+        "en": "Outsourced semiconductor assembly and test services",
         "th": "บริการรับจ้างประกอบและทดสอบเซมิคอนดักเตอร์ (OSAT)",
         "status": "approved"
       },
