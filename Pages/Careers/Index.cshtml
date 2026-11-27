@@ -482,13 +482,9 @@
     }
 
     <main class="jobs-content">
+      @* Role counts sit on the location headings and the phone "Filter roles" button. *@
       <header class="jobs-head">
-        <div class="section-label">
-          <span>Open Positions</span>
-          @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount @(jobCount == 1 ? "role" : "roles")</span> }
-        </div>
         <h2>Current vacancies</h2>
-        <p class="intro">Roles are based at our Thailand, Cambodia and China facilities.</p>
       </header>
 
       <div class="jobs-list" id="jobs-list">
