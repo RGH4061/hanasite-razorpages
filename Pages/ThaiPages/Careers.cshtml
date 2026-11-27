@@ -382,17 +382,18 @@
 
 <!-- ── Job listings ── -->
 <div class="layout-bg" id="open-roles">
-  @* Placeholder roles removed (Rupert, 17 Nov 2026). Live listings will come from Careers Admin
-     (/admin/jobs). Until a role is posted the filters are hidden and the empty message shows.
-     Each role renders as one card in #jobs-list, for example:
-       <div class="job-card" data-location="ayutthaya|lamphun|bangkok|kohkong" data-type="fulltime|parttime|internship">
-         <div class="job-info">
-           <div class="job-title">Role title</div>
-           <div class="job-meta"><span class="loc-tag">Ayutthaya</span> Full Time <span class="sep">|</span> Posted 27 Jan 2026</div>
-         </div>
-         <a href="/careers/job-post" class="job-apply">Apply →</a>
-       </div> *@
-  @{ var hasJobs = false; var jobCount = 0; }
+  @* Open roles come from Data/careers-jobs.json (Services/CareersJobs.cs), the same list as /careers, until
+     Careers Admin (/admin/jobs) supplies them. Job titles and departments stay as posted; each card links to
+     the English role page. With no roles the filters are hidden and the empty message shows. *@
+  @{
+      var jobs = HanaSite.Services.CareersJobs.All; var hasJobs = jobs.Count > 0; var jobCount = jobs.Count;
+      var thPlant = new Dictionary<string, string> {
+          ["ayutthaya"] = "อยุธยา", ["lamphun"] = "ลำพูน", ["bangkok"] = "สำนักงานใหญ่กรุงเทพฯ",
+          ["kohkong"] = "เกาะกง", ["jiaxing"] = "เจียซิง" };
+      var thType = new Dictionary<string, string> {
+          ["fulltime"] = "งานเต็มเวลา", ["contract"] = "การจ้างงานตามสัญญา", ["internship"] = "การฝึกงาน" };
+      var thDate = System.Globalization.CultureInfo.GetCultureInfo("th-TH");
+  }
   <div class="layout@(hasJobs ? "" : " layout--single")">
 
     @if (hasJobs)
@@ -464,13 +465,26 @@
       <header class="jobs-head">
         <div class="section-label">
           <span>ตำแหน่งงานที่เปิดรับ</span>
-          @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount roles</span> }
+          @if (hasJobs) { <span class="pip">·</span><span id="job-count">@jobCount ตำแหน่ง</span> }
         </div>
         <h2>ตำแหน่งว่างปัจจุบัน</h2>
         <p class="intro">ตำแหน่งงานที่เปิดรับในประเทศไทย กัมพูชา และจีน</p>
       </header>
 
       <div class="jobs-list" id="jobs-list">
+        @foreach (var job in jobs)
+        {
+          var plantName = thPlant.TryGetValue(job.Plant, out var tp) ? tp : HanaSite.Services.CareersJobs.PlantOf(job).Name;
+          var typeName = thType.TryGetValue(job.TypeKey, out var tt) ? tt : job.Type;
+          <div class="job-card" data-location="@job.Plant" data-type="@job.TypeKey">
+            <div class="job-info">
+              <div class="job-title">@job.Title</div>
+              @if (job.StartDate is not null) { <div class="job-start">เปิดรับสมัครล่วงหน้า เริ่มงาน @job.StartDate</div> }
+              <div class="job-meta"><span class="loc-tag">@plantName</span> @job.Department <span class="sep">|</span> @typeName <span class="sep">|</span> ประกาศเมื่อ @job.PostedDate.ToString("d MMM yyyy", thDate)</div>
+            </div>
+            <a href="@job.Url" class="job-apply">สมัครงาน →</a>
+          </div>
+        }
         @if (!hasJobs)
         {
           <p class="jobs-empty">ขณะนี้ยังไม่มีตำแหน่งที่เปิดรับ ติดตามตำแหน่งใหม่ได้ที่หน้านี้</p>
@@ -516,7 +530,7 @@
 @section Scripts {
 <script>
 window.CAREERS_ASSET_BASE = '/';
-window.CAREERS_L10N = { cards: {
+window.CAREERS_L10N = { roles: ' ตำแหน่ง', cards: {
   "Annual company days":          { title: "กิจกรรมประจำปีของบริษัท", desc: "รวมพลังครอบครัว Hana เพื่อเฉลิมฉลองความสำเร็จตลอดปีที่ผ่านมา" },
   "Celebrations":                 { title: "งานเฉลิมฉลอง", desc: "ร่วมฉลองโอกาสสำคัญ เทศกาล และความสำเร็จของทีมตลอดทั้งปี" },
   "Community outreach":           { title: "กิจกรรมเพื่อสังคม", desc: "ร่วมตอบแทนและสร้างคุณค่าให้แก่ชุมชนท้องถิ่นที่พนักงานของเราอาศัยและทำงานอยู่" },
